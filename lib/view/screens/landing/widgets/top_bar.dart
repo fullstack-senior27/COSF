@@ -1,19 +1,21 @@
 import 'package:cosmetropolis/core/core.dart';
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/app_sizes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TopBar extends StatefulWidget {
+class TopBar extends ConsumerStatefulWidget {
   const TopBar({super.key});
 
   @override
-  State<TopBar> createState() => _TopBarState();
+  ConsumerState<TopBar> createState() => _TopBarState();
 }
 
-class _TopBarState extends State<TopBar> {
+class _TopBarState extends ConsumerState<TopBar> {
   @override
   Widget build(BuildContext context) {
     switch (AppConstants.isStylePrimary) {
@@ -42,7 +44,7 @@ class _TopBarState extends State<TopBar> {
           Switch(
               value: AppConstants.isStylePrimary,
               onChanged: (value) {
-                AppConstants.isStylePrimary = value;
+                ref.read(styleProvider).toggleThemeMode();
                 setState(() {});
               }),
           SizedBox(
