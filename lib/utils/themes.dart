@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class AppThemes {
   AppThemes._();
 
-  static String font1 = "Montserrat";
-  static String font2 = "Montserrat";
+  static String font1 = "Poppins";
+  static String font2 = "Poppins";
 
   //main color
   static const Color _lightPrimaryColor = kDodgerBlue;
@@ -71,27 +71,26 @@ class AppThemes {
   //text theme for light theme
   static const TextTheme _lightTextTheme = TextTheme(
     headline1: TextStyle(
-        fontSize: 20.0, color: _lightTextColor, fontFamily: "Montserrat"),
+        fontSize: 20.0, color: _lightTextColor, fontFamily: "Poppins"),
     bodyText1: TextStyle(
-        fontSize: 16.0, color: _lightTextColor, fontFamily: "Montserrat"),
-    bodyText2:
-        TextStyle(fontSize: 14.0, color: kGrey, fontFamily: "Montserrat"),
-    headline3: TextStyle(
-        fontSize: 16, color: _darkTextColor, fontFamily: "Montserrat"),
+        fontSize: 16.0, color: _lightTextColor, fontFamily: "Poppins"),
+    bodyText2: TextStyle(fontSize: 14.0, color: kGrey, fontFamily: "Poppins"),
+    headline3:
+        TextStyle(fontSize: 16, color: _darkTextColor, fontFamily: "Poppins"),
     button: TextStyle(
       fontSize: 15.0,
       color: _lightTextColor,
       fontWeight: FontWeight.w600,
-      fontFamily: "Montserrat",
+      fontFamily: "Poppins",
     ),
     headline6: TextStyle(
-        fontSize: 16.0, color: _lightTextColor, fontFamily: "Montserrat"),
+        fontSize: 16.0, color: _lightTextColor, fontFamily: "Poppins"),
     subtitle1: TextStyle(
-        fontSize: 16.0, color: _lightTextColor, fontFamily: "Montserrat"),
+        fontSize: 16.0, color: _lightTextColor, fontFamily: "Poppins"),
     caption: TextStyle(
       fontSize: 12.0,
       color: _lightBackgroundAppBarColor,
-      fontFamily: "Montserrat",
+      fontFamily: "Poppins",
     ),
   );
 
@@ -100,7 +99,7 @@ class AppThemes {
     useMaterial3: true,
     brightness: Brightness.light,
     cardColor: kBlack,
-    fontFamily: "Montserrat",
+    fontFamily: "Poppins",
     bottomAppBarColor: bottomnavLightbackgroundColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -164,27 +163,26 @@ class AppThemes {
   );
 
   static const TextTheme _darkTextTheme = TextTheme(
-    headline1: TextStyle(
-        fontSize: 20.0, color: _darkTextColor, fontFamily: "Montserrat"),
-    bodyText1: TextStyle(
-        fontSize: 16.0, color: _darkTextColor, fontFamily: "Montserrat"),
-    bodyText2:
-        TextStyle(fontSize: 14.0, color: kGrey, fontFamily: "Montserrat"),
-    headline3: TextStyle(
-        fontSize: 16, color: _lightTextColor, fontFamily: "Montserrat"),
+    headline1:
+        TextStyle(fontSize: 20.0, color: _darkTextColor, fontFamily: "Poppins"),
+    bodyText1:
+        TextStyle(fontSize: 16.0, color: _darkTextColor, fontFamily: "Poppins"),
+    bodyText2: TextStyle(fontSize: 14.0, color: kGrey, fontFamily: "Poppins"),
+    headline3:
+        TextStyle(fontSize: 16, color: _lightTextColor, fontFamily: "Poppins"),
     button: TextStyle(
         fontSize: 15.0,
         color: _darkTextColor,
         fontWeight: FontWeight.w600,
-        fontFamily: "Montserrat"),
-    headline6: TextStyle(
-        fontSize: 16.0, color: _darkTextColor, fontFamily: "Montserrat"),
-    subtitle1: TextStyle(
-        fontSize: 16.0, color: _darkTextColor, fontFamily: "Montserrat"),
+        fontFamily: "Poppins"),
+    headline6:
+        TextStyle(fontSize: 16.0, color: _darkTextColor, fontFamily: "Poppins"),
+    subtitle1:
+        TextStyle(fontSize: 16.0, color: _darkTextColor, fontFamily: "Poppins"),
     caption: TextStyle(
         fontSize: 12.0,
         color: _darkBackgroundAppBarColor,
-        fontFamily: "Montserrat"),
+        fontFamily: "Poppins"),
   );
 
   //the dark theme
@@ -225,7 +223,7 @@ class AppThemes {
     ),
     unselectedWidgetColor: _darkPrimaryColor,
     inputDecorationTheme: const InputDecorationTheme(
-      prefixStyle: TextStyle(color: _darkIconColor, fontFamily: "Montserrat"),
+      prefixStyle: TextStyle(color: _darkIconColor, fontFamily: "Poppins"),
       //labelStyle: TextStyle(color: nevada),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(
