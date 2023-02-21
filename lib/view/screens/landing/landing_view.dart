@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/utils.dart';
+import 'package:cosmetropolis/view/screens/landing/widgets/category_view.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/daily_deals.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/live_classes.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/popular_services_grid.dart';
@@ -202,15 +203,15 @@ class _LandingViewState extends ConsumerState<LandingView> {
                 ],
               ),
             ),
-      body: ListView(
-        children: [
-          TopBar(scaffoldKey),
-          const SearchBar(),
-          const PopularService(),
-          const DailyDeals(),
-          const LiveClasses()
-        ],
-      ),
+      body: ListView(children: [
+        TopBar(scaffoldKey),
+        const SearchBar(),
+        ref.watch(styleProvider).isPrimaryTheme
+            ? PopularService()
+            : CategoryView(),
+        DailyDeals(),
+        LiveClasses()
+      ]),
     );
   }
 }

@@ -114,22 +114,10 @@ class _PopularServiceState extends State<PopularService> {
           horizontalGridMargin: 16, // Horizontal space around the grid
           verticalGridMargin: 50, // Vertical space around the grid
 
-          minItemWidth:
-              200, // The minimum item width (can be smaller, if the layout constraints are smaller)
-          minItemsPerRow:
-              2, // The minimum items to show in a single row. Takes precedence over minItemWidth
-          maxItemsPerRow:
-              5, // The maximum items to show in a single row. Can be useful on large screens
-          children: gridItems, // The list of widgets in the grid
-          // builder: (context, items) {
-          //   return Container(
-          //     height: 50,
-          //     width: 50,
-          //     color: Colors.red,
-          //   );
-          // Place to build a List or Column to access all properties.
-          // Set [items] as children attribute for example.
-          // }
+          minItemWidth: 200,
+          minItemsPerRow: 2,
+          maxItemsPerRow: 5,
+          children: gridItems,
         )
       ]),
     );
