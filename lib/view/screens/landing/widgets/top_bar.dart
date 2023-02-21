@@ -117,7 +117,7 @@ class _TopBarState extends ConsumerState<TopBar> {
           Switch(
               value: AppConstants.isStylePrimary,
               onChanged: (value) {
-                AppConstants.isStylePrimary = value;
+                ref.read(styleProvider).toggleThemeMode();
                 setState(() {});
               }),
           SizedBox(
