@@ -31,7 +31,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
     return width > 770
         ? Container(
             width: double.infinity,
-            height: width > 770 ? 500.h : 300.h,
+            height: width > 770 ? 400.h : 300.h,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
