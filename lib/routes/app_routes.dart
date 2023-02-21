@@ -1,4 +1,3 @@
-import 'package:cosmetropolis/view/screens.dart';
 import 'package:cosmetropolis/view/screens/landing/landing_view.dart';
 
 import 'package:go_router/go_router.dart';

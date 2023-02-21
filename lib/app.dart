@@ -4,6 +4,7 @@ import 'package:cosmetropolis/utils/themes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -14,17 +15,23 @@ class MyApp extends ConsumerWidget {
     final goRouter = ref.watch(routerProvider);
     final themeManager = ref.watch(themeProvider);
 
-    return MaterialApp.router(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      routeInformationParser: goRouter.routeInformationParser,
-      routerDelegate: goRouter.routerDelegate,
-      routeInformationProvider: goRouter.routeInformationProvider,
-      theme: AppThemes.lightTheme,
-      // darkTheme: AppThemes.darkTheme,
-      themeMode: themeManager.currentTheme,
-      debugShowCheckedModeBanner: false,
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp.router(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          routeInformationParser: goRouter.routeInformationParser,
+          routerDelegate: goRouter.routerDelegate,
+          routeInformationProvider: goRouter.routeInformationProvider,
+          theme: AppThemes.lightTheme,
+          // darkTheme: AppThemes.darkTheme,
+          themeMode: themeManager.currentTheme,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

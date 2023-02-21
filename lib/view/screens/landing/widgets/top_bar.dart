@@ -1,15 +1,14 @@
 import 'package:cosmetropolis/core/core.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
-import 'package:cosmetropolis/utils/app_sizes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TopBar extends ConsumerStatefulWidget {
-  const TopBar({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  const TopBar(this.scaffoldKey, {super.key});
 
   @override
   ConsumerState<TopBar> createState() => _TopBarState();
@@ -18,173 +17,291 @@ class TopBar extends ConsumerStatefulWidget {
 class _TopBarState extends ConsumerState<TopBar> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     switch (AppConstants.isStylePrimary) {
       case true:
-        return primaryStyle();
+        return width > 700 ? primaryStyle() : primaryStyleRes();
       case false:
-        return secondaryStyle();
+        return width > 700 ? secondaryStyle() : secondaryStyleRes();
       default:
-        return primaryStyle();
+        return width > 700 ? primaryStyle() : primaryStyleRes();
     }
   }
 
-  Row primaryStyle() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 16),
-        child: Image.asset(
-          "assets/images/logo_small.png",
-          height: 50,
-          width: 50,
+  Widget primaryStyle() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: Image.asset(
+            "assets/images/logo_small.png",
+            height: 50.h,
+            width: 50.h,
+          ),
         ),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Switch(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Switch(
               value: AppConstants.isStylePrimary,
               onChanged: (value) {
                 ref.read(styleProvider).toggleThemeMode();
                 setState(() {});
-              }),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          OutlinedButton(
+              },
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            OutlinedButton(
               style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.grey.withOpacity(0.2)),
-                      borderRadius: BorderRadius.circular(2))),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.grey.withOpacity(0.2)),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
               onPressed: () {},
               child: Text(
                 "List Your Business",
                 style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                    color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-              )),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Daily Deals",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Professionals",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Gallery",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Login",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-        ],
-      )
-    ]);
+                  color: kBlack,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.sp,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Daily Deals",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Professionals",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Gallery",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Login",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+          ],
+        )
+      ],
+    );
   }
 
-  Row secondaryStyle() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 16),
-        child: Image.asset(
-          "assets/images/logo_small.png",
-          height: 50,
-          width: 50,
+  Widget primaryStyleRes() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: Image.asset(
+            "assets/images/logo_small.png",
+            height: 50.h,
+            width: 50.h,
+          ),
         ),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Switch(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Switch(
               value: AppConstants.isStylePrimary,
               onChanged: (value) {
                 ref.read(styleProvider).toggleThemeMode();
                 setState(() {});
-              }),
-          SizedBox(
-            width: AppSizes.p20,
+              },
+            ),
+            IconButton(
+              onPressed: () {
+                widget.scaffoldKey.currentState?.openDrawer();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: kBlack,
+                size: 30.sp,
+              ),
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget secondaryStyle() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: Image.asset(
+            "assets/images/logo_small.png",
+            height: 50.h,
+            width: 50.h,
           ),
-          TextButton(
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Switch(
+              value: AppConstants.isStylePrimary,
+              onChanged: (value) {
+                ref.read(styleProvider).toggleThemeMode();
+                setState(() {});
+              },
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            TextButton(
               onPressed: () {},
               child: Text(
                 "Set Up my Buisness",
                 style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
                   color: Colors.pinkAccent,
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: 14.sp,
                 ),
-              )),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Sign Up",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Log In",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Text(
-            "Help",
-            style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                color: kBlack, fontWeight: FontWeight.w700, fontSize: 16),
-          ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Color(0xFFFBEAE5),
+              ),
             ),
-            child: Row(children: [
-              Image.asset(
-                "assets/icons/gift_icon.png",
-                height: 12,
-                width: 12,
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Sign Up",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
               ),
-              SizedBox(width: 2),
-              Text(
-                "Get \$50",
-                style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
-                    color: kBlack, fontWeight: FontWeight.w900, fontSize: 16),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Log In",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
               ),
-            ]),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(
+              "Help",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: const Color(0xFFFBEAE5),
+              ),
+              child: Row(
+                children: [
+                  Image.asset(
+                    "assets/icons/gift_icon.png",
+                    height: 12.h,
+                    width: 12.h,
+                  ),
+                  const SizedBox(width: 2),
+                  Text(
+                    "Get \$50",
+                    style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                      color: kBlack,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 5.w,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget secondaryStyleRes() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: Image.asset(
+            "assets/images/logo_small.png",
+            height: 50.h,
+            width: 50.h,
           ),
-          SizedBox(
-            width: AppSizes.p20,
-          ),
-        ],
-      )
-    ]);
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Switch(
+              value: AppConstants.isStylePrimary,
+              onChanged: (value) {
+                ref.read(styleProvider).toggleThemeMode();
+                setState(() {});
+              },
+            ),
+            IconButton(
+              onPressed: () {
+                widget.scaffoldKey.currentState?.openDrawer();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: kBlack,
+                size: 30.sp,
+              ),
+            )
+          ],
+        )
+      ],
+    );
   }
 }
