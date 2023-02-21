@@ -199,7 +199,9 @@ class _LandingViewState extends ConsumerState<LandingView> {
                 ],
               ),
             ),
-      body: ListView(children: [TopBar(scaffoldKey), const SearchBar()]),
+      body: ListView(
+        children: [TopBar(scaffoldKey), const SearchBar()],
+      ),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:cosmetropolis/core/core.dart';
-import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
