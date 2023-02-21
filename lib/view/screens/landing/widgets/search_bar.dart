@@ -30,10 +30,81 @@ class _SearchBarState extends ConsumerState<SearchBar> {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height / 2.5,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage("assets/dummy/dummy_banner_2.jpeg"))),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Discover & book local beauty\nprofessionals",
+                style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                    color: kBlack, fontWeight: FontWeight.w700, fontSize: 24),
+              ),
+              SizedBox(height: 16),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 2.4,
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: TextFormField(
+                      decoration: style2FromTheme(
+                        "Services , Stylist or Salon",
+                        Icons.search,
+                      ),
+                    )),
+                    SizedBox(width: 10),
+                    Expanded(
+                        child: TextFormField(
+                      decoration: style2FromTheme(
+                        "City or Zip Code",
+                        Icons.location_on_outlined,
+                      ),
+                    )),
+                    SizedBox(width: 10),
+                    Container(
+                      padding: EdgeInsets.all(AppSizes.p16),
+                      decoration: BoxDecoration(
+                          color: kBlack,
+                          borderRadius: BorderRadius.circular(AppSizes.p10)),
+                      child: Icon(
+                        Icons.search,
+                        color: kWhite,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 30),
+              Row(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.pinkAccent, width: 3)),
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.pinkAccent,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "Are you a barber or beauty professional",
+                    style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                        color: Colors.pinkAccent,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14),
+                  ),
+                ],
+              ),
+            ]),
+      ),
     );
   }
 
@@ -50,7 +121,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
       "More.."
     ];
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage("assets/dummy/dummy_banner_1.jpeg"))),
@@ -69,13 +140,13 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                     color: kWhite, fontWeight: FontWeight.w700, fontSize: 35),
               ),
             ),
-            SizedBox(height: AppSizes.p16),
+            const SizedBox(height: AppSizes.p16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: kWhite,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(8),
@@ -122,7 +193,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                   Container(
                     height: 56,
                     width: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(8),
@@ -141,7 +212,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                 ],
               ),
             ),
-            SizedBox(height: AppSizes.p16),
+            const SizedBox(height: AppSizes.p16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: Wrap(
@@ -149,8 +220,8 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                   ...List.generate(
                       suggestions.length,
                       (index) => Container(
-                            margin: EdgeInsets.only(right: AppSizes.p8),
-                            padding: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.only(right: AppSizes.p8),
+                            padding: const EdgeInsets.symmetric(
                                 vertical: AppSizes.p4,
                                 horizontal: AppSizes.p10),
                             decoration: BoxDecoration(
@@ -182,22 +253,53 @@ class _SearchBarState extends ConsumerState<SearchBar> {
         filled: true,
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)));
+            borderSide: const BorderSide(color: kWhite)));
+  }
+
+  InputDecoration style2FromTheme(String title, IconData icon) {
+    return InputDecoration(
+        prefixIcon: Icon(
+          icon,
+          color: kBlack,
+        ),
+        hintText: title,
+        fillColor: kWhite,
+        hintStyle:
+            AppThemes.lightTheme.textTheme.bodySmall?.copyWith(color: kGrey),
+        filled: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            borderSide: const BorderSide(color: kWhite)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            borderSide: const BorderSide(color: kWhite)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            borderSide: const BorderSide(color: kWhite)),
+        disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            borderSide: const BorderSide(color: kWhite)),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: kWhite)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            borderSide: const BorderSide(color: kWhite)));
   }
 
   InputDecoration style1FromThemeSuffix(String title, IconData icon) {
@@ -208,21 +310,21 @@ class _SearchBarState extends ConsumerState<SearchBar> {
         filled: true,
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)),
+            borderSide: const BorderSide(color: kWhite)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kWhite)));
+            borderSide: const BorderSide(color: kWhite)));
   }
 }
