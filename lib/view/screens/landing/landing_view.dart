@@ -203,15 +203,18 @@ class _LandingViewState extends ConsumerState<LandingView> {
                 ],
               ),
             ),
-      body: ListView(children: [
-        TopBar(scaffoldKey),
-        const SearchBar(),
-        ref.watch(styleProvider).isPrimaryTheme
-            ? PopularService()
-            : CategoryView(),
-        DailyDeals(),
-        LiveClasses()
-      ]),
+      body: ListView(
+        children: [
+          TopBar(scaffoldKey),
+          const SearchBar(),
+          if (ref.watch(styleProvider).isPrimaryTheme)
+            const PopularService()
+          else
+            const CategoryView(),
+          const DailyDeals(),
+          const LiveClasses()
+        ],
+      ),
     );
   }
 }
