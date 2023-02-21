@@ -103,9 +103,9 @@ class _DailyDealsState extends State<DailyDeals> {
         ),
         ResponsiveGridList(
           shrinkWrap: true,
-          horizontalGridSpacing: 16,
+          // horizontalGridSpacing: 16,
           // Horizontal space between grid items
-          horizontalGridMargin: 50, // Horizontal space around the grid
+          horizontalGridMargin: 16, // Horizontal space around the grid
           verticalGridMargin: 50, // Vertical space around the grid
 
           minItemWidth:
