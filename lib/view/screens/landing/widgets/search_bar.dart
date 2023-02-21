@@ -33,6 +33,86 @@ class _SearchBarState extends ConsumerState<SearchBar> {
           image: AssetImage("assets/dummy/dummy_banner_2.jpeg"),
         ),
       ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Discover & book local beauty\nprofessionals",
+              style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                color: kBlack,
+                fontWeight: FontWeight.w700,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 2.4,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      decoration: style2FromTheme(
+                        "Services , Stylist or Salon",
+                        Icons.search,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: TextFormField(
+                      decoration: style2FromTheme(
+                        "City or Zip Code",
+                        Icons.location_on_outlined,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.all(AppSizes.p16),
+                    decoration: BoxDecoration(
+                      color: kBlack,
+                      borderRadius: BorderRadius.circular(AppSizes.p10),
+                    ),
+                    child: const Icon(
+                      Icons.search,
+                      color: kWhite,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.pinkAccent, width: 3),
+                  ),
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.pinkAccent,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  "Are you a barber or beauty professional",
+                  style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
+                    color: Colors.pinkAccent,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -216,6 +296,44 @@ class _SearchBarState extends ConsumerState<SearchBar> {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+    );
+  }
+
+  InputDecoration style2FromTheme(String title, IconData icon) {
+    return InputDecoration(
+      prefixIcon: Icon(
+        icon,
+        color: kBlack,
+      ),
+      hintText: title,
+      fillColor: kWhite,
+      hintStyle:
+          AppThemes.lightTheme.textTheme.bodySmall?.copyWith(color: kGrey),
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(2),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(2),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(2),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(2),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: kWhite),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(2),
         borderSide: const BorderSide(color: kWhite),
       ),
     );
