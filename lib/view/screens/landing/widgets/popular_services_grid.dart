@@ -18,7 +18,7 @@ class _PopularServiceState extends State<PopularService> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
-        13,
+        width > 386 ? 4 : 13,
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -119,6 +119,9 @@ class _PopularServiceState extends State<PopularService> {
           SizedBox(height: 20.w),
           if (width > 386)
             ResponsiveGridList(
+              listViewBuilderOptions: ListViewBuilderOptions(
+                  physics: NeverScrollableScrollPhysics()),
+
               // ignore: deprecated_member_use
               shrinkWrap: true,
               horizontalGridMargin: 16, // Horizontal space around the grid
@@ -131,7 +134,7 @@ class _PopularServiceState extends State<PopularService> {
             )
           else
             SizedBox(
-              height: 250.h,
+              height: 400.h,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return Padding(

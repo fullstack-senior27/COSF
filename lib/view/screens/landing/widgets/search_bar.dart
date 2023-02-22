@@ -314,7 +314,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                       horizontal: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(29),
+                      borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: kWhite.withOpacity(0.8)),
                       color: Colors.white.withOpacity(0.1),
                     ),

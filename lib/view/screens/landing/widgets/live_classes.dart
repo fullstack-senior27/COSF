@@ -48,7 +48,7 @@ class _LiveClassesState extends State<LiveClasses> {
               height: 210.h,
               child: Swiper(
                 // shrinkWrap: true,
-                viewportFraction: width <= 770 ? 1 : 0.3,
+                viewportFraction: width <= 928 ? 1 : 0.3,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return streamCard();

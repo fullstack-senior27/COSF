@@ -20,9 +20,9 @@ class _TopBarState extends ConsumerState<TopBar> {
     double width = MediaQuery.of(context).size.width;
     switch (AppConstants.isStylePrimary) {
       case true:
-        return width > 770 ? primaryStyle() : primaryStyleRes();
+        return width > 920 ? primaryStyle() : primaryStyleRes();
       case false:
-        return width > 770 ? secondaryStyle() : secondaryStyleRes();
+        return width > 920 ? secondaryStyle() : secondaryStyleRes();
       default:
         return width > 770 ? primaryStyle() : primaryStyleRes();
     }

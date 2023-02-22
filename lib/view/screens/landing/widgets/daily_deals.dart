@@ -17,7 +17,7 @@ class _DailyDealsState extends State<DailyDeals> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
-        13,
+        width > 386 ? 4 : 13,
         (index) => Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class _DailyDealsState extends State<DailyDeals> {
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
-                  "Popular in CA",
+                  "Daily Deals",
                   style: AppThemes.lightTheme.textTheme.bodySmall?.copyWith(
                     color: kBlack,
                     fontWeight: FontWeight.w700,
@@ -115,6 +115,8 @@ class _DailyDealsState extends State<DailyDeals> {
               // Horizontal space between grid items
               horizontalGridMargin: 16, // Horizontal space around the grid
               verticalGridMargin: 50, // Vertical space around the grid
+              listViewBuilderOptions: ListViewBuilderOptions(
+                  physics: NeverScrollableScrollPhysics()),
 
               minItemWidth:
                   200, // The minimum item width (can be smaller, if the layout constraints are smaller)

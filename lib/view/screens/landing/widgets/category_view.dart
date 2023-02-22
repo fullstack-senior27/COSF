@@ -17,13 +17,13 @@ class _CategoryViewState extends State<CategoryView> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
-        13,
+        width > 386 ? 4 : 13,
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              child: Image.asset("assets/dummy/dummy_hairstyle.jpeg"),
+            Image.asset(
+              "assets/dummy/dummy_hairstyle.jpeg",
             ),
             // SizedBox(height: 10),
             Container(
@@ -61,18 +61,20 @@ class _CategoryViewState extends State<CategoryView> {
         SizedBox(height: 30.h),
         if (width > 386)
           ResponsiveGridList(
+            listViewBuilderOptions:
+                ListViewBuilderOptions(physics: NeverScrollableScrollPhysics()),
             shrinkWrap: true,
             horizontalGridMargin: 10.w, // Horizontal space around the grid
             verticalGridMargin: 10.h, // Vertical space around the grid
             minItemWidth: 200,
             // ignore: avoid_redundant_argument_values
-            minItemsPerRow: 1,
+            minItemsPerRow: 2,
             maxItemsPerRow: 5,
             children: gridItems,
           )
         else
           SizedBox(
-            height: 350.h,
+            height: 400.h,
             child: ListView.builder(
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12.w),
