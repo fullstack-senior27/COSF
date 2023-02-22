@@ -222,9 +222,12 @@ class _LandingViewState extends ConsumerState<LandingView> {
             const LiveClasses()
           else
             Container(),
-          BannerStyle2(),
-          const SizedBox(
-            height: 50,
+          SizedBox(
+            height: 50.h,
+          ),
+          const BannerStyle2(),
+          SizedBox(
+            height: 50.h,
           ),
           const FooterView(),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BannerStyle2 extends StatefulWidget {
   const BannerStyle2({super.key});
@@ -14,19 +13,21 @@ class _BannerStyle2State extends State<BannerStyle2> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.8,
-      height: 200,
-      decoration: BoxDecoration(
+    return Padding(
+      padding: width > 770
+          ? EdgeInsets.symmetric(horizontal: 60.w)
+          : EdgeInsets.symmetric(horizontal: 10.w),
+      child: Container(
+        width: double.infinity,
+        height: width > 770 ? 170.h : 150,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
           image: DecorationImage(
-              fit: BoxFit.fill,
-              image: Image.asset("assets/dummy/banner_1.png").image)),
-      margin: EdgeInsets.only(
-          top: 30,
-          left: width >= 930 ? 200 : 100,
-          right: width >= 930 ? 200 : 100),
-      padding: EdgeInsets.symmetric(horizontal: 100),
+            fit: BoxFit.fill,
+            image: Image.asset("assets/dummy/banner_1.png").image,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -14,6 +14,7 @@ class DailyDeals extends StatefulWidget {
 class _DailyDealsState extends State<DailyDeals> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
         13,
@@ -82,7 +83,7 @@ class _DailyDealsState extends State<DailyDeals> {
       ).toList()
     ];
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -107,31 +108,42 @@ class _DailyDealsState extends State<DailyDeals> {
               ),
             ],
           ),
-          ResponsiveGridList(
-            shrinkWrap: true,
-            // horizontalGridSpacing: 16,
-            // Horizontal space between grid items
-            horizontalGridMargin: 16, // Horizontal space around the grid
-            verticalGridMargin: 50, // Vertical space around the grid
+          if (width > 386)
+            ResponsiveGridList(
+              shrinkWrap: true,
+              // horizontalGridSpacing: 16,
+              // Horizontal space between grid items
+              horizontalGridMargin: 16, // Horizontal space around the grid
+              verticalGridMargin: 50, // Vertical space around the grid
 
-            minItemWidth:
-                200, // The minimum item width (can be smaller, if the layout constraints are smaller)
-            minItemsPerRow:
-                // ignore: avoid_redundant_argument_values
-                1, // The minimum items to show in a single row. Takes precedence over minItemWidth
-            maxItemsPerRow:
-                5, // The maximum items to show in a single row. Can be useful on large screens
-            children: gridItems, // The list of widgets in the grid
-            // builder: (context, items) {
-            //   return Container(
-            //     height: 50,
-            //     width: 50,
-            //     color: Colors.red,
-            //   );
-            // Place to build a List or Column to access all properties.
-            // Set [items] as children attribute for example.
-            // }
-          )
+              minItemWidth:
+                  200, // The minimum item width (can be smaller, if the layout constraints are smaller)
+              minItemsPerRow:
+                  // ignore: avoid_redundant_argument_values
+                  1, // The minimum items to show in a single row. Takes precedence over minItemWidth
+              maxItemsPerRow:
+                  5, // The maximum items to show in a single row. Can be useful on large screens
+              children: gridItems, // The list of widgets in the grid
+            )
+          else
+            SizedBox(
+              height: 230.h,
+              child: ListView.builder(
+                itemCount: gridItems.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 20.h),
+                    child: SizedBox(
+                      width: 260.w,
+                      child: gridItems[index],
+                    ),
+                  );
+                },
+              ),
+            )
         ],
       ),
     );

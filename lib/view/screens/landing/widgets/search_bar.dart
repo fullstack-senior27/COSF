@@ -311,7 +311,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
                   return Container(
                     margin: const EdgeInsets.only(right: AppSizes.p8),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 5.w,
+                      horizontal: 8.w,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(29),
