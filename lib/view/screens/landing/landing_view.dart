@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/utils.dart';
+import 'package:cosmetropolis/view/screens/landing/widgets/banner_style2.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/category_view.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/daily_deals.dart';
 import 'package:cosmetropolis/view/screens/landing/widgets/footer_view.dart';
@@ -221,6 +222,7 @@ class _LandingViewState extends ConsumerState<LandingView> {
             const LiveClasses()
           else
             Container(),
+          BannerStyle2(),
           const SizedBox(
             height: 50,
           ),
