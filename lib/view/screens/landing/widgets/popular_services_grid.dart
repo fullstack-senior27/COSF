@@ -18,7 +18,7 @@ class _PopularServiceState extends State<PopularService> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
-        width > 386 ? 4 : 13,
+        width < 386 ? 4 : 13,
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

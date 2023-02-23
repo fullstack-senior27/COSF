@@ -17,7 +17,7 @@ class _DailyDealsState extends State<DailyDeals> {
     double width = MediaQuery.of(context).size.width;
     List<Widget> gridItems = [
       ...List.generate(
-        width > 386 ? 4 : 13,
+        width < 386 ? 4 : 13,
         (index) => Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
