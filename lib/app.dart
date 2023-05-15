@@ -1,6 +1,6 @@
 import 'package:cosmetropolis/domain/providers/router_provider.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
-import 'package:cosmetropolis/utils/themes.dart';
+import 'package:cosmetropolis/utils/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,10 +26,14 @@ class MyApp extends ConsumerWidget {
           routeInformationParser: goRouter.routeInformationParser,
           routerDelegate: goRouter.routerDelegate,
           routeInformationProvider: goRouter.routeInformationProvider,
-          theme: AppThemes.lightTheme,
+          // theme: AppThemes.lightTheme,
           // darkTheme: AppThemes.darkTheme,
           themeMode: themeManager.currentTheme,
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSwatch().copyWith(outline: kBlue),
+          ).copyWith(scaffoldBackgroundColor: Colors.white),
         );
       },
     );
