@@ -1,5 +1,4 @@
-
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 class Times {
   ///
@@ -70,36 +69,36 @@ class Times {
     }
   }
 
-  static String timestamp2String(int timestamp,
-      {String format = 'yyyy-MM-dd hh:mm:ss',}) {
-    return DateFormat(format).format(
-      DateTime.fromMillisecondsSinceEpoch(timestamp),
-    );
-  }
+  // static String timestamp2String(int timestamp,
+  //     {String format = 'yyyy-MM-dd hh:mm:ss',}) {
+  //   return DateFormat(format).format(
+  //     DateTime.fromMillisecondsSinceEpoch(timestamp),
+  //   );
+  // }
 
-  static String time2period(DateTime time) {
-    const String format = 'HH';
-    final int hour = int.parse(DateFormat(format).format(time));
-    if (hour > 6 && hour < 12) {
-      return 'morning';
-    } else if (hour >= 12 && hour < 18) {
-      return 'afternoon';
-    } else {
-      return 'evening';
-    }
-  }
+  // static String time2period(DateTime time) {
+  //   const String format = 'HH';
+  //   final int hour = int.parse(DateFormat(format).format(time));
+  //   if (hour > 6 && hour < 12) {
+  //     return 'morning';
+  //   } else if (hour >= 12 && hour < 18) {
+  //     return 'afternoon';
+  //   } else {
+  //     return 'evening';
+  //   }
+  // }
 
-  static String currentPeriod() {
-    const String format = 'HH';
-    final int hour = int.parse(DateFormat(format).format(DateTime.now()));
-    if (hour > 6 && hour < 12) {
-      return 'morning';
-    } else if (hour >= 12 && hour < 18) {
-      return 'afternoon';
-    } else {
-      return 'evening';
-    }
-  }
+  // static String currentPeriod() {
+  //   const String format = 'HH';
+  //   final int hour = int.parse(DateFormat(format).format(DateTime.now()));
+  //   if (hour > 6 && hour < 12) {
+  //     return 'morning';
+  //   } else if (hour >= 12 && hour < 18) {
+  //     return 'afternoon';
+  //   } else {
+  //     return 'evening';
+  //   }
+  // }
 
   //Current month and date
   static String currentNamedMonthDay() {
@@ -118,8 +117,10 @@ class Times {
     if (int.parse(initialTiming.split(":")[0]) == 12) {
       result = int.parse("00${initialTiming.split(":")[1].substring(0, 2)}");
     } else {
-      result = int.parse(initialTiming.split(":")[0] +
-          initialTiming.split(":")[1].substring(0, 2),);
+      result = int.parse(
+        initialTiming.split(":")[0] +
+            initialTiming.split(":")[1].substring(0, 2),
+      );
     }
     // result = int.parse(initialTiming.replaceAll(":", "").substring(0, 5));
 
@@ -130,49 +131,49 @@ class Times {
   }
 
   /// 1800 => 06:00 PM
-  static String convertMilitaryTimingToAmPm(String initialTiming) {
-    return DateFormat("hh:mm aaa").format(DateTime(
-      1,
-      1,
-      1,
-      int.parse(initialTiming) ~/ 100,
-    ),);
-  }
+  // static String convertMilitaryTimingToAmPm(String initialTiming) {
+  //   return DateFormat("hh:mm aaa").format(DateTime(
+  //     1,
+  //     1,
+  //     1,
+  //     int.parse(initialTiming) ~/ 100,
+  //   ),);
+  // }
 
-  static int getHRSFromMilitary(String timing) {
-    String initialTiming = timing;
-    if (initialTiming.isEmpty) return 0;
-    if (initialTiming.length < 4) {
-      initialTiming = List.generate(4 - initialTiming.length, (index) => "0")
-              .toList()
-              .join() +
-          initialTiming;
-    }
-    return int.parse(DateFormat("HH").format(DateTime(
-        1,
-        1,
-        1,
-        int.parse(initialTiming[0] + initialTiming[1]),
-        int.parse(initialTiming[2] + initialTiming[3]),),),);
-  }
+  // static int getHRSFromMilitary(String timing) {
+  //   String initialTiming = timing;
+  //   if (initialTiming.isEmpty) return 0;
+  //   if (initialTiming.length < 4) {
+  //     initialTiming = List.generate(4 - initialTiming.length, (index) => "0")
+  //             .toList()
+  //             .join() +
+  //         initialTiming;
+  //   }
+  //   return int.parse(DateFormat("HH").format(DateTime(
+  //       1,
+  //       1,
+  //       1,
+  //       int.parse(initialTiming[0] + initialTiming[1]),
+  //       int.parse(initialTiming[2] + initialTiming[3]),),),);
+  // }
 
-  static int getMinuteFromMilitary(String timing) {
-    String initialTiming = timing;
+  // static int getMinuteFromMilitary(String timing) {
+  //   String initialTiming = timing;
 
-    if (initialTiming.isEmpty) return 0;
-    if (initialTiming.length < 4) {
-      initialTiming = List.generate(4 - initialTiming.length, (index) => "0")
-              .toList()
-              .join() +
-          initialTiming;
-    }
-    return int.parse(DateFormat("mm").format(DateTime(
-        1,
-        1,
-        1,
-        int.parse(initialTiming[0] + initialTiming[1]),
-        int.parse(initialTiming[2] + initialTiming[3]),),),);
-  }
+  //   if (initialTiming.isEmpty) return 0;
+  //   if (initialTiming.length < 4) {
+  //     initialTiming = List.generate(4 - initialTiming.length, (index) => "0")
+  //             .toList()
+  //             .join() +
+  //         initialTiming;
+  //   }
+  //   return int.parse(DateFormat("mm").format(DateTime(
+  //       1,
+  //       1,
+  //       1,
+  //       int.parse(initialTiming[0] + initialTiming[1]),
+  //       int.parse(initialTiming[2] + initialTiming[3]),),),);
+  // }
 
   /// Relative to today's date (today, yesterday, etc.)
   static String relativeDate(DateTime d) {

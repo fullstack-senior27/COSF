@@ -1,7 +1,7 @@
 import 'package:cosmetropolis/domain/providers/router_provider.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,20 +20,62 @@ class MyApp extends ConsumerWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
+          // localizationsDelegates: context.localizationDelegates,
+          // supportedLocales: context.supportedLocales,
+          // locale: context.locale,
+          // theme: AppThemes.lightTheme,
+          // darkTheme: AppThemes.darkTheme,
           routeInformationParser: goRouter.routeInformationParser,
           routerDelegate: goRouter.routerDelegate,
           routeInformationProvider: goRouter.routeInformationProvider,
-          // theme: AppThemes.lightTheme,
-          // darkTheme: AppThemes.darkTheme,
           themeMode: themeManager.currentTheme,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSwatch().copyWith(outline: kBlue),
-          ).copyWith(scaffoldBackgroundColor: Colors.white),
+          ).copyWith(
+            scaffoldBackgroundColor: Colors.white,
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: kBlue,
+              ),
+            ),
+            inputDecorationTheme: InputDecorationTheme(
+              fillColor: kWhite,
+              filled: true,
+              floatingLabelStyle: const TextStyle(
+                color: Colors.black,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(
+                  color: kBlue,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(
+                  color: kBlue,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(
+                  color: kBlue,
+                ),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+            ),
+            dialogTheme: DialogTheme(
+              surfaceTintColor: kWhite,
+              backgroundColor: kWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+            ),
+          ),
         );
       },
     );

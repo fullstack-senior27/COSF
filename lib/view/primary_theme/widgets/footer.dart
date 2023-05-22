@@ -240,7 +240,15 @@ class _FooterState extends State<Footer> {
                               ),
                               SizedBox(height: 10.h),
                               TextField(
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: kBlue,
                                 decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                  ),
                                   hintText: "Enter your email",
                                   hintStyle: GoogleFonts.urbanist(
                                     color: kBlack,
