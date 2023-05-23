@@ -1,5 +1,5 @@
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -121,7 +121,7 @@ class _NavigationPageState extends State<NavigationPage> {
         preferredSize: Size.fromHeight(70.h),
         child: NavbarWidget(scaffoldKey: scaffoldKey),
       ),
-      body: const HomePage(),
+      body: const ServiceDetailsPage(),
     );
   }
 }
