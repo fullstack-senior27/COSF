@@ -5,16 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
- 
-class NavbarWidget extends ConsumerStatefulWidget {
+
+class NavbarFreeWidget extends ConsumerStatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const NavbarWidget({super.key, required this.scaffoldKey});
+
+  const NavbarFreeWidget({
+    super.key,
+    required this.scaffoldKey,
+  });
 
   @override
-  ConsumerState<NavbarWidget> createState() => _NavbarWidgetState();
+  ConsumerState<NavbarFreeWidget> createState() => _NavbarFreeWidgetState();
 }
 
-class _NavbarWidgetState extends ConsumerState<NavbarWidget> {
+class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width > 920
@@ -51,45 +55,96 @@ class _NavbarWidgetState extends ConsumerState<NavbarWidget> {
               SizedBox(
                 width: 10.w,
               ),
-              Text(
-                "I am a Beautician",
-                style: GoogleFonts.urbanist(
-                  color: kBlack,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.sp,
+              TextButton(
+                onPressed: () {
+                  ref.read(styleProvider).setSelectedPage("Home");
+                  setState(() {});
+                },
+                child: Text(
+                  "Home",
+                  style: GoogleFonts.urbanist(
+                    color: kBlack,
+                    fontWeight: AppConstants.selectedPage == "Home"
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
               SizedBox(
                 width: 5.w,
               ),
-              Text(
-                "Sign Up",
-                style: GoogleFonts.urbanist(
-                  color: kBlack,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.sp,
+              TextButton(
+                onPressed: () {
+                  ref.read(styleProvider).setSelectedPage("I am a Beautician");
+                  setState(() {});
+                },
+                child: Text(
+                  "I am a Beautician",
+                  style: GoogleFonts.urbanist(
+                    color: kBlack,
+                    fontWeight: AppConstants.selectedPage == "I am a Beautician"
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
               SizedBox(
                 width: 5.w,
               ),
-              Text(
-                "Log In",
-                style: GoogleFonts.urbanist(
-                  color: kBlack,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.sp,
+              TextButton(
+                onPressed: () {
+                  ref.read(styleProvider).setSelectedPage("Sign Up");
+                  setState(() {});
+                },
+                child: Text(
+                  "Sign Up",
+                  style: GoogleFonts.urbanist(
+                    color: kBlack,
+                    fontWeight: AppConstants.selectedPage == "Sign Up"
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
               SizedBox(
                 width: 5.w,
               ),
-              Text(
-                "Help",
-                style: GoogleFonts.urbanist(
-                  color: kBlack,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.sp,
+              TextButton(
+                onPressed: () {
+                  ref.read(styleProvider).setSelectedPage("Log In");
+                  setState(() {});
+                },
+                child: Text(
+                  "Log In",
+                  style: GoogleFonts.urbanist(
+                    color: kBlack,
+                    fontWeight: AppConstants.selectedPage == "Log In"
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 5.w,
+              ),
+              TextButton(
+                onPressed: () {
+                  ref.read(styleProvider).setSelectedPage("Help");
+                  setState(() {});
+                },
+                child: Text(
+                  "Help",
+                  style: GoogleFonts.urbanist(
+                    color: kBlack,
+                    fontWeight: AppConstants.selectedPage == "Help"
+                        ? FontWeight.w700
+                        : FontWeight.w400,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
               SizedBox(

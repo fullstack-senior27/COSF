@@ -1,7 +1,7 @@
 import 'package:cosmetropolis/app.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/utils.dart';
-// import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +22,7 @@ class Environment {
     WidgetsFlutterBinding.ensureInitialized();
     // await Firebase.initializeApp();
     // await FirebaseMessagingProvider.init();
-    // await EasyLocalization.ensureInitialized();
+    await EasyLocalization.ensureInitialized();
     await SharedPreferenceService.init();
     try {
       // await dotenv.load();
@@ -30,17 +30,16 @@ class Environment {
       Logger.write(e.toString());
     }
     runApp(
-      const ProviderScope(
-        child: MyApp(),
-        // EasyLocalization(
-        //   supportedLocales: const [
-        //     Locale('en'),
-        //     Locale('hi'),
-        //   ],
-        //   path: 'assets/languages',
-        //   fallbackLocale: const Locale('en', 'US'),
-        //   child: const MyApp(),
-        // ),
+      ProviderScope(
+        child: EasyLocalization(
+          supportedLocales: const [
+            Locale('en'),
+            Locale('hi'),
+          ],
+          path: 'assets/languages',
+          fallbackLocale: const Locale('en', 'US'),
+          child: const MyApp(),
+        ),
       ),
     );
   }

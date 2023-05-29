@@ -8,10 +8,16 @@ final styleProvider = ChangeNotifierProvider.autoDispose<StyleProvider>((ref) {
 
 class StyleProvider extends ChangeNotifier {
   bool get isPrimaryTheme => AppConstants.isStylePrimary;
+  String get selectedPage => AppConstants.selectedPage;
 
   void toggleThemeMode() {
     AppConstants.isStylePrimary = !AppConstants.isStylePrimary;
 
+    notifyListeners();
+  }
+
+  void setSelectedPage(String page) {
+    AppConstants.selectedPage = page;
     notifyListeners();
   }
 }

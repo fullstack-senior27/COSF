@@ -8,6 +8,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     routes: routers,
     urlPathStrategy: UrlPathStrategy.path,
+    initialLocation: '/navigation',
     errorBuilder: (context, state) {
       return const Scaffold(
         body: Center(
