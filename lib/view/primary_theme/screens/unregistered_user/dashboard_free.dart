@@ -1,11 +1,11 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/home_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/landing_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/login_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/signup_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

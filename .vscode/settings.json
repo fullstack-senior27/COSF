@@ -2,5 +2,10 @@
     "yaml.schemas": {
         "file:///Users/ayushmaji/.vscode/extensions/atlassian.atlascode-3.0.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
         "https://json.schemastore.org/pubspec.json": "file:///Users/ayushmaji/Desktop/fortmindz/cosmetropolis-app/pubspec.yaml"
-    }
+    },
+    "dart.flutterDaemonLogFile": null
+    
+
+
+    
 }

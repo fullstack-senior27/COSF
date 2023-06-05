@@ -1,6 +1,14 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/clients_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/growth_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketing_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/loginuser_dashboard_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +26,8 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_final_locals
+    String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(
@@ -210,14 +220,21 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
           scaffoldKey: scaffoldKey,
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('/login');
-          },
-          child: const Text('Login'),
-        ),
-      ),
+      body: navbarSection == "Calendar"
+          ? const CalendarPage()
+          : navbarSection == "Clients"
+              ? const ClintsPage()
+              : navbarSection == "Growth"
+                  ? const GrowthPage()
+                  : navbarSection == "Marketing"
+                      ? const MarketingPage()
+                      : navbarSection == "Promotions"
+                          ? const PromotionsPage()
+                          : navbarSection == "Profile"
+                              ? const ProfilePage()
+                              : navbarSection == "More"
+                                  ? const MorePage()
+                                  : const LandingPage(),
     );
   }
 }

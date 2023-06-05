@@ -12,3 +12,4 @@ const Color kdark = Color(0xFF000000);
 const Color kdescription = Color(0xFF4E5860);
 const Color kredColor = Color(0xFFFF0000);
 const Color kblueColor = Color(0xFF3385FF);
+

@@ -644,7 +644,7 @@ class service extends StatelessWidget {
                         if (MediaQuery.of(context).size.width < 920)
                           Padding(
                             padding: EdgeInsets.only(
-                              top: 10.h,
+                              top: 10.h
                             ),
                             child: Row(
                               children: [

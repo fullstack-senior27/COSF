@@ -1,12 +1,12 @@
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/blog_details_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/forgotpass_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/home_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/landing_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/login_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/service_details_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/free_user/signup_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/forgotpass_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/spalash_page.dart';
 import 'package:go_router/go_router.dart';
 
