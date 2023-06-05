@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:calendar_view/calendar_view.dart';
 import 'package:cosmetropolis/domain/providers/router_provider.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';

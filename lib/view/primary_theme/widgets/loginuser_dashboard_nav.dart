@@ -24,8 +24,24 @@ class _NavbarLoginUserDashboardWidgetState
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width > 1100
-        ? primaryStyle()
-        : primaryStyleRes();
+        ? Column(
+            children: [
+              primaryStyle(),
+              Divider(
+                color: kGrey.withOpacity(0.5),
+                thickness: 1,
+              )
+            ],
+          )
+        : Column(
+            children: [
+              primaryStyleRes(),
+              Divider(
+                color: kGrey.withOpacity(0.5),
+                thickness: 1,
+              )
+            ],
+          );
   }
 
   Widget primaryStyle() {

@@ -138,7 +138,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                 vertical: 20.h,
               ),
               child: SizedBox(
-                height: 350.h,
+                height: 340.h,
                 child: ListView.builder(
                   itemCount: 3,
                   scrollDirection: Axis.horizontal,

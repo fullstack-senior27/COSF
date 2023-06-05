@@ -3,7 +3,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/registered_user/dashboa
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../primary_theme/screens/unregistered_user/dashboard_free.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 
 class NavigationPage extends ConsumerStatefulWidget {
   const NavigationPage({super.key});
@@ -22,9 +22,7 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
   void setDashBoardnav() {
     // if user is registerd in then set the dashboard for logged in user set the selected page to calendar
     ref.read(styleProvider).setSelectedPage("More");
-    setState(() {
-      
-    });
+    setState(() {});
     // if user is not registerd in then set the dashboard for unlogged in user set the selected page to home
     // ref.read(styleProvider).setSelectedPage("Home");
   }
@@ -35,8 +33,8 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
       //! here we can change the body based on the theme and the user type (login or unregister)
       body: SafeArea(
         child:
-         //  DashboardFreePage(),
-             DashboardLoginPage(),
+            //  DashboardFreePage(),
+            DashboardLoginPage(),
       ),
       // DashboardFreePage(),
     );
