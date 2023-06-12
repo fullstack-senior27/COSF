@@ -32,9 +32,8 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
     return const Scaffold(
       //! here we can change the body based on the theme and the user type (login or unregister)
       body: SafeArea(
-        child:
-            //  DashboardFreePage(),
-            DashboardLoginPage(),
+        child: DashboardFreePage(),
+        // DashboardLoginPage(),
       ),
       // DashboardFreePage(),
     );

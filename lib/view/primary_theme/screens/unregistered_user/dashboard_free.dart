@@ -1,6 +1,7 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
@@ -182,7 +183,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
         ),
       ),
       body: navbarSection == "Home"
-          ? const HomePage()
+          ? const BlogPage()
           : navbarSection == "I am a Beautician"
               ? const LandingPage()
               : navbarSection == "Sign Up"
