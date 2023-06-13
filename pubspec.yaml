@@ -63,6 +63,7 @@ dependencies:
   url_launcher: ^6.1.9
   url_strategy: ^0.2.0
   webview_flutter: ^4.0.2
+  number_paginator: 
   calendar_view: ^1.0.3
   flutter_calendar_carousel:
   flutter_staggered_grid_view:
