@@ -7,6 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
+import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 class BeauticiansListWebView extends StatelessWidget {
   const BeauticiansListWebView({super.key});
@@ -1113,6 +1114,150 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
+        // Container(
+        //   decoration: BoxDecoration(
+        //     color: kWhite,
+        //     border: Border.all(
+        //       color: klines,
+        //       width: 1.h,
+        //     ),
+        //     borderRadius: BorderRadius.circular(10.r),
+        //   ),
+        //   child: Padding(
+        //     padding: EdgeInsets.all(15.h),
+        //     child: Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Text(
+        //           "Ratings",
+        //           style: GoogleFonts.urbanist(
+        //               fontSize: 14.sp,
+        //               fontWeight: FontWeight.w400,
+        //               color: kGrey),
+        //         ),
+        //         SizedBox(
+        //           height: 5.h,
+        //         ),
+        //         const Divider(
+        //           color: klines,
+        //         ),
+        //         SizedBox(
+        //           height: 5.h,
+        //         ),
+        //         ListView.builder(
+        //           itemCount: 5,
+        //           shrinkWrap: true,
+        //           itemBuilder: (context, index) {
+        //             return SizedBox(
+        //               height: 25.h,
+        //               width: 50.w,
+        //               child: Row(
+        //                 crossAxisAlignment: CrossAxisAlignment.end,
+        //                 children: [
+        //                   Expanded(
+        //                     child: RadioListTile(
+        //                       title: MediaQuery.of(context).size.width > 860
+        //                           ? RatingBar.builder(
+        //                               itemPadding: EdgeInsets.zero,
+        //                               ignoreGestures: true,
+        //                               itemSize: 20.sp,
+        //                               initialRating: 5.0 - index,
+        //                               direction: Axis.horizontal,
+        //                               allowHalfRating: true,
+        //                               itemCount: 5,
+        //                               itemBuilder: (context, _) => const Icon(
+        //                                 Icons.star_rounded,
+        //                                 color: Color(0xffff7500),
+        //                                 size: 3,
+        //                               ),
+        //                               onRatingUpdate: (rating) {},
+        //                               unratedColor: klines,
+        //                             )
+        //                           : Row(children: [
+        //                               Text("${5 - index}"),
+        //                               const Icon(
+        //                                 Icons.star_rounded,
+        //                                 color: Color(0xffff7500),
+        //                               ),
+        //                               SizedBox(
+        //                                 width: 5.w,
+        //                               ),
+        //                               Visibility(
+        //                                 visible:
+        //                                     MediaQuery.of(context).size.width <
+        //                                         861,
+        //                                 child: Text(
+        //                                   "104",
+        //                                   style: GoogleFonts.urbanist(
+        //                                       fontSize: 12.sp,
+        //                                       fontWeight: FontWeight.w400,
+        //                                       color: kGrey),
+        //                                 ),
+        //                               ),
+        //                             ]),
+        //                       value: index,
+        //                       // controlAffinity: ListTileControlAffinity.trailing,
+        //                       contentPadding:
+        //                           EdgeInsets.symmetric(horizontal: 0.h),
+        //                       activeColor: kBlue,
+        //                       groupValue: selectedService,
+        //                       onChanged: (value) {
+        //                         setState(() {
+        //                           selectedService = value!;
+        //                         });
+        //                       },
+        //                     ),
+        //                   ),
+        //                   Expanded(
+        //                     flex: MediaQuery.of(context).size.width > 1480
+        //                         ? 1
+        //                         : 0,
+        //                     child: Visibility(
+        //                       visible: MediaQuery.of(context).size.width > 1480,
+        //                       child: Container(
+        //                         width: 30.w,
+        //                         decoration: BoxDecoration(
+        //                             // color: Colors.orange,
+        //                             borderRadius: BorderRadius.circular(5.r)),
+        //                         child: LinearProgressIndicator(
+        //                           value: 70 / 104,
+        //                           minHeight: 5.h,
+        //                           backgroundColor: klines,
+        //                           valueColor:
+        //                               const AlwaysStoppedAnimation<Color>(
+        //                                   Color(0xffff7500)),
+        //                         ),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   Expanded(
+        //                     flex: MediaQuery.of(context).size.width < 1480
+        //                         ? 1
+        //                         : 0,
+        //                     child: Visibility(
+        //                       visible: MediaQuery.of(context).size.width > 860,
+        //                       child: Text(
+        //                         "104",
+        //                         style: GoogleFonts.urbanist(
+        //                             fontSize: 12.sp,
+        //                             fontWeight: FontWeight.w400,
+        //                             color: kGrey),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             );
+        //           },
+        //         ),
+        //         SizedBox(
+        //           height: 10.h,
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
+
         Container(
           decoration: BoxDecoration(
             color: kWhite,
@@ -1128,7 +1273,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ratings",
+                  "Rating",
                   style: GoogleFonts.urbanist(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
@@ -1143,102 +1288,221 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 SizedBox(
                   height: 5.h,
                 ),
-                ListView.builder(
-                  itemCount: 5,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      height: 25.h,
-                      width: 50.w,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: RadioListTile(
-                              title: MediaQuery.of(context).size.width > 860
-                                  ? RatingBar.builder(
-                                      itemPadding: EdgeInsets.zero,
-                                      ignoreGestures: true,
-                                      itemSize: 20.sp,
-                                      initialRating: 5.0 - index,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star_rounded,
-                                        color: Color(0xffff7500),
-                                      ),
-                                      onRatingUpdate: (rating) {},
-                                      unratedColor: klines,
-                                    )
-                                  : Row(children: [
-                                      Text("${5 - index}"),
-                                      const Icon(
-                                        Icons.star_rounded,
-                                        color: Color(0xffff7500),
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Visibility(
-                                        visible:
-                                            MediaQuery.of(context).size.width <
-                                                861,
-                                        child: Text(
-                                          "104",
-                                          style: GoogleFonts.urbanist(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: kGrey),
-                                        ),
-                                      ),
-                                    ]),
-                              value: index,
-                              // controlAffinity: ListTileControlAffinity.trailing,
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 0.h),
-                              activeColor: kBlue,
-                              groupValue: selectedService,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedService = value!;
-                                });
-                              },
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 1480,
-                            child: LinearProgressIndicator(
-                              value: 70 / 104,
-                              minHeight: 5.h,
-                              backgroundColor: klines,
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                  Color(0xffff7500)),
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: Text(
-                              "104",
-                              style: GoogleFonts.urbanist(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: kGrey),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                //handle overflow between 861 to 701
+                MediaQuery.of(context).size.width > 1165
+                    ? webRatingBar()
+                    : mobRatingBar(),
+
                 SizedBox(
-                  height: 10.h,
-                )
+                  height: 5.h,
+                ),
+                //another radiolist tile
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget webRatingBar() {
+    return ListView.builder(
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Row(
+          children: [
+            SizedBox(
+              width: 20.w,
+              child: RadioListTile(
+                value: 5 - index,
+                activeColor: kBlue,
+                groupValue: selectedService,
+                onChanged: (value) {
+                  setState(() {
+                    selectedService = value!;
+                  });
+                },
+              ),
+            ),
+            RatingBar.builder(
+              itemPadding: EdgeInsets.zero,
+              ignoreGestures: true,
+              itemSize: 20.sp,
+              initialRating: 5.0 - index,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemBuilder: (context, _) => const Icon(
+                Icons.star_rounded,
+                color: Color(0xffff7500),
+                size: 3,
+              ),
+              onRatingUpdate: (rating) {},
+              unratedColor: klines,
+            ),
+            SizedBox(
+              width: 3.w,
+            ),
+            Expanded(
+              flex: MediaQuery.of(context).size.width > 1165 ? 1 : 0,
+              child: SizedBox(
+                width: 30.w,
+                child: LinearProgressBar(
+                  maxSteps: 100,
+                  progressType: LinearProgressBar.progressTypeLinear,
+                  currentStep: 50,
+                  progressColor: kBlue,
+                  backgroundColor: Colors.grey,
+                  valueColor: const AlwaysStoppedAnimation<Color>(
+                    Color(0xffff7500),
+                  ),
+                  semanticsLabel: "Label",
+                  semanticsValue: "Value",
+                  minHeight: 3.h,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 3.w,
+            ),
+            Text(
+              "144",
+              style: GoogleFonts.urbanist(
+                  fontSize: 12.sp, fontWeight: FontWeight.w400, color: kBlack),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget TabRatingBar() {
+    return ListView.builder(
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Row(
+          children: [
+            SizedBox(
+              width: 20.w,
+              child: RadioListTile(
+                value: 5 - index,
+                activeColor: kBlue,
+                groupValue: selectedService,
+                onChanged: (value) {
+                  setState(() {
+                    selectedService = value!;
+                  });
+                },
+              ),
+            ),
+            RatingBar.builder(
+              itemPadding: EdgeInsets.zero,
+              ignoreGestures: true,
+              itemSize: 20.sp,
+              initialRating: 5.0 - index,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemBuilder: (context, _) => const Icon(
+                Icons.star_rounded,
+                color: Color(0xffff7500),
+                size: 3,
+              ),
+              onRatingUpdate: (rating) {},
+              unratedColor: klines,
+            ),
+            SizedBox(
+              width: 3.w,
+            ),
+            Expanded(
+              flex: MediaQuery.of(context).size.width > 1165 ? 1 : 0,
+              child: SizedBox(
+                width: 30.w,
+                child: LinearProgressBar(
+                  maxSteps: 100,
+                  progressType: LinearProgressBar.progressTypeLinear,
+                  currentStep: 50,
+                  progressColor: kBlue,
+                  backgroundColor: Colors.grey,
+                  valueColor: const AlwaysStoppedAnimation<Color>(
+                    Color(0xffff7500),
+                  ),
+                  semanticsLabel: "Label",
+                  semanticsValue: "Value",
+                  minHeight: 3.h,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 3.w,
+            ),
+            Text(
+              "144",
+              style: GoogleFonts.urbanist(
+                  fontSize: 12.sp, fontWeight: FontWeight.w400, color: kBlack),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget mobRatingBar() {
+    return ListView.builder(
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Row(
+          children: [
+            Expanded(
+              child: RadioListTile(
+                value: 5 - index,
+                // contentPadding: EdgeInsets.only(left: 8.0, right: 0.0),
+                activeColor: kBlue,
+                groupValue: selectedService,
+                title:
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  RatingBar.builder(
+                    itemPadding: EdgeInsets.zero,
+                    ignoreGestures: true,
+                    itemSize: 20.sp,
+                    initialRating: 5.0 - index,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star_rounded,
+                      color: Color(0xffff7500),
+                      size: 3,
+                    ),
+                    onRatingUpdate: (rating) {},
+                    unratedColor: klines,
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      width: 3.w,
+                    ),
+                  ),
+                  Text(
+                    "144",
+                    style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        color: kBlack),
+                  ),
+                ]),
+                onChanged: (value) {
+                  setState(() {
+                    selectedService = value!;
+                  });
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

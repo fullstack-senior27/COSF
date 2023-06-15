@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/beauticians_list.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -475,20 +476,97 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                             : Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "Best Braids in Dallas, TX",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Cosmetropolis > Dallas, TX > Braids",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14.sp,
-                                      color: kdescription,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Best Braids in Dallas, TX",
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Cosmetropolis > Dallas, TX > Braids",
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 14.sp,
+                                                color: kdescription,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Visibility(
+                                          visible: MediaQuery.of(context)
+                                                  .size
+                                                  .width <
+                                              701,
+                                          child: SizedBox(
+                                            height: 35.h,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: kBlue,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          7.r),
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                filterBottomSheet(context,
+                                                    BeauticiansFilterBottom());
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  ImageIcon(
+                                                    const AssetImage(
+                                                        "assets/icons/filter.png"),
+                                                    color: kWhite,
+                                                    size: 20.sp,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 3.w,
+                                                  ),
+                                                  Visibility(
+                                                    visible:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width >
+                                                            400,
+                                                    child: Text(
+                                                      " Filter",
+                                                      style:
+                                                          GoogleFonts.urbanist(
+                                                        color: kWhite,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 14.sp,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(
                                     height: 10.h,
@@ -509,8 +587,11 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                   ),
                                 ],
                               )),
-                    SizedBox(
-                      width: 20.w,
+                    Visibility(
+                      visible: MediaQuery.of(context).size.width > 700,
+                      child: SizedBox(
+                        width: 20.w,
+                      ),
                     ),
                     Visibility(
                       visible: MediaQuery.of(context).size.width > 700,
