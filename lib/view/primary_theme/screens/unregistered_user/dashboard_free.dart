@@ -7,6 +7,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +193,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                   : navbarSection == "Log In"
                       ? const LoginPage()
                       : navbarSection == "Help"
-                          ? const HelpPage()
+                          ? const PricingDetails()
                           : const HomePage(),
     );
   }
