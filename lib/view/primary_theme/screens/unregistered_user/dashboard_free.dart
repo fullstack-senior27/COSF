@@ -185,7 +185,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
         ),
       ),
       body: navbarSection == "Home"
-          ? const BeauticiansListPage()
+          ? const PricingDetails()
           : navbarSection == "I am a Beautician"
               ? const LandingPage()
               : navbarSection == "Sign Up"
@@ -193,7 +193,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                   : navbarSection == "Log In"
                       ? const LoginPage()
                       : navbarSection == "Help"
-                          ? const PricingDetails()
+                          ? const HelpPage()
                           : const HomePage(),
     );
   }
