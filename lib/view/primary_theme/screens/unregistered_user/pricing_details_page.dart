@@ -22,6 +22,7 @@ class PricingDetails extends StatelessWidget {
           ),
           Text(
             "We believe the basics should be free",
+            textAlign: TextAlign.center,
             style: GoogleFonts.urbanist(
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
@@ -30,11 +31,15 @@ class PricingDetails extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          Text(
-            "Get all the features major booking apps offer for a \$0 monthly fee.",
-            style: GoogleFonts.urbanist(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w400,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Text(
+              "Get all the features major booking apps offer for a \$0 monthly fee.",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.urbanist(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
           SizedBox(
@@ -461,89 +466,147 @@ class PricingDetails extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          Container(
-            width: double.infinity,
-            height: 400.h,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
+          if (MediaQuery.of(context).size.width > 600)
+            Container(
+              width: double.infinity,
+              height: 400.h,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/payments_bg.png")),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                            "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
+                  image: AssetImage("assets/images/payments_bg.png"),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w400,
+                              )),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Text(
+                            "You can’t get that kind of exposure with just a booking app.",
                             style: GoogleFonts.urbanist(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w400,
-                            )),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        Text(
-                          "You can’t get that kind of exposure with just a booking app.",
-                          style: GoogleFonts.urbanist(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
+                    Expanded(
                       child: SizedBox(
-                    width: 20.w,
-                  )),
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 25.h,
-                        ),
-                        Expanded(
-                          child: Image.asset(
-                            "assets/images/payments_img1.png",
-                            height: 120.h,
-                            // width: 75.w,
+                        width: 10.w,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 25.h,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Text(
-                          "We triple the average beautician’s revenue in their first two years on the platform.",
+                          Expanded(
+                            child: Image.asset(
+                              "assets/images/payments_img1.png",
+                              height: 100.h,
+                              // width: 75.w,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            "We triple the average beautician’s revenue in their first two years on the platform.",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.urbanist(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25.h,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          else
+            Container(
+              width: double.infinity,
+              height: 400.h,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/payments_bg.png"),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                          "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.urbanist(
-                            fontSize: 12.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
-                          ),
+                          )),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        "You can’t get that kind of exposure with just a booking app.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.urbanist(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
                         ),
-                        SizedBox(
-                          height: 25.h,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Image.asset(
+                        "assets/images/payments_img1.png",
+                        height: 150.h,
+                        // width: 75.w,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        "We triple the average beautician’s revenue in their first two years on the platform.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.urbanist(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                ],
+                      ),
+                    ]),
               ),
             ),
-          ),
           SizedBox(
             height: 20.h,
           ),
@@ -984,19 +1047,19 @@ class PricingDetails extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Container(
-                    height: 250.h,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage(
-                          "assets/images/pricing_banner.png",
-                        ),
-                      ),
-                    ),
-                    child: MediaQuery.of(context).size.width > 650
-                        ? Row(
+                  child: MediaQuery.of(context).size.width > 650
+                      ? Container(
+                          height: 250.h,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              image: AssetImage(
+                                "assets/images/pricing_banner.png",
+                              ),
+                            ),
+                          ),
+                          child: Row(
                             // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
@@ -1028,29 +1091,42 @@ class PricingDetails extends StatelessWidget {
                               ),
                               const Expanded(flex: 1, child: SizedBox()),
                             ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("No monthly contracts.",
-                                  style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                  )),
-                              Text("No setup or cancellation fees.",
-                                  style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                  )),
-                              SizedBox(
-                                height: 20.h,
+                          ))
+                      : Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: kselected,
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 30.w, vertical: 15.h),
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("No monthly contracts.",
+                                      style: GoogleFonts.urbanist(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                      )),
+                                  Text("No setup or cancellation fees.",
+                                      style: GoogleFonts.urbanist(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                      )),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  BlackButtonSmall(
+                                      context, "Join for Free", () {}),
+                                ],
                               ),
-                              BlackButtonSmall(context, "Join for Free", () {}),
-                            ],
+                            ),
                           ),
-                  ),
-                )
+                        ),
+                ),
               ],
             ),
           ),

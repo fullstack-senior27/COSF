@@ -1,6 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:readmore/readmore.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class ServiceDetailsPage extends StatefulWidget {
   const ServiceDetailsPage({super.key});
@@ -17,6 +23,14 @@ class ServiceDetailsPage extends StatefulWidget {
 }
 
 class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
+  DateTime today = DateTime.now();
+  void _onDaySelected(DateTime day, DateTime focussedDay) {
+    setState(() {
+      today = day;
+    });
+    // filterData["date"] = day.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +132,325 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
                     Row(
                       children: [
                         TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            filterBottomSheet(context, SelectSlotBottomSheet());
+                            // showDialog(
+                            //   context: context,
+                            //   builder: (BuildContext context) {
+                            //     return AlertDialog(
+                            //       title: Text('Alert'),
+                            //       content: SelectSlotBottomSheet(),
+                            //       actions: [
+                            //         TextButton(
+                            //           child: Text('OK'),
+                            //           onPressed: () {
+                            //             // Perform any desired actions here
+                            //             Navigator.of(context)
+                            //                 .pop(); // Close the dialog
+                            //           },
+                            //         ),
+                            //       ],
+                            //     );
+                            //   },
+                            // );
+                            // showBottomSheet(
+                            //     context: context,
+                            //     builder: (BuildContext context) {
+                            //       return Column(
+                            //         mainAxisSize: MainAxisSize.min,
+                            //         children: [
+                            //           Row(
+                            //             mainAxisAlignment:
+                            //                 MainAxisAlignment.spaceBetween,
+                            //             children: [
+                            //               Text(
+                            //                 "Your appointment with",
+                            //                 style: GoogleFonts.urbanist(
+                            //                   color: kBlack,
+                            //                   fontSize: 18.sp,
+                            //                   fontWeight: FontWeight.w600,
+                            //                 ),
+                            //               ),
+                            //               const Icon(
+                            //                 Icons.close,
+                            //                 color: kGrey,
+                            //               )
+                            //             ],
+                            //           ),
+                            //           Divider(
+                            //             color: klines,
+                            //           ),
+                            //           Row(
+                            //             children: [
+                            //               Text(
+                            //                 "Akeba Thompson",
+                            //                 style: GoogleFonts.urbanist(
+                            //                   color: kBlack,
+                            //                   fontSize: 16.sp,
+                            //                   fontWeight: FontWeight.w500,
+                            //                 ),
+                            //               ),
+                            //               SizedBox(
+                            //                 width: 3.w,
+                            //               ),
+                            //               Image.asset(
+                            //                 "assets/icons/verify.png",
+                            //                 height: 20.h,
+                            //               ),
+                            //             ],
+                            //           ),
+                            //           SizedBox(
+                            //             height: 10.h,
+                            //           ),
+                            //           Row(
+                            //             children: [
+                            //               RatingBar.builder(
+                            //                 initialRating: 4,
+                            //                 minRating: 1,
+                            //                 itemSize: 20.sp,
+                            //                 allowHalfRating: true,
+                            //                 itemBuilder: (context, _) =>
+                            //                     const Icon(
+                            //                   Icons.star_rounded,
+                            //                   color: Color(0xFFFF7500),
+                            //                 ),
+                            //                 onRatingUpdate: (rating) {},
+                            //               ),
+                            //               SizedBox(
+                            //                 width: 2.w,
+                            //               ),
+                            //               Text(
+                            //                 "4.0",
+                            //                 style: GoogleFonts.urbanist(
+                            //                   color: kBlack,
+                            //                   fontSize: 14.sp,
+                            //                   fontWeight: FontWeight.w400,
+                            //                 ),
+                            //               ),
+                            //               SizedBox(
+                            //                 width: 2.w,
+                            //               ),
+                            //               Text(
+                            //                 "(180 Reviews)",
+                            //                 style: GoogleFonts.urbanist(
+                            //                   color: kdescription,
+                            //                   fontSize: 14.sp,
+                            //                   fontWeight: FontWeight.w400,
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //           Container(
+                            //             decoration: BoxDecoration(
+                            //               color: kWhite,
+                            //               borderRadius:
+                            //                   BorderRadius.circular(10.r),
+                            //             ),
+                            //             child: Padding(
+                            //               padding: EdgeInsets.all(10.h),
+                            //               child: Row(
+                            //                 children: [
+                            //                   Column(
+                            //                     crossAxisAlignment:
+                            //                         CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text(
+                            //                         "Medium knotless/Box braids",
+                            //                         style: GoogleFonts.urbanist(
+                            //                           color: kBlack,
+                            //                           fontSize: 16.sp,
+                            //                           fontWeight:
+                            //                               FontWeight.w500,
+                            //                         ),
+                            //                       ),
+                            //                       Text(
+                            //                         "30 Mins - \$200",
+                            //                         style: GoogleFonts.urbanist(
+                            //                           color: kdescription,
+                            //                           fontSize: 16.sp,
+                            //                           fontWeight:
+                            //                               FontWeight.w500,
+                            //                         ),
+                            //                       ),
+                            //                       SizedBox(
+                            //                         height: 10.h,
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                   SizedBox(
+                            //                     width: 15.w,
+                            //                   ),
+                            //                   BlackButtonSmall(
+                            //                       context, "Add Service", () {})
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //           Container(
+                            //             color: Color(0xffFEF9ED),
+                            //             child: Padding(
+                            //               padding: EdgeInsets.all(10.h),
+                            //               child: Row(
+                            //                 children: [
+                            //                   Container(
+                            //                     height: 10.h,
+                            //                     width: 10.h,
+                            //                     decoration: const BoxDecoration(
+                            //                       shape: BoxShape.circle,
+                            //                       color: Color(0xffff5700),
+                            //                     ),
+                            //                   ),
+                            //                   SizedBox(
+                            //                     width: 5.w,
+                            //                   ),
+                            //                   Column(
+                            //                     crossAxisAlignment:
+                            //                         CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text(
+                            //                         "Limited spots left in April",
+                            //                         style: GoogleFonts.urbanist(
+                            //                           color: kBlack,
+                            //                           fontSize: 16.sp,
+                            //                           fontWeight:
+                            //                               FontWeight.w500,
+                            //                         ),
+                            //                       ),
+                            //                       // SizedBox(
+                            //                       //   height: 10.h,
+                            //                       // ),
+                            //                       Text(
+                            //                         "Book soon!",
+                            //                         style: GoogleFonts.urbanist(
+                            //                           color: kdescription,
+                            //                           fontSize: 12.sp,
+                            //                           fontWeight:
+                            //                               FontWeight.w400,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   )
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //           // SizedBox(
+                            //           //   height: 200.h,
+                            //           //   child: TableCalendar(
+                            //           //     firstDay:
+                            //           //         DateTime.utc(2010, 10, 16),
+                            //           //     focusedDay: today,
+                            //           //     lastDay: DateTime.utc(2030, 3, 14),
+                            //           //     calendarFormat:
+                            //           //         CalendarFormat.month,
+                            //           //     headerStyle: HeaderStyle(
+                            //           //       titleCentered: true,
+                            //           //       titleTextStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 16.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //       formatButtonVisible: false,
+                            //           //     ),
+                            //           //     rowHeight: 40.h,
+                            //           //     availableGestures:
+                            //           //         AvailableGestures.all,
+                            //           //     selectedDayPredicate: (day) {
+                            //           //       return isSameDay(day, today);
+                            //           //     },
+                            //           //     onDaySelected: _onDaySelected,
+                            //           //     daysOfWeekStyle: DaysOfWeekStyle(
+                            //           //       weekdayStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //       weekendStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //     ),
+                            //           //     calendarStyle: CalendarStyle(
+                            //           //       selectedDecoration:
+                            //           //           const BoxDecoration(
+                            //           //         color: kBlack,
+                            //           //         shape: BoxShape.circle,
+                            //           //       ),
+                            //           //       selectedTextStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //       todayDecoration: BoxDecoration(
+                            //           //         color: kWhite,
+                            //           //         shape: BoxShape.circle,
+                            //           //         border: Border.all(
+                            //           //           color: kBlack,
+                            //           //           width: 1,
+                            //           //         ),
+                            //           //       ),
+                            //           //       todayTextStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //       defaultTextStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //       weekendTextStyle:
+                            //           //           GoogleFonts.urbanist(
+                            //           //         fontSize: 12.sp,
+                            //           //         fontWeight: FontWeight.w500,
+                            //           //         color: kdescription,
+                            //           //       ),
+                            //           //     ),
+                            //           //   ),
+                            //           // ),
+                            //           CalendarCarousel<Event>(
+                            //             onDayPressed: (DateTime date,
+                            //                 List<Event> events) {
+                            //               setState(() {});
+                            //             },
+                            //             todayButtonColor: kBlue,
+                            //             todayBorderColor: kBlue,
+                            //             markedDateShowIcon: true,
+                            //             width: 90.w,
+                            //             daysHaveCircularBorder: true,
+                            //             daysTextStyle: GoogleFonts.urbanist(
+                            //               color: kBlack,
+                            //               fontSize: 14.sp,
+                            //               fontWeight: FontWeight.w400,
+                            //             ),
+                            //             weekendTextStyle: GoogleFonts.urbanist(
+                            //               color: kBlack,
+                            //               fontSize: 14.sp,
+                            //               fontWeight: FontWeight.w400,
+                            //             ),
+                            //             weekdayTextStyle: GoogleFonts.urbanist(
+                            //               color: kBlack,
+                            //               fontSize: 12.sp,
+                            //               fontWeight: FontWeight.w600,
+                            //             ),
+                            //             headerTextStyle: GoogleFonts.urbanist(
+                            //               color: kBlack,
+                            //               fontSize: 14.sp,
+                            //               fontWeight: FontWeight.w600,
+                            //             ),
+                            //             headerTitleTouchable: true,
+                            //           ),
+                            //         ],
+                            //       );
+                            //     });
+                          },
                           icon: Icon(
                             Icons.messenger_outline_rounded,
                             color: kWhite,
@@ -182,7 +514,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.r),
                               side: const BorderSide(
-                                color: kdarkPrime, 
+                                color: kdarkPrime,
                               ),
                             ),
                           ),
@@ -643,9 +975,7 @@ class service extends StatelessWidget {
                         ),
                         if (MediaQuery.of(context).size.width < 920)
                           Padding(
-                            padding: EdgeInsets.only(
-                              top: 10.h
-                            ),
+                            padding: EdgeInsets.only(top: 10.h),
                             child: Row(
                               children: [
                                 Text(

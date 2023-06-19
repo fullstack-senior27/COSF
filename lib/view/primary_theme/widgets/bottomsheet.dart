@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 Future filterBottomSheet(BuildContext context, Widget child) {
   return showModalBottomSheet(
     context: context,
-    backgroundColor: kWhite,
+    backgroundColor: Color(0xfff8f8f8),
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -15,10 +15,7 @@ Future filterBottomSheet(BuildContext context, Widget child) {
     builder: (BuildContext context) {
       return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
-        return Padding(
-          padding: EdgeInsets.only(left: 15.w, right: 15.w),
-          child: child,
-        );
+        return child;
       });
     },
   );

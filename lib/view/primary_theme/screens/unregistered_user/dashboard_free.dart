@@ -8,6 +8,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/material.dart';
@@ -185,7 +186,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
         ),
       ),
       body: navbarSection == "Home"
-          ? const PricingDetails()
+          ? const ServiceDetailsPage()
           : navbarSection == "I am a Beautician"
               ? const LandingPage()
               : navbarSection == "Sign Up"
