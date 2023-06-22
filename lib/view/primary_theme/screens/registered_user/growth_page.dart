@@ -2,6 +2,7 @@ import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:circular_chart_flutter/circular_chart_flutter.dart';
 
 import '../../../../utils/colors.dart';
 import '../../widgets/footer.dart';
@@ -77,7 +78,7 @@ class _GrowthPageState extends State<GrowthPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 20.h,
+                        height: 40.h,
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -554,7 +555,7 @@ class _GrowthPageState extends State<GrowthPage>
                   ),
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 40.h,
                 ),
                 Footer(),
               ],
@@ -562,19 +563,842 @@ class _GrowthPageState extends State<GrowthPage>
           ),
           //Earnings Section>>>>>>>>>>>>>>
           SingleChildScrollView(
-            child: Column(children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 17.w),
                 child: Column(
                   children: [
                     SizedBox(
+                      height: 40.h,
+                    ),
+                    Row(
+                      // mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Net Earnings Today",
+                              style: urbanist600(kBlack, 18),
+                            ),
+                            Text(
+                              "\$0.00",
+                              style: urbanist600(kBlack, 16),
+                            ),
+                            Text(
+                              "No appointments",
+                              style: urbanist400(kBlack, 12),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          width: 15.w,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: DropdownButtonFormField<String>(
+                            dropdownColor: kWhite,
+                            isExpanded: true,
+                            decoration: InputDecoration(
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: klines),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: klines),
+                              ),
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 10.w),
+                              // suffixIcon: Icon(Icons.arrow_drop_down),
+                            ),
+                            items: [
+                              DropdownMenuItem<String>(
+                                value: 'Today',
+                                child: Text(
+                                  'Today',
+                                  style: urbanist400(kGrey, 12),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              DropdownMenuItem<String>(
+                                value: 'Yesterday',
+                                child: Text(
+                                  'Yesterday',
+                                  style: urbanist400(kGrey, 12),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              DropdownMenuItem<String>(
+                                value: 'April 1, 2020',
+                                child: Text(
+                                  'April 1, 2020',
+                                  style: urbanist400(kGrey, 12),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                            onChanged: (String? value) {
+                              // Handle dropdown value change
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 860,
+                          child: Expanded(
+                            flex: 2,
+                            child: Container(
+                              height: 100.h,
+                              // width: 40.w,
+                              decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Total Earning",
+                                      style: urbanist600(kGrey, 12),
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Text(
+                                      "\$9,600",
+                                      style: urbanist600(kBlue, 20),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 860,
+                          child: SizedBox(
+                            width: 5.w,
+                          ),
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 860,
+                          child: Expanded(
+                            flex: 1,
+                            child: Container(
+                              height: 100.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Withdraw Balance",
+                                      style: urbanist600(kGrey, 12),
+                                      maxLines: 2,
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$3500",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 860,
+                          child: SizedBox(
+                            width: 5.w,
+                          ),
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 860,
+                          child: Expanded(
+                            child: Container(
+                              height: 100.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10.h, horizontal: 3.w),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      MediaQuery.of(context).size.width > 700
+                                          ? "Remaining Amount"
+                                          : "Remaining/nAmount",
+                                      maxLines: 2,
+                                      style: urbanist600(kGrey, 12),
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$5,560",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Visibility(
+                        visible: MediaQuery.of(context).size.width < 861,
+                        child: SizedBox(
+                          height: 20.h,
+                        )),
+                    if (MediaQuery.of(context).size.width < 861)
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 40.w,
+                              decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Total Earning",
+                                      style: urbanist600(kGrey, 12),
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Text(
+                                      "\$9,600",
+                                      style: urbanist600(kBlue, 20),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FittedBox(
+                                      child: Text(
+                                        "Withdraw",
+                                        style: urbanist600(kGrey, 12),
+                                        // maxLines: 2,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "Balance",
+                                        style: urbanist600(kGrey, 12),
+                                        // maxLines: 2,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 10.h,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$3500",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FittedBox(
+                                      child: Text(
+                                        "Remaining",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "Amount",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 10.h,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$5,560",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    else
+                      Container(),
+                    SizedBox(
                       height: 20.h,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          headingRowColor:
+                              const MaterialStatePropertyAll(kselected),
+                          columns: [
+                            DataColumn(
+                                label: Text("Order ID",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Fee",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Tip",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Payment Mood",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Booking",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Status",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Appointment",
+                                    style: urbanist600(kBlack, 14))),
+                            DataColumn(
+                                label: Text("Total",
+                                    style: urbanist600(kBlack, 14))),
+                          ],
+                          rows: [
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 2
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 3
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 4
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.red,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Unpaid",
+                                        style: urbanist600(Colors.red, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 5
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 6
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 7
+                            DataRow(
+                              cells: [
+                                DataCell(Text("#89895682",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$20",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("Credit Card",
+                                    style: urbanist500(kGrey, 12))),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.red,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Unpaid",
+                                        style: urbanist600(Colors.red, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                //Date time column
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$220",
+                                    style: urbanist500(kBlack, 12))),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 40.h,
               ),
               Footer(),
             ]),
@@ -589,11 +1413,518 @@ class _GrowthPageState extends State<GrowthPage>
                     SizedBox(
                       height: 20.h,
                     ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width > 415
+                                ? 90.h
+                                : 80.h,
+                            // width: 30.w,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width > 500,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Total Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Total",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 10.h,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Text(
+                                      "\$5,560",
+                                      style: urbanist600(kBlack, 20),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width > 415
+                                ? 90.h
+                                : 80.h,
+                            // width: 30.w,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width > 500,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Withdraw Balance",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Withdraw",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Balance",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 10.h,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Text(
+                                      "\$5,560",
+                                      style: urbanist600(kBlack, 20),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width > 415
+                                ? 90.h
+                                : 80.h,
+                            // width: 30.w,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width > 500,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Remaining Amount",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Remaining",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 501,
+                                    child: FittedBox(
+                                      child: Text(
+                                        "Amount",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 10.h,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Text(
+                                      "\$5,560",
+                                      style: urbanist600(kBlack, 20),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    SizedBox(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          headingRowColor:
+                              const MaterialStatePropertyAll(kselected),
+                          columns: [
+                            DataColumn(
+                                label: Text("Payout Date",
+                                    style: urbanist600(kBlack, 16))),
+                            DataColumn(
+                                label: Text("Amount",
+                                    style: urbanist600(kBlack, 16))),
+                            DataColumn(
+                                label: Text("Mode",
+                                    style: urbanist600(kBlack, 16))),
+                            DataColumn(
+                                label: Text("Total",
+                                    style: urbanist600(kBlack, 16))),
+                            DataColumn(
+                                label: Text("Status",
+                                    style: urbanist600(kBlack, 16))),
+                          ],
+                          rows: [
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 2
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 3
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 4
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 5
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+
+                            //row 6
+                            DataRow(
+                              cells: [
+                                DataCell(Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    Text("20-04-2023",
+                                        style: urbanist500(kBlack, 12)),
+                                    Text("12:30 PM",
+                                        style: urbanist400(kdescription, 10)),
+                                  ],
+                                )),
+                                DataCell(Text("\$200",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\PayPal",
+                                    style: urbanist500(kGrey, 12))),
+                                DataCell(Text("\$50.00",
+                                    style: urbanist500(kGrey, 12))),
+
+                                //widget row
+                                DataCell(
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 5.h,
+                                        width: 5.w,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Text(
+                                        "Paid",
+                                        style: urbanist600(Colors.green, 10),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              color:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 40.h,
               ),
               Footer(),
             ]),
@@ -607,7 +1938,7 @@ class _GrowthPageState extends State<GrowthPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 20.h,
+                      height: 40.h,
                     ),
                     Text(
                       "Your Earnings",
@@ -619,6 +1950,7 @@ class _GrowthPageState extends State<GrowthPage>
                     Row(
                       children: [
                         Expanded(
+                          flex: 2,
                           child: Theme(
                             data: ThemeData(
                               accentColor: kWhite,
@@ -664,67 +1996,53 @@ class _GrowthPageState extends State<GrowthPage>
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        MediaQuery.of(context).size.width > 850
-                            ? Expanded(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: 20.h,
-                                          ),
-                                          backgroundColor: kBlack,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5.r),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          "Export for 2022 Taxes",
-                                          style: urbanist500(kWhite, 14),
-                                        ),
+                        Visibility(
+                            visible: MediaQuery.of(context).size.width > 850,
+                            child: const Spacer()),
+                        if (MediaQuery.of(context).size.width > 850)
+                          Row(
+                            children: [
+                              FittedBox(
+                                child: SizedBox(
+                                  height: 40.h,
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: kBlack,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.r),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 10.w,
+                                    child: Text(
+                                      "Export for 2022 Taxes",
+                                      style: urbanist500(kWhite, 14),
                                     ),
-                                    // outline button
-                                    Expanded(
-                                      child: Theme(
-                                        data: ThemeData(
-                                          accentColor: kBlack,
-                                        ),
-                                        child: OutlinedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: 20.h,
-                                            ),
-                                            backgroundColor: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.r),
-                                              side: const BorderSide().copyWith(
-                                                color: kBlack,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Export Data",
-                                            style: urbanist500(kBlack, 14),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              )
-                            : Container(),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              // outline button
+                              Container(
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                  border: Border.all(color: kBlack),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Export Data",
+                                    style: urbanist500(kBlack, 14),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        else
+                          Container(),
                       ],
                     ),
                     SizedBox(
@@ -734,20 +2052,22 @@ class _GrowthPageState extends State<GrowthPage>
                       Row(
                         children: [
                           Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 20.h,
+                            child: SizedBox(
+                              height: 40.h,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: kBlack,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
                                 ),
-                                backgroundColor: kBlack,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.r),
+                                child: FittedBox(
+                                  child: Text(
+                                    "Export for 2022 Taxes",
+                                    style: urbanist500(kWhite, 14),
+                                  ),
                                 ),
-                              ),
-                              child: Text(
-                                "Export for 2022 Taxes",
-                                style: urbanist500(kWhite, 14),
                               ),
                             ),
                           ),
@@ -756,31 +2076,21 @@ class _GrowthPageState extends State<GrowthPage>
                           ),
                           // outline button
                           Expanded(
-                            child: Theme(
-                              data: ThemeData(
-                                accentColor: kBlack,
+                            child: Container(
+                              height: 40.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.r),
+                                border: Border.all(color: kBlack),
                               ),
-                              child: OutlinedButton(
+                              child: TextButton(
                                 onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 20.h,
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.r),
-                                    side: const BorderSide().copyWith(
-                                      color: kBlack,
-                                    ),
-                                  ),
-                                ),
                                 child: Text(
                                   "Export Data",
                                   style: urbanist500(kBlack, 14),
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       )
                     else
@@ -842,7 +2152,7 @@ class _GrowthPageState extends State<GrowthPage>
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 40.h,
               ),
               Footer(),
             ]),
@@ -856,7 +2166,7 @@ class _GrowthPageState extends State<GrowthPage>
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 20.h,
+                        height: 40.h,
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -975,7 +2285,7 @@ class _GrowthPageState extends State<GrowthPage>
                   ),
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 40.h,
                 ),
                 Footer(),
               ],
@@ -991,6 +2301,71 @@ class _GrowthPageState extends State<GrowthPage>
                     SizedBox(
                       height: 20.h,
                     ),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 45.r,
+                          backgroundColor: kBlue,
+                          child: AnimatedCircularChart(
+                            // key: _chartKey,
+                            size: Size(40.w, 80.h),
+                            holeLabel: '33.33%\nNew Clients',
+                            labelStyle: urbanist600(kWhite, 8),
+                            initialChartData: const <CircularStackEntry>[
+                              CircularStackEntry(
+                                <CircularSegmentEntry>[
+                                  CircularSegmentEntry(
+                                    33.33,
+                                    kWhite,
+                                    rankKey: 'completed',
+                                  ),
+                                  CircularSegmentEntry(
+                                    66.67,
+                                    kBlue,
+                                    rankKey: 'remaining',
+                                  ),
+                                ],
+                                rankKey: 'progress',
+                              ),
+                            ],
+                            chartType: CircularChartType.Radial,
+                            edgeStyle: SegmentEdgeStyle.round,
+                            percentageValues: true,
+                          ),
+                        ),
+                        SizedBox(width: 20.w),
+                        CircleAvatar(
+                          radius: 45.r,
+                          backgroundColor: Color(0xffE75D5D),
+                          child: AnimatedCircularChart(
+                            // key: _chartKey,
+                            size: Size(40.w, 80.h),
+                            holeLabel: '10%\n Returning Clients',
+                            labelStyle: urbanist600(kWhite, 8),
+                            initialChartData: const <CircularStackEntry>[
+                              CircularStackEntry(
+                                <CircularSegmentEntry>[
+                                  CircularSegmentEntry(
+                                    10,
+                                    kWhite,
+                                    rankKey: 'completed',
+                                  ),
+                                  CircularSegmentEntry(
+                                    90,
+                                    Color(0xffE75D5D),
+                                    rankKey: 'remaining',
+                                  ),
+                                ],
+                                rankKey: 'progress',
+                              ),
+                            ],
+                            chartType: CircularChartType.Radial,
+                            edgeStyle: SegmentEdgeStyle.round,
+                            percentageValues: true,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

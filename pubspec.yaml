@@ -45,6 +45,8 @@ dependencies:
     sdk: flutter
   flutter_bootstrap: ^2.0.0
   flutter_dotenv: ^5.0.2
+  # fl_chart: ^0.63.0
+  circular_chart_flutter: ^0.0.2
   flutter_image_stack: ^0.0.6
   flutter_map: ^4.0.0
   flutter_rating_bar: ^4.0.1
