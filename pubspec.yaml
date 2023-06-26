@@ -60,6 +60,7 @@ dependencies:
   latlong2: null
   linear_progress_bar: ^1.1.0
   path_provider: ^2.0.11
+  pie_chart: ^5.3.2
   pretty_dio_logger: ^1.2.0-beta-1
   rating_bar: 
   readmore: ^2.2.0

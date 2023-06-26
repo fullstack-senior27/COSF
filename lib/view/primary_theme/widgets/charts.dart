@@ -4,6 +4,7 @@ import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:pie_chart/pie_chart.dart';
 
 class MyLineChart extends StatelessWidget {
   const MyLineChart({super.key});
@@ -454,83 +455,84 @@ class BarChartSample2State extends State<BarChartSample2> {
   }
 }
 
-final GlobalKey<AnimatedCircularChartState> _chartKey =
-    new GlobalKey<AnimatedCircularChartState>();
-List<CircularStackEntry> data = <CircularStackEntry>[
-  const CircularStackEntry(
-    <CircularSegmentEntry>[
-      CircularSegmentEntry(500.0, kBlue, rankKey: 'Q1'),
-      CircularSegmentEntry(1000.0, kBlue, rankKey: 'Q2'),
-      CircularSegmentEntry(2000.0, kBlue, rankKey: 'Q3'),
-      CircularSegmentEntry(1000.0, kBlue, rankKey: 'Q4'),
-    ],
-    rankKey: 'Quarterly Profits',
-  ),
-];
-@override
-Widget buildPie(BuildContext context) {
-  return new AnimatedCircularChart(
-    key: _chartKey,
-    size: const Size(300.0, 300.0),
-    initialChartData: data,
-    chartType: CircularChartType.Pie,
-  );
-}
+class MyPie extends StatelessWidget {
+  const MyPie({super.key});
 
-Widget pieChart() {
-  return PieChart(
-      PieChartData(sections: pieData, centerSpaceRadius: 0, sectionsSpace: 1));
-}
+  @override
+  Widget build(BuildContext context) {
+    double radius = MediaQuery.of(context).size.width / 7;
+    List<PieChartSectionData> pieData = [
+      PieChartSectionData(
+          color: kBlue,
+          title: "Medium box braids",
+          radius: radius,
+          titleStyle: urbanist400(kGrey, 12),
+          titlePositionPercentageOffset: 1),
+      PieChartSectionData(
+          color: kBlue,
+          title: "Soft Locs",
+          radius: radius,
+          titleStyle: urbanist400(kGrey, 12),
+          titlePositionPercentageOffset: 1),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        titlePositionPercentageOffset: 1,
+        radius: radius,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+      PieChartSectionData(
+        color: kBlue,
+        title: "Beads and Braids",
+        radius: radius,
+        titlePositionPercentageOffset: 1,
+        titleStyle: urbanist400(kGrey, 12),
+      ),
+    ];
 
-List<PieChartSectionData> pieData = [
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-  PieChartSectionData(
-      color: kBlue,
-      title: "Beads and Braids",
-      radius: 200,
-      titleStyle: urbanist400(kWhite, 10)),
-];
+    return PieChart(PieChartData(
+        sections: pieData, centerSpaceRadius: 0, sectionsSpace: 1));
+  }
+}

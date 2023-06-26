@@ -5,6 +5,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/text_styles.dart';
@@ -19,6 +20,13 @@ class ReportingPage extends StatefulWidget {
 class _ReportingPageState extends State<ReportingPage> {
   int _selectedCategory = 0;
   List<String> categories = ["Gross Sale", "Transactions"];
+  Map<String, double> dataMap = {
+    "Flutter": 5,
+    "React": 3,
+    "Xamarin": 2,
+    "Ionic": 2,
+  };
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -345,7 +353,7 @@ class _ReportingPageState extends State<ReportingPage> {
                       SizedBox(
                         height: 20.h,
                       ),
-                      SizedBox(height: 400.h, child: pieChart()),
+                      SizedBox(height: 400.h, child: MyPie()),
                     ],
                   ),
                 )

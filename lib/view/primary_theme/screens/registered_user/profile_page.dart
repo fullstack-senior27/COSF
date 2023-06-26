@@ -1,6 +1,12 @@
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../widgets/footer.dart';
+import '../../widgets/profile_edit.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -65,10 +71,9 @@ class _ProfilePageState extends State<ProfilePage>
       ),
       body: TabBarView(
         controller: _tabcontroller,
-        children: const [
-          Center(
-            child: Text('Edit'),
-          ),
+        children: [
+          // Edit Tab >>>>>>>>>>>>>>>>>>>>>>>>
+          ProfileEdit(),
           Center(
             child: Text('Preview'),
           ),
