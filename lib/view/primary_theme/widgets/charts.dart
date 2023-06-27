@@ -460,7 +460,9 @@ class MyPie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double radius = MediaQuery.of(context).size.width / 7;
+    double radius = MediaQuery.of(context).size.width > 800
+        ? MediaQuery.of(context).size.width / 7
+        : MediaQuery.of(context).size.width / 4;
     List<PieChartSectionData> pieData = [
       PieChartSectionData(
           color: kBlue,

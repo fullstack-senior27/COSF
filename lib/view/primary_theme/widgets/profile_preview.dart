@@ -1,0 +1,632 @@
+import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:readmore/readmore.dart';
+
+import '../screens/unregistered_user/service_details_page.dart';
+
+class ProfilePreview extends StatefulWidget {
+  const ProfilePreview({super.key});
+
+  @override
+  State<ProfilePreview> createState() => _ProfilePreviewState();
+}
+
+class _ProfilePreviewState extends State<ProfilePreview>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabcontroller;
+  @override
+  void initState() {
+    _tabcontroller = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabcontroller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        child: Column(
+      children: [
+        SizedBox(
+          height: 40.h,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 17.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MediaQuery.of(context).size.width < 401
+                    ? MainAxisAlignment.center
+                    : MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: const NetworkImage(
+                            "https://tse1.mm.bing.net/th?id=OIP.zVsxx9pE2k-e6iTe5DMFwAHaGv&pid=Api&P=0&h=180"),
+                        radius: 60.r,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Visibility(
+                          visible: MediaQuery.of(context).size.width < 551,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: kdarkPrime,
+                                  size: 15.sp,
+                                ),
+                                style: TextButton.styleFrom(
+                                  backgroundColor: kWhite,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.r),
+                                    side: const BorderSide(
+                                      color: kdarkPrime,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.ios_share_rounded,
+                                  color: kdarkPrime,
+                                  size: 15.sp,
+                                ),
+                                style: TextButton.styleFrom(
+                                  backgroundColor: kWhite,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.r),
+                                    side: const BorderSide(
+                                      color: kdarkPrime,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              TextButton.icon(
+                                onPressed: () {
+                                  // filterBottomSheet(context, SelectSlotBottomSheet());
+                                },
+                                icon: Icon(
+                                  Icons.messenger_outline_rounded,
+                                  color: kWhite,
+                                  size: 15.sp,
+                                ),
+                                style: TextButton.styleFrom(
+                                  backgroundColor: kdarkPrime,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                ),
+                                label: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  child: Text("Message",
+                                      style: urbanist400(kWhite, 12)),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Visibility(
+                        child: SizedBox(
+                          height: 10.h,
+                        ),
+                        visible: MediaQuery.of(context).size.width < 401,
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width < 401,
+                        child: Column(
+                          crossAxisAlignment:
+                              MediaQuery.of(context).size.width < 401
+                                  ? CrossAxisAlignment.center
+                                  : CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Eleanor Pena",
+                              style: urbanist600(kBlack, 16),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "Hair Stylist",
+                              style: urbanist400(kdescription, 12),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "Business name- Cosmetropolis",
+                              style: urbanist400(kdescription, 12),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "Instagram - @ mr.johnwick",
+                              style: urbanist400(kdescription, 12),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "Facebook - @ Mr. Wick",
+                              style: urbanist400(kdescription, 12),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            RatingBar.builder(
+                              initialRating: 3,
+                              minRating: 1,
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemSize: 20,
+                              itemPadding:
+                                  EdgeInsets.symmetric(horizontal: 1.w),
+                              itemBuilder: (context, _) => const Icon(
+                                Icons.star_rate_rounded,
+                                color: Color(0xFFFF7500),
+                              ),
+                              onRatingUpdate: (rating) {
+                                print(rating);
+                              },
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Visibility(
+                                visible:
+                                    MediaQuery.of(context).size.width < 551,
+                                child: SizedBox(
+                                  height: 20.h,
+                                )),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Visibility(
+                    visible: MediaQuery.of(context).size.width > 400,
+                    child: SizedBox(
+                      width: 5.w,
+                    ),
+                  ),
+                  Visibility(
+                    visible: MediaQuery.of(context).size.width > 400,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Eleanor Pena",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Hair Stylist",
+                          style: urbanist400(kdescription, 12),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Business name- Cosmetropolis",
+                          style: urbanist400(kdescription, 12),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Instagram - @ mr.johnwick",
+                          style: urbanist400(kdescription, 12),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Facebook - @ Mr. Wick",
+                          style: urbanist400(kdescription, 12),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        RatingBar.builder(
+                          initialRating: 3,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 20,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 1.w),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star_rate_rounded,
+                            color: Color(0xFFFF7500),
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Visibility(
+                            visible: MediaQuery.of(context).size.width < 501,
+                            child: SizedBox(
+                              height: 20.h,
+                            )),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Visibility(
+                      visible: MediaQuery.of(context).size.width > 550,
+                      child: Spacer()),
+                  Visibility(
+                      visible: MediaQuery.of(context).size.width > 550,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.favorite_border_outlined,
+                              color: kdarkPrime,
+                              size: 15.sp,
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: kWhite,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.r),
+                                side: const BorderSide(
+                                  color: kdarkPrime,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.ios_share_rounded,
+                              color: kdarkPrime,
+                              size: 15.sp,
+                            ),
+                            style: IconButton.styleFrom(
+                              backgroundColor: kWhite,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.r),
+                                side: const BorderSide(
+                                  color: kdarkPrime,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              // filterBottomSheet(context, SelectSlotBottomSheet());
+                            },
+                            icon: Icon(
+                              Icons.messenger_outline_rounded,
+                              color: kWhite,
+                              size: 15.sp,
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: kdarkPrime,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.r),
+                              ),
+                            ),
+                            label: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.h),
+                              child: Text("Message",
+                                  style: urbanist400(kWhite, 12)),
+                            ),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
+              TabBar(
+                physics: const BouncingScrollPhysics(),
+                dividerColor: kGrey.withOpacity(0.5),
+                isScrollable: true,
+                indicatorSize: TabBarIndicatorSize.tab,
+                controller: _tabcontroller,
+                indicatorColor: kBlack,
+                labelColor: kBlack,
+                unselectedLabelColor: kGrey,
+                labelStyle: urbanist600(kBlack, 12),
+                unselectedLabelStyle: urbanist400(kGrey, 12),
+                tabs: const [
+                  Tab(text: 'Services'),
+                  Tab(text: 'Review'),
+                  Tab(text: 'About'),
+                  Tab(text: 'Products'),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                  height: 600.h,
+                  child: TabBarView(controller: _tabcontroller, children: [
+                    Center(
+                      child: Text('Services'),
+                    ),
+                    Center(
+                      child: Text('Review'),
+                    ),
+                    Center(
+                      child: Text('About'),
+                    ),
+                    SingleChildScrollView(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 6,
+                            child: Column(
+                              children: [
+                                const ProductsCard(),
+                                if (MediaQuery.of(context).size.width < 920)
+                                  Sidebar()
+                                else
+                                  Container(),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (MediaQuery.of(context).size.width > 920)
+                            Expanded(
+                              flex: 4,
+                              child: Sidebar(),
+                            )
+                          else
+                            Container()
+                        ],
+                      ),
+                    ),
+                  ])),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 40.h,
+        ),
+        Footer(),
+      ],
+    ));
+  }
+}
+
+class ProductsCard extends StatelessWidget {
+  const ProductsCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Add Products to your profile",
+                style: urbanist400(kBlack, 16)),
+            FittedBox(
+              child: SizedBox(
+                height: 40.h,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kBlack,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                    ),
+                  ),
+                  child: Text(
+                    "Add Product",
+                    style: urbanist400(kWhite, 12),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+        ...List.generate(
+          5,
+          (index) => Padding(
+            padding: EdgeInsets.only(bottom: 20.h),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
+                vertical: 10.h,
+              ),
+              decoration: BoxDecoration(
+                color: kWhite,
+                borderRadius: BorderRadius.circular(5.r),
+                border: Border.all(
+                  color: kdisable,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: kGrey.withOpacity(0.05),
+                    spreadRadius: 5,
+                    blurRadius: 5,
+                    offset: const Offset(
+                      0,
+                      1,
+                    ), // changes position of shadow
+                  ),
+                ],
+              ),
+              width: double.infinity,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.network(
+                    "https://tse1.mm.bing.net/th?id=OIP.3B1u2WR60N8Yhdl4E7OsvAHaKJ&pid=Api&P=0&h=180",
+                    // width: 30.w,
+                    height: 50.h,
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hair Growth Oil",
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        // SizedBox(
+                        //   height: 10.h,
+                        // ),
+                        SizedBox(
+                          width: 200.w,
+                          child: ReadMoreText(
+                              "Hair is not included but can be provided for an additional fee. Please check",
+                              colorClickableText: kBlue,
+                              trimMode: TrimMode.Line,
+                              trimCollapsedText: 'Read more',
+                              trimExpandedText: ' Read less',
+                              style: urbanist400(kGrey, 12)),
+                        ),
+                        if (MediaQuery.of(context).size.width < 920)
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.delete_rounded,
+                                      color: kBlack,
+                                      size: 25,
+                                    )),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 10.w,
+                                    vertical: 5.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: kBlack,
+                                    borderRadius: BorderRadius.circular(
+                                      5.r,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    "Edit",
+                                    style: GoogleFonts.urbanist(
+                                      color: kWhite,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        else
+                          Container()
+                      ],
+                    ),
+                  ),
+                  if (MediaQuery.of(context).size.width > 920)
+                    Expanded(
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.delete_rounded,
+                                color: kBlack,
+                                size: 15.sp,
+                              )),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.w,
+                              vertical: 5.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: kBlack,
+                              borderRadius: BorderRadius.circular(
+                                5.r,
+                              ),
+                            ),
+                            child: Text(
+                              "Edit",
+                              style: GoogleFonts.urbanist(
+                                color: kWhite,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  else
+                    Container()
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}

@@ -643,7 +643,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 ),
 
                                                 SizedBox(
-                                                  height: 180.h,
+                                                  height: 182.h,
                                                   child: ListView.builder(
                                                     scrollDirection:
                                                         Axis.horizontal,

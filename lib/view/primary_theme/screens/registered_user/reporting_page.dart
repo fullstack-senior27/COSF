@@ -224,6 +224,20 @@ class _ReportingPageState extends State<ReportingPage> {
                           ),
                         ),
                       ),
+                      Visibility(
+                          visible: MediaQuery.of(context).size.width < 801,
+                          child: Column(children: [
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            const EarningsTable(),
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            Divider(
+                              color: klines,
+                            ),
+                          ])),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -316,6 +330,33 @@ class _ReportingPageState extends State<ReportingPage> {
                           ),
                         ],
                       ),
+                      Visibility(
+                          visible: MediaQuery.of(context).size.width < 801,
+                          child: Column(children: [
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            Text(
+                              "2023 Booking & Schedule Overview",
+                              style: urbanist600(kBlack, 18),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            FittedBox(
+                              child: SizedBox(
+                                height: 400.h,
+                                // width: double.infinity,
+                                child: BarChartSample2(),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Divider(
+                              color: klines,
+                            ),
+                          ])),
                       SizedBox(
                         height: 40.h,
                       ),
@@ -327,34 +368,59 @@ class _ReportingPageState extends State<ReportingPage> {
                         height: 20.h,
                       ),
                       SizedBox(height: 300.h, child: MyLineChart()),
+                      Visibility(
+                          visible: MediaQuery.of(context).size.width < 801,
+                          child: Column(children: [
+                            // Divider(
+                            //   color: klines,
+                            // ),
+                            SizedBox(
+                              height: 40.h,
+                            ),
+                            SizedBox(
+                                height: 400.h,
+                                child: MyPie(
+                                    // radius: MediaQuery.of(context).size.width / 4,
+                                    )),
+                          ])),
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 10.w,
+                Visibility(
+                  visible: MediaQuery.of(context).size.width > 800,
+                  child: SizedBox(
+                    width: 10.w,
+                  ),
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      const EarningsTable(),
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      FittedBox(
-                        child: SizedBox(
-                          height: 400.h,
-                          // width: double.infinity,
-                          child: BarChartSample2(),
+                Visibility(
+                  visible: MediaQuery.of(context).size.width > 800,
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 40.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      SizedBox(height: 400.h, child: MyPie()),
-                    ],
+                        const EarningsTable(),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        FittedBox(
+                          child: SizedBox(
+                            height: 400.h,
+                            // width: double.infinity,
+                            child: BarChartSample2(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        SizedBox(
+                            height: 400.h,
+                            child: MyPie(
+                                // radius: MediaQuery.of(context).size.width / 7,
+                                )),
+                      ],
+                    ),
                   ),
                 )
               ],

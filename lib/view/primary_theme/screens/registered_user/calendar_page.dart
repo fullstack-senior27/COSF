@@ -7,6 +7,9 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../utils/text_styles.dart';
+import '../../widgets/bottomsheet.dart';
+
 DateTime get _now => DateTime.now();
 
 class CalendarPage extends StatefulWidget {
@@ -20,6 +23,104 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: Visibility(
+        visible: MediaQuery.of(context).size.width < 951,
+        child: SizedBox(
+          height: 50.h,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton.icon(
+                onPressed: () {
+                  filterBottomSheet(
+                    context,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: CalendarCarousel<Event>(
+                            onDayPressed: (DateTime date, List<Event> events) {
+                              setState(() {});
+                            },
+                            todayButtonColor: kBlue,
+                            todayBorderColor: kBlue,
+                            markedDateShowIcon: true,
+                            width: 90.w,
+                            daysHaveCircularBorder: true,
+                            daysTextStyle: GoogleFonts.urbanist(
+                              color: kBlack,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            weekendTextStyle: GoogleFonts.urbanist(
+                              color: kBlack,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            weekdayTextStyle: GoogleFonts.urbanist(
+                              color: kBlack,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            headerTextStyle: GoogleFonts.urbanist(
+                              color: kBlack,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            headerTitleTouchable: true,
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 30.h),
+                              child: Container(
+                                width: 90.w,
+                                height: 45.h,
+                                decoration: BoxDecoration(
+                                  color: kBlack,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Add To Waitlist",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.calendar_month_rounded,
+                  color: kWhite,
+                  size: 15.sp,
+                ),
+                style: TextButton.styleFrom(
+                  backgroundColor: kdarkPrime,
+                  // shape: RoundedRectangleBorder(
+                  //   borderRadius: BorderRadius.circular(5.r),
+                  // ),
+                ),
+                label: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: Text("Choose Date", style: urbanist600(kWhite, 14)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.only(
           left: 17.w,
@@ -61,69 +162,74 @@ class _CalendarPageState extends State<CalendarPage> {
                     const SideEventArranger(), // To define how simultaneous events will be arranged.
               ),
             ),
-            const Spacer(),
-            Column(
-              children: [
-                Expanded(
-                  child: CalendarCarousel<Event>(
-                    onDayPressed: (DateTime date, List<Event> events) {
-                      setState(() {});
-                    },
-                    todayButtonColor: kBlue,
-                    todayBorderColor: kBlue,
-                    markedDateShowIcon: true,
-                    width: 90.w,
-                    daysHaveCircularBorder: true,
-                    daysTextStyle: GoogleFonts.urbanist(
-                      color: kBlack,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+            Visibility(
+                visible: MediaQuery.of(context).size.width > 950,
+                child: const Spacer()),
+            Visibility(
+              visible: MediaQuery.of(context).size.width > 950,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: CalendarCarousel<Event>(
+                      onDayPressed: (DateTime date, List<Event> events) {
+                        setState(() {});
+                      },
+                      todayButtonColor: kBlue,
+                      todayBorderColor: kBlue,
+                      markedDateShowIcon: true,
+                      width: 90.w,
+                      daysHaveCircularBorder: true,
+                      daysTextStyle: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      weekendTextStyle: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      weekdayTextStyle: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      headerTextStyle: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      headerTitleTouchable: true,
                     ),
-                    weekendTextStyle: GoogleFonts.urbanist(
-                      color: kBlack,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    weekdayTextStyle: GoogleFonts.urbanist(
-                      color: kBlack,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    headerTextStyle: GoogleFonts.urbanist(
-                      color: kBlack,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    headerTitleTouchable: true,
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 30.h),
-                      child: Container(
-                        width: 90.w,
-                        height: 45.h,
-                        decoration: BoxDecoration(
-                          color: kBlack,
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Add To Waitlist",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 30.h),
+                        child: Container(
+                          width: 90.w,
+                          height: 45.h,
+                          decoration: BoxDecoration(
+                            color: kBlack,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Add To Waitlist",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
