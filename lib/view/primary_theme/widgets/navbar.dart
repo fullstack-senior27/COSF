@@ -1,9 +1,12 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavbarFreeWidget extends ConsumerStatefulWidget {
@@ -160,7 +163,9 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                       borderRadius: BorderRadius.circular(5.r),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const PricingDetails());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

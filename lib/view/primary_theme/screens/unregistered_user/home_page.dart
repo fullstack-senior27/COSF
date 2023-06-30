@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
@@ -181,7 +182,9 @@ class HomePage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(() => const BeauticiansListPage());
+                                  },
                                   child: const Text(
                                     "Search",
                                     style: TextStyle(color: kWhite),
@@ -298,7 +301,9 @@ class HomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5.r),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => const BeauticiansListPage());
+                              },
                               child: const Text(
                                 "Search",
                                 style: TextStyle(color: kWhite),
@@ -405,7 +410,7 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     hoverColor: Colors.transparent,
-                    onTap: () => {context.pushNamed(AppRoute.blogDetails.name)},
+                    onTap: () => {Get.to(() => const BlogPage())},
                     child: Container(
                       padding: EdgeInsets.only(right: 10.w),
                       width: MediaQuery.of(context).size.width > 700
@@ -427,8 +432,6 @@ class HomePage extends StatelessWidget {
                                   ? 100.w
                                   : 170.w,
                               fit: BoxFit.fill,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
                             ),

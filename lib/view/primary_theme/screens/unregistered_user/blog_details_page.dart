@@ -3,6 +3,8 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BlogDetailsPage extends StatelessWidget {
@@ -11,6 +13,54 @@ class BlogDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.h),
+        child: Container(
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 13.sp,
+                ),
+              ),
+              SizedBox(
+                width: 0.w,
+              ),
+              Text(
+                "Blog",
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kBlack,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 13.sp,
+                ),
+              ),
+              Text(
+                "Blog Details",
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(
+                    0xffFFBB0D,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -22,37 +72,7 @@ class BlogDetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 50.h,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Blog",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          color: kBlack,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.black,
-                          size: 13.sp,
-                        ),
-                      ),
-                      Text(
-                        "Blog Details",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(
-                            0xffFFBB0D,
-                          ),
-                        ),
-                      ),
-                    ],
+                    height: 10.h,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -179,8 +199,6 @@ class BlogDetailsPage extends StatelessWidget {
                       width: double.infinity,
                       height: 450.h,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),

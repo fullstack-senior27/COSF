@@ -1,9 +1,7 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/dashboard_registered_user.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 
 class NavigationPage extends ConsumerStatefulWidget {
   const NavigationPage({super.key});
@@ -32,9 +30,8 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
     return const Scaffold(
       //! here we can change the body based on the theme and the user type (login or unregister)
       body: SafeArea(
-        child:
-            // DashboardFreePage(),
-            DashboardLoginPage(),
+        child: DashboardFreePage(),
+        // DashboardLoginPage(),
       ),
       // DashboardFreePage(),
     );

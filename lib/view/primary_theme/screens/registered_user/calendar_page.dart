@@ -1,14 +1,13 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../utils/text_styles.dart';
-import '../../widgets/bottomsheet.dart';
 
 DateTime get _now => DateTime.now();
 
@@ -161,8 +160,9 @@ class _CalendarPageState extends State<CalendarPage> {
               ),
             ),
             Visibility(
-                visible: MediaQuery.of(context).size.width > 950,
-                child: const Spacer()),
+              visible: MediaQuery.of(context).size.width > 950,
+              child: const Spacer(),
+            ),
             Visibility(
               visible: MediaQuery.of(context).size.width > 950,
               child: Column(

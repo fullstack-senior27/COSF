@@ -1,19 +1,17 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DashboardFreePage extends ConsumerStatefulWidget {
@@ -151,7 +149,9 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                       borderRadius: BorderRadius.circular(5.r),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const PricingDetails());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -186,7 +186,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
         ),
       ),
       body: navbarSection == "Home"
-          ? const ServiceDetailsPage()
+          ? const HomePage()
           : navbarSection == "I am a Beautician"
               ? const LandingPage()
               : navbarSection == "Sign Up"

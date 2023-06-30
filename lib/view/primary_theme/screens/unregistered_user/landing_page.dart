@@ -1,21 +1,26 @@
 import 'package:avatar_stack/avatar_stack.dart';
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/dashboard_registered_user.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/country.dart';
 import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:country_calling_code_picker/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LandingPage extends StatefulWidget {
+class LandingPage extends ConsumerStatefulWidget {
   const LandingPage({super.key});
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  ConsumerState<LandingPage> createState() => _LandingPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _LandingPageState extends ConsumerState<LandingPage> {
   Country? selectedCountry;
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
@@ -354,7 +359,10 @@ class _LandingPageState extends State<LandingPage> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => {},
+                        onPressed: () {
+                          Get.offAll(() => const DashboardLoginPage());
+                          ref.read(styleProvider).setSelectedPage("Calendar");
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: kBlack,
                           padding: EdgeInsets.symmetric(
