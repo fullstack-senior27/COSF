@@ -14,6 +14,7 @@ import '../../widgets/profile_edit.dart';
 import '../../widgets/profile_preview.dart';
 import '../../widgets/promote_section2.dart';
 import '../../widgets/promote_section3.dart';
+import '../../widgets/promote_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -26,6 +27,16 @@ class _ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
   int promoteNumber = 0;
+  List<String> promoteListTitle = [
+    "Drive client bookings on social media",
+    "Transition calls and messages to online booking",
+    "Get clients to pre book their next appointment"
+  ];
+  List<String> promoteListDesc = [
+    "Downloadable assets, scripts, and tutorials to help drive clients to book you online.",
+    "Manage all your inbound and outbound communication with our helpful templates & tips.",
+    "Helpful guides to help your clients see the benefits of booking you online."
+  ];
   @override
   void initState() {
     _tabcontroller = TabController(length: 9, vsync: this);
@@ -129,9 +140,12 @@ class _ProfilePageState extends State<ProfilePage>
                                 height: 20.h,
                               ),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                       child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "April client-booked appointments",
@@ -199,106 +213,146 @@ class _ProfilePageState extends State<ProfilePage>
                                   SizedBox(
                                     width: 10.w,
                                   ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Invite clients to book",
-                                              style: urbanist600(kBlack, 18),
-                                            ),
-                                            SizedBox(
-                                              height: 10.h,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                  child: SizedBox(
-                                                    height: 40.h,
-                                                    child: TextField(
-                                                      readOnly: true,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText:
-                                                            "Cosmetropolis.com/",
-                                                        hintStyle: urbanist400(
-                                                            kGrey, 12),
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5.r),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                                  color: kGrey),
-                                                        ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5.r),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                                  color: kGrey),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5.r),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                                  color: kGrey),
+                                  Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width > 700,
+                                    child: Expanded(
+                                        flex:
+                                            MediaQuery.of(context).size.width >
+                                                    700
+                                                ? 2
+                                                : 1,
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Invite clients to book",
+                                                style: urbanist600(kBlack, 18),
+                                              ),
+                                              SizedBox(
+                                                height: 10.h,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      height: 40.h,
+                                                      child: TextField(
+                                                        readOnly: true,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText:
+                                                              "Cosmetropolis.com/",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                                  kGrey, 12),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.r),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color:
+                                                                        kGrey),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.r),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color:
+                                                                        kGrey),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.r),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color:
+                                                                        kGrey),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5.w,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    print(MediaQuery.of(context)
-                                                        .size
-                                                        .width);
-                                                  },
-                                                  child: Container(
-                                                      height: 40.h,
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 8.w),
-                                                      decoration: BoxDecoration(
-                                                        color: kBlack,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      child: Center(
-                                                          child: Text("Copy",
-                                                              style:
-                                                                  urbanist600(
-                                                                      kWhite,
-                                                                      12)))),
-                                                ),
-                                                Expanded(
-                                                    flex: MediaQuery.of(context)
-                                                                .size
-                                                                .width >
-                                                            720
-                                                        ? 1
-                                                        : 0,
-                                                    child: Container()),
-                                              ],
-                                            )
-                                          ])),
+                                                  SizedBox(
+                                                    width: 5.w,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      print(
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width);
+                                                    },
+                                                    child: Container(
+                                                        height: 40.h,
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    8.w),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: kBlack,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
+                                                        child: Center(
+                                                            child: Text("Copy",
+                                                                style:
+                                                                    urbanist600(
+                                                                        kWhite,
+                                                                        12)))),
+                                                  ),
+                                                  Expanded(
+                                                      flex:
+                                                          MediaQuery.of(context)
+                                                                      .size
+                                                                      .width >
+                                                                  720
+                                                              ? 1
+                                                              : 0,
+                                                      child: Container()),
+                                                ],
+                                              )
+                                            ])),
+                                  ),
                                 ],
                               ),
+                              Visibility(
+                                  visible:
+                                      MediaQuery.of(context).size.width < 701,
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 20.h,
+                                        ),
+                                        Text(
+                                          "Invite clients to book",
+                                          style: urbanist600(kBlack, 18),
+                                        ),
+                                        SizedBox(
+                                          height: 10.h,
+                                        ),
+                                        SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
+                                            child: CopyField()),
+                                      ])),
                               SizedBox(
                                 height: 20.h,
                               ),
@@ -309,182 +363,254 @@ class _ProfilePageState extends State<ProfilePage>
                               SizedBox(
                                 height: 10.h,
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
+                              // Row(
+                              //   crossAxisAlignment: CrossAxisAlignment.start,
+                              //   children: [
+                              //     Expanded(
+                              //       child: GestureDetector(
+                              //         onTap: () {
+                              //           setState(() {
+                              //             promoteNumber = 1;
+                              //           });
+                              //         },
+                              //         child: Container(
+                              //           margin: EdgeInsets.only(right: 10.w),
+                              //           padding: EdgeInsets.symmetric(
+                              //             horizontal: 8.w,
+                              //             vertical: 10.h,
+                              //           ),
+                              //           width:
+                              //               MediaQuery.of(context).size.width *
+                              //                   0.3,
+                              //           decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5.r),
+                              //             border: Border.all(color: klines),
+                              //           ),
+                              //           child: Row(
+                              //             children: [
+                              //               Expanded(
+                              //                 child: Column(
+                              //                   crossAxisAlignment:
+                              //                       CrossAxisAlignment.start,
+                              //                   children: [
+                              //                     Text(
+                              //                       "Drive client bookings on social media",
+                              //                       style:
+                              //                           urbanist600(kBlack, 14),
+                              //                     ),
+                              //                     SizedBox(
+                              //                       height: 5.h,
+                              //                     ),
+                              //                     Text(
+                              //                       "Downloadable assets, scripts, and tutorials to help drive clients to book you online.",
+                              //                       style:
+                              //                           urbanist400(kGrey, 12),
+                              //                     ),
+                              //                   ],
+                              //                 ),
+                              //               ),
+                              //               SizedBox(
+                              //                 width: 3.w,
+                              //               ),
+                              //               Icon(
+                              //                 Icons.arrow_forward_ios_rounded,
+                              //                 size: 20.sp,
+                              //                 color: kBlack,
+                              //               )
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Expanded(
+                              //       child: GestureDetector(
+                              //         onTap: () {
+                              //           setState(() {
+                              //             promoteNumber = 2;
+                              //           });
+                              //         },
+                              //         child: Container(
+                              //           margin: EdgeInsets.only(right: 10.w),
+                              //           padding: EdgeInsets.symmetric(
+                              //             horizontal: 8.w,
+                              //             vertical: 10.h,
+                              //           ),
+                              //           width:
+                              //               MediaQuery.of(context).size.width *
+                              //                   0.3,
+                              //           decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5.r),
+                              //             border: Border.all(color: klines),
+                              //           ),
+                              //           child: Row(
+                              //             crossAxisAlignment:
+                              //                 CrossAxisAlignment.center,
+                              //             children: [
+                              //               Expanded(
+                              //                 child: Column(
+                              //                   children: [
+                              //                     Text(
+                              //                       "Transition calls and messages to online booking",
+                              //                       style:
+                              //                           urbanist600(kBlack, 14),
+                              //                     ),
+                              //                     SizedBox(
+                              //                       height: 5.h,
+                              //                     ),
+                              //                     Text(
+                              //                       "Manage all your inbound and outbound communication with our helpful templates & tips.",
+                              //                       style:
+                              //                           urbanist400(kGrey, 12),
+                              //                     ),
+                              //                   ],
+                              //                 ),
+                              //               ),
+                              //               SizedBox(
+                              //                 width: 3.w,
+                              //               ),
+                              //               const Icon(
+                              //                 Icons.arrow_forward_ios_rounded,
+                              //                 size: 15,
+                              //                 color: kBlack,
+                              //               )
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Expanded(
+                              //       child: GestureDetector(
+                              //         onTap: () {
+                              //           setState(() {
+                              //             promoteNumber = 3;
+                              //           });
+                              //         },
+                              //         child: Container(
+                              //           // margin: EdgeInsets.only(right: 10.w),
+                              //           padding: EdgeInsets.symmetric(
+                              //             horizontal: 8.w,
+                              //             vertical: 10.h,
+                              //           ),
+                              //           width:
+                              //               MediaQuery.of(context).size.width *
+                              //                   0.3,
+                              //           decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5.r),
+                              //             border: Border.all(color: klines),
+                              //           ),
+                              //           child: Row(
+                              //             crossAxisAlignment:
+                              //                 CrossAxisAlignment.center,
+                              //             children: [
+                              //               Expanded(
+                              //                 child: Column(
+                              //                   crossAxisAlignment:
+                              //                       CrossAxisAlignment.start,
+                              //                   children: [
+                              //                     Text(
+                              //                       "Get clients to pre book their next appointment",
+                              //                       style:
+                              //                           urbanist600(kBlack, 14),
+                              //                     ),
+                              //                     SizedBox(
+                              //                       height: 5.h,
+                              //                     ),
+                              //                     Text(
+                              //                       "Helpful guides to help your clients see the benefits of booking you online.",
+                              //                       style:
+                              //                           urbanist400(kGrey, 12),
+                              //                     ),
+                              //                   ],
+                              //                 ),
+                              //               ),
+                              //               SizedBox(
+                              //                 width: 3.w,
+                              //               ),
+                              //               Icon(
+                              //                 Icons.arrow_forward_ios_rounded,
+                              //                 size: 15,
+                              //                 color: kBlack,
+                              //               )
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // )
+                              SizedBox(
+                                height: 130.h,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 3,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          promoteNumber = 1;
+                                          promoteNumber = index + 1;
                                         });
                                       },
-                                      child: Container(
-                                        margin: EdgeInsets.only(right: 10.w),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8.w,
-                                          vertical: 10.h,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.r),
-                                          border: Border.all(color: klines),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Drive client bookings on social media",
-                                                    style:
-                                                        urbanist600(kBlack, 14),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5.h,
-                                                  ),
-                                                  Text(
-                                                    "Downloadable assets, scripts, and tutorials to help drive clients to book you online.",
-                                                    style:
-                                                        urbanist400(kGrey, 12),
-                                                  ),
-                                                ],
+                                      child: AspectRatio(
+                                        aspectRatio: 2.5,
+                                        child: Container(
+                                          margin: EdgeInsets.only(right: 10.w),
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 8.w,
+                                            vertical: 10.h,
+                                          ),
+                                          // width: MediaQuery.of(context)
+                                          //         .size
+                                          //         .width *
+                                          //     0.3,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            border: Border.all(color: klines),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      promoteListTitle[index],
+                                                      style: urbanist600(
+                                                          kBlack, 14),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5.h,
+                                                    ),
+                                                    Text(
+                                                      promoteListDesc[index],
+                                                      style: urbanist400(
+                                                          kGrey, 12),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.w,
-                                            ),
-                                            Icon(
-                                              Icons.arrow_forward_ios_rounded,
-                                              size: 20.sp,
-                                              color: kBlack,
-                                            )
-                                          ],
+                                              SizedBox(
+                                                width: 3.w,
+                                              ),
+                                              Icon(
+                                                Icons.arrow_forward_ios_rounded,
+                                                size: 20.sp,
+                                                color: kBlack,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          promoteNumber = 2;
-                                        });
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(right: 10.w),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8.w,
-                                          vertical: 10.h,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.r),
-                                          border: Border.all(color: klines),
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    "Transition calls and messages to online booking",
-                                                    style:
-                                                        urbanist600(kBlack, 14),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5.h,
-                                                  ),
-                                                  Text(
-                                                    "Manage all your inbound and outbound communication with our helpful templates & tips.",
-                                                    style:
-                                                        urbanist400(kGrey, 12),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.w,
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios_rounded,
-                                              size: 15,
-                                              color: kBlack,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          promoteNumber = 3;
-                                        });
-                                      },
-                                      child: Container(
-                                        // margin: EdgeInsets.only(right: 10.w),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8.w,
-                                          vertical: 10.h,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.r),
-                                          border: Border.all(color: klines),
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Get clients to pre book their next appointment",
-                                                    style:
-                                                        urbanist600(kBlack, 14),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5.h,
-                                                  ),
-                                                  Text(
-                                                    "Helpful guides to help your clients see the benefits of booking you online.",
-                                                    style:
-                                                        urbanist400(kGrey, 12),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.w,
-                                            ),
-                                            Icon(
-                                              Icons.arrow_forward_ios_rounded,
-                                              size: 15,
-                                              color: kBlack,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                    );
+                                  },
+                                ),
                               )
                             ]))
                   else

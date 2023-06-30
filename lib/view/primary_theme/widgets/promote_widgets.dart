@@ -94,11 +94,12 @@ class HelpfulBlogsSection extends StatelessWidget {
           height: 10.h,
         ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
               "https://tse1.mm.bing.net/th?id=OIP.Q98jkGR5hBPSoR3x4aPGSAHaHa&pid=Api&P=0&h=180",
-              height: 50.h,
-              width: 20.w,
+              height: 60,
+              width: 60,
               fit: BoxFit.cover,
             ),
             SizedBox(
@@ -123,12 +124,16 @@ class HelpfulBlogsSection extends StatelessWidget {
             )
           ],
         ),
+        SizedBox(
+          height: 5.h,
+        ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
                 "https://tse4.mm.bing.net/th?id=OIP.LvecETOAVmYiwukoi9SDLQHaEK&pid=Api&P=0&h=180",
-                height: 50.h,
-                width: 20.w,
+                height: 60,
+                width: 60,
                 fit: BoxFit.cover),
             SizedBox(
               width: 3.w,
@@ -152,12 +157,16 @@ class HelpfulBlogsSection extends StatelessWidget {
             )
           ],
         ),
+        SizedBox(
+          height: 5.h,
+        ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
                 "https://tse4.mm.bing.net/th?id=OIP.j4SvRBaGAhJxK-g-q6pNBAHaDt&pid=Api&P=0&h=180",
-                height: 50.h,
-                width: 20.w,
+                height: 60,
+                width: 60,
                 fit: BoxFit.cover),
             SizedBox(
               width: 3.w,
@@ -181,12 +190,16 @@ class HelpfulBlogsSection extends StatelessWidget {
             )
           ],
         ),
+        SizedBox(
+          height: 5.h,
+        ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
                 "https://tse1.mm.bing.net/th?id=OIP.QPrlnFDnTsbLTp-tusCrqgHaE8&pid=Api&P=0&h=180",
-                height: 50.h,
-                width: 20.w,
+                height: 60,
+                width: 60,
                 fit: BoxFit.cover),
             SizedBox(
               width: 3.w,

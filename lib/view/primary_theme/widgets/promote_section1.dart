@@ -75,6 +75,7 @@ class PromoteSection1 extends StatelessWidget {
                 vertical: 10.h,
               ),
               child: Column(
+                // mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -91,190 +92,251 @@ class PromoteSection1 extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 200.h,
-                              // width: double.infinity,
-                              decoration: const BoxDecoration(
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: Column(
+                  //         children: [
+                  //           Container(
+                  //             height: 200.h,
+                  //             // width: double.infinity,
+                  //             decoration: const BoxDecoration(
+                  //               image: DecorationImage(
+                  //                   image: AssetImage(
+                  //                       "assets/images/template1.png"),
+                  //                   fit: BoxFit.cover),
+                  //             ),
+                  //             child: Align(
+                  //                 alignment: Alignment.bottomCenter,
+                  //                 child: Row(
+                  //                   children: [
+                  //                     Expanded(
+                  //                         child: Container(
+                  //                       color: kWhite,
+                  //                       child: Row(
+                  //                         children: [
+                  //                           IconButton(
+                  //                               onPressed: () {},
+                  //                               icon: Icon(
+                  //                                 Icons.download_rounded,
+                  //                                 color: kBlue,
+                  //                                 size: 10.sp,
+                  //                               )),
+                  //                           Expanded(
+                  //                             child: Text(
+                  //                               "Download template",
+                  //                               style: urbanist600(kBlue, 13),
+                  //                             ),
+                  //                           )
+                  //                         ],
+                  //                       ),
+                  //                     ))
+                  //                   ],
+                  //                 )),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 7.w,
+                  //     ),
+                  //     Expanded(
+                  //       child: Column(
+                  //         children: [
+                  //           Container(
+                  //             height: 200.h,
+                  //             // width: double.infinity,
+                  //             decoration: const BoxDecoration(
+                  //                 image: DecorationImage(
+                  //                     image: AssetImage(
+                  //                         "assets/images/template2.png"),
+                  //                     fit: BoxFit.cover)),
+                  //             child: Align(
+                  //                 alignment: Alignment.bottomCenter,
+                  //                 child: Row(
+                  //                   children: [
+                  //                     Expanded(
+                  //                         child: Container(
+                  //                       color: kWhite,
+                  //                       child: Row(
+                  //                         children: [
+                  //                           IconButton(
+                  //                               onPressed: () {},
+                  //                               icon: Icon(
+                  //                                 Icons.download_rounded,
+                  //                                 color: kBlue,
+                  //                                 size: 10.sp,
+                  //                               )),
+                  //                           Expanded(
+                  //                             child: Text(
+                  //                               "Download template",
+                  //                               style: urbanist600(kBlue, 13),
+                  //                             ),
+                  //                           )
+                  //                         ],
+                  //                       ),
+                  //                     ))
+                  //                   ],
+                  //                 )),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 7.w,
+                  //     ),
+                  //     Expanded(
+                  //       child: Column(
+                  //         children: [
+                  //           Container(
+                  //             height: 200.h,
+                  //             // width: double.infinity,
+                  //             decoration: const BoxDecoration(
+                  //                 image: DecorationImage(
+                  //                     image: AssetImage(
+                  //                         "assets/images/template3.png"),
+                  //                     fit: BoxFit.cover)),
+                  //             child: Align(
+                  //                 alignment: Alignment.bottomCenter,
+                  //                 child: Row(
+                  //                   children: [
+                  //                     Expanded(
+                  //                         child: Container(
+                  //                       color: kWhite,
+                  //                       child: Row(
+                  //                         children: [
+                  //                           IconButton(
+                  //                               onPressed: () {},
+                  //                               icon: Icon(
+                  //                                 Icons.download_rounded,
+                  //                                 color: kBlue,
+                  //                                 size: 10.sp,
+                  //                               )),
+                  //                           Expanded(
+                  //                             child: Text(
+                  //                               "Download template",
+                  //                               style: urbanist600(kBlue, 13),
+                  //                             ),
+                  //                           )
+                  //                         ],
+                  //                       ),
+                  //                     ))
+                  //                   ],
+                  //                 )),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 7.w,
+                  //     ),
+                  //     Expanded(
+                  //       child: Column(
+                  //         children: [
+                  //           Container(
+                  //             height: 200.h,
+                  //             // width: double.infinity,
+                  //             decoration: const BoxDecoration(
+                  //                 image: DecorationImage(
+                  //                     image: AssetImage(
+                  //                         "assets/images/template4.png"),
+                  //                     fit: BoxFit.cover)),
+                  //             child: Align(
+                  //                 alignment: Alignment.bottomCenter,
+                  //                 child: Row(
+                  //                   children: [
+                  //                     Expanded(
+                  //                         child: Container(
+                  //                       color: kWhite,
+                  //                       child: Row(
+                  //                         children: [
+                  //                           IconButton(
+                  //                               onPressed: () {},
+                  //                               icon: Icon(
+                  //                                 Icons.download_rounded,
+                  //                                 color: kBlue,
+                  //                                 size: 10.sp,
+                  //                               )),
+                  //                           Expanded(
+                  //                             child: Text(
+                  //                               "Download template",
+                  //                               style: urbanist600(kBlue, 13),
+                  //                             ),
+                  //                           )
+                  //                         ],
+                  //                       ),
+                  //                     ))
+                  //                   ],
+                  //                 )),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 7.w,
+                  //     ),
+                  //   ],
+                  // )
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 680 ? 4 : 2,
+                      crossAxisSpacing: 7.w,
+                      childAspectRatio: 1 / 1.2,
+                      mainAxisSpacing: 10.h,
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1 / 1.2,
+                            child: Container(
+                              // height: 200.h,
+                              decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/template1.png"),
-                                    fit: BoxFit.cover),
+                                  image: AssetImage(
+                                      "assets/images/template${index + 1}.png"),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
                                         color: kWhite,
                                         child: Row(
                                           children: [
                                             IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.download_rounded,
-                                                  color: kBlue,
-                                                  size: 10.sp,
-                                                )),
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.download_rounded,
+                                                color: kBlue,
+                                                size: 10.sp,
+                                              ),
+                                            ),
                                             Expanded(
                                               child: Text(
                                                 "Download template",
                                                 style: urbanist600(kBlue, 13),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
-                                      ))
-                                    ],
-                                  )),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 7.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 200.h,
-                              // width: double.infinity,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/template2.png"),
-                                      fit: BoxFit.cover)),
-                              child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        color: kWhite,
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.download_rounded,
-                                                  color: kBlue,
-                                                  size: 10.sp,
-                                                )),
-                                            Expanded(
-                                              child: Text(
-                                                "Download template",
-                                                style: urbanist600(kBlue, 13),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ))
-                                    ],
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 7.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 200.h,
-                              // width: double.infinity,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/template3.png"),
-                                      fit: BoxFit.cover)),
-                              child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        color: kWhite,
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.download_rounded,
-                                                  color: kBlue,
-                                                  size: 10.sp,
-                                                )),
-                                            Expanded(
-                                              child: Text(
-                                                "Download template",
-                                                style: urbanist600(kBlue, 13),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ))
-                                    ],
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 7.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 200.h,
-                              // width: double.infinity,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/template4.png"),
-                                      fit: BoxFit.cover)),
-                              child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        color: kWhite,
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.download_rounded,
-                                                  color: kBlue,
-                                                  size: 10.sp,
-                                                )),
-                                            Expanded(
-                                              child: Text(
-                                                "Download template",
-                                                style: urbanist600(kBlue, 13),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ))
-                                    ],
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 7.w,
-                      ),
-                    ],
+                          ),
+                        ],
+                      );
+                    },
                   )
                 ],
               ),
@@ -331,7 +393,11 @@ class PromoteSection1 extends StatelessWidget {
                           SizedBox(
                             height: 10.h,
                           ),
-                          CopyField(),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width > 680
+                                  ? double.infinity
+                                  : MediaQuery.of(context).size.width * 0.6,
+                              child: CopyField()),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -349,78 +415,162 @@ class PromoteSection1 extends StatelessWidget {
                           SizedBox(
                             height: 10.h,
                           ),
-                          CopyField(),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width > 680
+                                  ? double.infinity
+                                  : MediaQuery.of(context).size.width * 0.6,
+                              child: CopyField()),
                         ],
                       )),
                       SizedBox(
                         width: 10.w,
                       ),
-                      Expanded(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Optimize your bio",
-                            style: urbanist600(kBlack, 16),
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text(
-                            "Give potential clients clear booking instructions in your bio.",
-                            style: urbanist400(kBlack, 12),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          CopyField(),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Text(
-                            "Add your book button",
-                            style: urbanist600(kBlack, 16),
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text(
-                            "A business profile is required before you can add your Book button",
-                            style: urbanist400(kBlack, 12),
-                          ),
-                          Text(
-                            "• Open your Instagram profile",
-                            style: urbanist500(kBlack, 14),
-                          ),
-                          Text(
-                            "• Tap Edit Profile",
-                            style: urbanist500(kBlack, 14),
-                          ),
-                          Text(
-                            "• Tap Contact Options",
-                            style: urbanist500(kBlack, 14),
-                          ),
-                          Text(
-                            "• Select Add an action button",
-                            style: urbanist500(kBlack, 14),
-                          ),
-                          Text(
-                            "• Select Cosmetropolis",
-                            style: urbanist500(kBlack, 14),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          BlackButtonSmall(
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width > 680,
+                        child: Expanded(
+                            child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Optimize your bio",
+                              style: urbanist600(kBlack, 16),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "Give potential clients clear booking instructions in your bio.",
+                              style: urbanist400(kBlack, 12),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CopyField(),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              "Add your book button",
+                              style: urbanist600(kBlack, 16),
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            Text(
+                              "A business profile is required before you can add your Book button",
+                              style: urbanist400(kBlack, 12),
+                            ),
+                            Text(
+                              "• Open your Instagram profile",
+                              style: urbanist500(kBlack, 14),
+                            ),
+                            Text(
+                              "• Tap Edit Profile",
+                              style: urbanist500(kBlack, 14),
+                            ),
+                            Text(
+                              "• Tap Contact Options",
+                              style: urbanist500(kBlack, 14),
+                            ),
+                            Text(
+                              "• Select Add an action button",
+                              style: urbanist500(kBlack, 14),
+                            ),
+                            Text(
+                              "• Select Cosmetropolis",
+                              style: urbanist500(kBlack, 14),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            BlackButtonSmall(
+                              text: "Open Instagram",
+                            ),
+                          ],
+                        )),
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Visibility(
+                          visible: MediaQuery.of(context).size.width > 680,
+                          child: Expanded(child: HelpfulBlogsSection()))
+                    ],
+                  ),
+                  Visibility(
+                    visible: MediaQuery.of(context).size.width < 681,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Text(
+                          "Optimize your bio",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Give potential clients clear booking instructions in your bio.",
+                          style: urbanist400(kBlack, 12),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: CopyField()),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Text(
+                          "Add your book button",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "A business profile is required before you can add your Book button",
+                          style: urbanist400(kBlack, 12),
+                        ),
+                        Text(
+                          "• Open your Instagram profile",
+                          style: urbanist500(kBlack, 14),
+                        ),
+                        Text(
+                          "• Tap Edit Profile",
+                          style: urbanist500(kBlack, 14),
+                        ),
+                        Text(
+                          "• Tap Contact Options",
+                          style: urbanist500(kBlack, 14),
+                        ),
+                        Text(
+                          "• Select Add an action button",
+                          style: urbanist500(kBlack, 14),
+                        ),
+                        Text(
+                          "• Select Cosmetropolis",
+                          style: urbanist500(kBlack, 14),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: BlackButtonSmall(
                             text: "Open Instagram",
                           ),
-                        ],
-                      )),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Expanded(child: HelpfulBlogsSection())
-                    ],
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        HelpfulBlogsSection()
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 20.h,
@@ -545,6 +695,92 @@ class PromoteSection1 extends StatelessWidget {
                   color: klines,
                 ),
               ]),
+            ),
+            Visibility(
+              visible: MediaQuery.of(context).size.width > 680,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Post script",
+                        style: urbanist600(kBlack, 16),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "Use this copy to optimize all your posts including your link and hashtags",
+                        style: urbanist400(kBlack, 12),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      CopyField(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Text(
+                        "Managing your DMs",
+                        style: urbanist600(kBlack, 16),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "If your clients are sending you too many DMs, have a quick pre-written response you can send to all the clients that DM you",
+                        style: urbanist400(kBlack, 12),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      CopyField(),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Expanded(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Add your book button",
+                        style: urbanist600(kBlack, 16),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "Create a Facebook business page",
+                        style: urbanist400(kBlack, 12),
+                      ),
+                      Text(
+                        "• Once you have created your business page, go to your cover photo and click + Add a button",
+                        style: urbanist500(kBlack, 14),
+                      ),
+                      Text(
+                        "• Choose Book Now and enter the link to your booking page",
+                        style: urbanist500(kBlack, 14),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      BlackButtonSmall(
+                        text: "Open Facebook",
+                      ),
+                    ],
+                  )),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Expanded(child: HelpfulBlogsSection())
+                ],
+              ),
             ),
             //Google section>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Align(

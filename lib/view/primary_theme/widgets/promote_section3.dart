@@ -66,6 +66,7 @@ class PromoteSection3 extends StatelessWidget {
           ),
           Row(
             // mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,29 +99,61 @@ class PromoteSection3 extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Other benefits include:",
-                      style: urbanist600(kBlack, 18),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Text(
-                      "When a client checks out, show them how to book their next appointment online. By texting them your profile link, they can easily view your calendar or rebook you from their receipt page in the app.",
-                      style: urbanist400(kdescription, 12),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    SizedBox(width: 120.w, child: CopyField()),
-                  ],
+              Visibility(
+                visible: MediaQuery.of(context).size.width > 500,
+                child: Expanded(
+                  // flex: MediaQuery.of(context).size.width > 500 ? 1 : 0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "At checkout",
+                        style: urbanist600(kBlack, 18),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "When a client checks out, show them how to book their next appointment online. By texting them your profile link, they can easily view your calendar or rebook you from their receipt page in the app.",
+                        style: urbanist400(kdescription, 12),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      SizedBox(width: 120.w, child: CopyField()),
+                    ],
+                  ),
                 ),
               )
             ],
+          ),
+          Visibility(
+            visible: MediaQuery.of(context).size.width < 501,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  "At checkout",
+                  style: urbanist600(kBlack, 18),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  "When a client checks out, show them how to book their next appointment online. By texting them your profile link, they can easily view your calendar or rebook you from their receipt page in the app.",
+                  style: urbanist400(kdescription, 12),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: CopyField()),
+              ],
+            ),
           ),
           SizedBox(
             height: 20.h,
