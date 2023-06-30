@@ -581,7 +581,7 @@ class PromoteSection1 extends StatelessWidget {
                             height: 250.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.r),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: NetworkImage(
                                       "https://tse4.mm.bing.net/th?id=OIP.j4SvRBaGAhJxK-g-q6pNBAHaDt&pid=Api&P=0&h=180",
                                     ),

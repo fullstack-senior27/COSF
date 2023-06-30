@@ -38,7 +38,8 @@ class _CalendarPageState extends State<CalendarPage> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Expanded(
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.6,
                           child: CalendarCarousel<Event>(
                             onDayPressed: (DateTime date, List<Event> events) {
                               setState(() {});
@@ -46,7 +47,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             todayButtonColor: kBlue,
                             todayBorderColor: kBlue,
                             markedDateShowIcon: true,
-                            width: 90.w,
+                            width: MediaQuery.of(context).size.width * 0.75,
                             daysHaveCircularBorder: true,
                             daysTextStyle: GoogleFonts.urbanist(
                               color: kBlack,
@@ -71,27 +72,22 @@ class _CalendarPageState extends State<CalendarPage> {
                             headerTitleTouchable: true,
                           ),
                         ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.topCenter,
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 30.h),
-                              child: Container(
-                                width: 90.w,
-                                height: 45.h,
-                                decoration: BoxDecoration(
-                                  color: kBlack,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "Add To Waitlist",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.75,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                              color: kBlack,
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Add To Waitlist",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -155,7 +151,9 @@ class _CalendarPageState extends State<CalendarPage> {
                     size: 0,
                   ),
                 ),
-                width: 225.w,
+                width: MediaQuery.of(context).size.width > 950
+                    ? 225.w
+                    : MediaQuery.of(context).size.width * 0.8,
                 showLiveTimeLineInAllDays: true,
                 startDay: WeekDays.sunday,
                 eventArranger:
