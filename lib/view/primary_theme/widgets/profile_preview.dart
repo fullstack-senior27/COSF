@@ -1,6 +1,7 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +63,7 @@ class _ProfilePreviewState extends State<ProfilePreview>
                         height: 10.h,
                       ),
                       Visibility(
-                          visible: MediaQuery.of(context).size.width < 551,
+                          visible: MediaQuery.of(context).size.width < 601,
                           child: Row(
                             children: [
                               IconButton(
@@ -199,7 +200,7 @@ class _ProfilePreviewState extends State<ProfilePreview>
                             ),
                             Visibility(
                                 visible:
-                                    MediaQuery.of(context).size.width < 551,
+                                    MediaQuery.of(context).size.width < 601,
                                 child: SizedBox(
                                   height: 20.h,
                                 )),
@@ -288,10 +289,10 @@ class _ProfilePreviewState extends State<ProfilePreview>
                     ),
                   ),
                   Visibility(
-                      visible: MediaQuery.of(context).size.width > 550,
+                      visible: MediaQuery.of(context).size.width > 600,
                       child: Spacer()),
                   Visibility(
-                      visible: MediaQuery.of(context).size.width > 550,
+                      visible: MediaQuery.of(context).size.width > 600,
                       child: Row(
                         children: [
                           IconButton(
@@ -381,50 +382,104 @@ class _ProfilePreviewState extends State<ProfilePreview>
                 height: 20.h,
               ),
               SizedBox(
-                height: 20.h,
-              ),
-              SizedBox(
-                  height: 600.h,
-                  child: TabBarView(controller: _tabcontroller, children: [
-                    Center(
-                      child: Text('Services'),
-                    ),
-                    Center(
-                      child: Text('Review'),
-                    ),
-                    Center(
-                      child: Text('About'),
-                    ),
-                    SingleChildScrollView(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 6,
+                  height: 750.h,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child:
+                            TabBarView(controller: _tabcontroller, children: [
+                          //Services tab
+                          SingleChildScrollView(
                             child: Column(
                               children: [
-                                const ProductsCard(),
-                                if (MediaQuery.of(context).size.width < 920)
-                                  Sidebar()
-                                else
-                                  Container(),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
+                                service(),
+                                Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 700,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      child: Sidebar(),
+                                    )),
                               ],
                             ),
                           ),
-                          if (MediaQuery.of(context).size.width > 920)
-                            Expanded(
-                              flex: 4,
-                              child: Sidebar(),
-                            )
-                          else
-                            Container()
-                        ],
+                          //Review tab
+                          SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ProfileReviews(),
+                                Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 700,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      child: Sidebar(),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          //About tab
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "About Me",
+                                  style: urbanist600(kBlack, 20),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                Text(
+                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
+                                  style: urbanist400(kdescription, 14),
+                                ),
+                                Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 700,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      child: Sidebar(),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ProductsCard(),
+                                Visibility(
+                                    visible:
+                                        MediaQuery.of(context).size.width < 700,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      child: Sidebar(),
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ]),
                       ),
-                    ),
-                  ])),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width > 700,
+                        child: SizedBox(
+                          width: 10.w,
+                        ),
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width > 700,
+                        child: Expanded(
+                          flex: 2,
+                          child: SingleChildScrollView(child: Sidebar()),
+                        ),
+                      )
+                    ],
+                  )),
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_preview.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -640,47 +642,108 @@ class _ProfileEditState extends State<ProfileEdit>
                   height: 20.h,
                 ),
                 SizedBox(
-                    height: 600.h,
-                    child: TabBarView(controller: _tabcontroller, children: [
-                      SingleChildScrollView(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              flex: 6,
+                    height: 750.h,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child:
+                              TabBarView(controller: _tabcontroller, children: [
+                            //Services tab
+                            SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  const service(),
-                                  if (MediaQuery.of(context).size.width < 920)
-                                    sideEdit()
-                                  else
-                                    Container(),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
+                                  service(),
+                                  Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              700,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 20.h),
+                                        child: sideEdit(),
+                                      )),
                                 ],
                               ),
                             ),
-                            if (MediaQuery.of(context).size.width > 920)
-                              Expanded(
-                                flex: 4,
-                                child: sideEdit(),
-                              )
-                            else
-                              Container()
-                          ],
+                            //Review tab
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  ProfileReviews(),
+                                  Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              700,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 20.h),
+                                        child: sideEdit(),
+                                      )),
+                                ],
+                              ),
+                            ),
+                            //About tab
+                            SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "About Me",
+                                    style: urbanist600(kBlack, 20),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  Text(
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
+                                    style: urbanist400(kdescription, 14),
+                                  ),
+                                  Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              700,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 20.h),
+                                        child: sideEdit(),
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  ProductsCard(),
+                                  Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              700,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 20.h),
+                                        child: sideEdit(),
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ]),
                         ),
-                      ),
-                      Center(
-                        child: Text('Preview'),
-                      ),
-                      Center(
-                        child: Text('Promote'),
-                      ),
-                      Center(
-                        child: Text('Personal Info'),
-                      ),
-                    ]))
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 700,
+                          child: SizedBox(
+                            width: 10.w,
+                          ),
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width > 700,
+                          child: Expanded(
+                            flex: 2,
+                            child: SingleChildScrollView(child: sideEdit()),
+                          ),
+                        )
+                      ],
+                    )),
               ],
             ),
           ),
