@@ -1,6 +1,7 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
@@ -503,9 +504,10 @@ class ServiceMenu extends StatelessWidget {
           SizedBox(height: 30.h),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            width: MediaQuery.of(context).size.width * 0.75,
             color: kWhite,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
                   "assets/icons/services.png",
@@ -545,8 +547,9 @@ class ServiceMenu extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             color: kWhite,
+            width: MediaQuery.of(context).size.width * 0.75,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
                   "assets/icons/combined_services.png",
@@ -586,8 +589,9 @@ class ServiceMenu extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             color: kWhite,
+            width: MediaQuery.of(context).size.width * 0.75,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
                   "assets/icons/service_category.png",
@@ -652,7 +656,7 @@ class PhotosTab extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20.h),
-                Icon(
+                const Icon(
                   Icons.cloud_upload_outlined,
                   size: 40,
                   color: kGrey,
@@ -666,6 +670,10 @@ class PhotosTab extends StatelessWidget {
                       TextSpan(
                         text: "browser",
                         style: urbanist400(kBlue, 14),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            //open image picker
+                          },
                       ),
                       // TextSpan(
                       //   text: " to upload",
@@ -981,7 +989,7 @@ class ManageAvailability extends StatelessWidget {
                             ),
                             backgroundColor: Color(0xfff8f8f8),
                             content: SingleChildScrollView(
-                                child: editUpcomingHours()),
+                                child: EditUpcomingHours()),
                             actions: [
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -1603,27 +1611,44 @@ Widget editAvailability() {
   );
 }
 
-Widget editUpcomingHours() {
-  // Get the current date
+class EditUpcomingHours extends StatefulWidget {
+  const EditUpcomingHours({super.key});
+
+  @override
+  State<EditUpcomingHours> createState() => _EditUpcomingHoursState();
+}
+
+class _EditUpcomingHoursState extends State<EditUpcomingHours> {
   DateTime now = DateTime.now();
 
   // Format the date
-  String formattedDate = DateFormat('MMMM d, yyyy').format(now);
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Divider(
-        color: klines,
-      ),
-      SizedBox(height: 20.h),
-      //
-      Align(
-        alignment: Alignment.center,
-        child: GestureDetector(
+  String formattedDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(
+          color: klines,
+        ),
+        SizedBox(height: 20.h),
+        GestureDetector(
           onTap: () {
-            //
+            // Show the date picker
+            showDatePicker(
+              context: context,
+              initialDate: now,
+              firstDate: DateTime(2000),
+              lastDate: DateTime(3000),
+            ).then((value) {
+              // Set the date
+              setState(() {
+                formattedDate = DateFormat('MMMM d, yyyy').format(value!);
+              });
+            });
           },
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.arrow_back_ios_outlined, color: kBlack, size: 20),
               SizedBox(width: 10.w),
@@ -1636,255 +1661,263 @@ Widget editUpcomingHours() {
             ],
           ),
         ),
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Monday",
-                style: urbanist500(kBlack, 16),
-              ),
-              SizedBox(height: 5.h),
-              Text(
-                "24 April, 2023",
-                style: urbanist400(kGrey, 12),
-              ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Monday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "24 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Tuesday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "25 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Tuesday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "25 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Wednesday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "26 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Wednesday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "26 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Thursday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "27 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Thursday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "27 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Friday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "28 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Friday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "28 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Saturday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "29 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Saturday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "29 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Sunday",
-                style: urbanist500(kBlack, 16),
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
               ),
-              SizedBox(height: 5.h),
-              Text(
-                "30 April, 2023",
-                style: urbanist400(kGrey, 12),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
               ),
-            ],
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
             ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Sunday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "30 April, 2023",
+                  style: urbanist400(kGrey, 12),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-    ],
-  );
+            Theme(
+              data: ThemeData(
+                useMaterial3: true,
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
+              ),
+              child: Switch(
+                value: false,
+                onChanged: (value) {},
+                activeTrackColor: kBlack,
+                activeColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: kdisable,
+                focusColor: kBlack,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 20.h),
+      ],
+    );
+    ;
+  }
 }
 
 class ProfileReviews extends StatelessWidget {
@@ -1894,213 +1927,207 @@ class ProfileReviews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Column(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Text('Avg. user rating', style: urbanist600(kBlack, 18)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Avg. user rating', style: urbanist600(kBlack, 16)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.star_rate_rounded,
-                          color: kBlack,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Text('4.82', style: urbanist600(kBlack, 20)),
-                      ],
+                    const Icon(
+                      Icons.star_rate_rounded,
+                      color: kBlack,
+                      size: 20,
                     ),
                     SizedBox(
-                      height: 5.h,
+                      width: 5.w,
                     ),
-                    Text('856k booking reviews',
-                        style: urbanist400(kBlack, 12)),
+                    Text('4.82', style: urbanist600(kBlack, 24)),
                   ],
                 ),
-                const Spacer(),
-                FittedBox(
-                  fit: BoxFit.contain,
-                  child: SizedBox(
-                    width: 80.w,
-                    child: ListView.builder(
-                      itemCount: 5,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: 60.w,
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.star_rate_rounded,
-                                color: kBlack,
-                                size: 10,
-                              ),
-                              Text("${5 - index}",
-                                  style: urbanist400(kBlack, 12)),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Expanded(
-                                child: LinearProgressBar(
-                                  maxSteps: 100,
-                                  progressType:
-                                      LinearProgressBar.progressTypeLinear,
-                                  currentStep: 50,
-                                  progressColor: kBlue,
-                                  backgroundColor: Colors.grey,
-                                  valueColor:
-                                      const AlwaysStoppedAnimation<Color>(
-                                    kBlack,
-                                  ),
-                                  semanticsLabel: "Label",
-                                  semanticsValue: "Value",
-                                  minHeight: 3.h,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text("11K", style: urbanist400(kdescription, 12)),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                SizedBox(
+                  height: 5.h,
                 ),
+                Text('856k booking reviews', style: urbanist400(kBlack, 12)),
               ],
             ),
-            Divider(
-              color: klines,
-            ),
-            SizedBox(height: 20.h),
-            ...List.generate(
-              5,
-              (index) => Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.w,
-                    vertical: 10.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: kWhite,
-                    borderRadius: BorderRadius.circular(5.r),
-                    border: Border.all(
-                      color: kdisable,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: kGrey.withOpacity(0.05),
-                        spreadRadius: 5,
-                        blurRadius: 5,
-                        offset: const Offset(
-                          0,
-                          1,
-                        ), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            const Spacer(),
+            FittedBox(
+              fit: BoxFit.contain,
+              child: SizedBox(
+                width: 80.w,
+                child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      width: 60.w,
+                      child: Row(
                         children: [
-                          Image.network(
-                            "https://tse3.mm.bing.net/th?id=OIP.cXwKK9Fo4mL9Hc-nEiUoMgHaHa&pid=Api&P=0&h=180",
-                            width: 30.w,
+                          const Icon(
+                            Icons.star_rate_rounded,
+                            color: kBlack,
+                            size: 10,
                           ),
+                          Text("${5 - index}", style: urbanist400(kBlack, 12)),
                           SizedBox(
-                            width: 3.w,
+                            width: 5.w,
                           ),
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Jacob Jones",
-                                  style: urbanist600(kBlack, 14),
-                                ),
-                                // SizedBox(
-                                //   height: 10.h,
-                                // ),
-                                SizedBox(
-                                  width: 200.w,
-                                  child: Text(
-                                      "April 2023 • Haltu, Kolkata, West Bengal 700078, India",
-                                      style: urbanist400(kBlack, 12)),
-                                ),
-                                if (MediaQuery.of(context).size.width < 920)
-                                  RatingBar.builder(
-                                    initialRating: 3,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 20,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 1.w),
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star_rate_rounded,
-                                      color: kBlack,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
-                                  )
-                                else
-                                  Container()
-                              ],
+                            child: LinearProgressBar(
+                              maxSteps: 100,
+                              progressType:
+                                  LinearProgressBar.progressTypeLinear,
+                              currentStep: 50,
+                              progressColor: kBlue,
+                              backgroundColor: Colors.grey,
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                kBlack,
+                              ),
+                              semanticsLabel: "Label",
+                              semanticsValue: "Value",
+                              minHeight: 3.h,
                             ),
                           ),
-                          if (MediaQuery.of(context).size.width > 920)
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Spacer(),
-                                  RatingBar.builder(
-                                    initialRating: 3,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 20,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 1.w),
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star_rate_rounded,
-                                      color: kBlack,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            )
-                          else
-                            Container()
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text("11K", style: urbanist400(kdescription, 12)),
                         ],
                       ),
-                      Text(
-                        "Very happy with my visit at this salon. It was my first time there which made me a bit nervous. Esme was very helpful, knowledgeable, beauticianl and attentive. I am very happy with my new hairstyle. Very nice atmosphere. It’s hard to find a hairdresser you can trust but I think I just did. Highly recommended.",
-                        style: urbanist400(kdescription, 12),
-                      )
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ),
-            )
+            ),
           ],
         ),
+        const Divider(
+          color: klines,
+        ),
+        SizedBox(height: 20.h),
+        ...List.generate(
+          5,
+          (index) => Padding(
+            padding: EdgeInsets.only(bottom: 20.h),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
+                vertical: 10.h,
+              ),
+              decoration: BoxDecoration(
+                color: kWhite,
+                borderRadius: BorderRadius.circular(5.r),
+                border: Border.all(
+                  color: kdisable,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: kGrey.withOpacity(0.05),
+                    spreadRadius: 5,
+                    blurRadius: 5,
+                    offset: const Offset(
+                      0,
+                      1,
+                    ), // changes position of shadow
+                  ),
+                ],
+              ),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.network(
+                        "https://tse3.mm.bing.net/th?id=OIP.cXwKK9Fo4mL9Hc-nEiUoMgHaHa&pid=Api&P=0&h=180",
+                        width: 30.w,
+                      ),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Jacob Jones",
+                              style: urbanist600(kBlack, 14),
+                            ),
+                            // SizedBox(
+                            //   height: 10.h,
+                            // ),
+                            SizedBox(
+                              width: 200.w,
+                              child: Text(
+                                  "April 2023 • Haltu, Kolkata, West Bengal 700078, India",
+                                  style: urbanist400(kBlack, 12)),
+                            ),
+                            if (MediaQuery.of(context).size.width < 920)
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 20,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 1.w),
+                                itemBuilder: (context, _) => const Icon(
+                                  Icons.star_rate_rounded,
+                                  color: kBlack,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              )
+                            else
+                              Container()
+                          ],
+                        ),
+                      ),
+                      if (MediaQuery.of(context).size.width > 920)
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Spacer(),
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 20,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 1.w),
+                                itemBuilder: (context, _) => const Icon(
+                                  Icons.star_rate_rounded,
+                                  color: kBlack,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      else
+                        Container()
+                    ],
+                  ),
+                  Text(
+                    "Very happy with my visit at this salon. It was my first time there which made me a bit nervous. Esme was very helpful, knowledgeable, beauticianl and attentive. I am very happy with my new hairstyle. Very nice atmosphere. It’s hard to find a hairdresser you can trust but I think I just did. Highly recommended.",
+                    style: urbanist400(kdescription, 12),
+                  )
+                ],
+              ),
+            ),
+          ),
+        )
       ],
     );
   }

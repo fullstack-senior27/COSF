@@ -263,8 +263,8 @@ class _ProfileEditState extends State<ProfileEdit>
                             ],
                           ),
                         ),
-                        Spacer(),
-                        Icon(
+                        const Spacer(),
+                        const Icon(
                           Icons.arrow_forward_ios_outlined,
                           color: kBlack,
                           size: 20,
@@ -275,11 +275,11 @@ class _ProfileEditState extends State<ProfileEdit>
                 ),
                 SizedBox(height: 10.h),
                 Container(
-                  color: Color(0xffFFBC1A),
+                  color: const Color(0xffFFBC1A),
                   height: 5.h,
                 ),
                 Container(
-                  color: Color(0xffFEF9ED),
+                  color: const Color(0xffFEF9ED),
                   child: Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
@@ -289,7 +289,7 @@ class _ProfileEditState extends State<ProfileEdit>
                           child: Text("Set A Monthly Goal",
                               style: urbanist600(kBlack, 16)),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         const Icon(
                           Icons.arrow_forward_ios_outlined,
                           color: kBlack,
@@ -669,8 +669,60 @@ class _ProfileEditState extends State<ProfileEdit>
                             //Review tab
                             SingleChildScrollView(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ProfileReviews(),
+                                  // const Divider(
+                                  //   color: klines,
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 20.h,
+                                  // ),
+                                  // Text("Client Photos",
+                                  //     style: urbanist600(kBlack, 20)),
+                                  // SizedBox(height: 10.h),
+                                  // SizedBox(
+                                  //   height: 150.h,
+                                  //   child: ListView(
+                                  //     scrollDirection: Axis.horizontal,
+                                  //     physics: const BouncingScrollPhysics(),
+                                  //     children: [
+                                  //       AspectRatio(
+                                  //           aspectRatio: 1,
+                                  //           child: Image.network(
+                                  //             "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.png",
+                                  //             fit: BoxFit.cover,
+                                  //           )),
+                                  //       SizedBox(
+                                  //         width: 5.w,
+                                  //       ),
+                                  //       AspectRatio(
+                                  //           aspectRatio: 1,
+                                  //           child: Image.network(
+                                  //             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
+                                  //             fit: BoxFit.cover,
+                                  //           )),
+                                  //       SizedBox(
+                                  //         width: 5.w,
+                                  //       ),
+                                  //       AspectRatio(
+                                  //           aspectRatio: 1,
+                                  //           child: Image.network(
+                                  //             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
+                                  //             fit: BoxFit.cover,
+                                  //           )),
+                                  //       SizedBox(
+                                  //         width: 5.w,
+                                  //       ),
+                                  //       AspectRatio(
+                                  //           aspectRatio: 1,
+                                  //           child: Image.network(
+                                  //             "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
+                                  //             fit: BoxFit.cover,
+                                  //           )),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   Visibility(
                                       visible:
                                           MediaQuery.of(context).size.width <

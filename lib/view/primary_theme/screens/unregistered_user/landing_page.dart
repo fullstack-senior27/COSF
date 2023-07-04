@@ -25,6 +25,19 @@ class _LandingPageState extends ConsumerState<LandingPage> {
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
   bool isAgree = false;
+  late ImageProvider image1;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = const AssetImage("assets/images/landing.png");
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(image1, context);
+    super.didChangeDependencies();
+  }
 
   Future<void> _showCountryPicker() async {
     final country = await showCountryPickerDialog(
@@ -61,10 +74,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height - 57,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('assets/images/landing.png'),
+          image: image1,
           fit: BoxFit.fill,
         ),
       ),
@@ -395,10 +408,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
   Container mobileview(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('assets/images/landing.png'),
+          image: image1,
           fit: BoxFit.fill,
         ),
       ),

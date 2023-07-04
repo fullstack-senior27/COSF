@@ -492,13 +492,13 @@ class _ProfilePageState extends State<ProfilePage>
           ),
           SingleChildScrollView(
             child: Container(
-              color: Color(0xffF8F8F8),
+              color: const Color(0xffF8F8F8),
               child: Column(
                 children: [
                   SizedBox(height: 20.h),
-                  ManageAvailability(),
+                  const ManageAvailability(),
                   SizedBox(height: 40.h),
-                  Footer(),
+                  const Footer(),
                 ],
               ),
             ),
@@ -506,13 +506,13 @@ class _ProfilePageState extends State<ProfilePage>
           //Photos Tab>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
           SingleChildScrollView(
             child: Container(
-              color: Color(0xffF8F8F8),
+              color: const Color(0xffF8F8F8),
               child: Column(
                 children: [
                   SizedBox(height: 20.h),
-                  PhotosTab(),
+                  const PhotosTab(),
                   SizedBox(height: 40.h),
-                  Footer(),
+                  const Footer(),
                 ],
               ),
             ),
@@ -524,10 +524,10 @@ class _ProfilePageState extends State<ProfilePage>
               SizedBox(height: 20.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: ProfileReviews(),
+                child: const ProfileReviews(),
               ),
               SizedBox(height: 40.h),
-              Footer(),
+              const Footer(),
             ],
           ))
         ],

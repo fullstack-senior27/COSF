@@ -32,6 +32,24 @@ class _SignupPageState extends State<SignupPage> {
     }
   }
 
+  late Image image1;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = Image.asset(
+      "assets/images/signup.png",
+      width: double.infinity,
+      fit: BoxFit.fill,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(image1.image, context);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -327,12 +345,10 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 if (MediaQuery.of(context).size.width > 920)
                   Expanded(
-                    child: Image.asset(
-                      "assets/images/signup.png",
-                      fit: BoxFit.fill,
-                      height: MediaQuery.of(context).size.height - 55,
-                    ),
-                  )
+                      child: SizedBox(
+                    child: image1,
+                    height: MediaQuery.of(context).size.height - 55,
+                  ))
                 else
                   Container(),
               ],

@@ -8,8 +8,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Image image1;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = Image.asset(
+      "assets/images/banner_p.png",
+      width: double.infinity,
+      fit: BoxFit.cover,
+      // height: MediaQuery.of(context).size.height,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(image1.image, context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +44,8 @@ class HomePage extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Image.asset(
-                "assets/images/banner_p.png",
-                width: double.infinity,
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height,
-              ),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height, child: image1),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -330,7 +350,7 @@ class HomePage extends StatelessWidget {
                 crossAxisSpacing: 15.w,
                 mainAxisSpacing: 15.w,
                 childAspectRatio: MediaQuery.of(context).size.width > 720
-                    ? 0.66
+                    ? 0.62
                     : MediaQuery.of(context).size.width > 360
                         ? 0.7
                         : 0.8,

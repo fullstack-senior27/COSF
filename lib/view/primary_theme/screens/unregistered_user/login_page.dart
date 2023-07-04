@@ -12,6 +12,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late Image image1;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = Image.asset(
+      "assets/images/login.png",
+      width: double.infinity,
+      fit: BoxFit.fill,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(image1.image, context);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,12 +234,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 if (MediaQuery.of(context).size.width > 920)
                   Expanded(
-                    child: Image.asset(
-                      "assets/images/login.png",
-                      fit: BoxFit.fill,
-                      height: MediaQuery.of(context).size.height - 55,
-                    ),
-                  )
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height - 55,
+                          child: image1))
                 else
                   Container(),
               ],
