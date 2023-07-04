@@ -3,7 +3,11 @@ import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'edit_profile.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -236,7 +240,8 @@ class _SignupPageState extends State<SignupPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => {},
+                            onPressed: () =>
+                                {Get.to(() => const EditProfile())},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
                               padding: EdgeInsets.symmetric(
