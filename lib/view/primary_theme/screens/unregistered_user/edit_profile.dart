@@ -1,5 +1,8 @@
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
@@ -40,6 +43,12 @@ class _EditProfileState extends ConsumerState<EditProfile>
           padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 20.h),
           child: Row(
             children: [
+              IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(Icons.arrow_back_ios_new),
+              ),
               Image.asset(
                 "assets/icons/logo_big.png",
                 width: MediaQuery.of(context).size.width * 0.3,
@@ -61,7 +70,49 @@ class _EditProfileState extends ConsumerState<EditProfile>
                       width: 7.w,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        showMenu(
+                          surfaceTintColor: kWhite,
+                          context: context,
+                          position: MediaQuery.of(context).size.width > 700
+                              ? RelativeRect.fromLTRB(90.w, 62.h, 50.w, 0)
+                              : RelativeRect.fromLTRB(52.w, 62.h, 50.w, 0),
+                          items: [
+                            const PopupMenuItem<String>(
+                              value: 'My Account',
+                              child: Text('My Account'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'Beauty Blog',
+                              child: Text('Beauty Blog'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'I am a Beautician',
+                              child: Text('I am a Beautician'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'Log Out',
+                              child: Text('Log Out'),
+                            ),
+                          ],
+                        ).then((value) {
+                          if (value != null) {
+                            switch (value) {
+                              case 'My Account':
+                                break;
+                              case 'Beauty Blog':
+                                Get.to(() => const BlogPage());
+                                break;
+                              case 'I am a Beautician':
+                                ref.watch(styleProvider).setSelectedPage(value);
+                                Get.to(() => const DashboardFreePage());
+
+                                break;
+                              default:
+                            }
+                          }
+                        });
+                      },
                       child: CircleAvatar(
                         radius: 20.r,
                         backgroundImage: const NetworkImage(
@@ -113,22 +164,57 @@ class _EditProfileState extends ConsumerState<EditProfile>
               else
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 20.r,
-                      backgroundImage: const NetworkImage(
-                        'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
+                    GestureDetector(
+                      onTap: () {
+                        showMenu(
+                          surfaceTintColor: kWhite,
+                          context: context,
+                          position: RelativeRect.fromLTRB(52.w, 62.h, 10.w, 0),
+                          items: [
+                            const PopupMenuItem<String>(
+                              value: 'My Account',
+                              child: Text('My Account'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'Beauty Blog',
+                              child: Text('Beauty Blog'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'I am a Beautician',
+                              child: Text('I am a Beautician'),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'Log Out',
+                              child: Text('Log Out'),
+                            ),
+                          ],
+                        ).then((value) {
+                          if (value != null) {
+                            switch (value) {
+                              case 'My Account':
+                                break;
+                              case 'Beauty Blog':
+                                Get.to(() => const BlogPage());
+                                break;
+                              case 'I am a Beautician':
+                                ref.watch(styleProvider).setSelectedPage(value);
+                                Get.to(() => const DashboardFreePage());
+
+                                break;
+                              default:
+                            }
+                          }
+                        });
+                      },
+                      child: CircleAvatar(
+                        radius: 20.r,
+                        backgroundImage: const NetworkImage(
+                          'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
+                        ),
                       ),
                     ),
                     SizedBox(
                       width: 7.w,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.menu,
-                        color: kBlack,
-                        size: 30.sp,
-                      ),
                     ),
                   ],
                 )
