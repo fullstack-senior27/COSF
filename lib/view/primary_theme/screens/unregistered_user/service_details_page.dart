@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -12,6 +14,8 @@ import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../widgets/profile_preview.dart';
+
 class ServiceDetailsPage extends StatefulWidget {
   const ServiceDetailsPage({super.key});
 
@@ -19,13 +23,39 @@ class ServiceDetailsPage extends StatefulWidget {
   State<ServiceDetailsPage> createState() => _ServiceDetailsPageState();
 }
 
-class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
+class _ServiceDetailsPageState extends State<ServiceDetailsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabcontroller;
   DateTime today = DateTime.now();
+  List<String> items = [
+    "View All",
+    "Women",
+    "Trends",
+    "Success Stories",
+    "Skin",
+    "Promotions",
+    "Nails",
+    "Makeup",
+    "Lashes",
+    "How- Tos",
+    "Hair",
+    "Eyebrows",
+    "Client Relationship",
+    "Brows",
+    "Beautician Growth",
+    "Beard Style"
+  ];
+  int selected = 0;
   void _onDaySelected(DateTime day, DateTime focussedDay) {
     setState(() {
       today = day;
     });
     // filterData["date"] = day.toString();
+  }
+
+  initState() {
+    super.initState();
+    _tabcontroller = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -133,10 +163,10 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
                           children: [
                             TextButton.icon(
                               onPressed: () {
-                                filterBottomSheet(
-                                  context,
-                                  const SelectSlotBottomSheet(),
-                                );
+                                // filterBottomSheet(
+                                //   context,
+                                //   const SelectSlotBottomSheet(),
+                                // );
                               },
                               icon: Icon(
                                 Icons.messenger_outline_rounded,
@@ -326,68 +356,257 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  SizedBox(
-                    height: 60.h,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: ActionChip(
-                            backgroundColor: kWhite,
-                            side: const BorderSide(
-                              color: kdisable,
-                            ),
-                            onPressed: () {},
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(50.r),
-                              ),
-                            ),
-                            label: const Text(
-                              "Natural Hair",
-                              style: TextStyle(
-                                color: kdarkPrime,
-                                fontSize: 10,
-                              ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+                            border: Border.all(
+                              color: Colors.grey,
                             ),
                           ),
-                        );
-                      },
+                          // width: 50.w,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 5.w,
+                              vertical: 5.h,
+                            ),
+                            child: Row(
+                              children: [
+                                Visibility(
+                                  visible:
+                                      MediaQuery.of(context).size.width > 300
+                                          ? true
+                                          : false,
+                                  child: Text(
+                                    "Filter",
+                                    style: GoogleFonts.urbanist(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: kBlack,
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible:
+                                      MediaQuery.of(context).size.width > 300,
+                                  child: SizedBox(
+                                    width: 20.w,
+                                  ),
+                                ),
+                                Image.asset(
+                                  "assets/icons/filter.png",
+                                  height: 20.h,
+                                  width: 20.w,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10.w),
+                      Expanded(
+                        child: SizedBox(
+                          height: 50.h,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 20.h),
+                            child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: items.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 3.w),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        selected = index;
+                                      });
+                                    },
+                                    child: FittedBox(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20.r),
+                                          color: selected == index
+                                              ? kBlack
+                                              : kselected,
+                                          border: Border.all(
+                                            color: selected != index
+                                                ? Colors.grey
+                                                : Colors.transparent,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 5.r,
+                                            horizontal: 7.w,
+                                          ),
+                                          child: Text(
+                                            items[index],
+                                            style: GoogleFonts.urbanist(
+                                              fontSize: 12.sp,
+                                              fontWeight: selected == index
+                                                  ? FontWeight.w600
+                                                  : FontWeight.w400,
+                                              color: selected == index
+                                                  ? kWhite
+                                                  : kdescription,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TabBar(
+                      physics: const BouncingScrollPhysics(),
+                      dividerColor: kGrey.withOpacity(0.5),
+                      isScrollable: true,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      controller: _tabcontroller,
+                      indicatorColor: kBlack,
+                      labelColor: kBlack,
+                      unselectedLabelColor: kGrey,
+                      labelStyle: urbanist600(kBlack, 12),
+                      unselectedLabelStyle: urbanist400(kGrey, 12),
+                      tabs: const [
+                        Tab(text: 'Services'),
+                        Tab(text: 'Review'),
+                        Tab(text: 'About'),
+                        Tab(text: 'Products'),
+                      ],
                     ),
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          children: [
-                            const service(),
-                            if (MediaQuery.of(context).size.width < 920)
-                              const Sidebar()
-                            else
-                              Container(),
-                            SizedBox(
-                              height: 20.h,
+                  SizedBox(
+                      height: 750.h,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: TabBarView(
+                                controller: _tabcontroller,
+                                children: [
+                                  //Services tab
+                                  SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        service(),
+                                        Visibility(
+                                            visible: MediaQuery.of(context)
+                                                    .size
+                                                    .width <
+                                                700,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20.h),
+                                              child: Sidebar(),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  //Review tab
+                                  SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ProfileReviews(),
+                                        Visibility(
+                                            visible: MediaQuery.of(context)
+                                                    .size
+                                                    .width <
+                                                700,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20.h),
+                                              child: Sidebar(),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  //About tab
+                                  SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "About Me",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                        SizedBox(
+                                          height: 20.h,
+                                        ),
+                                        Text(
+                                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
+                                          style: urbanist400(kdescription, 14),
+                                        ),
+                                        Visibility(
+                                            visible: MediaQuery.of(context)
+                                                    .size
+                                                    .width <
+                                                700,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20.h),
+                                              child: const Sidebar(),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        ProductsCard(),
+                                        Visibility(
+                                            visible: MediaQuery.of(context)
+                                                    .size
+                                                    .width <
+                                                700,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20.h),
+                                              child: const Sidebar(),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 700,
+                            child: SizedBox(
+                              width: 10.w,
                             ),
-                          ],
-                        ),
-                      ),
-                      if (MediaQuery.of(context).size.width > 920)
-                        const Expanded(
-                          flex: 4,
-                          child: Sidebar(),
-                        )
-                      else
-                        Container()
-                    ],
-                  ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 700,
+                            child: const Expanded(
+                              flex: 2,
+                              child: SingleChildScrollView(child: Sidebar()),
+                            ),
+                          )
+                        ],
+                      )),
                 ],
               ),
             ),
@@ -603,7 +822,7 @@ class service extends StatelessWidget {
           height: 10.h,
         ),
         ...List.generate(
-          30,
+          10,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Container(
@@ -679,23 +898,56 @@ class service extends StatelessWidget {
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 10.w,
-                                    vertical: 5.h,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: kBlack,
-                                    borderRadius: BorderRadius.circular(
-                                      5.r,
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Your appointment with",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kBlack,
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.close,
+                                                color: kGrey,
+                                              )
+                                            ],
+                                          ),
+                                          backgroundColor: Color(0xfff8f8f8),
+                                          content: const SingleChildScrollView(
+                                            child: const SelectDate(),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w,
+                                      vertical: 5.h,
                                     ),
-                                  ),
-                                  child: Text(
-                                    "Choose",
-                                    style: GoogleFonts.urbanist(
-                                      color: kWhite,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
+                                    decoration: BoxDecoration(
+                                      color: kBlack,
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Choose",
+                                      style: GoogleFonts.urbanist(
+                                        color: kWhite,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
                                 )
@@ -723,23 +975,56 @@ class service extends StatelessWidget {
                           SizedBox(
                             width: 5.w,
                           ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10.w,
-                              vertical: 5.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: kBlack,
-                              borderRadius: BorderRadius.circular(
-                                5.r,
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Your appointment with",
+                                          style: GoogleFonts.urbanist(
+                                            color: kBlack,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.close,
+                                          color: kGrey,
+                                        )
+                                      ],
+                                    ),
+                                    backgroundColor: Color(0xfff8f8f8),
+                                    content: const SingleChildScrollView(
+                                      child: const SelectDate(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.w,
+                                vertical: 5.h,
                               ),
-                            ),
-                            child: Text(
-                              "Choose",
-                              style: GoogleFonts.urbanist(
-                                color: kWhite,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
+                              decoration: BoxDecoration(
+                                color: kBlack,
+                                borderRadius: BorderRadius.circular(
+                                  5.r,
+                                ),
+                              ),
+                              child: Text(
+                                "Choose",
+                                style: GoogleFonts.urbanist(
+                                  color: kWhite,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           )

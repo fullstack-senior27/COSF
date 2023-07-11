@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //constants color range for theme
 const Color kBlue = Color(0xFF3D48D5);
+const Color kLightBlue = Color(0xFFE0F3FD);
 const Color kGrey = Color(0xFF959595);
 const Color kWhite = Color(0xFFFFFFFF);
 const Color kBlack = Color(0xFF000000);

@@ -1386,7 +1386,7 @@ class PricingDetails extends StatelessWidget {
                                       SizedBox(
                                         height: 20.h,
                                       ),
-                                      BlackButtonSmall(
+                                      BlackButton(
                                         context,
                                         "Join for Free",
                                         () {},
@@ -1429,7 +1429,7 @@ class PricingDetails extends StatelessWidget {
                                     SizedBox(
                                       height: 20.h,
                                     ),
-                                    BlackButtonSmall(
+                                    BlackButton(
                                       context,
                                       "Join for Free",
                                       () {},
@@ -1522,7 +1522,7 @@ class PricingDetails extends StatelessWidget {
                                           const Spacer(),
                                           SizedBox(
                                             width: 50.w,
-                                            child: BlackButtonSmall(
+                                            child: BlackButton(
                                               context,
                                               "Join for Free",
                                               () {},
@@ -1587,7 +1587,7 @@ class PricingDetails extends StatelessWidget {
                                           const Spacer(),
                                           SizedBox(
                                             width: 50.w,
-                                            child: BlackButtonSmall(
+                                            child: BlackButton(
                                               context,
                                               "Join for Free",
                                               () {},
@@ -1652,7 +1652,7 @@ class PricingDetails extends StatelessWidget {
                                           const Spacer(),
                                           SizedBox(
                                             width: 50.w,
-                                            child: BlackButtonSmall(
+                                            child: BlackButton(
                                               context,
                                               "Join for Free",
                                               () {},
@@ -1723,7 +1723,7 @@ class PricingDetails extends StatelessWidget {
                                               ),
                                               const Spacer(),
                                               Flexible(
-                                                child: BlackButtonSmall(
+                                                child: BlackButton(
                                                   context,
                                                   "Join for Free",
                                                   () {},

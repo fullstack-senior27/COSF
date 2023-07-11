@@ -1013,7 +1013,7 @@ Widget sideBar(BuildContext context) {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Spacer(),
-                                  BlackButtonSmall(context, "Invite", () {}),
+                                  BlackButton(context, "Invite", () {}),
                                 ],
                               ),
                             ),
