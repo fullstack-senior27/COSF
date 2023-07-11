@@ -1,7 +1,9 @@
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -132,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => {},
+                            onPressed: () =>
+                                {Get.to(() => const EditProfile())},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
                               padding: EdgeInsets.symmetric(
@@ -234,9 +237,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 if (MediaQuery.of(context).size.width > 920)
                   Expanded(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 55,
-                          child: image1))
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height - 55,
+                      child: image1,
+                    ),
+                  )
                 else
                   Container(),
               ],

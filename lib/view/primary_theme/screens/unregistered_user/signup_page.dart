@@ -1,13 +1,11 @@
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'edit_profile.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -350,10 +348,11 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 if (MediaQuery.of(context).size.width > 920)
                   Expanded(
-                      child: SizedBox(
-                    child: image1,
-                    height: MediaQuery.of(context).size.height - 55,
-                  ))
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height - 55,
+                      child: image1,
+                    ),
+                  )
                 else
                   Container(),
               ],
