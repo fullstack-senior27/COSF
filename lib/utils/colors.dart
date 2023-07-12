@@ -16,3 +16,4 @@ const Color kblueColor = Color(0xFF3385FF);
 const Color kyellow = Color(0xFFFFBB0D);
 const Color kselected = Color(0xffF1F1F1);
 const Color klines = Color(0xffCCCCCC);
+const Color dialogBg = Color(0xffF8F8F8);

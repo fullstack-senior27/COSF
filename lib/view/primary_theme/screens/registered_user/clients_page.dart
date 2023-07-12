@@ -1,10 +1,14 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../widgets/registered_user_dialogs.dart';
 
 class ClintsPage extends StatefulWidget {
   const ClintsPage({super.key});
@@ -155,7 +159,47 @@ class _ClintsPageState extends State<ClintsPage> {
                                 color: kBlack,
                               ),
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Add Client",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kBlack,
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.close,
+                                                color: kGrey,
+                                              )
+                                            ],
+                                          ),
+                                          backgroundColor: Color(0xfff8f8f8),
+                                          content: SingleChildScrollView(
+                                            child: SizedBox(
+                                                width: MediaQuery.of(context)
+                                                            .size
+                                                            .width >
+                                                        900
+                                                    ? 400
+                                                    : MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.8,
+                                                child: const AddClient()),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -209,57 +253,314 @@ class _ClintsPageState extends State<ClintsPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Column(
-                                      children: [
-                                        Image.asset(
-                                          "assets/icons/add_photo.png",
-                                          height: 35.h,
-                                          width: 35.w,
-                                        ),
-                                        Text(
-                                          "Add Photo",
-                                          style: urbanist500(kBlack, 12),
-                                        )
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Edit Client",
+                                                    style: GoogleFonts.urbanist(
+                                                      color: kBlack,
+                                                      fontSize: 18.sp,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  const Icon(
+                                                    Icons.close,
+                                                    color: kGrey,
+                                                  )
+                                                ],
+                                              ),
+                                              backgroundColor:
+                                                  Color(0xfff8f8f8),
+                                              content: SingleChildScrollView(
+                                                child: SizedBox(
+                                                    width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width >
+                                                            900
+                                                        ? 400
+                                                        : MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                    child: const AddPhoto()),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/icons/add_photo.png",
+                                            height: 35.h,
+                                            width: 35.w,
+                                          ),
+                                          Text(
+                                            "Add Photo",
+                                            style: urbanist500(kBlack, 12),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5.w,
                                     ),
-                                    Column(
-                                      children: [
-                                        Image.asset(
-                                          "assets/icons/add_note.png",
-                                          height: 35.h,
-                                          width: 35.w,
-                                        ),
-                                        Text(
-                                          "Add Note",
-                                          style: urbanist500(kBlack, 12),
-                                        )
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Add Note",
+                                                    style:
+                                                        urbanist600(kBlack, 16),
+                                                  ),
+                                                  const Icon(
+                                                    Icons.close,
+                                                    color: kGrey,
+                                                  )
+                                                ],
+                                              ),
+                                              backgroundColor:
+                                                  Color(0xfff8f8f8),
+                                              content: SingleChildScrollView(
+                                                child: SizedBox(
+                                                    width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width >
+                                                            900
+                                                        ? 400
+                                                        : MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Text("Note*",
+                                                            style: urbanist500(
+                                                                kBlack, 16)),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          maxLines: 3,
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  hintText:
+                                                                      "Note",
+                                                                  hintStyle:
+                                                                      urbanist400(
+                                                                          kGrey,
+                                                                          14),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                            color:
+                                                                                kGrey),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        BorderSide(),
+                                                                  )),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Text("Formula*",
+                                                            style: urbanist500(
+                                                                kBlack, 16)),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          maxLines: 3,
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  hintText:
+                                                                      "Formula",
+                                                                  hintStyle:
+                                                                      urbanist400(
+                                                                          kGrey,
+                                                                          14),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                            color:
+                                                                                kGrey),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        BorderSide(),
+                                                                  )),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Text("Products*",
+                                                            style: urbanist500(
+                                                                kBlack, 16)),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          maxLines: 3,
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  hintText:
+                                                                      "Products",
+                                                                  hintStyle:
+                                                                      urbanist400(
+                                                                          kGrey,
+                                                                          14),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                            color:
+                                                                                kGrey),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            6.r),
+                                                                    borderSide:
+                                                                        BorderSide(),
+                                                                  )),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: Row(
+                                                            // mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              Spacer(),
+                                                              Expanded(
+                                                                child: SizedBox(
+                                                                  height: 40.h,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  child: BlackOutlineButton(
+                                                                      context,
+                                                                      "Cancel",
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  }),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 5.w,
+                                                              ),
+                                                              Expanded(
+                                                                child: SizedBox(
+                                                                  height: 40.h,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  child: BlackButton(
+                                                                      context,
+                                                                      "Save",
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  }),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/icons/add_note.png",
+                                            height: 35.h,
+                                            width: 35.w,
+                                          ),
+                                          Text(
+                                            "Add Note",
+                                            style: urbanist500(kBlack, 12),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5.w,
                                     ),
-                                    Column(
-                                      children: [
-                                        Image.asset(
-                                          "assets/icons/book_appointment.png",
-                                          height: 35.h,
-                                          width: 35.w,
-                                        ),
-                                        Text(
-                                          "Book Next",
-                                          style: urbanist500(kBlack, 12),
-                                        )
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CalendarPage()));
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/icons/book_appointment.png",
+                                            height: 35.h,
+                                            width: 35.w,
+                                          ),
+                                          Text(
+                                            "Book Next",
+                                            style: urbanist500(kBlack, 12),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5.w,
                                     ),
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   color: klines,
                                 ),
                                 SizedBox(
@@ -293,7 +594,57 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 border:
                                                     Border.all(color: kBlue)),
                                             child: TextButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              "Edit Client",
+                                                              style: GoogleFonts
+                                                                  .urbanist(
+                                                                color: kBlack,
+                                                                fontSize: 18.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            ),
+                                                            const Icon(
+                                                              Icons.close,
+                                                              color: kGrey,
+                                                            )
+                                                          ],
+                                                        ),
+                                                        backgroundColor:
+                                                            Color(0xfff8f8f8),
+                                                        content:
+                                                            SingleChildScrollView(
+                                                          child: SizedBox(
+                                                              width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width >
+                                                                      900
+                                                                  ? 400
+                                                                  : MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.8,
+                                                              child:
+                                                                  const EditClient()),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
                                                 child: Row(
                                                   children: [
                                                     const Icon(
@@ -397,7 +748,56 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 BorderRadius.circular(7.r),
                                             border: Border.all(color: kBlue)),
                                         child: TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Edit Client",
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            color: kBlack,
+                                                            fontSize: 18.sp,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                        const Icon(
+                                                          Icons.close,
+                                                          color: kGrey,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    backgroundColor:
+                                                        Color(0xfff8f8f8),
+                                                    content:
+                                                        SingleChildScrollView(
+                                                      child: SizedBox(
+                                                          width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width >
+                                                                  900
+                                                              ? 400
+                                                              : MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.8,
+                                                          child:
+                                                              const EditClient()),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
                                             child: Row(
                                               children: [
                                                 const Icon(
@@ -475,8 +875,9 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                   CircleAvatar(
                                                                     radius:
                                                                         30.r,
-                                                                    backgroundColor:
-                                                                        kBlack,
+                                                                    backgroundImage:
+                                                                        NetworkImage(
+                                                                            "https://tse3.mm.bing.net/th?id=OIP.ZqRQho6x1d-WhyN6LoVLggHaJQ&pid=Api&P=0&h=180"),
                                                                   ),
                                                                   SizedBox(
                                                                       width:
@@ -918,11 +1319,132 @@ class _ClintsPageState extends State<ClintsPage> {
                                               ],
                                             ),
                                             // Content for the second tab
-                                            Center(child: Text('Tab 2')),
+                                            ListView.builder(
+                                              itemCount: 5,
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) {
+                                                return Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 5.w),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 10.h,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.r),
+                                                                  color:
+                                                                      kdisable,
+                                                                ),
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      horizontal:
+                                                                          5.w,
+                                                                      vertical:
+                                                                          5.h),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      const Icon(
+                                                                        Icons
+                                                                            .photo_outlined,
+                                                                        color:
+                                                                            kBlack,
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width:
+                                                                            2.w,
+                                                                      ),
+                                                                      Text(
+                                                                        "Note",
+                                                                        style: urbanist500(
+                                                                            kBlack,
+                                                                            14),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                "24 April 2023",
+                                                                style: urbanist400(
+                                                                    kdescription,
+                                                                    14),
+                                                              )
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10.h,
+                                                          ),
+                                                          Text(
+                                                            "Lorem ipsum dolor sit amet consectetur. Nam eu interdum id sed vitae egestas.",
+                                                            maxLines: 2,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: urbanist400(
+                                                                kdescription,
+                                                                12),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10.h,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    const Divider(
+                                                      color: klines,
+                                                    )
+                                                  ],
+                                                );
+                                              },
+                                            ),
                                             // Content for the third tab
                                             Center(child: Text('Tab 3')),
                                             // Content for the fourth tab
-                                            Center(child: Text('Tab 4')),
+                                            GridView.builder(
+                                              itemCount: 20,
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const NeverScrollableScrollPhysics(),
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 4,
+                                                crossAxisSpacing: 10,
+                                                mainAxisSpacing: 10,
+                                                childAspectRatio: 1,
+                                              ),
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.r),
+                                                    image:
+                                                        const DecorationImage(
+                                                      image: NetworkImage(
+                                                          "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180"),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -971,7 +1493,7 @@ Widget sideBar(BuildContext context) {
               borderSide: const BorderSide(
                 color: klines,
               )),
-          prefixIcon: Icon(
+          prefixIcon: const Icon(
             Icons.search,
             color: kdescription,
           ),
@@ -1004,7 +1526,9 @@ Widget sideBar(BuildContext context) {
                               child: Row(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: kBlack,
+                                    radius: 20.r,
+                                    backgroundImage: const NetworkImage(
+                                        "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180"),
                                   ),
                                   SizedBox(width: 5.w),
                                   Text(
