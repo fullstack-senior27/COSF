@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// ignore_for_file: use_decorated_box
+
+import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/profile_preview.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -11,9 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
-
-import '../../../utils/colors.dart';
-import '../screens/unregistered_user/service_details_page.dart';
 
 class ProfileEdit extends StatefulWidget {
   const ProfileEdit({super.key});
@@ -25,6 +23,32 @@ class ProfileEdit extends StatefulWidget {
 class _ProfileEditState extends State<ProfileEdit>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
+  List<String> items = [
+    "View All",
+    "Women",
+    "Trends",
+    "Success Stories",
+    "Skin",
+    "Promotions",
+    "Nails",
+    "Makeup",
+    "Lashes",
+    "How- Tos",
+    "Hair",
+    "Eyebrows",
+    "Client Relationship",
+    "Brows",
+    "Beautician Growth",
+    "Beard Style"
+  ];
+  int selectedScreen = 0;
+  int selected = 0;
+  List<Widget> screens = [
+    const ServiceI(),
+    const ReviewI(),
+    const aboutI(),
+    const productI(),
+  ];
   @override
   void initState() {
     _tabcontroller = TabController(length: 4, vsync: this);
@@ -37,6 +61,7 @@ class _ProfileEditState extends State<ProfileEdit>
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     // List<StepsCard> steps = [
     //   StepsCard(
@@ -71,7 +96,7 @@ class _ProfileEditState extends State<ProfileEdit>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 40.h,
+            height: 30.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 17.w),
@@ -88,45 +113,58 @@ class _ProfileEditState extends State<ProfileEdit>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 3.w),
-                            child: Text("VIP Link",
-                                style: urbanist600(kBlack, 15)),
+                            padding: EdgeInsets.only(left: 4.w),
+                            child: Text(
+                              "VIP Link",
+                              style: urbanist600(kBlack, 15),
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 8.w),
-                            child: Text("Cosmetropolis.com/m/r/johnwick",
-                                style: urbanist400(kBlue, 12)),
+                            child: Text(
+                              "Cosmetropolis.com/m/r/johnwick",
+                              style: urbanist400(kBlue, 12),
+                            ),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(
                             onTap: () {
-                              Clipboard.setData(const ClipboardData(
-                                  text: "Cosmetropolis.com/m/r/johnwick"));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content:
-                                    Text("Coupon code copied to clipboard!"),
-                              ));
+                              Clipboard.setData(
+                                const ClipboardData(
+                                  text: "Cosmetropolis.com/m/r/johnwick",
+                                ),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text("Coupon code copied to clipboard!"),
+                                ),
+                              );
                             },
                             child: Container(
-                                height: 40.h,
-                                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                                decoration: BoxDecoration(
-                                  color: kBlack,
-                                  borderRadius: BorderRadius.circular(5),
+                              height: 40.h,
+                              padding: EdgeInsets.symmetric(horizontal: 8.w),
+                              decoration: BoxDecoration(
+                                color: kBlack,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Copy",
+                                  style: urbanist600(kWhite, 12),
                                 ),
-                                child: Center(
-                                    child: Text("Copy",
-                                        style: urbanist600(kWhite, 12)))),
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
                     Visibility(
-                        visible: MediaQuery.of(context).size.width > 550,
-                        child: Spacer()),
+                      visible: MediaQuery.of(context).size.width >= 700,
+                      child: const Spacer(),
+                    ),
                     Visibility(
-                      visible: MediaQuery.of(context).size.width > 550,
+                      visible: MediaQuery.of(context).size.width > 700,
                       child: Row(
                         children: [
                           Image.asset(
@@ -159,7 +197,7 @@ class _ProfileEditState extends State<ProfileEdit>
                 ),
                 SizedBox(height: 20.h),
                 Visibility(
-                  visible: MediaQuery.of(context).size.width < 551,
+                  visible: MediaQuery.of(context).size.width <= 700,
                   child: Row(
                     children: [
                       Image.asset(
@@ -167,19 +205,19 @@ class _ProfileEditState extends State<ProfileEdit>
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 10.w),
                       Image.asset(
                         "assets/icons/insta.png",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 10.w),
                       Image.asset(
                         "assets/icons/twitter.png",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(width: 3.w),
+                      SizedBox(width: 10.w),
                       Image.asset(
                         "assets/icons/linkdin.png",
                         height: 30.h,
@@ -188,31 +226,35 @@ class _ProfileEditState extends State<ProfileEdit>
                     ],
                   ),
                 ),
+                SizedBox(height: 20.h),
                 Visibility(
-                    visible: MediaQuery.of(context).size.width < 551,
-                    child: SizedBox(height: 20.h)),
+                  visible: MediaQuery.of(context).size.width <= 700,
+                  child: SizedBox(height: 20.h),
+                ),
                 Container(
                   width: double.infinity,
-                  color: Color(0xFFFEF9ED),
+                  color: const Color(0xFFFEF9ED),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Welcome, John Wick",
-                            style: urbanist600(kBlack, 16)),
+                        Text(
+                          "Welcome, John Wick",
+                          style: urbanist600(kBlack, 15),
+                        ),
                         SizedBox(height: 5.h),
                         Text(
-                            "Complete these steps in order to list your business on Cosmetropolis and gain new clients!",
-                            style: urbanist500(kBlack, 12)),
-                        SizedBox(height: 10.h),
+                          "Complete these steps in order to list your business on Cosmetropolis and gain new clients!",
+                          style: urbanist500(kBlack, 11),
+                        ),
+                        SizedBox(height: 20.h),
                         SizedBox(
                           height: 200.h,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            physics: BouncingScrollPhysics(),
                             itemCount: 3,
                             itemBuilder: (context, index) {
                               return FittedBox(
@@ -224,7 +266,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                       image: image[index],
                                       buttontxt: buttontxt[index],
                                     ),
-                                    SizedBox(width: 10.w),
+                                    SizedBox(width: 8.w),
                                     // StepsCard(),
                                     // SizedBox(width: 10.w),
                                     // StepsCard(),
@@ -238,28 +280,31 @@ class _ProfileEditState extends State<ProfileEdit>
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 Container(
                   color: kBlue,
                   height: 5.h,
                 ),
                 Container(
-                  color: Color(0xffE0F3FD),
+                  color: const Color(0xffE0F3FD),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                        EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
                     child: Row(
                       children: [
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Get inspiration",
-                                  style: urbanist600(kBlack, 16)),
+                              Text(
+                                "Get inspiration",
+                                style: urbanist600(kBlack, 16),
+                              ),
                               SizedBox(height: 5.h),
                               Text(
-                                  "See how similar professionals build their profile",
-                                  style: urbanist400(kBlack, 12)),
+                                "See how similar professionals build their profile",
+                                style: urbanist400(kBlack, 12),
+                              ),
                             ],
                           ),
                         ),
@@ -273,7 +318,7 @@ class _ProfileEditState extends State<ProfileEdit>
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 Container(
                   color: const Color(0xffFFBC1A),
                   height: 5.h,
@@ -282,12 +327,14 @@ class _ProfileEditState extends State<ProfileEdit>
                   color: const Color(0xffFEF9ED),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                        EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text("Set A Monthly Goal",
-                              style: urbanist600(kBlack, 16)),
+                          child: Text(
+                            "Set A Monthly Goal",
+                            style: urbanist600(kBlack, 16),
+                          ),
                         ),
                         const Spacer(),
                         const Icon(
@@ -299,56 +346,31 @@ class _ProfileEditState extends State<ProfileEdit>
                     ),
                   ),
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 25.h),
                 Row(
-                  mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MediaQuery.of(context).size.width > 480
+                  mainAxisAlignment: MediaQuery.of(context).size.width > 700
                       ? MainAxisAlignment.start
                       : MainAxisAlignment.center,
                   children: [
                     Column(
                       crossAxisAlignment:
-                          MediaQuery.of(context).size.width > 480
+                          MediaQuery.of(context).size.width > 700
                               ? CrossAxisAlignment.start
                               : CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
                           backgroundImage: const NetworkImage(
-                              "https://tse1.mm.bing.net/th?id=OIP.zVsxx9pE2k-e6iTe5DMFwAHaGv&pid=Api&P=0&h=180"),
+                            "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
+                          ),
                           radius: 60.r,
                         ),
                         SizedBox(
                           height: 10.h,
                         ),
                         Visibility(
-                          visible: MediaQuery.of(context).size.width < 481,
-                          child: Container(
-                            // width: double.infinity,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(7.r),
-                                border: Border.all(color: kBlue)),
-                            child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.edit_note_outlined,
-                                      color: kBlue,
-                                    ),
-                                    Text(
-                                      "Edit",
-                                      style: urbanist600(kBlue, 14),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width < 481,
+                          visible: MediaQuery.of(context).size.width <= 700,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 10.h,
@@ -391,9 +413,7 @@ class _ProfileEditState extends State<ProfileEdit>
                               RatingBar.builder(
                                 initialRating: 3,
                                 minRating: 1,
-                                direction: Axis.horizontal,
                                 allowHalfRating: true,
-                                itemCount: 5,
                                 itemSize: 20,
                                 itemPadding:
                                     EdgeInsets.symmetric(horizontal: 1.w),
@@ -439,7 +459,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(5.r),
-                                        border: Border.all(color: kBlack),
+                                        border: Border.all(),
                                       ),
                                       child: TextButton(
                                         onPressed: () {},
@@ -453,11 +473,12 @@ class _ProfileEditState extends State<ProfileEdit>
                                 ],
                               ),
                               Visibility(
-                                  visible:
-                                      MediaQuery.of(context).size.width < 481,
-                                  child: SizedBox(
-                                    height: 20.h,
-                                  )),
+                                visible:
+                                    MediaQuery.of(context).size.width < 481,
+                                child: SizedBox(
+                                  height: 20.h,
+                                ),
+                              ),
                               SizedBox(
                                 height: 10.h,
                               ),
@@ -467,13 +488,13 @@ class _ProfileEditState extends State<ProfileEdit>
                       ],
                     ),
                     Visibility(
-                      visible: MediaQuery.of(context).size.width > 480,
+                      visible: MediaQuery.of(context).size.width > 700,
                       child: SizedBox(
-                        width: 5.w,
+                        width: 10.w,
                       ),
                     ),
                     Visibility(
-                      visible: MediaQuery.of(context).size.width > 480,
+                      visible: MediaQuery.of(context).size.width > 700,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -515,9 +536,7 @@ class _ProfileEditState extends State<ProfileEdit>
                           RatingBar.builder(
                             initialRating: 3,
                             minRating: 1,
-                            direction: Axis.horizontal,
                             allowHalfRating: true,
-                            itemCount: 5,
                             itemSize: 20,
                             itemPadding: EdgeInsets.symmetric(horizontal: 1.w),
                             itemBuilder: (context, _) => const Icon(
@@ -561,7 +580,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   height: 40.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.r),
-                                    border: Border.all(color: kBlack),
+                                    border: Border.all(),
                                   ),
                                   child: TextButton(
                                     onPressed: () {},
@@ -574,11 +593,15 @@ class _ProfileEditState extends State<ProfileEdit>
                               ),
                             ],
                           ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
                           Visibility(
-                              visible: MediaQuery.of(context).size.width < 481,
-                              child: SizedBox(
-                                height: 20.h,
-                              )),
+                            visible: MediaQuery.of(context).size.width <= 700,
+                            child: SizedBox(
+                              height: 10.h,
+                            ),
+                          ),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -586,216 +609,97 @@ class _ProfileEditState extends State<ProfileEdit>
                       ),
                     ),
                     Visibility(
-                        visible: MediaQuery.of(context).size.width > 480,
-                        child: Spacer()),
+                      visible: MediaQuery.of(context).size.width > 700,
+                      child: const Spacer(),
+                    ),
                     Visibility(
-                      visible: MediaQuery.of(context).size.width > 480,
+                      visible: MediaQuery.of(context).size.width > 700,
                       child: Container(
-                        // width: double.infinity,
+                        width: 36.w,
                         height: 40.h,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.r),
-                            border: Border.all(color: kBlue)),
+                          borderRadius: BorderRadius.circular(7.r),
+                          border: Border.all(color: kBlue),
+                        ),
                         child: TextButton(
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.edit_note_outlined,
-                                  color: kBlue,
-                                ),
-                                Text(
-                                  "Edit",
-                                  style: urbanist600(kBlue, 14),
-                                )
-                              ],
-                            )),
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.edit_note_outlined,
+                                color: kBlue,
+                              ),
+                              Text(
+                                "Edit",
+                                style: urbanist600(kBlue, 14),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 5.h,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: TabBar(
-                    physics: const BouncingScrollPhysics(),
-                    dividerColor: kGrey.withOpacity(0.5),
-                    isScrollable: true,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    controller: _tabcontroller,
-                    indicatorColor: kBlack,
-                    labelColor: kBlack,
-                    unselectedLabelColor: kGrey,
-                    labelStyle: urbanist600(kBlack, 12),
-                    unselectedLabelStyle: urbanist400(kGrey, 12),
-                    tabs: const [
-                      Tab(text: 'Services'),
-                      Tab(text: 'Review'),
-                      Tab(text: 'About'),
-                      Tab(text: 'Products'),
-                    ],
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width > 950
+                        ? 120.w
+                        : double.infinity,
+                    child: TabBar(
+                      physics: const BouncingScrollPhysics(),
+                      dividerColor: kGrey.withOpacity(0.5),
+                      // isScrollable: true,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      controller: _tabcontroller,
+                      indicatorColor: kBlack,
+                      labelColor: kBlack,
+                      unselectedLabelColor: kGrey,
+                      onTap: (value) {
+                        setState(() {
+                          selectedScreen = value;
+                        });
+                      },
+                      labelStyle: urbanist600(kBlack, 12),
+                      unselectedLabelStyle: urbanist400(kGrey, 12),
+                      tabs: const [
+                        Tab(text: 'Services'),
+                        Tab(text: 'Review'),
+                        Tab(text: 'About'),
+                        Tab(text: 'Products'),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 40.h,
                 ),
-                SizedBox(
-                    height: 750.h,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child:
-                              TabBarView(controller: _tabcontroller, children: [
-                            //Services tab
-                            SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  service(),
-                                  Visibility(
-                                      visible:
-                                          MediaQuery.of(context).size.width <
-                                              700,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 20.h),
-                                        child: sideEdit(),
-                                      )),
-                                ],
-                              ),
-                            ),
-                            //Review tab
-                            SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ProfileReviews(),
-                                  // const Divider(
-                                  //   color: klines,
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 20.h,
-                                  // ),
-                                  // Text("Client Photos",
-                                  //     style: urbanist600(kBlack, 20)),
-                                  // SizedBox(height: 10.h),
-                                  // SizedBox(
-                                  //   height: 150.h,
-                                  //   child: ListView(
-                                  //     scrollDirection: Axis.horizontal,
-                                  //     physics: const BouncingScrollPhysics(),
-                                  //     children: [
-                                  //       AspectRatio(
-                                  //           aspectRatio: 1,
-                                  //           child: Image.network(
-                                  //             "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.png",
-                                  //             fit: BoxFit.cover,
-                                  //           )),
-                                  //       SizedBox(
-                                  //         width: 5.w,
-                                  //       ),
-                                  //       AspectRatio(
-                                  //           aspectRatio: 1,
-                                  //           child: Image.network(
-                                  //             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-                                  //             fit: BoxFit.cover,
-                                  //           )),
-                                  //       SizedBox(
-                                  //         width: 5.w,
-                                  //       ),
-                                  //       AspectRatio(
-                                  //           aspectRatio: 1,
-                                  //           child: Image.network(
-                                  //             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-                                  //             fit: BoxFit.cover,
-                                  //           )),
-                                  //       SizedBox(
-                                  //         width: 5.w,
-                                  //       ),
-                                  //       AspectRatio(
-                                  //           aspectRatio: 1,
-                                  //           child: Image.network(
-                                  //             "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-                                  //             fit: BoxFit.cover,
-                                  //           )),
-                                  //     ],
-                                  //   ),
-                                  // ),
-                                  Visibility(
-                                      visible:
-                                          MediaQuery.of(context).size.width <
-                                              700,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 20.h),
-                                        child: sideEdit(),
-                                      )),
-                                ],
-                              ),
-                            ),
-                            //About tab
-                            SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "About Me",
-                                    style: urbanist600(kBlack, 20),
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  Text(
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
-                                    style: urbanist400(kdescription, 14),
-                                  ),
-                                  Visibility(
-                                      visible:
-                                          MediaQuery.of(context).size.width <
-                                              700,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 20.h),
-                                        child: sideEdit(),
-                                      )),
-                                ],
-                              ),
-                            ),
-                            SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  ProductsCard(),
-                                  Visibility(
-                                      visible:
-                                          MediaQuery.of(context).size.width <
-                                              700,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 20.h),
-                                        child: sideEdit(),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ]),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 700,
-                          child: SizedBox(
-                            width: 10.w,
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 700,
-                          child: Expanded(
-                            flex: 2,
-                            child: SingleChildScrollView(child: sideEdit()),
-                          ),
-                        )
-                      ],
-                    )),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: screens[selectedScreen],
+                    ),
+                    Visibility(
+                      visible: MediaQuery.of(context).size.width > 700,
+                      child: SizedBox(
+                        width: 10.w,
+                      ),
+                    ),
+                    Visibility(
+                      visible: MediaQuery.of(context).size.width > 700,
+                      child: const Expanded(
+                        flex: 2,
+                        child: SingleChildScrollView(child: Sidebar()),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -815,20 +719,23 @@ class StepsCard extends StatelessWidget {
   final String image;
   final String buttontxt;
 
-  StepsCard(
-      {required this.title,
-      required this.description,
-      required this.image,
-      required this.buttontxt});
+  const StepsCard({
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.buttontxt,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: kWhite,
+      width: MediaQuery.of(context).size.width < 700
+          ? MediaQuery.of(context).size.width * 0.75
+          : MediaQuery.of(context).size.width * 0.24,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(image, height: 30.h),
             SizedBox(height: 20.h),
@@ -840,7 +747,8 @@ class StepsCard extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(
-                  vertical: 20.h,
+                  vertical:
+                      MediaQuery.of(context).size.width < 700 ? 10.h : 0.h,
                   horizontal: 5.w,
                 ),
                 backgroundColor: kBlack,
@@ -924,11 +832,12 @@ Widget sideEdit() {
           height: 10.h,
         ),
         Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              "Edit About Me",
-              style: urbanist500(kBlue, 14),
-            )),
+          alignment: Alignment.centerRight,
+          child: Text(
+            "Edit About Me",
+            style: urbanist500(kBlue, 14),
+          ),
+        ),
         SizedBox(
           height: 20.h,
         ),
@@ -1011,11 +920,12 @@ Widget sideEdit() {
           height: 10.h,
         ),
         Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              "Manage Availability",
-              style: urbanist500(kBlue, 14),
-            )),
+          alignment: Alignment.centerRight,
+          child: Text(
+            "Manage Availability",
+            style: urbanist500(kBlue, 14),
+          ),
+        ),
       ],
     ),
   );

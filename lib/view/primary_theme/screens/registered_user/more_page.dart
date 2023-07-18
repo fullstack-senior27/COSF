@@ -62,7 +62,10 @@ class _MorePageState extends State<MorePage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 60.h),
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: MediaQuery.of(context).size.width < 600 ? 15.h : 60.h,
+              ),
               child: StaggeredGridView.countBuilder(
                 crossAxisCount: MediaQuery.of(context).size.width > 920
                     ? 3

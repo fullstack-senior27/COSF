@@ -706,7 +706,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Get.offAll(() => const DashboardLoginPage()),
+                        ref.read(styleProvider).setSelectedPage("Calendar")
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: kBlack,
                         padding: EdgeInsets.symmetric(

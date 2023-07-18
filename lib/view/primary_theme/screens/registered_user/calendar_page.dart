@@ -23,7 +23,129 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomSheet:
+      bottomNavigationBar: Visibility(
+        visible: MediaQuery.of(context).size.width < 951,
+        child: SizedBox(
+          height: 60.h,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.w),
+            child: Padding(
+              padding: EdgeInsets.all(8.0.sp),
+              child: SizedBox(
+                height: 50.h,
+                width: double.infinity,
+                child: TextButton.icon(
+                  onPressed: () {
+                    filterBottomSheet(
+                      context,
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: CalendarCarousel<Event>(
+                              onDayPressed:
+                                  (DateTime date, List<Event> events) {
+                                setState(() {});
+                              },
+                              todayButtonColor: kBlue,
+                              todayBorderColor: kBlue,
+                              markedDateShowIcon: true,
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              daysHaveCircularBorder: true,
+                              daysTextStyle: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              weekendTextStyle: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              weekdayTextStyle: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              headerTextStyle: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              headerTitleTouchable: true,
+                            ),
+                          ),
+                          Text(
+                            "Jump a few weeks ahead",
+                            style: urbanist600(kBlack, 14),
+                          ),
+                          SizedBox(height: 10.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ...List.generate(
+                                5,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(right: 2.w),
+                                  child: CircleAvatar(
+                                    radius: 15.r,
+                                    backgroundColor: kBlack,
+                                    child: Text(
+                                      "+${index + 1}",
+                                      style: urbanist600(kWhite, 14),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              height: 45.h,
+                              decoration: BoxDecoration(
+                                color: kBlack,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Add To Waitlist",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.calendar_month_rounded,
+                    color: kWhite,
+                    size: 15.sp,
+                  ),
+                  style: TextButton.styleFrom(
+                    backgroundColor: kdarkPrime,
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(5.r),
+                    // ),
+                  ),
+                  label: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                    child: Text("Choose Date", style: urbanist600(kWhite, 14)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,15 +153,17 @@ class _CalendarPageState extends State<CalendarPage> {
               padding: EdgeInsets.only(
                 left: 17.w,
                 right: 17.w,
-                top: 5.h,
+                top: MediaQuery.of(context).size.width < 950 ? 0.h : 20.h,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 12.h),
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.width < 950 ? 0.h : 20.h,
+                    ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.8,
+                      height: MediaQuery.of(context).size.height * 0.7,
                       child: WeekView(
                         headerStyle: HeaderStyle(
                           // we use kwhite color for this component because we need to hide the header
@@ -65,7 +189,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         ),
                         width: MediaQuery.of(context).size.width > 950
                             ? 225.w
-                            : MediaQuery.of(context).size.width * 0.8,
+                            : MediaQuery.of(context).size.width * 0.9,
                         showLiveTimeLineInAllDays: true,
                         startDay: WeekDays.sunday,
                         eventArranger:
@@ -80,7 +204,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   Visibility(
                     visible: MediaQuery.of(context).size.width > 950,
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.75,
+                      height: MediaQuery.of(context).size.height * 0.73,
                       child: Column(
                         children: [
                           Expanded(
@@ -117,29 +241,32 @@ class _CalendarPageState extends State<CalendarPage> {
                               headerTitleTouchable: true,
                             ),
                           ),
-                          SizedBox(height: 10.h),
-                          Text("Jump a few weeks ahead",
-                              style: urbanist600(kBlack, 14)),
+                          SizedBox(height: 0.h),
+                          Text(
+                            "Jump a few weeks ahead",
+                            style: urbanist600(kBlack, 14),
+                          ),
                           SizedBox(height: 10.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ...List.generate(
-                                  5,
-                                  (index) => Padding(
-                                        padding: EdgeInsets.only(right: 2.w),
-                                        child: CircleAvatar(
-                                          radius: 15.r,
-                                          backgroundColor: kBlack,
-                                          child: Text(
-                                            "+${index + 1}",
-                                            style: urbanist600(kWhite, 14),
-                                          ),
-                                        ),
-                                      )),
+                                5,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(right: 2.9.w),
+                                  child: CircleAvatar(
+                                    radius: 15.r,
+                                    backgroundColor: kBlack,
+                                    child: Text(
+                                      "+${index + 1}",
+                                      style: urbanist600(kWhite, 12),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: 10.h),
                           Align(
                             alignment: Alignment.topCenter,
                             child: Padding(
@@ -152,13 +279,24 @@ class _CalendarPageState extends State<CalendarPage> {
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                                 child: Center(
-                                  child: Text(
-                                    "Add To Waitlist",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.favorite_border_rounded,
+                                        color: Colors.white,
+                                        size: 15.sp,
+                                      ),
+                                      SizedBox(width: 3.w),
+                                      Text(
+                                        "Add To Waitlist",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -172,123 +310,8 @@ class _CalendarPageState extends State<CalendarPage> {
               ),
             ),
             SizedBox(height: 10.h),
-            Visibility(
-              visible: MediaQuery.of(context).size.width < 951,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.w),
-                child: SizedBox(
-                  height: 50.h,
-                  width: double.infinity,
-                  child: TextButton.icon(
-                    onPressed: () {
-                      filterBottomSheet(
-                        context,
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.6,
-                              child: CalendarCarousel<Event>(
-                                onDayPressed:
-                                    (DateTime date, List<Event> events) {
-                                  setState(() {});
-                                },
-                                todayButtonColor: kBlue,
-                                todayBorderColor: kBlue,
-                                markedDateShowIcon: true,
-                                width: MediaQuery.of(context).size.width * 0.75,
-                                daysHaveCircularBorder: true,
-                                daysTextStyle: GoogleFonts.urbanist(
-                                  color: kBlack,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                weekendTextStyle: GoogleFonts.urbanist(
-                                  color: kBlack,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                weekdayTextStyle: GoogleFonts.urbanist(
-                                  color: kBlack,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                headerTextStyle: GoogleFonts.urbanist(
-                                  color: kBlack,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                headerTitleTouchable: true,
-                              ),
-                            ),
-                            Text("Jump a few weeks ahead",
-                                style: urbanist600(kBlack, 14)),
-                            SizedBox(height: 10.h),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ...List.generate(
-                                    5,
-                                    (index) => Padding(
-                                          padding: EdgeInsets.only(right: 2.w),
-                                          child: CircleAvatar(
-                                            radius: 15.r,
-                                            backgroundColor: kBlack,
-                                            child: Text(
-                                              "+${index + 1}",
-                                              style: urbanist600(kWhite, 14),
-                                            ),
-                                          ),
-                                        )),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.75,
-                                height: 45.h,
-                                decoration: BoxDecoration(
-                                  color: kBlack,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "Add To Waitlist",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.calendar_month_rounded,
-                      color: kWhite,
-                      size: 15.sp,
-                    ),
-                    style: TextButton.styleFrom(
-                      backgroundColor: kdarkPrime,
-                      // shape: RoundedRectangleBorder(
-                      //   borderRadius: BorderRadius.circular(5.r),
-                      // ),
-                    ),
-                    label: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child:
-                          Text("Choose Date", style: urbanist600(kWhite, 14)),
-                    ),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 20.h),
-            Footer(),
+            const Footer(),
           ],
         ),
       ),

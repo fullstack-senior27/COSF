@@ -4,11 +4,10 @@ import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calenda
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widgets/registered_user_dialogs.dart';
 
 class ClintsPage extends StatefulWidget {
   const ClintsPage({super.key});
@@ -24,47 +23,50 @@ class _ClintsPageState extends State<ClintsPage> {
       floatingActionButton: Visibility(
         visible: MediaQuery.of(context).size.width < 801,
         child: GestureDetector(
-            onTap: () {
-              filterBottomSheet(
-                  context,
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Align(
-                              alignment: Alignment.topRight,
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.close,
-                                  color: kdescription,
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              )),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          sideBar(context),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                        ],
+          onTap: () {
+            filterBottomSheet(
+              context,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.h,
                       ),
-                    ),
-                  ));
-            },
-            child: const CircleAvatar(
-              backgroundColor: kBlack,
-              child: Icon(
-                Icons.search_outlined,
-                color: kWhite,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.close,
+                            color: kdescription,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      sideBar(context),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            )),
+            );
+          },
+          child: const CircleAvatar(
+            backgroundColor: kBlack,
+            child: Icon(
+              Icons.search_outlined,
+              color: kWhite,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -75,13 +77,16 @@ class _ClintsPageState extends State<ClintsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                      flex: MediaQuery.of(context).size.width > 800 ? 1 : 0,
-                      child: Visibility(
-                          visible: MediaQuery.of(context).size.width > 800,
-                          child: sideBar(context))),
-                  Visibility(
+                    flex: MediaQuery.of(context).size.width > 800 ? 1 : 0,
+                    child: Visibility(
                       visible: MediaQuery.of(context).size.width > 800,
-                      child: SizedBox(width: 10.w)),
+                      child: sideBar(context),
+                    ),
+                  ),
+                  Visibility(
+                    visible: MediaQuery.of(context).size.width > 800,
+                    child: SizedBox(width: 10.w),
+                  ),
                   Expanded(
                     flex: 2,
                     child: Column(
@@ -159,68 +164,71 @@ class _ClintsPageState extends State<ClintsPage> {
                                 color: kBlack,
                               ),
                               child: TextButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "Add Client",
-                                                style: GoogleFonts.urbanist(
-                                                  color: kBlack,
-                                                  fontSize: 18.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Add Client",
+                                              style: GoogleFonts.urbanist(
+                                                color: kBlack,
+                                                fontSize: 18.sp,
+                                                fontWeight: FontWeight.w600,
                                               ),
-                                              const Icon(
-                                                Icons.close,
-                                                color: kGrey,
-                                              )
-                                            ],
-                                          ),
-                                          backgroundColor: Color(0xfff8f8f8),
-                                          content: SingleChildScrollView(
-                                            child: SizedBox(
-                                                width: MediaQuery.of(context)
-                                                            .size
-                                                            .width >
-                                                        900
-                                                    ? 400
-                                                    : MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.8,
-                                                child: const AddClient()),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.person_add_alt,
-                                        color: kWhite,
-                                      ),
-                                      SizedBox(
-                                        width: 2.w,
-                                      ),
-                                      Visibility(
-                                        visible:
-                                            MediaQuery.of(context).size.width >
-                                                530,
-                                        child: Text(
-                                          "Add a Client",
-                                          style: urbanist500(kWhite, 12),
+                                            ),
+                                            const Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            )
+                                          ],
                                         ),
-                                      )
-                                    ],
-                                  )),
+                                        backgroundColor:
+                                            const Color(0xfff8f8f8),
+                                        content: SingleChildScrollView(
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                        .size
+                                                        .width >
+                                                    900
+                                                ? 400
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
+                                            child: const AddClient(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(
+                                      Icons.person_add_alt,
+                                      color: kWhite,
+                                    ),
+                                    SizedBox(
+                                      width: 2.w,
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width >
+                                              530,
+                                      child: Text(
+                                        "Add a Client",
+                                        style: urbanist500(kWhite, 12),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -229,11 +237,14 @@ class _ClintsPageState extends State<ClintsPage> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              border: Border.all(color: klines)),
+                            borderRadius: BorderRadius.circular(10.r),
+                            border: Border.all(color: klines),
+                          ),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 20.h),
+                              horizontal: 10.w,
+                              vertical: 20.h,
+                            ),
                             child: Column(
                               children: [
                                 Padding(
@@ -280,20 +291,20 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 ],
                                               ),
                                               backgroundColor:
-                                                  Color(0xfff8f8f8),
+                                                  const Color(0xfff8f8f8),
                                               content: SingleChildScrollView(
                                                 child: SizedBox(
-                                                    width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width >
-                                                            900
-                                                        ? 400
-                                                        : MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                    child: const AddPhoto()),
+                                                  width: MediaQuery.of(
+                                                            context,
+                                                          ).size.width >
+                                                          900
+                                                      ? 400
+                                                      : MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.8,
+                                                  child: const AddPhoto(),
+                                                ),
                                               ),
                                             );
                                           },
@@ -339,178 +350,202 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 ],
                                               ),
                                               backgroundColor:
-                                                  Color(0xfff8f8f8),
+                                                  const Color(0xfff8f8f8),
                                               content: SingleChildScrollView(
                                                 child: SizedBox(
-                                                    width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width >
-                                                            900
-                                                        ? 400
-                                                        : MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 20.h,
+                                                  width: MediaQuery.of(
+                                                            context,
+                                                          ).size.width >
+                                                          900
+                                                      ? 400
+                                                      : MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.8,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                      Text(
+                                                        "Note*",
+                                                        style: urbanist500(
+                                                          kBlack,
+                                                          16,
                                                         ),
-                                                        Text("Note*",
-                                                            style: urbanist500(
-                                                                kBlack, 16)),
-                                                        SizedBox(height: 5.h),
-                                                        TextFormField(
-                                                          maxLines: 3,
-                                                          decoration:
-                                                              InputDecoration(
-                                                                  hintText:
-                                                                      "Note",
-                                                                  hintStyle:
-                                                                      urbanist400(
-                                                                          kGrey,
-                                                                          14),
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                            color:
-                                                                                kGrey),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        BorderSide(),
-                                                                  )),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 20.h,
-                                                        ),
-                                                        Text("Formula*",
-                                                            style: urbanist500(
-                                                                kBlack, 16)),
-                                                        SizedBox(height: 5.h),
-                                                        TextFormField(
-                                                          maxLines: 3,
-                                                          decoration:
-                                                              InputDecoration(
-                                                                  hintText:
-                                                                      "Formula",
-                                                                  hintStyle:
-                                                                      urbanist400(
-                                                                          kGrey,
-                                                                          14),
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                            color:
-                                                                                kGrey),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        BorderSide(),
-                                                                  )),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 20.h,
-                                                        ),
-                                                        Text("Products*",
-                                                            style: urbanist500(
-                                                                kBlack, 16)),
-                                                        SizedBox(height: 5.h),
-                                                        TextFormField(
-                                                          maxLines: 3,
-                                                          decoration:
-                                                              InputDecoration(
-                                                                  hintText:
-                                                                      "Products",
-                                                                  hintStyle:
-                                                                      urbanist400(
-                                                                          kGrey,
-                                                                          14),
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                            color:
-                                                                                kGrey),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            6.r),
-                                                                    borderSide:
-                                                                        BorderSide(),
-                                                                  )),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 20.h,
-                                                        ),
-                                                        SizedBox(
-                                                          width:
-                                                              double.infinity,
-                                                          child: Row(
-                                                            // mainAxisAlignment: MainAxisAlignment.end,
-                                                            children: [
-                                                              Spacer(),
-                                                              Expanded(
-                                                                child: SizedBox(
-                                                                  height: 40.h,
-                                                                  width: double
-                                                                      .infinity,
-                                                                  child: BlackOutlineButton(
-                                                                      context,
-                                                                      "Cancel",
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  }),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 5.w,
-                                                              ),
-                                                              Expanded(
-                                                                child: SizedBox(
-                                                                  height: 40.h,
-                                                                  width: double
-                                                                      .infinity,
-                                                                  child: BlackButton(
-                                                                      context,
-                                                                      "Save",
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  }),
-                                                                ),
-                                                              )
-                                                            ],
+                                                      ),
+                                                      SizedBox(height: 5.h),
+                                                      TextFormField(
+                                                        maxLines: 3,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: "Note",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kGrey,
+                                                            14,
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: kGrey,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ],
-                                                    )),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                      Text(
+                                                        "Formula*",
+                                                        style: urbanist500(
+                                                          kBlack,
+                                                          16,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 5.h),
+                                                      TextFormField(
+                                                        maxLines: 3,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: "Formula",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kGrey,
+                                                            14,
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: kGrey,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                      Text(
+                                                        "Products*",
+                                                        style: urbanist500(
+                                                          kBlack,
+                                                          16,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 5.h),
+                                                      TextFormField(
+                                                        maxLines: 3,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: "Products",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kGrey,
+                                                            14,
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: kGrey,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              6.r,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                      SizedBox(
+                                                        width: double.infinity,
+                                                        child: Row(
+                                                          // mainAxisAlignment: MainAxisAlignment.end,
+                                                          children: [
+                                                            const Spacer(),
+                                                            Expanded(
+                                                              child: SizedBox(
+                                                                height: 40.h,
+                                                                width: double
+                                                                    .infinity,
+                                                                child:
+                                                                    BlackOutlineButton(
+                                                                        context,
+                                                                        "Cancel",
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                    context,
+                                                                  );
+                                                                }),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5.w,
+                                                            ),
+                                                            Expanded(
+                                                              child: SizedBox(
+                                                                height: 40.h,
+                                                                width: double
+                                                                    .infinity,
+                                                                child:
+                                                                    BlackButton(
+                                                                        context,
+                                                                        "Save",
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                    context,
+                                                                  );
+                                                                }),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
                                             );
                                           },
@@ -536,10 +571,12 @@ class _ClintsPageState extends State<ClintsPage> {
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CalendarPage()));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CalendarPage(),
+                                          ),
+                                        );
                                       },
                                       child: Column(
                                         children: [
@@ -567,14 +604,14 @@ class _ClintsPageState extends State<ClintsPage> {
                                   height: 10.h,
                                 ),
                                 Row(
-                                  mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Column(
                                       children: [
                                         CircleAvatar(
                                           backgroundImage: const NetworkImage(
-                                              "https://tse1.mm.bing.net/th?id=OIP.zVsxx9pE2k-e6iTe5DMFwAHaGv&pid=Api&P=0&h=180"),
+                                            "https://tse1.mm.bing.net/th?id=OIP.zVsxx9pE2k-e6iTe5DMFwAHaGv&pid=Api&P=0&h=180",
+                                          ),
                                           radius: 60.r,
                                         ),
                                         SizedBox(
@@ -589,75 +626,79 @@ class _ClintsPageState extends State<ClintsPage> {
                                             // width: double.infinity,
                                             height: 40.h,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(7.r),
-                                                border:
-                                                    Border.all(color: kBlue)),
+                                              borderRadius:
+                                                  BorderRadius.circular(7.r),
+                                              border: Border.all(color: kBlue),
+                                            ),
                                             child: TextButton(
-                                                onPressed: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return AlertDialog(
-                                                        title: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                              "Edit Client",
-                                                              style: GoogleFonts
-                                                                  .urbanist(
-                                                                color: kBlack,
-                                                                fontSize: 18.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "Edit Client",
+                                                            style: GoogleFonts
+                                                                .urbanist(
+                                                              color: kBlack,
+                                                              fontSize: 18.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
                                                             ),
-                                                            const Icon(
-                                                              Icons.close,
-                                                              color: kGrey,
-                                                            )
-                                                          ],
+                                                          ),
+                                                          const Icon(
+                                                            Icons.close,
+                                                            color: kGrey,
+                                                          )
+                                                        ],
+                                                      ),
+                                                      backgroundColor:
+                                                          const Color(
+                                                        0xfff8f8f8,
+                                                      ),
+                                                      content:
+                                                          SingleChildScrollView(
+                                                        child: SizedBox(
+                                                          width: MediaQuery.of(
+                                                                    context,
+                                                                  ).size.width >
+                                                                  900
+                                                              ? 400
+                                                              : MediaQuery.of(
+                                                                    context,
+                                                                  ).size.width *
+                                                                  0.8,
+                                                          child:
+                                                              const EditClient(),
                                                         ),
-                                                        backgroundColor:
-                                                            Color(0xfff8f8f8),
-                                                        content:
-                                                            SingleChildScrollView(
-                                                          child: SizedBox(
-                                                              width: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width >
-                                                                      900
-                                                                  ? 400
-                                                                  : MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.8,
-                                                              child:
-                                                                  const EditClient()),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.edit_note_outlined,
-                                                      color: kBlue,
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.edit_note_outlined,
+                                                    color: kBlue,
+                                                  ),
+                                                  Text(
+                                                    "Edit",
+                                                    style: urbanist600(
+                                                      kBlue,
+                                                      14,
                                                     ),
-                                                    Text(
-                                                      "Edit",
-                                                      style: urbanist600(
-                                                          kBlue, 14),
-                                                    )
-                                                  ],
-                                                )),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -688,13 +729,14 @@ class _ClintsPageState extends State<ClintsPage> {
                                           style: urbanist400(kdescription, 12),
                                         ),
                                         Visibility(
-                                            visible: MediaQuery.of(context)
-                                                    .size
-                                                    .width <
-                                                501,
-                                            child: SizedBox(
-                                              height: 20.h,
-                                            )),
+                                          visible: MediaQuery.of(context)
+                                                  .size
+                                                  .width <
+                                              501,
+                                          child: SizedBox(
+                                            height: 20.h,
+                                          ),
+                                        ),
                                         SizedBox(
                                           height: 10.h,
                                         ),
@@ -735,7 +777,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                         ),
                                       ],
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Visibility(
                                       visible:
                                           MediaQuery.of(context).size.width >
@@ -744,72 +786,71 @@ class _ClintsPageState extends State<ClintsPage> {
                                         // width: double.infinity,
                                         height: 40.h,
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7.r),
-                                            border: Border.all(color: kBlue)),
+                                          borderRadius:
+                                              BorderRadius.circular(7.r),
+                                          border: Border.all(color: kBlue),
+                                        ),
                                         child: TextButton(
-                                            onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          "Edit Client",
-                                                          style: GoogleFonts
-                                                              .urbanist(
-                                                            color: kBlack,
-                                                            fontSize: 18.sp,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "Edit Client",
+                                                        style: GoogleFonts
+                                                            .urbanist(
+                                                          color: kBlack,
+                                                          fontSize: 18.sp,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
-                                                        const Icon(
-                                                          Icons.close,
-                                                          color: kGrey,
-                                                        )
-                                                      ],
+                                                      ),
+                                                      const Icon(
+                                                        Icons.close,
+                                                        color: kGrey,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  backgroundColor:
+                                                      const Color(0xfff8f8f8),
+                                                  content:
+                                                      SingleChildScrollView(
+                                                    child: SizedBox(
+                                                      width: MediaQuery.of(
+                                                                context,
+                                                              ).size.width >
+                                                              900
+                                                          ? 400
+                                                          : MediaQuery.of(
+                                                                context,
+                                                              ).size.width *
+                                                              0.8,
+                                                      child: const EditClient(),
                                                     ),
-                                                    backgroundColor:
-                                                        Color(0xfff8f8f8),
-                                                    content:
-                                                        SingleChildScrollView(
-                                                      child: SizedBox(
-                                                          width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width >
-                                                                  900
-                                                              ? 400
-                                                              : MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.8,
-                                                          child:
-                                                              const EditClient()),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Row(
-                                              children: [
-                                                const Icon(
-                                                  Icons.edit_note_outlined,
-                                                  color: kBlue,
-                                                ),
-                                                Text(
-                                                  "Edit",
-                                                  style: urbanist600(kBlue, 14),
-                                                )
-                                              ],
-                                            )),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.edit_note_outlined,
+                                                color: kBlue,
+                                              ),
+                                              Text(
+                                                "Edit",
+                                                style: urbanist600(kBlue, 14),
+                                              )
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -836,15 +877,17 @@ class _ClintsPageState extends State<ClintsPage> {
                                         dividerColor: klines,
                                         tabs: [
                                           Tab(
-                                              icon: Text(
-                                            'All',
-                                          )),
+                                            icon: Text(
+                                              'All',
+                                            ),
+                                          ),
                                           Tab(icon: Text('Notes')),
                                           Tab(
-                                              icon: Text(
-                                            'Appointments',
-                                            // maxLines: 1,
-                                          )),
+                                            icon: Text(
+                                              'Appointments',
+                                              // maxLines: 1,
+                                            ),
+                                          ),
                                           Tab(icon: Text('Photos')),
                                         ],
                                       ),
@@ -868,36 +911,44 @@ class _ClintsPageState extends State<ClintsPage> {
                                                             Padding(
                                                               padding: EdgeInsets
                                                                   .symmetric(
-                                                                      horizontal:
-                                                                          5.w),
+                                                                horizontal: 5.w,
+                                                              ),
                                                               child: Row(
                                                                 children: [
                                                                   CircleAvatar(
                                                                     radius:
                                                                         30.r,
                                                                     backgroundImage:
-                                                                        NetworkImage(
-                                                                            "https://tse3.mm.bing.net/th?id=OIP.ZqRQho6x1d-WhyN6LoVLggHaJQ&pid=Api&P=0&h=180"),
+                                                                        const NetworkImage(
+                                                                      "https://tse3.mm.bing.net/th?id=OIP.ZqRQho6x1d-WhyN6LoVLggHaJQ&pid=Api&P=0&h=180",
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
-                                                                      width:
-                                                                          5.w),
+                                                                    width: 5.w,
+                                                                  ),
                                                                   Container(
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.r),
-                                                                      color: const Color(
-                                                                          0xffCED2FF),
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                        20.r,
+                                                                      ),
+                                                                      color:
+                                                                          const Color(
+                                                                        0xffCED2FF,
+                                                                      ),
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal: 5
-                                                                              .w,
-                                                                          vertical:
-                                                                              5.h),
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .symmetric(
+                                                                        horizontal:
+                                                                            5.w,
+                                                                        vertical:
+                                                                            5.h,
+                                                                      ),
                                                                       child:
                                                                           Row(
                                                                         children: [
@@ -919,12 +970,14 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  Spacer(),
+                                                                  const Spacer(),
                                                                   Text(
                                                                     "24 April 2023",
-                                                                    style: urbanist400(
-                                                                        kdescription,
-                                                                        14),
+                                                                    style:
+                                                                        urbanist400(
+                                                                      kdescription,
+                                                                      14,
+                                                                    ),
                                                                   )
                                                                 ],
                                                               ),
@@ -953,8 +1006,8 @@ class _ClintsPageState extends State<ClintsPage> {
                                                         Padding(
                                                           padding: EdgeInsets
                                                               .symmetric(
-                                                                  horizontal:
-                                                                      5.w),
+                                                            horizontal: 5.w,
+                                                          ),
                                                           child: Column(
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
@@ -972,18 +1025,23 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.r),
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                        20.r,
+                                                                      ),
                                                                       color:
                                                                           kdisable,
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal: 5
-                                                                              .w,
-                                                                          vertical:
-                                                                              5.h),
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .symmetric(
+                                                                        horizontal:
+                                                                            5.w,
+                                                                        vertical:
+                                                                            5.h,
+                                                                      ),
                                                                       child:
                                                                           Row(
                                                                         children: [
@@ -1007,9 +1065,11 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                   ),
                                                                   Text(
                                                                     "24 April 2023",
-                                                                    style: urbanist400(
-                                                                        kdescription,
-                                                                        14),
+                                                                    style:
+                                                                        urbanist400(
+                                                                      kdescription,
+                                                                      14,
+                                                                    ),
                                                                   )
                                                                 ],
                                                               ),
@@ -1022,9 +1082,11 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                                style: urbanist400(
-                                                                    kdescription,
-                                                                    12),
+                                                                style:
+                                                                    urbanist400(
+                                                                  kdescription,
+                                                                  12,
+                                                                ),
                                                               ),
                                                               SizedBox(
                                                                 height: 10.h,
@@ -1054,13 +1116,13 @@ class _ClintsPageState extends State<ClintsPage> {
                                                       return Padding(
                                                         padding:
                                                             EdgeInsets.only(
-                                                                right: 3.w),
+                                                          right: 3.w,
+                                                        ),
                                                         child: Container(
                                                           // height: 180.h,
                                                           width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width >
+                                                                    context,
+                                                                  ).size.width >
                                                                   700
                                                               ? 110.w
                                                               : MediaQuery.of(context)
@@ -1074,7 +1136,8 @@ class _ClintsPageState extends State<ClintsPage> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        10.r),
+                                                              10.r,
+                                                            ),
                                                             color: kselected,
                                                           ),
                                                           child: Column(
@@ -1088,8 +1151,9 @@ class _ClintsPageState extends State<ClintsPage> {
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                        horizontal:
-                                                                            7.w),
+                                                                  horizontal:
+                                                                      7.w,
+                                                                ),
                                                                 child: Row(
                                                                   children: [
                                                                     CircleAvatar(
@@ -1097,7 +1161,8 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                           20.r,
                                                                       backgroundImage:
                                                                           const NetworkImage(
-                                                                              "https://tse1.mm.bing.net/th?id=OIP.8UqOTLl0knNXrmb8iSs8KwHaHw&pid=Api&P=0&h=180"),
+                                                                        "https://tse1.mm.bing.net/th?id=OIP.8UqOTLl0knNXrmb8iSs8KwHaHw&pid=Api&P=0&h=180",
+                                                                      ),
                                                                     ),
                                                                     SizedBox(
                                                                       width:
@@ -1110,9 +1175,11 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                       children: [
                                                                         Text(
                                                                           "Akeba Thomson",
-                                                                          style: urbanist500(
-                                                                              kBlack,
-                                                                              14),
+                                                                          style:
+                                                                              urbanist500(
+                                                                            kBlack,
+                                                                            14,
+                                                                          ),
                                                                           overflow:
                                                                               TextOverflow.ellipsis,
                                                                           maxLines:
@@ -1141,7 +1208,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                         )
                                                                       ],
                                                                     ),
-                                                                    Spacer(),
+                                                                    const Spacer(),
                                                                     Visibility(
                                                                       visible: MediaQuery.of(context)
                                                                               .size
@@ -1179,25 +1246,31 @@ class _ClintsPageState extends State<ClintsPage> {
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                        horizontal:
-                                                                            7.w),
+                                                                  horizontal:
+                                                                      7.w,
+                                                                ),
                                                                 child: Text(
-                                                                    "Services",
-                                                                    style: urbanist500(
-                                                                        kBlack,
-                                                                        14)),
+                                                                  "Services",
+                                                                  style:
+                                                                      urbanist500(
+                                                                    kBlack,
+                                                                    14,
+                                                                  ),
+                                                                ),
                                                               ),
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                        horizontal:
-                                                                            7.w),
+                                                                  horizontal:
+                                                                      7.w,
+                                                                ),
                                                                 child: Text(
                                                                   "Services hair cut, hair color, shawing",
                                                                   style:
                                                                       urbanist400(
-                                                                          kBlack,
-                                                                          12),
+                                                                    kBlack,
+                                                                    12,
+                                                                  ),
                                                                 ),
                                                               ),
                                                               SizedBox(
@@ -1206,60 +1279,85 @@ class _ClintsPageState extends State<ClintsPage> {
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                        horizontal:
-                                                                            7.w),
+                                                                  horizontal:
+                                                                      7.w,
+                                                                ),
                                                                 child: Row(
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Text(
-                                                                        "20-04-2023",
-                                                                        style: urbanist500(
-                                                                            kBlack,
-                                                                            14)),
+                                                                      "20-04-2023",
+                                                                      style:
+                                                                          urbanist500(
+                                                                        kBlack,
+                                                                        14,
+                                                                      ),
+                                                                    ),
                                                                     Text(
-                                                                        "\$120.00",
-                                                                        style: urbanist500(
-                                                                            kBlack,
-                                                                            14)),
+                                                                      "\$120.00",
+                                                                      style:
+                                                                          urbanist500(
+                                                                        kBlack,
+                                                                        14,
+                                                                      ),
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                        horizontal:
-                                                                            7.w),
+                                                                  horizontal:
+                                                                      7.w,
+                                                                ),
                                                                 child: Row(
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Text(
-                                                                        "12:30 PM",
-                                                                        style: urbanist400(
-                                                                            kdescription,
-                                                                            10)),
-                                                                    Text("Paid",
-                                                                        style: urbanist400(
-                                                                            kdescription,
-                                                                            10)),
+                                                                      "12:30 PM",
+                                                                      style:
+                                                                          urbanist400(
+                                                                        kdescription,
+                                                                        10,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      "Paid",
+                                                                      style:
+                                                                          urbanist400(
+                                                                        kdescription,
+                                                                        10,
+                                                                      ),
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
-                                                              Spacer(),
+                                                              const Spacer(),
                                                               Container(
                                                                 height: 10.h,
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .red,
-                                                                    borderRadius: BorderRadius.only(
-                                                                        bottomLeft:
-                                                                            Radius.circular(10
-                                                                                .r),
-                                                                        bottomRight:
-                                                                            Radius.circular(10.r))),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .red,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius
+                                                                            .circular(
+                                                                      10.r,
+                                                                    ),
+                                                                    bottomRight:
+                                                                        Radius
+                                                                            .circular(
+                                                                      10.r,
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                               )
                                                             ],
                                                           ),
@@ -1280,14 +1378,14 @@ class _ClintsPageState extends State<ClintsPage> {
                                                       return Padding(
                                                         padding:
                                                             EdgeInsets.only(
-                                                                right: 3.w),
+                                                          right: 3.w,
+                                                        ),
                                                         child: Container(
                                                           height: 120.h,
                                                           //
                                                           width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width >
+                                                                    context,
+                                                                  ).size.width >
                                                                   1200
                                                               ? 40.w
                                                               : MediaQuery.of(context)
@@ -1301,16 +1399,22 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                           500
                                                                       ? 80.w
                                                                       : 140.w,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.r),
-                                                              image: const DecorationImage(
-                                                                  image: NetworkImage(
-                                                                      "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180"),
-                                                                  fit: BoxFit
-                                                                      .cover)),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.r,
+                                                            ),
+                                                            image:
+                                                                const DecorationImage(
+                                                              image:
+                                                                  NetworkImage(
+                                                                "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180",
+                                                              ),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
                                                         ),
                                                       );
                                                     },
@@ -1328,7 +1432,8 @@ class _ClintsPageState extends State<ClintsPage> {
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
-                                                              horizontal: 5.w),
+                                                        horizontal: 5.w,
+                                                      ),
                                                       child: Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -1348,16 +1453,20 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              20.r),
+                                                                    20.r,
+                                                                  ),
                                                                   color:
                                                                       kdisable,
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.symmetric(
-                                                                      horizontal:
-                                                                          5.w,
-                                                                      vertical:
-                                                                          5.h),
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .symmetric(
+                                                                    horizontal:
+                                                                        5.w,
+                                                                    vertical:
+                                                                        5.h,
+                                                                  ),
                                                                   child: Row(
                                                                     children: [
                                                                       const Icon(
@@ -1372,9 +1481,11 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                       ),
                                                                       Text(
                                                                         "Note",
-                                                                        style: urbanist500(
-                                                                            kBlack,
-                                                                            14),
+                                                                        style:
+                                                                            urbanist500(
+                                                                          kBlack,
+                                                                          14,
+                                                                        ),
                                                                       )
                                                                     ],
                                                                   ),
@@ -1382,9 +1493,11 @@ class _ClintsPageState extends State<ClintsPage> {
                                                               ),
                                                               Text(
                                                                 "24 April 2023",
-                                                                style: urbanist400(
-                                                                    kdescription,
-                                                                    14),
+                                                                style:
+                                                                    urbanist400(
+                                                                  kdescription,
+                                                                  14,
+                                                                ),
                                                               )
                                                             ],
                                                           ),
@@ -1398,8 +1511,9 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                 TextOverflow
                                                                     .ellipsis,
                                                             style: urbanist400(
-                                                                kdescription,
-                                                                12),
+                                                              kdescription,
+                                                              12,
+                                                            ),
                                                           ),
                                                           SizedBox(
                                                             height: 10.h,
@@ -1415,7 +1529,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                               },
                                             ),
                                             // Content for the third tab
-                                            Center(child: Text('Tab 3')),
+                                            const Center(child: Text('Tab 3')),
                                             // Content for the fourth tab
                                             GridView.builder(
                                               itemCount: 20,
@@ -1427,18 +1541,19 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 crossAxisCount: 4,
                                                 crossAxisSpacing: 10,
                                                 mainAxisSpacing: 10,
-                                                childAspectRatio: 1,
                                               ),
                                               itemBuilder: (context, index) {
                                                 return Container(
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            10.r),
+                                                      10.r,
+                                                    ),
                                                     image:
                                                         const DecorationImage(
                                                       image: NetworkImage(
-                                                          "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180"),
+                                                        "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180",
+                                                      ),
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -1463,7 +1578,7 @@ class _ClintsPageState extends State<ClintsPage> {
                   )
                 ],
               ),
-              Footer(),
+              const Footer(),
             ],
           ),
         ),
@@ -1479,20 +1594,23 @@ Widget sideBar(BuildContext context) {
         decoration: InputDecoration(
           fillColor: kselected,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(80.r),
-              borderSide: const BorderSide(
-                color: klines,
-              )),
+            borderRadius: BorderRadius.circular(80.r),
+            borderSide: const BorderSide(
+              color: klines,
+            ),
+          ),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(80.r),
-              borderSide: const BorderSide(
-                color: klines,
-              )),
+            borderRadius: BorderRadius.circular(80.r),
+            borderSide: const BorderSide(
+              color: klines,
+            ),
+          ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(80.r),
-              borderSide: const BorderSide(
-                color: klines,
-              )),
+            borderRadius: BorderRadius.circular(80.r),
+            borderSide: const BorderSide(
+              color: klines,
+            ),
+          ),
           prefixIcon: const Icon(
             Icons.search,
             color: kdescription,
@@ -1506,135 +1624,142 @@ Widget sideBar(BuildContext context) {
         height: 10.h,
       ),
       Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.r),
-              border: Border.all(color: klines)),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h),
-            child: Column(
-              children: [
-                ListView.builder(
-                  itemCount: 5,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5.w),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 20.r,
-                                    backgroundImage: const NetworkImage(
-                                        "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180"),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: klines),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          child: Column(
+            children: [
+              ListView.builder(
+                itemCount: 5,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 20.r,
+                                  backgroundImage: const NetworkImage(
+                                    "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180",
                                   ),
-                                  SizedBox(width: 5.w),
-                                  Text(
-                                    "Eleanor Pena",
-                                    style: urbanist400(kBlack, 14),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Spacer(),
-                                  BlackButton(context, "Invite", () {}),
-                                ],
-                              ),
+                                ),
+                                SizedBox(width: 5.w),
+                                Text(
+                                  "Eleanor Pena",
+                                  style: urbanist400(kBlack, 14),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const Spacer(),
+                                BlackButton(context, "Invite", () {}),
+                              ],
                             ),
-                            const Divider(
-                              color: klines,
-                            )
-                          ],
+                          ),
+                          const Divider(
+                            color: klines,
+                          )
+                        ],
+                      )
+                    ],
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "Add your clients and invite them to book an appointment",
+                textAlign: TextAlign.center,
+                style: urbanist600(
+                  kBlack,
+                  MediaQuery.of(context).size.width > 850 ? 20 : 16,
+                ),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Container(
+                  width: double.infinity,
+                  height: 50.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.r),
+                    color: kBlack,
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.person_add_alt,
+                          color: kWhite,
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text(
+                          "Add Clients From Contacts",
+                          style: urbanist500(kWhite, 12),
                         )
                       ],
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  "Add your clients and invite them to book an appointment",
-                  textAlign: TextAlign.center,
-                  style: urbanist600(kBlack,
-                      MediaQuery.of(context).size.width > 850 ? 20 : 16),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7.r),
-                      color: kBlack,
                     ),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.person_add_alt,
-                              color: kWhite,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "Add Clients From Contacts",
-                              style: urbanist500(kWhite, 12),
-                            )
-                          ],
-                        )),
                   ),
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7.r),
-                        border: Border.all(color: kBlack)),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.person_add_alt,
-                              color: kBlack,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "Add New Client",
-                              style: urbanist500(kBlack, 12),
-                            )
-                          ],
-                        )),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Container(
+                  width: double.infinity,
+                  height: 50.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.r),
+                    border: Border.all(),
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.person_add_alt,
+                          color: kBlack,
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text(
+                          "Add New Client",
+                          style: urbanist500(kBlack, 12),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Expanded(
-                        child: Container(
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  Expanded(
+                    child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        color: Color(0xffE0F3FD),
+                        color: const Color(0xffE0F3FD),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(3.w),
@@ -1655,15 +1780,16 @@ Widget sideBar(BuildContext context) {
                           ],
                         ),
                       ),
-                    )),
-                    SizedBox(
-                      width: 3.w,
                     ),
-                    Expanded(
-                        child: Container(
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Expanded(
+                    child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        color: Color(0xffFEF9ED),
+                        color: const Color(0xffFEF9ED),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(3.w),
@@ -1684,23 +1810,25 @@ Widget sideBar(BuildContext context) {
                           ],
                         ),
                       ),
-                    )),
-                    SizedBox(
-                      width: 5.w,
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  "Need help importing your client list? We can help.\nSend your client list Here",
-                  style: urbanist500(kBlack, 10),
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
-          )),
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Need help importing your client list? We can help.\nSend your client list Here",
+                style: urbanist500(kBlack, 10),
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        ),
+      ),
     ],
   );
 }
