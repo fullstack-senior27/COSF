@@ -42,7 +42,7 @@ class PricingDetails extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20.h,
+              height: 60.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -57,7 +57,7 @@ class PricingDetails extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 20.h,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -69,7 +69,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "  ",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -78,7 +78,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Cosmetropolis",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -87,7 +87,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Square",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -96,7 +96,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Acuity",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -105,7 +105,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "GlossGenius",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -114,7 +114,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Booksy",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -127,8 +127,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Monthly fee",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -136,8 +136,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -145,8 +145,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -154,8 +154,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$14/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -163,8 +163,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$24/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -172,8 +172,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$29.99/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -188,8 +188,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Online Profile",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -197,8 +197,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -242,8 +242,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Customizable calendar & scheduling tools",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -252,7 +252,7 @@ class PricingDetails extends StatelessWidget {
                                 "Free",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -295,8 +295,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Client relationship management tools",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -304,8 +304,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -313,8 +313,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Additional cost",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -329,8 +329,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Additional cost",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -353,8 +353,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Appointment reminders",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -362,8 +362,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -406,8 +406,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "No-show protection",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -415,8 +415,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -460,8 +460,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "No card on file and key-in fees",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -469,8 +469,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -513,8 +513,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Instant payouts* (deposits within minutes)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -522,8 +522,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -531,8 +531,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "1.5%",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -547,8 +547,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Same or next day deposits",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -556,8 +556,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Next day deposits",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -573,8 +573,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Instant payouts* (deposits within minutes)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -582,8 +582,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "ALWAYS FREE",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -591,26 +591,17 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "30 days (for premium plans)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
                             DataCell(
                               Text(
-                                "7 days)",
+                                "7 days",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                "14 days",
-                                style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -618,8 +609,17 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "14 days",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                "14 days",
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -638,7 +638,7 @@ class PricingDetails extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            if (MediaQuery.of(context).size.width > 600)
+            if (MediaQuery.of(context).size.width > 920)
               Container(
                 width: double.infinity,
                 height: 400.h,
@@ -662,13 +662,13 @@ class PricingDetails extends StatelessWidget {
                           children: [
                             Text(
                               "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
-                              style: GoogleFonts.urbanist(
+                              style: GoogleFonts.prata(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
                             SizedBox(
-                              height: 20.h,
+                              height: 50.h,
                             ),
                             Text(
                               "You can’t get that kind of exposure with just a booking app.",
@@ -701,14 +701,17 @@ class PricingDetails extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: 10.h,
+                              height: 13.h,
                             ),
-                            Text(
-                              "We triple the average beautician’s revenue in their first two years on the platform.",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.urbanist(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
+                            Padding(
+                              padding: EdgeInsets.all(8.w),
+                              child: Text(
+                                "We triple the average beautician’s revenue in their first two years on the platform.",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -727,7 +730,7 @@ class PricingDetails extends StatelessWidget {
             else
               Container(
                 width: double.infinity,
-                height: 400.h,
+                height: 490.h,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -743,39 +746,42 @@ class PricingDetails extends StatelessWidget {
                       Text(
                         "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.urbanist(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                        "You can’t get that kind of exposure with just a booking app.",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.urbanist(
+                        style: GoogleFonts.prata(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(
-                        height: 10.h,
+                        height: 14.h,
+                      ),
+                      Text(
+                        "You can’t get that kind of exposure with just a booking app.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.quicksand(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
                       ),
                       Image.asset(
                         "assets/images/payments_img1.png",
-                        height: 150.h,
+                        height: 250.h,
                         // width: 75.w,
                       ),
                       SizedBox(
-                        height: 10.h,
+                        height: 15.h,
                       ),
-                      Text(
-                        "We triple the average beautician’s revenue in their first two years on the platform.",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.urbanist(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w400,
+                      Padding(
+                        padding: EdgeInsets.all(8.w),
+                        child: Text(
+                          "We triple the average beautician’s revenue in their first two years on the platform.",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.urbanist(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],
@@ -783,23 +789,30 @@ class PricingDetails extends StatelessWidget {
                 ),
               ),
             SizedBox(
-              height: 20.h,
+              height: 40.h,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: MediaQuery.of(context).size.width > 920
+                  ? EdgeInsets.symmetric(horizontal: 30.w)
+                  : EdgeInsets.symmetric(horizontal: 10.w),
               child: Text(
                 "We’re home to THE largest network of consumers looking for personal services",
                 style: GoogleFonts.urbanist(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                 ),
+                textAlign: MediaQuery.of(context).size.width > 920
+                    ? TextAlign.left
+                    : TextAlign.center,
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: MediaQuery.of(context).size.width > 920
+                  ? EdgeInsets.symmetric(horizontal: 80.w)
+                  : EdgeInsets.symmetric(horizontal: 10.w),
               child: Text(
                 "In order to deliver the most secure experience and ensure you get paid, all payments are run through StyleSeat for 3% per transaction.",
                 textAlign: TextAlign.center,
@@ -810,7 +823,7 @@ class PricingDetails extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20.h,
+              height: 40.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -836,7 +849,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Cosmetropolis",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -845,7 +858,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Square",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -854,7 +867,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Acuity",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -863,7 +876,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "GlossGenius",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -872,7 +885,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Booksy",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -885,8 +898,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Promotes your profile to bring you new clients",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -936,8 +949,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Invests to drive Client traffic to their app/website via search engines, social media and TV",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -988,8 +1001,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Partners with influencers, content creators, and top consumer brands",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1039,8 +1052,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Gives you opportunities to get boosted to the top of search results",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1090,8 +1103,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Constantly optimizes your booking page behind-the-scenes to help convert more clients",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1141,8 +1154,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Offer Beautician loans ranging from \$1K-\$20K",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1192,8 +1205,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 'Provides your clients with "Style Now, Pay Later" option with Klarna.',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1243,8 +1256,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Clients can pay by tapping their card to your iPhone",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1294,8 +1307,8 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Dynamic pricing feature to earn more on your popular time slots",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -1343,103 +1356,6 @@ class PricingDetails extends StatelessWidget {
                   SizedBox(
                     height: 30.h,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: MediaQuery.of(context).size.width > 650
-                        ? Container(
-                            height: 250.h,
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.fitWidth,
-                                image: AssetImage(
-                                  "assets/images/pricing_banner.png",
-                                ),
-                              ),
-                            ),
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "No monthly contracts.",
-                                        style: GoogleFonts.urbanist(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      Text(
-                                        "No setup or cancellation fees.",
-                                        style: GoogleFonts.urbanist(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 20.h,
-                                      ),
-                                      BlackButton(
-                                        context,
-                                        "Join for Free",
-                                        () {},
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Expanded(child: SizedBox()),
-                              ],
-                            ),
-                          )
-                        : Align(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: kselected,
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 30.w,
-                                  vertical: 15.h,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "No monthly contracts.",
-                                      style: GoogleFonts.urbanist(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    Text(
-                                      "No setup or cancellation fees.",
-                                      style: GoogleFonts.urbanist(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20.h,
-                                    ),
-                                    BlackButton(
-                                      context,
-                                      "Join for Free",
-                                      () {},
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                  ),
                 ],
               ),
             ),
@@ -1447,7 +1363,7 @@ class PricingDetails extends StatelessWidget {
               height: 20.h,
             ),
             Container(
-              height: 400.h,
+              height: 420.h,
               width: double.infinity,
               color: const Color(0xfff0f0f0),
               child: Column(
@@ -1469,9 +1385,9 @@ class PricingDetails extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 20.w,
-                        vertical: 20.h,
+                        vertical: 30.h,
                       ),
-                      child: MediaQuery.of(context).size.width > 770
+                      child: MediaQuery.of(context).size.width > 910
                           ? Row(
                               children: [
                                 Expanded(
@@ -1488,7 +1404,7 @@ class PricingDetails extends StatelessWidget {
                                       child: Column(
                                         children: [
                                           SizedBox(
-                                            height: 20.h,
+                                            height: 25.h,
                                           ),
                                           Text(
                                             "Grow Your Clientele",
@@ -1499,15 +1415,90 @@ class PricingDetails extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                           ),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: 15.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 5.w,
+                                            ),
+                                            child: Text(
+                                              "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
+                                              style: GoogleFonts.urbanist(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 20.h,
                                           ),
                                           Text(
-                                            "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
+                                            "25% one-time commission",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          SizedBox(
+                                            width: 50.w,
+                                            child: BlackButton(
+                                              context,
+                                              "Join for Free",
+                                              () {},
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    // height: 300.h,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      border:
+                                          Border.all(width: 2, color: klines),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 25.h,
+                                          ),
+                                          Text(
+                                            "Grow Your Clientele",
+                                            style: GoogleFonts.urbanist(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                             textAlign: TextAlign.center,
+                                          ),
+                                          SizedBox(
+                                            height: 15.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 5.w,
+                                            ),
+                                            child: Text(
+                                              "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
+                                              style: GoogleFonts.urbanist(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
                                           ),
                                           SizedBox(
                                             height: 20.h,
@@ -1566,78 +1557,18 @@ class PricingDetails extends StatelessWidget {
                                           SizedBox(
                                             height: 10.h,
                                           ),
-                                          Text(
-                                            "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 5.w,
                                             ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(
-                                            height: 20.h,
-                                          ),
-                                          Text(
-                                            "25% one-time commission",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.w600,
+                                            child: Text(
+                                              "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
+                                              style: GoogleFonts.urbanist(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.center,
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          SizedBox(
-                                            width: 50.w,
-                                            child: BlackButton(
-                                              context,
-                                              "Join for Free",
-                                              () {},
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    // height: 300.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10.r),
-                                      border:
-                                          Border.all(width: 2, color: klines),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 20.h,
-                                          ),
-                                          Text(
-                                            "Grow Your Clientele",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
-                                          Text(
-                                            "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                            textAlign: TextAlign.center,
                                           ),
                                           SizedBox(
                                             height: 20.h,
@@ -1671,73 +1602,89 @@ class PricingDetails extends StatelessWidget {
                           : PageView.builder(
                               itemCount: 3,
                               itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        // height: 300.h,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10.r),
-                                          border: Border.all(
-                                            width: 2,
-                                            color: klines,
+                                return Padding(
+                                  padding: EdgeInsets.only(right: 15.w),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          // height: 300.h,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                            border: Border.all(
+                                              width: 2,
+                                              color: klines,
+                                            ),
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                height: 20.h,
-                                              ),
-                                              Text(
-                                                "Grow Your Clientele",
-                                                style: GoogleFonts.urbanist(
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w600,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 20.h,
                                                 ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              SizedBox(
-                                                height: 10.h,
-                                              ),
-                                              Text(
-                                                "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
-                                                style: GoogleFonts.urbanist(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
+                                                Text(
+                                                  "Grow Your Clientele",
+                                                  style: GoogleFonts.urbanist(
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                  textAlign: TextAlign.center,
                                                 ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              SizedBox(
-                                                height: 20.h,
-                                              ),
-                                              Text(
-                                                "25% one-time commission",
-                                                style: GoogleFonts.urbanist(
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w600,
+                                                SizedBox(
+                                                  height: 10.h,
                                                 ),
-                                              ),
-                                              const Spacer(),
-                                              Flexible(
-                                                child: BlackButton(
-                                                  context,
-                                                  "Join for Free",
-                                                  () {},
+                                                Padding(
+                                                  padding: MediaQuery.of(
+                                                            context,
+                                                          ).size.width >
+                                                          700
+                                                      ? EdgeInsets.symmetric(
+                                                          horizontal: 10.w,
+                                                        )
+                                                      : EdgeInsets.symmetric(
+                                                          horizontal: 5.w,
+                                                        ),
+                                                  child: Text(
+                                                    "We cover the upfront cost of all your advertising. If one of our campaigns successfully drives you a new client, you’ll have the option to accept or deny them. If you accept, you pay a one-time commission and that client is added to your client list.",
+                                                    style: GoogleFonts.urbanist(
+                                                      fontSize: 12.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 10.h,
-                                              ),
-                                            ],
+                                                SizedBox(
+                                                  height: 20.h,
+                                                ),
+                                                Text(
+                                                  "25% one-time commission",
+                                                  style: GoogleFonts.urbanist(
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                const Spacer(),
+                                                Flexible(
+                                                  child: BlackButton(
+                                                    context,
+                                                    "Join for Free",
+                                                    () {},
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 );
                               },
                             ),
@@ -1749,6 +1696,20 @@ class PricingDetails extends StatelessWidget {
             ),
             SizedBox(
               height: 30.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: GestureDetector(
+                onTap: () => {},
+                child: Image.asset(
+                  "assets/images/price_banner.png",
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40.h,
             ),
             const Footer(),
           ],

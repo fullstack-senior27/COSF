@@ -310,15 +310,17 @@ class _HelpPageState extends State<HelpPage> {
                   ),
                   // search result section
                   ...List.generate(
-                    3,
+                    2,
                     (index) => Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 10.h),
+                        horizontal: 20.w,
+                        vertical: 10.h,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "For Clients",
+                            index == 0 ? "For Clients" : "For Beauticians",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
                               fontSize: 16.sp,
@@ -330,11 +332,19 @@ class _HelpPageState extends State<HelpPage> {
                           ),
                           GridView.count(
                             crossAxisCount:
-                                MediaQuery.of(context).size.width > 700 ? 3 : 1,
+                                MediaQuery.of(context).size.width > 1060
+                                    ? 3
+                                    : MediaQuery.of(context).size.width > 600
+                                        ? 2
+                                        : 1,
                             crossAxisSpacing: 10.w,
                             mainAxisSpacing: 10.w,
                             childAspectRatio:
-                                MediaQuery.of(context).size.width > 700 ? 2 : 3,
+                                MediaQuery.of(context).size.width > 700
+                                    ? 2
+                                    : MediaQuery.of(context).size.width > 600
+                                        ? 1.2
+                                        : 3,
                             shrinkWrap: true,
                             children: [
                               ...List.generate(
@@ -350,6 +360,8 @@ class _HelpPageState extends State<HelpPage> {
                                     ),
                                   ),
                                   child: SingleChildScrollView(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     child: Container(
                                       padding: EdgeInsets.symmetric(
                                         vertical: 10.h,
@@ -371,9 +383,9 @@ class _HelpPageState extends State<HelpPage> {
                                             height: 10.h,
                                           ),
                                           ...List.generate(
-                                            5,
+                                            3,
                                             (index) => Text(
-                                              "${index + 1}. Using the Cosmetropolis Help Center",
+                                              " • Using the Cosmetropolis Help Center",
                                               style: GoogleFonts.urbanist(
                                                 color: kBlack,
                                                 fontSize: 12.sp,

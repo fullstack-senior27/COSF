@@ -1,20 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_preview.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:readmore/readmore.dart';
-
-import '../../widgets/profile_preview.dart';
 
 class ServiceDetailsPage extends StatefulWidget {
   const ServiceDetailsPage({super.key});
@@ -26,6 +25,7 @@ class ServiceDetailsPage extends StatefulWidget {
 class _ServiceDetailsPageState extends State<ServiceDetailsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
+
   DateTime today = DateTime.now();
   List<String> items = [
     "View All",
@@ -45,6 +45,14 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
     "Beautician Growth",
     "Beard Style"
   ];
+  int selectedScreen = 0;
+  List<Widget> screens = [
+    const ServiceI(),
+    const ReviewI(),
+    const aboutI(),
+    const productI(),
+  ];
+
   int selected = 0;
   void _onDaySelected(DateTime day, DateTime focussedDay) {
     setState(() {
@@ -53,6 +61,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
     // filterData["date"] = day.toString();
   }
 
+  @override
   initState() {
     super.initState();
     _tabcontroller = TabController(length: 4, vsync: this);
@@ -472,17 +481,24 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                   SizedBox(
                     height: 20.h,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width > 950
+                        ? 120.w
+                        : double.infinity,
                     child: TabBar(
                       physics: const BouncingScrollPhysics(),
                       dividerColor: kGrey.withOpacity(0.5),
-                      isScrollable: true,
+                      // isScrollable: true,
                       indicatorSize: TabBarIndicatorSize.tab,
                       controller: _tabcontroller,
                       indicatorColor: kBlack,
                       labelColor: kBlack,
                       unselectedLabelColor: kGrey,
+                      onTap: (value) {
+                        setState(() {
+                          selectedScreen = value;
+                        });
+                      },
                       labelStyle: urbanist600(kBlack, 12),
                       unselectedLabelStyle: urbanist400(kGrey, 12),
                       tabs: const [
@@ -494,125 +510,152 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                     ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 40.h,
                   ),
-                  SizedBox(
-                      height: 750.h,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: TabBarView(
-                                controller: _tabcontroller,
-                                children: [
-                                  //Services tab
-                                  SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        service(),
-                                        Visibility(
-                                            visible: MediaQuery.of(context)
-                                                    .size
-                                                    .width <
-                                                700,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 20.h),
-                                              child: Sidebar(),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  //Review tab
-                                  SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ProfileReviews(),
-                                        Visibility(
-                                            visible: MediaQuery.of(context)
-                                                    .size
-                                                    .width <
-                                                700,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 20.h),
-                                              child: Sidebar(),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  //About tab
-                                  SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "About Me",
-                                          style: urbanist600(kBlack, 20),
-                                        ),
-                                        SizedBox(
-                                          height: 20.h,
-                                        ),
-                                        Text(
-                                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
-                                          style: urbanist400(kdescription, 14),
-                                        ),
-                                        Visibility(
-                                            visible: MediaQuery.of(context)
-                                                    .size
-                                                    .width <
-                                                700,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 20.h),
-                                              child: const Sidebar(),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        ProductsCard(),
-                                        Visibility(
-                                            visible: MediaQuery.of(context)
-                                                    .size
-                                                    .width <
-                                                700,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 20.h),
-                                              child: const Sidebar(),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ]),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 700,
-                            child: SizedBox(
-                              width: 10.w,
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 700,
-                            child: const Expanded(
-                              flex: 2,
-                              child: SingleChildScrollView(child: Sidebar()),
-                            ),
-                          )
-                        ],
-                      )),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: screens[selectedScreen],
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width > 700,
+                        child: SizedBox(
+                          width: 10.w,
+                        ),
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width > 700,
+                        child: const Expanded(
+                          flex: 2,
+                          child: SingleChildScrollView(child: Sidebar()),
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
             const Footer()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class productI extends StatelessWidget {
+  const productI({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const ProductsCard(),
+          Visibility(
+            visible: MediaQuery.of(context).size.width < 700,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 20.h,
+              ),
+              child: const Sidebar(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class aboutI extends StatelessWidget {
+  const aboutI({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "About Me",
+            style: urbanist600(kBlack, 20),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
+            style: urbanist400(kdescription, 14),
+          ),
+          Visibility(
+            visible: MediaQuery.of(context).size.width < 700,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 20.h,
+              ),
+              child: const Sidebar(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ReviewI extends StatelessWidget {
+  const ReviewI({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const ProfileReviews(),
+          Visibility(
+            visible: MediaQuery.of(context).size.width < 700,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 20.h,
+              ),
+              child: const Sidebar(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ServiceI extends StatelessWidget {
+  const ServiceI({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const service(),
+          Visibility(
+            visible: MediaQuery.of(context).size.width < 700,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 20.h,
+              ),
+              child: const Sidebar(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -646,6 +689,7 @@ class Sidebar extends StatelessWidget {
               ),
               child: FlutterMap(
                 options: MapOptions(
+                  enableScrollWheel: false,
                   center: LatLng(
                     22.57290731661063,
                     88.43274351134704,
@@ -761,6 +805,9 @@ class Sidebar extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(
+            height: 20.h,
+          )
         ],
       ),
     );
@@ -781,12 +828,12 @@ class service extends StatelessWidget {
           "Book online for an appointment at hairstyle",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(
-          height: 20.h,
+          height: 5.h,
         ),
         Text(
           "24h Immediate confirmation",
@@ -803,23 +850,23 @@ class service extends StatelessWidget {
           "Choose your service",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(
-          height: 20.h,
+          height: 5.h,
         ),
         Text(
           "Highlighted service",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 15.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w400,
           ),
         ),
         SizedBox(
-          height: 10.h,
+          height: 30.h,
         ),
         ...List.generate(
           10,
@@ -898,7 +945,7 @@ class service extends StatelessWidget {
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                GestureDetector(
+                                InkWell(
                                   onTap: () {
                                     showDialog(
                                       context: context,
@@ -916,15 +963,21 @@ class service extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              const Icon(
-                                                Icons.close,
-                                                color: kGrey,
+                                              IconButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                icon: const Icon(
+                                                  Icons.close,
+                                                  color: kGrey,
+                                                ),
                                               )
                                             ],
                                           ),
-                                          backgroundColor: Color(0xfff8f8f8),
+                                          backgroundColor:
+                                              const Color(0xfff8f8f8),
                                           content: const SingleChildScrollView(
-                                            child: const SelectDate(),
+                                            child: SelectDate(),
                                           ),
                                         );
                                       },
@@ -975,7 +1028,7 @@ class service extends StatelessWidget {
                           SizedBox(
                             width: 5.w,
                           ),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               showDialog(
                                 context: context,
@@ -999,9 +1052,9 @@ class service extends StatelessWidget {
                                         )
                                       ],
                                     ),
-                                    backgroundColor: Color(0xfff8f8f8),
+                                    backgroundColor: const Color(0xfff8f8f8),
                                     content: const SingleChildScrollView(
-                                      child: const SelectDate(),
+                                      child: SelectDate(),
                                     ),
                                   );
                                 },

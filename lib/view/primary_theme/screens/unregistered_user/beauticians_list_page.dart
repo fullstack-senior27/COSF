@@ -37,6 +37,32 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: MediaQuery.of(context).size.width > 1000
+          ? null
+          : FloatingActionButton.extended(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.r),
+              ),
+              backgroundColor: kBlue,
+              onPressed: () {
+                filterBottomSheet(
+                  context,
+                  const BeauticiansFilterBottom(),
+                );
+              },
+              label: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: const Text("Filter"),
+              ),
+              icon: ImageIcon(
+                const AssetImage(
+                  "assets/icons/filter.png",
+                ),
+                color: kWhite,
+                size: 20.sp,
+              ),
+            ),
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
@@ -209,15 +235,15 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
                           borderRadius: BorderRadius.circular(0.r),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
-                          borderRadius: BorderRadius.circular(0.r),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                       ),
                     ),
@@ -238,13 +264,13 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
                           borderRadius: BorderRadius.circular(0.r),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
                           borderRadius: BorderRadius.circular(0.r),
                         ),
@@ -255,6 +281,12 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                     ),
                     TextField(
                       decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
                         hintText: "Date",
                         hintStyle: GoogleFonts.urbanist(
                           color: kGrey,
@@ -267,14 +299,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
                           borderRadius: BorderRadius.circular(0.r),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(0.r),
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
                         ),
                       ),
@@ -459,7 +491,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 30.h,
                                   ),
                                   ListView.builder(
                                     shrinkWrap: true,
@@ -512,73 +544,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                       SizedBox(
                                         width: 10.w,
                                       ),
-                                      Expanded(
-                                        child: Visibility(
-                                          visible: MediaQuery.of(context)
-                                                  .size
-                                                  .width <
-                                              701,
-                                          child: SizedBox(
-                                            height: 35.h,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: kBlue,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    7.r,
-                                                  ),
-                                                ),
-                                              ),
-                                              onPressed: () {
-                                                filterBottomSheet(
-                                                  context,
-                                                  const BeauticiansFilterBottom(),
-                                                );
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  ImageIcon(
-                                                    const AssetImage(
-                                                      "assets/icons/filter.png",
-                                                    ),
-                                                    color: kWhite,
-                                                    size: 20.sp,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 3.w,
-                                                  ),
-                                                  Visibility(
-                                                    visible:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width >
-                                                            400,
-                                                    child: Text(
-                                                      " Filter",
-                                                      style:
-                                                          GoogleFonts.urbanist(
-                                                        color: kWhite,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 14.sp,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 20.h,
                                   ),
                                   ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: 3,
                                     itemBuilder: (context, index) {
@@ -602,7 +575,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         ),
                       ),
                       Visibility(
-                        visible: MediaQuery.of(context).size.width > 700,
+                        visible: MediaQuery.of(context).size.width > 1000,
                         child: Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

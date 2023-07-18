@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -17,7 +20,36 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Image image1;
+  List<String> blogimg = [
+    "https://i.imgur.com/Yl5A28c.png",
+    "https://i.imgur.com/gax4BO9.png",
+    "https://i.imgur.com/n9ckE5M.png",
+    "https://t4.ftcdn.net/jpg/04/35/38/13/360_F_435381398_Z5mBaTW5HHD3748nsGRDsFQr0iXa893X.jpg"
+  ];
 
+  List<String> serviceimg = [
+    "https://i.imgur.com/p9IzdwU.png",
+    "https://i.imgur.com/Oif31Oz.png",
+    "https://i.imgur.com/z7l6NNF.png",
+    "https://i.imgur.com/MT1HxiT.png",
+    "https://i.imgur.com/4JvUJRQ.png",
+    "https://i.imgur.com/8CVJF3x.png",
+    "https://i.imgur.com/dAOC8GF.png",
+    "https://i.imgur.com/1F9IUEz.png",
+  ];
+
+  // create list of service of tittle images
+  List<String> servicetittle = [
+    "Braids",
+    "Natural hairs",
+    "Haircut",
+    "Men’s Haircut",
+    "Silk press",
+    "Nails",
+    "Eyelashes",
+    "Kids",
+  ];
+  int selectedIndexOfservice = 0;
   @override
   void initState() {
     super.initState();
@@ -45,7 +77,9 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
             children: [
               SizedBox(
-                  height: MediaQuery.of(context).size.height, child: image1),
+                height: MediaQuery.of(context).size.height,
+                child: image1,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -75,6 +109,7 @@ class _HomePageState extends State<HomePage> {
                   if (MediaQuery.of(context).size.width > 700)
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      // ignore: use_decorated_box
                       child: Container(
                         decoration: BoxDecoration(
                           color: kWhite,
@@ -91,9 +126,14 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  suffixIcon: const Icon(
-                                    Icons.search,
-                                    color: kGrey,
+                                  suffixIcon: Padding(
+                                    padding: EdgeInsets.all(10.sp),
+                                    child: const ImageIcon(
+                                      AssetImage(
+                                        "assets/icons/search.png",
+                                      ),
+                                      color: Color.fromARGB(155, 97, 95, 95),
+                                    ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -129,9 +169,14 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  suffixIcon: const Icon(
-                                    Icons.location_on,
-                                    color: kGrey,
+                                  suffixIcon: Padding(
+                                    padding: EdgeInsets.all(10.sp),
+                                    child: const ImageIcon(
+                                      AssetImage(
+                                        "assets/icons/location.png",
+                                      ),
+                                      color: Color.fromARGB(155, 97, 95, 95),
+                                    ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -167,9 +212,14 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  suffixIcon: const Icon(
-                                    Icons.date_range,
-                                    color: kGrey,
+                                  suffixIcon: Padding(
+                                    padding: EdgeInsets.all(10.sp),
+                                    child: const ImageIcon(
+                                      AssetImage(
+                                        "assets/icons/calendar.png",
+                                      ),
+                                      color: Color.fromARGB(155, 97, 95, 95),
+                                    ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -237,13 +287,13 @@ class _HomePageState extends State<HomePage> {
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
                           ),
@@ -266,13 +316,13 @@ class _HomePageState extends State<HomePage> {
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
                           ),
@@ -295,10 +345,10 @@ class _HomePageState extends State<HomePage> {
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                                 borderSide: const BorderSide(
                                   color: kWhite,
                                 ),
@@ -313,7 +363,10 @@ class _HomePageState extends State<HomePage> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(
-                                  vertical: 15.h,
+                                  vertical:
+                                      MediaQuery.of(context).size.width > 700
+                                          ? 15.h
+                                          : 16.h,
                                 ),
                                 backgroundColor: kBlue,
                                 elevation: 0,
@@ -340,64 +393,107 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 50.h,
           ),
+          Image.asset(
+            "assets/images/wwo_img.png",
+            fit: BoxFit.contain,
+            height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
+          ),
+          SizedBox(
+            height: 50.h,
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: GridView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: MediaQuery.of(context).size.width > 720 ? 4 : 2,
+                crossAxisCount: MediaQuery.of(context).size.width > 765
+                    ? 4
+                    : MediaQuery.of(context).size.width > 360
+                        ? 2
+                        : 1,
                 crossAxisSpacing: 15.w,
                 mainAxisSpacing: 15.w,
-                childAspectRatio: MediaQuery.of(context).size.width > 720
-                    ? 0.62
-                    : MediaQuery.of(context).size.width > 360
-                        ? 0.7
-                        : 0.8,
+                childAspectRatio: MediaQuery.of(context).size.width > 1300
+                    ? 0.68
+                    : MediaQuery.of(context).size.width > 760
+                        ? MediaQuery.of(context).size.width > 700
+                            ? 0.62
+                            : 0.8
+                        : MediaQuery.of(context).size.width > 360
+                            ? 0.7
+                            : 0.75,
               ),
               children: [
                 ...List.generate(
-                  8,
+                  serviceimg.length,
                   (index) => Padding(
                     padding: EdgeInsets.only(bottom: 15.w),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.r),
-                        border: Border.all(
-                          color: kdisable,
+                    child: InkWell(
+                      onHover: (value) {
+                        selectedIndexOfservice = index;
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3.r),
+                          border: Border.all(
+                            color: kdisable,
+                          ),
                         ),
-                      ),
-                      padding: EdgeInsets.all(10.r),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(0.r)),
-                                child: CachedNetworkImage(
-                                  imageUrl: "https://i.imgur.com/mrIm9g9.png",
-                                  width: double.infinity,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                        padding: EdgeInsets.all(10.r),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              clipBehavior: Clip.none,
+                              fit: StackFit.passthrough,
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(0.r)),
+                                  child: CachedNetworkImage(
+                                    imageUrl: serviceimg[index],
+                                    width: double.infinity,
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Text(
-                            "Braids",
-                            style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
+                                Visibility(
+                                  visible: selectedIndexOfservice == index
+                                      ? true
+                                      : false,
+                                  child: Positioned(
+                                    right: 10,
+                                    bottom: -15,
+                                    child: CircleAvatar(
+                                      backgroundColor: kBlue,
+                                      child: Center(
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.arrow_forward,
+                                            color: kWhite,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                              servicetittle[index],
+                              style: GoogleFonts.urbanist(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -405,8 +501,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          SizedBox(
+            height: 20.h,
+          ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: GestureDetector(
               onTap: () => {},
               child: Image.asset(
@@ -417,16 +516,24 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(
-            height: 25.h,
+            height: 40.h,
+          ),
+          Image.asset(
+            "assets/images/mcp_img.png",
+            fit: BoxFit.contain,
+            height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
+          ),
+          SizedBox(
+            height: 40.h,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: SizedBox(
               height: MediaQuery.of(context).size.width > 700 ? 300.h : 250.h,
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: 100,
+                itemCount: blogimg.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     hoverColor: Colors.transparent,
@@ -443,12 +550,11 @@ class _HomePageState extends State<HomePage> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(5.r)),
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  "https://cdn.pixabay.com/photo/2015/08/23/06/03/dream-catcher-902508__480.jpg",
-                              height: MediaQuery.of(context).size.width > 700
-                                  ? 150.h
+                              imageUrl: blogimg[index],
+                              height: MediaQuery.of(context).size.width > 870
+                                  ? 180.h
                                   : 100.h,
-                              width: MediaQuery.of(context).size.width > 700
+                              width: MediaQuery.of(context).size.width > 870
                                   ? 100.w
                                   : 170.w,
                               fit: BoxFit.fill,

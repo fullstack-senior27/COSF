@@ -1,20 +1,22 @@
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignupPage extends StatefulWidget {
+class SignupPage extends ConsumerStatefulWidget {
   const SignupPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  ConsumerState<SignupPage> createState() => _SignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignupPageState extends ConsumerState<SignupPage> {
   Country? selectedCountry;
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
@@ -301,7 +303,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         Align(
                           child: Text(
-                            "New to Cosmetropolis?",
+                            "Have you used Cosmetropolis before?",
                             style: GoogleFonts.urbanist(
                               fontSize: 14.sp,
                               color: kdarkPrime,
@@ -315,7 +317,9 @@ class _SignupPageState extends State<SignupPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => {},
+                            onPressed: () => {
+                              ref.read(styleProvider).setSelectedPage("Log In")
+                            },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,
                               surfaceTintColor: kWhite,
@@ -330,7 +334,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             ),
                             child: Text(
-                              "Create my Account",
+                              "To Sign In",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
                                 fontSize: 14.sp,

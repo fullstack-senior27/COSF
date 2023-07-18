@@ -27,14 +27,13 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //! here we can change the body based on the theme and the user type (login or unregister)
-      body: SafeArea(
-        child:
-            //EditProfile(),
-            DashboardFreePage(),
+    return const SafeArea(
+      bottom: false,
+      child: Scaffold(
+        //! here we can change the body based on the theme and the user type (login or unregister)
+        body: DashboardFreePage(),
+        // DashboardFreePage(),
       ),
-      // DashboardFreePage(),
     );
   }
 }

@@ -1,17 +1,21 @@
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FortgotPassPage extends StatefulWidget {
+class FortgotPassPage extends ConsumerStatefulWidget {
   const FortgotPassPage({super.key});
 
   @override
-  State<FortgotPassPage> createState() => _FortgotPassPageState();
+  ConsumerState<FortgotPassPage> createState() => _FortgotPassPageState();
 }
 
-class _FortgotPassPageState extends State<FortgotPassPage> {
+class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +23,53 @@ class _FortgotPassPageState extends State<FortgotPassPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            if (MediaQuery.of(context).size.width > 945)
+              SizedBox(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 20.h,
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: kBlack,
+                          size: 20.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              SizedBox(
+                height: 80.h,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 20.h,
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: kBlack,
+                          size: 20.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             Row(
               children: [
                 Expanded(
@@ -74,7 +125,9 @@ class _FortgotPassPageState extends State<FortgotPassPage> {
                         ),
 
                         TextButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Get.back(),
+                          },
                           child: Text(
                             " Back to login",
                             style: GoogleFonts.urbanist(
@@ -157,7 +210,12 @@ class _FortgotPassPageState extends State<FortgotPassPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => {},
+                            onPressed: () => {
+                              ref
+                                  .read(styleProvider)
+                                  .setSelectedPage("Sign Up"),
+                              Get.back()
+                            },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,
                               surfaceTintColor: kWhite,

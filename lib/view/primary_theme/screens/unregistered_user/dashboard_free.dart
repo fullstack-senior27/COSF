@@ -185,17 +185,20 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
           scaffoldKey: scaffoldKey,
         ),
       ),
-      body: navbarSection == "Home"
-          ? const HomePage()
-          : navbarSection == "I am a Beautician"
-              ? const LandingPage()
-              : navbarSection == "Sign Up"
-                  ? const SignupPage()
-                  : navbarSection == "Log In"
-                      ? const LoginPage()
-                      : navbarSection == "Help"
-                          ? const HelpPage()
-                          : const HomePage(),
+      body: SafeArea(
+        bottom: false,
+        child: navbarSection == "Home"
+            ? const HomePage()
+            : navbarSection == "I am a Beautician"
+                ? const LandingPage()
+                : navbarSection == "Sign Up"
+                    ? const SignupPage()
+                    : navbarSection == "Log In"
+                        ? const LoginPage()
+                        : navbarSection == "Help"
+                            ? const HelpPage()
+                            : const HomePage(),
+      ),
     );
   }
 }

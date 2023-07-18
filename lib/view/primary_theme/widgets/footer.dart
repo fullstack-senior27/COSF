@@ -25,6 +25,7 @@ class _FooterState extends State<Footer> {
             width: double.infinity,
             child: Column(
               children: [
+                SizedBox(height: 40.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,

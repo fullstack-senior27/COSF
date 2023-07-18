@@ -41,7 +41,8 @@ class BeauticiansListWebView extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: const DecorationImage(
-                          image: AssetImage("assets/images/blog_banner.png"),
+                          image:
+                              NetworkImage("https://i.imgur.com/i5H53SM.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -161,7 +162,8 @@ class BeauticiansListWebView extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 10.h),
                                     child: ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       scrollDirection: Axis.horizontal,
                                       itemCount: timings.length,
                                       itemBuilder: (context, index) {
@@ -335,7 +337,9 @@ class BeauticiansListWebView extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 5.r, horizontal: 7.w),
+                          vertical: 5.r,
+                          horizontal: 7.w,
+                        ),
                         child: Text(
                           "Choose",
                           style: GoogleFonts.urbanist(
@@ -394,7 +398,9 @@ class BeauticiansListWebView extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 5.r, horizontal: 7.w),
+                          vertical: 5.r,
+                          horizontal: 7.w,
+                        ),
                         child: Text(
                           "Choose",
                           style: GoogleFonts.urbanist(
@@ -453,7 +459,9 @@ class BeauticiansListWebView extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 5.r, horizontal: 7.w),
+                          vertical: 5.r,
+                          horizontal: 7.w,
+                        ),
                         child: Text(
                           "Choose",
                           style: GoogleFonts.urbanist(
@@ -655,7 +663,7 @@ class BeauticiansListMobView extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 10.h),
                         child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: timings.length,
                           itemBuilder: (context, index) {
@@ -765,6 +773,7 @@ class BeauticiansListMobView extends StatelessWidget {
               ),
 
               ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: 3,
                 itemBuilder: (context, index) {
@@ -1133,6 +1142,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                   color: klines,
                 ),
                 ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: servicesList.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -1363,6 +1373,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
 
   Widget mobRatingBar() {
     return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: 5,
       shrinkWrap: true,
       itemBuilder: (context, index) {

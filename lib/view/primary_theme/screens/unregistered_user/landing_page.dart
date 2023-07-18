@@ -412,105 +412,111 @@ class _LandingPageState extends ConsumerState<LandingPage> {
         color: Colors.white,
         image: DecorationImage(
           image: image1,
-          fit: BoxFit.fill,
+          fit: MediaQuery.of(context).size.width > 980
+              ? BoxFit.fill
+              : BoxFit.cover,
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 50.h,
           ),
-          SizedBox(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Partner with Cosmetropolis",
-                  style: GoogleFonts.quattrocento(
-                    color: kWhite,
-                    fontSize: 30.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  "• Be your own boss",
-                  style: GoogleFonts.urbanist(
-                    color: kWhite,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  "• Sign up as a beautician",
-                  style: GoogleFonts.urbanist(
-                    color: kWhite,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  "• and start earning",
-                  style: GoogleFonts.urbanist(
-                    color: kWhite,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  "• Sign up as a beautician",
-                  style: GoogleFonts.urbanist(
-                    color: kWhite,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  "• and start earning",
-                  style: GoogleFonts.urbanist(
-                    color: kWhite,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                AvatarStack(
-                  height: 40.sp,
-                  width: 200.sp,
-                  infoWidgetBuilder: (surplus) => CircleAvatar(
-                    backgroundColor: kBlue,
-                    child: Text(
-                      '+$surplus',
-                      style: const TextStyle(
-                        color: kWhite,
-                        fontWeight: FontWeight.bold,
-                      ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Partner with Cosmetropolis",
+                    style: GoogleFonts.quattrocento(
+                      color: kWhite,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  avatars: [
-                    for (var n = 0; n < 18; n++)
-                      const NetworkImage(
-                        'https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=',
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    "• Be your own boss",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    "• Sign up as a beautician",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    "• and start earning",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    "• Sign up as a beautician",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    "• and start earning",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  AvatarStack(
+                    height: 40.sp,
+                    width: 200.sp,
+                    infoWidgetBuilder: (surplus) => CircleAvatar(
+                      backgroundColor: kBlue,
+                      child: Text(
+                        '+$surplus',
+                        style: const TextStyle(
+                          color: kWhite,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                  ],
-                ),
-              ],
+                    ),
+                    avatars: [
+                      for (var n = 0; n < 18; n++)
+                        const NetworkImage(
+                          'https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=',
+                        ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

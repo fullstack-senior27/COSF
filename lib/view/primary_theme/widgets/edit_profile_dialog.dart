@@ -4,6 +4,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class ChangePasswordDialog extends StatelessWidget {
   const ChangePasswordDialog({super.key});
@@ -12,7 +13,7 @@ class ChangePasswordDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
-          ? 400
+          ? 500
           : MediaQuery.of(context).size.width * 0.7,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +42,6 @@ class ChangePasswordDialog extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(),
               ),
             ),
           ),
@@ -68,11 +68,10 @@ class ChangePasswordDialog extends StatelessWidget {
               hintStyle: urbanist400(kGrey, 14),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(color: kGrey),
+                borderSide: const BorderSide(color: kGrey),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(),
               ),
             ),
           ),
@@ -96,19 +95,19 @@ class ChangePasswordDialog extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(),
               ),
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 40.h,
           ),
           SizedBox(
-              height: 40.h,
-              width: double.infinity,
-              child: BlackButton(context, "Save", () {
-                Navigator.pop(context);
-              }))
+            height: 40.h,
+            width: double.infinity,
+            child: BlackButton(context, "Save", () {
+              Navigator.pop(context);
+            }),
+          )
         ],
       ),
     );
@@ -128,11 +127,14 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
-          ? 500
-          : MediaQuery.of(context).size.width * 0.8,
+          ? 700
+          : MediaQuery.of(context).size.width * 0.9,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 20.h,
+          ),
           Container(
             padding: EdgeInsets.all(10.h),
             color: kLightBlue,
@@ -149,7 +151,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                   ),
                   child: CircleAvatar(
                     backgroundImage: const NetworkImage(
-                        'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180'), // Set the image for the circle avatar
+                      'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
+                    ), // Set the image for the circle avatar
                     radius: 30
                         .r, // Adjust the radius to control the size of the avatar
                   ),
@@ -170,28 +173,29 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Visibility(
                   visible: MediaQuery.of(context).size.width > 600,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("Upload Profile Picture",
-                          textAlign: TextAlign.center,
-                          style: urbanist500(kBlack, 14)),
+                      Text(
+                        "Upload Profile Picture",
+                        textAlign: TextAlign.center,
+                        style: urbanist500(kBlack, 14),
+                      ),
                       SizedBox(height: 5.h),
                       Text("150X150", style: urbanist400(kGrey, 12)),
                       SizedBox(height: 5.h),
                       FittedBox(
                         child: TextButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              "assets/icons/export.png",
-                              height: 15.h,
-                              color: kBlue,
-                            ),
-                            label:
-                                Text("Browse", style: urbanist500(kBlue, 16))),
+                          onPressed: () {},
+                          icon: Image.asset(
+                            "assets/icons/export.png",
+                            height: 15.h,
+                            color: kBlue,
+                          ),
+                          label: Text("Browse", style: urbanist500(kBlue, 16)),
+                        ),
                       ),
                     ],
                   ),
@@ -202,149 +206,56 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
           SizedBox(
             height: 10.h,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("First Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
                         decoration: InputDecoration(
-                            hintText: "John",
-                            hintStyle: urbanist400(kGrey, 14),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: const BorderSide(color: kGrey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(),
-                            )),
+                          hintText: "John",
+                          hintStyle: urbanist400(kGrey, 14),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: const BorderSide(color: kGrey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                        ),
                       ),
-                    ]),
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Expanded(
-                child: Column(
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Last Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
                         decoration: InputDecoration(
-                            hintText: "Wick",
-                            hintStyle: urbanist400(kGrey, 14),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: const BorderSide(color: kGrey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(),
-                            )),
+                          hintText: "Wick",
+                          hintStyle: urbanist400(kGrey, 14),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: const BorderSide(color: kGrey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                        ),
                       ),
-                    ]),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Email", style: urbanist500(kBlack, 16)),
-                      SizedBox(height: 5.h),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "John@gmail.com",
-                            hintStyle: urbanist400(kGrey, 14),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: const BorderSide(color: kGrey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(),
-                            )),
-                      ),
-                    ]),
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Expanded(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Phone Number", style: urbanist500(kBlack, 16)),
-                      SizedBox(height: 5.h),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "+234 000 000 0000",
-                            hintStyle: urbanist400(kGrey, 14),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: const BorderSide(color: kGrey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                              borderSide: BorderSide(),
-                            )),
-                      ),
-                    ]),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            // height: 150.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.r),
-              color: const Color(0xffE5E6F6),
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 10.h),
-                const Icon(
-                  Icons.cloud_upload_outlined,
-                  size: 40,
-                  color: kGrey,
-                ),
-                SizedBox(height: 10.h),
-                RichText(
-                    text: TextSpan(
-                        text: "Cover image  ",
-                        style: urbanist400(kGrey, 14),
-                        children: [
-                      TextSpan(
-                        text: "browser",
-                        style: urbanist400(kBlue, 14),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            //open image picker
-                          },
-                      ),
-                      // TextSpan(
-                      //   text: " to upload",
-                      //   style: urbanist400(kGrey, 14),
-                      // ),
-                    ])),
-                SizedBox(height: 10.h),
-                Text(
-                  "1314x275",
-                  style: urbanist500(kGrey, 14),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -352,7 +263,117 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
           SizedBox(
             height: 10.h,
           ),
-          Container(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Email", style: urbanist500(kBlack, 16)),
+                      SizedBox(height: 5.h),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "John@gmail.com",
+                          hintStyle: urbanist400(kGrey, 14),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: const BorderSide(color: kGrey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Phone Number", style: urbanist500(kBlack, 16)),
+                      SizedBox(height: 5.h),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "+234 000 000 0000",
+                          hintStyle: urbanist400(kGrey, 14),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: const BorderSide(color: kGrey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              // height: 150.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.r),
+                color: const Color(0xffE5E6F6),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 10.h),
+                  const Icon(
+                    Icons.cloud_upload_outlined,
+                    size: 40,
+                    color: kGrey,
+                  ),
+                  SizedBox(height: 10.h),
+                  RichText(
+                    text: TextSpan(
+                      text: "Cover image  ",
+                      style: urbanist400(kGrey, 14),
+                      children: [
+                        TextSpan(
+                          text: "browser",
+                          style: urbanist400(kBlue, 14),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              //open image picker
+                            },
+                        ),
+                        // TextSpan(
+                        //   text: " to upload",
+                        //   style: urbanist400(kGrey, 14),
+                        // ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    "1314x275",
+                    style: urbanist500(kGrey, 14),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               color: kLightBlue,
               child: Column(
@@ -361,16 +382,17 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                   Row(
                     children: [
                       Switch(
-                          activeColor: kBlue,
-                          activeTrackColor: kWhite,
-                          inactiveThumbColor: kWhite,
-                          inactiveTrackColor: klines,
-                          value: sms,
-                          onChanged: (value) {
-                            setState(() {
-                              sms = value;
-                            });
-                          }),
+                        activeColor: kBlue,
+                        activeTrackColor: kWhite,
+                        inactiveThumbColor: kWhite,
+                        inactiveTrackColor: klines,
+                        value: sms,
+                        onChanged: (value) {
+                          setState(() {
+                            sms = value;
+                          });
+                        },
+                      ),
                       SizedBox(
                         width: 2.w,
                       ),
@@ -397,16 +419,22 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                     style: urbanist400(kGrey, 12),
                   ),
                 ],
-              )),
+              ),
+            ),
+          ),
           SizedBox(
             height: 20.h,
           ),
-          SizedBox(
+          Padding(
+            padding: EdgeInsets.all(10.w),
+            child: SizedBox(
               height: 40.h,
               width: double.infinity,
               child: BlackButton(context, "Save", () {
-                Navigator.pop(context);
-              }))
+                Get.back();
+              }),
+            ),
+          )
         ],
       ),
     );

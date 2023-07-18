@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -35,7 +36,7 @@ class SelectSlot extends StatelessWidget {
                 "Akeba Thompson",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 16.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -44,7 +45,7 @@ class SelectSlot extends StatelessWidget {
               ),
               Image.asset(
                 "assets/icons/verify.png",
-                height: 20.h,
+                height: 18.h,
               ),
             ],
           ),
@@ -59,7 +60,7 @@ class SelectSlot extends StatelessWidget {
               RatingBar.builder(
                 initialRating: 4,
                 minRating: 1,
-                itemSize: 20.sp,
+                itemSize: 18.sp,
                 allowHalfRating: true,
                 itemBuilder: (context, _) => const Icon(
                   Icons.star_rounded,
@@ -74,7 +75,7 @@ class SelectSlot extends StatelessWidget {
                 "4.0",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -85,7 +86,7 @@ class SelectSlot extends StatelessWidget {
                 "(180 Reviews)",
                 style: GoogleFonts.urbanist(
                   color: kdescription,
-                  fontSize: 14.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -96,7 +97,7 @@ class SelectSlot extends StatelessWidget {
           height: 10.h,
         ),
         Container(
-          color: Color(0xffFEF9ED),
+          color: const Color(0xffFEF9ED),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
             child: Row(
@@ -110,7 +111,7 @@ class SelectSlot extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 5.w,
+                  width: 10.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +121,7 @@ class SelectSlot extends StatelessWidget {
                       maxLines: 2,
                       style: GoogleFonts.urbanist(
                         color: kBlack,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -131,7 +132,7 @@ class SelectSlot extends StatelessWidget {
                       "Book soon!",
                       style: GoogleFonts.urbanist(
                         color: kdescription,
-                        fontSize: 12.sp,
+                        fontSize: 11.sp,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -142,15 +143,16 @@ class SelectSlot extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 10.h,
+          height: 15.h,
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Container(
             decoration: BoxDecoration(
-                color: kWhite,
-                borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(color: klines)),
+              color: kWhite,
+              borderRadius: BorderRadius.circular(10.r),
+              border: Border.all(color: klines),
+            ),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               child: Column(
@@ -171,7 +173,7 @@ class SelectSlot extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: SizedBox(
                       height: 40.h,
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.of(context).size.width * 0.6,
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
@@ -179,10 +181,10 @@ class SelectSlot extends StatelessWidget {
                         itemCount: timings.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 1.w),
-                            child: GestureDetector(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                Get.back();
                                 //next dialog
                                 showDialog(
                                   context: context,
@@ -206,9 +208,9 @@ class SelectSlot extends StatelessWidget {
                                           )
                                         ],
                                       ),
-                                      backgroundColor: Color(0xfff8f8f8),
+                                      backgroundColor: const Color(0xfff8f8f8),
                                       content: const SingleChildScrollView(
-                                        child: const AddService(),
+                                        child: AddService(),
                                       ),
                                     );
                                   },
@@ -230,7 +232,9 @@ class SelectSlot extends StatelessWidget {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 3.h, horizontal: 8.w),
+                                        vertical: 3.h,
+                                        horizontal: 8.w,
+                                      ),
                                       child: Text(
                                         timings[index],
                                         style: GoogleFonts.urbanist(
@@ -288,9 +292,41 @@ class SelectSlot extends StatelessWidget {
                         itemCount: timings.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 1.w),
-                            child: GestureDetector(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: InkWell(
                               onTap: () {
+                                Get.back();
+                                //next dialog
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Your appointment with",
+                                            style: GoogleFonts.urbanist(
+                                              color: kBlack,
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          )
+                                        ],
+                                      ),
+                                      backgroundColor: const Color(0xfff8f8f8),
+                                      content: const SingleChildScrollView(
+                                        child: AddService(),
+                                      ),
+                                    );
+                                  },
+                                );
+
                                 // setState(() {
                                 //   selected = index;
                                 // });
@@ -300,10 +336,7 @@ class SelectSlot extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.r),
                                     color: kWhite,
-                                    border: Border.all(
-                                      color: kBlack,
-                                      width: 1.0,
-                                    ),
+                                    border: Border.all(),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -352,9 +385,41 @@ class SelectSlot extends StatelessWidget {
                         itemCount: timings.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 1.w),
-                            child: GestureDetector(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: InkWell(
                               onTap: () {
+                                Get.back();
+                                //next dialog
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Your appointment with",
+                                            style: GoogleFonts.urbanist(
+                                              color: kBlack,
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          )
+                                        ],
+                                      ),
+                                      backgroundColor: const Color(0xfff8f8f8),
+                                      content: const SingleChildScrollView(
+                                        child: AddService(),
+                                      ),
+                                    );
+                                  },
+                                );
+
                                 // setState(() {
                                 //   selected = index;
                                 // });
@@ -364,10 +429,7 @@ class SelectSlot extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.r),
                                     color: kWhite,
-                                    border: Border.all(
-                                      color: kBlack,
-                                      width: 1.0,
-                                    ),
+                                    border: Border.all(),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -403,11 +465,12 @@ class SelectSlot extends StatelessWidget {
             child: Row(
               children: [
                 const CircleAvatar(
-                    backgroundColor: kWhite,
-                    child: Icon(
-                      Icons.calendar_month,
-                      color: kBlack,
-                    )),
+                  backgroundColor: kWhite,
+                  child: Icon(
+                    Icons.calendar_month,
+                    color: kBlack,
+                  ),
+                ),
                 SizedBox(
                   width: 5.w,
                 ),
@@ -451,7 +514,6 @@ class SelectSlot extends StatelessWidget {
           height: 10.h,
         ),
         Align(
-          alignment: Alignment.center,
           child: RichText(
             text: TextSpan(
               style: GoogleFonts.urbanist(
@@ -467,7 +529,7 @@ class SelectSlot extends StatelessWidget {
                 TextSpan(
                   text: ' Notify Me',
                   style: GoogleFonts.urbanist(
-                    color: Color.fromARGB(255, 4, 74, 131),
+                    color: const Color.fromARGB(255, 4, 74, 131),
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -499,7 +561,7 @@ class _SelectDateState extends State<SelectDate> {
     setState(() {
       today = day;
     });
-    Navigator.pop(context);
+    Get.back();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -515,15 +577,20 @@ class _SelectDateState extends State<SelectDate> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const Icon(
-                Icons.close,
-                color: kGrey,
+              IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: kGrey,
+                ),
               )
             ],
           ),
-          backgroundColor: Color(0xfff8f8f8),
+          backgroundColor: const Color(0xfff8f8f8),
           content: const SingleChildScrollView(
-            child: const SelectSlot(),
+            child: SelectSlot(),
           ),
         );
       },
@@ -628,7 +695,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Medium knotless/Box braids",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -636,7 +703,7 @@ class _SelectDateState extends State<SelectDate> {
                         "30 Mins - \$200",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 16.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -658,7 +725,7 @@ class _SelectDateState extends State<SelectDate> {
           height: 10.h,
         ),
         Container(
-          color: Color(0xffFEF9ED),
+          color: const Color(0xffFEF9ED),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Row(
@@ -672,7 +739,7 @@ class _SelectDateState extends State<SelectDate> {
                   ),
                 ),
                 SizedBox(
-                  width: 5.w,
+                  width: 10.w,
                 ),
                 Expanded(
                   child: Column(
@@ -687,9 +754,6 @@ class _SelectDateState extends State<SelectDate> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      // SizedBox(
-                      //   height: 10.h,
-                      // ),
                       Text(
                         "Book soon!",
                         style: GoogleFonts.urbanist(
@@ -712,10 +776,10 @@ class _SelectDateState extends State<SelectDate> {
           height: MediaQuery.of(context).size.height * 0.5,
           width: MediaQuery.of(context).size.width,
           child: TableCalendar(
+            weekNumbersVisible: true,
             firstDay: DateTime.utc(2010, 10, 16),
             focusedDay: today,
             lastDay: DateTime.utc(2030, 3, 14),
-            calendarFormat: CalendarFormat.month,
             headerStyle: HeaderStyle(
               titleCentered: true,
               titleTextStyle: GoogleFonts.urbanist(
@@ -726,7 +790,6 @@ class _SelectDateState extends State<SelectDate> {
               formatButtonVisible: false,
             ),
             rowHeight: 40.h,
-            availableGestures: AvailableGestures.all,
             selectedDayPredicate: (day) {
               return isSameDay(day, today);
             },
@@ -756,10 +819,7 @@ class _SelectDateState extends State<SelectDate> {
               todayDecoration: BoxDecoration(
                 color: kWhite,
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: kBlack,
-                  width: 1,
-                ),
+                border: Border.all(),
               ),
               todayTextStyle: GoogleFonts.urbanist(
                 fontSize: 12.sp,
@@ -780,17 +840,18 @@ class _SelectDateState extends State<SelectDate> {
           ),
         ),
         Container(
-          color: Color(0xffE0F3FD),
+          color: const Color(0xffE0F3FD),
           child: Padding(
             padding: EdgeInsets.all(10.h),
             child: Row(
               children: [
                 const CircleAvatar(
-                    backgroundColor: kWhite,
-                    child: Icon(
-                      Icons.calendar_month,
-                      color: kBlack,
-                    )),
+                  backgroundColor: kWhite,
+                  child: Icon(
+                    Icons.calendar_month,
+                    color: kBlack,
+                  ),
+                ),
                 SizedBox(
                   width: 5.w,
                 ),
@@ -802,7 +863,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Looking for a specific date?",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -813,7 +874,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Search for all available Natural hair appointment on Cosmetropolis",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 12.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -834,7 +895,6 @@ class _SelectDateState extends State<SelectDate> {
           height: 10.h,
         ),
         Align(
-          alignment: Alignment.center,
           child: RichText(
             text: TextSpan(
               style: GoogleFonts.urbanist(
@@ -850,7 +910,7 @@ class _SelectDateState extends State<SelectDate> {
                 TextSpan(
                   text: ' Notify Me',
                   style: GoogleFonts.urbanist(
-                    color: Color.fromARGB(255, 4, 74, 131),
+                    color: const Color.fromARGB(255, 4, 74, 131),
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -863,7 +923,10 @@ class _SelectDateState extends State<SelectDate> {
               ],
             ),
           ),
-        )
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
       ],
     );
   }
@@ -913,7 +976,7 @@ class _AddServiceState extends State<AddService> {
                 "Akeba Thompson",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -922,7 +985,7 @@ class _AddServiceState extends State<AddService> {
               ),
               Image.asset(
                 "assets/icons/verify.png",
-                height: 20.h,
+                height: 18.h,
               ),
             ],
           ),
@@ -937,7 +1000,7 @@ class _AddServiceState extends State<AddService> {
               RatingBar.builder(
                 initialRating: 4,
                 minRating: 1,
-                itemSize: 20.sp,
+                itemSize: 18.sp,
                 allowHalfRating: true,
                 itemBuilder: (context, _) => const Icon(
                   Icons.star_rounded,
@@ -952,7 +1015,7 @@ class _AddServiceState extends State<AddService> {
                 "4.0",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -963,7 +1026,7 @@ class _AddServiceState extends State<AddService> {
                 "(180 Reviews)",
                 style: GoogleFonts.urbanist(
                   color: kdescription,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -974,26 +1037,30 @@ class _AddServiceState extends State<AddService> {
           height: 10.h,
         ),
         Container(
-          color: Color(0xffE0F3FD),
+          color: const Color(0xffE0F3FD),
           padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-          child: Row(children: [
-            Icon(
-              Icons.alarm_outlined,
-              color: kBlack,
-              size: 20.h,
-            ),
-            SizedBox(
-              width: 5.w,
-            ),
-            Expanded(
-              child: Text("Cosmetropolis will hold this appointment for 4:46",
+          child: Row(
+            children: [
+              Icon(
+                Icons.alarm_outlined,
+                color: kBlack,
+                size: 20.h,
+              ),
+              SizedBox(
+                width: 5.w,
+              ),
+              Expanded(
+                child: Text(
+                  "Cosmetropolis will hold this appointment for 4:46",
                   style: GoogleFonts.urbanist(
                     color: kdescription,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                  )),
-            ),
-          ]),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: 10.h,
@@ -1016,7 +1083,7 @@ class _AddServiceState extends State<AddService> {
                         "Medium knotless/Box braids",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1024,7 +1091,7 @@ class _AddServiceState extends State<AddService> {
                         "30 Mins - \$200",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 16.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1040,7 +1107,7 @@ class _AddServiceState extends State<AddService> {
                 SizedBox(
                   height: 40.h,
                   child: BlackButton(context, "Add Service", () {
-                    Navigator.pop(context);
+                    Get.back();
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -1056,15 +1123,20 @@ class _AddServiceState extends State<AddService> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const Icon(
-                                Icons.close,
-                                color: kGrey,
+                              IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
+                                ),
                               )
                             ],
                           ),
-                          backgroundColor: Color(0xfff8f8f8),
+                          backgroundColor: const Color(0xfff8f8f8),
                           content: const SingleChildScrollView(
-                            child: const SelectService(),
+                            child: SelectService(),
                           ),
                         );
                       },
@@ -1096,7 +1168,7 @@ class _AddServiceState extends State<AddService> {
                         "Friday, April 12",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1104,7 +1176,7 @@ class _AddServiceState extends State<AddService> {
                         "Afternoon - 5:45 to 6:45",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 16.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1125,13 +1197,18 @@ class _AddServiceState extends State<AddService> {
         SizedBox(
           height: 10.h,
         ),
-        Text("Add promotion code",
-            style: GoogleFonts.urbanist(
-              color: kBlack,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w500,
-            )),
-        CopyField(),
+        Text(
+          "Add promotion code",
+          style: GoogleFonts.urbanist(
+            color: kBlack,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        const CopyField(),
         SizedBox(
           height: 10.h,
         ),
@@ -1168,9 +1245,6 @@ class _AddServiceState extends State<AddService> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: kBlack,
-                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(7.r),
                         ),
@@ -1210,9 +1284,6 @@ class _AddServiceState extends State<AddService> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: kBlack,
-                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(7.r),
                         ),
@@ -1253,9 +1324,6 @@ class _AddServiceState extends State<AddService> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: kBlack,
-                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(7.r),
                         ),
@@ -1296,9 +1364,6 @@ class _AddServiceState extends State<AddService> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: kBlack,
-                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(7.r),
                         ),
@@ -1359,7 +1424,7 @@ class _AddServiceState extends State<AddService> {
           height: 40.h,
           child: BlackButton(context, "Sign Up", () {
             //payment dialog
-            Navigator.of(context).pop();
+            Get.back();
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -1375,15 +1440,20 @@ class _AddServiceState extends State<AddService> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const Icon(
-                        Icons.close,
-                        color: kGrey,
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(
+                          Icons.close,
+                          color: kGrey,
+                        ),
                       )
                     ],
                   ),
-                  backgroundColor: Color(0xfff8f8f8),
+                  backgroundColor: const Color(0xfff8f8f8),
                   content: const SingleChildScrollView(
-                    child: const PaymentMethod(),
+                    child: PaymentMethod(),
                   ),
                 );
               },
@@ -1482,9 +1552,7 @@ class _SelectServiceState extends State<SelectService> {
                               width: 40.r,
                               decoration: BoxDecoration(
                                 color: kWhite,
-                                border: Border.all(
-                                  color: kBlack,
-                                ),
+                                border: Border.all(),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
@@ -1576,9 +1644,7 @@ class _SelectServiceState extends State<SelectService> {
                               width: 40.r,
                               decoration: BoxDecoration(
                                 color: kWhite,
-                                border: Border.all(
-                                  color: kBlack,
-                                ),
+                                border: Border.all(),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
@@ -1598,7 +1664,9 @@ class _SelectServiceState extends State<SelectService> {
           height: 20.h,
         ),
         SizedBox(
-            width: double.infinity, child: BlackButton(context, "Save", () {}))
+          width: double.infinity,
+          child: BlackButton(context, "Save", () {}),
+        )
       ],
     );
   }
@@ -1621,8 +1689,9 @@ class PaymentMethod extends StatelessWidget {
         ),
         ListTile(
           shape: RoundedRectangleBorder(
-              side: BorderSide(color: klines),
-              borderRadius: BorderRadius.circular(7.r)),
+            side: const BorderSide(color: klines),
+            borderRadius: BorderRadius.circular(7.r),
+          ),
           tileColor: kWhite,
           leading: Radio(
             focusColor: kBlack,
@@ -1653,59 +1722,57 @@ class PaymentMethod extends StatelessWidget {
                   hintStyle: urbanist400(kdescription, 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                 ),
               ),
             ),
             SizedBox(width: 5.w),
             Expanded(
-              flex: 1,
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "MM/YY",
                   hintStyle: urbanist400(kdescription, 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                 ),
               ),
             ),
             SizedBox(width: 5.w),
             Expanded(
-              flex: 1,
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "CVV",
                   hintStyle: urbanist400(kdescription, 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7.r),
-                    borderSide: BorderSide(color: klines),
+                    borderSide: const BorderSide(color: klines),
                   ),
                 ),
               ),
@@ -1730,61 +1797,69 @@ class PaymentMethod extends StatelessWidget {
           height: 20.h,
         ),
         SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: BlackButton(context, "Book Now", () {
+          height: 40.h,
+          width: double.infinity,
+          child: BlackButton(context, "Book Now", () {
 //booking successful dialog
-              Navigator.pop(context);
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Get.back();
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Your booking was successful!",
+                        style: GoogleFonts.urbanist(
+                          color: kBlack,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(
+                          Icons.close,
+                          color: kGrey,
+                          size: 18.sp,
+                        ),
+                      )
+                    ],
+                  ),
+                  backgroundColor: const Color(0xfff8f8f8),
+                  content: SingleChildScrollView(
+                    child: Column(
                       children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.h),
+                          child: Image.asset(
+                            "assets/icons/success.png",
+                            height: 100.h,
+                          ),
+                        ),
                         Text(
-                          "Your booking was successful!",
+                          "Your Booking Successful",
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 18.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const Icon(
-                          Icons.close,
-                          color: kGrey,
-                        )
+                        SizedBox(
+                          height: 20.h,
+                        ),
                       ],
                     ),
-                    backgroundColor: Color(0xfff8f8f8),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.h),
-                            child: Image.asset("assets/icons/success.png",
-                                height: 100.h),
-                          ),
-                          Text(
-                            "Your Booking Successful",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.urbanist(
-                              color: kBlack,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
-            }))
+                  ),
+                );
+              },
+            );
+          }),
+        )
       ],
     );
   }

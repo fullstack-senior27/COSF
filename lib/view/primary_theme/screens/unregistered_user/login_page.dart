@@ -1,19 +1,22 @@
+import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/forgotpass_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   late Image image1;
 
   @override
@@ -119,7 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                           height: 20.h,
                         ),
                         TextButton(
-                          onPressed: () => {},
+                          onPressed: () =>
+                              {Get.to(() => const FortgotPassPage())},
                           child: Text(
                             "Forgot Password?",
                             style: GoogleFonts.urbanist(
@@ -203,7 +207,9 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => {},
+                            onPressed: () => {
+                              ref.read(styleProvider).setSelectedPage("Sign Up")
+                            },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,
                               surfaceTintColor: kWhite,
