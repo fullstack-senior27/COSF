@@ -8,6 +8,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -180,25 +181,34 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
         ),
       ),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.h),
-        child: NavbarFreeWidget(
-          scaffoldKey: scaffoldKey,
+        preferredSize: Size.fromHeight(58.h),
+        child: Column(
+          children: [
+            if (TargetPlatform.android == defaultTargetPlatform)
+              SizedBox(
+                height: 40.h,
+              )
+            else
+              SizedBox(
+                height: 0.h,
+              ),
+            NavbarFreeWidget(
+              scaffoldKey: scaffoldKey,
+            ),
+          ],
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: navbarSection == "Home"
-            ? const HomePage()
-            : navbarSection == "I am a Beautician"
-                ? const LandingPage()
-                : navbarSection == "Sign Up"
-                    ? const SignupPage()
-                    : navbarSection == "Log In"
-                        ? const LoginPage()
-                        : navbarSection == "Help"
-                            ? const HelpPage()
-                            : const HomePage(),
-      ),
+      body: navbarSection == "Home"
+          ? const HomePage()
+          : navbarSection == "I am a Beautician"
+              ? const LandingPage()
+              : navbarSection == "Sign Up"
+                  ? const SignupPage()
+                  : navbarSection == "Log In"
+                      ? const LoginPage()
+                      : navbarSection == "Help"
+                          ? const HelpPage()
+                          : const HomePage(),
     );
   }
 }

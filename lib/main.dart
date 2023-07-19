@@ -1,14 +1,14 @@
 import 'package:cosmetropolis/environment.dart';
-import 'package:cosmetropolis/utils/utils.dart';
-import 'package:flutter/services.dart';
 
 // main func to run the app
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemNavigationBarColor: kBlack, // navigation bar color
-      statusBarColor: kWhite, // status bar color
-    ),
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //    const SystemUiOverlayStyle(
+  //     statusBarColor: Colors.green, // <-- SEE HERE
+  //     statusBarIconBrightness:
+  //         Brightness.dark, //<-- For Android SEE HERE (dark icons)
+  //     statusBarBrightness: Brightness.light, // status bar color
+  //   ),
+  // );
   Environment();
 }

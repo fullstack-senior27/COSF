@@ -8,8 +8,8 @@ import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketi
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/reporting_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/loginuser_dashboard_nav.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -215,9 +215,21 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
         ),
       ),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.h),
-        child: NavbarLoginUserDashboardWidget(
-          scaffoldKey: scaffoldKey,
+        preferredSize: Size.fromHeight(80.h),
+        child: Column(
+          children: [
+            if (TargetPlatform.android == defaultTargetPlatform)
+              SizedBox(
+                height: 40.h,
+              )
+            else
+              SizedBox(
+                height: 0.h,
+              ),
+            NavbarLoginUserDashboardWidget(
+              scaffoldKey: scaffoldKey,
+            ),
+          ],
         ),
       ),
       body: navbarSection == "Calendar"
@@ -234,7 +246,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                               ? const ProfilePage()
                               : navbarSection == "More"
                                   ? const MorePage()
-                                  : const ReportingPage(),
+                                  : const CalendarPage(),
     );
   }
 }

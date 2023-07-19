@@ -153,7 +153,7 @@ class _CalendarPageState extends State<CalendarPage> {
               padding: EdgeInsets.only(
                 left: 17.w,
                 right: 17.w,
-                top: MediaQuery.of(context).size.width < 950 ? 0.h : 20.h,
+                top: MediaQuery.of(context).size.width < 950 ? 0.h : 10.h,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

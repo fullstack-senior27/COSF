@@ -732,9 +732,15 @@ class _ClintsPageState extends State<ClintsPage> {
                                                                           .w600,
                                                                 ),
                                                               ),
-                                                              const Icon(
-                                                                Icons.close,
-                                                                color: kGrey,
+                                                              IconButton(
+                                                                onPressed: () {
+                                                                  Get.back();
+                                                                },
+                                                                icon:
+                                                                    const Icon(
+                                                                  Icons.close,
+                                                                  color: kGrey,
+                                                                ),
                                                               )
                                                             ],
                                                           ),
