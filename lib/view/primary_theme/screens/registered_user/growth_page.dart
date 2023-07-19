@@ -1,13 +1,11 @@
+import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/reporting_page.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:circular_chart_flutter/circular_chart_flutter.dart';
-
-import '../../../../utils/colors.dart';
-import '../../widgets/footer.dart';
 
 class GrowthPage extends StatefulWidget {
   const GrowthPage({super.key});
@@ -68,6 +66,7 @@ class _GrowthPageState extends State<GrowthPage>
         ),
       ),
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _tabcontroller,
         children: [
           //Content for TAB 1 Summary >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -201,10 +200,11 @@ class _GrowthPageState extends State<GrowthPage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                                child: Text(
-                              "Snapshot of how clients are searching and booking this week",
-                              style: urbanist400(kBlack, 12),
-                            )),
+                              child: Text(
+                                "Snapshot of how clients are searching and booking this week",
+                                style: urbanist400(kBlack, 12),
+                              ),
+                            ),
                             Text(
                               "Last 14 days",
                               style: urbanist400(kBlack, 12),
@@ -217,7 +217,9 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 3.w, vertical: 5.h),
+                          horizontal: 3.w,
+                          vertical: 5.h,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -237,7 +239,9 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 3.w, vertical: 5.h),
+                          horizontal: 3.w,
+                          vertical: 5.h,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -257,7 +261,9 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 3.w, vertical: 5.h),
+                          horizontal: 3.w,
+                          vertical: 5.h,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -277,7 +283,9 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 3.w, vertical: 5.h),
+                          horizontal: 3.w,
+                          vertical: 5.h,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -300,10 +308,12 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Container(
                         width: double.infinity,
-                        color: Color(0xffE0F3FD),
+                        color: const Color(0xffE0F3FD),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 5.w, vertical: 5.h),
+                            horizontal: 5.w,
+                            vertical: 5.h,
+                          ),
                           child: Text(
                             "Track the extra revenue Cosmetropolis helps you earn.",
                             style: urbanist600(kBlack, 16),
@@ -317,82 +327,96 @@ class _GrowthPageState extends State<GrowthPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                              child: SizedBox(
-                            child: Row(children: [
-                              Image.asset(
-                                "assets/icons/growth_works.png",
-                                height: 40.h,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "We're still analyzing your business and customizing our growth tools to fit your needs.",
-                                      style: urbanist500(kBlack, 12),
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.r),
-                                          border: Border.all(color: kBlack),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/icons/growth_works.png",
+                                    height: 40.h,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "We're still analyzing your business and customizing our growth tools to fit your needs.",
+                                          style: urbanist500(kBlack, 12),
                                         ),
-                                        child: TextButton(
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            border: Border.all(),
+                                          ),
+                                          child: TextButton(
                                             onPressed: () {},
-                                            child: Text("How it Works",
-                                                style:
-                                                    urbanist500(kBlack, 12))))
-                                  ],
-                                ),
-                              )
-                            ]),
-                          )),
+                                            child: Text(
+                                              "How it Works",
+                                              style: urbanist500(kBlack, 12),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                           SizedBox(
                             width: 10.w,
                           ),
                           Expanded(
-                              child: SizedBox(
-                            child: Row(children: [
-                              Image.asset(
-                                "assets/icons/growth_setup.png",
-                                height: 40.h,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Want Cosmetropolis to grow your business even more?",
-                                      style: urbanist500(kBlack, 12),
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.r),
-                                          border: Border.all(color: kBlack),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/icons/growth_setup.png",
+                                    height: 40.h,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Want Cosmetropolis to grow your business even more?",
+                                          style: urbanist500(kBlack, 12),
                                         ),
-                                        child: TextButton(
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            border: Border.all(),
+                                          ),
+                                          child: TextButton(
                                             onPressed: () {},
-                                            child: Text("Setup",
-                                                style:
-                                                    urbanist500(kBlack, 12))))
-                                  ],
-                                ),
-                              )
-                            ]),
-                          ))
+                                            child: Text(
+                                              "Setup",
+                                              style: urbanist500(kBlack, 12),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -509,10 +533,12 @@ class _GrowthPageState extends State<GrowthPage>
                       ),
                       Container(
                         width: double.infinity,
-                        color: Color(0xffE0F3FD),
+                        color: const Color(0xffE0F3FD),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 5.w, vertical: 5.h),
+                            horizontal: 5.w,
+                            vertical: 5.h,
+                          ),
                           child: Text(
                             "Clients tip an average of 40% more when they pay through Cosmetropolis.",
                             style: urbanist600(kBlack, 16),
@@ -525,11 +551,11 @@ class _GrowthPageState extends State<GrowthPage>
                       if (MediaQuery.of(context).size.width > 900)
                         Row(
                           children: [
-                            Expanded(child: GrowthCard()),
+                            const Expanded(child: GrowthCard()),
                             SizedBox(width: 10.w),
-                            Expanded(child: GrowthCard()),
+                            const Expanded(child: GrowthCard()),
                             SizedBox(width: 10.w),
-                            Expanded(child: GrowthCard()),
+                            const Expanded(child: GrowthCard()),
                           ],
                         )
                       else
@@ -543,7 +569,7 @@ class _GrowthPageState extends State<GrowthPage>
                               return FittedBox(
                                 child: Row(
                                   children: [
-                                    GrowthCard(),
+                                    const GrowthCard(),
                                     SizedBox(
                                       width: 10.w,
                                     ),
@@ -559,603 +585,51 @@ class _GrowthPageState extends State<GrowthPage>
                 SizedBox(
                   height: 40.h,
                 ),
-                Footer(),
+                const Footer(),
               ],
             ),
           ),
           //Earnings Section>>>>>>>>>>>>>>
           SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    Row(
-                      // mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Net Earnings Today",
-                              style: urbanist600(kBlack, 18),
-                            ),
-                            Text(
-                              "\$0.00",
-                              style: urbanist600(kBlack, 16),
-                            ),
-                            Text(
-                              "No appointments",
-                              style: urbanist400(kBlack, 12),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: DropdownButtonFormField<String>(
-                            dropdownColor: kWhite,
-                            isExpanded: true,
-                            decoration: InputDecoration(
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: klines),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: klines),
-                              ),
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 10.w),
-                              // suffixIcon: Icon(Icons.arrow_drop_down),
-                            ),
-                            items: [
-                              DropdownMenuItem<String>(
-                                value: 'Today',
-                                child: Text(
-                                  'Today',
-                                  style: urbanist400(kGrey, 12),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              DropdownMenuItem<String>(
-                                value: 'Yesterday',
-                                child: Text(
-                                  'Yesterday',
-                                  style: urbanist400(kGrey, 12),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              DropdownMenuItem<String>(
-                                value: 'April 1, 2020',
-                                child: Text(
-                                  'April 1, 2020',
-                                  style: urbanist400(kGrey, 12),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                            onChanged: (String? value) {
-                              // Handle dropdown value change
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 860,
-                          child: Expanded(
-                            flex: 2,
-                            child: Container(
-                              height: 100.h,
-                              // width: 40.w,
-                              decoration: BoxDecoration(
-                                  color: kBlue.withOpacity(0.25),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Total Earning",
-                                      style: urbanist600(kGrey, 12),
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Text(
-                                      "\$9,600",
-                                      style: urbanist600(kBlue, 20),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 860,
-                          child: SizedBox(
-                            width: 5.w,
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 860,
-                          child: Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: 100.h,
-                              // width: 30.w,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Withdraw Balance",
-                                      style: urbanist600(kGrey, 12),
-                                      maxLines: 2,
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "\$3500",
-                                        style: urbanist600(kBlack, 20),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 860,
-                          child: SizedBox(
-                            width: 5.w,
-                          ),
-                        ),
-                        Visibility(
-                          visible: MediaQuery.of(context).size.width > 860,
-                          child: Expanded(
-                            child: Container(
-                              height: 100.h,
-                              // width: 30.w,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10.h, horizontal: 3.w),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      MediaQuery.of(context).size.width > 700
-                                          ? "Remaining Amount"
-                                          : "Remaining/nAmount",
-                                      maxLines: 2,
-                                      style: urbanist600(kGrey, 12),
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "\$5,560",
-                                        style: urbanist600(kBlack, 20),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Visibility(
-                        visible: MediaQuery.of(context).size.width < 861,
-                        child: SizedBox(
-                          height: 20.h,
-                        )),
-                    if (MediaQuery.of(context).size.width < 861)
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17.w),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40.h,
+                      ),
                       Row(
+                        // mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Net Earnings Today",
+                                style: urbanist600(kBlack, 18),
+                              ),
+                              Text(
+                                "\$0.00",
+                                style: urbanist600(kBlack, 16),
+                              ),
+                              Text(
+                                "No appointments",
+                                style: urbanist400(kBlack, 12),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            width: 15.w,
+                          ),
                           Expanded(
                             flex: 2,
-                            child: Container(
-                              height: MediaQuery.of(context).size.width > 415
-                                  ? 90.h
-                                  : 80.h,
-                              // width: 40.w,
-                              decoration: BoxDecoration(
-                                  color: kBlue.withOpacity(0.25),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Total Earning",
-                                      style: urbanist600(kGrey, 12),
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Text(
-                                      "\$9,600",
-                                      style: urbanist600(kBlue, 20),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: MediaQuery.of(context).size.width > 415
-                                  ? 90.h
-                                  : 80.h,
-                              // width: 30.w,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FittedBox(
-                                      child: Text(
-                                        "Withdraw",
-                                        style: urbanist600(kGrey, 12),
-                                        // maxLines: 2,
-                                      ),
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "Balance",
-                                        style: urbanist600(kGrey, 12),
-                                        // maxLines: 2,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 10.h,
-                                      ),
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "\$3500",
-                                        style: urbanist600(kBlack, 20),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: MediaQuery.of(context).size.width > 415
-                                  ? 90.h
-                                  : 80.h,
-                              // width: 30.w,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FittedBox(
-                                      child: Text(
-                                        "Remaining",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "Amount",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 10.h,
-                                      ),
-                                    ),
-                                    FittedBox(
-                                      child: Text(
-                                        "\$5,560",
-                                        style: urbanist600(kBlack, 20),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    else
-                      Container(),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    const SizedBox(
-                        width: double.infinity, child: EarningsTable()),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Footer(),
-            ]),
-          ),
-          //Payouts section>>>>>>>>>>>>>>>>>>>>>>>>>
-          SingleChildScrollView(
-            child: Column(children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.width > 415
-                                ? 90.h
-                                : 80.h,
-                            // width: 30.w,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: klines),
-                                borderRadius: BorderRadius.circular(10.r)),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width > 500,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Total Earning",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Total",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Earning",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 10.h,
-                                    ),
-                                  ),
-                                  FittedBox(
-                                    child: Text(
-                                      "\$5,560",
-                                      style: urbanist600(kBlack, 20),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.width > 415
-                                ? 90.h
-                                : 80.h,
-                            // width: 30.w,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: klines),
-                                borderRadius: BorderRadius.circular(10.r)),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width > 500,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Withdraw Balance",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Withdraw",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Balance",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 10.h,
-                                    ),
-                                  ),
-                                  FittedBox(
-                                    child: Text(
-                                      "\$5,560",
-                                      style: urbanist600(kBlack, 20),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.width > 415
-                                ? 90.h
-                                : 80.h,
-                            // width: 30.w,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: klines),
-                                borderRadius: BorderRadius.circular(10.r)),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width > 500,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Remaining Amount",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Remaining",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible:
-                                        MediaQuery.of(context).size.width < 501,
-                                    child: FittedBox(
-                                      child: Text(
-                                        "Amount",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 10.h,
-                                    ),
-                                  ),
-                                  FittedBox(
-                                    child: Text(
-                                      "\$5,560",
-                                      style: urbanist600(kBlack, 20),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    SizedBox(width: double.infinity, child: PayoutsTable()),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Footer(),
-            ]),
-          ),
-          //Transactions section>>>>>>>>>>>>>>>>>>
-          SingleChildScrollView(
-            child: Column(children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    Text(
-                      "Your Earnings",
-                      style: urbanist600(kBlack, 20),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Theme(
-                            data: ThemeData(
-                              accentColor: kWhite,
-                            ),
                             child: DropdownButtonFormField<String>(
+                              dropdownColor: kWhite,
+                              isExpanded: true,
                               decoration: InputDecoration(
                                 focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: klines),
@@ -1169,24 +643,27 @@ class _GrowthPageState extends State<GrowthPage>
                               ),
                               items: [
                                 DropdownMenuItem<String>(
-                                  value: 'April 28, 2022 - Apr 28,2023',
+                                  value: 'Today',
                                   child: Text(
-                                    'April 28, 2023 - Apr 28,2023',
+                                    'Today',
                                     style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 DropdownMenuItem<String>(
-                                  value: 'April 1, 2021 - March 31,2022',
+                                  value: 'Yesterday',
                                   child: Text(
-                                    'April 1, 2021 - March 31,2022',
+                                    'Yesterday',
                                     style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 DropdownMenuItem<String>(
-                                  value: 'April 1, 2020 - March 31,2022',
+                                  value: 'April 1, 2020',
                                   child: Text(
-                                    'April 1, 2020 - March 31,2021',
+                                    'April 1, 2020',
                                     style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                               ],
@@ -1195,25 +672,660 @@ class _GrowthPageState extends State<GrowthPage>
                               },
                             ),
                           ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              flex: 2,
+                              child: Container(
+                                height: 100.h,
+                                // width: 40.w,
+                                decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Total Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        "\$9,600",
+                                        style: urbanist600(kBlue, 20),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: SizedBox(
+                              width: 5.w,
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              child: Container(
+                                height: 100.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Withdraw Balance",
+                                        style: urbanist600(kGrey, 12),
+                                        maxLines: 2,
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$3500",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: SizedBox(
+                              width: 5.w,
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              child: Container(
+                                height: 100.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 10.h,
+                                    horizontal: 3.w,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        MediaQuery.of(context).size.width > 700
+                                            ? "Remaining Amount"
+                                            : "Remaining/nAmount",
+                                        maxLines: 2,
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$5,560",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width < 861,
+                        child: SizedBox(
+                          height: 20.h,
                         ),
-                        Visibility(
-                            visible: MediaQuery.of(context).size.width > 850,
-                            child: const Spacer()),
-                        if (MediaQuery.of(context).size.width > 850)
-                          Row(
-                            children: [
-                              FittedBox(
-                                child: SizedBox(
-                                  height: 40.h,
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: kBlack,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.r),
+                      ),
+                      if (MediaQuery.of(context).size.width < 861)
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 40.w,
+                                decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Total Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        "\$9,600",
+                                        style: urbanist600(kBlue, 20),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      FittedBox(
+                                        child: Text(
+                                          "Withdraw",
+                                          style: urbanist600(kGrey, 12),
+                                          // maxLines: 2,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "Balance",
+                                          style: urbanist600(kGrey, 12),
+                                          // maxLines: 2,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 10.h,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$3500",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      FittedBox(
+                                        child: Text(
+                                          "Remaining",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "Amount",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 10.h,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$5,560",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      else
+                        Container(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      const SizedBox(
+                        width: double.infinity,
+                        child: EarningsTable(),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                const Footer(),
+              ],
+            ),
+          ),
+          //Payouts section>>>>>>>>>>>>>>>>>>>>>>>>>
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17.w),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width >
+                                              500,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Total Earning",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
                                       ),
                                     ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Total",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Earning",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 10.h,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$5,560",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width >
+                                              500,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Withdraw Balance",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Withdraw",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Balance",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 10.h,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$5,560",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.width > 415
+                                  ? 90.h
+                                  : 80.h,
+                              // width: 30.w,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: klines),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width >
+                                              500,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Remaining Amount",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Remaining",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible:
+                                          MediaQuery.of(context).size.width <
+                                              501,
+                                      child: FittedBox(
+                                        child: Text(
+                                          "Amount",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 10.h,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "\$5,560",
+                                        style: urbanist600(kBlack, 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      const SizedBox(
+                        width: double.infinity,
+                        child: PayoutsTable(),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                const Footer(),
+              ],
+            ),
+          ),
+          //Transactions section>>>>>>>>>>>>>>>>>>
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      Text(
+                        "Your Earnings",
+                        style: urbanist600(kBlack, 20),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Theme(
+                              data: ThemeData(
+                                colorScheme: ColorScheme.fromSwatch()
+                                    .copyWith(secondary: kWhite),
+                              ),
+                              child: DropdownButtonFormField<String>(
+                                decoration: InputDecoration(
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: klines),
+                                  ),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: klines),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10.w),
+                                  // suffixIcon: Icon(Icons.arrow_drop_down),
+                                ),
+                                items: [
+                                  DropdownMenuItem<String>(
+                                    value: 'April 28, 2022 - Apr 28,2023',
+                                    child: Text(
+                                      'April 28, 2023 - Apr 28,2023',
+                                      style: urbanist400(kGrey, 12),
+                                    ),
+                                  ),
+                                  DropdownMenuItem<String>(
+                                    value: 'April 1, 2021 - March 31,2022',
+                                    child: Text(
+                                      'April 1, 2021 - March 31,2022',
+                                      style: urbanist400(kGrey, 12),
+                                    ),
+                                  ),
+                                  DropdownMenuItem<String>(
+                                    value: 'April 1, 2020 - March 31,2022',
+                                    child: Text(
+                                      'April 1, 2020 - March 31,2021',
+                                      style: urbanist400(kGrey, 12),
+                                    ),
+                                  ),
+                                ],
+                                onChanged: (String? value) {
+                                  // Handle dropdown value change
+                                },
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 850,
+                            child: const Spacer(),
+                          ),
+                          if (MediaQuery.of(context).size.width > 850)
+                            Row(
+                              children: [
+                                FittedBox(
+                                  child: SizedBox(
+                                    height: 40.h,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: kBlack,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.r),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        "Export for 2022 Taxes",
+                                        style: urbanist500(kWhite, 14),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                // outline button
+                                Container(
+                                  height: 40.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.r),
+                                    border: Border.all(),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Export Data",
+                                      style: urbanist500(kBlack, 14),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          else
+                            Container(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      if (MediaQuery.of(context).size.width < 851)
+                        Row(
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: 40.h,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: kBlack,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.r),
+                                    ),
+                                  ),
+                                  child: FittedBox(
                                     child: Text(
                                       "Export for 2022 Taxes",
                                       style: urbanist500(kWhite, 14),
@@ -1221,15 +1333,17 @@ class _GrowthPageState extends State<GrowthPage>
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              // outline button
-                              Container(
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            // outline button
+                            Expanded(
+                              child: Container(
                                 height: 40.h,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5.r),
-                                  border: Border.all(color: kBlack),
+                                  border: Border.all(),
                                 ),
                                 child: TextButton(
                                   onPressed: () {},
@@ -1239,123 +1353,76 @@ class _GrowthPageState extends State<GrowthPage>
                                   ),
                                 ),
                               ),
-                            ],
-                          )
-                        else
-                          Container(),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    if (MediaQuery.of(context).size.width < 851)
-                      Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 40.h,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: kBlack,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.r),
-                                  ),
-                                ),
-                                child: FittedBox(
-                                  child: Text(
-                                    "Export for 2022 Taxes",
-                                    style: urbanist500(kWhite, 14),
-                                  ),
-                                ),
-                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          // outline button
-                          Expanded(
-                            child: Container(
-                              height: 40.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.r),
-                                border: Border.all(color: kBlack),
-                              ),
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Export Data",
-                                  style: urbanist500(kBlack, 14),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    else
-                      Container(),
-                    Visibility(
+                          ],
+                        )
+                      else
+                        Container(),
+                      Visibility(
                         visible: MediaQuery.of(context).size.width < 851,
                         child: SizedBox(
                           height: 20.h,
-                        )),
-                    Container(
-                      width: double.infinity,
-                      color: kselected,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.w, vertical: 20.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Your payment schedule is set to 2 business days.",
-                              style: urbanist600(kBlack, 18),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "Before you are eligible for next-day payment deposits, you must complete the following items:",
-                              style: urbanist500(kdescription, 14),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            Text(
-                              "Complete your profile",
-                              style: urbanist500(kBlack, 14),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "Verify your identity",
-                              style: urbanist500(kBlack, 14),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "Add your card so you're ready to subscribe",
-                              style: urbanist500(kBlack, 14),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                          ],
                         ),
                       ),
-                    )
-                  ],
+                      Container(
+                        width: double.infinity,
+                        color: kselected,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 20.h,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Your payment schedule is set to 2 business days.",
+                                style: urbanist600(kBlack, 18),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                "Before you are eligible for next-day payment deposits, you must complete the following items:",
+                                style: urbanist500(kdescription, 14),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Text(
+                                "Complete your profile",
+                                style: urbanist500(kBlack, 14),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                "Verify your identity",
+                                style: urbanist500(kBlack, 14),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                "Add your card so you're ready to subscribe",
+                                style: urbanist500(kBlack, 14),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Footer(),
-            ]),
+                SizedBox(
+                  height: 40.h,
+                ),
+                const Footer(),
+              ],
+            ),
           ),
           //Gift Cards>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
           SingleChildScrollView(
@@ -1487,7 +1554,7 @@ class _GrowthPageState extends State<GrowthPage>
                 SizedBox(
                   height: 40.h,
                 ),
-                Footer(),
+                const Footer(),
               ],
             ),
           ),
@@ -1522,7 +1589,6 @@ class GrowthCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
-            alignment: Alignment.center,
             child: Text("Save Money", style: urbanist600(kBlack, 16)),
           ),
           SizedBox(

@@ -1,14 +1,12 @@
 import 'package:circular_chart_flutter/circular_chart_flutter.dart';
+import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pie_chart/pie_chart.dart';
-
-import '../../../../utils/colors.dart';
-import '../../../../utils/text_styles.dart';
 
 class ReportingPage extends StatefulWidget {
   const ReportingPage({super.key});
@@ -84,8 +82,9 @@ class _ReportingPageState extends State<ReportingPage> {
                                         child: Center(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 10.h,
-                                                horizontal: 15.w),
+                                              vertical: 10.h,
+                                              horizontal: 15.w,
+                                            ),
                                             child: Text(
                                               categories[index],
                                               style: GoogleFonts.urbanist(
@@ -108,8 +107,27 @@ class _ReportingPageState extends State<ReportingPage> {
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 20.h,
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Total Sales (YTD)",
+                                style: urbanist400(kBlack, 12),
+                              ),
+                            ),
+                            Text(
+                              "\$0.00",
+                              style: urbanist400(kBlack, 12),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        color: klines,
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -117,10 +135,11 @@ class _ReportingPageState extends State<ReportingPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                                child: Text(
-                              "Total Sales (YTD)",
-                              style: urbanist400(kBlack, 14),
-                            )),
+                              child: Text(
+                                "Month of Apr",
+                                style: urbanist400(kBlack, 14),
+                              ),
+                            ),
                             Text(
                               "\$0.00",
                               style: urbanist400(kBlack, 14),
@@ -137,30 +156,11 @@ class _ReportingPageState extends State<ReportingPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                                child: Text(
-                              "Month of Apr",
-                              style: urbanist400(kBlack, 14),
-                            )),
-                            Text(
-                              "\$0.00",
-                              style: urbanist400(kBlack, 14),
+                              child: Text(
+                                "Week of Apr 23",
+                                style: urbanist400(kBlack, 14),
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        color: klines,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Text(
-                              "Week of Apr 23",
-                              style: urbanist400(kBlack, 14),
-                            )),
                             Text(
                               "\$0.00",
                               style: urbanist400(kBlack, 14),
@@ -175,7 +175,7 @@ class _ReportingPageState extends State<ReportingPage> {
                         height: 20.h,
                       ),
                       Container(
-                        color: Color(0xffFEF9ED),
+                        color: const Color(0xffFEF9ED),
                         child: Padding(
                           padding: EdgeInsets.all(10.w),
                           child: Column(
@@ -225,8 +225,9 @@ class _ReportingPageState extends State<ReportingPage> {
                         ),
                       ),
                       Visibility(
-                          visible: MediaQuery.of(context).size.width < 801,
-                          child: Column(children: [
+                        visible: MediaQuery.of(context).size.width < 801,
+                        child: Column(
+                          children: [
                             SizedBox(
                               height: 40.h,
                             ),
@@ -234,10 +235,12 @@ class _ReportingPageState extends State<ReportingPage> {
                             SizedBox(
                               height: 40.h,
                             ),
-                            Divider(
+                            const Divider(
                               color: klines,
                             ),
-                          ])),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -285,7 +288,6 @@ class _ReportingPageState extends State<ReportingPage> {
                                       rankKey: 'progress',
                                     ),
                                   ],
-                                  chartType: CircularChartType.Radial,
                                   edgeStyle: SegmentEdgeStyle.round,
                                   percentageValues: true,
                                 ),
@@ -297,10 +299,10 @@ class _ReportingPageState extends State<ReportingPage> {
                             child: FittedBox(
                               child: CircleAvatar(
                                 radius: 80.r,
-                                backgroundColor: Color(0xffE75D5D),
+                                backgroundColor: const Color(0xffE75D5D),
                                 child: AnimatedCircularChart(
                                   // key: _chartKey,
-                                  size: Size(200, 200),
+                                  size: const Size(200, 200),
                                   holeLabel:
                                       '            10%\n Returning Clients',
                                   // holeRadius: 60.r,
@@ -331,8 +333,9 @@ class _ReportingPageState extends State<ReportingPage> {
                         ],
                       ),
                       Visibility(
-                          visible: MediaQuery.of(context).size.width < 801,
-                          child: Column(children: [
+                        visible: MediaQuery.of(context).size.width < 801,
+                        child: Column(
+                          children: [
                             SizedBox(
                               height: 40.h,
                             ),
@@ -353,10 +356,12 @@ class _ReportingPageState extends State<ReportingPage> {
                             SizedBox(
                               height: 20.h,
                             ),
-                            Divider(
+                            const Divider(
                               color: klines,
                             ),
-                          ])),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: 40.h,
                       ),
@@ -367,10 +372,11 @@ class _ReportingPageState extends State<ReportingPage> {
                       SizedBox(
                         height: 20.h,
                       ),
-                      SizedBox(height: 300.h, child: MyLineChart()),
+                      SizedBox(height: 300.h, child: const MyLineChart()),
                       Visibility(
-                          visible: MediaQuery.of(context).size.width < 801,
-                          child: Column(children: [
+                        visible: MediaQuery.of(context).size.width < 801,
+                        child: Column(
+                          children: [
                             // Divider(
                             //   color: klines,
                             // ),
@@ -378,11 +384,14 @@ class _ReportingPageState extends State<ReportingPage> {
                               height: 40.h,
                             ),
                             SizedBox(
-                                height: 400.h,
-                                child: MyPie(
-                                    // radius: MediaQuery.of(context).size.width / 4,
-                                    )),
-                          ])),
+                              height: 400.h,
+                              child: const MyPie(
+                                  // radius: MediaQuery.of(context).size.width / 4,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -415,10 +424,11 @@ class _ReportingPageState extends State<ReportingPage> {
                           height: 20.h,
                         ),
                         SizedBox(
-                            height: 400.h,
-                            child: MyPie(
-                                // radius: MediaQuery.of(context).size.width / 7,
-                                )),
+                          height: 400.h,
+                          child: const MyPie(
+                              // radius: MediaQuery.of(context).size.width / 7,
+                              ),
+                        ),
                       ],
                     ),
                   ),

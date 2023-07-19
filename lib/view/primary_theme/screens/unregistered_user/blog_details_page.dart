@@ -434,8 +434,6 @@ class BlogDetailsPage extends StatelessWidget {
                                           ? 100.w
                                           : 170.w,
                                       fit: BoxFit.fill,
-                                      placeholder: (context, url) =>
-                                          const CircularProgressIndicator(),
                                       errorWidget: (context, url, error) =>
                                           const Icon(Icons.error),
                                     ),
