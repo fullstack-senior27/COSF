@@ -3,6 +3,9 @@ import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddClient extends StatelessWidget {
   const AddClient({super.key});
@@ -1017,6 +1020,738 @@ class AddPhoto extends StatelessWidget {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class SelectClient extends StatelessWidget {
+  const SelectClient({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> img = [
+      "https://i.imgur.com/2CuqQCO.png",
+      "https://i.imgur.com/CR0PyPk.png",
+      "https://i.imgur.com/gqnN08c.png",
+      "https://i.imgur.com/2txrGqz.png"
+    ];
+    return Column(
+      children: [
+        TextField(
+          decoration: InputDecoration(
+            fillColor: kselected,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(80.r),
+              borderSide: const BorderSide(
+                color: klines,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(80.r),
+              borderSide: const BorderSide(
+                color: klines,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(80.r),
+              borderSide: const BorderSide(
+                color: klines,
+              ),
+            ),
+            prefixIcon: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 11.sp,
+              ),
+              child: const ImageIcon(
+                AssetImage(
+                  "assets/icons/search.png",
+                ),
+                color: kBlack,
+              ),
+            ),
+            hintText: 'Search name or phone number',
+            // contentPadding: EdgeInsets.symmetric(
+            //     horizontal: 16.h, vertical: 12.w),
+          ),
+        ),
+        SizedBox(
+          height: 15.h,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.r),
+            border: Border.all(color: klines),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            child: Column(
+              children: [
+                ListView.builder(
+                  itemCount: img.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 20.r,
+                                    backgroundImage: NetworkImage(
+                                      img[index],
+                                    ),
+                                  ),
+                                  SizedBox(width: 5.w),
+                                  Text(
+                                    "Eleanor Pena",
+                                    style: urbanist400(kBlack, 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const Spacer(),
+                                  BlackButton(context, "Invite", () {}),
+                                ],
+                              ),
+                            ),
+                            const Divider(
+                              color: klines,
+                            )
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Text(
+                    "Add your clients and invite them to book an appointment",
+                    textAlign: TextAlign.center,
+                    style: urbanist600(
+                      kBlack,
+                      MediaQuery.of(context).size.width > 850 ? 16 : 12,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.r),
+                      color: kBlack,
+                    ),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.person_add_alt,
+                            color: kWhite,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            "Add Clients From Contacts",
+                            style: urbanist500(kWhite, 12),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.r),
+                      border: Border.all(),
+                    ),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.person_add_alt,
+                            color: kBlack,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            "Add New Client",
+                            style: urbanist500(kBlack, 12),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: const Color(0xffE0F3FD),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(3.w),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Learn how to gain more clients",
+                                textAlign: TextAlign.center,
+                                style: urbanist400(kBlack, 12),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                "Get More Clients",
+                                style: urbanist600(kBlack, 12),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: const Color(0xffFEF9ED),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(3.w),
+                          child: Column(
+                            children: [
+                              Text(
+                                "What do my clients see when they book?",
+                                textAlign: TextAlign.center,
+                                style: urbanist400(kBlack, 12),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                "Show Me",
+                                style: urbanist600(kBlack, 12),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Text(
+                  "Need help importing your client list? We can help.\nSend your client list Here",
+                  style: urbanist500(kBlack, 10),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CreatePromotion extends StatelessWidget {
+  const CreatePromotion({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Name*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "Promotion Demo",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Text("Description*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          maxLines: 4,
+          decoration: InputDecoration(
+            hintText: "Description",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Text("Apply to*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "Beard trim, Deep conditioning treatment",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Text("Start Date*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "24/4/2023",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Text("End Date*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "24/4/2023",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Text("Promotion Value*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: "0.00",
+                  hintStyle: urbanist400(kGrey, 14),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.r),
+                    borderSide: const BorderSide(color: kGrey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.r),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10.w),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6.r),
+                border: Border.all(color: kGrey),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 50.h,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(6.r),
+                          bottomLeft: Radius.circular(6.r)),
+                      color: kWhite,
+                    ),
+                    child: Center(
+                        child: Icon(Icons.percent_outlined,
+                            color: kBlack, size: 20.sp)),
+                  ),
+                  Container(
+                    height: 50.h,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(6.r),
+                          topLeft: Radius.circular(6.r)),
+                      color: kLightBlue,
+                    ),
+                    child: Center(
+                        child: Text(
+                      "USD",
+                      style: urbanist500(kBlack, 14),
+                    )),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10.h),
+        Text("Limit*", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: BlackButton(context, "Save", () {
+              // if (MediaQuery.of(context).size.width < 700) {
+              //   fullBottomSheet(
+              //       context,
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(vertical: 15.h),
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Text(
+              //                   "Scheduled Promotions",
+              //                   style: GoogleFonts.urbanist(
+              //                     color: kBlack,
+              //                     fontSize: 18.sp,
+              //                     fontWeight: FontWeight.w600,
+              //                   ),
+              //                 ),
+              //                 InkWell(
+              //                   onTap: () {
+              //                     Get.back();
+              //                   },
+              //                   child: const Icon(
+              //                     Icons.close,
+              //                     color: kGrey,
+              //                   ),
+              //                 )
+              //               ],
+              //             ),
+              //             SizedBox(height: 10.h),
+              //             ScheduledPromotion(),
+              //           ],
+              //         ),
+              //       ));
+              // } else {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Scheduled Promotion",
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.close,
+                            color: kGrey,
+                          ),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        )
+                      ],
+                    ),
+                    backgroundColor: const Color(0xfff8f8f8),
+                    content: SingleChildScrollView(
+                      child: SizedBox(
+                        width: MediaQuery.of(
+                                  context,
+                                ).size.width >
+                                900
+                            ? 400
+                            : MediaQuery.of(
+                                  context,
+                                ).size.width *
+                                0.8,
+                        child: const ScheduledPromotion(),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }))
+      ],
+    );
+  }
+}
+
+class ScheduledPromotion extends StatelessWidget {
+  const ScheduledPromotion({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text("Name", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 5.h),
+        Container(
+          height: 100.h,
+          width: 200,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.r),
+              image: DecorationImage(
+                  image: AssetImage("assets/images/promotion_bg.png"),
+                  fit: BoxFit.cover)),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text("\$25", style: urbanist600(kBlack, 22)),
+            Text("Off", style: urbanist600(kBlack, 14)),
+          ]),
+        ),
+        SizedBox(height: 20.h),
+        Text("Services", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 20.h),
+        Text("Beard Trim, Deep Conditioning Treatment",
+            style: urbanist400(kGrey, 14)),
+        SizedBox(height: 10.h),
+        Text("Campaign Range", style: urbanist500(kBlack, 14)),
+        SizedBox(height: 10.h),
+        Text("26/04/2023 - 28/04/2023", style: urbanist400(kGrey, 14)),
+        SizedBox(height: 20.h),
+        Text("See how similar professionals build their profile",
+            style: urbanist400(kdescription, 14)),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BlackOutlineButton(context, "Delete", () {}),
+            SizedBox(width: 10.w),
+            SizedBox(
+                height: 40.h, child: BlackButton(context, "Publish", () {})),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class SetMonthlyGoal extends StatefulWidget {
+  const SetMonthlyGoal({super.key});
+
+  @override
+  State<SetMonthlyGoal> createState() => _SetMonthlyGoalState();
+}
+
+class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
+  List<String> attractText = [
+    "4 new clients",
+    "6 new clients",
+    "6+ new clients"
+  ];
+  List<String> increaseText = ["\$75 More", "\$150 More", "6+ new clients"];
+  List<String> streamlineText = [
+    "Be an expert on Cosmetropolis features",
+    "Transition my clients to Cosmetropolis",
+    "Polish my service menu + Pricing"
+  ];
+  @override
+  Widget build(BuildContext context) {
+    int selectedOption = 1; // Initially select the first option
+
+    void handleOptionChange(int? value) {
+      setState(() {
+        selectedOption = value!;
+      });
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("I want to attract new clients",
+                    style: urbanist600(kBlack, 16)),
+                SizedBox(height: 5.h),
+                Text("Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14)),
+              ],
+            )),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Wrap(
+                spacing: 8.0, // Space between each radio button
+                children: [
+                  for (int i = 0; i <= 2; i++)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio(
+                          fillColor: MaterialStateProperty.all(kBlue),
+                          focusColor: kBlue,
+                          value: i,
+                          groupValue: selectedOption,
+                          onChanged: handleOptionChange,
+                        ),
+                        Text(attractText[i], style: urbanist400(kBlack, 14)),
+                      ],
+                    ),
+                ],
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          children: [
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("I want to attract new clients",
+                    style: urbanist600(kBlack, 16)),
+                SizedBox(height: 5.h),
+                Text("Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14)),
+              ],
+            )),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Wrap(
+                spacing: 8.0, // Space between each radio button
+                children: [
+                  for (int i = 0; i <= 2; i++)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio(
+                          fillColor: MaterialStateProperty.all(kBlue),
+                          focusColor: kBlue,
+                          value: i,
+                          groupValue: selectedOption,
+                          onChanged: handleOptionChange,
+                        ),
+                        Text(increaseText[i], style: urbanist400(kBlack, 14)),
+                      ],
+                    ),
+                ],
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+        Row(
+          children: [
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("I want to attract new clients",
+                    style: urbanist600(kBlack, 16)),
+                SizedBox(height: 5.h),
+                Text("Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14)),
+              ],
+            )),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Wrap(
+                spacing: 8.0, // Space between each radio button
+                children: [
+                  for (int i = 0; i <= 2; i++)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio(
+                          fillColor: MaterialStateProperty.all(kBlue),
+                          // focusColor: kBlue,
+                          value: i,
+                          groupValue: selectedOption,
+                          onChanged: handleOptionChange,
+                        ),
+                        Expanded(
+                            child: Text(streamlineText[i],
+                                style: urbanist400(kBlack, 14))),
+                      ],
+                    ),
+                ],
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: 20.h),
+        SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: BlackButton(context, "Set Goal", () {}))
       ],
     );
   }

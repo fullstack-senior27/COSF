@@ -28,6 +28,30 @@ Future filterBottomSheet(BuildContext context, Widget child) {
   );
 }
 
+Future fullBottomSheet(BuildContext context, Widget child) {
+  return showModalBottomSheet(
+    context: context,
+    backgroundColor: const Color(0xfff8f8f8),
+    isScrollControlled: true,
+    shape: RoundedRectangleBorder(
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(15.r),
+        //   topRight: Radius.circular(15.r),
+        // ),
+        ),
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: child,
+          );
+        },
+      );
+    },
+  );
+}
+
 class BeauticiansFilterBottom extends StatefulWidget {
   const BeauticiansFilterBottom({super.key});
 

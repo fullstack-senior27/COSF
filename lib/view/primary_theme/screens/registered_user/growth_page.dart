@@ -1,11 +1,16 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/reporting_page.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../widgets/registered_user_dialogs.dart';
 
 class GrowthPage extends StatefulWidget {
   const GrowthPage({super.key});
@@ -125,24 +130,123 @@ class _GrowthPageState extends State<GrowthPage>
                                       padding: EdgeInsets.only(top: 15.h),
                                       child: Row(
                                         children: [
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 15.w,
-                                              vertical: 10.h,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: kBlack,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                5.r,
+                                          InkWell(
+                                            onTap: () {
+                                              // fullBottomSheet(
+                                              //   context,
+                                              //   Padding(
+                                              //     padding: EdgeInsets.symmetric(
+                                              //         vertical: 15.h),
+                                              //     child: Column(
+                                              //       crossAxisAlignment:
+                                              //           CrossAxisAlignment
+                                              //               .start,
+                                              //       children: [
+                                              //         Row(
+                                              //           mainAxisAlignment:
+                                              //               MainAxisAlignment
+                                              //                   .spaceBetween,
+                                              //           children: [
+                                              //             Text(
+                                              //               "Set a monthly goal and we’ll give you\ntips on how to get there.",
+                                              //               style: GoogleFonts
+                                              //                   .urbanist(
+                                              //                 color: kBlack,
+                                              //                 fontSize: 18.sp,
+                                              //                 fontWeight:
+                                              //                     FontWeight
+                                              //                         .w600,
+                                              //               ),
+                                              //             ),
+                                              //             InkWell(
+                                              //               onTap: () {
+                                              //                 Get.back();
+                                              //               },
+                                              //               child: const Icon(
+                                              //                 Icons.close,
+                                              //                 color: kGrey,
+                                              //               ),
+                                              //             )
+                                              //           ],
+                                              //         ),
+                                              //         SizedBox(height: 10.h),
+                                              //         SetMonthlyGoal(),
+                                              //       ],
+                                              //     ),
+                                              //   ),
+                                              // );
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Set a monthly goal and we’ll give you\ntips on how to get there.",
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            color: kBlack,
+                                                            fontSize: 18.sp,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                        IconButton(
+                                                          icon: const Icon(
+                                                            Icons.close,
+                                                            color: kGrey,
+                                                          ),
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                        )
+                                                      ],
+                                                    ),
+                                                    backgroundColor:
+                                                        const Color(0xfff8f8f8),
+                                                    content:
+                                                        SingleChildScrollView(
+                                                      child: SizedBox(
+                                                        width: MediaQuery.of(
+                                                                  context,
+                                                                ).size.width >
+                                                                900
+                                                            ? 400
+                                                            : MediaQuery.of(
+                                                                  context,
+                                                                ).size.width *
+                                                                0.8,
+                                                        child:
+                                                            const SetMonthlyGoal(),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 15.w,
+                                                vertical: 10.h,
                                               ),
-                                            ),
-                                            child: Text(
-                                              "Set A Monthly Goal",
-                                              style: GoogleFonts.urbanist(
-                                                color: kWhite,
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w400,
+                                              decoration: BoxDecoration(
+                                                color: kBlack,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  5.r,
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Set A Monthly Goal",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kWhite,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
                                             ),
                                           )
@@ -159,23 +263,75 @@ class _GrowthPageState extends State<GrowthPage>
                                 child: Row(
                                   children: [
                                     const Spacer(),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 15.w,
-                                        vertical: 10.h,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: kBlack,
-                                        borderRadius: BorderRadius.circular(
-                                          5.r,
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Set a monthly goal and we’ll give you\ntips on how to get there.",
+                                                    style: GoogleFonts.urbanist(
+                                                      color: kBlack,
+                                                      fontSize: 18.sp,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                    icon: const Icon(
+                                                      Icons.close,
+                                                      color: kGrey,
+                                                    ),
+                                                    onPressed: () {
+                                                      Get.back();
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                              backgroundColor:
+                                                  const Color(0xfff8f8f8),
+                                              content: SingleChildScrollView(
+                                                child: SizedBox(
+                                                  width: MediaQuery.of(
+                                                            context,
+                                                          ).size.width >
+                                                          900
+                                                      ? 400
+                                                      : MediaQuery.of(
+                                                            context,
+                                                          ).size.width *
+                                                          0.8,
+                                                  child: const SetMonthlyGoal(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w,
+                                          vertical: 10.h,
                                         ),
-                                      ),
-                                      child: Text(
-                                        "Set A Monthly Goal",
-                                        style: GoogleFonts.urbanist(
-                                          color: kWhite,
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
+                                        decoration: BoxDecoration(
+                                          color: kBlack,
+                                          borderRadius: BorderRadius.circular(
+                                            5.r,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "Set A Monthly Goal",
+                                          style: GoogleFonts.urbanist(
+                                            color: kWhite,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
                                     )

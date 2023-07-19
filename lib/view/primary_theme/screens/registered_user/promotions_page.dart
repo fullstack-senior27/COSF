@@ -1,7 +1,11 @@
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PromotionsPage extends StatefulWidget {
@@ -67,23 +71,70 @@ class _PromotionsPageState extends State<PromotionsPage> {
                               padding: EdgeInsets.only(top: 15.h),
                               child: Row(
                                 children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 15.w,
-                                      vertical: 10.h,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: kBlack,
-                                      borderRadius: BorderRadius.circular(
-                                        5.r,
+                                  InkWell(
+                                    onTap: () {
+                                      fullBottomSheet(
+                                        context,
+                                        SingleChildScrollView(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 15.h),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "Select Client",
+                                                      style:
+                                                          GoogleFonts.urbanist(
+                                                        color: kBlack,
+                                                        fontSize: 18.sp,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Get.back();
+                                                      },
+                                                      child: const Icon(
+                                                        Icons.close,
+                                                        color: kGrey,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10.h),
+                                                const CreatePromotion(),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 15.w,
+                                        vertical: 10.h,
                                       ),
-                                    ),
-                                    child: Text(
-                                      "Create Promotion",
-                                      style: GoogleFonts.urbanist(
-                                        color: kWhite,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w400,
+                                      decoration: BoxDecoration(
+                                        color: kBlack,
+                                        borderRadius: BorderRadius.circular(
+                                          5.r,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        "Create Promotion",
+                                        style: GoogleFonts.urbanist(
+                                          color: kWhite,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                     ),
                                   )
@@ -100,23 +151,67 @@ class _PromotionsPageState extends State<PromotionsPage> {
                         child: Row(
                           children: [
                             const Spacer(),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 15.w,
-                                vertical: 10.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: kBlack,
-                                borderRadius: BorderRadius.circular(
-                                  5.r,
+                            InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Create Promotion",
+                                            style: GoogleFonts.urbanist(
+                                              color: kBlack,
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          )
+                                        ],
+                                      ),
+                                      backgroundColor: const Color(0xfff8f8f8),
+                                      content: SingleChildScrollView(
+                                        child: SizedBox(
+                                          width: MediaQuery.of(
+                                                    context,
+                                                  ).size.width >
+                                                  900
+                                              ? 400
+                                              : MediaQuery.of(
+                                                    context,
+                                                  ).size.width *
+                                                  0.8,
+                                          child: const CreatePromotion(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w,
+                                  vertical: 10.h,
                                 ),
-                              ),
-                              child: Text(
-                                "Create Promotion",
-                                style: GoogleFonts.urbanist(
-                                  color: kWhite,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
+                                decoration: BoxDecoration(
+                                  color: kBlack,
+                                  borderRadius: BorderRadius.circular(
+                                    5.r,
+                                  ),
+                                ),
+                                child: Text(
+                                  "Create Promotion",
+                                  style: GoogleFonts.urbanist(
+                                    color: kWhite,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
                             )

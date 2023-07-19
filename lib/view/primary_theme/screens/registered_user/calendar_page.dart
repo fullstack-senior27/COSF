@@ -8,7 +8,11 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../widgets/registered_user_dialogs.dart';
 
 DateTime get _now => DateTime.now();
 
@@ -102,20 +106,61 @@ class _CalendarPageState extends State<CalendarPage> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.75,
-                              height: 45.h,
-                              decoration: BoxDecoration(
-                                color: kBlack,
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Add To Waitlist",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w600,
+                            child: InkWell(
+                              onTap: () {
+                                fullBottomSheet(
+                                    context,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 15.h),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Select Client",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kBlack,
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.back();
+                                                },
+                                                child: const Icon(
+                                                  Icons.close,
+                                                  color: kGrey,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 10.h),
+                                          SelectClient(),
+                                        ],
+                                      ),
+                                    ));
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.75,
+                                height: 45.h,
+                                decoration: BoxDecoration(
+                                  color: kBlack,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Add To Waitlist",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -271,32 +316,81 @@ class _CalendarPageState extends State<CalendarPage> {
                             alignment: Alignment.topCenter,
                             child: Padding(
                               padding: EdgeInsets.only(top: 30.h),
-                              child: Container(
-                                width: 90.w,
-                                height: 45.h,
-                                decoration: BoxDecoration(
-                                  color: kBlack,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.favorite_border_rounded,
-                                        color: Colors.white,
-                                        size: 15.sp,
-                                      ),
-                                      SizedBox(width: 3.w),
-                                      Text(
-                                        "Add To Waitlist",
-                                        style: TextStyle(
+                              child: InkWell(
+                                onTap: () {
+                                  if (MediaQuery.of(context).size.width > 700)
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Select Client",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kBlack,
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.close,
+                                                color: kGrey,
+                                              )
+                                            ],
+                                          ),
+                                          backgroundColor:
+                                              const Color(0xfff8f8f8),
+                                          content: SingleChildScrollView(
+                                            child: SizedBox(
+                                              width: MediaQuery.of(
+                                                        context,
+                                                      ).size.width >
+                                                      900
+                                                  ? 400
+                                                  : MediaQuery.of(
+                                                        context,
+                                                      ).size.width *
+                                                      0.8,
+                                              child: const SelectClient(),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  else
+                                    filterBottomSheet(context, SelectClient());
+                                },
+                                child: Container(
+                                  width: 90.w,
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                    color: kBlack,
+                                    borderRadius: BorderRadius.circular(10.r),
+                                  ),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.favorite_border_rounded,
                                           color: Colors.white,
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w500,
+                                          size: 15.sp,
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(width: 3.w),
+                                        Text(
+                                          "Add To Waitlist",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
