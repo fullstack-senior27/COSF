@@ -328,7 +328,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                         context,
                                       ).size.width *
                                       0.8,
-                              child: AddClientPhoto(),
+                              child: const AddClientPhoto(),
                             ),
                           ),
                         );
@@ -386,7 +386,9 @@ class _ProfileEditState extends State<ProfileEdit>
                       color: const Color(0xffE0F3FD),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 15.h, horizontal: 10.w),
+                          vertical: 15.h,
+                          horizontal: 10.w,
+                        ),
                         child: Row(
                           children: [
                             Expanded(
@@ -473,7 +475,9 @@ class _ProfileEditState extends State<ProfileEdit>
                     color: const Color(0xffFEF9ED),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                          vertical: 20.h, horizontal: 10.w),
+                        vertical: 20.h,
+                        horizontal: 10.w,
+                      ),
                       child: Row(
                         children: [
                           Expanded(

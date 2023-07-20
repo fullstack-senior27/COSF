@@ -6,7 +6,6 @@ import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddClient extends StatelessWidget {
@@ -1327,7 +1326,7 @@ class CreatePromotion extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: kGrey),
+              borderSide: const BorderSide(color: kGrey),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -1415,28 +1414,35 @@ class CreatePromotion extends StatelessWidget {
                     width: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(6.r),
-                          bottomLeft: Radius.circular(6.r)),
+                        topLeft: Radius.circular(6.r),
+                        bottomLeft: Radius.circular(6.r),
+                      ),
                       color: kWhite,
                     ),
                     child: Center(
-                        child: Icon(Icons.percent_outlined,
-                            color: kBlack, size: 20.sp)),
+                      child: Icon(
+                        Icons.percent_outlined,
+                        color: kBlack,
+                        size: 20.sp,
+                      ),
+                    ),
                   ),
                   Container(
                     height: 50.h,
                     width: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(6.r),
-                          topLeft: Radius.circular(6.r)),
+                        topRight: Radius.circular(6.r),
+                        topLeft: Radius.circular(6.r),
+                      ),
                       color: kLightBlue,
                     ),
                     child: Center(
-                        child: Text(
-                      "USD",
-                      style: urbanist500(kBlack, 14),
-                    )),
+                      child: Text(
+                        "USD",
+                        style: urbanist500(kBlack, 14),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -1461,90 +1467,91 @@ class CreatePromotion extends StatelessWidget {
         ),
         SizedBox(height: 20.h),
         SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: BlackButton(context, "Save", () {
-              // if (MediaQuery.of(context).size.width < 700) {
-              //   fullBottomSheet(
-              //       context,
-              //       Padding(
-              //         padding: EdgeInsets.symmetric(vertical: 15.h),
-              //         child: Column(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           children: [
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //               children: [
-              //                 Text(
-              //                   "Scheduled Promotions",
-              //                   style: GoogleFonts.urbanist(
-              //                     color: kBlack,
-              //                     fontSize: 18.sp,
-              //                     fontWeight: FontWeight.w600,
-              //                   ),
-              //                 ),
-              //                 InkWell(
-              //                   onTap: () {
-              //                     Get.back();
-              //                   },
-              //                   child: const Icon(
-              //                     Icons.close,
-              //                     color: kGrey,
-              //                   ),
-              //                 )
-              //               ],
-              //             ),
-              //             SizedBox(height: 10.h),
-              //             ScheduledPromotion(),
-              //           ],
-              //         ),
-              //       ));
-              // } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Scheduled Promotion",
-                          style: GoogleFonts.urbanist(
-                            color: kBlack,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
+          height: 40.h,
+          width: double.infinity,
+          child: BlackButton(context, "Save", () {
+            // if (MediaQuery.of(context).size.width < 700) {
+            //   fullBottomSheet(
+            //       context,
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(vertical: 15.h),
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                   "Scheduled Promotions",
+            //                   style: GoogleFonts.urbanist(
+            //                     color: kBlack,
+            //                     fontSize: 18.sp,
+            //                     fontWeight: FontWeight.w600,
+            //                   ),
+            //                 ),
+            //                 InkWell(
+            //                   onTap: () {
+            //                     Get.back();
+            //                   },
+            //                   child: const Icon(
+            //                     Icons.close,
+            //                     color: kGrey,
+            //                   ),
+            //                 )
+            //               ],
+            //             ),
+            //             SizedBox(height: 10.h),
+            //             ScheduledPromotion(),
+            //           ],
+            //         ),
+            //       ));
+            // } else {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Scheduled Promotion",
+                        style: GoogleFonts.urbanist(
+                          color: kBlack,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.close,
-                            color: kGrey,
-                          ),
-                          onPressed: () {
-                            Get.back();
-                          },
-                        )
-                      ],
-                    ),
-                    backgroundColor: const Color(0xfff8f8f8),
-                    content: SingleChildScrollView(
-                      child: SizedBox(
-                        width: MediaQuery.of(
-                                  context,
-                                ).size.width >
-                                900
-                            ? 400
-                            : MediaQuery.of(
-                                  context,
-                                ).size.width *
-                                0.8,
-                        child: const ScheduledPromotion(),
                       ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.close,
+                          color: kGrey,
+                        ),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      )
+                    ],
+                  ),
+                  backgroundColor: const Color(0xfff8f8f8),
+                  content: SingleChildScrollView(
+                    child: SizedBox(
+                      width: MediaQuery.of(
+                                context,
+                              ).size.width >
+                              900
+                          ? 400
+                          : MediaQuery.of(
+                                context,
+                              ).size.width *
+                              0.8,
+                      child: const ScheduledPromotion(),
                     ),
-                  );
-                },
-              );
-            }))
+                  ),
+                );
+              },
+            );
+          }),
+        )
       ],
     );
   }
@@ -1556,7 +1563,6 @@ class ScheduledPromotion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text("Name", style: urbanist500(kBlack, 14)),
         SizedBox(height: 5.h),
@@ -1564,27 +1570,36 @@ class ScheduledPromotion extends StatelessWidget {
           height: 100.h,
           width: 200,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.r),
-              image: DecorationImage(
-                  image: AssetImage("assets/images/promotion_bg.png"),
-                  fit: BoxFit.cover)),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text("\$25", style: urbanist600(kBlack, 22)),
-            Text("Off", style: urbanist600(kBlack, 14)),
-          ]),
+            borderRadius: BorderRadius.circular(6.r),
+            image: const DecorationImage(
+              image: AssetImage("assets/images/promotion_bg.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("\$25", style: urbanist600(kBlack, 22)),
+              Text("Off", style: urbanist600(kBlack, 14)),
+            ],
+          ),
         ),
         SizedBox(height: 20.h),
         Text("Services", style: urbanist500(kBlack, 14)),
         SizedBox(height: 20.h),
-        Text("Beard Trim, Deep Conditioning Treatment",
-            style: urbanist400(kGrey, 14)),
+        Text(
+          "Beard Trim, Deep Conditioning Treatment",
+          style: urbanist400(kGrey, 14),
+        ),
         SizedBox(height: 10.h),
         Text("Campaign Range", style: urbanist500(kBlack, 14)),
         SizedBox(height: 10.h),
         Text("26/04/2023 - 28/04/2023", style: urbanist400(kGrey, 14)),
         SizedBox(height: 20.h),
-        Text("See how similar professionals build their profile",
-            style: urbanist400(kdescription, 14)),
+        Text(
+          "See how similar professionals build their profile",
+          style: urbanist400(kdescription, 14),
+        ),
         SizedBox(height: 20.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -1592,7 +1607,9 @@ class ScheduledPromotion extends StatelessWidget {
             BlackOutlineButton(context, "Delete", () {}),
             SizedBox(width: 10.w),
             SizedBox(
-                height: 40.h, child: BlackButton(context, "Publish", () {})),
+              height: 40.h,
+              child: BlackButton(context, "Publish", () {}),
+            ),
           ],
         )
       ],
@@ -1635,16 +1652,21 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
         Row(
           children: [
             Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("I want to attract new clients",
-                    style: urbanist600(kBlack, 16)),
-                SizedBox(height: 5.h),
-                Text("Describe your customer reach and preference here",
-                    style: urbanist400(kBlack, 14)),
-              ],
-            )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "I want to attract new clients",
+                    style: urbanist600(kBlack, 16),
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(
+                    "Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(width: 10.w),
             Expanded(
               child: Wrap(
@@ -1673,16 +1695,21 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
         Row(
           children: [
             Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("I want to attract new clients",
-                    style: urbanist600(kBlack, 16)),
-                SizedBox(height: 5.h),
-                Text("Describe your customer reach and preference here",
-                    style: urbanist400(kBlack, 14)),
-              ],
-            )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "I want to attract new clients",
+                    style: urbanist600(kBlack, 16),
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(
+                    "Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(width: 10.w),
             Expanded(
               child: Wrap(
@@ -1713,16 +1740,21 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
         Row(
           children: [
             Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("I want to attract new clients",
-                    style: urbanist600(kBlack, 16)),
-                SizedBox(height: 5.h),
-                Text("Describe your customer reach and preference here",
-                    style: urbanist400(kBlack, 14)),
-              ],
-            )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "I want to attract new clients",
+                    style: urbanist600(kBlack, 16),
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(
+                    "Describe your customer reach and preference here",
+                    style: urbanist400(kBlack, 14),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(width: 10.w),
             Expanded(
               child: Wrap(
@@ -1740,8 +1772,11 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
                           onChanged: handleOptionChange,
                         ),
                         Expanded(
-                            child: Text(streamlineText[i],
-                                style: urbanist400(kBlack, 14))),
+                          child: Text(
+                            streamlineText[i],
+                            style: urbanist400(kBlack, 14),
+                          ),
+                        ),
                       ],
                     ),
                 ],
@@ -1751,9 +1786,10 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
         ),
         SizedBox(height: 20.h),
         SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: BlackButton(context, "Set Goal", () {}))
+          height: 40.h,
+          width: double.infinity,
+          child: BlackButton(context, "Set Goal", () {}),
+        )
       ],
     );
   }
@@ -1873,7 +1909,7 @@ class AddProduct extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: kGrey),
+              borderSide: const BorderSide(color: kGrey),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -1904,11 +1940,12 @@ class AddProduct extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             BlackOutlineButton(context, "Cancel", () {}),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             SizedBox(
-                height: 40.h,
-                // width: 100.w,
-                child: BlackButton(context, "Save", () {})),
+              height: 40.h,
+              // width: 100.w,
+              child: BlackButton(context, "Save", () {}),
+            ),
           ],
         )
       ],
@@ -1933,28 +1970,6 @@ class OnlineBookingProfile extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Upcoming Hours",
-                              style: GoogleFonts.urbanist(
-                                color: kBlack,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.close,
-                                color: kGrey,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        ),
                         backgroundColor: const Color(0xfff8f8f8),
                         content: SingleChildScrollView(
                           child: SizedBox(
@@ -1984,28 +1999,6 @@ class OnlineBookingProfile extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Upcoming Hours",
-                                  style: GoogleFonts.urbanist(
-                                    color: kBlack,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: const Icon(
-                                    Icons.close,
-                                    color: kGrey,
-                                  ),
-                                )
-                              ],
-                            ),
                             SizedBox(height: 10.h),
                             const OnlineBooking(),
                           ],
@@ -2046,25 +2039,6 @@ class OnlineBookingProfile extends StatelessWidget {
                       return AlertDialog(
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Personal Info",
-                              style: GoogleFonts.urbanist(
-                                color: kBlack,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.close,
-                                color: kGrey,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
                         ),
                         backgroundColor: const Color(0xfff8f8f8),
                         content: SingleChildScrollView(
@@ -2098,25 +2072,7 @@ class OnlineBookingProfile extends StatelessWidget {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Upcoming Hours",
-                                  style: GoogleFonts.urbanist(
-                                    color: kBlack,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: const Icon(
-                                    Icons.close,
-                                    color: kGrey,
-                                  ),
-                                )
-                              ],
+                              children: const [],
                             ),
                             SizedBox(height: 10.h),
                             const PersonalInfo(),
@@ -2627,8 +2583,10 @@ class _OnlineBookingState extends State<OnlineBooking> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Allow Multi-Service Bookings",
-                style: urbanist600(kBlack, 16)),
+            Text(
+              "Allow Multi-Service Bookings",
+              style: urbanist600(kBlack, 16),
+            ),
             Switch(
               activeColor: kBlue,
               activeTrackColor: kWhite,
@@ -2647,8 +2605,10 @@ class _OnlineBookingState extends State<OnlineBooking> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Show Last Minute Availability",
-                style: urbanist600(kBlack, 16)),
+            Text(
+              "Show Last Minute Availability",
+              style: urbanist600(kBlack, 16),
+            ),
             Switch(
               activeColor: kBlue,
               activeTrackColor: kWhite,
@@ -2675,7 +2635,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2694,7 +2654,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2706,11 +2666,12 @@ class _OnlineBookingState extends State<OnlineBooking> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             BlackOutlineButton(context, "Cancel", () {}),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             SizedBox(
-                height: 40.h,
-                // width: 100.w,
-                child: BlackButton(context, "Save", () {})),
+              height: 40.h,
+              // width: 100.w,
+              child: BlackButton(context, "Save", () {}),
+            ),
           ],
         )
       ],
@@ -2737,7 +2698,7 @@ class SocialInfo extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2756,7 +2717,7 @@ class SocialInfo extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2775,7 +2736,7 @@ class SocialInfo extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2794,7 +2755,7 @@ class SocialInfo extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2813,7 +2774,7 @@ class SocialInfo extends StatelessWidget {
             hintStyle: urbanist400(kGrey, 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
-              borderSide: BorderSide(color: klines),
+              borderSide: const BorderSide(color: klines),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
@@ -2825,11 +2786,12 @@ class SocialInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             BlackOutlineButton(context, "Cancel", () {}),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             SizedBox(
-                height: 40.h,
-                // width: 100.w,
-                child: BlackButton(context, "Save", () {})),
+              height: 40.h,
+              // width: 100.w,
+              child: BlackButton(context, "Save", () {}),
+            ),
           ],
         )
       ],

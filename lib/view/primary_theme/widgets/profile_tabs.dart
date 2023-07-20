@@ -654,8 +654,6 @@ class PhotosTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Photos", style: urbanist600(kBlack, 18)),
-          SizedBox(height: 20.h),
           Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),

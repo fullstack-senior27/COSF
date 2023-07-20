@@ -246,7 +246,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                               ? const ProfilePage()
                               : navbarSection == "More"
                                   ? const MorePage()
-                                  : const MorePage(),
+                                  : const CalendarPage(),
     );
   }
 }

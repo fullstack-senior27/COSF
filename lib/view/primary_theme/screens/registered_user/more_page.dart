@@ -7,6 +7,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -184,10 +185,47 @@ class _MorePageState extends ConsumerState<MorePage> {
                     } else if (index == 6) {
                       showDialog(
                         context: context,
-                        builder: (context) => const AlertDialog(
-                          backgroundColor: kselected,
-                          content: OnlineBookingProfile(),
-                        ),
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Online Booking & Profile",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                              ],
+                            ),
+                            backgroundColor: const Color(0xfff8f8f8),
+                            content: SingleChildScrollView(
+                              child: SizedBox(
+                                width: MediaQuery.of(
+                                          context,
+                                        ).size.width >
+                                        900
+                                    ? 400
+                                    : MediaQuery.of(
+                                          context,
+                                        ).size.width *
+                                        0.8,
+                                child: const OnlineBookingProfile(),
+                              ),
+                            ),
+                          );
+                        },
                       );
                     } else if (index == 7) {
                       ref.read(styleProvider).setSelectedPage("Promotions");
@@ -918,225 +956,6 @@ class _NotificationSettingState extends State<NotificationSetting> {
                   children: [
                     Text(
                       "Notification My Clients Receive",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-//! online booking and profile =============>
-
-class OnlineBookingProfile extends StatefulWidget {
-  const OnlineBookingProfile({super.key});
-
-  @override
-  State<OnlineBookingProfile> createState() => _OnlineBookingProfileState();
-}
-
-class _OnlineBookingProfileState extends State<OnlineBookingProfile> {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width > 700
-          ? 130.w
-          : MediaQuery.of(context).size.width,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20.h,
-            ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  "Online Booking",
-                  style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Personal Info",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Notification My Clients Receive",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Business Info",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Social info",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Edit & promote my profile",
-                      style: urbanist400(kGrey, 14),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20.sp,
-                        color: kGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                color: kWhite,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  children: [
-                    Text(
-                      "Manage Photos",
                       style: urbanist400(kGrey, 14),
                     ),
                     const Spacer(),
