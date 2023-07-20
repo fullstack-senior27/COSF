@@ -192,6 +192,12 @@ class _MorePageState extends ConsumerState<MorePage> {
                     } else if (index == 7) {
                       ref.read(styleProvider).setSelectedPage("Promotions");
                     } else if (index == 8) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                          content: PaymentNoShowProtection(),
+                        ),
+                      );
                     } else if (index == 9) {
                       Get.to(() => const BlogPage());
                     } else if (index == 10) {
@@ -1704,6 +1710,1082 @@ class _EmailPreviewState extends State<EmailPreview> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+//! payment & No-show PROTECTION ==>
+
+class PaymentNoShowProtection extends StatefulWidget {
+  const PaymentNoShowProtection({super.key});
+
+  @override
+  State<PaymentNoShowProtection> createState() =>
+      _PaymentNoShowProtectionState();
+}
+
+class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width > 700
+            ? 130.w
+            : MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+              ),
+              title: Text(
+                "Payment & No-Show Protection",
+                style: GoogleFonts.urbanist(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Ready to get paid?",
+              style: GoogleFonts.urbanist(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Wrap(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width > 700 ? 0.w : 10.w,
+                    bottom: 15.h,
+                    top: 10.h,
+                  ),
+                  child: Text(
+                    "Set up your payment account to get paid for your services.  ",
+                    style: GoogleFonts.urbanist(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kBlack,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.r),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Get Started",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w400,
+                        color: kWhite,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            ...List.generate(
+              3,
+              (index) => Text(
+                "Charge clients from your phone, tablet or desktop",
+                style: GoogleFonts.urbanist(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Complete these steps",
+              style: GoogleFonts.urbanist(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Add Your Bank Account",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.r),
+                      ),
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => AddBankAccount(),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kWhite,
+                    surfaceTintColor: kWhite,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      side: const BorderSide(),
+                    ),
+                  ),
+                  child: Text(
+                    "  Add  ",
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                      color: kBlack,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Verify Your Identity",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.r),
+                      ),
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => VerifyAcount(),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kWhite,
+                    surfaceTintColor: kWhite,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      side: const BorderSide(),
+                    ),
+                  ),
+                  child: Text(
+                    "Verify",
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                      color: kBlack,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Add Your Mailing Address",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.r),
+                      ),
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) {
+                        return MailingAddress();
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kWhite,
+                    surfaceTintColor: kWhite,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      side: const BorderSide(),
+                    ),
+                  ),
+                  child: Text(
+                    "  Add  ",
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                      color: kBlack,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            SizedBox(
+              height: 50.h,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kBlack,
+                  surfaceTintColor: kBlack,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.r),
+                    side: const BorderSide(),
+                  ),
+                ),
+                child: Text(
+                  "Update",
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    color: kWhite,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView VerifyAcount() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width > 700 ? 80.w : 20,
+          vertical: 20.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (MediaQuery.of(context).size.width > 700)
+              Container()
+            else
+              SizedBox(
+                height: 40.h,
+              ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "Verify Your Identity",
+                style: GoogleFonts.urbanist(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Federal law requires we verify your identity to make sure your account is secure.",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+
+            // add textfield for First Name ,Last Name* , phone number , Last 4 Digits of SSN* , DOB
+            Text(
+              "First Name*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "First Name",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Last Name*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Wick",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Phone number*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "(987) 654 3210",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Last 4 Digits of SSN*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "1234",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Date of Birth*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "--/--/--",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "Do you have an Employer Identification Number?",
+                style: GoogleFonts.urbanist(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: Switch(value: false, onChanged: (value) {}),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "This information will be used for verification purposes only. It will not be shared with your clients or displayed on your profile. By updating this form, you agree to our Terms of Service",
+              style: GoogleFonts.urbanist(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            SizedBox(
+              height: 50.h,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kBlack,
+                  surfaceTintColor: kBlack,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.r),
+                    side: const BorderSide(),
+                  ),
+                ),
+                child: Text(
+                  "Update",
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    color: kWhite,
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: 20.h,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView AddBankAccount() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width > 700 ? 80.w : 20,
+          vertical: 20.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (MediaQuery.of(context).size.width > 700)
+              Container()
+            else
+              SizedBox(
+                height: 40.h,
+              ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "Where should we send your payouts? Pay booking fee now, this card will be charged at time of service. Learn More",
+                style: GoogleFonts.urbanist(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Account Holder's Name*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Name",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Routing Number*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Account Number*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Re-enter Account Number*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "Business bank account?",
+                style: GoogleFonts.urbanist(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: Switch(value: false, onChanged: (value) {}),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            SizedBox(
+              height: 50.h,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kBlack,
+                  surfaceTintColor: kBlack,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.r),
+                    side: const BorderSide(),
+                  ),
+                ),
+                child: Text(
+                  "Update",
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    color: kWhite,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView MailingAddress() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width > 700 ? 80.w : 20,
+          vertical: 20.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "Add your mailing address",
+                style: GoogleFonts.urbanist(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Street Address*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "e.g South ave 123",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "Routing Number*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "e.g South ave 123",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "City*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "e.g South ave 123",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              "State",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "State",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Zip*",
+              style: GoogleFonts.urbanist(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Zip",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            SizedBox(
+              height: 50.h,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kBlack,
+                  surfaceTintColor: kBlack,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.r),
+                    side: const BorderSide(),
+                  ),
+                ),
+                child: Text(
+                  "Update",
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    color: kWhite,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+          ],
+        ),
       ),
     );
   }
