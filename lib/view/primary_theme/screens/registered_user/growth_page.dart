@@ -215,7 +215,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                                   context,
                                                                 ).size.width >
                                                                 900
-                                                            ? 400
+                                                            ? 600
                                                             : MediaQuery.of(
                                                                   context,
                                                                 ).size.width *
@@ -302,7 +302,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                             context,
                                                           ).size.width >
                                                           900
-                                                      ? 400
+                                                      ? 600
                                                       : MediaQuery.of(
                                                             context,
                                                           ).size.width *

@@ -1,6 +1,8 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -1752,6 +1754,1084 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
             height: 40.h,
             width: double.infinity,
             child: BlackButton(context, "Set Goal", () {}))
+      ],
+    );
+  }
+}
+
+class AddClientPhoto extends StatelessWidget {
+  const AddClientPhoto({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> img = [
+      "https://i.imgur.com/2CuqQCO.png",
+      "https://i.imgur.com/CR0PyPk.png",
+      "https://i.imgur.com/gqnN08c.png",
+      "https://i.imgur.com/2txrGqz.png"
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "See how similar professionals build their profile",
+          style: urbanist400(kdescription, 14),
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+        ListView.builder(
+          itemCount: img.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 20.r,
+                            backgroundImage: NetworkImage(
+                              img[index],
+                            ),
+                          ),
+                          SizedBox(width: 5.w),
+                          Column(
+                            children: [
+                              Text(
+                                "Eleanor Pena",
+                                style: urbanist400(kBlack, 12),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "10K+ Booked",
+                                style: urbanist400(kBlue, 12),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          BlackButton(context, "View Profile", () {}),
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      color: klines,
+                    )
+                  ],
+                )
+              ],
+            );
+          },
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+      ],
+    );
+  }
+}
+
+class AddProduct extends StatelessWidget {
+  const AddProduct({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Title*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "Product Name",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Description*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextFormField(
+          maxLines: 4,
+          decoration: InputDecoration(
+            hintText: "Product uses, attributes & price",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Link (OPTIONAL)*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextFormField(
+          decoration: InputDecoration(
+            hintText: "https://www.example.com",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: const BorderSide(color: kGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BlackOutlineButton(context, "Cancel", () {}),
+            SizedBox(width: 15),
+            SizedBox(
+                height: 40.h,
+                // width: 100.w,
+                child: BlackButton(context, "Save", () {})),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class OnlineBookingProfile extends StatelessWidget {
+  const OnlineBookingProfile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Text("Online Booking & Profile", style: urbanist600(kBlack, 18)),
+        SizedBox(height: 20.h),
+        GestureDetector(
+          onTap: () {
+            MediaQuery.of(context).size.width > 700
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Upcoming Hours",
+                              style: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.close,
+                                color: kGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 400
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const OnlineBooking(),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                :
+
+                // bottom sheet for service menu
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Upcoming Hours",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            const OnlineBooking(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Online booking",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        GestureDetector(
+          onTap: () {
+            MediaQuery.of(context).size.width > 700
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Personal Info",
+                              style: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.close,
+                                color: kGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 600
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const PersonalInfo(),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                :
+
+                // bottom sheet for service menu
+
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Upcoming Hours",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            const PersonalInfo(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Personal Info",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        GestureDetector(
+          onTap: () {
+            MediaQuery.of(context).size.width > 700
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Business Info",
+                              style: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.close,
+                                color: kGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 600
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const BusinessInfo(),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                :
+
+                // bottom sheet for service menu
+
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Business Info",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            const BusinessInfo(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Business Info",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        //social info
+        GestureDetector(
+          onTap: () {
+            MediaQuery.of(context).size.width > 700
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Social Info",
+                              style: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.close,
+                                color: kGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 600
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const SocialInfo(),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                :
+
+                // bottom sheet for service menu
+
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Social Info",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            const SocialInfo(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Social Info",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        //edit profile
+        GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Edit & promote\nmy profile",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        //photos
+        GestureDetector(
+          onTap: () {
+            MediaQuery.of(context).size.width > 700
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Photos",
+                              style: GoogleFonts.urbanist(
+                                color: kBlack,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.close,
+                                color: kGrey,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 600
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const PhotosTab(),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                :
+
+                // bottom sheet for service menu
+
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Photos",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            const PhotosTab(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Photos",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.sp,
+                    color: kGrey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class OnlineBooking extends StatefulWidget {
+  const OnlineBooking({super.key});
+
+  @override
+  State<OnlineBooking> createState() => _OnlineBookingState();
+}
+
+class _OnlineBookingState extends State<OnlineBooking> {
+  bool onlineboking = false;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Online Booking", style: urbanist600(kBlack, 16)),
+            Switch(
+              activeColor: kBlue,
+              activeTrackColor: kWhite,
+              inactiveThumbColor: kWhite,
+              inactiveTrackColor: klines,
+              value: onlineboking,
+              onChanged: (value) {
+                setState(() {
+                  onlineboking = value;
+                });
+              },
+            ),
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Require Clients to Provide Credit Card to Book",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        DropdownButtonFormField<String>(
+          dropdownColor: kWhite,
+          isExpanded: true,
+          decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: klines),
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: klines),
+            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+            // suffixIcon: Icon(Icons.arrow_drop_down),
+          ),
+          items: [
+            ...List.generate(
+              5,
+              (index) => DropdownMenuItem<String>(
+                value: 'Option $index',
+                child: Text(
+                  'Option $index',
+                  style: urbanist400(kGrey, 12),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            )
+          ],
+          onChanged: (String? value) {
+            // Handle dropdown value change
+          },
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Schedule Appointments...",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        DropdownButtonFormField<String>(
+          dropdownColor: kWhite,
+          isExpanded: true,
+          decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: klines),
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: klines),
+            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+            // suffixIcon: Icon(Icons.arrow_drop_down),
+          ),
+          items: [
+            ...List.generate(
+              5,
+              (index) => DropdownMenuItem<String>(
+                value: 'Option $index',
+                child: Text(
+                  'Option $index',
+                  style: urbanist400(kGrey, 12),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            )
+          ],
+          onChanged: (String? value) {
+            // Handle dropdown value change
+          },
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Allow Multi-Service Bookings",
+                style: urbanist600(kBlack, 16)),
+            Switch(
+              activeColor: kBlue,
+              activeTrackColor: kWhite,
+              inactiveThumbColor: kWhite,
+              inactiveTrackColor: klines,
+              value: onlineboking,
+              onChanged: (value) {
+                setState(() {
+                  onlineboking = value;
+                });
+              },
+            ),
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Show Last Minute Availability",
+                style: urbanist600(kBlack, 16)),
+            Switch(
+              activeColor: kBlue,
+              activeTrackColor: kWhite,
+              inactiveThumbColor: kWhite,
+              inactiveTrackColor: klines,
+              value: onlineboking,
+              onChanged: (value) {
+                setState(() {
+                  onlineboking = value;
+                });
+              },
+            ),
+          ],
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Hours Notice for Online Bookings*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "3",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Hours Notice for Cancellations**",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "24",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BlackOutlineButton(context, "Cancel", () {}),
+            SizedBox(width: 15),
+            SizedBox(
+                height: 40.h,
+                // width: 100.w,
+                child: BlackButton(context, "Save", () {})),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class SocialInfo extends StatelessWidget {
+  const SocialInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Instagram Username*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Facebook URL*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Twitter Username*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Business Website*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Text(
+          "Yelp URL*",
+          style: urbanist500(kBlack, 14),
+        ),
+        SizedBox(height: 5.h),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "",
+            hintStyle: urbanist400(kGrey, 14),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+              borderSide: BorderSide(color: klines),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BlackOutlineButton(context, "Cancel", () {}),
+            SizedBox(width: 15),
+            SizedBox(
+                height: 40.h,
+                // width: 100.w,
+                child: BlackButton(context, "Save", () {})),
+          ],
+        )
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -465,7 +466,52 @@ class ProductsCard extends StatelessWidget {
               child: SizedBox(
                 height: 40.h,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Add Client Photo",
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 400
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: const AddProduct(),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kBlack,
                     shape: RoundedRectangleBorder(

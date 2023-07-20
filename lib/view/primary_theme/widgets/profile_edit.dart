@@ -4,11 +4,14 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
@@ -285,36 +288,132 @@ class _ProfileEditState extends State<ProfileEdit>
                   color: kBlue,
                   height: 5.h,
                 ),
-                Container(
-                  color: const Color(0xffE0F3FD),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Get inspiration",
-                                style: urbanist600(kBlack, 16),
+                                "Add Client Photo",
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                              SizedBox(height: 5.h),
-                              Text(
-                                "See how similar professionals build their profile",
-                                style: urbanist400(kBlack, 12),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
+                                ),
+                                onPressed: () {
+                                  Get.back();
+                                },
                               ),
                             ],
                           ),
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 400
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: AddClientPhoto(),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Add Client Photo",
+                                  style: GoogleFonts.urbanist(
+                                    color: kBlack,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                )
+                              ],
+                            ),
+                            backgroundColor: const Color(0xfff8f8f8),
+                            content: SingleChildScrollView(
+                              child: SizedBox(
+                                width: MediaQuery.of(
+                                          context,
+                                        ).size.width >
+                                        900
+                                    ? 400
+                                    : MediaQuery.of(
+                                          context,
+                                        ).size.width *
+                                        0.8,
+                                child: const AddClientPhoto(),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      color: const Color(0xffE0F3FD),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 15.h, horizontal: 10.w),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Get inspiration",
+                                    style: urbanist600(kBlack, 16),
+                                  ),
+                                  SizedBox(height: 5.h),
+                                  Text(
+                                    "See how similar professionals build their profile",
+                                    style: urbanist400(kBlack, 12),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: kBlack,
+                              size: 20,
+                            )
+                          ],
                         ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: kBlack,
-                          size: 20,
-                        )
-                      ],
+                      ),
                     ),
                   ),
                 ),
@@ -323,26 +422,74 @@ class _ProfileEditState extends State<ProfileEdit>
                   color: const Color(0xffFFBC1A),
                   height: 5.h,
                 ),
-                Container(
-                  color: const Color(0xffFEF9ED),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Set A Monthly Goal",
-                            style: urbanist600(kBlack, 16),
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Set a monthly goal and we’ll give you\ntips on how to get there.",
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
+                                ),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              )
+                            ],
                           ),
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: kBlack,
-                          size: 20,
-                        )
-                      ],
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 600
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: const SetMonthlyGoal(),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    color: const Color(0xffFEF9ED),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20.h, horizontal: 10.w),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Set A Monthly Goal",
+                              style: urbanist600(kBlack, 16),
+                            ),
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: kBlack,
+                            size: 20,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -364,6 +511,77 @@ class _ProfileEditState extends State<ProfileEdit>
                             "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
                           ),
                           radius: 60.r,
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Visibility(
+                          visible: MediaQuery.of(context).size.width < 701,
+                          child: Container(
+                            // width: 36.w,
+                            height: 40.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7.r),
+                              border: Border.all(color: kBlue),
+                            ),
+                            child: TextButton.icon(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Online Booking & Profile",
+                                            style: GoogleFonts.urbanist(
+                                              color: kBlack,
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          IconButton(
+                                            icon: const Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      backgroundColor: const Color(0xfff8f8f8),
+                                      content: SingleChildScrollView(
+                                        child: SizedBox(
+                                          width: MediaQuery.of(
+                                                    context,
+                                                  ).size.width >
+                                                  900
+                                              ? 400
+                                              : MediaQuery.of(
+                                                    context,
+                                                  ).size.width *
+                                                  0.8,
+                                          child: const OnlineBookingProfile(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.edit_note_outlined,
+                                color: kBlue,
+                              ),
+                              label: Text(
+                                "Edit",
+                                style: urbanist600(kBlue, 14),
+                              ),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -622,7 +840,53 @@ class _ProfileEditState extends State<ProfileEdit>
                           border: Border.all(color: kBlue),
                         ),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Online Booking & Profile",
+                                        style: GoogleFonts.urbanist(
+                                          color: kBlack,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.close,
+                                          color: kGrey,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  backgroundColor: const Color(0xfff8f8f8),
+                                  content: SingleChildScrollView(
+                                    child: SizedBox(
+                                      width: MediaQuery.of(
+                                                context,
+                                              ).size.width >
+                                              900
+                                          ? 400
+                                          : MediaQuery.of(
+                                                context,
+                                              ).size.width *
+                                              0.8,
+                                      child: const OnlineBookingProfile(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
