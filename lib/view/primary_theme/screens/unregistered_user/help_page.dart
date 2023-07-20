@@ -2,10 +2,13 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HelpPage extends StatefulWidget {
-  const HelpPage({super.key});
+  final int? nav;
+  const HelpPage({super.key, this.nav});
 
   @override
   State<HelpPage> createState() => _HelpPageState();
@@ -31,6 +34,21 @@ class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.nav == 1
+          ? AppBar(
+              backgroundColor: kWhite,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_rounded,
+                  color: kBlack,
+                ),
+              ),
+            )
+          : null,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
