@@ -1,11 +1,14 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
+import 'package:easy_stepper/easy_stepper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -171,7 +174,21 @@ class _MorePageState extends ConsumerState<MorePage> {
                         ),
                       );
                     } else if (index == 5) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                          backgroundColor: kselected,
+                          content: EmailMarketing(),
+                        ),
+                      );
                     } else if (index == 6) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                          backgroundColor: kselected,
+                          content: OnlineBookingProfile(),
+                        ),
+                      );
                     } else if (index == 7) {
                       ref.read(styleProvider).setSelectedPage("Promotions");
                     } else if (index == 8) {
@@ -917,6 +934,777 @@ class _NotificationSettingState extends State<NotificationSetting> {
   }
 }
 
-
-
 //! online booking and profile =============>
+
+class OnlineBookingProfile extends StatefulWidget {
+  const OnlineBookingProfile({super.key});
+
+  @override
+  State<OnlineBookingProfile> createState() => _OnlineBookingProfileState();
+}
+
+class _OnlineBookingProfileState extends State<OnlineBookingProfile> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width > 700
+          ? 130.w
+          : MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  "Online Booking",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Personal Info",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Notification My Clients Receive",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Business Info",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Social info",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Edit & promote my profile",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                color: kWhite,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                child: Row(
+                  children: [
+                    Text(
+                      "Manage Photos",
+                      style: urbanist400(kGrey, 14),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20.sp,
+                        color: kGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//! Email Marketing =============>
+class EmailMarketing extends StatefulWidget {
+  const EmailMarketing({super.key});
+
+  @override
+  State<EmailMarketing> createState() => _EmailMarketingState();
+}
+
+class _EmailMarketingState extends State<EmailMarketing> {
+  int activeStep = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width > 700
+          ? 200.w
+          : MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  "Email Marketing",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            EasyStepper(
+              defaultStepBorderType: BorderType.normal,
+              lineType: LineType.normal,
+              activeStep: activeStep,
+              lineLength: 80,
+              stepRadius: 20,
+              unreachedStepIconColor: kBlack,
+              unreachedStepBorderColor: kBlack,
+              unreachedStepTextColor: kBlack,
+              finishedStepTextColor: kblueColor,
+              activeStepTextColor: kblueColor,
+              activeStepBorderColor: kblueColor,
+              activeStepIconColor: kWhite,
+              activeStepBackgroundColor: kblueColor,
+              finishedLineColor: kblueColor,
+              finishedStepBackgroundColor: kblueColor,
+              unreachedLineColor: kBlack,
+              unreachedStepBorderType: BorderType.dotted,
+              showLoadingAnimation: false,
+              steps: const [
+                EasyStep(
+                  icon: Icon(Icons.my_location),
+                  title: 'Create',
+                ),
+                EasyStep(
+                  icon: Icon(CupertinoIcons.person_2_alt),
+                  title: 'Recipients',
+                ),
+                EasyStep(
+                  icon: Icon(Icons.edit_note),
+                  title: 'Compose',
+                ),
+                EasyStep(
+                  icon: Icon(CupertinoIcons.perspective),
+                  title: 'Preview',
+                ),
+              ],
+              onStepReached: (index) => setState(() => activeStep = index),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            if (activeStep == 0)
+              const EmailCreate()
+            else
+              activeStep == 1
+                  ? const EmailRecipients()
+                  : activeStep == 2
+                      ? const EmailCompose()
+                      : const EmailPreview(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ! Email-create =============>
+
+class EmailCreate extends StatefulWidget {
+  const EmailCreate({super.key});
+
+  @override
+  State<EmailCreate> createState() => _EmailCreateState();
+}
+
+class _EmailCreateState extends State<EmailCreate> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "First, choose your template, campaign name, and subject line.",
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Template",
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "Template",
+              hintStyle: TextStyle(
+                fontSize: 14.sp,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.24,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Email Name*",
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "Email Name",
+              hintStyle: TextStyle(
+                fontSize: 14.sp,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.24,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Subject line*",
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "See you soon?",
+              hintStyle: TextStyle(
+                fontSize: 14.sp,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.24,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: const BorderSide(color: kGrey),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          SizedBox(
+            height: 50.h,
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kBlack,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  side: const BorderSide(),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Continue",
+                style: TextStyle(
+                  color: kWhite,
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+//! Email-Recipients =============>
+
+class EmailRecipients extends StatefulWidget {
+  const EmailRecipients({super.key});
+
+  @override
+  State<EmailRecipients> createState() => _EmailRecipientsState();
+}
+
+class _EmailRecipientsState extends State<EmailRecipients> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Which clients would you like to send this campaign to?.",
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Recipients",
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontFamily: 'Urbanist',
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          ...List.generate(
+            3,
+            (index) => Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                tileColor: kWhite,
+                title: Text(
+                  "All Clients",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.24,
+                  ),
+                ),
+                subtitle: Text(
+                  "Everyone in your client list with an email address.",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 11.sp,
+                    color: kGrey,
+                    fontWeight: FontWeight.w200,
+                    letterSpacing: 0.24,
+                  ),
+                ),
+                trailing: Radio(
+                  value: index,
+                  groupValue: 0,
+                  onChanged: (value) {},
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          SizedBox(
+            height: 50.h,
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kBlack,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  side: const BorderSide(),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Continue",
+                style: TextStyle(
+                  color: kWhite,
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//! Email-Compose =============>
+
+class EmailCompose extends StatefulWidget {
+  const EmailCompose({super.key});
+
+  @override
+  State<EmailCompose> createState() => _EmailComposeState();
+}
+
+class _EmailComposeState extends State<EmailCompose> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20.h,
+          ),
+          ...List.generate(
+            2,
+            (index) => Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                tileColor: kWhite,
+                title: Text(
+                  "Headline",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.24,
+                  ),
+                ),
+                subtitle: Text(
+                  "Lorem ipsum dolor sit amet consectetur.",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 11.sp,
+                    color: kGrey,
+                    fontWeight: FontWeight.w200,
+                    letterSpacing: 0.24,
+                  ),
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    Get.to(TextEditorPage());
+                  },
+                  icon: const Icon(Icons.edit),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//! Email-Preview =============>
+
+class EmailPreview extends StatefulWidget {
+  const EmailPreview({super.key});
+
+  @override
+  State<EmailPreview> createState() => _EmailPreviewState();
+}
+
+class _EmailPreviewState extends State<EmailPreview> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Headline",
+            style: GoogleFonts.urbanist(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 15.h,
+          ),
+          Text(
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+            style: GoogleFonts.urbanist(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "Sending to",
+            style: GoogleFonts.urbanist(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.24,
+            ),
+          ),
+          SizedBox(
+            height: 15.h,
+          ),
+          ...List.generate(
+            3,
+            (index) => ListTile(
+              tileColor: kWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+              title: Text(
+                "Client Name",
+                style: GoogleFonts.urbanist(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.24,
+                ),
+              ),
+              leading: const CircleAvatar(
+                backgroundColor: kGrey,
+                backgroundImage: NetworkImage(
+                  "https://images.unsplash.com/photo-1595152452543-e5fc28ebc2b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8&w=1000&q=80",
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          SizedBox(
+            height: 45.h,
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kBlack,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  side: const BorderSide(),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Send",
+                style: TextStyle(
+                  color: kWhite,
+                  fontSize: 14.sp,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.24,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
