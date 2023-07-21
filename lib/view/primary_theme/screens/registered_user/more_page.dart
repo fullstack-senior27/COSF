@@ -7,6 +7,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/promote_section1.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/cupertino.dart';
@@ -239,6 +240,12 @@ class _MorePageState extends ConsumerState<MorePage> {
                     } else if (index == 9) {
                       Get.to(() => const BlogPage());
                     } else if (index == 10) {
+                      showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(),
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => const PromoteSection1(),
+                      );
                     } else {
                       Get.to(() => const HelpPage(nav: 1));
                     }
