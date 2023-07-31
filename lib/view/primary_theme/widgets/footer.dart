@@ -241,6 +241,11 @@ class _FooterState extends State<Footer> {
                               ),
                               SizedBox(height: 10.h),
                               TextField(
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                                 keyboardType: TextInputType.emailAddress,
                                 cursorColor: kBlue,
                                 decoration: InputDecoration(
@@ -254,7 +259,7 @@ class _FooterState extends State<Footer> {
                                   hintStyle: GoogleFonts.urbanist(
                                     color: kBlack,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14.sp,
+                                    fontSize: 16.sp,
                                   ),
                                   suffixIcon: const Icon(
                                     Icons.send_outlined,

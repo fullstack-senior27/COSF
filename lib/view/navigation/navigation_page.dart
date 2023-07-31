@@ -27,10 +27,17 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //! here we can change the body based on the theme and the user type (login or unregister)
-      body: DashboardFreePage(),
-      //  DashboardLoginPage(),
+    return WillPopScope(
+      onWillPop: () async {
+        // ignore: avoid_print
+        print("back button pressed");
+        return false;
+      },
+      child: const Scaffold(
+        //! here we can change the body based on the theme and the user type (login or unregister)
+        body: DashboardFreePage(),
+        //  DashboardLoginPage(),
+      ),
     );
   }
 }

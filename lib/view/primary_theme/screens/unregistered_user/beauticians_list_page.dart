@@ -2,6 +2,7 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/beauticians_list.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,7 @@ class BeauticiansListPage extends StatefulWidget {
 }
 
 class _BeauticiansListPageState extends State<BeauticiansListPage> {
+  final TextEditingController _dateController = TextEditingController();
   List<String> items = [
     "View All",
     "Women",
@@ -86,6 +88,10 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                     children: [
                       Expanded(
                         child: TextField(
+                          style: GoogleFonts.urbanist(
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: InputDecoration(
                             hintText: "Services or beautician name",
                             hintStyle: GoogleFonts.urbanist(
@@ -124,6 +130,10 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          style: GoogleFonts.urbanist(
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: InputDecoration(
                             hintText: "Location",
                             hintStyle: GoogleFonts.urbanist(
@@ -162,6 +172,11 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          controller: _dateController,
+                          style: GoogleFonts.urbanist(
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: InputDecoration(
                             hintText: "Date",
                             hintStyle: GoogleFonts.urbanist(
@@ -169,9 +184,32 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w600,
                             ),
-                            suffixIcon: const Icon(
-                              Icons.date_range,
-                              color: kGrey,
+                            suffixIcon: InkWell(
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                  context: context, //context of current state
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(
+                                    2000,
+                                  ), //DateTime.now() - not to allow to choose before today.
+                                  lastDate: DateTime(2101),
+                                );
+
+                                if (pickedDate != null) {
+                                  //pickedDate output format => 2021-03-10 00:00:00.000
+                                  String formattedDate =
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(pickedDate);
+
+                                  _dateController.text =
+                                      formattedDate; //set output date to TextField value.
+                                  //formatted date output using intl package =>  2021-03-16
+                                }
+                              },
+                              child: const Icon(
+                                Icons.date_range,
+                                color: kGrey,
+                              ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -205,9 +243,12 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               ),
                             ),
                             onPressed: () {},
-                            child: const Text(
+                            child: Text(
                               "Search",
-                              style: TextStyle(color: kWhite),
+                              style: TextStyle(
+                                color: kWhite,
+                                fontSize: 16.sp,
+                              ),
                             ),
                           ),
                         ),
@@ -280,6 +321,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                       height: 10.h,
                     ),
                     TextField(
+                      controller: _dateController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(
@@ -293,9 +335,31 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
-                        suffixIcon: const Icon(
-                          Icons.date_range,
-                          color: kGrey,
+                        suffixIcon: InkWell(
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context, //context of current state
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(
+                                2000,
+                              ), //DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2101),
+                            );
+
+                            if (pickedDate != null) {
+                              //pickedDate output format => 2021-03-10 00:00:00.000
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              _dateController.text =
+                                  formattedDate; //set output date to TextField value.
+                              //formatted date output using intl package =>  2021-03-16
+                            }
+                          },
+                          child: const Icon(
+                            Icons.date_range,
+                            color: kGrey,
+                          ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(

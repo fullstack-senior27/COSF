@@ -24,7 +24,7 @@ class NavbarFreeWidget extends ConsumerStatefulWidget {
 class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.width > 920
+    return MediaQuery.of(context).size.width > 980
         ? primaryStyle()
         : primaryStyleRes();
   }

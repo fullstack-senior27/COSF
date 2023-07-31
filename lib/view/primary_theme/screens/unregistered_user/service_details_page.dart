@@ -25,6 +25,7 @@ class ServiceDetailsPage extends StatefulWidget {
 class _ServiceDetailsPageState extends State<ServiceDetailsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
+  TextEditingController _dateController = TextEditingController();
 
   DateTime today = DateTime.now();
   List<String> items = [

@@ -6,6 +6,7 @@ import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Image image1;
+  final TextEditingController _dateController = TextEditingController();
   List<String> blogimg = [
     "https://i.imgur.com/Yl5A28c.png",
     "https://i.imgur.com/gax4BO9.png",
@@ -119,10 +121,13 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Expanded(
                               child: TextField(
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                                 decoration: InputDecoration(
                                   hintText: "Services or beautician name",
                                   hintStyle: GoogleFonts.urbanist(
-                                    color: kGrey,
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -162,6 +167,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Expanded(
                               child: TextField(
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                                 decoration: InputDecoration(
                                   hintText: "Location",
                                   hintStyle: GoogleFonts.urbanist(
@@ -205,6 +214,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Expanded(
                               child: TextField(
+                                controller: _dateController,
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                                 decoration: InputDecoration(
                                   hintText: "Date",
                                   hintStyle: GoogleFonts.urbanist(
@@ -212,13 +226,38 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  suffixIcon: Padding(
-                                    padding: EdgeInsets.all(10.sp),
-                                    child: const ImageIcon(
-                                      AssetImage(
-                                        "assets/icons/calendar.png",
+                                  suffixIcon: InkWell(
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                        context:
+                                            context, //context of current state
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(
+                                          2000,
+                                        ), //DateTime.now() - not to allow to choose before today.
+                                        lastDate: DateTime(2101),
+                                      );
+
+                                      if (pickedDate != null) {
+                                        //pickedDate output format => 2021-03-10 00:00:00.000
+                                        String formattedDate =
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(pickedDate);
+
+                                        _dateController.text =
+                                            formattedDate; //set output date to TextField value.
+                                        //formatted date output using intl package =>  2021-03-16
+                                      }
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.sp),
+                                      child: const ImageIcon(
+                                        AssetImage(
+                                          "assets/icons/calendar.png",
+                                        ),
+                                        color: Color.fromARGB(155, 97, 95, 95),
                                       ),
-                                      color: Color.fromARGB(155, 97, 95, 95),
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
@@ -255,9 +294,12 @@ class _HomePageState extends State<HomePage> {
                                   onPressed: () {
                                     Get.to(() => const BeauticiansListPage());
                                   },
-                                  child: const Text(
+                                  child: Text(
                                     "Search",
-                                    style: TextStyle(color: kWhite),
+                                    style: TextStyle(
+                                      color: kWhite,
+                                      fontSize: 16.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -272,6 +314,10 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           TextField(
+                            style: GoogleFonts.urbanist(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                             decoration: InputDecoration(
                               hintText: "Services or beautician name",
                               hintStyle: GoogleFonts.urbanist(
@@ -301,6 +347,10 @@ class _HomePageState extends State<HomePage> {
                             height: 10.h,
                           ),
                           TextField(
+                            style: GoogleFonts.urbanist(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                             decoration: InputDecoration(
                               hintText: "Location",
                               hintStyle: GoogleFonts.urbanist(
@@ -330,6 +380,12 @@ class _HomePageState extends State<HomePage> {
                             height: 10.h,
                           ),
                           TextField(
+                            controller: _dateController,
+                            keyboardType: TextInputType.datetime,
+                            style: GoogleFonts.urbanist(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                             decoration: InputDecoration(
                               hintText: "Date",
                               hintStyle: GoogleFonts.urbanist(
@@ -337,9 +393,32 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                               ),
-                              suffixIcon: const Icon(
-                                Icons.date_range,
-                                color: kGrey,
+                              suffixIcon: InkWell(
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                    context: context, //context of current state
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(
+                                      2000,
+                                    ), //DateTime.now() - not to allow to choose before today.
+                                    lastDate: DateTime(2101),
+                                  );
+
+                                  if (pickedDate != null) {
+                                    //pickedDate output format => 2021-03-10 00:00:00.000
+                                    String formattedDate =
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(pickedDate);
+
+                                    _dateController.text =
+                                        formattedDate; //set output date to TextField value.
+                                    //formatted date output using intl package =>  2021-03-16
+                                  }
+                                },
+                                child: const Icon(
+                                  Icons.date_range,
+                                  color: kGrey,
+                                ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -377,9 +456,12 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () {
                                 Get.to(() => const BeauticiansListPage());
                               },
-                              child: const Text(
+                              child: Text(
                                 "Search",
-                                style: TextStyle(color: kWhite),
+                                style: TextStyle(
+                                  color: kWhite,
+                                  fontSize: 16.sp,
+                                ),
                               ),
                             ),
                           ),
@@ -529,7 +611,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: SizedBox(
-              height: MediaQuery.of(context).size.width > 700 ? 300.h : 250.h,
+              height: MediaQuery.of(context).size.width > 700 ? 320.h : 250.h,
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,

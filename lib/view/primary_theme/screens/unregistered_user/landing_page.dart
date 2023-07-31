@@ -213,6 +213,11 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       height: 20.h,
                     ),
                     TextFormField(
+                      style: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         filled: true,
@@ -223,14 +228,14 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                         focusedBorder: OutlineInputBorder(),
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
-                        labelText: "Enter you first Name",
-                        hintText: "Enter you first Name",
+                        labelText: "Enter your first Name",
+                        hintText: "Enter your first Name",
                       ),
 
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Enter you first Name';
+                          return 'Enter your first Name';
                         }
                         return null;
                       },
@@ -239,6 +244,11 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       height: 20.h,
                     ),
                     TextFormField(
+                      style: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         filled: true,
@@ -249,14 +259,14 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                         focusedBorder: OutlineInputBorder(),
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
-                        labelText: "Enter you last Name",
-                        hintText: "Enter you last Name",
+                        labelText: "Enter your last Name",
+                        hintText: "Enter your last Name",
                       ),
 
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Enter you last Name';
+                          return 'Enter your last Name';
                         }
                         return null;
                       },
@@ -265,6 +275,11 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       height: 20.h,
                     ),
                     TextFormField(
+                      style: GoogleFonts.urbanist(
+                        color: kBlack,
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         filled: true,
@@ -367,7 +382,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -558,14 +573,14 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       focusedBorder: OutlineInputBorder(),
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
-                      labelText: "Enter you first Name",
-                      hintText: "Enter you first Name",
+                      labelText: "Enter your first Name",
+                      hintText: "Enter your first Name",
                     ),
 
                     // The validator receives the text that the user has entered.
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter you first Name';
+                        return 'Enter your first Name';
                       }
                       return null;
                     },
@@ -574,6 +589,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     height: 20.h,
                   ),
                   TextFormField(
+                    style: GoogleFonts.urbanist(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       filled: true,
@@ -584,14 +603,14 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       focusedBorder: OutlineInputBorder(),
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
-                      labelText: "Enter you last Name",
-                      hintText: "Enter you last Name",
+                      labelText: "Enter your last Name",
+                      hintText: "Enter your last Name",
                     ),
 
                     // The validator receives the text that the user has entered.
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter you last Name';
+                        return 'Enter your last Name';
                       }
                       return null;
                     },

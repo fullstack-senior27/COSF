@@ -70,6 +70,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             filled: true,
@@ -96,6 +101,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             filled: true,

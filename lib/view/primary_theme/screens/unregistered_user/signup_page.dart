@@ -90,6 +90,11 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         ),
 
                         TextFormField(
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             filled: true,
@@ -148,6 +153,11 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             filled: true,
@@ -173,7 +183,13 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         SizedBox(
                           height: 20.h,
                         ),
+
                         TextFormField(
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             filled: true,

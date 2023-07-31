@@ -1,5 +1,4 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:cosmetropolis/domain/providers/router_provider.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
@@ -17,10 +16,11 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final goRouter = ref.watch(routerProvider);
+    //final goRouter = ref.watch(routerProvider);
     final themeManager = ref.watch(themeProvider);
 
     return ScreenUtilInit(
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -31,11 +31,6 @@ class MyApp extends ConsumerWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            // theme: AppThemes.lightTheme,
-            // darkTheme: AppThemes.darkTheme,
-            // routeInformationParser: goRouter.routeInformationParser,
-            // routerDelegate: goRouter.routerDelegate,
-            // routeInformationProvider: goRouter.routeInformationProvider,
             themeMode: themeManager.currentTheme,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
