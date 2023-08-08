@@ -1,12 +1,10 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
+import 'package:cosmetropolis/routes/navigator_service.dart';
+import 'package:cosmetropolis/routes/route_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
+import 'package:cosmetropolis/view/locator.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/navbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +14,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DashboardFreePage extends ConsumerStatefulWidget {
-  const DashboardFreePage({super.key});
+  final Widget child;
+  const DashboardFreePage(this.child, {super.key});
 
   @override
   ConsumerState<DashboardFreePage> createState() => _DashboardFreePageState();
@@ -27,6 +26,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
 
   @override
   Widget build(BuildContext context) {
+    final NavigationService navigationService = locator<NavigationService>();
     String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
       key: scaffoldKey,
@@ -48,9 +48,8 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ListTile(
               leading: const Icon(Icons.home),
               onTap: () {
-                Navigator.pop(context);
                 ref.read(styleProvider).setSelectedPage("Home");
-                setState(() {});
+                navigationService.navigateTo(HomeRoute);
               },
               title: Text(
                 "Home",
@@ -66,8 +65,8 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ListTile(
               leading: const Icon(Icons.message),
               onTap: () {
-                Navigator.pop(context);
                 ref.read(styleProvider).setSelectedPage("I am a Beautician");
+                navigationService.navigateTo(LandingRoute);
                 setState(() {});
               },
               title: Text(
@@ -83,9 +82,8 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
                 ref.read(styleProvider).setSelectedPage("Sign Up");
-                setState(() {});
+                navigationService.navigateTo(SignupRoute);
               },
               leading: const Icon(Icons.account_circle),
               title: Text(
@@ -101,9 +99,8 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
                 ref.read(styleProvider).setSelectedPage("Log In");
-                setState(() {});
+                navigationService.navigateTo(LoginRoute);
               },
               leading: const Icon(Icons.photo_album_outlined),
               title: Text(
@@ -119,8 +116,10 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
+                // Navigator.pop(context);
+
                 ref.read(styleProvider).setSelectedPage("Help");
+                navigationService.navigateTo(HelpRoute);
                 setState(() {});
               },
               leading: const Icon(Icons.login_outlined),
@@ -180,35 +179,33 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
           ],
         ),
       ),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(58.h),
-        child: Column(
-          children: [
-            if (TargetPlatform.android == defaultTargetPlatform)
-              SizedBox(
-                height: 40.h,
-              )
-            else
-              SizedBox(
-                height: 0.h,
+      appBar: navbarSection == "Clients" ||
+              navbarSection == "More" ||
+              navbarSection == "Growth" ||
+              navbarSection == "Marketing" ||
+              navbarSection == "Promotions" ||
+              navbarSection == "Profile" ||
+              navbarSection == "Calendar"
+          ? null
+          : PreferredSize(
+              preferredSize: Size.fromHeight(58.h),
+              child: Column(
+                children: [
+                  if (TargetPlatform.android == defaultTargetPlatform)
+                    SizedBox(
+                      height: 40.h,
+                    )
+                  else
+                    SizedBox(
+                      height: 0.h,
+                    ),
+                  NavbarFreeWidget(
+                    scaffoldKey: scaffoldKey,
+                  ),
+                ],
               ),
-            NavbarFreeWidget(
-              scaffoldKey: scaffoldKey,
             ),
-          ],
-        ),
-      ),
-      body: navbarSection == "Home"
-          ? const HomePage()
-          : navbarSection == "I am a Beautician"
-              ? const LandingPage()
-              : navbarSection == "Sign Up"
-                  ? const SignupPage()
-                  : navbarSection == "Log In"
-                      ? const LoginPage()
-                      : navbarSection == "Help"
-                          ? const HelpPage()
-                          : const HomePage(),
+      body: widget.child,
     );
   }
 }

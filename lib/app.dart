@@ -1,7 +1,10 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
+import 'package:cosmetropolis/routes/navigator_service.dart';
+import 'package:cosmetropolis/routes/route_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/navigation/navigation_page.dart';
+import 'package:cosmetropolis/view/locator.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +30,10 @@ class MyApp extends ConsumerWidget {
         return CalendarControllerProvider(
           controller: EventController(),
           child: GetMaterialApp(
-            home: const NavigationPage(),
+            navigatorKey: locator<NavigationService>().navigatorKey,
+            onGenerateRoute: generateRoute,
+            initialRoute: HomeRoute,
+            builder: (context, child) => DashboardFreePage(child!),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

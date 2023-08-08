@@ -1,6 +1,9 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
+import 'package:cosmetropolis/routes/navigator_service.dart';
+import 'package:cosmetropolis/routes/route_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/locator.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +25,7 @@ class NavbarFreeWidget extends ConsumerStatefulWidget {
 }
 
 class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
+  final NavigationService _navigationService = locator<NavigationService>();
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width > 980
@@ -60,6 +64,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
+                  _navigationService.navigateTo(HomeRoute);
                   ref.read(styleProvider).setSelectedPage("Home");
                   setState(() {});
                 },
@@ -68,7 +73,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Home"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
                     fontSize: 14.sp,
                   ),
@@ -80,6 +85,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               TextButton(
                 onPressed: () {
                   ref.read(styleProvider).setSelectedPage("I am a Beautician");
+                  _navigationService.navigateTo(LandingRoute);
                   setState(() {});
                 },
                 child: Text(
@@ -87,7 +93,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "I am a Beautician"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
                     fontSize: 14.sp,
                   ),
@@ -98,6 +104,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
+                  _navigationService.navigateTo(SignupRoute);
                   ref.read(styleProvider).setSelectedPage("Sign Up");
                   setState(() {});
                 },
@@ -106,7 +113,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Sign Up"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
                     fontSize: 14.sp,
                   ),
@@ -117,6 +124,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
+                  _navigationService.navigateTo(LoginRoute);
                   ref.read(styleProvider).setSelectedPage("Log In");
                   setState(() {});
                 },
@@ -125,7 +133,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Log In"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
                     fontSize: 14.sp,
                   ),
@@ -136,6 +144,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
+                  _navigationService.navigateTo(HelpRoute);
                   ref.read(styleProvider).setSelectedPage("Help");
                   setState(() {});
                 },

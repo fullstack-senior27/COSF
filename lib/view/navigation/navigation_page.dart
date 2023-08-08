@@ -34,10 +34,9 @@ class _NavigationPageState extends ConsumerState<NavigationPage> {
         return false;
       },
       child: const Scaffold(
-        //! here we can change the body based on the theme and the user type (login or unregister)
-        body: DashboardFreePage(),
-        //  DashboardLoginPage(),
-      ),
+
+          //  DashboardLoginPage(),
+          ),
     );
   }
 }

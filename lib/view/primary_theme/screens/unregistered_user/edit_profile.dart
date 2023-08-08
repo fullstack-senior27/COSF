@@ -3,7 +3,6 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/edit_profile_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -75,7 +74,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                         TextButton(
                           onPressed: () {
                             ref.watch(styleProvider).setSelectedPage("Help");
-                            Get.offAll(() => const DashboardFreePage());
+                            // Get.offAll(() =>  DashboardFreePage());
                           },
                           child: Text(
                             'Help',
@@ -123,7 +122,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                     ref
                                         .watch(styleProvider)
                                         .setSelectedPage(value);
-                                    Get.to(() => const DashboardFreePage());
+                                    //  Get.to(() => const DashboardFreePage());
 
                                     break;
                                   default:
@@ -488,7 +487,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                     height: 40.h,
                                     child: TextButton.icon(
                                       onPressed: () {
-                                        Get.offAll(const DashboardFreePage());
+                                        //  Get.offAll(const DashboardFreePage());
                                         ref
                                             .watch(styleProvider)
                                             .setSelectedPage(
