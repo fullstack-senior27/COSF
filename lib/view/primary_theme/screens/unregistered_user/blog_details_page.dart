@@ -14,66 +14,69 @@ class BlogDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.h),
-        child: Column(
-          children: [
-            if (TargetPlatform.android == defaultTargetPlatform)
-              SizedBox(
-                height: 45.h,
-              )
-            else
-              SizedBox(
-                height: 0.h,
-              ),
-            Container(
-              child: Row(
+      appBar: defaultTargetPlatform != TargetPlatform.iOS ||
+              defaultTargetPlatform != TargetPlatform.android
+          ? null
+          : PreferredSize(
+              preferredSize: Size.fromHeight(50.h),
+              child: Column(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios_outlined,
-                      color: Colors.black,
-                      size: 13.sp,
+                  if (TargetPlatform.android == defaultTargetPlatform)
+                    SizedBox(
+                      height: 45.h,
+                    )
+                  else
+                    SizedBox(
+                      height: 0.h,
                     ),
-                  ),
-                  SizedBox(
-                    width: 0.w,
-                  ),
-                  Text(
-                    "Blog",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: kBlack,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_back_ios_outlined,
-                      color: Colors.black,
-                      size: 13.sp,
-                    ),
-                  ),
-                  Text(
-                    "Blog Details",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(
-                        0xffFFBB0D,
-                      ),
+                  Container(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            color: Colors.black,
+                            size: 13.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 0.w,
+                        ),
+                        Text(
+                          "Blog",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: kBlack,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
+                            color: Colors.black,
+                            size: 13.sp,
+                          ),
+                        ),
+                        Text(
+                          "Blog Details",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(
+                              0xffFFBB0D,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

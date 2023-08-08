@@ -1,8 +1,10 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PricingDetails extends StatelessWidget {
@@ -11,7 +13,31 @@ class PricingDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: defaultTargetPlatform == TargetPlatform.iOS ||
+              defaultTargetPlatform == TargetPlatform.android
+          ? AppBar(
+              backgroundColor: kWhite,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: kBlack,
+                ),
+              ),
+              title: Text(
+                "Pricing Details",
+                style: GoogleFonts.urbanist(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                  color: kBlack,
+                ),
+              ),
+              centerTitle: true,
+            )
+          : null,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

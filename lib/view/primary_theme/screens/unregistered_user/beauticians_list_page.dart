@@ -3,9 +3,12 @@ import 'package:cosmetropolis/view/primary_theme/widgets/beauticians_list.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BeauticiansListPage extends StatefulWidget {
@@ -65,7 +68,31 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                 size: 20.sp,
               ),
             ),
-      appBar: AppBar(),
+      appBar: defaultTargetPlatform == TargetPlatform.iOS ||
+              defaultTargetPlatform == TargetPlatform.android
+          ? AppBar(
+              backgroundColor: kWhite,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: kBlack,
+                ),
+              ),
+              title: Text(
+                "Beauticians",
+                style: GoogleFonts.poppins(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                  color: kBlack,
+                ),
+              ),
+              centerTitle: true,
+            )
+          : null,
       body: SingleChildScrollView(
         child: Column(
           children: [
