@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfile extends ConsumerStatefulWidget {
@@ -151,7 +152,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
                               ),
                             ),
                             onPressed: () {
-                              Get.to(() => const PricingDetails());
+                              // Get.to(() => const PricingDetails());
+                              context.go("/pricing");
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -217,7 +219,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                   case 'My Account':
                                     break;
                                   case 'Beauty Blog':
-                                    Get.to(() => const BlogPage());
+                                    // Get.to(() => const BlogPage());
+                                    context.go('/blogs');
                                     break;
                                   case 'I am a Beautician':
                                     ref

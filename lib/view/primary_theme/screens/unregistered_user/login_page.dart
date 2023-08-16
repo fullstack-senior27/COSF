@@ -150,8 +150,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () =>
-                                {Get.to(() => const EditProfile())},
+                            onPressed: () {
+                              // Get.to(() => const EditProfile());
+                              context.go("/edit-profile");
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
                               padding: EdgeInsets.symmetric(

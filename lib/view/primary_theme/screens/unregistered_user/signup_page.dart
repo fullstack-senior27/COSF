@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupPage extends ConsumerStatefulWidget {
@@ -256,8 +257,9 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () =>
-                                {Get.to(() => const EditProfile())},
+                            onPressed: () {
+                              context.go("/edit-profile");
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
                               padding: EdgeInsets.symmetric(

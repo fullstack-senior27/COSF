@@ -16,6 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MorePage extends ConsumerStatefulWidget {
@@ -238,7 +239,8 @@ class _MorePageState extends ConsumerState<MorePage> {
                         ),
                       );
                     } else if (index == 9) {
-                      Get.to(() => const BlogPage());
+                      // Get.to(() => const BlogPage());
+                      context.go('/blogs');
                     } else if (index == 10) {
                       showModalBottomSheet(
                         shape: const RoundedRectangleBorder(),
@@ -247,7 +249,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                         builder: (context) => const PromoteSection1(),
                       );
                     } else {
-                      Get.to(() => const HelpPage(nav: 1));
+                      context.go('/help');
                     }
                   },
                   child: MoreCard(
@@ -1423,7 +1425,8 @@ class _EmailComposeState extends State<EmailCompose> {
                 ),
                 trailing: IconButton(
                   onPressed: () {
-                    Get.to(TextEditorPage());
+                    // Get.to(TextEditorPage());
+                    context.go('/text-editor');
                   },
                   icon: const Icon(Icons.edit),
                 ),

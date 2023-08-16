@@ -1,8 +1,10 @@
+import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/forgotpass_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
@@ -30,16 +32,11 @@ enum AppRoute {
 }
 
 // flutter packages pub run build_runner build --delete-conflicting-outputs
+
+
 final GoRouter routers = GoRouter(
   routes: [
-    // GoRoute(
-    //   path: '/',
-    //   builder: (context, state) => const SplashPage(),
-    // ),
-    // GoRoute(
-    //   path: '/',
-    //   builder: (context, state) => const DashboardFreePage(),
-    // ),
+    ///=============== UNREGISTERED USER ===============///
     GoRoute(
       path: '/navigation',
       builder: (context, state) => const NavigationPage(),
@@ -57,25 +54,20 @@ final GoRouter routers = GoRouter(
       builder: (context, state) => const PricingDetails(),
       pageBuilder: defaultPageBuilder(const DashboardFreePage(child: PricingDetails()))
     ),
-    // GoRoute(
-    //   path: '/forgotPassword',
-    //   builder: (context, state) => const FortgotPassPage(),
-    // ),
     GoRoute(
       path: '/help',
       builder: (context, state) => const DashboardFreePage(child: HelpPage()),
       pageBuilder: defaultPageBuilder(const DashboardFreePage(child: HelpPage()))
     ),
     GoRoute(
+      path: '/help/:nav',
+      builder: (context, state) => DashboardFreePage(child: HelpPage(nav: int.parse(state.pathParameters['nav'].toString()),)),
+      // pageBuilder: defaultPageBuilder(DashboardFreePage(child: HelpPage(nav: int.parse(state.pathParameters['nav'].toString()),)),)
+    ),
+    GoRoute(
       path: '/',
       builder: (context, state) => const DashboardFreePage(child: HomePage()),
       pageBuilder: defaultPageBuilder(const DashboardFreePage(child: HomePage())),
-      // routes: [
-      //   GoRoute(
-      //     path: 'landing',
-      //     builder: (context, state) => const LandingPage(),
-      //   ),
-      // ]
     ),
     GoRoute(
       path: '/login',
@@ -122,8 +114,21 @@ final GoRouter routers = GoRouter(
         )
       ]
     ),
+    GoRoute(
+      path: '/edit-profile',
+      builder: (context, state) => const DashboardFreePage(child: EditProfile()),
+      pageBuilder: defaultPageBuilder(const DashboardFreePage(child: EditProfile())),
+    ),
+
+    ///=============== REGISTERED USER ===============///
+    GoRoute(
+      path: '/text-editor',
+      builder: (context, state) => DashboardFreePage(child: TextEditorPage()),
+      pageBuilder: defaultPageBuilder(DashboardFreePage(child: TextEditorPage())),
+    ),    
   ]
 );
+
 
 
 
