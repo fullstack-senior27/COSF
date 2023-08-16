@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
@@ -25,7 +26,7 @@ class BeauticiansListWebView extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.to(() => const ServiceDetailsPage());
+          context.go("/beautician-listing/service-details");
         },
         child: Padding(
           padding: EdgeInsets.all(10.h),
@@ -534,7 +535,7 @@ class BeauticiansListMobView extends StatelessWidget {
     List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
     return InkWell(
       onTap: () {
-        Get.to(() => const ServiceDetailsPage());
+        context.go("/beautician-listing/service-details");
       },
       child: Container(
         decoration: BoxDecoration(

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FortgotPassPage extends ConsumerStatefulWidget {
@@ -34,7 +35,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                       ),
                       child: IconButton(
                         onPressed: () {
-                          Get.back();
+                          context.pop();
                         },
                         icon: Icon(
                           Icons.arrow_back_ios,
@@ -58,7 +59,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                       ),
                       child: IconButton(
                         onPressed: () {
-                          Get.back();
+                          context.pop();
                         },
                         icon: Icon(
                           Icons.arrow_back_ios,

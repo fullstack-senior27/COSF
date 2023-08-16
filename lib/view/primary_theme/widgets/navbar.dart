@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavbarFreeWidget extends ConsumerStatefulWidget {
@@ -64,9 +65,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  _navigationService.navigateTo(HomeRoute);
-                  ref.read(styleProvider).setSelectedPage("Home");
-                  setState(() {});
+                  // _navigationService.navigateTo(HomeRoute);
+                  // ref.read(styleProvider).setSelectedPage("Home");
+                  // setState(() {});
+                  context.go('/');
                 },
                 child: Text(
                   "Home",
@@ -84,9 +86,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("I am a Beautician");
-                  _navigationService.navigateTo(LandingRoute);
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("I am a Beautician");
+                  // _navigationService.navigateTo(LandingRoute);
+                  // setState(() {});
+                  context.go('/landing');
                 },
                 child: Text(
                   "I am a Beautician",
@@ -104,9 +107,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  _navigationService.navigateTo(SignupRoute);
-                  ref.read(styleProvider).setSelectedPage("Sign Up");
-                  setState(() {});
+                  // _navigationService.navigateTo(SignupRoute);
+                  // ref.read(styleProvider).setSelectedPage("Sign Up");
+                  // setState(() {});
+                  context.go('/signUp');
                 },
                 child: Text(
                   "Sign Up",
@@ -124,9 +128,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  _navigationService.navigateTo(LoginRoute);
-                  ref.read(styleProvider).setSelectedPage("Log In");
-                  setState(() {});
+                  // _navigationService.navigateTo(LoginRoute);
+                  // ref.read(styleProvider).setSelectedPage("Log In");
+                  // setState(() {});
+                  context.go('/login');
                 },
                 child: Text(
                   "Log In",
@@ -144,9 +149,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  _navigationService.navigateTo(HelpRoute);
-                  ref.read(styleProvider).setSelectedPage("Help");
-                  setState(() {});
+                  // _navigationService.navigateTo(HelpRoute);
+                  // ref.read(styleProvider).setSelectedPage("Help");
+                  // setState(() {});
+                  context.go('/help');
                 },
                 child: Text(
                   "Help",
@@ -173,7 +179,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     ),
                   ),
                   onPressed: () {
-                    Get.to(() => const PricingDetails());
+                    context.go("/pricing");
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
