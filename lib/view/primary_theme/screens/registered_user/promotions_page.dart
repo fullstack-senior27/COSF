@@ -272,7 +272,7 @@ class PromotionCard extends StatelessWidget {
           color: const Color(0xffE5E5E5),
         ),
         image: const DecorationImage(
-          image: AssetImage("assets/images/promotion_bg.png"),
+          image: AssetImage("assets/icons/promotion_bg.webp"),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(5.r),

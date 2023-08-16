@@ -18,7 +18,7 @@ class _FooterState extends State<Footer> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/footer.png"),
+                image: AssetImage("assets/icons/footer.webp"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -37,7 +37,7 @@ class _FooterState extends State<Footer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              "assets/icons/logo_big.png",
+                              "assets/icons/logo_big.webp",
                               width: 90.w,
                             ),
                             SizedBox(height: 20.h),
@@ -62,13 +62,13 @@ class _FooterState extends State<Footer> {
                             Row(
                               children: [
                                 Image.asset(
-                                  "assets/images/playstore.png",
+                                  "assets/icons/playstore.webp",
                                   width: 40.w,
                                   fit: BoxFit.cover,
                                 ),
                                 SizedBox(width: 5.w),
                                 Image.asset(
-                                  "assets/images/appstore.png",
+                                  "assets/icons/appstore.webp",
                                   width: 40.w,
                                   fit: BoxFit.cover,
                                 ),
@@ -293,25 +293,25 @@ class _FooterState extends State<Footer> {
                               Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/facebook.png",
+                                    "assets/icons/facebook.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/insta.png",
+                                    "assets/icons/insta.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/twitter.png",
+                                    "assets/icons/twitter.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/linkdin.png",
+                                    "assets/icons/linkdin.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
@@ -347,7 +347,7 @@ class _FooterState extends State<Footer> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/footer.png"),
+                image: AssetImage("assets/icons/footer.webp"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -360,7 +360,7 @@ class _FooterState extends State<Footer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        "assets/icons/logo_big.png",
+                        "assets/icons/logo_big.webp",
                         fit: BoxFit.contain,
                         height: 60.h,
                       ),
@@ -387,14 +387,14 @@ class _FooterState extends State<Footer> {
                         children: [
                           Flexible(
                             child: Image.asset(
-                              "assets/images/playstore.png",
+                              "assets/icons/playstore.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                           ),
                           Expanded(
                             child: Image.asset(
-                              "assets/images/appstore.png",
+                              "assets/icons/appstore.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
@@ -597,25 +597,25 @@ class _FooterState extends State<Footer> {
                         Row(
                           children: [
                             Image.asset(
-                              "assets/icons/facebook.png",
+                              "assets/icons/facebook.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/insta.png",
+                              "assets/icons/insta.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/twitter.png",
+                              "assets/icons/twitter.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/linkdin.png",
+                              "assets/icons/linkdin.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),

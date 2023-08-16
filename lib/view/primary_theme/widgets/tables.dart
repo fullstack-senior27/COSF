@@ -55,7 +55,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )
@@ -175,7 +175,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )
@@ -295,7 +295,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )
@@ -415,7 +415,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )
@@ -535,7 +535,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )
@@ -655,7 +655,7 @@ class EarningsTable extends StatelessWidget {
                           maxLines: 2,
                         ),
                         Image.asset(
-                          "assets/icons/verify.png",
+                          "assets/icons/verify.webp",
                           height: 10.h,
                           width: 10.w,
                         )

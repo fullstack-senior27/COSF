@@ -42,7 +42,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
   void initState() {
     super.initState();
     image1 = Image.asset(
-      "assets/images/signup.png",
+      "assets/icons/signup.webp",
       width: double.infinity,
       fit: BoxFit.fill,
     );

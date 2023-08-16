@@ -251,7 +251,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                 if (MediaQuery.of(context).size.width > 920)
                   Expanded(
                     child: Image.asset(
-                      "assets/images/forgotpass.png",
+                      "assets/icons/forgotpass.webp",
                       fit: BoxFit.fill,
                       height: MediaQuery.of(context).size.height - 55,
                     ),

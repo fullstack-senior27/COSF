@@ -70,7 +70,7 @@ class _ProfileEditState extends State<ProfileEdit>
     //   StepsCard(
     //     title: "Link your bank account",
     //     description: "So you can book and be paid by clients on Cosmetropolis",
-    //     image: "assets/icons/bank_acc.png",
+    //     image: "assets/icons/bank_acc.webp",
     //     buttontxt: "Connect Account",
     //   ),
     List<String> title = [
@@ -84,9 +84,9 @@ class _ProfileEditState extends State<ProfileEdit>
       "So clients know when you're available to book"
     ];
     List<String> image = [
-      "assets/icons/bank_acc.png",
-      "assets/icons/services.png",
-      "assets/icons/availability.png"
+      "assets/icons/bank_acc.webp",
+      "assets/icons/services.webp",
+      "assets/icons/availability.webp"
     ];
     List<String> buttontxt = [
       "Connect Account",
@@ -171,25 +171,25 @@ class _ProfileEditState extends State<ProfileEdit>
                       child: Row(
                         children: [
                           Image.asset(
-                            "assets/icons/facebook.png",
+                            "assets/icons/facebook.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/insta.png",
+                            "assets/icons/insta.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/twitter.png",
+                            "assets/icons/twitter.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/linkdin.png",
+                            "assets/icons/linkdin.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
@@ -204,25 +204,25 @@ class _ProfileEditState extends State<ProfileEdit>
                   child: Row(
                     children: [
                       Image.asset(
-                        "assets/icons/facebook.png",
+                        "assets/icons/facebook.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/insta.png",
+                        "assets/icons/insta.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/twitter.png",
+                        "assets/icons/twitter.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/linkdin.png",
+                        "assets/icons/linkdin.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
@@ -1047,7 +1047,7 @@ Widget sideEdit() {
           titleGallery: "Gallery",
           imageUrls: [
             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-            "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.png",
+            "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.webp",
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",

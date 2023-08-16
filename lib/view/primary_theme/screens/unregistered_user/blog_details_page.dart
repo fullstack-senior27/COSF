@@ -109,7 +109,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        "assets/icons/logo_small.png",
+                        "assets/icons/logo_small.webp",
                         height: 50.h,
                         width: 50.h,
                       ),
@@ -301,7 +301,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        "assets/icons/logo_small.png",
+                        "assets/icons/logo_small.webp",
                         height: 50.h,
                         width: 50.h,
                       ),
@@ -436,7 +436,7 @@ class BlogDetailsPage extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5.r)),
                                   child: CachedNetworkImage(
-                                    imageUrl: "https://i.imgur.com/AbdCKXZ.png",
+                                    imageUrl: "https://i.imgur.com/AbdCKXZ.webp",
                                     height:
                                         MediaQuery.of(context).size.width > 700
                                             ? 160.h
@@ -531,7 +531,7 @@ class BlogDetailsPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {},
                     child: Image.asset(
-                      "assets/images/home_banner_p.png",
+                      "assets/icons/home_banner_p.webp",
                       width: double.infinity,
                       fit: BoxFit.contain,
                     ),

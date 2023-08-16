@@ -958,7 +958,7 @@ class AddPhoto extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 20.h),
             child: Column(
               children: [
-                Image.asset("assets/icons/add_photo.png", height: 30.sp),
+                Image.asset("assets/icons/add_photo.webp", height: 30.sp),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -981,7 +981,7 @@ class AddPhoto extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 20.h),
             child: Column(
               children: [
-                Image.asset("assets/icons/add_photo.png", height: 30.sp),
+                Image.asset("assets/icons/add_photo.webp", height: 30.sp),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -1003,7 +1003,7 @@ class AddPhoto extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
             child: Column(
               children: [
-                Image.asset("assets/icons/add_photo.png", height: 30.sp),
+                Image.asset("assets/icons/add_photo.webp", height: 30.sp),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -1032,10 +1032,10 @@ class SelectClient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> img = [
-      "https://i.imgur.com/2CuqQCO.png",
-      "https://i.imgur.com/CR0PyPk.png",
-      "https://i.imgur.com/gqnN08c.png",
-      "https://i.imgur.com/2txrGqz.png"
+      "https://i.imgur.com/2CuqQCO.webp",
+      "https://i.imgur.com/CR0PyPk.webp",
+      "https://i.imgur.com/gqnN08c.webp",
+      "https://i.imgur.com/2txrGqz.webp"
     ];
     return Column(
       children: [
@@ -1066,7 +1066,7 @@ class SelectClient extends StatelessWidget {
               ),
               child: const ImageIcon(
                 AssetImage(
-                  "assets/icons/search.png",
+                  "assets/icons/search.webp",
                 ),
                 color: kBlack,
               ),
@@ -1572,7 +1572,7 @@ class ScheduledPromotion extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.r),
             image: const DecorationImage(
-              image: AssetImage("assets/images/promotion_bg.png"),
+              image: AssetImage("assets/icons/promotion_bg.webp"),
               fit: BoxFit.cover,
             ),
           ),
@@ -1801,10 +1801,10 @@ class AddClientPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> img = [
-      "https://i.imgur.com/2CuqQCO.png",
-      "https://i.imgur.com/CR0PyPk.png",
-      "https://i.imgur.com/gqnN08c.png",
-      "https://i.imgur.com/2txrGqz.png"
+      "https://i.imgur.com/2CuqQCO.webp",
+      "https://i.imgur.com/CR0PyPk.webp",
+      "https://i.imgur.com/gqnN08c.webp",
+      "https://i.imgur.com/2txrGqz.webp"
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

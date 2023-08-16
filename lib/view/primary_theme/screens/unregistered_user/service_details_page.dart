@@ -124,7 +124,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                         width: 3.w,
                       ),
                       Image.asset(
-                        "assets/icons/verify.png",
+                        "assets/icons/verify.webp",
                         height: 20.h,
                       ),
                     ],
@@ -381,7 +381,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                     titleGallery: "Gallery",
                     imageUrls: [
                       "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-                      "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.png",
+                      "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.webp",
                       "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
                       "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
                       "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
@@ -432,7 +432,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                                   ),
                                 ),
                                 Image.asset(
-                                  "assets/icons/filter.png",
+                                  "assets/icons/filter.webp",
                                   height: 20.h,
                                   width: 20.w,
                                 ),
@@ -739,7 +739,7 @@ class Sidebar extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(20.r)),
             child: CachedNetworkImage(
-              imageUrl: "https://i.imgur.com/5M7w0dc.png",
+              imageUrl: "https://i.imgur.com/5M7w0dc.webp",
               width: double.infinity,
               height: 140.h,
               fit: BoxFit.cover,

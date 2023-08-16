@@ -487,7 +487,7 @@ class _GrowthPageState extends State<GrowthPage>
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/growth_works.png",
+                                    "assets/icons/growth_works.webp",
                                     height: 40.h,
                                   ),
                                   SizedBox(
@@ -534,7 +534,7 @@ class _GrowthPageState extends State<GrowthPage>
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/growth_setup.png",
+                                    "assets/icons/growth_setup.webp",
                                     height: 40.h,
                                   ),
                                   SizedBox(
@@ -1755,7 +1755,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth1.png",
+                "assets/icons/growth1.webp",
                 height: 20.h,
               ),
               SizedBox(
@@ -1777,7 +1777,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth2.png",
+                "assets/icons/growth2.webp",
                 height: 20.h,
               ),
               SizedBox(
@@ -1799,7 +1799,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth3.png",
+                "assets/icons/growth3.webp",
                 height: 20.h,
               ),
               SizedBox(

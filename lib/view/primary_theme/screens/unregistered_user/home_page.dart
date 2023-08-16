@@ -24,21 +24,21 @@ class _HomePageState extends State<HomePage> {
   late Image image1;
   final TextEditingController _dateController = TextEditingController();
   List<String> blogimg = [
-    "https://i.imgur.com/Yl5A28c.png",
-    "https://i.imgur.com/gax4BO9.png",
-    "https://i.imgur.com/n9ckE5M.png",
+    "https://i.imgur.com/Yl5A28c.webp",
+    "https://i.imgur.com/gax4BO9.webp",
+    "https://i.imgur.com/n9ckE5M.webp",
     "https://t4.ftcdn.net/jpg/04/35/38/13/360_F_435381398_Z5mBaTW5HHD3748nsGRDsFQr0iXa893X.jpg"
   ];
 
   List<String> serviceimg = [
-    "https://i.imgur.com/p9IzdwU.png",
-    "https://i.imgur.com/Oif31Oz.png",
-    "https://i.imgur.com/z7l6NNF.png",
-    "https://i.imgur.com/MT1HxiT.png",
-    "https://i.imgur.com/4JvUJRQ.png",
-    "https://i.imgur.com/8CVJF3x.png",
-    "https://i.imgur.com/dAOC8GF.png",
-    "https://i.imgur.com/1F9IUEz.png",
+    "https://i.imgur.com/p9IzdwU.webp",
+    "https://i.imgur.com/Oif31Oz.webp",
+    "https://i.imgur.com/z7l6NNF.webp",
+    "https://i.imgur.com/MT1HxiT.webp",
+    "https://i.imgur.com/4JvUJRQ.webp",
+    "https://i.imgur.com/8CVJF3x.webp",
+    "https://i.imgur.com/dAOC8GF.webp",
+    "https://i.imgur.com/1F9IUEz.webp",
   ];
 
   // create list of service of tittle images
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     image1 = Image.asset(
-      "assets/images/banner_p.png",
+      "assets/icons/banner_p.webp",
       width: double.infinity,
       fit: BoxFit.cover,
       // height: MediaQuery.of(context).size.height,
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                                     padding: EdgeInsets.all(10.sp),
                                     child: const ImageIcon(
                                       AssetImage(
-                                        "assets/icons/search.png",
+                                        "assets/icons/search.webp",
                                       ),
                                       color: Color.fromARGB(155, 97, 95, 95),
                                     ),
@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                                     padding: EdgeInsets.all(10.sp),
                                     child: const ImageIcon(
                                       AssetImage(
-                                        "assets/icons/location.png",
+                                        "assets/icons/location.webp",
                                       ),
                                       color: Color.fromARGB(155, 97, 95, 95),
                                     ),
@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: EdgeInsets.all(10.sp),
                                       child: const ImageIcon(
                                         AssetImage(
-                                          "assets/icons/calendar.png",
+                                          "assets/icons/calendar.webp",
                                         ),
                                         color: Color.fromARGB(155, 97, 95, 95),
                                       ),
@@ -479,7 +479,7 @@ class _HomePageState extends State<HomePage> {
             height: 50.h,
           ),
           Image.asset(
-            "assets/images/wwo_img.png",
+            "assets/icons/wwo_img.webp",
             fit: BoxFit.contain,
             height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
           ),
@@ -594,7 +594,7 @@ class _HomePageState extends State<HomePage> {
             child: GestureDetector(
               onTap: () => {},
               child: Image.asset(
-                "assets/images/home_banner_p.png",
+                "assets/icons/home_banner_p.webp",
                 width: double.infinity,
                 fit: BoxFit.contain,
               ),
@@ -604,7 +604,7 @@ class _HomePageState extends State<HomePage> {
             height: 40.h,
           ),
           Image.asset(
-            "assets/images/mcp_img.png",
+            "assets/icons/mcp_img.webp",
             fit: BoxFit.contain,
             height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
           ),

@@ -119,7 +119,7 @@ class PromoteSection1 extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        "assets/images/template${index + 1}.png",
+                                        "assets/icons/template${index + 1}.webp",
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -176,7 +176,7 @@ class PromoteSection1 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/insta_color.png",
+                        "assets/icons/insta_color.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -418,7 +418,7 @@ class PromoteSection1 extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      Image.asset("assets/icons/fb_color.png", height: 60.h),
+                      Image.asset("assets/icons/fb_color.webp", height: 60.h),
                       SizedBox(
                         height: 5.h,
                       ),
@@ -624,7 +624,7 @@ class PromoteSection1 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/google_color.png",
+                        "assets/icons/google_color.webp",
                         height: 60.h,
                       ),
                       SizedBox(

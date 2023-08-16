@@ -190,7 +190,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         child: TextButton.icon(
                           onPressed: () {},
                           icon: Image.asset(
-                            "assets/icons/export.png",
+                            "assets/icons/export.webp",
                             height: 15.h,
                             color: kBlue,
                           ),

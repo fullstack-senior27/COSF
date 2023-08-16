@@ -513,7 +513,7 @@ class ServiceMenu extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/icons/services.png",
+                  "assets/icons/services.webp",
                   height: 55.h,
                 ),
                 SizedBox(height: 10.h),
@@ -555,7 +555,7 @@ class ServiceMenu extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/icons/combined_services.png",
+                  "assets/icons/combined_services.webp",
                   height: 60.h,
                 ),
                 SizedBox(height: 10.h),
@@ -597,7 +597,7 @@ class ServiceMenu extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/icons/service_category.png",
+                  "assets/icons/service_category.webp",
                   height: 60.h,
                 ),
                 SizedBox(height: 10.h),
@@ -642,12 +642,12 @@ class PhotosTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> imgList = [
-      "https://i.imgur.com/Fyponv9.png",
-      "https://i.imgur.com/E6yRIRb.png",
-      "https://i.imgur.com/svLt1SE.png",
-      "https://i.imgur.com/FDXC3nI.png",
-      "https://i.imgur.com/jA407EU.png",
-      "https://i.imgur.com/fIL9cnJ.png"
+      "https://i.imgur.com/Fyponv9.webp",
+      "https://i.imgur.com/E6yRIRb.webp",
+      "https://i.imgur.com/svLt1SE.webp",
+      "https://i.imgur.com/FDXC3nI.webp",
+      "https://i.imgur.com/jA407EU.webp",
+      "https://i.imgur.com/fIL9cnJ.webp"
     ];
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -709,7 +709,7 @@ class PhotosTab extends StatelessWidget {
                   radius: 30.r,
                   backgroundColor: kWhite,
                   child:
-                      Image.asset("assets/icons/pin_black.png", height: 30.h),
+                      Image.asset("assets/icons/pin_black.webp", height: 30.h),
                 ),
                 SizedBox(width: 5.w),
                 Expanded(
@@ -776,7 +776,7 @@ class PhotosTab extends StatelessWidget {
                                     IconButton(
                                       onPressed: () {},
                                       icon: Image.asset(
-                                        "assets/icons/pin_white.png",
+                                        "assets/icons/pin_white.webp",
                                         height: 20.sp,
                                       ),
                                     ),
@@ -1615,7 +1615,7 @@ class ManageAvailability extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(5.r),
                                   ),
                                   child: Image.asset(
-                                    "assets/icons/google_color.png",
+                                    "assets/icons/google_color.webp",
                                     height: 30.h,
                                     // width: 30.w,
                                   ),

@@ -228,7 +228,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -294,7 +294,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -360,7 +360,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -556,7 +556,7 @@ class ProfileStatus extends StatelessWidget {
                                 ),
                                 image: const DecorationImage(
                                   image: NetworkImage(
-                                    "https://i.imgur.com/Yl5A28c.png",
+                                    "https://i.imgur.com/Yl5A28c.webp",
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -620,7 +620,7 @@ class Overview extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -686,7 +686,7 @@ class Overview extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -888,7 +888,7 @@ class Overview extends StatelessWidget {
                                 ),
                                 image: const DecorationImage(
                                   image: NetworkImage(
-                                    "https://i.imgur.com/Yl5A28c.png",
+                                    "https://i.imgur.com/Yl5A28c.webp",
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -974,7 +974,7 @@ class MarketingOverviewCard extends StatelessWidget {
           ),
           CircleAvatar(
             backgroundImage: const NetworkImage(
-              "https://i.imgur.com/Fyponv9.png",
+              "https://i.imgur.com/Fyponv9.webp",
             ),
             radius: 30.r,
           ),

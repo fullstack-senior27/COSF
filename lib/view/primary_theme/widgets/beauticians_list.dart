@@ -43,7 +43,7 @@ class BeauticiansListWebView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.r),
                         image: const DecorationImage(
                           image:
-                              NetworkImage("https://i.imgur.com/i5H53SM.png"),
+                              NetworkImage("https://i.imgur.com/i5H53SM.webp"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -76,7 +76,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               //   width: 10.w,
                               // ),
                               Image.asset(
-                                "assets/icons/verify.png",
+                                "assets/icons/verify.webp",
                                 height: 18.h,
                                 width: 18.w,
                               ),
@@ -556,7 +556,7 @@ class BeauticiansListMobView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: const DecorationImage(
-                    image: AssetImage("assets/images/blog_banner.png"),
+                    image: AssetImage("assets/icons/blog_banner.webp"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -577,7 +577,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   //   width: 10.w,
                   // ),
                   Image.asset(
-                    "assets/icons/verify.png",
+                    "assets/icons/verify.webp",
                     height: 18.h,
                     width: 18.w,
                   ),

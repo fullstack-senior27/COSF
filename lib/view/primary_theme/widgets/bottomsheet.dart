@@ -83,7 +83,7 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
                   Navigator.pop(context);
                 },
                 icon: Image.asset(
-                  "assets/icons/close.png",
+                  "assets/icons/close.webp",
                   height: 20.h,
                   width: 20.w,
                 ),

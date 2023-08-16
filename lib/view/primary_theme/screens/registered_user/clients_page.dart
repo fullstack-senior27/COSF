@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 List<String> allImgesection = [
-  "https://i.imgur.com/2CuqQCO.png",
-  "https://i.imgur.com/CR0PyPk.png",
-  "https://i.imgur.com/gqnN08c.png",
-  "https://i.imgur.com/2txrGqz.png"
+  "https://i.imgur.com/2CuqQCO.webp",
+  "https://i.imgur.com/CR0PyPk.webp",
+  "https://i.imgur.com/gqnN08c.webp",
+  "https://i.imgur.com/2txrGqz.webp"
 ];
 
 class ClintsPage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            "assets/icons/export.png",
+                                            "assets/icons/export.webp",
                                             height: 18.h,
                                             // width: 25.w,
                                           ),
@@ -156,7 +156,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            "assets/icons/import.png",
+                                            "assets/icons/import.webp",
                                             height: 18.h,
                                             // width: 20.w,
                                           ),
@@ -350,7 +350,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                           child: Column(
                                             children: [
                                               Image.asset(
-                                                "assets/icons/add_photo.png",
+                                                "assets/icons/add_photo.webp",
                                                 height: 30.h,
                                                 width: 30.w,
                                               ),
@@ -604,7 +604,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                           child: Column(
                                             children: [
                                               Image.asset(
-                                                "assets/icons/add_note.png",
+                                                "assets/icons/add_note.webp",
                                                 height: 30.h,
                                                 width: 30.w,
                                               ),
@@ -634,7 +634,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                           child: Column(
                                             children: [
                                               Image.asset(
-                                                "assets/icons/book_appointment.png",
+                                                "assets/icons/book_appointment.webp",
                                                 height: 30.h,
                                                 width: 30.w,
                                               ),
@@ -682,7 +682,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                 child: CircleAvatar(
                                                   backgroundImage:
                                                       const NetworkImage(
-                                                    "https://i.imgur.com/lTiSqZS.png",
+                                                    "https://i.imgur.com/lTiSqZS.webp",
                                                   ),
                                                   radius: 60.r,
                                                 ),
@@ -845,7 +845,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                   radius: 20.r,
                                                   child: ImageIcon(
                                                     const AssetImage(
-                                                      "assets/icons/msg.png",
+                                                      "assets/icons/msg.webp",
                                                     ),
                                                     color: kWhite,
                                                     size: 20.sp,
@@ -859,7 +859,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                   radius: 20.r,
                                                   child: ImageIcon(
                                                     const AssetImage(
-                                                      "assets/icons/emailc.png",
+                                                      "assets/icons/emailc.webp",
                                                     ),
                                                     color: kWhite,
                                                     size: 20.sp,
@@ -873,7 +873,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                   radius: 20.r,
                                                   child: ImageIcon(
                                                     const AssetImage(
-                                                      "assets/icons/phone.png",
+                                                      "assets/icons/phone.webp",
                                                     ),
                                                     color: kWhite,
                                                     size: 20.sp,
@@ -1147,7 +1147,7 @@ class notes extends StatelessWidget {
                             children: [
                               ImageIcon(
                                 const AssetImage(
-                                  "assets/icons/photo2.png",
+                                  "assets/icons/photo2.webp",
                                 ),
                                 color: kBlack,
                                 size: 15.sp,
@@ -1257,7 +1257,7 @@ class all extends StatelessWidget {
                                 children: [
                                   const ImageIcon(
                                     AssetImage(
-                                      "assets/icons/photo1.png",
+                                      "assets/icons/photo1.webp",
                                     ),
                                     color: kBlue,
                                     size: 20,
@@ -1334,7 +1334,7 @@ class all extends StatelessWidget {
                                 children: [
                                   ImageIcon(
                                     const AssetImage(
-                                      "assets/icons/photo2.png",
+                                      "assets/icons/photo2.webp",
                                     ),
                                     color: kBlack,
                                     size: 15.sp,
@@ -1645,10 +1645,10 @@ class all extends StatelessWidget {
 
 Widget sideBar(BuildContext context) {
   List<String> img = [
-    "https://i.imgur.com/2CuqQCO.png",
-    "https://i.imgur.com/CR0PyPk.png",
-    "https://i.imgur.com/gqnN08c.png",
-    "https://i.imgur.com/2txrGqz.png"
+    "https://i.imgur.com/2CuqQCO.webp",
+    "https://i.imgur.com/CR0PyPk.webp",
+    "https://i.imgur.com/gqnN08c.webp",
+    "https://i.imgur.com/2txrGqz.webp"
   ];
 
   return Column(
@@ -1680,7 +1680,7 @@ Widget sideBar(BuildContext context) {
             ),
             child: const ImageIcon(
               AssetImage(
-                "assets/icons/search.png",
+                "assets/icons/search.webp",
               ),
               color: kBlack,
             ),

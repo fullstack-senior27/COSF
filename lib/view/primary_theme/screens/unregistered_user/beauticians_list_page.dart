@@ -62,7 +62,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
               ),
               icon: ImageIcon(
                 const AssetImage(
-                  "assets/icons/filter.png",
+                  "assets/icons/filter.webp",
                 ),
                 color: kWhite,
                 size: 20.sp,
@@ -474,7 +474,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               ),
                             ),
                             Image.asset(
-                              "assets/icons/filter.png",
+                              "assets/icons/filter.webp",
                               height: 20.h,
                               width: 20.w,
                             ),

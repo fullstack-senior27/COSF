@@ -86,7 +86,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/sms.png",
+                        "assets/icons/sms.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -137,7 +137,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/calls.png",
+                        "assets/icons/calls.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -290,7 +290,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/email.png",
+                        "assets/icons/email.webp",
                         height: 60.h,
                       ),
                       SizedBox(

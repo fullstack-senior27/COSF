@@ -62,7 +62,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                     icon: const Icon(Icons.arrow_back_ios_new),
                   ),
                   Image.asset(
-                    "assets/icons/logo_big.png",
+                    "assets/icons/logo_big.webp",
                     width: MediaQuery.of(context).size.width * 0.2,
                     // height: 50.h,
                     fit: BoxFit.contain,
@@ -157,7 +157,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ImageIcon(
-                                  const AssetImage("assets/icons/gift.png"),
+                                  const AssetImage("assets/icons/gift.webp"),
                                   color: kWhite,
                                   size: 20.sp,
                                 ),
@@ -285,7 +285,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                               borderRadius: BorderRadius.circular(10.r),
                               image: const DecorationImage(
                                 image: NetworkImage(
-                                  "https://i.imgur.com/cmEfJ7e.png",
+                                  "https://i.imgur.com/cmEfJ7e.webp",
                                 ),
                                 fit: BoxFit.fill,
                               ),
@@ -747,7 +747,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                   maxLines: 2,
                                                 ),
                                                 Image.asset(
-                                                  "assets/icons/verify.png",
+                                                  "assets/icons/verify.webp",
                                                   height: 15.h,
                                                   width: 15.w,
                                                 )

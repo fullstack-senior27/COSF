@@ -44,7 +44,7 @@ class SelectSlot extends StatelessWidget {
                 width: 3.w,
               ),
               Image.asset(
-                "assets/icons/verify.png",
+                "assets/icons/verify.webp",
                 height: 18.h,
               ),
             ],
@@ -625,7 +625,7 @@ class _SelectDateState extends State<SelectDate> {
                 width: 3.w,
               ),
               Image.asset(
-                "assets/icons/verify.png",
+                "assets/icons/verify.webp",
                 height: 20.h,
               ),
             ],
@@ -984,7 +984,7 @@ class _AddServiceState extends State<AddService> {
                 width: 3.w,
               ),
               Image.asset(
-                "assets/icons/verify.png",
+                "assets/icons/verify.webp",
                 height: 18.h,
               ),
             ],
@@ -1836,7 +1836,7 @@ class PaymentMethod extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 20.h),
                           child: Image.asset(
-                            "assets/icons/success.png",
+                            "assets/icons/success.webp",
                             height: 100.h,
                           ),
                         ),

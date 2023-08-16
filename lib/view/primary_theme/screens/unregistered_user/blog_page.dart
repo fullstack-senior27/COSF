@@ -19,9 +19,9 @@ class BlogPage extends StatefulWidget {
 class _BlogPageState extends State<BlogPage> {
   List<String> blogimg = [
     "https://t4.ftcdn.net/jpg/04/35/38/13/360_F_435381398_Z5mBaTW5HHD3748nsGRDsFQr0iXa893X.jpg",
-    "https://i.imgur.com/Yl5A28c.png",
-    "https://i.imgur.com/gax4BO9.png",
-    "https://i.imgur.com/n9ckE5M.png",
+    "https://i.imgur.com/Yl5A28c.webp",
+    "https://i.imgur.com/gax4BO9.webp",
+    "https://i.imgur.com/n9ckE5M.webp",
   ];
   List<String> items = [
     "View All",
@@ -88,7 +88,7 @@ class _BlogPageState extends State<BlogPage> {
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/blog_banner.png"),
+                  image: AssetImage("assets/icons/blog_banner.webp"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -524,7 +524,7 @@ class _BlogPageState extends State<BlogPage> {
                     child: GestureDetector(
                       onTap: () => {},
                       child: Image.asset(
-                        "assets/images/promo.png",
+                        "assets/icons/promo.webp",
                         width: double.infinity,
                         fit: BoxFit.contain,
                       ),

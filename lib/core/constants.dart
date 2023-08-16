@@ -10,8 +10,8 @@ class AppConstants {
 
   static const List<String> chipNames = ["Google", "Apple", "Facebook"];
   static const List<String> chipIcons = [
-    "assets/icons/google.png",
-    "assets/icons/apple.png",
-    "assets/icons/facebook.png",
+    "assets/icons/google.webp",
+    "assets/icons/apple.webp",
+    "assets/icons/facebook.webp",
   ];
 }

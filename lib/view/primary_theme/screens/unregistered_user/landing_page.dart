@@ -30,7 +30,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
   @override
   void initState() {
     super.initState();
-    image1 = const AssetImage("assets/images/landing.png");
+    image1 = const AssetImage("assets/icons/landing.webp");
   }
 
   @override

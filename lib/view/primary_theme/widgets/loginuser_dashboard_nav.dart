@@ -50,7 +50,7 @@ class _NavbarLoginUserDashboardWidgetState
       child: Row(
         children: [
           Image.asset(
-            "assets/icons/logo_big.png",
+            "assets/icons/logo_big.webp",
             width: 60.w,
             height: 50.h,
             fit: BoxFit.contain,
@@ -234,7 +234,7 @@ class _NavbarLoginUserDashboardWidgetState
         Padding(
           padding: EdgeInsets.only(left: 8.w),
           child: Image.asset(
-            "assets/icons/logo_small.png",
+            "assets/icons/logo_small.webp",
             height: 50.h,
             width: 50.h,
           ),

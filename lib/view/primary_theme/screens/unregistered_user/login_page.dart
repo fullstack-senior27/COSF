@@ -24,7 +24,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   void initState() {
     super.initState();
     image1 = Image.asset(
-      "assets/images/login.png",
+      "assets/icons/login.webp",
       width: double.infinity,
       fit: BoxFit.fill,
     );

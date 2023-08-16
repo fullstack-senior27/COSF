@@ -230,28 +230,28 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -284,28 +284,28 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -346,7 +346,7 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -362,7 +362,7 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -395,28 +395,28 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -448,28 +448,28 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -502,28 +502,28 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -564,7 +564,7 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -671,7 +671,7 @@ class PricingDetails extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/payments_bg.png"),
+                    image: AssetImage("assets/icons/payments_bg.webp"),
                   ),
                 ),
                 child: Padding(
@@ -721,7 +721,7 @@ class PricingDetails extends StatelessWidget {
                             ),
                             Expanded(
                               child: Image.asset(
-                                "assets/images/payments_img1.png",
+                                "assets/icons/payments_img1.webp",
                                 height: 100.h,
                                 // width: 75.w,
                               ),
@@ -760,7 +760,7 @@ class PricingDetails extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/payments_bg.png"),
+                    image: AssetImage("assets/icons/payments_bg.webp"),
                   ),
                 ),
                 child: Padding(
@@ -792,7 +792,7 @@ class PricingDetails extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/images/payments_img1.png",
+                        "assets/icons/payments_img1.webp",
                         height: 250.h,
                         // width: 75.w,
                       ),
@@ -931,35 +931,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -982,35 +982,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1034,35 +1034,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1085,35 +1085,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1136,35 +1136,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1187,35 +1187,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1238,35 +1238,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1289,35 +1289,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1340,35 +1340,35 @@ class PricingDetails extends StatelessWidget {
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/right.png",
+                                "assets/icons/right.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
                             ),
                             DataCell(
                               Image.asset(
-                                "assets/icons/cross.png",
+                                "assets/icons/cross.webp",
                                 height: 12.h,
                                 width: 12.w,
                               ),
@@ -1728,7 +1728,7 @@ class PricingDetails extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => {},
                 child: Image.asset(
-                  "assets/images/price_banner.png",
+                  "assets/icons/price_banner.webp",
                   width: double.infinity,
                   fit: BoxFit.contain,
                 ),

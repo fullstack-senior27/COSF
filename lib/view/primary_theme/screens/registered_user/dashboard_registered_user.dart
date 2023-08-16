@@ -191,7 +191,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ImageIcon(
-                        const AssetImage("assets/icons/gift.png"),
+                        const AssetImage("assets/icons/gift.webp"),
                         color: kWhite,
                         size: 20.sp,
                       ),
