@@ -52,6 +52,8 @@ class _HomePageState extends State<HomePage> {
     "Kids",
   ];
   int selectedIndexOfservice = 0;
+
+
   @override
   void initState() {
     super.initState();

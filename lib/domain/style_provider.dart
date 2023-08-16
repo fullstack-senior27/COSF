@@ -18,6 +18,7 @@ class StyleProvider extends ChangeNotifier {
 
   void setSelectedPage(String page) {
     AppConstants.selectedPage = page;
+    print(Navigator.defaultRouteName);
     notifyListeners();
   }
 }
