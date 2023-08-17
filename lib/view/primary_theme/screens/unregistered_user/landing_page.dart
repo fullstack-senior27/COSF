@@ -109,7 +109,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       "• Be your own boss",
                       style: GoogleFonts.urbanist(
                         color: kWhite,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -120,7 +120,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       "• Sign up as a beautician",
                       style: GoogleFonts.urbanist(
                         color: kWhite,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -131,7 +131,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       "• and start earning",
                       style: GoogleFonts.urbanist(
                         color: kWhite,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -142,7 +142,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       "• Sign up as a beautician",
                       style: GoogleFonts.urbanist(
                         color: kWhite,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -153,7 +153,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       "• and start earning",
                       style: GoogleFonts.urbanist(
                         color: kWhite,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -216,7 +216,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     TextFormField(
                       style: GoogleFonts.urbanist(
                         color: kBlack,
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -247,7 +247,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     TextFormField(
                       style: GoogleFonts.urbanist(
                         color: kBlack,
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -278,7 +278,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     TextFormField(
                       style: GoogleFonts.urbanist(
                         color: kBlack,
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                       ),
                       keyboardType: TextInputType.phone,
@@ -357,13 +357,13 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                         Text(
                           "I agree to the ",
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         Text(
                           "Terms and Conditions",
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             color: kBlue,
                             fontWeight: FontWeight.w500,
                             decoration: TextDecoration.underline,
@@ -406,7 +406,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                           "Get Started",
                           style: GoogleFonts.urbanist(
                             color: kWhite,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -461,7 +461,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     "• Be your own boss",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -472,7 +472,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     "• Sign up as a beautician",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -483,7 +483,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     "• and start earning",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -494,7 +494,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     "• Sign up as a beautician",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -505,7 +505,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                     "• and start earning",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -592,7 +592,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                   ),
                   TextFormField(
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w500,
                     ),
                     keyboardType: TextInputType.emailAddress,
@@ -696,13 +696,13 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       Text(
                         "I agree to the ",
                         style: GoogleFonts.urbanist(
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       Text(
                         "Terms and Conditions",
                         style: GoogleFonts.urbanist(
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           color: kBlue,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,
@@ -745,7 +745,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                         "Get Started",
                         style: GoogleFonts.urbanist(
                           color: kWhite,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

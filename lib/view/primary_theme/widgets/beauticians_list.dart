@@ -68,7 +68,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               Text(
                                 "Akeba Thompson",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -569,7 +569,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   Text(
                     "Akeba Thompson",
                     style: GoogleFonts.urbanist(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -949,7 +949,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Price Range",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1050,7 +1050,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Sort Price",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1131,7 +1131,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Service Type",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1196,7 +1196,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Rating",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),

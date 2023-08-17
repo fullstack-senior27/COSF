@@ -64,7 +64,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         Text(
                           "Join now and be part of our exclusive community! Sign up in seconds and gain access to exciting perks, discounts, and special offers.",
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(
@@ -73,7 +73,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         TextFormField(
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -104,7 +104,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         TextFormField(
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -167,7 +167,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               "Sign in",
                               style: GoogleFonts.urbanist(
                                 color: kWhite,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -189,7 +189,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               child: Text(
                                 "or",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   color: kdarkPrime,
                                 ),
                               ),
@@ -208,7 +208,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           child: Text(
                             "New to Cosmetropolis?",
                             style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               color: kdarkPrime,
                               fontWeight: FontWeight.w600,
                             ),
@@ -242,7 +242,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               "Create my Account",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

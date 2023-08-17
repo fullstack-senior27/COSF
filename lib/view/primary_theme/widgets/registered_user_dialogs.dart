@@ -1485,7 +1485,7 @@ class CreatePromotion extends StatelessWidget {
             //                   "Scheduled Promotions",
             //                   style: GoogleFonts.urbanist(
             //                     color: kBlack,
-            //                     fontSize: 18.sp,
+            //                     fontSize: 16.sp,
             //                     fontWeight: FontWeight.w600,
             //                   ),
             //                 ),
@@ -1517,7 +1517,7 @@ class CreatePromotion extends StatelessWidget {
                         "Scheduled Promotion",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -2119,7 +2119,7 @@ class OnlineBookingProfile extends StatelessWidget {
                               "Business Info",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -2171,7 +2171,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                   "Business Info",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -2232,7 +2232,7 @@ class OnlineBookingProfile extends StatelessWidget {
                               "Social Info",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -2284,7 +2284,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                   "Social Info",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -2373,7 +2373,7 @@ class OnlineBookingProfile extends StatelessWidget {
                               "Photos",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -2425,7 +2425,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                   "Photos",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),

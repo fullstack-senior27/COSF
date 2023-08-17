@@ -92,7 +92,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                                     _selectedCategory == index
                                                         ? kWhite
                                                         : kBlack,
-                                                // fontSize: 16.sp,
+                                                // fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),

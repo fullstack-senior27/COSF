@@ -301,7 +301,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 "Add Client Photo",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -348,7 +348,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   "Add Client Photo",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -437,7 +437,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 "Set a monthly goal and we’ll give you\ntips on how to get there.",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -542,7 +542,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                             "Online Booking & Profile",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -857,7 +857,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                         "Online Booking & Profile",
                                         style: GoogleFonts.urbanist(
                                           color: kBlack,
-                                          fontSize: 18.sp,
+                                          fontSize: 16.sp,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -1158,7 +1158,7 @@ Widget sideEdit() {
                           "Monday",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -1166,7 +1166,7 @@ Widget sideEdit() {
                           "10:00 - 20:00",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w200,
                           ),
                         ),

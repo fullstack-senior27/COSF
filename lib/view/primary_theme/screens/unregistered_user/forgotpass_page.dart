@@ -92,7 +92,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                         Text(
                           "Not a problem, please enter your email address.",
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(
@@ -157,7 +157,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                               "Reset my Password",
                               style: GoogleFonts.urbanist(
                                 color: kWhite,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -179,7 +179,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                               child: Text(
                                 "or",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   color: kdarkPrime,
                                 ),
                               ),
@@ -198,7 +198,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                           child: Text(
                             "New to Cosmetropolis?",
                             style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               color: kdarkPrime,
                               fontWeight: FontWeight.w400,
                             ),
@@ -234,7 +234,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage> {
                               "Create my Account",
                               style: GoogleFonts.urbanist(
                                 color: kdarkPrime,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

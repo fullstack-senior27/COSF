@@ -196,7 +196,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                   "Online Booking & Profile",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -311,7 +311,7 @@ class MoreCard extends StatelessWidget {
         title: Text(
           cardName,
           style: TextStyle(
-            fontSize: 14.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
@@ -363,7 +363,7 @@ class _BillPageState extends State<BillPage> {
                 Text(
                   "Plan & Billing Details",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -415,7 +415,7 @@ class _BillPageState extends State<BillPage> {
             Text(
               "Scheduling Plan",
               style: GoogleFonts.urbanist(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
                 color: kBlack,
               ),
@@ -470,7 +470,7 @@ class _BillPageState extends State<BillPage> {
             Text(
               "Payment Details",
               style: GoogleFonts.urbanist(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
                 color: kBlack,
               ),
@@ -649,7 +649,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                 Text(
                   "Login & Security",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -908,7 +908,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 Text(
                   "Notification Settings",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -1023,7 +1023,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
                 Text(
                   "Email Marketing",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -1119,7 +1119,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "First, choose your template, campaign name, and subject line.",
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
@@ -1131,7 +1131,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Template",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1144,7 +1144,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "Template",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1169,7 +1169,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Email Name*",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1182,7 +1182,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "Email Name",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1207,7 +1207,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Subject line*",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1220,7 +1220,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "See you soon?",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1258,7 +1258,7 @@ class _EmailCreateState extends State<EmailCreate> {
                 "Continue",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1291,7 +1291,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
           Text(
             "Which clients would you like to send this campaign to?.",
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
@@ -1303,7 +1303,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
           Text(
             "Recipients",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1324,7 +1324,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 title: Text(
                   "All Clients",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 0.24,
                   ),
@@ -1332,7 +1332,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 subtitle: Text(
                   "Everyone in your client list with an email address.",
                   style: GoogleFonts.urbanist(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: kGrey,
                     fontWeight: FontWeight.w200,
                     letterSpacing: 0.24,
@@ -1365,7 +1365,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 "Continue",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1409,7 +1409,7 @@ class _EmailComposeState extends State<EmailCompose> {
                 title: Text(
                   "Headline",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 0.24,
                   ),
@@ -1417,7 +1417,7 @@ class _EmailComposeState extends State<EmailCompose> {
                 subtitle: Text(
                   "Lorem ipsum dolor sit amet consectetur.",
                   style: GoogleFonts.urbanist(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: kGrey,
                     fontWeight: FontWeight.w200,
                     letterSpacing: 0.24,
@@ -1458,7 +1458,7 @@ class _EmailPreviewState extends State<EmailPreview> {
           Text(
             "Headline",
             style: GoogleFonts.urbanist(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
             ),
@@ -1480,7 +1480,7 @@ class _EmailPreviewState extends State<EmailPreview> {
           Text(
             "Sending to",
             style: GoogleFonts.urbanist(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
             ),
@@ -1498,7 +1498,7 @@ class _EmailPreviewState extends State<EmailPreview> {
               title: Text(
                 "Client Name",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.24,
                 ),
@@ -1530,7 +1530,7 @@ class _EmailPreviewState extends State<EmailPreview> {
                 "Send",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1582,7 +1582,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Payment & No-Show Protection",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
@@ -1603,7 +1603,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             Text(
               "Ready to get paid?",
               style: GoogleFonts.urbanist(
-                fontSize: 15.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.black,
               ),
@@ -1669,7 +1669,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             Text(
               "Complete these steps",
               style: GoogleFonts.urbanist(
-                fontSize: 15.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.black,
               ),
@@ -1861,7 +1861,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Verify Your Identity",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
@@ -1907,7 +1907,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "First Name",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1944,7 +1944,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Wick",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1981,7 +1981,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "(987) 654 3210",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2018,7 +2018,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "1234",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2055,7 +2055,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "--/--/--",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2157,7 +2157,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Where should we send your payouts? Pay booking fee now, this card will be charged at time of service. Learn More",
                 style: GoogleFonts.urbanist(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
@@ -2190,7 +2190,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Name",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2227,7 +2227,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2264,7 +2264,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2300,7 +2300,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             TextFormField(
               decoration: InputDecoration(
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2384,7 +2384,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Add your mailing address",
                 style: GoogleFonts.urbanist(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
@@ -2417,7 +2417,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2454,7 +2454,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2491,7 +2491,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2528,7 +2528,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "State",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2565,7 +2565,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Zip",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,

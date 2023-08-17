@@ -83,7 +83,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         Text(
                           "Join now and be part of our exclusive community! Sign up in seconds and gain access to exciting perks, discounts, and special offers.",
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(
@@ -93,7 +93,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         TextFormField(
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           keyboardType: TextInputType.phone,
@@ -156,7 +156,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         TextFormField(
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -188,7 +188,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         TextFormField(
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -236,13 +236,13 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             Text(
                               "I agree to the ",
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                               ),
                             ),
                             Text(
                               "Terms and Conditions",
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 color: kBlue,
                                 fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline,
@@ -273,7 +273,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                               "Sign Up",
                               style: GoogleFonts.urbanist(
                                 color: kWhite,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -304,7 +304,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                               child: Text(
                                 "or",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   color: kdarkPrime,
                                 ),
                               ),
@@ -323,7 +323,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                           child: Text(
                             "Have you used Cosmetropolis before?",
                             style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               color: kdarkPrime,
                               fontWeight: FontWeight.w600,
                             ),
@@ -355,7 +355,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                               "To Sign In",
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

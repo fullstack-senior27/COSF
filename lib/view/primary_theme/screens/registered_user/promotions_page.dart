@@ -49,7 +49,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                             "Promotion Campaigns",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -93,7 +93,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                                       style:
                                                           GoogleFonts.urbanist(
                                                         color: kBlack,
-                                                        fontSize: 18.sp,
+                                                        fontSize: 16.sp,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -165,7 +165,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                             "Create Promotion",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -300,7 +300,7 @@ class PromotionCard extends StatelessWidget {
                 "Edit",
                 style: GoogleFonts.urbanist(
                   color: kBlue,
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                   decoration: TextDecoration.underline,
                 ),
@@ -314,7 +314,7 @@ class PromotionCard extends StatelessWidget {
             "Off",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 20.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -325,7 +325,7 @@ class PromotionCard extends StatelessWidget {
             "Promotion Demo",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -349,7 +349,7 @@ class PromotionCard extends StatelessWidget {
             "Services",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),

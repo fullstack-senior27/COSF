@@ -74,7 +74,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Calendar"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Clients"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -112,7 +112,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Growth"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -131,7 +131,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Marketing"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -150,7 +150,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Promotions"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -169,7 +169,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Profile"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -188,7 +188,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "More"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),

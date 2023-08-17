@@ -108,7 +108,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Your Business Growth",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -152,7 +152,7 @@ class _GrowthPageState extends State<GrowthPage>
                                               //               style: GoogleFonts
                                               //                   .urbanist(
                                               //                 color: kBlack,
-                                              //                 fontSize: 18.sp,
+                                              //                 fontSize: 16.sp,
                                               //                 fontWeight:
                                               //                     FontWeight
                                               //                         .w600,
@@ -190,7 +190,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                           style: GoogleFonts
                                                               .urbanist(
                                                             color: kBlack,
-                                                            fontSize: 18.sp,
+                                                            fontSize: 16.sp,
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                           ),
@@ -278,7 +278,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                     "Set a monthly goal and we’ll give you\ntips on how to get there.",
                                                     style: GoogleFonts.urbanist(
                                                       color: kBlack,
-                                                      fontSize: 18.sp,
+                                                      fontSize: 16.sp,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -600,7 +600,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Hi John Wick",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -1620,7 +1620,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Sign up for Cosmetropolis payments",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 14.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),

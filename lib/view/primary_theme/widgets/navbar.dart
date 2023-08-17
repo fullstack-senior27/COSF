@@ -77,7 +77,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "Home"
                         ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -98,7 +98,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "I am a Beautician"
                         ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -119,7 +119,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "Sign Up"
                         ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -140,7 +140,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "Log In"
                         ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -161,7 +161,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "Help"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -197,7 +197,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                         style: GoogleFonts.urbanist(
                           color: kWhite,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],

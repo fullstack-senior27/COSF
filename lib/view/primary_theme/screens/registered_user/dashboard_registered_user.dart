@@ -56,7 +56,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Calendar",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Calendar"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -75,7 +75,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Clients",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Clients"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -94,7 +94,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Growth",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Growth"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -113,7 +113,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Marketing",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Marketing"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -132,7 +132,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Promotions",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Promotions"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -155,7 +155,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "Profile",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Profile"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -174,7 +174,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                 "More...",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "More"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -210,7 +210,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                         style: GoogleFonts.urbanist(
                           color: kWhite,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],

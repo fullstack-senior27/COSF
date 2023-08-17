@@ -36,7 +36,7 @@ class SelectSlot extends StatelessWidget {
                 "Akeba Thompson",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -121,7 +121,7 @@ class SelectSlot extends StatelessWidget {
                       maxLines: 2,
                       style: GoogleFonts.urbanist(
                         color: kBlack,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -132,7 +132,7 @@ class SelectSlot extends StatelessWidget {
                       "Book soon!",
                       style: GoogleFonts.urbanist(
                         color: kdescription,
-                        fontSize: 11.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -198,7 +198,7 @@ class SelectSlot extends StatelessWidget {
                                             "Your appointment with",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -309,7 +309,7 @@ class SelectSlot extends StatelessWidget {
                                             "Your appointment with",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -402,7 +402,7 @@ class SelectSlot extends StatelessWidget {
                                             "Your appointment with",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -482,7 +482,7 @@ class SelectSlot extends StatelessWidget {
                         "Looking for a specific date?",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -573,7 +573,7 @@ class _SelectDateState extends State<SelectDate> {
                 "Your appointment with",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -617,7 +617,7 @@ class _SelectDateState extends State<SelectDate> {
                 "Akeba Thompson",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -656,7 +656,7 @@ class _SelectDateState extends State<SelectDate> {
                 "4.0",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -667,7 +667,7 @@ class _SelectDateState extends State<SelectDate> {
                 "(180 Reviews)",
                 style: GoogleFonts.urbanist(
                   color: kdescription,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -695,7 +695,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Medium knotless/Box braids",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -750,7 +750,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Limited spots left in April",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -783,7 +783,7 @@ class _SelectDateState extends State<SelectDate> {
             headerStyle: HeaderStyle(
               titleCentered: true,
               titleTextStyle: GoogleFonts.urbanist(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
                 color: kdescription,
               ),
@@ -863,7 +863,7 @@ class _SelectDateState extends State<SelectDate> {
                         "Looking for a specific date?",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -976,7 +976,7 @@ class _AddServiceState extends State<AddService> {
                 "Akeba Thompson",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1119,7 +1119,7 @@ class _AddServiceState extends State<AddService> {
                                 "Select Service",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -1168,7 +1168,7 @@ class _AddServiceState extends State<AddService> {
                         "Friday, April 12",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1176,7 +1176,7 @@ class _AddServiceState extends State<AddService> {
                         "Afternoon - 5:45 to 6:45",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 15.sp,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1201,7 +1201,7 @@ class _AddServiceState extends State<AddService> {
           "Add promotion code",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 16.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -1436,7 +1436,7 @@ class _AddServiceState extends State<AddService> {
                         "Payment Method",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -1514,7 +1514,7 @@ class _SelectServiceState extends State<SelectService> {
                           "Medium knotless/Box braids",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -1606,7 +1606,7 @@ class _SelectServiceState extends State<SelectService> {
                           "Medium knotless/Box braids",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -1813,7 +1813,7 @@ class PaymentMethod extends StatelessWidget {
                         "Your booking was successful!",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -1845,7 +1845,7 @@ class PaymentMethod extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 20.sp,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

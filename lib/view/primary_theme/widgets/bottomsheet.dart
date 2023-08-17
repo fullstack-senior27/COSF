@@ -75,7 +75,7 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
               Text(
                 "Filter",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                 ),
               ),
               IconButton(

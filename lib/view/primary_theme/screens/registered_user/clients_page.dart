@@ -203,7 +203,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                   "Add Client",
                                                   style: GoogleFonts.urbanist(
                                                     color: kBlack,
-                                                    fontSize: 18.sp,
+                                                    fontSize: 16.sp,
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
@@ -315,7 +315,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                         style: GoogleFonts
                                                             .urbanist(
                                                           color: kBlack,
-                                                          fontSize: 18.sp,
+                                                          fontSize: 16.sp,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
@@ -915,7 +915,7 @@ class _ClintsPageState extends State<ClintsPage> {
                                                             style: GoogleFonts
                                                                 .urbanist(
                                                               color: kBlack,
-                                                              fontSize: 18.sp,
+                                                              fontSize: 16.sp,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,

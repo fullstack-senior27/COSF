@@ -101,7 +101,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 "Home",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Home"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -120,7 +120,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 "I am a Beautician",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "I am a Beautician"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -139,7 +139,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 "Sign Up",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Sign Up"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -158,7 +158,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 "Log In",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Log In"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -179,7 +179,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 "Help",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Help"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -220,7 +220,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                         style: GoogleFonts.urbanist(
                           color: kWhite,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],
@@ -261,7 +261,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //           "Home",
       //           style: GoogleFonts.urbanist(
       //             color: kBlack,
-      //             fontSize: 14.sp,
+      //             fontSize: 12.sp,
       //             fontWeight: AppConstants.selectedPage == "Home"
       //                 ? FontWeight.w700
       //                 : FontWeight.w400,
@@ -279,7 +279,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //           "I am a Beautician",
       //           style: GoogleFonts.urbanist(
       //             color: kBlack,
-      //             fontSize: 14.sp,
+      //             fontSize: 12.sp,
       //             fontWeight: AppConstants.selectedPage == "I am a Beautician"
       //                 ? FontWeight.w700
       //                 : FontWeight.w400,
@@ -296,7 +296,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //           "Sign Up",
       //           style: GoogleFonts.urbanist(
       //             color: kBlack,
-      //             fontSize: 14.sp,
+      //             fontSize: 12.sp,
       //             fontWeight: AppConstants.selectedPage == "Sign Up"
       //                 ? FontWeight.w700
       //                 : FontWeight.w400,
@@ -313,7 +313,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //           "Log In",
       //           style: GoogleFonts.urbanist(
       //             color: kBlack,
-      //             fontSize: 14.sp,
+      //             fontSize: 12.sp,
       //             fontWeight: AppConstants.selectedPage == "Log In"
       //                 ? FontWeight.w700
       //                 : FontWeight.w400,
@@ -333,7 +333,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //           "Help",
       //           style: GoogleFonts.urbanist(
       //             color: kBlack,
-      //             fontSize: 14.sp,
+      //             fontSize: 12.sp,
       //             fontWeight: AppConstants.selectedPage == "Help"
       //                 ? FontWeight.w700
       //                 : FontWeight.w400,
@@ -374,7 +374,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
       //                   style: GoogleFonts.urbanist(
       //                     color: kWhite,
       //                     fontWeight: FontWeight.w700,
-      //                     fontSize: 14.sp,
+      //                     fontSize: 12.sp,
       //                   ),
       //                 ),
       //               ],

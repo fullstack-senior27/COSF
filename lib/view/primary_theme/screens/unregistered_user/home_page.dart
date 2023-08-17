@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                     "Find Best Services Near you",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -125,13 +125,13 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: TextField(
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 decoration: InputDecoration(
                                   hintText: "Services or beautician name",
                                   hintStyle: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   suffixIcon: Padding(
@@ -171,14 +171,14 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: TextField(
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 decoration: InputDecoration(
                                   hintText: "Location",
                                   hintStyle: GoogleFonts.urbanist(
                                     color: kGrey,
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   suffixIcon: Padding(
@@ -219,14 +219,14 @@ class _HomePageState extends State<HomePage> {
                               child: TextField(
                                 controller: _dateController,
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 decoration: InputDecoration(
                                   hintText: "Date",
                                   hintStyle: GoogleFonts.urbanist(
                                     color: kGrey,
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   suffixIcon: InkWell(
@@ -301,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                                     "Search",
                                     style: TextStyle(
                                       color: kWhite,
-                                      fontSize: 16.sp,
+                                      fontSize: 14.sp,
                                     ),
                                   ),
                                 ),
@@ -318,14 +318,14 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           TextField(
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                             ),
                             decoration: InputDecoration(
                               hintText: "Services or beautician name",
                               hintStyle: GoogleFonts.urbanist(
                                 color: kGrey,
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               suffixIcon: const Icon(
@@ -351,14 +351,14 @@ class _HomePageState extends State<HomePage> {
                           ),
                           TextField(
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                             ),
                             decoration: InputDecoration(
                               hintText: "Location",
                               hintStyle: GoogleFonts.urbanist(
                                 color: kGrey,
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               suffixIcon: const Icon(
@@ -386,14 +386,14 @@ class _HomePageState extends State<HomePage> {
                             controller: _dateController,
                             keyboardType: TextInputType.datetime,
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                             ),
                             decoration: InputDecoration(
                               hintText: "Date",
                               hintStyle: GoogleFonts.urbanist(
                                 color: kGrey,
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               suffixIcon: InkWell(
@@ -463,7 +463,7 @@ class _HomePageState extends State<HomePage> {
                                 "Search",
                                 style: TextStyle(
                                   color: kWhite,
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                 ),
                               ),
                             ),
@@ -573,7 +573,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               servicetittle[index],
                               style: GoogleFonts.urbanist(
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             )
@@ -653,7 +653,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             "Manuel, Makeup Artist erbgiergbieru",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                             ),
                             maxLines: 2,

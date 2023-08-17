@@ -30,7 +30,7 @@ class PricingDetails extends StatelessWidget {
               title: Text(
                 "Pricing Details",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   color: kBlack,
                 ),
@@ -49,7 +49,7 @@ class PricingDetails extends StatelessWidget {
               "We believe the basics should be free",
               textAlign: TextAlign.center,
               style: GoogleFonts.urbanist(
-                fontSize: 20.sp,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -62,7 +62,7 @@ class PricingDetails extends StatelessWidget {
                 "Get all the features major booking apps offer for a \$0 monthly fee.",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.urbanist(
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -78,7 +78,7 @@ class PricingDetails extends StatelessWidget {
                   Text(
                     "We believe the basics should be free",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -95,7 +95,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "  ",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -104,7 +104,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Cosmetropolis",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -113,7 +113,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Square",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -122,7 +122,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Acuity",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -131,7 +131,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "GlossGenius",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -140,7 +140,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Booksy",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -153,7 +153,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Monthly fee",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -162,7 +162,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -171,7 +171,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -180,7 +180,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$14/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -189,7 +189,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$24/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -198,7 +198,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "\$29.99/mo",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -214,7 +214,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Online Profile",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -223,7 +223,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -268,7 +268,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Customizable calendar & scheduling tools",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -277,7 +277,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -321,7 +321,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Client relationship management tools",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -330,7 +330,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -339,7 +339,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Additional cost",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -355,7 +355,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Additional cost",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -379,7 +379,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Appointment reminders",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -388,7 +388,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -432,7 +432,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "No-show protection",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -441,7 +441,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -486,7 +486,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "No card on file and key-in fees",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -495,7 +495,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -539,7 +539,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Instant payouts* (deposits within minutes)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -548,7 +548,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Free",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -557,7 +557,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "1.5%",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -573,7 +573,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Same or next day deposits",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -582,7 +582,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Next day deposits",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -599,7 +599,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Instant payouts* (deposits within minutes)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -608,7 +608,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "ALWAYS FREE",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -617,7 +617,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "30 days (for premium plans)",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -626,7 +626,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "7 days",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -635,7 +635,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "14 days",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -644,7 +644,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "14 days",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -689,7 +689,7 @@ class PricingDetails extends StatelessWidget {
                             Text(
                               "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
                               style: GoogleFonts.prata(
-                                fontSize: 20.sp,
+                                fontSize: 18.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -699,7 +699,7 @@ class PricingDetails extends StatelessWidget {
                             Text(
                               "You can’t get that kind of exposure with just a booking app.",
                               style: GoogleFonts.urbanist(
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
                               ),
                             )
@@ -773,7 +773,7 @@ class PricingDetails extends StatelessWidget {
                         "Cosmetropolis spends millions on advertising to attract clients and help you get discovered",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.prata(
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -824,7 +824,7 @@ class PricingDetails extends StatelessWidget {
               child: Text(
                 "We’re home to THE largest network of consumers looking for personal services",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: MediaQuery.of(context).size.width > 920
@@ -843,7 +843,7 @@ class PricingDetails extends StatelessWidget {
                 "In order to deliver the most secure experience and ensure you get paid, all payments are run through StyleSeat for 3% per transaction.",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.urbanist(
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -866,7 +866,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "  ",
                             style: GoogleFonts.urbanist(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -875,7 +875,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Cosmetropolis",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -884,7 +884,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Square",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -893,7 +893,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Acuity",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -902,7 +902,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "GlossGenius",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -911,7 +911,7 @@ class PricingDetails extends StatelessWidget {
                           label: Text(
                             "Booksy",
                             style: GoogleFonts.urbanist(
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -924,7 +924,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Promotes your profile to bring you new clients",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -975,7 +975,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Invests to drive Client traffic to their app/website via search engines, social media and TV",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1027,7 +1027,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Partners with influencers, content creators, and top consumer brands",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1078,7 +1078,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Gives you opportunities to get boosted to the top of search results",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1129,7 +1129,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Constantly optimizes your booking page behind-the-scenes to help convert more clients",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1180,7 +1180,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Offer Beautician loans ranging from \$1K-\$20K",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1231,7 +1231,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 'Provides your clients with "Style Now, Pay Later" option with Klarna.',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1282,7 +1282,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Clients can pay by tapping their card to your iPhone",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1333,7 +1333,7 @@ class PricingDetails extends StatelessWidget {
                               Text(
                                 "Dynamic pricing feature to earn more on your popular time slots",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -1400,7 +1400,7 @@ class PricingDetails extends StatelessWidget {
                   Text(
                     "Our premium features",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -1435,7 +1435,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "Grow Your Clientele",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                             textAlign: TextAlign.center,
@@ -1462,7 +1462,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "25% one-time commission",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -1505,7 +1505,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "Grow Your Clientele",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                             textAlign: TextAlign.center,
@@ -1532,7 +1532,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "25% one-time commission",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -1575,7 +1575,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "Grow Your Clientele",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                             textAlign: TextAlign.center,
@@ -1602,7 +1602,7 @@ class PricingDetails extends StatelessWidget {
                                           Text(
                                             "25% one-time commission",
                                             style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -1654,7 +1654,7 @@ class PricingDetails extends StatelessWidget {
                                                 Text(
                                                   "Grow Your Clientele",
                                                   style: GoogleFonts.urbanist(
-                                                    fontSize: 16.sp,
+                                                    fontSize: 14.sp,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                   textAlign: TextAlign.center,
@@ -1689,7 +1689,7 @@ class PricingDetails extends StatelessWidget {
                                                 Text(
                                                   "25% one-time commission",
                                                   style: GoogleFonts.urbanist(
-                                                    fontSize: 16.sp,
+                                                    fontSize: 14.sp,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),

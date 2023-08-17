@@ -85,7 +85,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
               title: Text(
                 "Beauticians",
                 style: GoogleFonts.poppins(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   color: kBlack,
                 ),
@@ -116,14 +116,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                       Expanded(
                         child: TextField(
                           style: GoogleFonts.urbanist(
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
                             hintText: "Services or beautician name",
                             hintStyle: GoogleFonts.urbanist(
                               color: kGrey,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                             suffixIcon: const Icon(
@@ -158,14 +158,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                       Expanded(
                         child: TextField(
                           style: GoogleFonts.urbanist(
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
                             hintText: "Location",
                             hintStyle: GoogleFonts.urbanist(
                               color: kGrey,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                             suffixIcon: const Icon(
@@ -201,14 +201,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         child: TextField(
                           controller: _dateController,
                           style: GoogleFonts.urbanist(
-                            fontSize: 17.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                           decoration: InputDecoration(
                             hintText: "Date",
                             hintStyle: GoogleFonts.urbanist(
                               color: kGrey,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                             suffixIcon: InkWell(
@@ -274,7 +274,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               "Search",
                               style: TextStyle(
                                 color: kWhite,
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                               ),
                             ),
                           ),
@@ -294,7 +294,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         hintText: "Services or beautician name",
                         hintStyle: GoogleFonts.urbanist(
                           color: kGrey,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
                         suffixIcon: const Icon(
@@ -323,7 +323,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         hintText: "Location",
                         hintStyle: GoogleFonts.urbanist(
                           color: kGrey,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
                         suffixIcon: const Icon(
@@ -359,7 +359,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                         hintText: "Date",
                         hintStyle: GoogleFonts.urbanist(
                           color: kGrey,
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
                         suffixIcon: InkWell(
@@ -459,7 +459,7 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               child: Text(
                                 "Filter",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 15.sp,
+                                  fontSize: 13.sp,
                                   fontWeight: FontWeight.w500,
                                   color: kBlack,
                                 ),
@@ -569,14 +569,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                   Text(
                                     "Best Braids in Dallas, TX",
                                     style: GoogleFonts.poppins(
-                                      fontSize: 20.sp,
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   Text(
                                     "Cosmetropolis > Dallas, TX > Braids",
                                     style: GoogleFonts.poppins(
-                                      fontSize: 14.sp,
+                                      fontSize: 12.sp,
                                       color: kdescription,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -617,14 +617,14 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                               "Best Braids in Dallas, TX",
                                               overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.poppins(
-                                                fontSize: 20.sp,
+                                                fontSize: 18.sp,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                             Text(
                                               "Cosmetropolis > Dallas, TX > Braids",
                                               style: GoogleFonts.poppins(
-                                                fontSize: 14.sp,
+                                                fontSize: 12.sp,
                                                 color: kdescription,
                                                 fontWeight: FontWeight.w500,
                                               ),

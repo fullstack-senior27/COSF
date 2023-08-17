@@ -423,7 +423,7 @@ class ProfileStatus extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -496,7 +496,7 @@ class ProfileStatus extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -522,7 +522,7 @@ class ProfileStatus extends StatelessWidget {
             "Hear why top professionals love StyleSeat",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -755,7 +755,7 @@ class Overview extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -828,7 +828,7 @@ class Overview extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -854,7 +854,7 @@ class Overview extends StatelessWidget {
             "Hear why top professionals love StyleSeat",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),

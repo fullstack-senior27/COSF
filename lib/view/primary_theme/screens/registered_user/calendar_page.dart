@@ -59,12 +59,12 @@ class _CalendarPageState extends State<CalendarPage> {
                               daysHaveCircularBorder: true,
                               daysTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekendTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekdayTextStyle: GoogleFonts.urbanist(
@@ -74,7 +74,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               ),
                               headerTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               headerTitleTouchable: true,
@@ -125,7 +125,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 "Select Client",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -218,7 +218,7 @@ class _CalendarPageState extends State<CalendarPage> {
                           ),
                           headerTextStyle: GoogleFonts.urbanist(
                             color: kWhite,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                           ),
                           leftIcon: const Icon(
@@ -265,12 +265,12 @@ class _CalendarPageState extends State<CalendarPage> {
                               daysHaveCircularBorder: true,
                               daysTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekendTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekdayTextStyle: GoogleFonts.urbanist(
@@ -280,7 +280,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               ),
                               headerTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               headerTitleTouchable: true,
@@ -331,7 +331,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 "Select Client",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),

@@ -109,7 +109,7 @@ class _HelpPageState extends State<HelpPage> {
                                   ques[index],
                                   style: GoogleFonts.urbanist(
                                     color: kdark,
-                                    fontSize: 14.sp,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -156,7 +156,7 @@ class _HelpPageState extends State<HelpPage> {
                               ques[selectedQues],
                               style: GoogleFonts.urbanist(
                                 color: kdark,
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -273,7 +273,7 @@ class _HelpPageState extends State<HelpPage> {
                             "Knowledge base",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 18.sp,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -341,7 +341,7 @@ class _HelpPageState extends State<HelpPage> {
                             index == 0 ? "For Clients" : "For Beauticians",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

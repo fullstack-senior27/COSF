@@ -89,7 +89,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
               title: Text(
                 "Service Details",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   color: kBlack,
                 ),
@@ -146,7 +146,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                         "Full location | 39495 Washington",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -175,7 +175,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                         "4.9",
                         style: GoogleFonts.urbanist(
                           color: kBlack,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -186,7 +186,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                         "(856k booking reviews)",
                         style: GoogleFonts.urbanist(
                           color: kdescription,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -418,7 +418,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                                   child: Text(
                                     "Filter",
                                     style: GoogleFonts.urbanist(
-                                      fontSize: 15.sp,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500,
                                       color: kBlack,
                                     ),
@@ -756,7 +756,7 @@ class Sidebar extends StatelessWidget {
             "Hours of operation",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontWeight: FontWeight.w200,
             ),
           ),
@@ -805,7 +805,7 @@ class Sidebar extends StatelessWidget {
                             "Monday",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w200,
                             ),
                           ),
@@ -813,7 +813,7 @@ class Sidebar extends StatelessWidget {
                             "10:00 - 20:00",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w200,
                             ),
                           ),
@@ -854,7 +854,7 @@ class service extends StatelessWidget {
           "Book online for an appointment at hairstyle",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 18.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -876,7 +876,7 @@ class service extends StatelessWidget {
           "Choose your service",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 18.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -887,7 +887,7 @@ class service extends StatelessWidget {
           "Highlighted service",
           style: GoogleFonts.urbanist(
             color: kBlack,
-            fontSize: 14.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -934,7 +934,7 @@ class service extends StatelessWidget {
                           "Medium knotless/Box Braids",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -951,7 +951,7 @@ class service extends StatelessWidget {
                             trimExpandedText: ' Read less',
                             style: TextStyle(
                               color: kGrey,
-                              fontSize: 11.sp,
+                              fontSize: 10.sp,
                             ),
                           ),
                         ),
@@ -964,7 +964,7 @@ class service extends StatelessWidget {
                                   "60min | \$150",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 14.sp,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -985,7 +985,7 @@ class service extends StatelessWidget {
                                                 "Your appointment with",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -1047,7 +1047,7 @@ class service extends StatelessWidget {
                             "60min | \$150",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -1068,7 +1068,7 @@ class service extends StatelessWidget {
                                           "Your appointment with",
                                           style: GoogleFonts.urbanist(
                                             color: kBlack,
-                                            fontSize: 18.sp,
+                                            fontSize: 16.sp,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),

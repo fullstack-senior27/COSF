@@ -48,7 +48,7 @@ class BlogDetailsPage extends StatelessWidget {
                         Text(
                           "Blog",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                             color: kBlack,
                           ),
@@ -64,7 +64,7 @@ class BlogDetailsPage extends StatelessWidget {
                         Text(
                           "Blog Details",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                             color: const Color(
                               0xffFFBB0D,
@@ -229,7 +229,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Text(
                     "Introduction",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: kdark,
                     ),
@@ -253,7 +253,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Text(
                     "What Makes a Trip to the Salon So Therapeutic?",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: kdark,
                     ),
@@ -277,7 +277,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Text(
                     "Conclusion",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: kdark,
                     ),
@@ -405,7 +405,7 @@ class BlogDetailsPage extends StatelessWidget {
                   Text(
                     "Related Articles",
                     style: GoogleFonts.urbanist(
-                      fontSize: 20.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: kdark,
                     ),
@@ -480,7 +480,7 @@ class BlogDetailsPage extends StatelessWidget {
                                 Text(
                                   "Manuel, Makeup Artist erbgiergbieru",
                                   style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
                                   ),
                                   maxLines: 2,

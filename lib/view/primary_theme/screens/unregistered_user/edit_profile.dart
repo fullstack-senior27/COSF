@@ -171,7 +171,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                   style: GoogleFonts.urbanist(
                                     color: kWhite,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 14.sp,
+                                    fontSize: 12.sp,
                                   ),
                                 ),
                               ],
@@ -359,7 +359,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                 "Change Password",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -432,7 +432,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                     "Edit Your Profile",
                                                     style: GoogleFonts.urbanist(
                                                       color: kBlack,
-                                                      fontSize: 18.sp,
+                                                      fontSize: 16.sp,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -582,7 +582,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                           style: GoogleFonts
                                                               .urbanist(
                                                             color: kBlack,
-                                                            fontSize: 18.sp,
+                                                            fontSize: 16.sp,
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                           ),

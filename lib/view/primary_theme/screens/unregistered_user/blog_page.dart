@@ -72,7 +72,7 @@ class _BlogPageState extends State<BlogPage> {
               title: Text(
                 "Blog",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   color: kBlack,
                 ),
@@ -431,7 +431,7 @@ class _BlogPageState extends State<BlogPage> {
                                               child: Text(
                                                 "Current Page: $_currentPage",
                                                 style: GoogleFonts.urbanist(
-                                                  fontSize: 15.sp,
+                                                  fontSize: 13.sp,
                                                   fontWeight: FontWeight.w600,
                                                   color: kBlack,
                                                 ),

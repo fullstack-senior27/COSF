@@ -478,7 +478,7 @@ class ProductsCard extends StatelessWidget {
                                 "Add Client Photo",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -578,7 +578,7 @@ class ProductsCard extends StatelessWidget {
                           "Hair Growth Oil",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

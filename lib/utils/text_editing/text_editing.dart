@@ -47,7 +47,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
             Text(
               'Headline',
               style: GoogleFonts.urbanist(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -63,7 +63,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
             Text(
               'Description (optional)*',
               style: GoogleFonts.urbanist(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -95,7 +95,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
                 child: Text(
                   'Save',
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

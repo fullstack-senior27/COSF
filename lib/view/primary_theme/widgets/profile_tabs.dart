@@ -1457,13 +1457,13 @@ class ManageAvailability extends StatelessWidget {
                                             daysHaveCircularBorder: true,
                                             daysTextStyle: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
                                             ),
                                             weekendTextStyle:
                                                 GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
                                             ),
                                             weekdayTextStyle:
@@ -1475,7 +1475,7 @@ class ManageAvailability extends StatelessWidget {
                                             headerTextStyle:
                                                 GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                             headerTitleTouchable: true,
