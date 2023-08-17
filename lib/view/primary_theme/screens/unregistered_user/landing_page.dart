@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LandingPage extends ConsumerStatefulWidget {
@@ -388,8 +389,9 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.offAll(() => const DashboardLoginPage());
-                          ref.read(styleProvider).setSelectedPage("Calendar");
+                          // Get.offAll(() => const DashboardLoginPage());
+                          context.go("/dashboard-login");
+                          // ref.read(styleProvider).setSelectedPage("Calendar");
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: kBlack,
@@ -725,9 +727,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => {
-                        ref.read(styleProvider).setSelectedPage("Calendar"),
-                        Get.offAll(() => const DashboardLoginPage()),
+                      onPressed: () {
+                        context.go("/dashboard-login");
+                        // ref.read(styleProvider).setSelectedPage("Calendar"),
+                        // Get.offAll(() => const DashboardLoginPage()),
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: kBlack,

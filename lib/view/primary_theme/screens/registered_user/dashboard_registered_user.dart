@@ -13,10 +13,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DashboardLoginPage extends ConsumerStatefulWidget {
-  const DashboardLoginPage({super.key});
+  final Widget child;
+  const DashboardLoginPage({super.key, required this.child});
 
   @override
   ConsumerState<DashboardLoginPage> createState() => _DashboardLoginPageState();
@@ -48,9 +50,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ListTile(
               leading: const Icon(Icons.home),
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Calendar");
-                setState(() {});
+                context.go('/dashboard-login');
               },
               title: Text(
                 "Calendar",
@@ -66,9 +66,10 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ListTile(
               leading: const Icon(Icons.message),
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Clients");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Clients");
+                // setState(() {});
+                context.go('/dashboard-login/client');
               },
               title: Text(
                 "Clients",
@@ -83,9 +84,10 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Growth");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Growth");
+                // setState(() {});
+                context.go('/dashboard-login/growth');
               },
               leading: const Icon(Icons.account_circle),
               title: Text(
@@ -101,9 +103,10 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Marketing");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Marketing");
+                // setState(() {});
+                context.go('/dashboard-login/marketing');
               },
               leading: const Icon(Icons.photo_album_outlined),
               title: Text(
@@ -119,9 +122,10 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Promotions");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Promotions");
+                // setState(() {});
+                context.go('/dashboard-login/promotions');
               },
               leading: const Icon(Icons.login_outlined),
               title: Text(
@@ -140,9 +144,11 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Profile");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Profile");
+                // setState(() {});
+
+                context.go('/dashboard-login/profile');
               },
               leading: const Icon(Icons.settings),
               title: Text(
@@ -158,9 +164,10 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("More");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("More");
+                // setState(() {});
+                context.go('/dashboard-login/more');
               },
               leading: const Icon(Icons.settings),
               title: Text(
@@ -232,21 +239,22 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
           ],
         ),
       ),
-      body: navbarSection == "Calendar"
-          ? const CalendarPage()
-          : navbarSection == "Clients"
-              ? const ClintsPage()
-              : navbarSection == "Growth"
-                  ? const GrowthPage()
-                  : navbarSection == "Marketing"
-                      ? const MarketingPage()
-                      : navbarSection == "Promotions"
-                          ? const PromotionsPage()
-                          : navbarSection == "Profile"
-                              ? const ProfilePage()
-                              : navbarSection == "More"
-                                  ? const MorePage()
-                                  : const CalendarPage(),
+      // body: navbarSection == "Calendar"
+      //     ? const CalendarPage()
+      //     : navbarSection == "Clients"
+      //         ? const ClintsPage()
+      //         : navbarSection == "Growth"
+      //             ? const GrowthPage()
+      //             : navbarSection == "Marketing"
+      //                 ? const MarketingPage()
+      //                 : navbarSection == "Promotions"
+      //                     ? const PromotionsPage()
+      //                     : navbarSection == "Profile"
+      //                         ? const ProfilePage()
+      //                         : navbarSection == "More"
+      //                             ? const MorePage()
+      //                             : const CalendarPage(),
+      body: widget.child,
     );
   }
 }

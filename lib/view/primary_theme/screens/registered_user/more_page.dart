@@ -56,18 +56,18 @@ class _MorePageState extends ConsumerState<MorePage> {
     "Learn best practices and practical tips from our dedicated team of experts.",
   ];
   List<String> iconUrl = [
-    'assets/icons/more/edit_profile.png',
-    'assets/icons/more/plan_and_bill.png',
-    'assets/icons/more/front_desk.png',
-    'assets/icons/more/login_and_security.png',
-    'assets/icons/more/notification_settings.png',
-    'assets/icons/more/email_marketing.png',
-    'assets/icons/more/online_booking_Profile.png',
-    'assets/icons/more/promotions.png',
-    'assets/icons/more/payments.png',
-    'assets/icons/more/cosmetropolis_blog.png',
-    'assets/icons/more/instagram_book_button.png',
-    'assets/icons/more/help_center.png',
+    'assets/icons/edit_profile.webp',
+    'assets/icons/plan_and_bill.webp',
+    'assets/icons/front_desk.webp',
+    'assets/icons/login_and_security.webp',
+    'assets/icons/notification_settings.webp',
+    'assets/icons/email_marketing.webp',
+    'assets/icons/online_booking_Profile.webp',
+    'assets/icons/promotions.webp',
+    'assets/icons/payments.webp',
+    'assets/icons/cosmetropolis_blog.webp',
+    'assets/icons/instagram_book_button.webp',
+    'assets/icons/help_center.webp',
   ];
   @override
   Widget build(BuildContext context) {

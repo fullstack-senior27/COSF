@@ -108,7 +108,7 @@ flutter:
     - assets/languages/
     - assets/images/
     - assets/icons/
-    - assets/icons/more/
+    # - assets/icons/more/
     # - .env
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

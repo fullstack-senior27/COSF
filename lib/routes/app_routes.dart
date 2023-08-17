@@ -1,5 +1,13 @@
 import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/clients_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/dashboard_registered_user.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/growth_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketing_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
@@ -125,7 +133,44 @@ final GoRouter routers = GoRouter(
       path: '/text-editor',
       builder: (context, state) => DashboardFreePage(child: TextEditorPage()),
       pageBuilder: defaultPageBuilder(DashboardFreePage(child: TextEditorPage())),
-    ),    
+    ),
+    GoRoute(
+      path: '/dashboard-login',
+      builder: (context, state) => DashboardLoginPage(child: CalendarPage(),),
+      pageBuilder: defaultPageBuilder(DashboardLoginPage(child: CalendarPage(),)),
+      routes: [
+        GoRoute(
+          path: 'client',
+          builder: (context, state) => DashboardLoginPage(child: ClintsPage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: ClintsPage(),)),
+        ),
+        GoRoute(
+          path: 'growth',
+          builder: (context, state) => DashboardLoginPage(child: GrowthPage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: GrowthPage(),)),
+        ),
+        GoRoute(
+          path: 'marketing',
+          builder: (context, state) => DashboardLoginPage(child: MarketingPage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: MarketingPage(),)),
+        ),
+        GoRoute(
+          path: 'promotions',
+          builder: (context, state) => DashboardLoginPage(child: PromotionsPage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: PromotionsPage(),)),
+        ),
+        GoRoute(
+          path: 'profile',
+          builder: (context, state) => DashboardLoginPage(child: ProfilePage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: ProfilePage(),)),
+        ),
+        GoRoute(
+          path: 'more',
+          builder: (context, state) => DashboardLoginPage(child: MorePage(),),
+          pageBuilder: defaultPageBuilder(DashboardLoginPage(child: MorePage(),)),
+        ),
+      ]
+    ),
   ]
 );
 
