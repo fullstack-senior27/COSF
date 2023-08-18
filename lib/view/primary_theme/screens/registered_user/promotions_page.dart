@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 class PromotionsPage extends StatefulWidget {
   const PromotionsPage({super.key});
@@ -100,7 +101,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                                     ),
                                                     InkWell(
                                                       onTap: () {
-                                                        Get.back();
+                                                        context.pop();
                                                       },
                                                       child: const Icon(
                                                         Icons.close,
@@ -169,9 +170,12 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Icon(
-                                            Icons.close,
-                                            color: kGrey,
+                                          IconButton(
+                                            onPressed: () => context.pop(),
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            ),
                                           )
                                         ],
                                       ),

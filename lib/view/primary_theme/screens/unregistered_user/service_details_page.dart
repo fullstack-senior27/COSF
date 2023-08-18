@@ -11,6 +11,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
@@ -79,7 +80,7 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
               elevation: 0,
               leading: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios,
@@ -991,7 +992,7 @@ class service extends StatelessWidget {
                                               ),
                                               IconButton(
                                                 onPressed: () {
-                                                  Get.back();
+                                                  context.pop();
                                                 },
                                                 icon: const Icon(
                                                   Icons.close,
@@ -1072,9 +1073,12 @@ class service extends StatelessWidget {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        const Icon(
-                                          Icons.close,
-                                          color: kGrey,
+                                        IconButton(
+                                          onPressed: () => context.pop(), 
+                                          icon: Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          )
                                         )
                                       ],
                                     ),

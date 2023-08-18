@@ -17,6 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MorePage extends ConsumerStatefulWidget {
@@ -90,7 +91,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                 itemCount: 12,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) => InkWell(
+                itemBuilder: (BuildContext context, int index) => GestureDetector(
                   onTap: () {
                     if (index == 0) {
                       showModalBottomSheet(
@@ -110,7 +111,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                     children: [
                                       IconButton(
                                         onPressed: () {
-                                          Get.back();
+                                          context.pop();
                                         },
                                         icon: const Icon(
                                           Icons.close,
@@ -206,7 +207,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                     color: kGrey,
                                   ),
                                   onPressed: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                 ),
                               ],
@@ -287,41 +288,52 @@ class MoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10.r),
-        ),
-        border: Border.all(
-          color: kdisable,
-          width: 0.3.w,
-        ),
-      ),
-      child: ListTile(
-        contentPadding: MediaQuery.of(context).size.width > 700
-            ? EdgeInsets.only(right: 5.w)
-            : EdgeInsets.only(right: 8.w, left: 8.w),
-        leading: Image.asset(
-          iconUrl,
-          height: 25.h,
-          width: 25.w,
-        ),
-        title: Text(
-          cardName,
-          style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.r),
+          ),
+          border: Border.all(
+            color: kdisable,
+            width: 0.3.w,
           ),
         ),
-        subtitle: Text(
-          cardDescription,
-          style: GoogleFonts.urbanist(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
+        child: ListTile(
+          contentPadding: MediaQuery.of(context).size.width > 700
+              ? EdgeInsets.only(right: 5.w)
+              : EdgeInsets.only(right: 8.w, left: 8.w),
+          leading: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Image.asset(
+              iconUrl,
+              height: 25.h,
+              width: 25.w,
+            ),
+          ),
+          title: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Text(
+              cardName,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          subtitle: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Text(
+              cardDescription,
+              style: GoogleFonts.urbanist(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
           ),
         ),
       ),
@@ -353,7 +365,7 @@ class _BillPageState extends State<BillPage> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -371,7 +383,7 @@ class _BillPageState extends State<BillPage> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -639,7 +651,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -657,7 +669,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -672,7 +684,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
             SizedBox(height: 20.h),
             InkWell(
               onTap: () {
-                Get.back();
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (context) => const AlertDialog(
@@ -709,7 +721,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
             SizedBox(height: 20.h),
             InkWell(
               onTap: () {
-                Get.back();
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (context) => const AlertDialog(
@@ -818,7 +830,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       onPressed: () {
-                        Get.back();
+                        context.pop();
                       },
                       child: Text(
                         "Save",
@@ -849,7 +861,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       onPressed: () {
-                        Get.back();
+                        context.pop();
                       },
                       child: Text(
                         "Cancel",
@@ -898,7 +910,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -916,7 +928,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -1013,7 +1025,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -1031,7 +1043,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -1572,7 +1584,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               contentPadding: EdgeInsets.zero,
               leading: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios,
@@ -1589,7 +1601,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -1868,7 +1880,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -2164,7 +2176,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -2391,7 +2403,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,

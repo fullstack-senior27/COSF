@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
@@ -31,9 +33,21 @@ class _PersonalInfoState extends State<PersonalInfo> {
           SizedBox(
             height: 15.h,
           ),
-          Text(
-            "Personal Info",
-            style: urbanist600(kBlack, 18),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Personal Info",
+                style: urbanist600(kBlack, 18),
+              ),
+              IconButton(
+                onPressed: () => context.pop(), 
+                icon: Icon(
+                  Icons.close,
+                  color: kGrey,
+                )
+              )
+            ],
           ),
           SizedBox(height: 20.h),
           Text(
@@ -227,7 +241,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   style: urbanist400(kGrey, 14),
                 ),
               ),
-              SizedBox(width: 10.w),
+              SizedBox(width: 5.w),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -238,7 +252,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.r),
                   ),
-                  minimumSize: Size(100.w, 40.h),
+                  // minimumSize: Size(100.w, 40.h),
                 ),
                 child: Text(
                   "Save",
@@ -649,161 +663,174 @@ class PhotosTab extends StatelessWidget {
       "https://i.imgur.com/jA407EU.webp",
       "https://i.imgur.com/fIL9cnJ.webp"
     ];
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-            // height: 150.h,
-            decoration: BoxDecoration(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          // height: 150.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.r),
+            color: const Color(0xffE5E6F6),
+          ),
+          child: DottedBorder(
+            color: kGrey,
+            strokeWidth: 1,
+            radius: Radius.circular(5.r),
+            borderType: BorderType.RRect,
+            strokeCap: StrokeCap.round,
+            dashPattern: [6, 5, 6, 5],
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(5.r),
-              color: const Color(0xffE5E6F6),
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 20.h),
-                const Icon(
-                  Icons.cloud_upload_outlined,
-                  size: 40,
-                  color: kGrey,
-                ),
-                SizedBox(height: 10.h),
-                RichText(
-                  text: TextSpan(
-                    text: "Cover image  ",
-                    style: urbanist400(kGrey, 14),
-                    children: [
-                      TextSpan(
-                        text: "browser",
-                        style: urbanist400(kBlue, 14),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            //open image picker
-                          },
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 20.h),
+                    const Icon(
+                      Icons.cloud_upload_outlined,
+                      size: 40,
+                      color: kGrey,
+                    ),
+                    SizedBox(height: 10.h),
+                    RichText(
+                      text: TextSpan(
+                        text: "Cover image  ",
+                        style: urbanist400(kGrey, 14),
+                        children: [
+                          TextSpan(
+                            text: "browser",
+                            style: urbanist400(kBlue, 14),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                //open image picker
+                              },
+                          ),
+                          // TextSpan(
+                          //   text: " to upload",
+                          //   style: urbanist400(kGrey, 14),
+                          // ),
+                        ],
                       ),
-                      // TextSpan(
-                      //   text: " to upload",
-                      //   style: urbanist400(kGrey, 14),
-                      // ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      "1314x275",
+                      style: urbanist500(kGrey, 14),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 10.h),
-                Text(
-                  "1314x275",
-                  style: urbanist500(kGrey, 14),
-                ),
-              ],
+              ),
             ),
           ),
-          SizedBox(height: 20.h),
-          Container(
-            color: const Color(0xffE0F3FD),
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            child: Row(
+        ),
+        SizedBox(height: 20.h),
+        Text("Pinned Photos", style: TextStyle(color: kBlack, fontSize: 18, fontWeight: FontWeight.w700),),
+        SizedBox(height: 20.h),
+        Container(
+          color: const Color(0xffE0F3FD),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 30.r,
+                backgroundColor: kWhite,
+                child:
+                    Image.asset("assets/icons/pin_black.webp", height: 30.h),
+              ),
+              SizedBox(width: 5.w),
+              Expanded(
+                child: Text(
+                  "You haven't pinned any of your photos yet! Just tap the pin on your three favorite photos and they will be displayed first in your gallery.",
+                  style: MediaQuery.of(context).size.width > 700
+                      ? urbanist400(kGrey, 14)
+                      : urbanist400(kGrey, 12),
+                ),
+              ),
+              SizedBox(width: 5.w),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 25.sp,
+                color: kdarkPrime,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.width > 700 ? 40.h : 20.h,
+        ),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: MediaQuery.of(context).size.width > 680 ? 3 : 2,
+            crossAxisSpacing: 1.w,
+            childAspectRatio:
+                MediaQuery.of(context).size.width > 680 ? 1 / 1.2 : 1 / 1.5,
+            mainAxisSpacing: 1.h,
+          ),
+          itemCount: imgList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
               children: [
-                CircleAvatar(
-                  radius: 30.r,
-                  backgroundColor: kWhite,
-                  child:
-                      Image.asset("assets/icons/pin_black.webp", height: 30.h),
-                ),
-                SizedBox(width: 5.w),
-                Expanded(
-                  child: Text(
-                    "You haven't pinned any of your photos yet! Just tap the pin on your three favorite photos and they will be displayed first in your gallery.",
-                    style: MediaQuery.of(context).size.width > 700
-                        ? urbanist400(kGrey, 14)
-                        : urbanist400(kGrey, 12),
-                  ),
-                ),
-                SizedBox(width: 5.w),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 25.sp,
-                  color: kdarkPrime,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width > 700 ? 40.h : 20.h,
-          ),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.of(context).size.width > 680 ? 3 : 2,
-              crossAxisSpacing: 7.w,
-              childAspectRatio:
-                  MediaQuery.of(context).size.width > 680 ? 1 / 1.2 : 1 / 1.5,
-              mainAxisSpacing: 20.h,
-            ),
-            itemCount: imgList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 1 / 1.2,
-                    child: Container(
-                      // height: 200.h,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(imgList[index]),
-                          fit: BoxFit.cover,
-                        ),
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    // height: 200.h,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(imgList[index]),
+                        fit: BoxFit.cover,
                       ),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: kBlack,
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: kWhite,
-                                        size: 20.sp,
-                                      ),
+                    ),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              color: kBlack,
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: kWhite,
+                                      size: 20.sp,
                                     ),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Image.asset(
-                                        "assets/icons/pin_white.webp",
-                                        height: 20.sp,
-                                      ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Image.asset(
+                                      "assets/icons/pin_white.webp",
+                                      height: 20.sp,
                                     ),
-                                    const Spacer(),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.delete_outline,
-                                        color: kWhite,
-                                        size: 20.sp,
-                                      ),
+                                  ),
+                                  const Spacer(),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.delete_outline,
+                                      color: kWhite,
+                                      size: 20.sp,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ],
-              );
-            },
-          )
-        ],
-      ),
+                ),
+              ],
+            );
+          },
+        )
+      ],
     );
   }
 }
@@ -839,7 +866,8 @@ class ManageAvailability extends StatelessWidget {
                               alignment: Alignment.topRight,
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  // context.pop();
+                                  context.pop();
                                 },
                                 icon: Icon(
                                   Icons.close,
@@ -874,7 +902,7 @@ class ManageAvailability extends StatelessWidget {
                                   children: [
                                     IconButton(
                                       onPressed: () {
-                                        Navigator.of(context).pop();
+                                        context.pop();
                                       },
                                       icon: Icon(
                                         Icons.close,
@@ -936,7 +964,7 @@ class ManageAvailability extends StatelessWidget {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  context.pop();
                                 },
                                 icon: Icon(
                                   Icons.close,
@@ -956,7 +984,7 @@ class ManageAvailability extends StatelessWidget {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    context.pop();
                                   },
                                   style: TextButton.styleFrom(
                                     backgroundColor: kWhite,
@@ -979,7 +1007,7 @@ class ManageAvailability extends StatelessWidget {
                                 SizedBox(width: 10.w),
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    context.pop();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: kBlack,
@@ -1027,7 +1055,7 @@ class ManageAvailability extends StatelessWidget {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.of(context).pop();
+                                          context.pop();
                                         },
                                         icon: Icon(
                                           Icons.close,
@@ -1054,7 +1082,7 @@ class ManageAvailability extends StatelessWidget {
                                       Expanded(
                                         child: TextButton(
                                           onPressed: () {
-                                            Get.back();
+                                            context.pop();
                                           },
                                           style: TextButton.styleFrom(
                                             backgroundColor: kWhite,
@@ -1080,7 +1108,7 @@ class ManageAvailability extends StatelessWidget {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.of(context).pop();
+                                            context.pop();
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: kBlack,
@@ -1149,7 +1177,7 @@ class ManageAvailability extends StatelessWidget {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  context.pop();
                                 },
                                 icon: Icon(
                                   Icons.close,
@@ -1169,7 +1197,7 @@ class ManageAvailability extends StatelessWidget {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    context.pop();
                                   },
                                   style: TextButton.styleFrom(
                                     backgroundColor: kWhite,
@@ -1192,7 +1220,7 @@ class ManageAvailability extends StatelessWidget {
                                 SizedBox(width: 10.w),
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    context.pop();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: kBlack,
@@ -1240,7 +1268,7 @@ class ManageAvailability extends StatelessWidget {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.of(context).pop();
+                                          context.pop();
                                         },
                                         icon: Icon(
                                           Icons.close,
@@ -1267,7 +1295,7 @@ class ManageAvailability extends StatelessWidget {
                                       Expanded(
                                         child: TextButton(
                                           onPressed: () {
-                                            Get.back();
+                                            context.pop();
                                           },
                                           style: TextButton.styleFrom(
                                             backgroundColor: kWhite,
@@ -1293,7 +1321,7 @@ class ManageAvailability extends StatelessWidget {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.of(context).pop();
+                                            context.pop();
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: kBlack,
@@ -1361,7 +1389,7 @@ class ManageAvailability extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            context.pop();
                           },
                           icon: Icon(
                             Icons.close,
@@ -1403,7 +1431,7 @@ class ManageAvailability extends StatelessWidget {
                         //opens calender
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            context.pop();
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -1418,7 +1446,7 @@ class ManageAvailability extends StatelessWidget {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.of(context).pop();
+                                          context.pop();
                                         },
                                         icon: Icon(
                                           Icons.close,
@@ -1489,7 +1517,7 @@ class ManageAvailability extends StatelessWidget {
                                       width: double.infinity,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          Navigator.of(context).pop();
+                                          context.pop();
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: kBlack,
@@ -1575,7 +1603,7 @@ class ManageAvailability extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            context.pop();
                           },
                           icon: Icon(
                             Icons.close,

@@ -9,6 +9,7 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -129,11 +130,9 @@ class _CalendarPageState extends State<CalendarPage> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              InkWell(
-                                                onTap: () {
-                                                  Get.back();
-                                                },
-                                                child: const Icon(
+                                              IconButton(
+                                                onPressed: () => context.pop(), 
+                                                icon: Icon(
                                                   Icons.close,
                                                   color: kGrey,
                                                 ),
@@ -318,7 +317,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               padding: EdgeInsets.only(top: 30.h),
                               child: InkWell(
                                 onTap: () {
-                                  if (MediaQuery.of(context).size.width > 700)
+                                  if (MediaQuery.of(context).size.width > 700) {
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -335,10 +334,17 @@ class _CalendarPageState extends State<CalendarPage> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              const Icon(
-                                                Icons.close,
-                                                color: kGrey,
+                                              IconButton(
+                                                onPressed: () => context.pop(), 
+                                                icon: Icon(
+                                                  Icons.close,
+                                                  color: kGrey,
+                                                )
                                               )
+                                              // const Icon(
+                                              //   Icons.close,
+                                              //   color: kGrey,
+                                              // )
                                             ],
                                           ),
                                           backgroundColor:
@@ -360,7 +366,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                         );
                                       },
                                     );
-                                  else
+                                  } else
                                     filterBottomSheet(context, SelectClient());
                                 },
                                 child: Container(

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 class HelpPage extends StatefulWidget {
   final int? nav;
@@ -40,7 +41,7 @@ class _HelpPageState extends State<HelpPage> {
               elevation: 0,
               leading: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios_rounded,

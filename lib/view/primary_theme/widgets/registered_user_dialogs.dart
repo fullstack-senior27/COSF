@@ -6,6 +6,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddClient extends StatelessWidget {
@@ -295,7 +296,7 @@ class AddClient extends StatelessWidget {
           height: 40.h,
           width: double.infinity,
           child: BlackButton(context, "Save", () {
-            Navigator.pop(context);
+            context.pop();
           }),
         )
       ],
@@ -318,7 +319,7 @@ class EditClient extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -330,9 +331,12 @@ class EditClient extends StatelessWidget {
                             "Block Client",
                             style: urbanist600(kBlack, 16),
                           ),
-                          const Icon(
-                            Icons.close,
-                            color: kGrey,
+                          IconButton(
+                            onPressed: () => context.pop(), 
+                            icon: Icon(
+                              Icons.close,
+                              color: kGrey,
+                            )
                           )
                         ],
                       ),
@@ -362,7 +366,7 @@ class EditClient extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -374,9 +378,12 @@ class EditClient extends StatelessWidget {
                             "Block Client",
                             style: urbanist600(kBlack, 16),
                           ),
-                          const Icon(
-                            Icons.close,
-                            color: kGrey,
+                          IconButton(
+                            onPressed: () => context.pop(), 
+                            icon: Icon(
+                              Icons.close,
+                              color: kGrey,
+                            )
                           )
                         ],
                       ),
@@ -427,7 +434,7 @@ class EditClient extends StatelessWidget {
                                         width: double.infinity,
                                         child: BlackOutlineButton(
                                             context, "Cancel", () {
-                                          Navigator.pop(context);
+                                          context.pop();
                                         }),
                                       ),
                                     ),
@@ -440,7 +447,7 @@ class EditClient extends StatelessWidget {
                                         width: double.infinity,
                                         child:
                                             BlackButton(context, "Submit", () {
-                                          Navigator.pop(context);
+                                          context.pop();
                                         }),
                                       ),
                                     )
@@ -468,7 +475,7 @@ class EditClient extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -480,9 +487,12 @@ class EditClient extends StatelessWidget {
                             "Confirm",
                             style: urbanist600(kBlack, 16),
                           ),
-                          const Icon(
-                            Icons.close,
-                            color: kGrey,
+                          IconButton(
+                            onPressed: () => context.pop(), 
+                            icon: Icon(
+                              Icons.close,
+                              color: kGrey,
+                            )
                           )
                         ],
                       ),
@@ -819,7 +829,7 @@ class EditClient extends StatelessWidget {
           height: 40.h,
           width: double.infinity,
           child: BlackButton(context, "Save", () {
-            Navigator.pop(context);
+            context.pop();
           }),
         )
       ],
@@ -920,7 +930,7 @@ class MergeClient extends StatelessWidget {
                   height: 40.h,
                   width: double.infinity,
                   child: BlackOutlineButton(context, "Cancel", () {
-                    Navigator.pop(context);
+                    context.pop();
                   }),
                 ),
               ),
@@ -932,7 +942,7 @@ class MergeClient extends StatelessWidget {
                   height: 40.h,
                   width: double.infinity,
                   child: BlackButton(context, "Merge", () {
-                    Navigator.pop(context);
+                    context.pop();
                   }),
                 ),
               )
@@ -1491,7 +1501,7 @@ class CreatePromotion extends StatelessWidget {
             //                 ),
             //                 InkWell(
             //                   onTap: () {
-            //                     Get.back();
+            //                     context.pop();
             //                   },
             //                   child: const Icon(
             //                     Icons.close,
@@ -1527,7 +1537,7 @@ class CreatePromotion extends StatelessWidget {
                           color: kGrey,
                         ),
                         onPressed: () {
-                          Get.back();
+                          context.pop();
                         },
                       )
                     ],
@@ -1966,59 +1976,101 @@ class OnlineBookingProfile extends StatelessWidget {
         GestureDetector(
           onTap: () {
             MediaQuery.of(context).size.width > 700
-                ? showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        backgroundColor: const Color(0xfff8f8f8),
-                        content: SingleChildScrollView(
-                          child: SizedBox(
-                            width: MediaQuery.of(
-                                      context,
-                                    ).size.width >
-                                    900
-                                ? 400
-                                : MediaQuery.of(
-                                      context,
-                                    ).size.width *
-                                    0.8,
-                            child: const OnlineBooking(),
+                  ? showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 400
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: const OnlineBooking(),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  :
+
+                  // bottom sheet for service menu
+                  fullBottomSheet(
+                      context,
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10.h),
+                              const OnlineBooking(),
+                            ],
                           ),
                         ),
-                      );
-                    },
-                  )
-                :
+                      ),
+                    );
+            },
+            child: Container(
+              color: kWhite,
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+              child: Row(
+                children: [
+                  Text(
+                    "Online booking",
+                    style: urbanist400(kGrey, 18),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      MediaQuery.of(context).size.width > 700
+                  ? showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 400
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: const OnlineBooking(),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  :
 
-                // bottom sheet for service menu
-                fullBottomSheet(
-                    context,
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 10.h),
-                            const OnlineBooking(),
-                          ],
+                  // bottom sheet for service menu
+                  fullBottomSheet(
+                      context,
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10.h),
+                              const OnlineBooking(),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-          },
-          child: Container(
-            color: kWhite,
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-            child: Row(
-              children: [
-                Text(
-                  "Online booking",
-                  style: urbanist400(kGrey, 18),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
+                    );
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2093,7 +2145,57 @@ class OnlineBookingProfile extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    MediaQuery.of(context).size.width > 700
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 600
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const PersonalInfo(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        :
+
+                        // bottom sheet for service menu
+
+                        fullBottomSheet(
+                            context,
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: const [],
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    const PersonalInfo(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2129,7 +2231,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 color: kGrey,
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                context.pop();
                               },
                             ),
                           ],
@@ -2177,7 +2279,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                   child: const Icon(
                                     Icons.close,
@@ -2205,7 +2307,94 @@ class OnlineBookingProfile extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    MediaQuery.of(context).size.width > 700
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Business Info",
+                                      style: GoogleFonts.urbanist(
+                                        color: kBlack,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: kGrey,
+                                      ),
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 600
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const BusinessInfo(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        :
+
+                        // bottom sheet for service menu
+
+                        fullBottomSheet(
+                            context,
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Business Info",
+                                          style: GoogleFonts.urbanist(
+                                            color: kBlack,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            context.pop();
+                                          },
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    const BusinessInfo(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2242,7 +2431,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 color: kGrey,
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                context.pop();
                               },
                             ),
                           ],
@@ -2290,7 +2479,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                   child: const Icon(
                                     Icons.close,
@@ -2318,7 +2507,94 @@ class OnlineBookingProfile extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    MediaQuery.of(context).size.width > 700
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Social Info",
+                                      style: GoogleFonts.urbanist(
+                                        color: kBlack,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: kGrey,
+                                      ),
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 600
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const SocialInfo(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        :
+
+                        // bottom sheet for service menu
+
+                        fullBottomSheet(
+                            context,
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Social Info",
+                                          style: GoogleFonts.urbanist(
+                                            color: kBlack,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            context.pop();
+                                          },
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    const SocialInfo(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2333,7 +2609,7 @@ class OnlineBookingProfile extends StatelessWidget {
         //edit profile
         GestureDetector(
           onTap: () {
-            Get.back();
+            context.pop();
           },
           child: Container(
             color: kWhite,
@@ -2346,7 +2622,9 @@ class OnlineBookingProfile extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pop();
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2383,7 +2661,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 color: kGrey,
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                context.pop();
                               },
                             ),
                           ],
@@ -2431,7 +2709,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                   child: const Icon(
                                     Icons.close,
@@ -2459,7 +2737,94 @@ class OnlineBookingProfile extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    MediaQuery.of(context).size.width > 700
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Photos",
+                                      style: GoogleFonts.urbanist(
+                                        color: kBlack,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: kGrey,
+                                      ),
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 600
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const PhotosTab(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        :
+
+                        // bottom sheet for service menu
+
+                        fullBottomSheet(
+                            context,
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Photos",
+                                          style: GoogleFonts.urbanist(
+                                            color: kBlack,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            context.pop();
+                                          },
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    const PhotosTab(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 20.sp,
@@ -2493,17 +2858,21 @@ class _OnlineBookingState extends State<OnlineBooking> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Online Booking", style: urbanist600(kBlack, 16)),
-            Switch(
-              activeColor: kBlue,
-              activeTrackColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: klines,
-              value: onlineboking,
-              onChanged: (value) {
-                setState(() {
-                  onlineboking = value;
-                });
-              },
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Switch(
+                activeColor: kBlue,
+                activeTrackColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: klines,
+                value: onlineboking,
+                onChanged: (value) {
+                  setState(() {
+                    onlineboking = value;
+                  });
+                },
+              ),
             ),
           ],
         ),
@@ -2585,19 +2954,23 @@ class _OnlineBookingState extends State<OnlineBooking> {
           children: [
             Text(
               "Allow Multi-Service Bookings",
-              style: urbanist600(kBlack, 16),
+              style: urbanist600(kBlack, 14),
             ),
-            Switch(
-              activeColor: kBlue,
-              activeTrackColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: klines,
-              value: onlineboking,
-              onChanged: (value) {
-                setState(() {
-                  onlineboking = value;
-                });
-              },
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Switch(
+                activeColor: kBlue,
+                activeTrackColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: klines,
+                value: onlineboking,
+                onChanged: (value) {
+                  setState(() {
+                    onlineboking = value;
+                  });
+                },
+              ),
             ),
           ],
         ),
@@ -2607,19 +2980,23 @@ class _OnlineBookingState extends State<OnlineBooking> {
           children: [
             Text(
               "Show Last Minute Availability",
-              style: urbanist600(kBlack, 16),
+              style: urbanist600(kBlack, 14),
             ),
-            Switch(
-              activeColor: kBlue,
-              activeTrackColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: klines,
-              value: onlineboking,
-              onChanged: (value) {
-                setState(() {
-                  onlineboking = value;
-                });
-              },
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Switch(
+                activeColor: kBlue,
+                activeTrackColor: kWhite,
+                inactiveThumbColor: kWhite,
+                inactiveTrackColor: klines,
+                value: onlineboking,
+                onChanged: (value) {
+                  setState(() {
+                    onlineboking = value;
+                  });
+                },
+              ),
             ),
           ],
         ),
@@ -2670,7 +3047,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
             SizedBox(
               height: 40.h,
               // width: 100.w,
-              child: BlackButton(context, "Save", () {}),
+              child: BlackButton(context, "Save", () {context.pop();}),
             ),
           ],
         )

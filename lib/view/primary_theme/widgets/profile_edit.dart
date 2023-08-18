@@ -11,6 +11,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
@@ -311,7 +313,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   color: kGrey,
                                 ),
                                 onPressed: () {
-                                  Get.back();
+                                  context.pop();
                                 },
                               ),
                             ],
@@ -358,7 +360,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                     color: kGrey,
                                   ),
                                   onPressed: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                 )
                               ],
@@ -447,7 +449,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   color: kGrey,
                                 ),
                                 onPressed: () {
-                                  Get.back();
+                                  context.pop();
                                 },
                               )
                             ],

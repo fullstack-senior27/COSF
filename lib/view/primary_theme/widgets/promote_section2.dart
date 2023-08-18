@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 
 class PromoteSection2 extends StatelessWidget {
   const PromoteSection2({super.key});
@@ -40,7 +41,7 @@ class PromoteSection2 extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {
-                              Get.back();
+                              context.pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios,

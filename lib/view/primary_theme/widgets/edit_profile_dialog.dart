@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ChangePasswordDialog extends StatelessWidget {
   const ChangePasswordDialog({super.key});
@@ -431,7 +432,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
               height: 40.h,
               width: double.infinity,
               child: BlackButton(context, "Save", () {
-                Get.back();
+                context.pop();
               }),
             ),
           )

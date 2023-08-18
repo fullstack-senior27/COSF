@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfile extends ConsumerStatefulWidget {
@@ -58,7 +59,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                 children: [
                   IconButton(
                     onPressed: () {
-                      Get.back();
+                      context.pop();
                     },
                     icon: const Icon(Icons.arrow_back_ios_new),
                   ),
@@ -365,7 +366,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                               ),
                                               IconButton(
                                                 onPressed: () {
-                                                  Get.back();
+                                                  context.pop();
                                                 },
                                                 icon: const Icon(
                                                   Icons.close,
@@ -439,7 +440,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                   ),
                                                   IconButton(
                                                     onPressed: () {
-                                                      Get.back();
+                                                      context.pop();
                                                     },
                                                     icon: const Icon(
                                                       Icons.close,
@@ -592,7 +593,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         const Spacer(),
                                                         IconButton(
                                                           onPressed: () {
-                                                            Get.back();
+                                                            context.pop();
                                                           },
                                                           icon: const Icon(
                                                             Icons.close,

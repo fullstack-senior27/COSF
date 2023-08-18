@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -184,7 +185,7 @@ class SelectSlot extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: InkWell(
                               onTap: () {
-                                Get.back();
+                                context.pop();
                                 //next dialog
                                 showDialog(
                                   context: context,
@@ -202,9 +203,12 @@ class SelectSlot extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Icon(
-                                            Icons.close,
-                                            color: kGrey,
+                                          IconButton(
+                                            onPressed: () => context.pop(), 
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            )
                                           )
                                         ],
                                       ),
@@ -295,7 +299,7 @@ class SelectSlot extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: InkWell(
                               onTap: () {
-                                Get.back();
+                                context.pop();
                                 //next dialog
                                 showDialog(
                                   context: context,
@@ -313,9 +317,12 @@ class SelectSlot extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Icon(
-                                            Icons.close,
-                                            color: kGrey,
+                                          IconButton(
+                                            onPressed: () => context.pop(), 
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            )
                                           )
                                         ],
                                       ),
@@ -388,7 +395,7 @@ class SelectSlot extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: InkWell(
                               onTap: () {
-                                Get.back();
+                                context.pop();
                                 //next dialog
                                 showDialog(
                                   context: context,
@@ -406,9 +413,12 @@ class SelectSlot extends StatelessWidget {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Icon(
-                                            Icons.close,
-                                            color: kGrey,
+                                          IconButton(
+                                            onPressed: () => context.pop(), 
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            )
                                           )
                                         ],
                                       ),
@@ -561,7 +571,7 @@ class _SelectDateState extends State<SelectDate> {
     setState(() {
       today = day;
     });
-    Get.back();
+    context.pop();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -579,7 +589,7 @@ class _SelectDateState extends State<SelectDate> {
               ),
               IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -1107,7 +1117,7 @@ class _AddServiceState extends State<AddService> {
                 SizedBox(
                   height: 40.h,
                   child: BlackButton(context, "Add Service", () {
-                    Get.back();
+                    context.pop();
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -1125,7 +1135,7 @@ class _AddServiceState extends State<AddService> {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  Get.back();
+                                  context.pop();
                                 },
                                 icon: const Icon(
                                   Icons.close,
@@ -1424,7 +1434,7 @@ class _AddServiceState extends State<AddService> {
           height: 40.h,
           child: BlackButton(context, "Sign Up", () {
             //payment dialog
-            Get.back();
+            context.pop();
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -1442,7 +1452,7 @@ class _AddServiceState extends State<AddService> {
                       ),
                       IconButton(
                         onPressed: () {
-                          Get.back();
+                          context.pop();
                         },
                         icon: const Icon(
                           Icons.close,
@@ -1801,7 +1811,7 @@ class PaymentMethod extends StatelessWidget {
           width: double.infinity,
           child: BlackButton(context, "Book Now", () {
 //booking successful dialog
-            Get.back();
+            context.pop();
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -1819,7 +1829,7 @@ class PaymentMethod extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          Get.back();
+                          context.pop();
                         },
                         icon: Icon(
                           Icons.close,
