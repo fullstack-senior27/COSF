@@ -1,4 +1,6 @@
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
+import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 class BeauticiansListWebView extends StatelessWidget {
-  const BeauticiansListWebView({super.key});
+  final Salon salonDetails;
+  BeauticiansListWebView({super.key, required this.salonDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +45,8 @@ class BeauticiansListWebView extends StatelessWidget {
                       height: 160.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
-                        image: const DecorationImage(
-                          image:
-                              NetworkImage("https://i.imgur.com/i5H53SM.webp"),
+                        image: DecorationImage(
+                          image: NetworkImage(salonDetails.image ?? "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -67,7 +69,7 @@ class BeauticiansListWebView extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Akeba Thompson",
+                                salonDetails.name ?? "",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
@@ -97,7 +99,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  "4517 Washington Ave. Manchester, Kentucky 39495",
+                                  salonDetails.address ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.urbanist(
@@ -120,7 +122,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               RatingBar.builder(
                                 ignoreGestures: true,
                                 itemSize: 20.sp,
-                                initialRating: 4.5,
+                                initialRating: salonDetails.avgRating ?? 0,
                                 allowHalfRating: true,
                                 itemBuilder: (context, _) => const Icon(
                                   Icons.star_rounded,
@@ -130,7 +132,7 @@ class BeauticiansListWebView extends StatelessWidget {
                                 unratedColor: kGrey,
                               ),
                               Text(
-                                "4.0 (180 Reviews)",
+                                "${salonDetails.avgRating} (${salonDetails.ratingCount} Reviews)",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
@@ -529,7 +531,8 @@ class BeauticiansListWebView extends StatelessWidget {
 }
 
 class BeauticiansListMobView extends StatelessWidget {
-  const BeauticiansListMobView({super.key});
+  final Salon salonDetails;
+  const BeauticiansListMobView({super.key, required this.salonDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -556,8 +559,8 @@ class BeauticiansListMobView extends StatelessWidget {
                 // width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/icons/blog_banner.webp"),
+                  image: DecorationImage(
+                    image: NetworkImage(salonDetails.image ?? "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -568,7 +571,7 @@ class BeauticiansListMobView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Akeba Thompson",
+                    salonDetails.name ?? "",
                     style: GoogleFonts.urbanist(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -598,7 +601,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      "4517 Washington Ave. Manchester, Kentucky 39495",
+                      salonDetails.address ?? "",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.urbanist(
@@ -621,7 +624,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   RatingBar.builder(
                     ignoreGestures: true,
                     itemSize: 20.sp,
-                    initialRating: 4.5,
+                    initialRating: salonDetails.avgRating ?? 0,
                     allowHalfRating: true,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,
@@ -631,7 +634,7 @@ class BeauticiansListMobView extends StatelessWidget {
                     unratedColor: kGrey,
                   ),
                   Text(
-                    "4.0 (180 Reviews)",
+                    "${salonDetails.avgRating} (${salonDetails.ratingCount} Reviews)",
                     style: GoogleFonts.urbanist(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,

@@ -1,25 +1,29 @@
+import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/beauticians_list.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:searchfield/searchfield.dart';
 
-class BeauticiansListPage extends StatefulWidget {
-  const BeauticiansListPage({super.key});
+import '../../../../../utils/app_sizes.dart';
+
+class BeauticiansListPageView extends ConsumerStatefulWidget {
+  const BeauticiansListPageView({super.key});
 
   @override
-  State<BeauticiansListPage> createState() => _BeauticiansListPageState();
+  ConsumerState<BeauticiansListPageView> createState() => _BeauticiansListPageViewState();
 }
 
-class _BeauticiansListPageState extends State<BeauticiansListPage> {
+class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageView> {
   final TextEditingController _dateController = TextEditingController();
   List<String> items = [
     "View All",
@@ -39,9 +43,11 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
     "Beautician Growth",
     "Beard Style"
   ];
-  int selected = 0;
+  int selected = 0;  
+
   @override
   Widget build(BuildContext context) {
+    final _homePageViewModel = ref.watch(homePageViewModel);
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: MediaQuery.of(context).size.width > 1000
@@ -115,21 +121,37 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          style: GoogleFonts.urbanist(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
+                        child: SearchField<Salon>(
+                          controller: _homePageViewModel.searchController,
+                          hint: "Services or beautician name",
+                          itemHeight: 60,
+                          maxSuggestionsInViewPort: 10,
+                          offset: Offset(0, 59),
+                          onSearchTextChanged: (p0) {
+                            if(p0.length == 0) {
+                              _homePageViewModel.clearFilter();
+                            }
+                          },
+                          onSuggestionTap: (p0) {
+                            _homePageViewModel.filterSearch(p0.item?.name ?? "");
+                          },
+                          suggestionsDecoration: SuggestionDecoration(
+                            borderRadius: BorderRadius.circular(5)
                           ),
-                          decoration: InputDecoration(
+                          searchInputDecoration: InputDecoration(
                             hintText: "Services or beautician name",
                             hintStyle: GoogleFonts.urbanist(
-                              color: kGrey,
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
-                            suffixIcon: const Icon(
-                              Icons.search,
-                              color: kGrey,
+                            suffixIcon: Padding(
+                              padding: EdgeInsets.all(10.sp),
+                              child: const ImageIcon(
+                                AssetImage(
+                                  "assets/icons/search.webp",
+                                ),
+                                color: Color.fromARGB(155, 97, 95, 95),
+                              ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -144,6 +166,52 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                           ),
+                          marginColor: Colors.white,
+                          suggestions: ref.read(homePageViewModel).allSalons
+                            .map(
+                            (e) => SearchFieldListItem<Salon>(
+                              e.name ?? "",
+                              item: e,
+                              // Use child to show Custom Widgets in the suggestions
+                              // defaults to Text widget
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                height: 60,
+                                color: kWhite,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.circular(30)
+                                      ),
+                                      child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                    ),
+                                    gapW8,
+                                    Flexible(
+                                      child: Container(
+                                        width: 250,
+                                        child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                      )
+                                    ),
+                                    // Spacer(),
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
+                                          Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ),
+                          ).toList(),
                         ),
                       ),
                       Container(
@@ -290,31 +358,97 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
+                    SearchField<Salon>(
+                      controller: _homePageViewModel.searchController,
+                      hint: "Services or beautician name",
+                      itemHeight: 60,
+                      maxSuggestionsInViewPort: 10,
+                      offset: Offset(0, 59),
+                      onSearchTextChanged: (p0) {
+                        if(p0.length == 0) {
+                          _homePageViewModel.clearFilter();
+                        }
+                      },
+                      onSuggestionTap: (p0) {
+                        _homePageViewModel.filterSearch(p0.item?.name ?? "");
+                      },
+                      suggestionsDecoration: SuggestionDecoration(
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      searchInputDecoration: InputDecoration(
                         hintText: "Services or beautician name",
                         hintStyle: GoogleFonts.urbanist(
-                          color: kGrey,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
-                        suffixIcon: const Icon(
-                          Icons.search,
-                          color: kGrey,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.all(10.sp),
+                          child: const ImageIcon(
+                            AssetImage(
+                              "assets/icons/search.webp",
+                            ),
+                            color: Color.fromARGB(155, 97, 95, 95),
+                          ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kGrey,
+                            color: kWhite,
                           ),
-                          borderRadius: BorderRadius.circular(0.r),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kGrey,
+                            color: kWhite,
                           ),
                           borderRadius: BorderRadius.circular(10.r),
                         ),
                       ),
+                      marginColor: Colors.white,
+                      suggestions: ref.read(homePageViewModel).allSalons
+                        .map(
+                        (e) => SearchFieldListItem<Salon>(
+                          e.name ?? "",
+                          item: e,
+                          // Use child to show Custom Widgets in the suggestions
+                          // defaults to Text widget
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            height: 60,
+                            color: kWhite,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[200],
+                                    borderRadius: BorderRadius.circular(30)
+                                  ),
+                                  child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                ),
+                                gapW8,
+                                Flexible(
+                                  child: Container(
+                                    width: 250,
+                                    child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                  )
+                                ),
+                                // Spacer(),
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
+                                      Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ),
+                      ).toList(),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -587,11 +721,11 @@ class _BeauticiansListPageState extends State<BeauticiansListPage> {
                                   ),
                                   ListView.builder(
                                     shrinkWrap: true,
-                                    itemCount: 3,
+                                    itemCount: _homePageViewModel.salons.length,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
-                                          const BeauticiansListWebView(),
+                                          BeauticiansListWebView(salonDetails: _homePageViewModel.salons[index],),
                                           SizedBox(
                                             height: 20.h,
                                           ),

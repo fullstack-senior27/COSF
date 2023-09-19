@@ -8,7 +8,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketi
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page/beauticians_list_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
@@ -112,8 +112,8 @@ final GoRouter routers = GoRouter(
     ),
     GoRoute(
       path: '/beautician-listing',
-      builder: (context, state) => const DashboardFreePage(child: BeauticiansListPage()),
-      pageBuilder: defaultPageBuilder(const DashboardFreePage(child: BeauticiansListPage())),
+      builder: (context, state) => const DashboardFreePage(child: BeauticiansListPageView()),
+      pageBuilder: defaultPageBuilder(const DashboardFreePage(child: BeauticiansListPageView())),
       routes: [
         GoRoute(
           path: 'service-details',

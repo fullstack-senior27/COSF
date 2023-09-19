@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/utils.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page/beauticians_list_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -62,7 +62,6 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
 
 
   late HomePageViewModel _viewModel;
-  TextEditingController _searchController = TextEditingController(); 
 
   @override
   void initState() {
@@ -138,7 +137,7 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                           children: [
                             Expanded(
                               child: SearchField<Salon>(
-                                controller: _searchController,
+                                controller: _viewModel.searchController,
                                 hint: "Services or beautician name",
                                 itemHeight: 60,
                                 maxSuggestionsInViewPort: 10,
@@ -221,43 +220,6 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                   ),
                                 ).toList(),
                               ),
-                              // child: TextField(
-                              //   style: GoogleFonts.urbanist(
-                              //     fontSize: 14.sp,
-                              //     fontWeight: FontWeight.w500,
-                              //   ),
-                              //   onTap: () {
-                                  
-                              //   },
-                              //   decoration: InputDecoration(
-                                  // hintText: "Services or beautician name",
-                                  // hintStyle: GoogleFonts.urbanist(
-                                  //   fontSize: 14.sp,
-                                  //   fontWeight: FontWeight.w600,
-                                  // ),
-                                  // suffixIcon: Padding(
-                                  //   padding: EdgeInsets.all(10.sp),
-                                  //   child: const ImageIcon(
-                                  //     AssetImage(
-                                  //       "assets/icons/search.webp",
-                                  //     ),
-                                  //     color: Color.fromARGB(155, 97, 95, 95),
-                                  //   ),
-                                  // ),
-                                  // enabledBorder: OutlineInputBorder(
-                                  //   borderSide: const BorderSide(
-                                  //     color: kWhite,
-                                  //   ),
-                                  //   borderRadius: BorderRadius.circular(10.r),
-                                  // ),
-                                  // focusedBorder: OutlineInputBorder(
-                                  //   borderSide: const BorderSide(
-                                  //     color: kWhite,
-                                  //   ),
-                                  //   borderRadius: BorderRadius.circular(10.r),
-                                  // ),
-                              //   ),
-                              // ),
                             ),
                             Container(
                               color: kWhite,
@@ -396,6 +358,10 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    // print(_viewModel.searchController.text);
+                                    if(_viewModel.searchController.text.isNotEmpty) {
+                                      _viewModel.filterSearch(_viewModel.searchController.text);
+                                    }
                                     context.go("/beautician-listing");
                                   },
                                   child: Text(
@@ -418,7 +384,7 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                       child: Column(
                         children: [
                           SearchField<Salon>(
-                            controller: _searchController,
+                            controller: _viewModel.searchController,
                             hint: "Services or beautician name",
                             itemHeight: 60,
                             maxSuggestionsInViewPort: 10,
