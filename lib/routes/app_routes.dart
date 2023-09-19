@@ -15,7 +15,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashb
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/forgotpass_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
@@ -74,8 +74,8 @@ final GoRouter routers = GoRouter(
     ),
     GoRoute(
       path: '/',
-      builder: (context, state) => const DashboardFreePage(child: HomePage()),
-      pageBuilder: defaultPageBuilder(const DashboardFreePage(child: HomePage())),
+      builder: (context, state) => const DashboardFreePage(child: HomePageView()),
+      pageBuilder: defaultPageBuilder(const DashboardFreePage(child: HomePageView())),
     ),
     GoRoute(
       path: '/login',

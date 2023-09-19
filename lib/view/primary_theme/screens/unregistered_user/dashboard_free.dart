@@ -5,7 +5,7 @@ import 'package:cosmetropolis/routes/route_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/locator.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
@@ -57,7 +57,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             navbarSection == "Calendar"
         ? null
         : PreferredSize(
-            preferredSize: Size.fromHeight(58.h),
+            preferredSize: Size.fromHeight(70.h),
             child: Column(
               children: [
                 if (TargetPlatform.android == defaultTargetPlatform)

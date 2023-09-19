@@ -1,5 +1,5 @@
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/home_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/landing_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
@@ -15,7 +15,7 @@ const String HelpRoute = 'help';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeRoute:
-      return _getPageRoute(const HomePage(), settings);
+      return _getPageRoute(const HomePageView(), settings);
     case LandingRoute:
       return _getPageRoute(const LandingPage(), settings);
     case SignupRoute:
@@ -25,7 +25,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case HelpRoute:
       return _getPageRoute(const HelpPage(), settings);
     default:
-      return _getPageRoute(const HomePage(), settings);
+      return _getPageRoute(const HomePageView(), settings);
   }
 }
 

@@ -80,6 +80,7 @@ dependencies:
   easy_stepper:
   flutter_rte: ^1.0.0
   dotted_border: ^2.0.0+3
+  searchfield: ^0.8.4
 
 dev_dependencies:
   build_runner: null

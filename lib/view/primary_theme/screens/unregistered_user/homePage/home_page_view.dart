@@ -1,27 +1,32 @@
 // ignore_for_file: avoid_bool_literals_in_conditional_expressions
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:country_calling_code_picker/country.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:searchfield/searchfield.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageView extends ConsumerStatefulWidget {
+  const HomePageView({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePageView> createState() => _HomePageViewState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageViewState extends ConsumerState<HomePageView> {
   late Image image1;
   final TextEditingController _dateController = TextEditingController();
   List<String> blogimg = [
@@ -56,9 +61,16 @@ class _HomePageState extends State<HomePage> {
   int selectedIndexOfservice = 0;
 
 
+  late HomePageViewModel _viewModel;
+  TextEditingController _searchController = TextEditingController(); 
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _viewModel = ref.read(homePageViewModel);
+      _viewModel.fetchAllSalons();
+    });
     image1 = Image.asset(
       "assets/icons/banner_p.webp",
       width: double.infinity,
@@ -75,6 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(homePageViewModel);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -124,12 +137,16 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: TextField(
-                                style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
+                              child: SearchField<Salon>(
+                                controller: _searchController,
+                                hint: "Services or beautician name",
+                                itemHeight: 60,
+                                maxSuggestionsInViewPort: 10,
+                                offset: Offset(0, 59),
+                                suggestionsDecoration: SuggestionDecoration(
+                                  borderRadius: BorderRadius.circular(5)
                                 ),
-                                decoration: InputDecoration(
+                                searchInputDecoration: InputDecoration(
                                   hintText: "Services or beautician name",
                                   hintStyle: GoogleFonts.urbanist(
                                     fontSize: 14.sp,
@@ -157,7 +174,90 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(10.r),
                                   ),
                                 ),
+                                marginColor: Colors.white,
+                                suggestions: _viewModel.allSalons
+                                  .map(
+                                  (e) => SearchFieldListItem<Salon>(
+                                    e.name ?? "",
+                                    item: e,
+                                    // Use child to show Custom Widgets in the suggestions
+                                    // defaults to Text widget
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      height: 60,
+                                      color: kWhite,
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[200],
+                                              borderRadius: BorderRadius.circular(30)
+                                            ),
+                                            child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                          ),
+                                          gapW8,
+                                          Flexible(
+                                            child: Container(
+                                              width: 250,
+                                              child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                            )
+                                          ),
+                                          // Spacer(),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              children: [
+                                                Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
+                                                Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ),
+                                ).toList(),
                               ),
+                              // child: TextField(
+                              //   style: GoogleFonts.urbanist(
+                              //     fontSize: 14.sp,
+                              //     fontWeight: FontWeight.w500,
+                              //   ),
+                              //   onTap: () {
+                                  
+                              //   },
+                              //   decoration: InputDecoration(
+                                  // hintText: "Services or beautician name",
+                                  // hintStyle: GoogleFonts.urbanist(
+                                  //   fontSize: 14.sp,
+                                  //   fontWeight: FontWeight.w600,
+                                  // ),
+                                  // suffixIcon: Padding(
+                                  //   padding: EdgeInsets.all(10.sp),
+                                  //   child: const ImageIcon(
+                                  //     AssetImage(
+                                  //       "assets/icons/search.webp",
+                                  //     ),
+                                  //     color: Color.fromARGB(155, 97, 95, 95),
+                                  //   ),
+                                  // ),
+                                  // enabledBorder: OutlineInputBorder(
+                                  //   borderSide: const BorderSide(
+                                  //     color: kWhite,
+                                  //   ),
+                                  //   borderRadius: BorderRadius.circular(10.r),
+                                  // ),
+                                  // focusedBorder: OutlineInputBorder(
+                                  //   borderSide: const BorderSide(
+                                  //     color: kWhite,
+                                  //   ),
+                                  //   borderRadius: BorderRadius.circular(10.r),
+                                  // ),
+                              //   ),
+                              // ),
                             ),
                             Container(
                               color: kWhite,
@@ -317,21 +417,29 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
                         children: [
-                          TextField(
-                            style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
+                          SearchField<Salon>(
+                            controller: _searchController,
+                            hint: "Services or beautician name",
+                            itemHeight: 60,
+                            maxSuggestionsInViewPort: 10,
+                            offset: Offset(0, 59),
+                            suggestionsDecoration: SuggestionDecoration(
+                              borderRadius: BorderRadius.circular(5)
                             ),
-                            decoration: InputDecoration(
+                            searchInputDecoration: InputDecoration(
                               hintText: "Services or beautician name",
                               hintStyle: GoogleFonts.urbanist(
-                                color: kGrey,
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
-                              suffixIcon: const Icon(
-                                Icons.search,
-                                color: kGrey,
+                              suffixIcon: Padding(
+                                padding: EdgeInsets.all(10.sp),
+                                child: const ImageIcon(
+                                  AssetImage(
+                                    "assets/icons/search.webp",
+                                  ),
+                                  color: Color.fromARGB(155, 97, 95, 95),
+                                ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -346,40 +454,115 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          TextField(
-                            style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Location",
-                              hintStyle: GoogleFonts.urbanist(
-                                color: kGrey,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              suffixIcon: const Icon(
-                                Icons.location_on,
-                                color: kGrey,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                            suggestions: _viewModel.allSalons
+                              .map(
+                              (e) => SearchFieldListItem<Salon>(
+                                e.name ?? "",
+                                item: e,
+                                // Use child to show Custom Widgets in the suggestions
+                                // defaults to Text widget
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  height: 60,
                                   color: kWhite,
-                                ),
-                                borderRadius: BorderRadius.circular(10.r),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          borderRadius: BorderRadius.circular(30)
+                                        ),
+                                        child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                      ),
+                                      gapW8,
+                                      Flexible(
+                                        child: Container(
+                                          width: 250,
+                                          child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                        )
+                                      ),
+                                      // Spacer(),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
+                                            Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
-                                ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                            ),
+                            ).toList(),
                           ),
+                          // TextField(
+                          //   style: GoogleFonts.urbanist(
+                          //     fontSize: 14.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          //   decoration: InputDecoration(
+                          //     hintText: "Services or beautician name",
+                          //     hintStyle: GoogleFonts.urbanist(
+                          //       color: kGrey,
+                          //       fontSize: 14.sp,
+                          //       fontWeight: FontWeight.w600,
+                          //     ),
+                          //     suffixIcon: const Icon(
+                          //       Icons.search,
+                          //       color: kGrey,
+                          //     ),
+                          //     enabledBorder: OutlineInputBorder(
+                          //       borderSide: const BorderSide(
+                          //         color: kWhite,
+                          //       ),
+                          //       borderRadius: BorderRadius.circular(10.r),
+                          //     ),
+                          //     focusedBorder: OutlineInputBorder(
+                          //       borderSide: const BorderSide(
+                          //         color: kWhite,
+                          //       ),
+                          //       borderRadius: BorderRadius.circular(10.r),
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 10.h,
+                          // ),
+                          // TextField(
+                          //   style: GoogleFonts.urbanist(
+                          //     fontSize: 14.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          //   decoration: InputDecoration(
+                          //     hintText: "Location",
+                          //     hintStyle: GoogleFonts.urbanist(
+                          //       color: kGrey,
+                          //       fontSize: 14.sp,
+                          //       fontWeight: FontWeight.w600,
+                          //     ),
+                          //     suffixIcon: const Icon(
+                          //       Icons.location_on,
+                          //       color: kGrey,
+                          //     ),
+                          //     enabledBorder: OutlineInputBorder(
+                          //       borderSide: const BorderSide(
+                          //         color: kWhite,
+                          //       ),
+                          //       borderRadius: BorderRadius.circular(10.r),
+                          //     ),
+                          //     focusedBorder: OutlineInputBorder(
+                          //       borderSide: const BorderSide(
+                          //         color: kWhite,
+                          //       ),
+                          //       borderRadius: BorderRadius.circular(10.r),
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 10.h,
                           ),

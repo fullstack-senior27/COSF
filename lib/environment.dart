@@ -27,7 +27,7 @@ class Environment {
     try {
       // await dotenv.load();
     } catch (e) {
-      Logger.write(e.toString());
+      Logger.printError(e.toString());
     }
     runApp(
       ProviderScope(
