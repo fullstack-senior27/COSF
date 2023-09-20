@@ -21,7 +21,6 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/login
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
-import 'package:cosmetropolis/view/spalash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -203,8 +202,8 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
 }
 
 Page<dynamic> Function(BuildContext, GoRouterState) defaultPageBuilder<T>(
-      Widget child) =>
-  (BuildContext context, GoRouterState state) {
+  Widget child, {GoRouterState? state}
+) => (BuildContext context, state) {
     return buildPageWithDefaultTransition<T>(
       context: context,
       state: state,

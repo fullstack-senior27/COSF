@@ -2,6 +2,8 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page/beauticians_list_page_view.dart';
@@ -9,6 +11,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/country.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +20,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 import 'package:searchfield/searchfield.dart';
 
 class HomePageView extends ConsumerStatefulWidget {
@@ -26,7 +30,7 @@ class HomePageView extends ConsumerStatefulWidget {
   ConsumerState<HomePageView> createState() => _HomePageViewState();
 }
 
-class _HomePageViewState extends ConsumerState<HomePageView> {
+class _HomePageViewState extends ConsumerState<HomePageView> with BaseScreenView, SingleTickerProviderStateMixin {
   late Image image1;
   final TextEditingController _dateController = TextEditingController();
   List<String> blogimg = [
@@ -36,16 +40,16 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
     "https://t4.ftcdn.net/jpg/04/35/38/13/360_F_435381398_Z5mBaTW5HHD3748nsGRDsFQr0iXa893X.jpg"
   ];
 
-  List<String> serviceimg = [
-    "https://i.imgur.com/p9IzdwU.webp",
-    "https://i.imgur.com/Oif31Oz.webp",
-    "https://i.imgur.com/z7l6NNF.webp",
-    "https://i.imgur.com/MT1HxiT.webp",
-    "https://i.imgur.com/4JvUJRQ.webp",
-    "https://i.imgur.com/8CVJF3x.webp",
-    "https://i.imgur.com/dAOC8GF.webp",
-    "https://i.imgur.com/1F9IUEz.webp",
-  ];
+  // List<String> _viewModel.services.data?[index].salon?.image ?? ""[
+  //   "https://i.imgur.com/p9IzdwU.webp",
+  //   "https://i.imgur.com/Oif31Oz.webp",
+  //   "https://i.imgur.com/z7l6NNF.webp",
+  //   "https://i.imgur.com/MT1HxiT.webp",
+  //   "https://i.imgur.com/4JvUJRQ.webp",
+  //   "https://i.imgur.com/8CVJF3x.webp",
+  //   "https://i.imgur.com/dAOC8GF.webp",
+  //   "https://i.imgur.com/1F9IUEz.webp",
+  // ];
 
   // create list of service of tittle images
   List<String> servicetittle = [
@@ -58,7 +62,7 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
     "Eyelashes",
     "Kids",
   ];
-  int selectedIndexOfservice = 0;
+  int serviceIndex = -1;
 
 
   late HomePageViewModel _viewModel;
@@ -68,7 +72,8 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _viewModel = ref.read(homePageViewModel);
-      _viewModel.fetchAllSalons();
+      _viewModel.fetchAllServices();
+      // _viewModel.fetchAllSalons("");
     });
     image1 = Image.asset(
       "assets/icons/banner_p.webp",
@@ -145,6 +150,14 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                 suggestionsDecoration: SuggestionDecoration(
                                   borderRadius: BorderRadius.circular(5)
                                 ),
+                                onSearchTextChanged: (p0) {
+                                  if(p0.isEmpty) {
+                                    _viewModel.clearFilter();
+                                  }
+                                  if(p0.length > 3) {
+                                    _viewModel.fetchAllSalons(p0);
+                                  }
+                                },
                                 searchInputDecoration: InputDecoration(
                                   hintText: "Services or beautician name",
                                   hintStyle: GoogleFonts.urbanist(
@@ -201,7 +214,17 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                           Flexible(
                                             child: Container(
                                               width: 250,
-                                              child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,),
+                                                  if (e.services?.isNotEmpty ?? true) Text(
+                                                      "${e.services?.first.name ?? ""} | ${e.beautician?.name ?? ""}", 
+                                                      style: TextStyle(fontSize: 12, color: kGrey),
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ) else Container(),
+                                                ],
+                                              )
                                             )
                                           ),
                                           // Spacer(),
@@ -359,8 +382,11 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                   ),
                                   onPressed: () {
                                     // print(_viewModel.searchController.text);
-                                    if(_viewModel.searchController.text.isNotEmpty) {
+                                    if(_viewModel.searchController.text.length > 3) {
                                       _viewModel.filterSearch(_viewModel.searchController.text);
+                                    }
+                                    if(_viewModel.searchController.text.length < 4) {
+                                      _viewModel.fetchAllSalons("");
                                     }
                                     context.go("/beautician-listing");
                                   },
@@ -447,19 +473,29 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
                                       Flexible(
                                         child: Container(
                                           width: 250,
-                                          child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                          child: Column(
+                                            children: [
+                                              Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,),
+                                              Row(
+                                                children: [
+                                                  Text(e.services?[0].name ?? "", style: TextStyle(fontSize: 12, color: kGrey),),
+                                                  Text(e.beautician?.name ?? "", style: TextStyle(fontSize: 12, color: kGrey),),
+                                                ],
+                                              ),
+                                            ],
+                                          )
                                         )
                                       ),
                                       // Spacer(),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
-                                            Icon(Icons.star_rounded, color: kGrey, size: 20,)
-                                          ],
-                                        ),
-                                      )
+                                      // Expanded(
+                                      //   child: Row(
+                                      //     mainAxisAlignment: MainAxisAlignment.end,
+                                      //     children: [
+                                      //       Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
+                                      //       Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                      //     ],
+                                      //   ),
+                                      // )
                                     ],
                                   ),
                                 )
@@ -661,77 +697,123 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
               ),
               children: [
                 ...List.generate(
-                  serviceimg.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.only(bottom: 15.w),
-                    child: InkWell(
-                      onHover: (value) {
-                        selectedIndexOfservice = index;
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3.r),
-                          border: Border.all(
-                            color: kdisable,
-                          ),
-                        ),
-                        padding: EdgeInsets.all(10.r),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  _viewModel.services.data?.length ?? 0,
+                  (index) {
+                    if(_viewModel.services.data?[index] == null) {
+                      return Container();
+                    } else {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 15.w),
+                        child: Stack(
+                          alignment: Alignment.bottomRight,
                           children: [
-                            Stack(
-                              clipBehavior: Clip.none,
-                              fit: StackFit.passthrough,
-                              alignment: Alignment.bottomRight,
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(0.r)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: serviceimg[index],
-                                    width: double.infinity,
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
+                            MouseRegion(
+                              onHover: (event) {
+                                setState(() {
+                                  serviceIndex = index;
+                                });
+                              },
+                              onExit: (event) {
+                                setState(() {
+                                  serviceIndex = -1;
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3.r),
+                                  border: Border.all(
+                                    color: kdisable,
                                   ),
                                 ),
-                                Visibility(
-                                  visible: selectedIndexOfservice == index
-                                      ? true
-                                      : false,
-                                  child: Positioned(
-                                    right: 10,
-                                    bottom: -15,
-                                    child: CircleAvatar(
-                                      backgroundColor: kBlue,
-                                      child: Center(
-                                        child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.arrow_forward,
-                                            color: kWhite,
+                                padding: EdgeInsets.all(10.r),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 0.95,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: kBlack, width: 1)
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.all(Radius.circular(0.r)),
+                                          child: CachedNetworkImage(
+                                            imageUrl: _viewModel.services.data?[index].salon?.image ?? "https://dummyimage.com/300.png/09f/fff",
+                                            width: double.infinity,
+                                            fit: BoxFit.contain,
+                                            errorWidget: (context, url, error) =>
+                                                const Icon(Icons.error),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Text(
+                                      _viewModel.services.data?[index].name ?? "",
+                                      style: GoogleFonts.urbanist(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 40,
+                              right: 24,
+                              child: MouseRegion(
+                                onHover: (event) {
+                                  setState(() {
+                                    serviceIndex = index;
+                                  });
+                                },
+                                onExit: (event) {
+                                  setState(() {
+                                    serviceIndex = -1;
+                                  });
+                                },
+                                child: AnimatedOpacity(
+                                  duration: Duration(milliseconds: 150),
+                                  curve: Curves.easeIn,
+                                  opacity: serviceIndex == index ? 1 : 0,
+                                  child: DottedBorder(
+                                    color: kWhite,
+                                    strokeWidth: 5,
+                                    dashPattern: [6, 5, 6, 5],
+                                    borderType: BorderType.Circle,
+                                    radius: Radius.circular(100),
+                                    child: Container(
+                                      margin: EdgeInsets.all(4),
+                                      child: CircleAvatar(
+                                        backgroundColor: kBlue,
+                                        child: Center(
+                                          child: IconButton(
+                                            onPressed: () {
+                                              // print(_viewModel.services.data?[index].salon?.id ?? "");
+                                              _viewModel.getSalonById(_viewModel.services.data?[index].salon?.id ?? "");
+                                              context.go("/beautician-listing");
+                                            },
+                                            icon: const Icon(
+                                              Icons.arrow_forward,
+                                              color: kWhite,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              servicetittle[index],
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
+                      );
+                    }
+                  }
                 )
               ],
             ),
@@ -836,5 +918,15 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
         ],
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    // TODO: implement showSnackbar
   }
 }

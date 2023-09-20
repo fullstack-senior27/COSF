@@ -1,4 +1,6 @@
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/beauticians_list.dart';
@@ -23,7 +25,7 @@ class BeauticiansListPageView extends ConsumerStatefulWidget {
   ConsumerState<BeauticiansListPageView> createState() => _BeauticiansListPageViewState();
 }
 
-class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageView> {
+class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageView> with BaseScreenView {
   final TextEditingController _dateController = TextEditingController();
   List<String> items = [
     "View All",
@@ -128,8 +130,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                           maxSuggestionsInViewPort: 10,
                           offset: Offset(0, 59),
                           onSearchTextChanged: (p0) {
-                            if(p0.length == 0) {
+                            if(p0.isEmpty) {
                               _homePageViewModel.clearFilter();
+                            }
+                            if(p0.length > 3) {
+                              _homePageViewModel.fetchAllSalons(p0);
                             }
                           },
                           onSuggestionTap: (p0) {
@@ -719,19 +724,25 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                   SizedBox(
                                     height: 30.h,
                                   ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: _homePageViewModel.salons.length,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          BeauticiansListWebView(salonDetails: _homePageViewModel.salons[index],),
-                                          SizedBox(
-                                            height: 20.h,
-                                          ),
-                                        ],
-                                      );
-                                    },
+                                  SizedBox(
+                                    child: _homePageViewModel.loading 
+                                      ? Center(child: CircularProgressIndicator(color: kBlack,),)
+                                      : _homePageViewModel.salons.isNotEmpty 
+                                        ? ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: _homePageViewModel.salons.length,
+                                            itemBuilder: (context, index) {
+                                              return Column(
+                                                children: [
+                                                  BeauticiansListWebView(salonDetails: _homePageViewModel.salons[index],),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ) 
+                                        : Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
                                   ),
                                 ],
                               )
@@ -779,11 +790,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemCount: 3,
+                                    itemCount: _homePageViewModel.salons.length,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
-                                          const BeauticiansListMobView(),
+                                          BeauticiansListMobView(salonDetails: _homePageViewModel.salons[index],),
                                           SizedBox(
                                             height: 10.h,
                                           ),
@@ -838,5 +849,15 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
         ),
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    // TODO: implement showSnackbar
   }
 }

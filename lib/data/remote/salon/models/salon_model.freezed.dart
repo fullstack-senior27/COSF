@@ -682,6 +682,7 @@ Beautician _$BeauticianFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Beautician {
+  @JsonKey(name: '_id')
   String? get id => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -703,7 +704,7 @@ abstract class $BeauticianCopyWith<$Res> {
       _$BeauticianCopyWithImpl<$Res, Beautician>;
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(name: '_id') String? id,
       String? image,
       String? name,
       String? email,
@@ -775,7 +776,7 @@ abstract class _$$_BeauticianCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(name: '_id') String? id,
       String? image,
       String? name,
       String? email,
@@ -840,7 +841,7 @@ class __$$_BeauticianCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Beautician implements _Beautician {
   const _$_Beautician(
-      {this.id,
+      {@JsonKey(name: '_id') this.id,
       this.image,
       this.name,
       this.email,
@@ -852,6 +853,7 @@ class _$_Beautician implements _Beautician {
       _$$_BeauticianFromJson(json);
 
   @override
+  @JsonKey(name: '_id')
   final String? id;
   @override
   final String? image;
@@ -908,7 +910,7 @@ class _$_Beautician implements _Beautician {
 
 abstract class _Beautician implements Beautician {
   const factory _Beautician(
-      {final String? id,
+      {@JsonKey(name: '_id') final String? id,
       final String? image,
       final String? name,
       final String? email,
@@ -920,6 +922,7 @@ abstract class _Beautician implements Beautician {
       _$_Beautician.fromJson;
 
   @override
+  @JsonKey(name: '_id')
   String? get id;
   @override
   String? get image;
@@ -945,6 +948,7 @@ Service _$ServiceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Service {
+  @JsonKey(name: '_id')
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
@@ -963,7 +967,7 @@ abstract class $ServiceCopyWith<$Res> {
       _$ServiceCopyWithImpl<$Res, Service>;
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(name: '_id') String? id,
       String? name,
       String? time,
       int? price,
@@ -1028,7 +1032,7 @@ abstract class _$$_ServiceCopyWith<$Res> implements $ServiceCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(name: '_id') String? id,
       String? name,
       String? time,
       int? price,
@@ -1086,7 +1090,7 @@ class __$$_ServiceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Service implements _Service {
   const _$_Service(
-      {this.id,
+      {@JsonKey(name: '_id') this.id,
       this.name,
       this.time,
       this.price,
@@ -1097,6 +1101,7 @@ class _$_Service implements _Service {
       _$$_ServiceFromJson(json);
 
   @override
+  @JsonKey(name: '_id')
   final String? id;
   @override
   final String? name;
@@ -1149,7 +1154,7 @@ class _$_Service implements _Service {
 
 abstract class _Service implements Service {
   const factory _Service(
-      {final String? id,
+      {@JsonKey(name: '_id') final String? id,
       final String? name,
       final String? time,
       final int? price,
@@ -1159,6 +1164,7 @@ abstract class _Service implements Service {
   factory _Service.fromJson(Map<String, dynamic> json) = _$_Service.fromJson;
 
   @override
+  @JsonKey(name: '_id')
   String? get id;
   @override
   String? get name;

@@ -73,7 +73,7 @@ Map<String, dynamic> _$$_SalonToJson(_$_Salon instance) => <String, dynamic>{
 
 _$_Beautician _$$_BeauticianFromJson(Map<String, dynamic> json) =>
     _$_Beautician(
-      id: json['id'] as String?,
+      id: json['_id'] as String?,
       image: json['image'] as String?,
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -88,7 +88,7 @@ _$_Beautician _$$_BeauticianFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_BeauticianToJson(_$_Beautician instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      '_id': instance.id,
       'image': instance.image,
       'name': instance.name,
       'email': instance.email,
@@ -98,7 +98,7 @@ Map<String, dynamic> _$$_BeauticianToJson(_$_Beautician instance) =>
     };
 
 _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
-      id: json['id'] as String?,
+      id: json['_id'] as String?,
       name: json['name'] as String?,
       time: json['time'] as String?,
       price: json['price'] as int?,
@@ -108,7 +108,7 @@ _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
 
 Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      '_id': instance.id,
       'name': instance.name,
       'time': instance.time,
       'price': instance.price,

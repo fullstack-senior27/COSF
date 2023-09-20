@@ -45,7 +45,7 @@ class Salon with _$Salon {
 @freezed
 class Beautician with _$Beautician {
     const factory Beautician({
-        String? id,
+        @JsonKey(name: '_id') String? id,
         String? image,
         String? name,
         String? email,
@@ -60,7 +60,7 @@ class Beautician with _$Beautician {
 @freezed
 class Service with _$Service {
     const factory Service({
-        String? id,
+        @JsonKey(name: '_id') String? id,
         String? name,
         String? time,
         int? price,
