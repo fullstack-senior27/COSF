@@ -369,8 +369,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                       maxSuggestionsInViewPort: 10,
                       offset: const Offset(0, 59),
                       onSearchTextChanged: (p0) {
-                        if(p0.length == 0) {
+                        if(p0.isEmpty) {
                           _homePageViewModel.clearFilter();
+                        }
+                        if(p0.length > 3) {
+                          _homePageViewModel.fetchAllSalons(p0);
                         }
                       },
                       onSuggestionTap: (p0) {
@@ -396,18 +399,30 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
-                          borderRadius: BorderRadius.circular(10.r),
+                          borderRadius: BorderRadius.circular(0.r),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                            color: kWhite,
+                            color: kGrey,
                           ),
-                          borderRadius: BorderRadius.circular(10.r),
+                          borderRadius: BorderRadius.circular(0.r),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(0.r),
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(0.r),
                         ),
                       ),
-                      marginColor: Colors.white,
+                      // marginColor: Colors.white,
                       suggestions: ref.read(homePageViewModel).allSalons
                         .map(
                         (e) => SearchFieldListItem<Salon>(
@@ -557,7 +572,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                             borderRadius: BorderRadius.circular(5.r),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          ref.read(homePageViewModel).fetchAllSalons(
+                            ref.read(homePageViewModel).searchController.text,
+                          );
+                        },
                         child: const Text(
                           "Search",
                           style: TextStyle(color: kWhite),
@@ -797,21 +816,42 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                   SizedBox(
                                     height: 20.h,
                                   ),
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: _homePageViewModel.salons.length,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          BeauticiansListMobView(salonDetails: _homePageViewModel.salons[index],),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
-                                        ],
-                                      );
-                                    },
+                                  // ListView.builder(
+                                  //   physics:
+                                  //       const NeverScrollableScrollPhysics(),
+                                  //   shrinkWrap: true,
+                                  //   itemCount: _homePageViewModel.salons.length,
+                                  //   itemBuilder: (context, index) {
+                                  //     return Column(
+                                  //       children: [
+                                  //         BeauticiansListMobView(salonDetails: _homePageViewModel.salons[index],),
+                                  //         SizedBox(
+                                  //           height: 10.h,
+                                  //         ),
+                                  //       ],
+                                  //     );
+                                  //   },
+                                  // ),
+                                  SizedBox(
+                                    child: _homePageViewModel.loading 
+                                      ? const Center(child: CircularProgressIndicator(color: kBlack,),)
+                                      : _homePageViewModel.salons.isNotEmpty 
+                                        ? ListView.builder(
+                                            shrinkWrap: true,
+                                            physics: NeverScrollableScrollPhysics(),
+                                            itemCount: _homePageViewModel.salons.length,
+                                            itemBuilder: (context, index) {
+                                              return Column(
+                                                children: [
+                                                  BeauticiansListMobView(salonDetails: _homePageViewModel.salons[index],),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ) 
+                                        : const Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
                                   ),
                                 ],
                               ),

@@ -643,6 +643,13 @@ class _HomePageViewState extends ConsumerState<HomePageView> with BaseScreenView
                                 ),
                               ),
                               onPressed: () {
+                                // print(_viewModel.searchController.text);
+                                if(_viewModel.searchController.text.length > 3) {
+                                  _viewModel.filterSearch(_viewModel.searchController.text);
+                                }
+                                if(_viewModel.searchController.text.length < 4) {
+                                  _viewModel.fetchAllSalons("");
+                                }
                                 context.go("/beautician-listing");
                               },
                               child: Text(

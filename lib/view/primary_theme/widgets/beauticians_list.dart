@@ -1158,11 +1158,11 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       onChanged: (value) {
                         setState(() {
                           if(value == null) {
-                            selectedService = -1;
+                            widget.selectedService = -1;
                             selectedService = -1;
                             widget.upperFilterIndex = 0;
                           } else {
-                            selectedService = value;
+                            widget.selectedService = value;
                             selectedService = value;
                             widget.upperFilterIndex = value + 1;
                           }
