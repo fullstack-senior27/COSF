@@ -92,7 +92,7 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
           ),
           const Divider(color: klines),
           SizedBox(height: 15.h),
-          const BeauticiansSideFilter(),
+          BeauticiansSideFilter(upperFilterIndex: 0, selectedService: 0,),
           SizedBox(height: 30.h),
         ],
       ),

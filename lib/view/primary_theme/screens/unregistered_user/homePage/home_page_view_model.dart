@@ -39,7 +39,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
       "search": searchText,
       "location": "",
       "date": "",
-      "price": "50-$price",
+      "price": "1-$price",
       "sort_price": sortPrice,
       "service_type": serviceType,
       "rating": rating
@@ -64,6 +64,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
 
     toggleLoading();
 
+    print("ALL SALONS LENGTH =====>${_allSalons.length}");
     print("ALL SALONS =====>$_allSalons");
   }
 

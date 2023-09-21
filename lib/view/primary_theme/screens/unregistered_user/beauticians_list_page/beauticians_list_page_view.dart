@@ -27,25 +27,20 @@ class BeauticiansListPageView extends ConsumerStatefulWidget {
 
 class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageView> with BaseScreenView {
   final TextEditingController _dateController = TextEditingController();
-  List<String> items = [
-    "View All",
-    "Women",
-    "Trends",
-    "Success Stories",
-    "Skin",
-    "Promotions",
-    "Nails",
-    "Makeup",
-    "Lashes",
-    "How- Tos",
-    "Hair",
-    "Eyebrows",
-    "Client Relationship",
-    "Brows",
-    "Beautician Growth",
-    "Beard Style"
-  ];
+  List<String> items = ["View All",];
+
   int selected = 0;  
+  int selectedService = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      for(int i = 0; i < (ref.read(homePageViewModel).services.data?.length ?? 0); i++) {
+        items.add(ref.read(homePageViewModel).services.data?[i].name ?? "");
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +123,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                           hint: "Services or beautician name",
                           itemHeight: 60,
                           maxSuggestionsInViewPort: 10,
-                          offset: Offset(0, 59),
+                          offset: const Offset(0, 59),
                           onSearchTextChanged: (p0) {
                             if(p0.isEmpty) {
                               _homePageViewModel.clearFilter();
@@ -180,7 +175,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                               // Use child to show Custom Widgets in the suggestions
                               // defaults to Text widget
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                padding: const EdgeInsets.symmetric(horizontal: 8),
                                 height: 60,
                                 color: kWhite,
                                 child: Row(
@@ -193,13 +188,13 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                         color: Colors.grey[200],
                                         borderRadius: BorderRadius.circular(30)
                                       ),
-                                      child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                      child: const Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
                                     ),
                                     gapW8,
                                     Flexible(
                                       child: Container(
                                         width: 250,
-                                        child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                        child: Text(e.name ?? "", style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
                                       )
                                     ),
                                     // Spacer(),
@@ -207,8 +202,8 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
-                                          Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
-                                          Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                          Text("${e.avgRating ?? 0}", style: const TextStyle(color: kGrey, fontSize: 12),),
+                                          const Icon(Icons.star_rounded, color: kGrey, size: 20,)
                                         ],
                                       ),
                                     )
@@ -343,7 +338,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                 borderRadius: BorderRadius.circular(5.r),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              ref.read(homePageViewModel).fetchAllSalons(
+                                ref.read(homePageViewModel).searchController.text,
+                              );
+                            },
                             child: Text(
                               "Search",
                               style: TextStyle(
@@ -368,7 +367,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                       hint: "Services or beautician name",
                       itemHeight: 60,
                       maxSuggestionsInViewPort: 10,
-                      offset: Offset(0, 59),
+                      offset: const Offset(0, 59),
                       onSearchTextChanged: (p0) {
                         if(p0.length == 0) {
                           _homePageViewModel.clearFilter();
@@ -417,7 +416,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                           // Use child to show Custom Widgets in the suggestions
                           // defaults to Text widget
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
                             height: 60,
                             color: kWhite,
                             child: Row(
@@ -430,13 +429,13 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                     color: Colors.grey[200],
                                     borderRadius: BorderRadius.circular(30)
                                   ),
-                                  child: Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
+                                  child: const Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
                                 ),
                                 gapW8,
                                 Flexible(
                                   child: Container(
                                     width: 250,
-                                    child: Text(e.name ?? "", style: TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
+                                    child: Text(e.name ?? "", style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
                                   )
                                 ),
                                 // Spacer(),
@@ -444,8 +443,8 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
-                                      Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                      Text("${e.avgRating ?? 0}", style: const TextStyle(color: kGrey, fontSize: 12),),
+                                      const Icon(Icons.star_rounded, color: kGrey, size: 20,)
                                     ],
                                   ),
                                 )
@@ -640,7 +639,19 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                 onTap: () {
                                   setState(() {
                                     selected = index;
+                                    selectedService = selected + 1;
                                   });
+
+                                  if(index > 0) {
+                                    ref.read(homePageViewModel).fetchAllSalons(
+                                      ref.read(homePageViewModel).searchController.text,
+                                      serviceType: ref.read(homePageViewModel).services.data?[selected - 1].serviceType?.id ?? "",
+                                    );
+                                  } else {
+                                    ref.read(homePageViewModel).fetchAllSalons(
+                                      ref.read(homePageViewModel).searchController.text,
+                                    );
+                                  }
                                 },
                                 child: FittedBox(
                                   child: Container(
@@ -726,7 +737,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                   ),
                                   SizedBox(
                                     child: _homePageViewModel.loading 
-                                      ? Center(child: CircularProgressIndicator(color: kBlack,),)
+                                      ? const Center(child: CircularProgressIndicator(color: kBlack,),)
                                       : _homePageViewModel.salons.isNotEmpty 
                                         ? ListView.builder(
                                             shrinkWrap: true,
@@ -742,7 +753,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                               );
                                             },
                                           ) 
-                                        : Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
+                                        : const Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
                                   ),
                                 ],
                               )
@@ -818,20 +829,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                             crossAxisAlignment: CrossAxisAlignment.start,
                             // mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Text(
-                                "Filters",
-                                style: GoogleFonts.urbanist(
-                                  fontSize: 20.h,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              const BeauticiansSideFilter(),
+                              BeauticiansSideFilter(upperFilterIndex: selected, selectedService: selectedService,),
                             ],
                           ),
                         ),
