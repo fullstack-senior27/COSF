@@ -1,13 +1,13 @@
-import 'package:cosmetropolis/domain/style_provider.dart';
+import 'package:cosmetropolis/data/remote/user/models/user_login_model.dart';
+
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/forgotpass_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,18 +18,25 @@ class LoginPage extends ConsumerStatefulWidget {
   ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
-  late Image image1;
-
+class _LoginPageState extends ConsumerState<LoginPage> with BaseScreenView {
+  late UserViewModel _viewModel;
+  bool isLoading = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  // final UserDetailService _userDetailService = getIt<UserDetailService>();
   @override
   void initState() {
     super.initState();
+    _viewModel = ref.read(userViewModel)..attachView(this);
+    // getData();
     image1 = Image.asset(
       "assets/icons/login.webp",
       width: double.infinity,
       fit: BoxFit.fill,
     );
   }
+
+  late Image image1;
 
   @override
   void didChangeDependencies() {
@@ -72,6 +79,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          controller: emailController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontSize: 15.sp,
@@ -103,6 +111,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          controller: passwordController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontSize: 15.sp,
@@ -151,9 +160,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               // Get.to(() => const EditProfile());
-                              context.go("/edit-profile");
+                              // context.go("/edit-profile");
+                              isLoading = true;
+                              setState(() {});
+                              await _viewModel.login(
+                                  UserLoginRequest(
+                                      email: emailController.text,
+                                      password: passwordController.text),
+                                  context);
+                              isLoading = false;
+                              setState(() {});
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
@@ -164,14 +182,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 borderRadius: BorderRadius.circular(5.r),
                               ),
                             ),
-                            child: Text(
-                              "Sign in",
-                              style: GoogleFonts.urbanist(
-                                color: kWhite,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            child: isLoading
+                                ? Center(
+                                    child: SizedBox(
+                                        height: 20.h,
+                                        width: 20.h,
+                                        child: const CircularProgressIndicator(
+                                          color: kWhite,
+                                        )),
+                                  )
+                                : Text(
+                                    "Sign in",
+                                    style: GoogleFonts.urbanist(
+                                      color: kWhite,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                           ),
                         ),
                         SizedBox(
@@ -273,5 +300,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }

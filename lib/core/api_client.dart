@@ -32,8 +32,32 @@ class ApiClient {
     try {
       return await dio.post(path, data: data);
     } on DioError catch (e) {
-      Logger.printError(e.message);
-      throw ApiException(e.message);
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
+
+  Future<Response<Map<String, dynamic>>> postWithToken(
+      String path, dynamic data, String token) async {
+    try {
+      return await dio.post(path,
+          data: data,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+    } on DioError catch (e) {
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
+
+  Future<Response<Map<String, dynamic>>> patchWithToken(
+      String path, dynamic data, String token) async {
+    try {
+      return await dio.patch(path,
+          data: data,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+    } on DioError catch (e) {
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
     }
   }
 
@@ -41,8 +65,8 @@ class ApiClient {
     try {
       return await dio.put(path, data: data);
     } on DioError catch (e) {
-      Logger.printError(e.message);
-      throw ApiException(e.message);
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
     }
   }
 
@@ -50,8 +74,8 @@ class ApiClient {
     try {
       return await dio.delete(path);
     } on DioError catch (e) {
-      Logger.printError(e.message);
-      throw ApiException(e.message);
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
     }
   }
 
@@ -59,8 +83,19 @@ class ApiClient {
     try {
       return await dio.get(path);
     } on DioError catch (e) {
-      Logger.printError(e.message);
-      throw ApiException(e.message);
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
+
+  Future<Response<Map<String, dynamic>>> getWithToken(
+      String path, String token) async {
+    try {
+      return await dio.get(path,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+    } on DioError catch (e) {
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
     }
   }
 }

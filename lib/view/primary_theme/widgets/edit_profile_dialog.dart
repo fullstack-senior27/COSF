@@ -1,8 +1,15 @@
+import 'package:cosmetropolis/core/constants.dart';
+import 'package:cosmetropolis/data/remote/user/models/edit_profile_user.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -115,17 +122,56 @@ class ChangePasswordDialog extends StatelessWidget {
   }
 }
 
-class EditProfileDialog extends StatefulWidget {
-  const EditProfileDialog({super.key});
+class EditProfileDialog extends ConsumerStatefulWidget {
+  final String name;
+  // String lastName = "";
+  final String email;
+  final String phoneNumber;
+  const EditProfileDialog(
+      {super.key,
+      required this.name,
+      required this.email,
+      required this.phoneNumber});
 
   @override
-  State<EditProfileDialog> createState() => _EditProfileDialogState();
+  ConsumerState<EditProfileDialog> createState() => _EditProfileDialogState();
 }
 
-class _EditProfileDialogState extends State<EditProfileDialog> {
+class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
+    with BaseScreenView {
   bool sms = false;
+  late UserViewModel _viewModel;
+  bool isLoading = false;
+  @override
+  void initState() {
+    _viewModel = ref.read(userViewModel)..attachView(this);
+    // getData();
+    firstNameController.text = widget.name;
+    lastNameController.text = widget.name;
+    emailController.text = widget.email;
+    phoneNumberController.text = widget.phoneNumber;
+    super.initState();
+  }
+
+  // void getData() async {
+  //   print(SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+  //   isLoading = true;
+  //   setState(() {});
+  //   await _viewModel.getProfileDetails(
+  //       SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+  //
+  //   isLoading = false;
+  //   setState(() {});
+  // }
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(userViewModel);
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
           ? 700
@@ -218,6 +264,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("First Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: firstNameController,
                         decoration: InputDecoration(
                           hintText: "John",
                           hintStyle: urbanist400(kGrey, 14),
@@ -243,6 +290,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Last Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: lastNameController,
                         decoration: InputDecoration(
                           hintText: "Wick",
                           hintStyle: urbanist400(kGrey, 14),
@@ -275,6 +323,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Email", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: "John@gmail.com",
                           hintStyle: urbanist400(kGrey, 14),
@@ -300,6 +349,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Phone Number", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: phoneNumberController,
                         decoration: InputDecoration(
                           hintText: "+234 000 000 0000",
                           hintStyle: urbanist400(kGrey, 14),
@@ -431,7 +481,20 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
             child: SizedBox(
               height: 40.h,
               width: double.infinity,
-              child: BlackButton(context, "Save", () {
+              child: BlackButton(context, isLoading ? "Updating..." : "Save",
+                  () async {
+                isLoading = true;
+                setState(() {});
+                await _viewModel.updateUserProfileDetails(
+                  USerEditProfile(
+                      name: firstNameController.text,
+                      email: emailController.text,
+                      phone: phoneNumberController.text),
+                  SharedPreferenceService.getString(AppConstants.accessToken) ??
+                      "",
+                );
+                isLoading = false;
+                setState(() {});
                 context.pop();
               }),
             ),
@@ -439,5 +502,21 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         ],
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }

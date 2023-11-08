@@ -1,17 +1,16 @@
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
-import 'package:cosmetropolis/routes/app_routes.dart';
-import 'package:cosmetropolis/utils/colors.dart';
+
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
@@ -49,7 +48,8 @@ class BeauticiansListWebView extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: DecorationImage(
-                          image: NetworkImage(salonDetails.image ?? "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
+                          image: NetworkImage(salonDetails.image ??
+                              "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -307,8 +307,10 @@ class BeauticiansListWebView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: salonDetails.services?.length ?? 0,
                 separatorBuilder: (context, index) {
-                  return Divider(color: kGrey,);
-                }, 
+                  return Divider(
+                    color: kGrey,
+                  );
+                },
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 40.h,
@@ -446,7 +448,8 @@ class BeauticiansListMobView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: DecorationImage(
-                    image: NetworkImage(salonDetails.image ?? "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
+                    image: NetworkImage(salonDetails.image ??
+                        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -800,10 +803,14 @@ class BeauticiansListMobView extends StatelessWidget {
 class BeauticiansSideFilter extends ConsumerStatefulWidget {
   int upperFilterIndex;
   int selectedService;
-  BeauticiansSideFilter({super.key, required this.upperFilterIndex, required this.selectedService});
+  BeauticiansSideFilter(
+      {super.key,
+      required this.upperFilterIndex,
+      required this.selectedService});
 
   @override
-  ConsumerState<BeauticiansSideFilter> createState() => _BeauticiansSideFilterState();
+  ConsumerState<BeauticiansSideFilter> createState() =>
+      _BeauticiansSideFilterState();
 }
 
 class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
@@ -816,16 +823,16 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
     'Makeup',
     'Nail Art',
     'Manicure and Pedicure'
-  ];  
+  ];
 
   int selectedSortPrice = -1;
   List<String> sortPriceList = ["low", "high"];
-    
+
   int selectedService = -1;
   String selectedServiceId = "";
 
   int selectedRating = -1;
-  List<String> ratings = ["5", "4", "3", "2", "1"]; 
+  List<String> ratings = ["5", "4", "3", "2", "1"];
 
   @override
   void initState() {
@@ -851,33 +858,45 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
               ),
             ),
             Container(
-              height: 45,
-              child: MaterialButton(
-                onPressed: () {  
-                  if(priceRange < 200 || selectedSortPrice != -1 || selectedRating != -1 || widget.selectedService != -1) {
-                    setState(() {
-                      priceRange = 200;
-                      selectedRating = -1;
-                      widget.upperFilterIndex = 0;
-                      selectedService = -1;
-                      selectedSortPrice = -1;
-                    });
+                height: 45,
+                child: MaterialButton(
+                  onPressed: () {
+                    if (priceRange < 200 ||
+                        selectedSortPrice != -1 ||
+                        selectedRating != -1 ||
+                        widget.selectedService != -1) {
+                      setState(() {
+                        priceRange = 200;
+                        selectedRating = -1;
+                        widget.upperFilterIndex = 0;
+                        selectedService = -1;
+                        selectedSortPrice = -1;
+                      });
 
-                    ref.read(homePageViewModel).fetchAllSalons(
-                      ""
-                    );
-                  }                                      
-                },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                color: (priceRange < 200 || selectedSortPrice != -1 || selectedRating != -1 || selectedService != -1) ? Colors.redAccent : kGrey,
-                child: Row(
-                  children: const [
-                    Icon(Icons.filter_alt_off_rounded, color: kWhite,),
-                    Text("Clear", style: TextStyle(color: kWhite),),
-                  ],
-                ),
-              )
-            ),
+                      ref.read(homePageViewModel).fetchAllSalons("");
+                    }
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  color: (priceRange < 200 ||
+                          selectedSortPrice != -1 ||
+                          selectedRating != -1 ||
+                          selectedService != -1)
+                      ? Colors.redAccent
+                      : kGrey,
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.filter_alt_off_rounded,
+                        color: kWhite,
+                      ),
+                      Text(
+                        "Clear",
+                        style: TextStyle(color: kWhite),
+                      ),
+                    ],
+                  ),
+                )),
           ],
         ),
         SizedBox(
@@ -952,12 +971,23 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                     onChangeEnd: (value) {
                       print("1-${value.round()}");
                       ref.read(homePageViewModel).fetchAllSalons(
-                        ref.read(homePageViewModel).searchController.text,
-                        sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                        price: "${priceRange.round()}",
-                        serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                        rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                      );
+                          ref.read(homePageViewModel).searchController.text,
+                          sortPrice: selectedSortPrice == -1
+                              ? "low"
+                              : sortPriceList[selectedSortPrice],
+                          price: "${priceRange.round()}",
+                          serviceType: selectedService == -1
+                              ? ""
+                              : ref
+                                      .read(homePageViewModel)
+                                      .services
+                                      .data?[selectedService]
+                                      .serviceType
+                                      ?.id ??
+                                  "",
+                          rating: selectedRating == -1
+                              ? ""
+                              : ratings[selectedRating]);
                     },
                     configure: BetterCupertinoSliderConfigure(
                       trackHorizontalPadding: 0.0,
@@ -1042,24 +1072,34 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                   groupValue: selectedSortPrice,
                   toggleable: true,
                   onChanged: (value) {
-                    
                     setState(() {
-                      if(value == null) {
+                      if (value == null) {
                         selectedSortPrice = -1;
                       } else {
-                        selectedSortPrice = value!;
+                        selectedSortPrice = value;
                       }
                     });
 
                     print(sortPriceList[selectedSortPrice]);
 
                     ref.read(homePageViewModel).fetchAllSalons(
-                      ref.read(homePageViewModel).searchController.text,
-                      sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                      price: "${priceRange.round()}",
-                      serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                      rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                    );
+                        ref.read(homePageViewModel).searchController.text,
+                        sortPrice: selectedSortPrice == -1
+                            ? "low"
+                            : sortPriceList[selectedSortPrice],
+                        price: "${priceRange.round()}",
+                        serviceType: selectedService == -1
+                            ? ""
+                            : ref
+                                    .read(homePageViewModel)
+                                    .services
+                                    .data?[selectedService]
+                                    .serviceType
+                                    ?.id ??
+                                "",
+                        rating: selectedRating == -1
+                            ? ""
+                            : ratings[selectedRating]);
                   },
                 ),
                 SizedBox(
@@ -1082,22 +1122,33 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                   toggleable: true,
                   onChanged: (value) {
                     setState(() {
-                      if(value == null) {
+                      if (value == null) {
                         selectedSortPrice = -1;
                       } else {
-                        selectedSortPrice = value!;
+                        selectedSortPrice = value;
                       }
                     });
 
                     print(sortPriceList[selectedSortPrice]);
 
                     ref.read(homePageViewModel).fetchAllSalons(
-                      ref.read(homePageViewModel).searchController.text,
-                      sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                      price: "${priceRange.round()}",
-                      serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                      rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                    );
+                        ref.read(homePageViewModel).searchController.text,
+                        sortPrice: selectedSortPrice == -1
+                            ? "low"
+                            : sortPriceList[selectedSortPrice],
+                        price: "${priceRange.round()}",
+                        serviceType: selectedService == -1
+                            ? ""
+                            : ref
+                                    .read(homePageViewModel)
+                                    .services
+                                    .data?[selectedService]
+                                    .serviceType
+                                    ?.id ??
+                                "",
+                        rating: selectedRating == -1
+                            ? ""
+                            : ratings[selectedRating]);
                   },
                 ),
               ],
@@ -1137,12 +1188,18 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                 ),
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: ref.read(homePageViewModel).services.data?.length ?? 0,
+                  itemCount:
+                      ref.read(homePageViewModel).services.data?.length ?? 0,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return RadioListTile(
                       title: Text(
-                        ref.read(homePageViewModel).services.data?[index].name ?? "",
+                        ref
+                                .read(homePageViewModel)
+                                .services
+                                .data?[index]
+                                .name ??
+                            "",
                         style: GoogleFonts.urbanist(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -1157,7 +1214,7 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       toggleable: true,
                       onChanged: (value) {
                         setState(() {
-                          if(value == null) {
+                          if (value == null) {
                             widget.selectedService = -1;
                             selectedService = -1;
                             widget.upperFilterIndex = 0;
@@ -1169,12 +1226,23 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                         });
 
                         ref.read(homePageViewModel).fetchAllSalons(
-                          ref.read(homePageViewModel).searchController.text,
-                          sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                          price: "${priceRange.round()}",
-                          serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                          rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                        );
+                            ref.read(homePageViewModel).searchController.text,
+                            sortPrice: selectedSortPrice == -1
+                                ? "low"
+                                : sortPriceList[selectedSortPrice],
+                            price: "${priceRange.round()}",
+                            serviceType: selectedService == -1
+                                ? ""
+                                : ref
+                                        .read(homePageViewModel)
+                                        .services
+                                        .data?[selectedService]
+                                        .serviceType
+                                        ?.id ??
+                                    "",
+                            rating: selectedRating == -1
+                                ? ""
+                                : ratings[selectedRating]);
                       },
                     );
                   },
@@ -1254,20 +1322,30 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                 toggleable: true,
                 onChanged: (value) {
                   setState(() {
-                    if(value == null) {
+                    if (value == null) {
                       selectedRating = -1;
                     } else {
-                      selectedRating = value!;
+                      selectedRating = value;
                     }
                   });
 
-                 ref.read(homePageViewModel).fetchAllSalons(
-                    ref.read(homePageViewModel).searchController.text,
-                    sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                    price: "${priceRange.round()}",
-                    serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                    rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                  );
+                  ref.read(homePageViewModel).fetchAllSalons(
+                      ref.read(homePageViewModel).searchController.text,
+                      sortPrice: selectedSortPrice == -1
+                          ? "low"
+                          : sortPriceList[selectedSortPrice],
+                      price: "${priceRange.round()}",
+                      serviceType: selectedService == -1
+                          ? ""
+                          : ref
+                                  .read(homePageViewModel)
+                                  .services
+                                  .data?[selectedService]
+                                  .serviceType
+                                  ?.id ??
+                              "",
+                      rating:
+                          selectedRating == -1 ? "" : ratings[selectedRating]);
                 },
               ),
             ),
@@ -1339,20 +1417,30 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                 toggleable: true,
                 onChanged: (value) {
                   setState(() {
-                    if(value == null) {
+                    if (value == null) {
                       selectedRating = -1;
                     } else {
-                      selectedRating = value!;
+                      selectedRating = value;
                     }
                   });
 
-                 ref.read(homePageViewModel).fetchAllSalons(
-                    ref.read(homePageViewModel).searchController.text,
-                    sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                    price: "${priceRange.round()}",
-                    serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                    rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                  );
+                  ref.read(homePageViewModel).fetchAllSalons(
+                      ref.read(homePageViewModel).searchController.text,
+                      sortPrice: selectedSortPrice == -1
+                          ? "low"
+                          : sortPriceList[selectedSortPrice],
+                      price: "${priceRange.round()}",
+                      serviceType: selectedService == -1
+                          ? ""
+                          : ref
+                                  .read(homePageViewModel)
+                                  .services
+                                  .data?[selectedService]
+                                  .serviceType
+                                  ?.id ??
+                              "",
+                      rating:
+                          selectedRating == -1 ? "" : ratings[selectedRating]);
                 },
               ),
             ),
@@ -1455,20 +1543,30 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    if(value == null) {
+                    if (value == null) {
                       selectedRating = -1;
                     } else {
-                      selectedRating = value!;
+                      selectedRating = value;
                     }
                   });
 
-                 ref.read(homePageViewModel).fetchAllSalons(
-                    ref.read(homePageViewModel).searchController.text,
-                    sortPrice: selectedSortPrice == -1 ? "low" : sortPriceList[selectedSortPrice],
-                    price: "${priceRange.round()}",
-                    serviceType: selectedService == -1 ? "" : ref.read(homePageViewModel).services.data?[selectedService].serviceType?.id ?? "",
-                    rating: selectedRating == -1 ? "" : ratings[selectedRating]
-                  );
+                  ref.read(homePageViewModel).fetchAllSalons(
+                      ref.read(homePageViewModel).searchController.text,
+                      sortPrice: selectedSortPrice == -1
+                          ? "low"
+                          : sortPriceList[selectedSortPrice],
+                      price: "${priceRange.round()}",
+                      serviceType: selectedService == -1
+                          ? ""
+                          : ref
+                                  .read(homePageViewModel)
+                                  .services
+                                  .data?[selectedService]
+                                  .serviceType
+                                  ?.id ??
+                              "",
+                      rating:
+                          selectedRating == -1 ? "" : ratings[selectedRating]);
                 },
               ),
             ),

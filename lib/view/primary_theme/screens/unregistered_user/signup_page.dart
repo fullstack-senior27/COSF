@@ -1,14 +1,19 @@
+import 'dart:math';
+
+import 'package:cosmetropolis/data/remote/user/models/user_register_model.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/edit_profile.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupPage extends ConsumerStatefulWidget {
@@ -18,7 +23,22 @@ class SignupPage extends ConsumerStatefulWidget {
   ConsumerState<SignupPage> createState() => _SignupPageState();
 }
 
-class _SignupPageState extends ConsumerState<SignupPage> {
+class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
+  late UserViewModel _viewModel;
+  bool isLoading = false;
+  // final UserDetailService _userDetailService = getIt<UserDetailService>();
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = ref.read(userViewModel)..attachView(this);
+    // getData();
+    image1 = Image.asset(
+      "assets/icons/signup.webp",
+      width: double.infinity,
+      fit: BoxFit.fill,
+    );
+  }
+
   Country? selectedCountry;
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
@@ -41,23 +61,19 @@ class _SignupPageState extends ConsumerState<SignupPage> {
   late Image image1;
 
   @override
-  void initState() {
-    super.initState();
-    image1 = Image.asset(
-      "assets/icons/signup.webp",
-      width: double.infinity,
-      fit: BoxFit.fill,
-    );
-  }
-
-  @override
   void didChangeDependencies() {
     precacheImage(image1.image, context);
     super.didChangeDependencies();
   }
 
+  final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(userViewModel);
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       body: SingleChildScrollView(
@@ -92,6 +108,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         ),
 
                         TextFormField(
+                          controller: phoneNumberController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontSize: 15.sp,
@@ -150,11 +167,45 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                             return null;
                           },
                         ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+
+                        TextFormField(
+                          controller: nameController,
+                          style: GoogleFonts.urbanist(
+                            color: kBlack,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          keyboardType: TextInputType.name,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: kWhite,
+                            floatingLabelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            focusedBorder: OutlineInputBorder(),
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(),
+                            labelText: "Full Name",
+                            hintText: "Enter your Full Name",
+                          ),
+
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your full name';
+                            }
+                            return null;
+                          },
+                        ),
 
                         SizedBox(
                           height: 20.h,
                         ),
                         TextFormField(
+                          controller: emailController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontSize: 15.sp,
@@ -187,6 +238,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         ),
 
                         TextFormField(
+                          controller: passwordController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontSize: 15.sp,
@@ -258,8 +310,36 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              context.go("/edit-profile");
+                            onPressed: () async {
+                              isLoading = true;
+                              setState(() {});
+                              print(UserRegisterRequest(
+                                email: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneNumberController.text,
+                                name: nameController.text,
+                                role: "user",
+                              ).toString());
+                              print(
+                                UserRegisterRequest(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  phone: phoneNumberController.text,
+                                  name: nameController.text,
+                                  role: "user",
+                                ),
+                              );
+                              await _viewModel.register(
+                                  UserRegisterRequest(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    phone: phoneNumberController.text,
+                                    name: nameController.text,
+                                    role: "user",
+                                  ),
+                                  context);
+                              isLoading = false;
+                              setState(() {});
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kBlack,
@@ -270,14 +350,23 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                                 borderRadius: BorderRadius.circular(5.r),
                               ),
                             ),
-                            child: Text(
-                              "Sign Up",
-                              style: GoogleFonts.urbanist(
-                                color: kWhite,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            child: isLoading
+                                ? Center(
+                                    child: SizedBox(
+                                        height: 20.h,
+                                        width: 20.h,
+                                        child: const CircularProgressIndicator(
+                                          color: kWhite,
+                                        )),
+                                  )
+                                : Text(
+                                    "Sign Up",
+                                    style: GoogleFonts.urbanist(
+                                      color: kWhite,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                           ),
                         ),
                         SizedBox(
@@ -385,5 +474,21 @@ class _SignupPageState extends ConsumerState<SignupPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }
