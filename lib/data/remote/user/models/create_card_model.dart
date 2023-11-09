@@ -25,8 +25,8 @@ class CreateCardRequest with _$CreateCardRequest {
 class Card with _$Card {
   const factory Card({
     String? number,
-    int? expMonth,
-    int? expYear,
+    @JsonKey(name: 'exp_month') int? expMonth,
+    @JsonKey(name: 'exp_year') int? expYear,
     String? cvc,
   }) = _Card;
 

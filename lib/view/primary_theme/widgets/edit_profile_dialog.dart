@@ -5,120 +5,203 @@ import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/change_password_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-class ChangePasswordDialog extends StatelessWidget {
+class ChangePasswordDialog extends ConsumerStatefulWidget {
   const ChangePasswordDialog({super.key});
 
   @override
+  ConsumerState<ChangePasswordDialog> createState() =>
+      _ChangePasswordDialogState();
+}
+
+class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
+    with BaseScreenView {
+  late UserViewModel _viewModel;
+  final oldPasswordController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = ref.read(userViewModel)..attachView(this);
+  }
+
+  @override
+  void dispose() {
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(userViewModel);
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
           ? 500
           : MediaQuery.of(context).size.width * 0.7,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Secure your account with a new password. Update your login credentials now to keep your information safe and protect your privacy.",
-            style: urbanist400(kBlack, 12),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "Old Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your old password",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Secure your account with a new password. Update your login credentials now to keep your information safe and protect your privacy.",
+              style: urbanist400(kBlack, 12),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Old Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              controller: oldPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your old password",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "New Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            "Changing your password is quick and easy, and gives you peace of mind that your information is secure. Update your login credentials now to keep your account safe and secure.",
-            style: urbanist400(kBlack, 12),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your new password",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "New Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Changing your password is quick and easy, and gives you peace of mind that your information is secure. Update your login credentials now to keep your account safe and secure.",
+              style: urbanist400(kBlack, 12),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 8) {
+                  return "Password must be at least 8 characters";
+                } else if (value != confirmPasswordController.text) {
+                  return "Passwords do not match";
+                } else {
+                  return null;
+                }
+              },
+              controller: newPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your new password",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "Confirm Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your new password again",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Confirm Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 8) {
+                  return "Password must be at least 8 characters";
+                } else if (value != newPasswordController.text) {
+                  return "Passwords do not match";
+                } else {
+                  return null;
+                }
+              },
+              controller: confirmPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your new password again",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 40.h,
-          ),
-          SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: BlackButton(context, "Save", () {
-              Navigator.pop(context);
-            }),
-          )
-        ],
+            SizedBox(
+              height: 40.h,
+            ),
+            SizedBox(
+              height: 40.h,
+              width: double.infinity,
+              child: BlackButton(context, isLoading ? "Saving..." : "Save",
+                  () async {
+                if (formKey.currentState!.validate()) {
+                  isLoading = true;
+                  setState(() {});
+                  await _viewModel.changePassword(
+                      ChangePasswordRequest(
+                          oldPassword: oldPasswordController.text,
+                          newPassword: newPasswordController.text),
+                      SharedPreferenceService.getString(
+                              AppConstants.accessToken) ??
+                          "");
+                  isLoading = false;
+                  setState(() {});
+                }
+
+                Navigator.pop(context);
+              }),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }
 
@@ -146,23 +229,13 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
   void initState() {
     _viewModel = ref.read(userViewModel)..attachView(this);
     // getData();
-    firstNameController.text = widget.name;
-    lastNameController.text = widget.name;
+    firstNameController.text = widget.name.split(" ")[0];
+    lastNameController.text =
+        widget.name.split(" ").length > 1 ? widget.name.split(" ")[1] : "";
     emailController.text = widget.email;
     phoneNumberController.text = widget.phoneNumber;
     super.initState();
   }
-
-  // void getData() async {
-  //   print(SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
-  //   isLoading = true;
-  //   setState(() {});
-  //   await _viewModel.getProfileDetails(
-  //       SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
-  //
-  //   isLoading = false;
-  //   setState(() {});
-  // }
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -210,11 +283,11 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("John Wick", style: urbanist600(kBlack, 16)),
+                    Text(widget.name, style: urbanist600(kBlack, 16)),
                     SizedBox(
                       height: 5.h,
                     ),
-                    Text("John@gmail.com", style: urbanist400(kGrey, 12)),
+                    Text(widget.email, style: urbanist400(kGrey, 12)),
                     SizedBox(
                       height: 5.h,
                     ),
@@ -487,7 +560,8 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                 setState(() {});
                 await _viewModel.updateUserProfileDetails(
                   USerEditProfile(
-                      name: firstNameController.text,
+                      name:
+                          "${firstNameController.text} ${lastNameController.text}",
                       email: emailController.text,
                       phone: phoneNumberController.text),
                   SharedPreferenceService.getString(AppConstants.accessToken) ??

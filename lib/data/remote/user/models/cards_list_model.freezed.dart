@@ -23,7 +23,7 @@ mixin _$CardsListResponse {
   int? get code => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
-  Data? get data => throw _privateConstructorUsedError;
+  List<Datum>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +37,7 @@ abstract class $CardsListResponseCopyWith<$Res> {
           CardsListResponse value, $Res Function(CardsListResponse) then) =
       _$CardsListResponseCopyWithImpl<$Res, CardsListResponse>;
   @useResult
-  $Res call({int? code, String? message, bool? isSuccess, Data? data});
-
-  $DataCopyWith<$Res>? get data;
+  $Res call({int? code, String? message, bool? isSuccess, List<Datum>? data});
 }
 
 /// @nodoc
@@ -76,20 +74,8 @@ class _$CardsListResponseCopyWithImpl<$Res, $Val extends CardsListResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as List<Datum>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $DataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -101,10 +87,7 @@ abstract class _$$_CardsListResponseCopyWith<$Res>
       __$$_CardsListResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? code, String? message, bool? isSuccess, Data? data});
-
-  @override
-  $DataCopyWith<$Res>? get data;
+  $Res call({int? code, String? message, bool? isSuccess, List<Datum>? data});
 }
 
 /// @nodoc
@@ -137,9 +120,9 @@ class __$$_CardsListResponseCopyWithImpl<$Res>
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
       data: freezed == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as List<Datum>?,
     ));
   }
 }
@@ -148,7 +131,8 @@ class __$$_CardsListResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CardsListResponse implements _CardsListResponse {
   const _$_CardsListResponse(
-      {this.code, this.message, this.isSuccess, this.data});
+      {this.code, this.message, this.isSuccess, final List<Datum>? data})
+      : _data = data;
 
   factory _$_CardsListResponse.fromJson(Map<String, dynamic> json) =>
       _$$_CardsListResponseFromJson(json);
@@ -159,8 +143,15 @@ class _$_CardsListResponse implements _CardsListResponse {
   final String? message;
   @override
   final bool? isSuccess;
+  final List<Datum>? _data;
   @override
-  final Data? data;
+  List<Datum>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -176,12 +167,13 @@ class _$_CardsListResponse implements _CardsListResponse {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.isSuccess, isSuccess) ||
                 other.isSuccess == isSuccess) &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, code, message, isSuccess, data);
+  int get hashCode => Object.hash(runtimeType, code, message, isSuccess,
+      const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +195,7 @@ abstract class _CardsListResponse implements CardsListResponse {
       {final int? code,
       final String? message,
       final bool? isSuccess,
-      final Data? data}) = _$_CardsListResponse;
+      final List<Datum>? data}) = _$_CardsListResponse;
 
   factory _CardsListResponse.fromJson(Map<String, dynamic> json) =
       _$_CardsListResponse.fromJson;
@@ -215,200 +207,11 @@ abstract class _CardsListResponse implements CardsListResponse {
   @override
   bool? get isSuccess;
   @override
-  Data? get data;
+  List<Datum>? get data;
   @override
   @JsonKey(ignore: true)
   _$$_CardsListResponseCopyWith<_$_CardsListResponse> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Data {
-  String? get object => throw _privateConstructorUsedError;
-  List<Datum>? get data => throw _privateConstructorUsedError;
-  bool? get hasMore => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res, Data>;
-  @useResult
-  $Res call({String? object, List<Datum>? data, bool? hasMore, String? url});
-}
-
-/// @nodoc
-class _$DataCopyWithImpl<$Res, $Val extends Data>
-    implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? object = freezed,
-    Object? data = freezed,
-    Object? hasMore = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_value.copyWith(
-      object: freezed == object
-          ? _value.object
-          : object // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>?,
-      hasMore: freezed == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? object, List<Datum>? data, bool? hasMore, String? url});
-}
-
-/// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? object = freezed,
-    Object? data = freezed,
-    Object? hasMore = freezed,
-    Object? url = freezed,
-  }) {
-    return _then(_$_Data(
-      object: freezed == object
-          ? _value.object
-          : object // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>?,
-      hasMore: freezed == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Data implements _Data {
-  const _$_Data({this.object, final List<Datum>? data, this.hasMore, this.url})
-      : _data = data;
-
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
-
-  @override
-  final String? object;
-  final List<Datum>? _data;
-  @override
-  List<Datum>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final bool? hasMore;
-  @override
-  final String? url;
-
-  @override
-  String toString() {
-    return 'Data(object: $object, data: $data, hasMore: $hasMore, url: $url)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Data &&
-            (identical(other.object, object) || other.object == object) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.url, url) || other.url == url));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, object,
-      const DeepCollectionEquality().hash(_data), hasMore, url);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Data implements Data {
-  const factory _Data(
-      {final String? object,
-      final List<Datum>? data,
-      final bool? hasMore,
-      final String? url}) = _$_Data;
-
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
-
-  @override
-  String? get object;
-  @override
-  List<Datum>? get data;
-  @override
-  bool? get hasMore;
-  @override
-  String? get url;
-  @override
-  @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }
 
 Datum _$DatumFromJson(Map<String, dynamic> json) {

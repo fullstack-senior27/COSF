@@ -2,6 +2,7 @@ import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/user/models/cards_list_model.dart';
 import 'package:cosmetropolis/data/remote/user/models/create_card_model.dart';
 import 'package:cosmetropolis/data/remote/user/models/edit_profile_user.dart';
+import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:cosmetropolis/data/remote/user/models/profile_details_model.dart';
 import 'package:cosmetropolis/data/remote/user/models/user_forgot_password.dart';
 import 'package:cosmetropolis/data/remote/user/models/user_login_model.dart';
@@ -12,6 +13,7 @@ import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/helpers/base_view_model.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/change_password_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,8 +44,9 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
   CardsListResponse? _cardsListResponse;
   CardsListResponse? get cardsListResponse => _cardsListResponse;
 
-  // UserForgotPasswordRequest forgotPasswordRequest =
-  //     const UserForgotPasswordRequest();
+  GetAllUserAppointments? _allUserAppointments;
+  GetAllUserAppointments? get allUserAppointments => _allUserAppointments;
+
   UserForgotPasswordResponse? _forgotPasswordResponse;
   UserForgotPasswordResponse? get forgotPasswordResponse =>
       _forgotPasswordResponse;
@@ -61,7 +64,7 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
           (r) {
             _registerResponse = r;
             showSnackbar(r.message!);
-            context.go("/edit-profile");
+            context.go('/login');
             notifyListeners();
           },
         ));
@@ -147,6 +150,7 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
               },
               (r) {
                 showSnackbar(r.message!);
+                getCardsList(token);
                 notifyListeners();
               },
             ));
@@ -161,5 +165,48 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
           _cardsListResponse = r;
           notifyListeners();
         }));
+  }
+
+  Future<void> deleteCard(String token, String cardID) async {
+    toggleLoading();
+    await _userRepository.deleteCard(token, cardID).then((value) => value.fold(
+          (l) {
+            showSnackbar(l.message);
+          },
+          (r) {
+            showSnackbar(r.message);
+            getCardsList(token);
+            notifyListeners();
+          },
+        ));
+  }
+
+  Future<void> changePassword(
+      ChangePasswordRequest request, String token) async {
+    toggleLoading();
+    await _userRepository
+        .changePassword(request, token)
+        .then((value) => value.fold(
+              (l) {
+                showSnackbar(l.message);
+              },
+              (r) {
+                showSnackbar(r.message!);
+                notifyListeners();
+              },
+            ));
+  }
+
+  Future<void> getAllAppointments(String token) async {
+    toggleLoading();
+    await _userRepository
+        .getAllAppointments(token)
+        .then((value) => value.fold((l) {
+              showSnackbar(l.message);
+            }, (r) {
+              showSnackbar(r.message!);
+              _allUserAppointments = r;
+              notifyListeners();
+            }));
   }
 }

@@ -23,15 +23,15 @@ Map<String, dynamic> _$$_CreateCardRequestToJson(
 
 _$_Card _$$_CardFromJson(Map<String, dynamic> json) => _$_Card(
       number: json['number'] as String?,
-      expMonth: json['expMonth'] as int?,
-      expYear: json['expYear'] as int?,
+      expMonth: json['exp_month'] as int?,
+      expYear: json['exp_year'] as int?,
       cvc: json['cvc'] as String?,
     );
 
 Map<String, dynamic> _$$_CardToJson(_$_Card instance) => <String, dynamic>{
       'number': instance.number,
-      'expMonth': instance.expMonth,
-      'expYear': instance.expYear,
+      'exp_month': instance.expMonth,
+      'exp_year': instance.expYear,
       'cvc': instance.cvc,
     };
 

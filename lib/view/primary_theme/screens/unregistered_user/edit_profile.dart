@@ -36,6 +36,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
   late TabController _tabcontroller;
   late UserViewModel _viewModel;
   bool isLoading = false;
+  final _formkey = GlobalKey<FormState>();
+  final _formkey2 = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -52,6 +54,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
     await _viewModel.getProfileDetails(
         SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
     await _viewModel.getCardsList(
+        SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+    await _viewModel.getAllAppointments(
         SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
 
     isLoading = false;
@@ -821,7 +825,9 @@ class _EditProfileState extends ConsumerState<EditProfile>
                             controller: _tabcontroller,
                             children: [
                               if (MediaQuery.of(context).size.width > 450)
-                                const EarningsTable()
+                                AppointmentsTable(
+                                  data: _viewModel.allUserAppointments!,
+                                )
                               else
                                 ListView.builder(
                                   physics: const BouncingScrollPhysics(),
@@ -1162,11 +1168,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                     height: 10.h,
                                                   ),
                                                   ...List.generate(
-                                                    _viewModel
-                                                            .cardsListResponse
-                                                            ?.data
-                                                            ?.data
-                                                            ?.length ??
+                                                    _viewModel.cardsListResponse
+                                                            ?.data?.length ??
                                                         0,
                                                     (index) => Padding(
                                                       padding: EdgeInsets.only(
@@ -1203,7 +1206,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                 width: 5.w),
                                                             Expanded(
                                                               child: Text(
-                                                                '**** **** **** ${_viewModel.cardsListResponse?.data?.data?[index].last4}',
+                                                                '**** **** **** ${_viewModel.cardsListResponse?.data?[index].last4}',
                                                                 style:
                                                                     TextStyle(
                                                                   color: kBlack,
@@ -1218,9 +1221,28 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                           ],
                                                         ),
                                                         trailing: TextButton(
-                                                          onPressed: () {},
+                                                          onPressed: () async {
+                                                            deleteCard = true;
+                                                            setState(() {});
+                                                            await _viewModel.deleteCard(
+                                                                SharedPreferenceService.getString(
+                                                                        AppConstants
+                                                                            .accessToken) ??
+                                                                    "",
+                                                                _viewModel
+                                                                        .cardsListResponse
+                                                                        ?.data?[
+                                                                            index]
+                                                                        .id ??
+                                                                    "");
+
+                                                            deleteCard = false;
+                                                            setState(() {});
+                                                          },
                                                           child: Text(
-                                                            'Delete',
+                                                            deleteCard
+                                                                ? "Deleting..."
+                                                                : 'Delete',
                                                             style: GoogleFonts
                                                                 .urbanist(
                                                               color: Colors.red,
@@ -1255,315 +1277,378 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                               1200,
                                           child: Expanded(
                                             flex: 3,
-                                            child: Card(
-                                              surfaceTintColor: kWhite,
-                                              color: kWhite,
-                                              elevation: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 15.w,
-                                                  vertical: 20.h,
-                                                ),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Add New Card",
-                                                      style: urbanist600(
-                                                          kBlack, 18),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10.h,
-                                                    ),
-                                                    ListTile(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        side: const BorderSide(
-                                                          color: klines,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          7.r,
-                                                        ),
+                                            child: Form(
+                                              key: _formkey2,
+                                              child: Card(
+                                                surfaceTintColor: kWhite,
+                                                color: kWhite,
+                                                elevation: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 15.w,
+                                                    vertical: 20.h,
+                                                  ),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Add New Card",
+                                                        style: urbanist600(
+                                                            kBlack, 18),
                                                       ),
-                                                      tileColor: kWhite,
-                                                      leading: Radio(
-                                                        focusColor: kBlack,
-                                                        value: -1,
-                                                        groupValue: 0,
-                                                        onChanged: (value) {},
+                                                      SizedBox(
+                                                        height: 10.h,
                                                       ),
-                                                      title: Row(
-                                                        children: [
-                                                          const Text(
-                                                              'Credit Card'),
-                                                          SizedBox(width: 5.w),
-                                                          Image.network(
-                                                            'https://tse3.mm.bing.net/th?id=OIP.8hSdZiAvNki23CzVyAvSLQHaEK&pid=Api&P=0&h=180',
-                                                            // width: 60.w,
-                                                            height: 30.h,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    SizedBox(height: 10.h),
-                                                    Row(
-                                                      children: [
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: TextField(
-                                                            controller:
-                                                                cardNumberController,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText:
-                                                                  "Card Number",
-                                                              hintStyle:
-                                                                  urbanist400(
-                                                                kdescription,
-                                                                14,
-                                                              ),
-                                                              border:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 5.w),
-                                                        Expanded(
-                                                          child: TextField(
-                                                            maxLength: 5,
-                                                            controller:
-                                                                dateController,
-                                                            keyboardType:
-                                                                TextInputType
-                                                                    .number,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              counter:
-                                                                  const SizedBox
-                                                                      .shrink(),
-                                                              hintText: "MM/YY",
-                                                              hintStyle:
-                                                                  urbanist400(
-                                                                kdescription,
-                                                                14,
-                                                              ),
-                                                              border:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 5.w),
-                                                        Expanded(
-                                                          child: TextField(
-                                                            controller:
-                                                                cvvController,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText: "CVV",
-                                                              hintStyle:
-                                                                  urbanist400(
-                                                                kdescription,
-                                                                14,
-                                                              ),
-                                                              border:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  7.r,
-                                                                ),
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: klines,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: 25.h),
-                                                    ElevatedButton(
-                                                      onPressed: () {
-                                                        addCard = true;
-
-                                                        setState(() {});
-                                                        log(cardModel.CreateCardRequest(
-                                                                email: _viewModel
-                                                                    .profileDetailsResponse
-                                                                    ?.data
-                                                                    ?.email,
-                                                                card: cardModel.Card(
-                                                                    number:
-                                                                        cardNumberController
-                                                                            .text,
-                                                                    expMonth: int.parse(dateController
-                                                                            .text
-                                                                            .split("/")[
-                                                                        0]),
-                                                                    expYear:
-                                                                        int.parse(
-                                                                            "20${dateController.text.split("/")[1]}"),
-                                                                    cvc: cvvController
-                                                                        .text))
-                                                            .toString());
-                                                        _viewModel.addCard(
-                                                          cardModel.CreateCardRequest(
-                                                              email: _viewModel
-                                                                  .profileDetailsResponse
-                                                                  ?.data
-                                                                  ?.email,
-                                                              card: cardModel.Card(
-                                                                  number:
-                                                                      cardNumberController
-                                                                          .text,
-                                                                  expMonth: int.parse(
-                                                                      dateController
-                                                                              .text
-                                                                              .split("/")[
-                                                                          0]),
-                                                                  expYear:
-                                                                      int.parse(
-                                                                          "20${dateController.text.split("/")[1]}"),
-                                                                  cvc: cvvController
-                                                                      .text)),
-                                                          SharedPreferenceService
-                                                                  .getString(
-                                                                      AppConstants
-                                                                          .accessToken) ??
-                                                              "",
-                                                        );
-                                                        addCard = false;
-                                                        setState(() {});
-                                                      },
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor: kBlack,
-                                                        minimumSize: Size(
-                                                          double.infinity,
-                                                          50.h,
-                                                        ),
+                                                      ListTile(
                                                         shape:
                                                             RoundedRectangleBorder(
+                                                          side:
+                                                              const BorderSide(
+                                                            color: klines,
+                                                          ),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                             7.r,
                                                           ),
                                                         ),
-                                                      ),
-                                                      child: addCard
-                                                          ? const Center(
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                color: kWhite,
-                                                              ),
-                                                            )
-                                                          : Text(
-                                                              "Add New Card",
-                                                              style:
-                                                                  urbanist600(
-                                                                      kWhite,
-                                                                      16),
+                                                        tileColor: kWhite,
+                                                        leading: Radio(
+                                                          focusColor: kBlack,
+                                                          value: -1,
+                                                          groupValue: 0,
+                                                          onChanged: (value) {},
+                                                        ),
+                                                        title: Row(
+                                                          children: [
+                                                            const Text(
+                                                                'Credit Card'),
+                                                            SizedBox(
+                                                                width: 5.w),
+                                                            Image.network(
+                                                              'https://tse3.mm.bing.net/th?id=OIP.8hSdZiAvNki23CzVyAvSLQHaEK&pid=Api&P=0&h=180',
+                                                              // width: 60.w,
+                                                              height: 30.h,
                                                             ),
-                                                    ),
-                                                    SizedBox(height: 20.h),
-                                                  ],
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 10.h),
+                                                      Row(
+                                                        children: [
+                                                          Expanded(
+                                                            flex: 2,
+                                                            child:
+                                                                TextFormField(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value ==
+                                                                        null ||
+                                                                    value
+                                                                        .isEmpty ||
+                                                                    value.length <
+                                                                        16) {
+                                                                  return 'Please enter 16 digit card number';
+                                                                }
+                                                                return null;
+                                                              },
+                                                              maxLength: 16,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .number,
+                                                              controller:
+                                                                  cardNumberController,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                counter: SizedBox
+                                                                    .shrink(),
+                                                                hintText:
+                                                                    "Card Number",
+                                                                hintStyle:
+                                                                    urbanist400(
+                                                                  kdescription,
+                                                                  14,
+                                                                ),
+                                                                border:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          Expanded(
+                                                            child:
+                                                                TextFormField(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value ==
+                                                                        null ||
+                                                                    value
+                                                                        .isEmpty ||
+                                                                    value.length <
+                                                                        5) {
+                                                                  return 'Please enter date in the given format';
+                                                                }
+                                                                return null;
+                                                              },
+                                                              maxLength: 5,
+                                                              controller:
+                                                                  dateController,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .number,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                counter:
+                                                                    const SizedBox
+                                                                        .shrink(),
+                                                                hintText:
+                                                                    "MM/YY",
+                                                                hintStyle:
+                                                                    urbanist400(
+                                                                  kdescription,
+                                                                  14,
+                                                                ),
+                                                                border:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          Expanded(
+                                                            child:
+                                                                TextFormField(
+                                                              validator:
+                                                                  (value) {
+                                                                if (value ==
+                                                                        null ||
+                                                                    value
+                                                                        .isEmpty ||
+                                                                    value.length <
+                                                                        3) {
+                                                                  return 'Please enter 3 digit CVV';
+                                                                }
+                                                                return null;
+                                                              },
+                                                              maxLength: 3,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .number,
+                                                              controller:
+                                                                  cvvController,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                hintText: "CVV",
+                                                                counter:
+                                                                    const SizedBox
+                                                                        .shrink(),
+                                                                hintStyle:
+                                                                    urbanist400(
+                                                                  kdescription,
+                                                                  14,
+                                                                ),
+                                                                border:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    7.r,
+                                                                  ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color:
+                                                                        klines,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 25.h),
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          if (_formkey2
+                                                              .currentState!
+                                                              .validate()) {
+                                                            addCard = true;
+
+                                                            setState(() {});
+
+                                                            _viewModel.addCard(
+                                                              cardModel.CreateCardRequest(
+                                                                  email: _viewModel
+                                                                      .profileDetailsResponse
+                                                                      ?.data
+                                                                      ?.email,
+                                                                  card: cardModel.Card(
+                                                                      number: cardNumberController
+                                                                          .text,
+                                                                      expMonth: int.parse(
+                                                                          dateController.text.split("/")[
+                                                                              0]),
+                                                                      expYear: int
+                                                                          .parse(
+                                                                              "20${dateController.text.split("/")[1]}"),
+                                                                      cvc: cvvController
+                                                                          .text)),
+                                                              SharedPreferenceService
+                                                                      .getString(
+                                                                          AppConstants
+                                                                              .accessToken) ??
+                                                                  "",
+                                                            );
+                                                            cardNumberController
+                                                                .clear();
+                                                            dateController
+                                                                .clear();
+                                                            cvvController
+                                                                .clear();
+                                                            addCard = false;
+                                                            setState(() {});
+                                                          }
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              kBlack,
+                                                          minimumSize: Size(
+                                                            double.infinity,
+                                                            50.h,
+                                                          ),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        child: addCard
+                                                            ? const Center(
+                                                                child: SizedBox(
+                                                                  height: 15,
+                                                                  width: 15,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    color:
+                                                                        kWhite,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Text(
+                                                                "Add New Card",
+                                                                style:
+                                                                    urbanist600(
+                                                                        kWhite,
+                                                                        16),
+                                                              ),
+                                                      ),
+                                                      SizedBox(height: 20.h),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1578,281 +1663,328 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                       visible:
                                           MediaQuery.of(context).size.width <=
                                               1200,
-                                      child: Card(
-                                        surfaceTintColor: kWhite,
-                                        color: kWhite,
-                                        elevation: 5,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 15.w,
-                                            vertical: 20.h,
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Add New Card",
-                                                style: urbanist600(kBlack, 18),
-                                              ),
-                                              SizedBox(
-                                                height: 10.h,
-                                              ),
-                                              ListTile(
-                                                shape: RoundedRectangleBorder(
-                                                  side: const BorderSide(
-                                                    color: klines,
+                                      child: Form(
+                                        key: _formkey,
+                                        child: Card(
+                                          surfaceTintColor: kWhite,
+                                          color: kWhite,
+                                          elevation: 5,
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 15.w,
+                                              vertical: 20.h,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Add New Card",
+                                                  style:
+                                                      urbanist600(kBlack, 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                                ListTile(
+                                                  shape: RoundedRectangleBorder(
+                                                    side: const BorderSide(
+                                                      color: klines,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            7.r),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          7.r),
+                                                  tileColor: kWhite,
+                                                  leading: Radio(
+                                                    focusColor: kBlack,
+                                                    value: -1,
+                                                    groupValue: 0,
+                                                    onChanged: (value) {},
+                                                  ),
+                                                  title: Row(
+                                                    children: [
+                                                      const Text('Credit Card'),
+                                                      SizedBox(width: 5.w),
+                                                      Image.network(
+                                                        'https://tse3.mm.bing.net/th?id=OIP.8hSdZiAvNki23CzVyAvSLQHaEK&pid=Api&P=0&h=180',
+                                                        // width: 60.w,
+                                                        height: 30.h,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                tileColor: kWhite,
-                                                leading: Radio(
-                                                  focusColor: kBlack,
-                                                  value: -1,
-                                                  groupValue: 0,
-                                                  onChanged: (value) {},
-                                                ),
-                                                title: Row(
+                                                SizedBox(height: 10.h),
+                                                Row(
                                                   children: [
-                                                    const Text('Credit Card'),
+                                                    Expanded(
+                                                      flex: 2,
+                                                      child: TextFormField(
+                                                        validator: (value) {
+                                                          if (value == null ||
+                                                              value.isEmpty ||
+                                                              value.length <
+                                                                  16) {
+                                                            return 'Please enter valid 16 digit card number';
+                                                          }
+                                                          return null;
+                                                        },
+                                                        maxLength: 16,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        controller:
+                                                            cardNumberController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          counter:
+                                                              SizedBox.shrink(),
+                                                          hintText:
+                                                              "Card Number",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kdescription,
+                                                            14,
+                                                          ),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
                                                     SizedBox(width: 5.w),
-                                                    Image.network(
-                                                      'https://tse3.mm.bing.net/th?id=OIP.8hSdZiAvNki23CzVyAvSLQHaEK&pid=Api&P=0&h=180',
-                                                      // width: 60.w,
-                                                      height: 30.h,
+                                                    Expanded(
+                                                      child: TextFormField(
+                                                        validator: (value) {
+                                                          if (value == null ||
+                                                              value.isEmpty ||
+                                                              value.length <
+                                                                  5) {
+                                                            return 'Please enter valid date format';
+                                                          }
+                                                          return null;
+                                                        },
+                                                        controller:
+                                                            dateController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: "MM/YY",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kdescription,
+                                                            14,
+                                                          ),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5.w),
+                                                    Expanded(
+                                                      child: TextFormField(
+                                                        validator: (value) {
+                                                          if (value == null ||
+                                                              value.isEmpty ||
+                                                              value.length <
+                                                                  3) {
+                                                            return 'Please enter 3 digit CVV';
+                                                          }
+                                                          return null;
+                                                        },
+                                                        controller:
+                                                            cvvController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: "CVV",
+                                                          hintStyle:
+                                                              urbanist400(
+                                                            kdescription,
+                                                            14,
+                                                          ),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              7.r,
+                                                            ),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: klines,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                              SizedBox(height: 10.h),
-                                              Row(
-                                                children: [
-                                                  Expanded(
-                                                    flex: 2,
-                                                    child: TextField(
-                                                      controller:
-                                                          cardNumberController,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText: "Card Number",
-                                                        hintStyle: urbanist400(
-                                                          kdescription,
-                                                          14,
-                                                        ),
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 5.w),
-                                                  Expanded(
-                                                    child: TextField(
-                                                      controller:
-                                                          dateController,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText: "MM/YY",
-                                                        hintStyle: urbanist400(
-                                                          kdescription,
-                                                          14,
-                                                        ),
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 5.w),
-                                                  Expanded(
-                                                    child: TextField(
-                                                      controller: cvvController,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText: "CVV",
-                                                        hintStyle: urbanist400(
-                                                          kdescription,
-                                                          14,
-                                                        ),
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            7.r,
-                                                          ),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: klines,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 25.h),
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  addCard = true;
+                                                SizedBox(height: 25.h),
+                                                ElevatedButton(
+                                                  onPressed: () async {
+                                                    if (_formkey.currentState!
+                                                        .validate()) {
+                                                      addCard = true;
 
-                                                  setState(() {});
-                                                  log(cardModel.CreateCardRequest(
-                                                          email: _viewModel
-                                                              .profileDetailsResponse
-                                                              ?.data
-                                                              ?.email,
-                                                          card: cardModel.Card(
-                                                              number:
-                                                                  cardNumberController
-                                                                      .text,
-                                                              expMonth: int.parse(
-                                                                  dateController
-                                                                          .text
-                                                                          .split("/")[
-                                                                      0]),
-                                                              expYear: int.parse(
-                                                                  "20${dateController.text.split("/")[1]}"),
-                                                              cvc: cvvController.text))
-                                                      .toString());
-                                                  _viewModel.addCard(
-                                                    cardModel.CreateCardRequest(
-                                                        email: _viewModel
-                                                            .profileDetailsResponse
-                                                            ?.data
-                                                            ?.email,
-                                                        card: cardModel.Card(
-                                                            number:
-                                                                cardNumberController
-                                                                    .text,
-                                                            expMonth: int.parse(
-                                                                dateController
-                                                                        .text
-                                                                        .split("/")[
-                                                                    0]),
-                                                            expYear: int.parse(
-                                                                "20${dateController.text.split("/")[1]}"),
-                                                            cvc: cvvController
-                                                                .text)),
-                                                    SharedPreferenceService
-                                                            .getString(AppConstants
-                                                                .accessToken) ??
-                                                        "",
-                                                  );
-                                                  addCard = false;
-                                                  setState(() {});
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: kBlack,
-                                                  minimumSize: Size(
-                                                      double.infinity, 50.h),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      7.r,
+                                                      setState(() {});
+
+                                                      await _viewModel.addCard(
+                                                        cardModel.CreateCardRequest(
+                                                            email: _viewModel
+                                                                .profileDetailsResponse
+                                                                ?.data
+                                                                ?.email,
+                                                            card: cardModel.Card(
+                                                                number:
+                                                                    cardNumberController
+                                                                        .text,
+                                                                expMonth: int.parse(
+                                                                    dateController
+                                                                            .text
+                                                                            .split("/")[
+                                                                        0]),
+                                                                expYear: int.parse(
+                                                                    "20${dateController.text.split("/")[1]}"),
+                                                                cvc:
+                                                                    cvvController
+                                                                        .text)),
+                                                        SharedPreferenceService
+                                                                .getString(
+                                                                    AppConstants
+                                                                        .accessToken) ??
+                                                            "",
+                                                      );
+                                                      cardNumberController
+                                                          .clear();
+                                                      dateController.clear();
+                                                      cvvController.clear();
+                                                      addCard = false;
+                                                      setState(() {});
+                                                    }
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor: kBlack,
+                                                    minimumSize: Size(
+                                                        double.infinity, 50.h),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        7.r,
+                                                      ),
                                                     ),
                                                   ),
+                                                  child: addCard
+                                                      ? const Center(
+                                                          child: SizedBox(
+                                                            height: 15,
+                                                            width: 15,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              color: kWhite,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : Text(
+                                                          "Add New Card",
+                                                          style: urbanist600(
+                                                              kWhite, 16),
+                                                        ),
                                                 ),
-                                                child: Text(
-                                                  "Add New Card",
-                                                  style:
-                                                      urbanist600(kWhite, 16),
-                                                ),
-                                              ),
-                                              SizedBox(height: 20.h),
-                                            ],
+                                                SizedBox(height: 20.h),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

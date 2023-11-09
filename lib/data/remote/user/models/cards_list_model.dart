@@ -16,23 +16,11 @@ class CardsListResponse with _$CardsListResponse {
     int? code,
     String? message,
     bool? isSuccess,
-    Data? data,
+    List<Datum>? data,
   }) = _CardsListResponse;
 
   factory CardsListResponse.fromJson(Map<String, dynamic> json) =>
       _$CardsListResponseFromJson(json);
-}
-
-@freezed
-class Data with _$Data {
-  const factory Data({
-    String? object,
-    List<Datum>? data,
-    bool? hasMore,
-    String? url,
-  }) = _Data;
-
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 }
 
 @freezed

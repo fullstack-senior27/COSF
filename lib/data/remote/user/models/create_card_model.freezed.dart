@@ -192,7 +192,9 @@ Card _$CardFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Card {
   String? get number => throw _privateConstructorUsedError;
+  @JsonKey(name: 'exp_month')
   int? get expMonth => throw _privateConstructorUsedError;
+  @JsonKey(name: 'exp_year')
   int? get expYear => throw _privateConstructorUsedError;
   String? get cvc => throw _privateConstructorUsedError;
 
@@ -206,7 +208,11 @@ abstract class $CardCopyWith<$Res> {
   factory $CardCopyWith(Card value, $Res Function(Card) then) =
       _$CardCopyWithImpl<$Res, Card>;
   @useResult
-  $Res call({String? number, int? expMonth, int? expYear, String? cvc});
+  $Res call(
+      {String? number,
+      @JsonKey(name: 'exp_month') int? expMonth,
+      @JsonKey(name: 'exp_year') int? expYear,
+      String? cvc});
 }
 
 /// @nodoc
@@ -254,7 +260,11 @@ abstract class _$$_CardCopyWith<$Res> implements $CardCopyWith<$Res> {
       __$$_CardCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? number, int? expMonth, int? expYear, String? cvc});
+  $Res call(
+      {String? number,
+      @JsonKey(name: 'exp_month') int? expMonth,
+      @JsonKey(name: 'exp_year') int? expYear,
+      String? cvc});
 }
 
 /// @nodoc
@@ -295,15 +305,21 @@ class __$$_CardCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$_Card>
 /// @nodoc
 @JsonSerializable()
 class _$_Card implements _Card {
-  const _$_Card({this.number, this.expMonth, this.expYear, this.cvc});
+  const _$_Card(
+      {this.number,
+      @JsonKey(name: 'exp_month') this.expMonth,
+      @JsonKey(name: 'exp_year') this.expYear,
+      this.cvc});
 
   factory _$_Card.fromJson(Map<String, dynamic> json) => _$$_CardFromJson(json);
 
   @override
   final String? number;
   @override
+  @JsonKey(name: 'exp_month')
   final int? expMonth;
   @override
+  @JsonKey(name: 'exp_year')
   final int? expYear;
   @override
   final String? cvc;
@@ -346,8 +362,8 @@ class _$_Card implements _Card {
 abstract class _Card implements Card {
   const factory _Card(
       {final String? number,
-      final int? expMonth,
-      final int? expYear,
+      @JsonKey(name: 'exp_month') final int? expMonth,
+      @JsonKey(name: 'exp_year') final int? expYear,
       final String? cvc}) = _$_Card;
 
   factory _Card.fromJson(Map<String, dynamic> json) = _$_Card.fromJson;
@@ -355,8 +371,10 @@ abstract class _Card implements Card {
   @override
   String? get number;
   @override
+  @JsonKey(name: 'exp_month')
   int? get expMonth;
   @override
+  @JsonKey(name: 'exp_year')
   int? get expYear;
   @override
   String? get cvc;

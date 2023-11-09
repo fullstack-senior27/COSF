@@ -11,9 +11,9 @@ _$_CardsListResponse _$$_CardsListResponseFromJson(Map<String, dynamic> json) =>
       code: json['code'] as int?,
       message: json['message'] as String?,
       isSuccess: json['isSuccess'] as bool?,
-      data: json['data'] == null
-          ? null
-          : Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CardsListResponseToJson(
@@ -23,22 +23,6 @@ Map<String, dynamic> _$$_CardsListResponseToJson(
       'message': instance.message,
       'isSuccess': instance.isSuccess,
       'data': instance.data,
-    };
-
-_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
-      object: json['object'] as String?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      hasMore: json['hasMore'] as bool?,
-      url: json['url'] as String?,
-    );
-
-Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
-      'object': instance.object,
-      'data': instance.data,
-      'hasMore': instance.hasMore,
-      'url': instance.url,
     };
 
 _$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(

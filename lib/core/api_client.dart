@@ -70,9 +70,11 @@ class ApiClient {
     }
   }
 
-  Future<Response<Map<String, dynamic>>> delete(String path) async {
+  Future<Response<Map<String, dynamic>>> delete(
+      String path, String token) async {
     try {
-      return await dio.delete(path);
+      return await dio.delete(path,
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
     } on DioError catch (e) {
       Logger.printError(e.message.toString());
       throw ApiException(e.response!.data["message"].toString());
