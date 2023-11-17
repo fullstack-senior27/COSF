@@ -57,9 +57,7 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       zipcode: json['zipcode'] as String?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] as String?,
       amount: json['amount'] as int?,
       startTime: json['startTime'] as String?,
       createdAt: json['createdAt'] == null
@@ -186,27 +184,5 @@ Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
       'serviceCategory': instance.serviceCategory,
       'serviceType': instance.serviceType,
       'beautician': instance.beautician,
-      'id': instance.id,
-    };
-
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
-      image: json['image'],
-      role: json['role'] as String?,
-      isEmailVerified: json['isEmailVerified'] as bool?,
-      customerId: json['customerId'] as String?,
-      name: json['name'] as String?,
-      phone: json['phone'] as String?,
-      email: json['email'] as String?,
-      id: json['id'] as String?,
-    );
-
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
-      'image': instance.image,
-      'role': instance.role,
-      'isEmailVerified': instance.isEmailVerified,
-      'customerId': instance.customerId,
-      'name': instance.name,
-      'phone': instance.phone,
-      'email': instance.email,
       'id': instance.id,
     };

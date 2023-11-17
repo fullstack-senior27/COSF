@@ -1,0 +1,46 @@
+import 'dart:developer';
+
+import 'package:cosmetropolis/core/api_client.dart';
+import 'package:cosmetropolis/core/constants.dart';
+import 'package:cosmetropolis/core/exceptions.dart';
+import 'package:cosmetropolis/data/remote/public/models/all_blogs_model.dart';
+import 'package:cosmetropolis/data/remote/public/models/all_categories_model.dart';
+import 'package:cosmetropolis/data/remote/public/public_repo.dart';
+import 'package:dartz/dartz.dart';
+
+class PublicRepoImpl implements PublicRepo {
+  final ApiClient _apiClient;
+
+  PublicRepoImpl(this._apiClient);
+
+  @override
+  Future<Either<ApiException, AllBlogsResponse>> getAllBlogs(
+      int page, int limit) async {
+    try {
+      final response =
+          await _apiClient.postWithParams("${AppConstants.baseUrl}blogs", {}, {
+        "page": page,
+        "limit": limit,
+      });
+      log("Sucess ====> ${response.toString()}");
+      return Right(AllBlogsResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, AllBlogCategoriesResponse>>
+      getAllCategories() async {
+    try {
+      final response =
+          await _apiClient.get("${AppConstants.baseUrl}blogs/categories/all");
+      log("Sucess ====> ${response.toString()}");
+      return Right(AllBlogCategoriesResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+}

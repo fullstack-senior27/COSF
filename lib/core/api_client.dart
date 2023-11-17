@@ -37,6 +37,16 @@ class ApiClient {
     }
   }
 
+  Future<Response<Map<String, dynamic>>> postWithParams(
+      String path, dynamic data, Map<String, dynamic> params) async {
+    try {
+      return await dio.post(path, data: data, queryParameters: params);
+    } on DioError catch (e) {
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
+
   Future<Response<Map<String, dynamic>>> postWithToken(
       String path, dynamic data, String token) async {
     try {

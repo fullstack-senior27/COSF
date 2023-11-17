@@ -35,7 +35,7 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.post(
           "${AppConstants.baseUrl}auth/register/user",
           userRegisterRequest.toJson());
-      print("Sucess ====> ${response.toString()}");
+      log("Sucess ====> ${response.toString()}");
       return Right(UserRegisterResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");

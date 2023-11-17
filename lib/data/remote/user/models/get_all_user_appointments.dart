@@ -46,7 +46,7 @@ class Result with _$Result {
     Beautician? beautician,
     DateTime? date,
     String? zipcode,
-    User? user,
+    String? user,
     int? amount,
     String? startTime,
     DateTime? createdAt,
@@ -119,18 +119,18 @@ class Service with _$Service {
       _$ServiceFromJson(json);
 }
 
-@freezed
-class User with _$User {
-  const factory User({
-    dynamic image,
-    String? role,
-    bool? isEmailVerified,
-    String? customerId,
-    String? name,
-    String? phone,
-    String? email,
-    String? id,
-  }) = _User;
+// @freezed
+// class User with _$User {
+//   const factory User({
+//     dynamic image,
+//     String? role,
+//     bool? isEmailVerified,
+//     String? customerId,
+//     String? name,
+//     String? phone,
+//     String? email,
+//     String? id,
+//   }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-}
+//   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+// }

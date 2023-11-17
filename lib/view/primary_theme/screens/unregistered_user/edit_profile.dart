@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/user/models/create_card_model.dart'
     as cardModel;
@@ -11,7 +9,6 @@ import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/edit_profile_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -76,6 +73,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
   TextEditingController cardNumberController = TextEditingController();
   String formatMMYY(String input) {
     // Remove any non-numeric characters
+    // ignore: parameter_assignments
     input = input.replaceAll(RegExp(r'\D'), '');
 
     if (input.length > 0) {
@@ -177,7 +175,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                   case 'My Account':
                                     break;
                                   case 'Beauty Blog':
-                                    Get.to(() => const BlogPage());
+                                    context.go("/blogs");
                                     break;
                                   case 'I am a Beautician':
                                     ref

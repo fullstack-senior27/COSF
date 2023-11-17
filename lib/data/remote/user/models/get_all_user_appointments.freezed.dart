@@ -467,7 +467,7 @@ mixin _$Result {
   Beautician? get beautician => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
   String? get zipcode => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
   int? get amount => throw _privateConstructorUsedError;
   String? get startTime => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -492,7 +492,7 @@ abstract class $ResultCopyWith<$Res> {
       Beautician? beautician,
       DateTime? date,
       String? zipcode,
-      User? user,
+      String? user,
       int? amount,
       String? startTime,
       DateTime? createdAt,
@@ -500,7 +500,6 @@ abstract class $ResultCopyWith<$Res> {
       int? v});
 
   $BeauticianCopyWith<$Res>? get beautician;
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -562,7 +561,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -597,18 +596,6 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
       return _then(_value.copyWith(beautician: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -625,7 +612,7 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       Beautician? beautician,
       DateTime? date,
       String? zipcode,
-      User? user,
+      String? user,
       int? amount,
       String? startTime,
       DateTime? createdAt,
@@ -634,8 +621,6 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
 
   @override
   $BeauticianCopyWith<$Res>? get beautician;
-  @override
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -694,7 +679,7 @@ class __$$_ResultCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -764,7 +749,7 @@ class _$_Result implements _Result {
   @override
   final String? zipcode;
   @override
-  final User? user;
+  final String? user;
   @override
   final int? amount;
   @override
@@ -847,7 +832,7 @@ abstract class _Result implements Result {
       final Beautician? beautician,
       final DateTime? date,
       final String? zipcode,
-      final User? user,
+      final String? user,
       final int? amount,
       final String? startTime,
       final DateTime? createdAt,
@@ -871,7 +856,7 @@ abstract class _Result implements Result {
   @override
   String? get zipcode;
   @override
-  User? get user;
+  String? get user;
   @override
   int? get amount;
   @override
@@ -2061,286 +2046,4 @@ abstract class _Service implements Service {
   @JsonKey(ignore: true)
   _$$_ServiceCopyWith<_$_Service> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
-/// @nodoc
-mixin _$User {
-  dynamic get image => throw _privateConstructorUsedError;
-  String? get role => throw _privateConstructorUsedError;
-  bool? get isEmailVerified => throw _privateConstructorUsedError;
-  String? get customerId => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
-  @useResult
-  $Res call(
-      {dynamic image,
-      String? role,
-      bool? isEmailVerified,
-      String? customerId,
-      String? name,
-      String? phone,
-      String? email,
-      String? id});
-}
-
-/// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = freezed,
-    Object? role = freezed,
-    Object? isEmailVerified = freezed,
-    Object? customerId = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isEmailVerified: freezed == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      customerId: freezed == customerId
-          ? _value.customerId
-          : customerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {dynamic image,
-      String? role,
-      bool? isEmailVerified,
-      String? customerId,
-      String? name,
-      String? phone,
-      String? email,
-      String? id});
-}
-
-/// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = freezed,
-    Object? role = freezed,
-    Object? isEmailVerified = freezed,
-    Object? customerId = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_$_User(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isEmailVerified: freezed == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      customerId: freezed == customerId
-          ? _value.customerId
-          : customerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_User implements _User {
-  const _$_User(
-      {this.image,
-      this.role,
-      this.isEmailVerified,
-      this.customerId,
-      this.name,
-      this.phone,
-      this.email,
-      this.id});
-
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
-
-  @override
-  final dynamic image;
-  @override
-  final String? role;
-  @override
-  final bool? isEmailVerified;
-  @override
-  final String? customerId;
-  @override
-  final String? name;
-  @override
-  final String? phone;
-  @override
-  final String? email;
-  @override
-  final String? id;
-
-  @override
-  String toString() {
-    return 'User(image: $image, role: $role, isEmailVerified: $isEmailVerified, customerId: $customerId, name: $name, phone: $phone, email: $email, id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_User &&
-            const DeepCollectionEquality().equals(other.image, image) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                other.isEmailVerified == isEmailVerified) &&
-            (identical(other.customerId, customerId) ||
-                other.customerId == customerId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(image),
-      role,
-      isEmailVerified,
-      customerId,
-      name,
-      phone,
-      email,
-      id);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
-      this,
-    );
-  }
-}
-
-abstract class _User implements User {
-  const factory _User(
-      {final dynamic image,
-      final String? role,
-      final bool? isEmailVerified,
-      final String? customerId,
-      final String? name,
-      final String? phone,
-      final String? email,
-      final String? id}) = _$_User;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
-
-  @override
-  dynamic get image;
-  @override
-  String? get role;
-  @override
-  bool? get isEmailVerified;
-  @override
-  String? get customerId;
-  @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  String? get id;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
 }
