@@ -1,3 +1,4 @@
+import 'package:cosmetropolis/data/remote/public/models/all_blogs_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
@@ -63,7 +64,7 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
     "Beard Style"
   ];
 
-  int _currentPage = 1;
+  int _currentPage = 0;
   bool sideFilters = true;
   int selected = 0;
   List<String> filterOptions = ['Option 1', 'Option 2', 'Option 3'];
@@ -232,9 +233,13 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                         0,
                                     (index) => InkWell(
                                       hoverColor: Colors.transparent,
-                                      onTap: () {
-                                        // Get.to(() => const BlogDetailsPage());
-                                        context.go("/blogs/blog-details");
+                                      onTap: () async {
+                                        await _viewModel.getBlogDetails(
+                                          _viewModel.allBlogsResponse?.data
+                                                  .results[index].id ??
+                                              "",
+                                          context,
+                                        );
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -286,12 +291,14 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                               children: [
                                                 Text(
                                                   DateFormat('dd MMMM yyyy')
-                                                      .format(_viewModel
-                                                              .allBlogsResponse
-                                                              ?.data
-                                                              .results[index]
-                                                              .createdAt ??
-                                                          DateTime.now()),
+                                                      .format(
+                                                    _viewModel
+                                                            .allBlogsResponse
+                                                            ?.data
+                                                            .results[index]
+                                                            .createdAt ??
+                                                        DateTime.now(),
+                                                  ),
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: GoogleFonts.urbanist(
@@ -383,11 +390,15 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                               height: 10.h,
                                             ),
                                             ElevatedButton(
-                                              onPressed: () {
-                                                print(
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .width,
+                                              onPressed: () async {
+                                                await _viewModel.getBlogDetails(
+                                                  _viewModel
+                                                          .allBlogsResponse
+                                                          ?.data
+                                                          .results[index]
+                                                          .id ??
+                                                      "",
+                                                  context,
                                                 );
                                               },
                                               style: ButtonStyle(
@@ -470,7 +481,9 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                               isLoading = true;
                                               setState(() {});
                                               await _viewModel.getAllBlogs(
-                                                  _currentPage, 4);
+                                                _currentPage,
+                                                4,
+                                              );
                                               isLoading = false;
                                               setState(() {});
                                             },
@@ -511,7 +524,9 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                               isLoading = true;
                                               setState(() {});
                                               await _viewModel.getAllBlogs(
-                                                  _currentPage, 4);
+                                                _currentPage,
+                                                4,
+                                              );
                                               isLoading = false;
                                               setState(() {});
                                             },
@@ -567,18 +582,38 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                           SizedBox(
                                             width: double.infinity,
                                             child: ListTile(
-                                              title: Text(_viewModel
-                                                      .allBlogCategoriesResponse
-                                                      ?.data[index]
-                                                      .name ??
-                                                  ''),
+                                              title: Text(
+                                                _viewModel
+                                                        .allBlogCategoriesResponse
+                                                        ?.data[index]
+                                                        .name ??
+                                                    '',
+                                              ),
                                               tileColor: selected == index
                                                   ? kselected
                                                   : kWhite,
-                                              onTap: () {
+                                              onTap: () async {
+                                                _currentPage = 0;
                                                 setState(() {
                                                   selected = index;
                                                 });
+
+                                                isLoading = true;
+                                                setState(() {});
+                                                await _viewModel
+                                                    .getBlogsByCategory(
+                                                  _currentPage,
+                                                  4,
+                                                  BlogCategoryRequest(
+                                                    blogCategory: _viewModel
+                                                            .allBlogCategoriesResponse
+                                                            ?.data[index]
+                                                            .id ??
+                                                        '',
+                                                  ),
+                                                );
+                                                isLoading = false;
+                                                setState(() {});
                                               },
                                             ),
                                           ),

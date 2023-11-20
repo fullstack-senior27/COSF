@@ -6,6 +6,18 @@ part of 'all_blogs_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_BlogCategoryRequest _$$_BlogCategoryRequestFromJson(
+        Map<String, dynamic> json) =>
+    _$_BlogCategoryRequest(
+      blogCategory: json['blogCategory'] as String?,
+    );
+
+Map<String, dynamic> _$$_BlogCategoryRequestToJson(
+        _$_BlogCategoryRequest instance) =>
+    <String, dynamic>{
+      'blogCategory': instance.blogCategory,
+    };
+
 _$_AllBlogsResponse _$$_AllBlogsResponseFromJson(Map<String, dynamic> json) =>
     _$_AllBlogsResponse(
       code: json['code'] as int,
@@ -48,7 +60,7 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
           ? null
           : BlogCategory.fromJson(
               json['blog_category'] as Map<String, dynamic>),
-      author: json['author'] as String,
+      author: json['author'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       v: json['__v'] as int,

@@ -4,6 +4,22 @@ import 'dart:convert';
 part 'all_blogs_model.freezed.dart';
 part 'all_blogs_model.g.dart';
 
+BlogCategoryRequest blogCategoryRequestFromJson(String str) =>
+    BlogCategoryRequest.fromJson(json.decode(str) as Map<String, dynamic>);
+
+String blogCategoryRequestToJson(BlogCategoryRequest data) =>
+    json.encode(data.toJson());
+
+@freezed
+class BlogCategoryRequest with _$BlogCategoryRequest {
+  const factory BlogCategoryRequest({
+    String? blogCategory,
+  }) = _BlogCategoryRequest;
+
+  factory BlogCategoryRequest.fromJson(Map<String, dynamic> json) =>
+      _$BlogCategoryRequestFromJson(json);
+}
+
 AllBlogsResponse allBlogsResponseFromJson(String str) =>
     AllBlogsResponse.fromJson(json.decode(str) as Map<String, dynamic>);
 
@@ -43,7 +59,7 @@ class Result with _$Result {
     required String title,
     required String description,
     @JsonKey(name: "blog_category") required BlogCategory? blogCategory,
-    required String author,
+    String? author,
     required DateTime createdAt,
     required DateTime updatedAt,
     @JsonKey(name: "__v") required int v,

@@ -14,6 +14,145 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+BlogCategoryRequest _$BlogCategoryRequestFromJson(Map<String, dynamic> json) {
+  return _BlogCategoryRequest.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BlogCategoryRequest {
+  String? get blogCategory => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BlogCategoryRequestCopyWith<BlogCategoryRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BlogCategoryRequestCopyWith<$Res> {
+  factory $BlogCategoryRequestCopyWith(
+          BlogCategoryRequest value, $Res Function(BlogCategoryRequest) then) =
+      _$BlogCategoryRequestCopyWithImpl<$Res, BlogCategoryRequest>;
+  @useResult
+  $Res call({String? blogCategory});
+}
+
+/// @nodoc
+class _$BlogCategoryRequestCopyWithImpl<$Res, $Val extends BlogCategoryRequest>
+    implements $BlogCategoryRequestCopyWith<$Res> {
+  _$BlogCategoryRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? blogCategory = freezed,
+  }) {
+    return _then(_value.copyWith(
+      blogCategory: freezed == blogCategory
+          ? _value.blogCategory
+          : blogCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BlogCategoryRequestCopyWith<$Res>
+    implements $BlogCategoryRequestCopyWith<$Res> {
+  factory _$$_BlogCategoryRequestCopyWith(_$_BlogCategoryRequest value,
+          $Res Function(_$_BlogCategoryRequest) then) =
+      __$$_BlogCategoryRequestCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? blogCategory});
+}
+
+/// @nodoc
+class __$$_BlogCategoryRequestCopyWithImpl<$Res>
+    extends _$BlogCategoryRequestCopyWithImpl<$Res, _$_BlogCategoryRequest>
+    implements _$$_BlogCategoryRequestCopyWith<$Res> {
+  __$$_BlogCategoryRequestCopyWithImpl(_$_BlogCategoryRequest _value,
+      $Res Function(_$_BlogCategoryRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? blogCategory = freezed,
+  }) {
+    return _then(_$_BlogCategoryRequest(
+      blogCategory: freezed == blogCategory
+          ? _value.blogCategory
+          : blogCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BlogCategoryRequest implements _BlogCategoryRequest {
+  const _$_BlogCategoryRequest({this.blogCategory});
+
+  factory _$_BlogCategoryRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_BlogCategoryRequestFromJson(json);
+
+  @override
+  final String? blogCategory;
+
+  @override
+  String toString() {
+    return 'BlogCategoryRequest(blogCategory: $blogCategory)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BlogCategoryRequest &&
+            (identical(other.blogCategory, blogCategory) ||
+                other.blogCategory == blogCategory));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, blogCategory);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BlogCategoryRequestCopyWith<_$_BlogCategoryRequest> get copyWith =>
+      __$$_BlogCategoryRequestCopyWithImpl<_$_BlogCategoryRequest>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BlogCategoryRequestToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BlogCategoryRequest implements BlogCategoryRequest {
+  const factory _BlogCategoryRequest({final String? blogCategory}) =
+      _$_BlogCategoryRequest;
+
+  factory _BlogCategoryRequest.fromJson(Map<String, dynamic> json) =
+      _$_BlogCategoryRequest.fromJson;
+
+  @override
+  String? get blogCategory;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BlogCategoryRequestCopyWith<_$_BlogCategoryRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 AllBlogsResponse _$AllBlogsResponseFromJson(Map<String, dynamic> json) {
   return _AllBlogsResponse.fromJson(json);
 }
@@ -459,7 +598,7 @@ mixin _$Result {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: "blog_category")
   BlogCategory? get blogCategory => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
+  String? get author => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "__v")
@@ -480,7 +619,7 @@ abstract class $ResultCopyWith<$Res> {
       String title,
       String description,
       @JsonKey(name: "blog_category") BlogCategory? blogCategory,
-      String author,
+      String? author,
       DateTime createdAt,
       DateTime updatedAt,
       @JsonKey(name: "__v") int v});
@@ -505,7 +644,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? title = null,
     Object? description = null,
     Object? blogCategory = freezed,
-    Object? author = null,
+    Object? author = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? v = null,
@@ -527,10 +666,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.blogCategory
           : blogCategory // ignore: cast_nullable_to_non_nullable
               as BlogCategory?,
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -570,7 +709,7 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       String title,
       String description,
       @JsonKey(name: "blog_category") BlogCategory? blogCategory,
-      String author,
+      String? author,
       DateTime createdAt,
       DateTime updatedAt,
       @JsonKey(name: "__v") int v});
@@ -593,7 +732,7 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? blogCategory = freezed,
-    Object? author = null,
+    Object? author = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? v = null,
@@ -615,10 +754,10 @@ class __$$_ResultCopyWithImpl<$Res>
           ? _value.blogCategory
           : blogCategory // ignore: cast_nullable_to_non_nullable
               as BlogCategory?,
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -643,7 +782,7 @@ class _$_Result implements _Result {
       required this.title,
       required this.description,
       @JsonKey(name: "blog_category") required this.blogCategory,
-      required this.author,
+      this.author,
       required this.createdAt,
       required this.updatedAt,
       @JsonKey(name: "__v") required this.v});
@@ -662,7 +801,7 @@ class _$_Result implements _Result {
   @JsonKey(name: "blog_category")
   final BlogCategory? blogCategory;
   @override
-  final String author;
+  final String? author;
   @override
   final DateTime createdAt;
   @override
@@ -720,7 +859,7 @@ abstract class _Result implements Result {
       required final String title,
       required final String description,
       @JsonKey(name: "blog_category") required final BlogCategory? blogCategory,
-      required final String author,
+      final String? author,
       required final DateTime createdAt,
       required final DateTime updatedAt,
       @JsonKey(name: "__v") required final int v}) = _$_Result;
@@ -738,7 +877,7 @@ abstract class _Result implements Result {
   @JsonKey(name: "blog_category")
   BlogCategory? get blogCategory;
   @override
-  String get author;
+  String? get author;
   @override
   DateTime get createdAt;
   @override
