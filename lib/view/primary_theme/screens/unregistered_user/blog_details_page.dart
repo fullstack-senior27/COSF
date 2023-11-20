@@ -15,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BlogDetailsPage extends ConsumerStatefulWidget {
-  final Data data;
+  final Data? data;
   const BlogDetailsPage({super.key, required this.data});
 
   @override
@@ -41,7 +41,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
   void getData() async {
     isLoading = true;
     setState(() {});
-    await _viewModel.getRelatedBlogs(widget.data.id ?? "");
+    await _viewModel.getRelatedBlogs(widget.data?.id ?? "");
     isLoading = false;
     setState(() {});
   }
@@ -131,7 +131,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
                     height: 20.h,
                   ),
                   Text(
-                    widget.data.title ?? "",
+                    widget.data?.title ?? "",
                     style: GoogleFonts.urbanist(
                       fontSize: MediaQuery.of(context).size.width > 600
                           ? 25.sp
@@ -166,7 +166,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
                           ),
                           Text(
                             DateFormat('MMMM dd, yyyy').format(
-                              widget.data.createdAt ?? DateTime.now(),
+                              widget.data?.createdAt ?? DateTime.now(),
                             ),
                             style: GoogleFonts.urbanist(
                               fontSize: 12.sp,
@@ -277,7 +277,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
                     height: 10.h,
                   ),
                   Text(
-                    widget.data.description ?? "",
+                    widget.data?.description ?? "",
                     style: GoogleFonts.poppins(
                       fontSize: 11.5.sp,
                       fontWeight: FontWeight.w400,
@@ -360,7 +360,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
                           ),
                           Text(
                             DateFormat('MMMM dd, yyyy').format(
-                              widget.data.createdAt ?? DateTime.now(),
+                              widget.data?.createdAt ?? DateTime.now(),
                             ),
                             style: GoogleFonts.urbanist(
                               fontSize: 12.sp,

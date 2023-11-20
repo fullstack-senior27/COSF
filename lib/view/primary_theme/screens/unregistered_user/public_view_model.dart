@@ -6,6 +6,7 @@ import 'package:cosmetropolis/data/remote/public/public_repo.dart';
 import 'package:cosmetropolis/domain/providers/repository_provider.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/helpers/base_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -80,7 +81,12 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
           showSnackbar(l.message);
         }, (r) {
           _blogDetailsResponse = r;
-          context.go("/blogs/blog-details", extra: _blogDetailsResponse?.data);
+          // context.go("/blogs/blog-details", extra: _blogDetailsResponse?.data);
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return BlogDetailsPage(
+              data: _blogDetailsResponse?.data,
+            );
+          }));
           notifyListeners();
         }));
   }
