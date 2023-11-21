@@ -14,8 +14,10 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
+import '../../../data/remote/public/models/beauticians_list_model.dart';
+
 class BeauticiansListWebView extends StatelessWidget {
-  final Salon salonDetails;
+  final Result? salonDetails;
   BeauticiansListWebView({super.key, required this.salonDetails});
 
   @override
@@ -48,7 +50,7 @@ class BeauticiansListWebView extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: DecorationImage(
-                          image: NetworkImage(salonDetails.image ??
+                          image: NetworkImage(salonDetails?.image ??
                               "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                           fit: BoxFit.cover,
                         ),
@@ -72,7 +74,7 @@ class BeauticiansListWebView extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                salonDetails.name ?? "",
+                                salonDetails?.name ?? "",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
@@ -102,7 +104,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  salonDetails.address ?? "",
+                                  salonDetails?.address ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.urbanist(
@@ -125,7 +127,8 @@ class BeauticiansListWebView extends StatelessWidget {
                               RatingBar.builder(
                                 ignoreGestures: true,
                                 itemSize: 20.sp,
-                                initialRating: salonDetails.avgRating ?? 0,
+                                initialRating:
+                                    salonDetails?.avgRating?.toDouble() ?? 0,
                                 allowHalfRating: true,
                                 itemBuilder: (context, _) => const Icon(
                                   Icons.star_rounded,
@@ -135,7 +138,7 @@ class BeauticiansListWebView extends StatelessWidget {
                                 unratedColor: kGrey,
                               ),
                               Text(
-                                "${salonDetails.avgRating} (${salonDetails.ratingCount} Reviews)",
+                                "${salonDetails?.avgRating} (${salonDetails?.ratingCount} Reviews)",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
@@ -305,7 +308,7 @@ class BeauticiansListWebView extends StatelessWidget {
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: salonDetails.services?.length ?? 0,
+                itemCount: salonDetails?.services?.length ?? 0,
                 separatorBuilder: (context, index) {
                   return Divider(
                     color: kGrey,
@@ -317,7 +320,7 @@ class BeauticiansListWebView extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          salonDetails.services?[index].name ?? "",
+                          salonDetails?.services?[index].name ?? "",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
@@ -333,7 +336,7 @@ class BeauticiansListWebView extends StatelessWidget {
                         // ),
                         const Spacer(),
                         Text(
-                          "${salonDetails.services?[index].time ?? ""} Mins - \$${salonDetails.services?[index].price ?? 0}",
+                          "${salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${salonDetails?.services?[index].price ?? 0}",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,

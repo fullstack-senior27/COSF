@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
@@ -22,23 +24,38 @@ class BeauticiansListPageView extends ConsumerStatefulWidget {
   const BeauticiansListPageView({super.key});
 
   @override
-  ConsumerState<BeauticiansListPageView> createState() => _BeauticiansListPageViewState();
+  ConsumerState<BeauticiansListPageView> createState() =>
+      _BeauticiansListPageViewState();
 }
 
-class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageView> with BaseScreenView {
+class _BeauticiansListPageViewState
+    extends ConsumerState<BeauticiansListPageView> with BaseScreenView {
   final TextEditingController _dateController = TextEditingController();
-  List<String> items = ["View All",];
+  List<String> items = [
+    "View All",
+  ];
 
-  int selected = 0;  
+  int selected = 0;
   int selectedService = -1;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      for(int i = 0; i < (ref.read(homePageViewModel).services.data?.length ?? 0); i++) {
-        items.add(ref.read(homePageViewModel).services.data?[i].name ?? "");
+      for (int i = 0;
+          i <
+              (ref
+                      .read(homePageViewModel)
+                      .serviceCategoriesList
+                      ?.data
+                      ?.length ??
+                  0);
+          i++) {
+        items.add(
+            ref.read(homePageViewModel).serviceCategoriesList?.data?[i].name ??
+                "");
       }
+      print(items);
     });
   }
 
@@ -125,19 +142,19 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                           maxSuggestionsInViewPort: 10,
                           offset: const Offset(0, 59),
                           onSearchTextChanged: (p0) {
-                            if(p0.isEmpty) {
+                            if (p0.isEmpty) {
                               _homePageViewModel.clearFilter();
                             }
-                            if(p0.length > 3) {
+                            if (p0.length > 3) {
                               _homePageViewModel.fetchAllSalons(p0);
                             }
                           },
                           onSuggestionTap: (p0) {
-                            _homePageViewModel.filterSearch(p0.item?.name ?? "");
+                            _homePageViewModel
+                                .filterSearch(p0.item?.name ?? "");
                           },
                           suggestionsDecoration: SuggestionDecoration(
-                            borderRadius: BorderRadius.circular(5)
-                          ),
+                              borderRadius: BorderRadius.circular(5)),
                           searchInputDecoration: InputDecoration(
                             hintText: "Services or beautician name",
                             hintStyle: GoogleFonts.urbanist(
@@ -167,51 +184,74 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                             ),
                           ),
                           marginColor: Colors.white,
-                          suggestions: ref.read(homePageViewModel).allSalons
-                            .map(
-                            (e) => SearchFieldListItem<Salon>(
-                              e.name ?? "",
-                              item: e,
-                              // Use child to show Custom Widgets in the suggestions
-                              // defaults to Text widget
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
-                                height: 60,
-                                color: kWhite,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[200],
-                                        borderRadius: BorderRadius.circular(30)
-                                      ),
-                                      child: const Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
-                                    ),
-                                    gapW8,
-                                    Flexible(
-                                      child: Container(
-                                        width: 250,
-                                        child: Text(e.name ?? "", style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
-                                      )
-                                    ),
-                                    // Spacer(),
-                                    Expanded(
+                          suggestions: ref
+                              .read(homePageViewModel)
+                              .allSalons
+                              .map(
+                                (e) => SearchFieldListItem<Salon>(e.name ?? "",
+                                    item: e,
+                                    // Use child to show Custom Widgets in the suggestions
+                                    // defaults to Text widget
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      height: 60,
+                                      color: kWhite,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          Text("${e.avgRating ?? 0}", style: const TextStyle(color: kGrey, fontSize: 12),),
-                                          const Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey[200],
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                            child: const Center(
+                                              child: Icon(
+                                                Icons.search,
+                                                color: kGrey,
+                                                size: 15,
+                                              ),
+                                            ),
+                                          ),
+                                          gapW8,
+                                          Flexible(
+                                              child: Container(
+                                                  width: 250,
+                                                  child: Text(
+                                                    e.name ?? "",
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ))),
+                                          // Spacer(),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  "${e.avgRating ?? 0}",
+                                                  style: const TextStyle(
+                                                      color: kGrey,
+                                                      fontSize: 12),
+                                                ),
+                                                const Icon(
+                                                  Icons.star_rounded,
+                                                  color: kGrey,
+                                                  size: 20,
+                                                )
+                                              ],
+                                            ),
+                                          )
                                         ],
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    )),
                               )
-                            ),
-                          ).toList(),
+                              .toList(),
                         ),
                       ),
                       Container(
@@ -340,8 +380,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                             ),
                             onPressed: () {
                               ref.read(homePageViewModel).fetchAllSalons(
-                                ref.read(homePageViewModel).searchController.text,
-                              );
+                                    ref
+                                        .read(homePageViewModel)
+                                        .searchController
+                                        .text,
+                                  );
                             },
                             child: Text(
                               "Search",
@@ -369,10 +412,10 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                       maxSuggestionsInViewPort: 10,
                       offset: const Offset(0, 59),
                       onSearchTextChanged: (p0) {
-                        if(p0.isEmpty) {
+                        if (p0.isEmpty) {
                           _homePageViewModel.clearFilter();
                         }
-                        if(p0.length > 3) {
+                        if (p0.length > 3) {
                           _homePageViewModel.fetchAllSalons(p0);
                         }
                       },
@@ -380,8 +423,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                         _homePageViewModel.filterSearch(p0.item?.name ?? "");
                       },
                       suggestionsDecoration: SuggestionDecoration(
-                        borderRadius: BorderRadius.circular(5)
-                      ),
+                          borderRadius: BorderRadius.circular(5)),
                       searchInputDecoration: InputDecoration(
                         hintText: "Services or beautician name",
                         hintStyle: GoogleFonts.urbanist(
@@ -423,51 +465,72 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                         ),
                       ),
                       // marginColor: Colors.white,
-                      suggestions: ref.read(homePageViewModel).allSalons
-                        .map(
-                        (e) => SearchFieldListItem<Salon>(
-                          e.name ?? "",
-                          item: e,
-                          // Use child to show Custom Widgets in the suggestions
-                          // defaults to Text widget
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            height: 60,
-                            color: kWhite,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[200],
-                                    borderRadius: BorderRadius.circular(30)
-                                  ),
-                                  child: const Center(child: Icon(Icons.search, color: kGrey, size: 15,),),
-                                ),
-                                gapW8,
-                                Flexible(
-                                  child: Container(
-                                    width: 250,
-                                    child: Text(e.name ?? "", style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis,)
-                                  )
-                                ),
-                                // Spacer(),
-                                Expanded(
+                      suggestions: ref
+                          .read(homePageViewModel)
+                          .allSalons
+                          .map(
+                            (e) => SearchFieldListItem<Salon>(e.name ?? "",
+                                item: e,
+                                // Use child to show Custom Widgets in the suggestions
+                                // defaults to Text widget
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  height: 60,
+                                  color: kWhite,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text("${e.avgRating ?? 0}", style: const TextStyle(color: kGrey, fontSize: 12),),
-                                      const Icon(Icons.star_rounded, color: kGrey, size: 20,)
+                                      Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: const Center(
+                                          child: Icon(
+                                            Icons.search,
+                                            color: kGrey,
+                                            size: 15,
+                                          ),
+                                        ),
+                                      ),
+                                      gapW8,
+                                      Flexible(
+                                          child: Container(
+                                              width: 250,
+                                              child: Text(
+                                                e.name ?? "",
+                                                style: const TextStyle(
+                                                    fontSize: 12),
+                                                overflow: TextOverflow.ellipsis,
+                                              ))),
+                                      // Spacer(),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "${e.avgRating ?? 0}",
+                                              style: const TextStyle(
+                                                  color: kGrey, fontSize: 12),
+                                            ),
+                                            const Icon(
+                                              Icons.star_rounded,
+                                              color: kGrey,
+                                              size: 20,
+                                            )
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
+                                )),
                           )
-                        ),
-                      ).toList(),
+                          .toList(),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -574,8 +637,11 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                         ),
                         onPressed: () {
                           ref.read(homePageViewModel).fetchAllSalons(
-                            ref.read(homePageViewModel).searchController.text,
-                          );
+                                ref
+                                    .read(homePageViewModel)
+                                    .searchController
+                                    .text,
+                              );
                         },
                         child: const Text(
                           "Search",
@@ -661,15 +727,27 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                     selectedService = selected + 1;
                                   });
 
-                                  if(index > 0) {
+                                  if (index > 0) {
                                     ref.read(homePageViewModel).fetchAllSalons(
-                                      ref.read(homePageViewModel).searchController.text,
-                                      serviceType: ref.read(homePageViewModel).services.data?[selected - 1].serviceType?.id ?? "",
-                                    );
+                                          ref
+                                              .read(homePageViewModel)
+                                              .searchController
+                                              .text,
+                                          serviceType: ref
+                                                  .read(homePageViewModel)
+                                                  .services
+                                                  .data?[selected - 1]
+                                                  .serviceType
+                                                  ?.id ??
+                                              "",
+                                        );
                                   } else {
                                     ref.read(homePageViewModel).fetchAllSalons(
-                                      ref.read(homePageViewModel).searchController.text,
-                                    );
+                                          ref
+                                              .read(homePageViewModel)
+                                              .searchController
+                                              .text,
+                                        );
                                   }
                                 },
                                 child: FittedBox(
@@ -699,7 +777,7 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                               : FontWeight.w400,
                                           color: selected == index
                                               ? kWhite
-                                              : kdescription,
+                                              : kBlack,
                                         ),
                                       ),
                                     ),
@@ -755,24 +833,54 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                     height: 30.h,
                                   ),
                                   SizedBox(
-                                    child: _homePageViewModel.loading 
-                                      ? const Center(child: CircularProgressIndicator(color: kBlack,),)
-                                      : _homePageViewModel.salons.isNotEmpty 
-                                        ? ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: _homePageViewModel.salons.length,
-                                            itemBuilder: (context, index) {
-                                              return Column(
-                                                children: [
-                                                  BeauticiansListWebView(salonDetails: _homePageViewModel.salons[index],),
-                                                  SizedBox(
-                                                    height: 20.h,
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          ) 
-                                        : const Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
+                                    child:
+                                        // _homePageViewModel.loading
+                                        //     ? const Center(
+                                        //         child: CircularProgressIndicator(
+                                        //           color: kBlack,
+                                        //         ),
+                                        //       )
+                                        //     :
+                                        _homePageViewModel
+                                                .beauticiansListResponse!
+                                                .data
+                                                .results
+                                                .isNotEmpty
+                                            ? ListView.builder(
+                                                shrinkWrap: true,
+                                                itemCount: _homePageViewModel
+                                                        .beauticiansListResponse
+                                                        ?.data
+                                                        .results
+                                                        .length ??
+                                                    0,
+                                                itemBuilder: (context, index) {
+                                                  return Column(
+                                                    children: [
+                                                      BeauticiansListWebView(
+                                                        salonDetails:
+                                                            _homePageViewModel
+                                                                .beauticiansListResponse
+                                                                ?.data
+                                                                .results[index],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            : const Center(
+                                                child: Text(
+                                                  "No Salons/Beauticians/Services Found :(",
+                                                  style: TextStyle(
+                                                      color: kBlack,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
                                   ),
                                 ],
                               )
@@ -833,25 +941,44 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                                   //   },
                                   // ),
                                   SizedBox(
-                                    child: _homePageViewModel.loading 
-                                      ? const Center(child: CircularProgressIndicator(color: kBlack,),)
-                                      : _homePageViewModel.salons.isNotEmpty 
-                                        ? ListView.builder(
-                                            shrinkWrap: true,
-                                            physics: NeverScrollableScrollPhysics(),
-                                            itemCount: _homePageViewModel.salons.length,
-                                            itemBuilder: (context, index) {
-                                              return Column(
-                                                children: [
-                                                  BeauticiansListMobView(salonDetails: _homePageViewModel.salons[index],),
-                                                  SizedBox(
-                                                    height: 20.h,
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          ) 
-                                        : const Center(child: Text("No Salons/Beauticians/Services Found :(", style: TextStyle(color: kBlack, fontWeight: FontWeight.bold, fontSize: 18),),),
+                                    child: _homePageViewModel.loading
+                                        ? const Center(
+                                            child: CircularProgressIndicator(
+                                              color: kBlack,
+                                            ),
+                                          )
+                                        : _homePageViewModel.salons.isNotEmpty
+                                            ? ListView.builder(
+                                                shrinkWrap: true,
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                itemCount: _homePageViewModel
+                                                    .salons.length,
+                                                itemBuilder: (context, index) {
+                                                  return Column(
+                                                    children: [
+                                                      BeauticiansListMobView(
+                                                        salonDetails:
+                                                            _homePageViewModel
+                                                                .salons[index],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.h,
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            : const Center(
+                                                child: Text(
+                                                  "No Salons/Beauticians/Services Found :(",
+                                                  style: TextStyle(
+                                                      color: kBlack,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
                                   ),
                                 ],
                               ),
@@ -869,7 +996,10 @@ class _BeauticiansListPageViewState extends ConsumerState<BeauticiansListPageVie
                             crossAxisAlignment: CrossAxisAlignment.start,
                             // mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              BeauticiansSideFilter(upperFilterIndex: selected, selectedService: selectedService,),
+                              BeauticiansSideFilter(
+                                upperFilterIndex: selected,
+                                selectedService: selectedService,
+                              ),
                             ],
                           ),
                         ),

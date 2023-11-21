@@ -3,6 +3,8 @@ import 'package:cosmetropolis/data/remote/public/models/all_categories_model.dar
 import 'package:cosmetropolis/data/remote/public/models/blogs_details_model.dart';
 import 'package:cosmetropolis/data/remote/public/models/related_blogs_model.dart';
 import 'package:cosmetropolis/data/remote/public/public_repo.dart';
+import 'package:cosmetropolis/data/remote/services/models/service_categories_model.dart';
+import 'package:cosmetropolis/data/remote/services/models/service_types_model.dart';
 import 'package:cosmetropolis/domain/providers/repository_provider.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/helpers/base_view_model.dart';

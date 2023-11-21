@@ -3,6 +3,8 @@ import 'package:cosmetropolis/data/remote/public/models/all_blogs_model.dart';
 import 'package:cosmetropolis/data/remote/public/models/all_categories_model.dart';
 import 'package:cosmetropolis/data/remote/public/models/blogs_details_model.dart';
 import 'package:cosmetropolis/data/remote/public/models/related_blogs_model.dart';
+import 'package:cosmetropolis/data/remote/services/models/service_categories_model.dart';
+import 'package:cosmetropolis/data/remote/services/models/service_types_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class PublicRepo {
@@ -17,4 +19,8 @@ abstract class PublicRepo {
   Future<Either<ApiException, BlogDetailsResponse>> getBlogDetails(String id);
 
   Future<Either<ApiException, RelatedBlogsResponse>> getRelatedBlogs(String id);
+
+  Future<Either<ApiException, ServiceCategoriesList>> getServiceCategories();
+
+  Future<Either<ApiException, ServiceTypesList>> getServiceTypes();
 }
