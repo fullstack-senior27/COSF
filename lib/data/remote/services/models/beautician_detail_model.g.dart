@@ -1,22 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'beauticians_list_model.dart';
+part of 'beautician_detail_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BeauticiansListResponse _$$_BeauticiansListResponseFromJson(
+_$_BeauticianDetailRequest _$$_BeauticianDetailRequestFromJson(
         Map<String, dynamic> json) =>
-    _$_BeauticiansListResponse(
+    _$_BeauticianDetailRequest(
+      beauticianId: json['beauticianId'] as String?,
+    );
+
+Map<String, dynamic> _$$_BeauticianDetailRequestToJson(
+        _$_BeauticianDetailRequest instance) =>
+    <String, dynamic>{
+      'beauticianId': instance.beauticianId,
+    };
+
+_$_BeauticianDetailResponse _$$_BeauticianDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_BeauticianDetailResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
       isSuccess: json['isSuccess'] as bool?,
-      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_BeauticiansListResponseToJson(
-        _$_BeauticiansListResponse instance) =>
+Map<String, dynamic> _$$_BeauticianDetailResponseToJson(
+        _$_BeauticianDetailResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -25,36 +39,18 @@ Map<String, dynamic> _$$_BeauticiansListResponseToJson(
     };
 
 _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
-      results: (json['results'] as List<dynamic>)
-          .map((e) => Result.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      totalPages: json['totalPages'] as int?,
-      currentPage: json['currentPage'] as int?,
-      limit: json['limit'] as int?,
-      totalResults: json['totalResults'] as int?,
-    );
-
-Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
-      'results': instance.results,
-      'totalPages': instance.totalPages,
-      'currentPage': instance.currentPage,
-      'limit': instance.limit,
-      'totalResults': instance.totalResults,
-    };
-
-_$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       id: json['_id'] as String?,
       image: json['image'] as String?,
       role: json['role'] as String?,
       photos: json['photos'] as List<dynamic>?,
       profession: json['profession'] as String?,
-      about: json['about'],
+      about: json['about'] as String?,
       website: json['website'] as String?,
+      address: json['address'] as String?,
       isEmailVerified: json['isEmailVerified'] as bool?,
-      speciality: (json['speciality'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      speciality: json['speciality'] as List<dynamic>?,
       accountId: json['accountId'] as String?,
+      blockedClients: json['blockedClients'] as List<dynamic>?,
       name: json['name'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
@@ -69,10 +65,6 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       v: json['__v'] as int?,
-      address: json['address'] as String?,
-      blockedClients: (json['blockedClients'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       services: (json['services'] as List<dynamic>?)
           ?.map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -84,10 +76,10 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
       ratingCount: json['ratingCount'] as int?,
-      avgRating: (json['avgRating'] as num?)?.toDouble(),
+      avgRating: json['avgRating'] as int?,
     );
 
-Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
+Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
       '_id': instance.id,
       'image': instance.image,
       'role': instance.role,
@@ -95,9 +87,11 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'profession': instance.profession,
       'about': instance.about,
       'website': instance.website,
+      'address': instance.address,
       'isEmailVerified': instance.isEmailVerified,
       'speciality': instance.speciality,
       'accountId': instance.accountId,
+      'blockedClients': instance.blockedClients,
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
@@ -106,8 +100,6 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       '__v': instance.v,
-      'address': instance.address,
-      'blockedClients': instance.blockedClients,
       'services': instance.services,
       'products': instance.products,
       'serviceCategories': instance.serviceCategories,
@@ -141,8 +133,10 @@ _$_Review _$$_ReviewFromJson(Map<String, dynamic> json) => _$_Review(
       id: json['_id'] as String?,
       beautician: json['beautician'] as String?,
       text: json['text'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
-      user: json['user'] as String?,
+      rating: json['rating'] as int?,
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
       v: json['__v'] as int?,
     );
 
@@ -153,6 +147,30 @@ Map<String, dynamic> _$$_ReviewToJson(_$_Review instance) => <String, dynamic>{
       'rating': instance.rating,
       'user': instance.user,
       '__v': instance.v,
+    };
+
+_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+      image: json['image'],
+      role: json['role'] as String?,
+      isEmailVerified: json['isEmailVerified'] as bool?,
+      customerId: json['customerId'] as String?,
+      isOffline: json['isOffline'] as bool?,
+      name: json['name'] as String?,
+      phone: json['phone'] as String?,
+      email: json['email'] as String?,
+      id: json['id'] as String?,
+    );
+
+Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+      'image': instance.image,
+      'role': instance.role,
+      'isEmailVerified': instance.isEmailVerified,
+      'customerId': instance.customerId,
+      'isOffline': instance.isOffline,
+      'name': instance.name,
+      'phone': instance.phone,
+      'email': instance.email,
+      'id': instance.id,
     };
 
 _$_ServiceCategory _$$_ServiceCategoryFromJson(Map<String, dynamic> json) =>
@@ -178,14 +196,20 @@ Map<String, dynamic> _$$_ServiceCategoryToJson(_$_ServiceCategory instance) =>
     };
 
 _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
-      id: json['_id'] as String?,
+      id: json['id'] as String?,
       isAvailable: json['isAvailable'] as bool?,
       name: json['name'] as String?,
       price: json['price'] as int?,
       description: json['description'] as String?,
       durationInMinutes: json['durationInMinutes'] as int?,
-      serviceCategory: json['serviceCategory'] as String?,
-      serviceType: json['serviceType'] as String?,
+      serviceCategory: json['serviceCategory'] == null
+          ? null
+          : ServiceCategoryClass.fromJson(
+              json['serviceCategory'] as Map<String, dynamic>),
+      serviceType: json['serviceType'] == null
+          ? null
+          : ServiceCategoryClass.fromJson(
+              json['serviceType'] as Map<String, dynamic>),
       beautician: json['beautician'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -198,7 +222,7 @@ _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
 
 Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
     <String, dynamic>{
-      '_id': instance.id,
+      'id': instance.id,
       'isAvailable': instance.isAvailable,
       'name': instance.name,
       'price': instance.price,
@@ -212,53 +236,16 @@ Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
       '__v': instance.v,
     };
 
-_$_BeauticiansFilterRequest _$$_BeauticiansFilterRequestFromJson(
+_$_ServiceCategoryClass _$$_ServiceCategoryClassFromJson(
         Map<String, dynamic> json) =>
-    _$_BeauticiansFilterRequest(
-      filters: json['filters'] == null
-          ? null
-          : Filters.fromJson(json['filters'] as Map<String, dynamic>),
+    _$_ServiceCategoryClass(
+      name: json['name'] as String?,
+      id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_BeauticiansFilterRequestToJson(
-        _$_BeauticiansFilterRequest instance) =>
+Map<String, dynamic> _$$_ServiceCategoryClassToJson(
+        _$_ServiceCategoryClass instance) =>
     <String, dynamic>{
-      'filters': instance.filters,
-    };
-
-_$_Filters _$$_FiltersFromJson(Map<String, dynamic> json) => _$_Filters(
-      search: json['search'] as String?,
-      location: json['location'] as String?,
-      date: json['date'] as String?,
-      avgRating: json['avgRating'] as int?,
-      priceRange: json['price_range'] == null
-          ? null
-          : PriceRange.fromJson(json['price_range'] as Map<String, dynamic>),
-      serviceType: json['service_type'] as String?,
-      serviceCategory: json['service_category'] as String?,
-      sortPrice: json['sort_price'] as String?,
-    );
-
-Map<String, dynamic> _$$_FiltersToJson(_$_Filters instance) =>
-    <String, dynamic>{
-      'search': instance.search,
-      'location': instance.location,
-      'date': instance.date,
-      'avgRating': instance.avgRating,
-      'price_range': instance.priceRange,
-      'service_type': instance.serviceType,
-      'service_category': instance.serviceCategory,
-      'sort_price': instance.sortPrice,
-    };
-
-_$_PriceRange _$$_PriceRangeFromJson(Map<String, dynamic> json) =>
-    _$_PriceRange(
-      minPrice: json['minPrice'] as int?,
-      maxPrice: json['maxPrice'] as int?,
-    );
-
-Map<String, dynamic> _$$_PriceRangeToJson(_$_PriceRange instance) =>
-    <String, dynamic>{
-      'minPrice': instance.minPrice,
-      'maxPrice': instance.maxPrice,
+      'name': instance.name,
+      'id': instance.id,
     };

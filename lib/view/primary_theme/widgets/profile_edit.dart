@@ -1,5 +1,6 @@
 // ignore_for_file: use_decorated_box
 
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
@@ -49,8 +50,12 @@ class _ProfileEditState extends State<ProfileEdit>
   int selectedScreen = 0;
   int selected = 0;
   List<Widget> screens = [
-    const ServiceI(),
-    const ReviewI(),
+    ServiceI(
+      data: BeauticianDetailResponse(),
+    ),
+    ReviewI(
+      beauticianDetailResponse: BeauticianDetailResponse(),
+    ),
     const aboutI(),
     const productI(),
   ];

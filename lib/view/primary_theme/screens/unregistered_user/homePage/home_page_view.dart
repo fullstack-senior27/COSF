@@ -14,6 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
@@ -70,6 +71,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _viewModel = ref.read(homePageViewModel);
       _viewModel.getServiceCategories();
+      _viewModel.getServiceTypes();
       getData();
       // _viewModel.fetchAllSalons("");
     });
@@ -88,11 +90,11 @@ class _HomePageViewState extends ConsumerState<HomePageView>
         .getBeauticiansByFilter(const beautician.BeauticiansFilterRequest(
             filters: beautician.Filters(
       search: "",
-      serviceCategory: "",
-      serviceType: "",
-      location: "",
+      // serviceCategory: "",
+      // serviceType: "",
+      // location: "",
       // avgRating: null,
-      priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
+      // priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
     )));
     isLoading = false;
     setState(() {});
@@ -149,7 +151,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       // ignore: use_decorated_box
                       child: isLoading
-                          ? CircularProgressIndicator()
+                          ? const CircularProgressIndicator()
                           : Container(
                               decoration: BoxDecoration(
                                 color: kWhite,
@@ -176,11 +178,8 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                           _viewModel.getBeauticiansByFilter(
                                             beautician.BeauticiansFilterRequest(
                                                 filters: beautician.Filters(
-                                                    search: p0,
-                                                    avgRating: null,
-                                                    location: "",
-                                                    serviceCategory: "",
-                                                    serviceType: "")),
+                                              search: p0,
+                                            )),
                                           );
                                         }
                                       },
@@ -333,6 +332,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                   ),
                                   Expanded(
                                     child: TextField(
+                                      controller: _viewModel.locationController,
                                       style: GoogleFonts.urbanist(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
@@ -384,7 +384,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                   Expanded(
                                     child: TextField(
                                       readOnly: true,
-                                      controller: _dateController,
+                                      controller: _viewModel.dateController,
                                       style: GoogleFonts.urbanist(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
@@ -477,30 +477,56 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                             beautician.Filters(
                                               search: _viewModel
                                                   .searchController.text,
-                                              serviceCategory: "",
-                                              serviceType: "",
-                                              location: "",
+
+                                              location: _viewModel
+                                                      .locationController
+                                                      .text
+                                                      .isEmpty
+                                                  ? null
+                                                  : _viewModel
+                                                      .locationController.text,
+                                              date: _viewModel.dateController
+                                                      .text.isEmpty
+                                                  ? null
+                                                  : _viewModel
+                                                      .dateController.text,
                                               // avgRating: null,
-                                              priceRange:
-                                                  const beautician.PriceRange(
-                                                      minPrice: 0,
-                                                      maxPrice: 200),
+                                              // priceRange:
+                                              //     const beautician.PriceRange(
+                                              //         minPrice: 0,
+                                              //         maxPrice: 200),
                                             )));
                                           }
                                           if (_viewModel.searchController.text
                                                   .length <
                                               4) {
                                             _viewModel.getBeauticiansByFilter(
-                                                const beautician
-                                                        .BeauticiansFilterRequest(
-                                                    filters: beautician.Filters(
-                                              search: "",
-                                              serviceCategory: "",
-                                              serviceType: "",
-                                              location: "",
-                                              // avgRating: null,
-                                              priceRange: beautician.PriceRange(
-                                                  minPrice: 0, maxPrice: 200),
+                                                beautician
+                                                    .BeauticiansFilterRequest(
+                                                        filters:
+                                                            beautician.Filters(
+                                              search: _viewModel
+                                                          .locationController
+                                                          .text
+                                                          .isEmpty &&
+                                                      _viewModel
+                                                          .locationController
+                                                          .text
+                                                          .isEmpty
+                                                  ? ""
+                                                  : null,
+                                              location: _viewModel
+                                                      .locationController
+                                                      .text
+                                                      .isEmpty
+                                                  ? null
+                                                  : _viewModel
+                                                      .locationController.text,
+                                              date: _viewModel.dateController
+                                                      .text.isEmpty
+                                                  ? null
+                                                  : _viewModel
+                                                      .dateController.text,
                                             )));
                                           }
                                           context.go("/beautician-listing");
@@ -524,7 +550,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
                         children: [
-                          SearchField<Salon>(
+                          SearchField<beautician.Result>(
                             controller: _viewModel.searchController,
                             hint: "Services or beautician name",
                             itemHeight: 60,
@@ -533,6 +559,19 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                             suggestionsDecoration: SuggestionDecoration(
                               borderRadius: BorderRadius.circular(5),
                             ),
+                            onSearchTextChanged: (p0) {
+                              if (p0.isEmpty) {
+                                _viewModel.clearFilter();
+                              }
+                              if (p0.length > 3) {
+                                _viewModel.getBeauticiansByFilter(
+                                  beautician.BeauticiansFilterRequest(
+                                      filters: beautician.Filters(
+                                    search: p0,
+                                  )),
+                                );
+                              }
+                            },
                             searchInputDecoration: InputDecoration(
                               hintText: "Services or beautician name",
                               hintStyle: GoogleFonts.urbanist(
@@ -561,9 +600,11 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
-                            suggestions: _viewModel.allSalons
+                            marginColor: Colors.white,
+                            suggestions: _viewModel
+                                .beauticiansListResponse!.data.results
                                 .map(
-                                  (e) => SearchFieldListItem<Salon>(
+                                  (e) => SearchFieldListItem<beautician.Result>(
                                     e.name ?? "",
                                     item: e,
                                     // Use child to show Custom Widgets in the suggestions
@@ -596,6 +637,8 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                             child: Container(
                                               width: 250,
                                               child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     e.name ?? "",
@@ -604,38 +647,42 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        e.services?[0].name ??
-                                                            "",
-                                                        style: const TextStyle(
-                                                            fontSize: 12,
-                                                            color: kGrey),
-                                                      ),
-                                                      Text(
-                                                        e.beautician?.name ??
-                                                            "",
-                                                        style: const TextStyle(
-                                                            fontSize: 12,
-                                                            color: kGrey),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                  if (e.services?.isNotEmpty ??
+                                                      true)
+                                                    Text(
+                                                      "${e.services?.first.name ?? ""} | ${e.name ?? ""}",
+                                                      style: const TextStyle(
+                                                          fontSize: 12,
+                                                          color: kGrey),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    )
+                                                  else
+                                                    Container(),
                                                 ],
                                               ),
                                             ),
                                           ),
                                           // Spacer(),
-                                          // Expanded(
-                                          //   child: Row(
-                                          //     mainAxisAlignment: MainAxisAlignment.end,
-                                          //     children: [
-                                          //       Text("${e.avgRating ?? 0}", style: TextStyle(color: kGrey, fontSize: 12),),
-                                          //       Icon(Icons.star_rounded, color: kGrey, size: 20,)
-                                          //     ],
-                                          //   ),
-                                          // )
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  "${e.avgRating ?? 0}",
+                                                  style: const TextStyle(
+                                                      color: kGrey,
+                                                      fontSize: 12),
+                                                ),
+                                                const Icon(
+                                                  Icons.star_rounded,
+                                                  color: kGrey,
+                                                  size: 20,
+                                                )
+                                              ],
+                                            ),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -673,44 +720,45 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                           //     ),
                           //   ),
                           // ),
-                          // SizedBox(
-                          //   height: 10.h,
-                          // ),
-                          // TextField(
-                          //   style: GoogleFonts.urbanist(
-                          //     fontSize: 14.sp,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          //   decoration: InputDecoration(
-                          //     hintText: "Location",
-                          //     hintStyle: GoogleFonts.urbanist(
-                          //       color: kGrey,
-                          //       fontSize: 14.sp,
-                          //       fontWeight: FontWeight.w600,
-                          //     ),
-                          //     suffixIcon: const Icon(
-                          //       Icons.location_on,
-                          //       color: kGrey,
-                          //     ),
-                          //     enabledBorder: OutlineInputBorder(
-                          //       borderSide: const BorderSide(
-                          //         color: kWhite,
-                          //       ),
-                          //       borderRadius: BorderRadius.circular(10.r),
-                          //     ),
-                          //     focusedBorder: OutlineInputBorder(
-                          //       borderSide: const BorderSide(
-                          //         color: kWhite,
-                          //       ),
-                          //       borderRadius: BorderRadius.circular(10.r),
-                          //     ),
-                          //   ),
-                          // ),
                           SizedBox(
                             height: 10.h,
                           ),
                           TextField(
-                            controller: _dateController,
+                            controller: _viewModel.locationController,
+                            style: GoogleFonts.urbanist(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: "Location",
+                              hintStyle: GoogleFonts.urbanist(
+                                color: kGrey,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              suffixIcon: const Icon(
+                                Icons.location_on,
+                                color: kGrey,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: kWhite,
+                                ),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: kWhite,
+                                ),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          TextField(
+                            controller: _viewModel.dateController,
                             keyboardType: TextInputType.datetime,
                             style: GoogleFonts.urbanist(
                               fontSize: 14.sp,
@@ -787,12 +835,44 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                 // print(_viewModel.searchController.text);
                                 if (_viewModel.searchController.text.length >
                                     3) {
-                                  _viewModel.filterSearch(
-                                      _viewModel.searchController.text);
+                                  _viewModel.getBeauticiansByFilter(
+                                      beautician.BeauticiansFilterRequest(
+                                          filters: beautician.Filters(
+                                    search: _viewModel.searchController.text,
+
+                                    location: _viewModel
+                                            .locationController.text.isEmpty
+                                        ? null
+                                        : _viewModel.locationController.text,
+                                    date: _viewModel.dateController.text.isEmpty
+                                        ? null
+                                        : _viewModel.dateController.text,
+                                    // avgRating: null,
+                                    // priceRange:
+                                    //     const beautician.PriceRange(
+                                    //         minPrice: 0,
+                                    //         maxPrice: 200),
+                                  )));
                                 }
                                 if (_viewModel.searchController.text.length <
                                     4) {
-                                  _viewModel.fetchAllSalons("");
+                                  _viewModel.getBeauticiansByFilter(
+                                      beautician.BeauticiansFilterRequest(
+                                          filters: beautician.Filters(
+                                    search: _viewModel.locationController.text
+                                                .isEmpty &&
+                                            _viewModel
+                                                .locationController.text.isEmpty
+                                        ? ""
+                                        : null,
+                                    location: _viewModel
+                                            .locationController.text.isEmpty
+                                        ? null
+                                        : _viewModel.locationController.text,
+                                    date: _viewModel.dateController.text.isEmpty
+                                        ? null
+                                        : _viewModel.dateController.text,
+                                  )));
                                 }
                                 context.go("/beautician-listing");
                               },
@@ -937,7 +1017,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                 child: DottedBorder(
                                   color: kWhite,
                                   strokeWidth: 5,
-                                  dashPattern: [6, 5, 6, 5],
+                                  dashPattern: const [6, 5, 6, 5],
                                   borderType: BorderType.Circle,
                                   radius: const Radius.circular(100),
                                   child: Container(
@@ -954,6 +1034,23 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                             //         .salon
                                             //         ?.id ??
                                             //     "");
+                                            _viewModel.getBeauticiansByFilter(
+                                                beautician
+                                                    .BeauticiansFilterRequest(
+                                                        filters:
+                                                            beautician.Filters(
+                                              search: "",
+                                              serviceCategory: _viewModel
+                                                      .serviceCategoriesList
+                                                      ?.data?[index]
+                                                      .name ??
+                                                  "",
+                                            )));
+                                            _viewModel.category = _viewModel
+                                                    .serviceCategoriesList
+                                                    ?.data?[index]
+                                                    .name ??
+                                                "";
                                             context.go("/beautician-listing");
                                           },
                                           icon: const Icon(

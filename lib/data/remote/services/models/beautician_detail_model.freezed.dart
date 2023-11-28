@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'beauticians_list_model.dart';
+part of 'beautician_detail_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,40 +14,183 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BeauticiansListResponse _$BeauticiansListResponseFromJson(
+BeauticianDetailRequest _$BeauticianDetailRequestFromJson(
     Map<String, dynamic> json) {
-  return _BeauticiansListResponse.fromJson(json);
+  return _BeauticianDetailRequest.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BeauticiansListResponse {
-  int? get code => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  bool? get isSuccess => throw _privateConstructorUsedError;
-  Data get data => throw _privateConstructorUsedError;
+mixin _$BeauticianDetailRequest {
+  String? get beauticianId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BeauticiansListResponseCopyWith<BeauticiansListResponse> get copyWith =>
+  $BeauticianDetailRequestCopyWith<BeauticianDetailRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BeauticiansListResponseCopyWith<$Res> {
-  factory $BeauticiansListResponseCopyWith(BeauticiansListResponse value,
-          $Res Function(BeauticiansListResponse) then) =
-      _$BeauticiansListResponseCopyWithImpl<$Res, BeauticiansListResponse>;
+abstract class $BeauticianDetailRequestCopyWith<$Res> {
+  factory $BeauticianDetailRequestCopyWith(BeauticianDetailRequest value,
+          $Res Function(BeauticianDetailRequest) then) =
+      _$BeauticianDetailRequestCopyWithImpl<$Res, BeauticianDetailRequest>;
   @useResult
-  $Res call({int? code, String? message, bool? isSuccess, Data data});
-
-  $DataCopyWith<$Res> get data;
+  $Res call({String? beauticianId});
 }
 
 /// @nodoc
-class _$BeauticiansListResponseCopyWithImpl<$Res,
-        $Val extends BeauticiansListResponse>
-    implements $BeauticiansListResponseCopyWith<$Res> {
-  _$BeauticiansListResponseCopyWithImpl(this._value, this._then);
+class _$BeauticianDetailRequestCopyWithImpl<$Res,
+        $Val extends BeauticianDetailRequest>
+    implements $BeauticianDetailRequestCopyWith<$Res> {
+  _$BeauticianDetailRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? beauticianId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      beauticianId: freezed == beauticianId
+          ? _value.beauticianId
+          : beauticianId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BeauticianDetailRequestCopyWith<$Res>
+    implements $BeauticianDetailRequestCopyWith<$Res> {
+  factory _$$_BeauticianDetailRequestCopyWith(_$_BeauticianDetailRequest value,
+          $Res Function(_$_BeauticianDetailRequest) then) =
+      __$$_BeauticianDetailRequestCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? beauticianId});
+}
+
+/// @nodoc
+class __$$_BeauticianDetailRequestCopyWithImpl<$Res>
+    extends _$BeauticianDetailRequestCopyWithImpl<$Res,
+        _$_BeauticianDetailRequest>
+    implements _$$_BeauticianDetailRequestCopyWith<$Res> {
+  __$$_BeauticianDetailRequestCopyWithImpl(_$_BeauticianDetailRequest _value,
+      $Res Function(_$_BeauticianDetailRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? beauticianId = freezed,
+  }) {
+    return _then(_$_BeauticianDetailRequest(
+      beauticianId: freezed == beauticianId
+          ? _value.beauticianId
+          : beauticianId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BeauticianDetailRequest implements _BeauticianDetailRequest {
+  const _$_BeauticianDetailRequest({this.beauticianId});
+
+  factory _$_BeauticianDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_BeauticianDetailRequestFromJson(json);
+
+  @override
+  final String? beauticianId;
+
+  @override
+  String toString() {
+    return 'BeauticianDetailRequest(beauticianId: $beauticianId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BeauticianDetailRequest &&
+            (identical(other.beauticianId, beauticianId) ||
+                other.beauticianId == beauticianId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, beauticianId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BeauticianDetailRequestCopyWith<_$_BeauticianDetailRequest>
+      get copyWith =>
+          __$$_BeauticianDetailRequestCopyWithImpl<_$_BeauticianDetailRequest>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BeauticianDetailRequestToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BeauticianDetailRequest implements BeauticianDetailRequest {
+  const factory _BeauticianDetailRequest({final String? beauticianId}) =
+      _$_BeauticianDetailRequest;
+
+  factory _BeauticianDetailRequest.fromJson(Map<String, dynamic> json) =
+      _$_BeauticianDetailRequest.fromJson;
+
+  @override
+  String? get beauticianId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BeauticianDetailRequestCopyWith<_$_BeauticianDetailRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BeauticianDetailResponse _$BeauticianDetailResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BeauticianDetailResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BeauticianDetailResponse {
+  int? get code => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  bool? get isSuccess => throw _privateConstructorUsedError;
+  Data? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BeauticianDetailResponseCopyWith<BeauticianDetailResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BeauticianDetailResponseCopyWith<$Res> {
+  factory $BeauticianDetailResponseCopyWith(BeauticianDetailResponse value,
+          $Res Function(BeauticianDetailResponse) then) =
+      _$BeauticianDetailResponseCopyWithImpl<$Res, BeauticianDetailResponse>;
+  @useResult
+  $Res call({int? code, String? message, bool? isSuccess, Data? data});
+
+  $DataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$BeauticianDetailResponseCopyWithImpl<$Res,
+        $Val extends BeauticianDetailResponse>
+    implements $BeauticianDetailResponseCopyWith<$Res> {
+  _$BeauticianDetailResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -60,7 +203,7 @@ class _$BeauticiansListResponseCopyWithImpl<$Res,
     Object? code = freezed,
     Object? message = freezed,
     Object? isSuccess = freezed,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       code: freezed == code
@@ -75,43 +218,48 @@ class _$BeauticiansListResponseCopyWithImpl<$Res,
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res> get data {
-    return $DataCopyWith<$Res>(_value.data, (value) {
+  $DataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $DataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_BeauticiansListResponseCopyWith<$Res>
-    implements $BeauticiansListResponseCopyWith<$Res> {
-  factory _$$_BeauticiansListResponseCopyWith(_$_BeauticiansListResponse value,
-          $Res Function(_$_BeauticiansListResponse) then) =
-      __$$_BeauticiansListResponseCopyWithImpl<$Res>;
+abstract class _$$_BeauticianDetailResponseCopyWith<$Res>
+    implements $BeauticianDetailResponseCopyWith<$Res> {
+  factory _$$_BeauticianDetailResponseCopyWith(
+          _$_BeauticianDetailResponse value,
+          $Res Function(_$_BeauticianDetailResponse) then) =
+      __$$_BeauticianDetailResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? code, String? message, bool? isSuccess, Data data});
+  $Res call({int? code, String? message, bool? isSuccess, Data? data});
 
   @override
-  $DataCopyWith<$Res> get data;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class __$$_BeauticiansListResponseCopyWithImpl<$Res>
-    extends _$BeauticiansListResponseCopyWithImpl<$Res,
-        _$_BeauticiansListResponse>
-    implements _$$_BeauticiansListResponseCopyWith<$Res> {
-  __$$_BeauticiansListResponseCopyWithImpl(_$_BeauticiansListResponse _value,
-      $Res Function(_$_BeauticiansListResponse) _then)
+class __$$_BeauticianDetailResponseCopyWithImpl<$Res>
+    extends _$BeauticianDetailResponseCopyWithImpl<$Res,
+        _$_BeauticianDetailResponse>
+    implements _$$_BeauticianDetailResponseCopyWith<$Res> {
+  __$$_BeauticianDetailResponseCopyWithImpl(_$_BeauticianDetailResponse _value,
+      $Res Function(_$_BeauticianDetailResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -120,9 +268,9 @@ class __$$_BeauticiansListResponseCopyWithImpl<$Res>
     Object? code = freezed,
     Object? message = freezed,
     Object? isSuccess = freezed,
-    Object? data = null,
+    Object? data = freezed,
   }) {
-    return _then(_$_BeauticiansListResponse(
+    return _then(_$_BeauticianDetailResponse(
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -135,22 +283,22 @@ class __$$_BeauticiansListResponseCopyWithImpl<$Res>
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_BeauticiansListResponse implements _BeauticiansListResponse {
-  const _$_BeauticiansListResponse(
-      {this.code, this.message, this.isSuccess, required this.data});
+class _$_BeauticianDetailResponse implements _BeauticianDetailResponse {
+  const _$_BeauticianDetailResponse(
+      {this.code, this.message, this.isSuccess, this.data});
 
-  factory _$_BeauticiansListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_BeauticiansListResponseFromJson(json);
+  factory _$_BeauticianDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_BeauticianDetailResponseFromJson(json);
 
   @override
   final int? code;
@@ -159,18 +307,18 @@ class _$_BeauticiansListResponse implements _BeauticiansListResponse {
   @override
   final bool? isSuccess;
   @override
-  final Data data;
+  final Data? data;
 
   @override
   String toString() {
-    return 'BeauticiansListResponse(code: $code, message: $message, isSuccess: $isSuccess, data: $data)';
+    return 'BeauticianDetailResponse(code: $code, message: $message, isSuccess: $isSuccess, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BeauticiansListResponse &&
+            other is _$_BeauticianDetailResponse &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.isSuccess, isSuccess) ||
@@ -185,28 +333,27 @@ class _$_BeauticiansListResponse implements _BeauticiansListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BeauticiansListResponseCopyWith<_$_BeauticiansListResponse>
-      get copyWith =>
-          __$$_BeauticiansListResponseCopyWithImpl<_$_BeauticiansListResponse>(
-              this, _$identity);
+  _$$_BeauticianDetailResponseCopyWith<_$_BeauticianDetailResponse>
+      get copyWith => __$$_BeauticianDetailResponseCopyWithImpl<
+          _$_BeauticianDetailResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BeauticiansListResponseToJson(
+    return _$$_BeauticianDetailResponseToJson(
       this,
     );
   }
 }
 
-abstract class _BeauticiansListResponse implements BeauticiansListResponse {
-  const factory _BeauticiansListResponse(
+abstract class _BeauticianDetailResponse implements BeauticianDetailResponse {
+  const factory _BeauticianDetailResponse(
       {final int? code,
       final String? message,
       final bool? isSuccess,
-      required final Data data}) = _$_BeauticiansListResponse;
+      final Data? data}) = _$_BeauticianDetailResponse;
 
-  factory _BeauticiansListResponse.fromJson(Map<String, dynamic> json) =
-      _$_BeauticiansListResponse.fromJson;
+  factory _BeauticianDetailResponse.fromJson(Map<String, dynamic> json) =
+      _$_BeauticianDetailResponse.fromJson;
 
   @override
   int? get code;
@@ -215,10 +362,10 @@ abstract class _BeauticiansListResponse implements BeauticiansListResponse {
   @override
   bool? get isSuccess;
   @override
-  Data get data;
+  Data? get data;
   @override
   @JsonKey(ignore: true)
-  _$$_BeauticiansListResponseCopyWith<_$_BeauticiansListResponse>
+  _$$_BeauticianDetailResponseCopyWith<_$_BeauticianDetailResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -228,11 +375,35 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Data {
-  List<Result> get results => throw _privateConstructorUsedError;
-  int? get totalPages => throw _privateConstructorUsedError;
-  int? get currentPage => throw _privateConstructorUsedError;
-  int? get limit => throw _privateConstructorUsedError;
-  int? get totalResults => throw _privateConstructorUsedError;
+  @JsonKey(name: "_id")
+  String? get id => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  List<dynamic>? get photos => throw _privateConstructorUsedError;
+  String? get profession => throw _privateConstructorUsedError;
+  String? get about => throw _privateConstructorUsedError;
+  String? get website => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  bool? get isEmailVerified => throw _privateConstructorUsedError;
+  List<dynamic>? get speciality => throw _privateConstructorUsedError;
+  String? get accountId => throw _privateConstructorUsedError;
+  List<dynamic>? get blockedClients => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  List<dynamic>? get notes => throw _privateConstructorUsedError;
+  List<Availability>? get availability => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "__v")
+  int? get v => throw _privateConstructorUsedError;
+  List<Service>? get services => throw _privateConstructorUsedError;
+  List<dynamic>? get products => throw _privateConstructorUsedError;
+  List<ServiceCategory>? get serviceCategories =>
+      throw _privateConstructorUsedError;
+  List<Review>? get reviews => throw _privateConstructorUsedError;
+  int? get ratingCount => throw _privateConstructorUsedError;
+  int? get avgRating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -245,267 +416,18 @@ abstract class $DataCopyWith<$Res> {
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
   $Res call(
-      {List<Result> results,
-      int? totalPages,
-      int? currentPage,
-      int? limit,
-      int? totalResults});
-}
-
-/// @nodoc
-class _$DataCopyWithImpl<$Res, $Val extends Data>
-    implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? results = null,
-    Object? totalPages = freezed,
-    Object? currentPage = freezed,
-    Object? limit = freezed,
-    Object? totalResults = freezed,
-  }) {
-    return _then(_value.copyWith(
-      results: null == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<Result>,
-      totalPages: freezed == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentPage: freezed == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int?,
-      limit: freezed == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalResults: freezed == totalResults
-          ? _value.totalResults
-          : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {List<Result> results,
-      int? totalPages,
-      int? currentPage,
-      int? limit,
-      int? totalResults});
-}
-
-/// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? results = null,
-    Object? totalPages = freezed,
-    Object? currentPage = freezed,
-    Object? limit = freezed,
-    Object? totalResults = freezed,
-  }) {
-    return _then(_$_Data(
-      results: null == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<Result>,
-      totalPages: freezed == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentPage: freezed == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int?,
-      limit: freezed == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalResults: freezed == totalResults
-          ? _value.totalResults
-          : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Data implements _Data {
-  const _$_Data(
-      {required final List<Result> results,
-      this.totalPages,
-      this.currentPage,
-      this.limit,
-      this.totalResults})
-      : _results = results;
-
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
-
-  final List<Result> _results;
-  @override
-  List<Result> get results {
-    if (_results is EqualUnmodifiableListView) return _results;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
-  }
-
-  @override
-  final int? totalPages;
-  @override
-  final int? currentPage;
-  @override
-  final int? limit;
-  @override
-  final int? totalResults;
-
-  @override
-  String toString() {
-    return 'Data(results: $results, totalPages: $totalPages, currentPage: $currentPage, limit: $limit, totalResults: $totalResults)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Data &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            (identical(other.totalPages, totalPages) ||
-                other.totalPages == totalPages) &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.totalResults, totalResults) ||
-                other.totalResults == totalResults));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_results),
-      totalPages,
-      currentPage,
-      limit,
-      totalResults);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Data implements Data {
-  const factory _Data(
-      {required final List<Result> results,
-      final int? totalPages,
-      final int? currentPage,
-      final int? limit,
-      final int? totalResults}) = _$_Data;
-
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
-
-  @override
-  List<Result> get results;
-  @override
-  int? get totalPages;
-  @override
-  int? get currentPage;
-  @override
-  int? get limit;
-  @override
-  int? get totalResults;
-  @override
-  @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
-}
-
-Result _$ResultFromJson(Map<String, dynamic> json) {
-  return _Result.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Result {
-  @JsonKey(name: "_id")
-  String? get id => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  String? get role => throw _privateConstructorUsedError;
-  List<dynamic>? get photos => throw _privateConstructorUsedError;
-  String? get profession => throw _privateConstructorUsedError;
-  dynamic get about => throw _privateConstructorUsedError;
-  String? get website => throw _privateConstructorUsedError;
-  bool? get isEmailVerified => throw _privateConstructorUsedError;
-  List<String>? get speciality => throw _privateConstructorUsedError;
-  String? get accountId => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-  List<dynamic>? get notes => throw _privateConstructorUsedError;
-  List<Availability>? get availability => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "__v")
-  int? get v => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  List<String>? get blockedClients => throw _privateConstructorUsedError;
-  List<Service>? get services => throw _privateConstructorUsedError;
-  List<dynamic>? get products => throw _privateConstructorUsedError;
-  List<ServiceCategory>? get serviceCategories =>
-      throw _privateConstructorUsedError;
-  List<Review>? get reviews => throw _privateConstructorUsedError;
-  int? get ratingCount => throw _privateConstructorUsedError;
-  double? get avgRating => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ResultCopyWith<$Res> {
-  factory $ResultCopyWith(Result value, $Res Function(Result) then) =
-      _$ResultCopyWithImpl<$Res, Result>;
-  @useResult
-  $Res call(
       {@JsonKey(name: "_id") String? id,
       String? image,
       String? role,
       List<dynamic>? photos,
       String? profession,
-      dynamic about,
+      String? about,
       String? website,
+      String? address,
       bool? isEmailVerified,
-      List<String>? speciality,
+      List<dynamic>? speciality,
       String? accountId,
+      List<dynamic>? blockedClients,
       String? name,
       String? email,
       String? phone,
@@ -514,20 +436,18 @@ abstract class $ResultCopyWith<$Res> {
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v,
-      String? address,
-      List<String>? blockedClients,
       List<Service>? services,
       List<dynamic>? products,
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      double? avgRating});
+      int? avgRating});
 }
 
 /// @nodoc
-class _$ResultCopyWithImpl<$Res, $Val extends Result>
-    implements $ResultCopyWith<$Res> {
-  _$ResultCopyWithImpl(this._value, this._then);
+class _$DataCopyWithImpl<$Res, $Val extends Data>
+    implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -544,9 +464,11 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? profession = freezed,
     Object? about = freezed,
     Object? website = freezed,
+    Object? address = freezed,
     Object? isEmailVerified = freezed,
     Object? speciality = freezed,
     Object? accountId = freezed,
+    Object? blockedClients = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -555,8 +477,6 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
-    Object? address = freezed,
-    Object? blockedClients = freezed,
     Object? services = freezed,
     Object? products = freezed,
     Object? serviceCategories = freezed,
@@ -588,10 +508,14 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
       about: freezed == about
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       website: freezed == website
           ? _value.website
           : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       isEmailVerified: freezed == isEmailVerified
           ? _value.isEmailVerified
@@ -600,11 +524,15 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
       speciality: freezed == speciality
           ? _value.speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<dynamic>?,
       accountId: freezed == accountId
           ? _value.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      blockedClients: freezed == blockedClients
+          ? _value.blockedClients
+          : blockedClients // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -637,14 +565,6 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      blockedClients: freezed == blockedClients
-          ? _value.blockedClients
-          : blockedClients // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       services: freezed == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -668,15 +588,15 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
       avgRating: freezed == avgRating
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
-  factory _$$_ResultCopyWith(_$_Result value, $Res Function(_$_Result) then) =
-      __$$_ResultCopyWithImpl<$Res>;
+abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
+      __$$_DataCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -685,11 +605,13 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       String? role,
       List<dynamic>? photos,
       String? profession,
-      dynamic about,
+      String? about,
       String? website,
+      String? address,
       bool? isEmailVerified,
-      List<String>? speciality,
+      List<dynamic>? speciality,
       String? accountId,
+      List<dynamic>? blockedClients,
       String? name,
       String? email,
       String? phone,
@@ -698,21 +620,18 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v,
-      String? address,
-      List<String>? blockedClients,
       List<Service>? services,
       List<dynamic>? products,
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      double? avgRating});
+      int? avgRating});
 }
 
 /// @nodoc
-class __$$_ResultCopyWithImpl<$Res>
-    extends _$ResultCopyWithImpl<$Res, _$_Result>
-    implements _$$_ResultCopyWith<$Res> {
-  __$$_ResultCopyWithImpl(_$_Result _value, $Res Function(_$_Result) _then)
+class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
+    implements _$$_DataCopyWith<$Res> {
+  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -725,9 +644,11 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? profession = freezed,
     Object? about = freezed,
     Object? website = freezed,
+    Object? address = freezed,
     Object? isEmailVerified = freezed,
     Object? speciality = freezed,
     Object? accountId = freezed,
+    Object? blockedClients = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -736,8 +657,6 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
-    Object? address = freezed,
-    Object? blockedClients = freezed,
     Object? services = freezed,
     Object? products = freezed,
     Object? serviceCategories = freezed,
@@ -745,7 +664,7 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? ratingCount = freezed,
     Object? avgRating = freezed,
   }) {
-    return _then(_$_Result(
+    return _then(_$_Data(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -769,10 +688,14 @@ class __$$_ResultCopyWithImpl<$Res>
       about: freezed == about
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       website: freezed == website
           ? _value.website
           : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       isEmailVerified: freezed == isEmailVerified
           ? _value.isEmailVerified
@@ -781,11 +704,15 @@ class __$$_ResultCopyWithImpl<$Res>
       speciality: freezed == speciality
           ? _value._speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<dynamic>?,
       accountId: freezed == accountId
           ? _value.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      blockedClients: freezed == blockedClients
+          ? _value._blockedClients
+          : blockedClients // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -818,14 +745,6 @@ class __$$_ResultCopyWithImpl<$Res>
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      blockedClients: freezed == blockedClients
-          ? _value._blockedClients
-          : blockedClients // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       services: freezed == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
@@ -849,15 +768,15 @@ class __$$_ResultCopyWithImpl<$Res>
       avgRating: freezed == avgRating
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Result implements _Result {
-  const _$_Result(
+class _$_Data implements _Data {
+  const _$_Data(
       {@JsonKey(name: "_id") this.id,
       this.image,
       this.role,
@@ -865,9 +784,11 @@ class _$_Result implements _Result {
       this.profession,
       this.about,
       this.website,
+      this.address,
       this.isEmailVerified,
-      final List<String>? speciality,
+      final List<dynamic>? speciality,
       this.accountId,
+      final List<dynamic>? blockedClients,
       this.name,
       this.email,
       this.phone,
@@ -876,8 +797,6 @@ class _$_Result implements _Result {
       this.createdAt,
       this.updatedAt,
       @JsonKey(name: "__v") this.v,
-      this.address,
-      final List<String>? blockedClients,
       final List<Service>? services,
       final List<dynamic>? products,
       final List<ServiceCategory>? serviceCategories,
@@ -886,16 +805,15 @@ class _$_Result implements _Result {
       this.avgRating})
       : _photos = photos,
         _speciality = speciality,
+        _blockedClients = blockedClients,
         _notes = notes,
         _availability = availability,
-        _blockedClients = blockedClients,
         _services = services,
         _products = products,
         _serviceCategories = serviceCategories,
         _reviews = reviews;
 
-  factory _$_Result.fromJson(Map<String, dynamic> json) =>
-      _$$_ResultFromJson(json);
+  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
 
   @override
   @JsonKey(name: "_id")
@@ -917,14 +835,16 @@ class _$_Result implements _Result {
   @override
   final String? profession;
   @override
-  final dynamic about;
+  final String? about;
   @override
   final String? website;
   @override
-  final bool? isEmailVerified;
-  final List<String>? _speciality;
+  final String? address;
   @override
-  List<String>? get speciality {
+  final bool? isEmailVerified;
+  final List<dynamic>? _speciality;
+  @override
+  List<dynamic>? get speciality {
     final value = _speciality;
     if (value == null) return null;
     if (_speciality is EqualUnmodifiableListView) return _speciality;
@@ -934,6 +854,16 @@ class _$_Result implements _Result {
 
   @override
   final String? accountId;
+  final List<dynamic>? _blockedClients;
+  @override
+  List<dynamic>? get blockedClients {
+    final value = _blockedClients;
+    if (value == null) return null;
+    if (_blockedClients is EqualUnmodifiableListView) return _blockedClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? name;
   @override
@@ -967,18 +897,6 @@ class _$_Result implements _Result {
   @override
   @JsonKey(name: "__v")
   final int? v;
-  @override
-  final String? address;
-  final List<String>? _blockedClients;
-  @override
-  List<String>? get blockedClients {
-    final value = _blockedClients;
-    if (value == null) return null;
-    if (_blockedClients is EqualUnmodifiableListView) return _blockedClients;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final List<Service>? _services;
   @override
   List<Service>? get services {
@@ -1023,32 +941,35 @@ class _$_Result implements _Result {
   @override
   final int? ratingCount;
   @override
-  final double? avgRating;
+  final int? avgRating;
 
   @override
   String toString() {
-    return 'Result(id: $id, image: $image, role: $role, photos: $photos, profession: $profession, about: $about, website: $website, isEmailVerified: $isEmailVerified, speciality: $speciality, accountId: $accountId, name: $name, email: $email, phone: $phone, notes: $notes, availability: $availability, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, address: $address, blockedClients: $blockedClients, services: $services, products: $products, serviceCategories: $serviceCategories, reviews: $reviews, ratingCount: $ratingCount, avgRating: $avgRating)';
+    return 'Data(id: $id, image: $image, role: $role, photos: $photos, profession: $profession, about: $about, website: $website, address: $address, isEmailVerified: $isEmailVerified, speciality: $speciality, accountId: $accountId, blockedClients: $blockedClients, name: $name, email: $email, phone: $phone, notes: $notes, availability: $availability, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, services: $services, products: $products, serviceCategories: $serviceCategories, reviews: $reviews, ratingCount: $ratingCount, avgRating: $avgRating)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Result &&
+            other is _$_Data &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.role, role) || other.role == role) &&
             const DeepCollectionEquality().equals(other._photos, _photos) &&
             (identical(other.profession, profession) ||
                 other.profession == profession) &&
-            const DeepCollectionEquality().equals(other.about, about) &&
+            (identical(other.about, about) || other.about == about) &&
             (identical(other.website, website) || other.website == website) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.isEmailVerified, isEmailVerified) ||
                 other.isEmailVerified == isEmailVerified) &&
             const DeepCollectionEquality()
                 .equals(other._speciality, _speciality) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
+            const DeepCollectionEquality()
+                .equals(other._blockedClients, _blockedClients) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
@@ -1060,9 +981,6 @@ class _$_Result implements _Result {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.v, v) || other.v == v) &&
-            (identical(other.address, address) || other.address == address) &&
-            const DeepCollectionEquality()
-                .equals(other._blockedClients, _blockedClients) &&
             const DeepCollectionEquality().equals(other._services, _services) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality()
@@ -1083,11 +1001,13 @@ class _$_Result implements _Result {
         role,
         const DeepCollectionEquality().hash(_photos),
         profession,
-        const DeepCollectionEquality().hash(about),
+        about,
         website,
+        address,
         isEmailVerified,
         const DeepCollectionEquality().hash(_speciality),
         accountId,
+        const DeepCollectionEquality().hash(_blockedClients),
         name,
         email,
         phone,
@@ -1096,8 +1016,6 @@ class _$_Result implements _Result {
         createdAt,
         updatedAt,
         v,
-        address,
-        const DeepCollectionEquality().hash(_blockedClients),
         const DeepCollectionEquality().hash(_services),
         const DeepCollectionEquality().hash(_products),
         const DeepCollectionEquality().hash(_serviceCategories),
@@ -1109,29 +1027,31 @@ class _$_Result implements _Result {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ResultCopyWith<_$_Result> get copyWith =>
-      __$$_ResultCopyWithImpl<_$_Result>(this, _$identity);
+  _$$_DataCopyWith<_$_Data> get copyWith =>
+      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ResultToJson(
+    return _$$_DataToJson(
       this,
     );
   }
 }
 
-abstract class _Result implements Result {
-  const factory _Result(
+abstract class _Data implements Data {
+  const factory _Data(
       {@JsonKey(name: "_id") final String? id,
       final String? image,
       final String? role,
       final List<dynamic>? photos,
       final String? profession,
-      final dynamic about,
+      final String? about,
       final String? website,
+      final String? address,
       final bool? isEmailVerified,
-      final List<String>? speciality,
+      final List<dynamic>? speciality,
       final String? accountId,
+      final List<dynamic>? blockedClients,
       final String? name,
       final String? email,
       final String? phone,
@@ -1140,16 +1060,14 @@ abstract class _Result implements Result {
       final DateTime? createdAt,
       final DateTime? updatedAt,
       @JsonKey(name: "__v") final int? v,
-      final String? address,
-      final List<String>? blockedClients,
       final List<Service>? services,
       final List<dynamic>? products,
       final List<ServiceCategory>? serviceCategories,
       final List<Review>? reviews,
       final int? ratingCount,
-      final double? avgRating}) = _$_Result;
+      final int? avgRating}) = _$_Data;
 
-  factory _Result.fromJson(Map<String, dynamic> json) = _$_Result.fromJson;
+  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
   @override
   @JsonKey(name: "_id")
@@ -1163,15 +1081,19 @@ abstract class _Result implements Result {
   @override
   String? get profession;
   @override
-  dynamic get about;
+  String? get about;
   @override
   String? get website;
   @override
+  String? get address;
+  @override
   bool? get isEmailVerified;
   @override
-  List<String>? get speciality;
+  List<dynamic>? get speciality;
   @override
   String? get accountId;
+  @override
+  List<dynamic>? get blockedClients;
   @override
   String? get name;
   @override
@@ -1190,10 +1112,6 @@ abstract class _Result implements Result {
   @JsonKey(name: "__v")
   int? get v;
   @override
-  String? get address;
-  @override
-  List<String>? get blockedClients;
-  @override
   List<Service>? get services;
   @override
   List<dynamic>? get products;
@@ -1204,11 +1122,10 @@ abstract class _Result implements Result {
   @override
   int? get ratingCount;
   @override
-  double? get avgRating;
+  int? get avgRating;
   @override
   @JsonKey(ignore: true)
-  _$$_ResultCopyWith<_$_Result> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }
 
 Availability _$AvailabilityFromJson(Map<String, dynamic> json) {
@@ -1467,8 +1384,8 @@ mixin _$Review {
   String? get id => throw _privateConstructorUsedError;
   String? get beautician => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
-  double? get rating => throw _privateConstructorUsedError;
-  String? get user => throw _privateConstructorUsedError;
+  int? get rating => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: "__v")
   int? get v => throw _privateConstructorUsedError;
 
@@ -1486,9 +1403,11 @@ abstract class $ReviewCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       String? text,
-      double? rating,
-      String? user,
+      int? rating,
+      User? user,
       @JsonKey(name: "__v") int? v});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -1527,16 +1446,28 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as User?,
       v: freezed == v
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -1550,9 +1481,12 @@ abstract class _$$_ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       String? text,
-      double? rating,
-      String? user,
+      int? rating,
+      User? user,
       @JsonKey(name: "__v") int? v});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -1588,11 +1522,11 @@ class __$$_ReviewCopyWithImpl<$Res>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as User?,
       v: freezed == v
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
@@ -1623,9 +1557,9 @@ class _$_Review implements _Review {
   @override
   final String? text;
   @override
-  final double? rating;
+  final int? rating;
   @override
-  final String? user;
+  final User? user;
   @override
   @JsonKey(name: "__v")
   final int? v;
@@ -1673,8 +1607,8 @@ abstract class _Review implements Review {
       {@JsonKey(name: "_id") final String? id,
       final String? beautician,
       final String? text,
-      final double? rating,
-      final String? user,
+      final int? rating,
+      final User? user,
       @JsonKey(name: "__v") final int? v}) = _$_Review;
 
   factory _Review.fromJson(Map<String, dynamic> json) = _$_Review.fromJson;
@@ -1687,9 +1621,9 @@ abstract class _Review implements Review {
   @override
   String? get text;
   @override
-  double? get rating;
+  int? get rating;
   @override
-  String? get user;
+  User? get user;
   @override
   @JsonKey(name: "__v")
   int? get v;
@@ -1697,6 +1631,310 @@ abstract class _Review implements Review {
   @JsonKey(ignore: true)
   _$$_ReviewCopyWith<_$_Review> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
+/// @nodoc
+mixin _$User {
+  dynamic get image => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  bool? get isEmailVerified => throw _privateConstructorUsedError;
+  String? get customerId => throw _privateConstructorUsedError;
+  bool? get isOffline => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
+  $Res call(
+      {dynamic image,
+      String? role,
+      bool? isEmailVerified,
+      String? customerId,
+      bool? isOffline,
+      String? name,
+      String? phone,
+      String? email,
+      String? id});
+}
+
+/// @nodoc
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = freezed,
+    Object? role = freezed,
+    Object? isEmailVerified = freezed,
+    Object? customerId = freezed,
+    Object? isOffline = freezed,
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: freezed == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isOffline: freezed == isOffline
+          ? _value.isOffline
+          : isOffline // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
+      __$$_UserCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {dynamic image,
+      String? role,
+      bool? isEmailVerified,
+      String? customerId,
+      bool? isOffline,
+      String? name,
+      String? phone,
+      String? email,
+      String? id});
+}
+
+/// @nodoc
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
+    implements _$$_UserCopyWith<$Res> {
+  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = freezed,
+    Object? role = freezed,
+    Object? isEmailVerified = freezed,
+    Object? customerId = freezed,
+    Object? isOffline = freezed,
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_$_User(
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEmailVerified: freezed == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isOffline: freezed == isOffline
+          ? _value.isOffline
+          : isOffline // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_User implements _User {
+  const _$_User(
+      {this.image,
+      this.role,
+      this.isEmailVerified,
+      this.customerId,
+      this.isOffline,
+      this.name,
+      this.phone,
+      this.email,
+      this.id});
+
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+
+  @override
+  final dynamic image;
+  @override
+  final String? role;
+  @override
+  final bool? isEmailVerified;
+  @override
+  final String? customerId;
+  @override
+  final bool? isOffline;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final String? id;
+
+  @override
+  String toString() {
+    return 'User(image: $image, role: $role, isEmailVerified: $isEmailVerified, customerId: $customerId, isOffline: $isOffline, name: $name, phone: $phone, email: $email, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_User &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.isEmailVerified, isEmailVerified) ||
+                other.isEmailVerified == isEmailVerified) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.isOffline, isOffline) ||
+                other.isOffline == isOffline) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(image),
+      role,
+      isEmailVerified,
+      customerId,
+      isOffline,
+      name,
+      phone,
+      email,
+      id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserCopyWith<_$_User> get copyWith =>
+      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserToJson(
+      this,
+    );
+  }
+}
+
+abstract class _User implements User {
+  const factory _User(
+      {final dynamic image,
+      final String? role,
+      final bool? isEmailVerified,
+      final String? customerId,
+      final bool? isOffline,
+      final String? name,
+      final String? phone,
+      final String? email,
+      final String? id}) = _$_User;
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+
+  @override
+  dynamic get image;
+  @override
+  String? get role;
+  @override
+  bool? get isEmailVerified;
+  @override
+  String? get customerId;
+  @override
+  bool? get isOffline;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  String? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
 }
 
 ServiceCategory _$ServiceCategoryFromJson(Map<String, dynamic> json) {
@@ -1934,15 +2172,15 @@ Service _$ServiceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Service {
-  @JsonKey(name: "_id")
   String? get id => throw _privateConstructorUsedError;
   bool? get isAvailable => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get durationInMinutes => throw _privateConstructorUsedError;
-  String? get serviceCategory => throw _privateConstructorUsedError;
-  String? get serviceType => throw _privateConstructorUsedError;
+  ServiceCategoryClass? get serviceCategory =>
+      throw _privateConstructorUsedError;
+  ServiceCategoryClass? get serviceType => throw _privateConstructorUsedError;
   String? get beautician => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -1960,18 +2198,21 @@ abstract class $ServiceCopyWith<$Res> {
       _$ServiceCopyWithImpl<$Res, Service>;
   @useResult
   $Res call(
-      {@JsonKey(name: "_id") String? id,
+      {String? id,
       bool? isAvailable,
       String? name,
       int? price,
       String? description,
       int? durationInMinutes,
-      String? serviceCategory,
-      String? serviceType,
+      ServiceCategoryClass? serviceCategory,
+      ServiceCategoryClass? serviceType,
       String? beautician,
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v});
+
+  $ServiceCategoryClassCopyWith<$Res>? get serviceCategory;
+  $ServiceCategoryClassCopyWith<$Res>? get serviceType;
 }
 
 /// @nodoc
@@ -2028,11 +2269,11 @@ class _$ServiceCopyWithImpl<$Res, $Val extends Service>
       serviceCategory: freezed == serviceCategory
           ? _value.serviceCategory
           : serviceCategory // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ServiceCategoryClass?,
       serviceType: freezed == serviceType
           ? _value.serviceType
           : serviceType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ServiceCategoryClass?,
       beautician: freezed == beautician
           ? _value.beautician
           : beautician // ignore: cast_nullable_to_non_nullable
@@ -2051,6 +2292,31 @@ class _$ServiceCopyWithImpl<$Res, $Val extends Service>
               as int?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceCategoryClassCopyWith<$Res>? get serviceCategory {
+    if (_value.serviceCategory == null) {
+      return null;
+    }
+
+    return $ServiceCategoryClassCopyWith<$Res>(_value.serviceCategory!,
+        (value) {
+      return _then(_value.copyWith(serviceCategory: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceCategoryClassCopyWith<$Res>? get serviceType {
+    if (_value.serviceType == null) {
+      return null;
+    }
+
+    return $ServiceCategoryClassCopyWith<$Res>(_value.serviceType!, (value) {
+      return _then(_value.copyWith(serviceType: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -2061,18 +2327,23 @@ abstract class _$$_ServiceCopyWith<$Res> implements $ServiceCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "_id") String? id,
+      {String? id,
       bool? isAvailable,
       String? name,
       int? price,
       String? description,
       int? durationInMinutes,
-      String? serviceCategory,
-      String? serviceType,
+      ServiceCategoryClass? serviceCategory,
+      ServiceCategoryClass? serviceType,
       String? beautician,
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v});
+
+  @override
+  $ServiceCategoryClassCopyWith<$Res>? get serviceCategory;
+  @override
+  $ServiceCategoryClassCopyWith<$Res>? get serviceType;
 }
 
 /// @nodoc
@@ -2126,11 +2397,11 @@ class __$$_ServiceCopyWithImpl<$Res>
       serviceCategory: freezed == serviceCategory
           ? _value.serviceCategory
           : serviceCategory // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ServiceCategoryClass?,
       serviceType: freezed == serviceType
           ? _value.serviceType
           : serviceType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ServiceCategoryClass?,
       beautician: freezed == beautician
           ? _value.beautician
           : beautician // ignore: cast_nullable_to_non_nullable
@@ -2155,7 +2426,7 @@ class __$$_ServiceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Service implements _Service {
   const _$_Service(
-      {@JsonKey(name: "_id") this.id,
+      {this.id,
       this.isAvailable,
       this.name,
       this.price,
@@ -2172,7 +2443,6 @@ class _$_Service implements _Service {
       _$$_ServiceFromJson(json);
 
   @override
-  @JsonKey(name: "_id")
   final String? id;
   @override
   final bool? isAvailable;
@@ -2185,9 +2455,9 @@ class _$_Service implements _Service {
   @override
   final int? durationInMinutes;
   @override
-  final String? serviceCategory;
+  final ServiceCategoryClass? serviceCategory;
   @override
-  final String? serviceType;
+  final ServiceCategoryClass? serviceType;
   @override
   final String? beautician;
   @override
@@ -2263,14 +2533,14 @@ class _$_Service implements _Service {
 
 abstract class _Service implements Service {
   const factory _Service(
-      {@JsonKey(name: "_id") final String? id,
+      {final String? id,
       final bool? isAvailable,
       final String? name,
       final int? price,
       final String? description,
       final int? durationInMinutes,
-      final String? serviceCategory,
-      final String? serviceType,
+      final ServiceCategoryClass? serviceCategory,
+      final ServiceCategoryClass? serviceType,
       final String? beautician,
       final DateTime? createdAt,
       final DateTime? updatedAt,
@@ -2279,7 +2549,6 @@ abstract class _Service implements Service {
   factory _Service.fromJson(Map<String, dynamic> json) = _$_Service.fromJson;
 
   @override
-  @JsonKey(name: "_id")
   String? get id;
   @override
   bool? get isAvailable;
@@ -2292,9 +2561,9 @@ abstract class _Service implements Service {
   @override
   int? get durationInMinutes;
   @override
-  String? get serviceCategory;
+  ServiceCategoryClass? get serviceCategory;
   @override
-  String? get serviceType;
+  ServiceCategoryClass? get serviceType;
   @override
   String? get beautician;
   @override
@@ -2310,37 +2579,35 @@ abstract class _Service implements Service {
       throw _privateConstructorUsedError;
 }
 
-BeauticiansFilterRequest _$BeauticiansFilterRequestFromJson(
-    Map<String, dynamic> json) {
-  return _BeauticiansFilterRequest.fromJson(json);
+ServiceCategoryClass _$ServiceCategoryClassFromJson(Map<String, dynamic> json) {
+  return _ServiceCategoryClass.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BeauticiansFilterRequest {
-  Filters? get filters => throw _privateConstructorUsedError;
+mixin _$ServiceCategoryClass {
+  String? get name => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BeauticiansFilterRequestCopyWith<BeauticiansFilterRequest> get copyWith =>
+  $ServiceCategoryClassCopyWith<ServiceCategoryClass> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BeauticiansFilterRequestCopyWith<$Res> {
-  factory $BeauticiansFilterRequestCopyWith(BeauticiansFilterRequest value,
-          $Res Function(BeauticiansFilterRequest) then) =
-      _$BeauticiansFilterRequestCopyWithImpl<$Res, BeauticiansFilterRequest>;
+abstract class $ServiceCategoryClassCopyWith<$Res> {
+  factory $ServiceCategoryClassCopyWith(ServiceCategoryClass value,
+          $Res Function(ServiceCategoryClass) then) =
+      _$ServiceCategoryClassCopyWithImpl<$Res, ServiceCategoryClass>;
   @useResult
-  $Res call({Filters? filters});
-
-  $FiltersCopyWith<$Res>? get filters;
+  $Res call({String? name, String? id});
 }
 
 /// @nodoc
-class _$BeauticiansFilterRequestCopyWithImpl<$Res,
-        $Val extends BeauticiansFilterRequest>
-    implements $BeauticiansFilterRequestCopyWith<$Res> {
-  _$BeauticiansFilterRequestCopyWithImpl(this._value, this._then);
+class _$ServiceCategoryClassCopyWithImpl<$Res,
+        $Val extends ServiceCategoryClass>
+    implements $ServiceCategoryClassCopyWith<$Res> {
+  _$ServiceCategoryClassCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -2350,310 +2617,55 @@ class _$BeauticiansFilterRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filters = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      filters: freezed == filters
-          ? _value.filters
-          : filters // ignore: cast_nullable_to_non_nullable
-              as Filters?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FiltersCopyWith<$Res>? get filters {
-    if (_value.filters == null) {
-      return null;
-    }
-
-    return $FiltersCopyWith<$Res>(_value.filters!, (value) {
-      return _then(_value.copyWith(filters: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_BeauticiansFilterRequestCopyWith<$Res>
-    implements $BeauticiansFilterRequestCopyWith<$Res> {
-  factory _$$_BeauticiansFilterRequestCopyWith(
-          _$_BeauticiansFilterRequest value,
-          $Res Function(_$_BeauticiansFilterRequest) then) =
-      __$$_BeauticiansFilterRequestCopyWithImpl<$Res>;
+abstract class _$$_ServiceCategoryClassCopyWith<$Res>
+    implements $ServiceCategoryClassCopyWith<$Res> {
+  factory _$$_ServiceCategoryClassCopyWith(_$_ServiceCategoryClass value,
+          $Res Function(_$_ServiceCategoryClass) then) =
+      __$$_ServiceCategoryClassCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Filters? filters});
-
-  @override
-  $FiltersCopyWith<$Res>? get filters;
+  $Res call({String? name, String? id});
 }
 
 /// @nodoc
-class __$$_BeauticiansFilterRequestCopyWithImpl<$Res>
-    extends _$BeauticiansFilterRequestCopyWithImpl<$Res,
-        _$_BeauticiansFilterRequest>
-    implements _$$_BeauticiansFilterRequestCopyWith<$Res> {
-  __$$_BeauticiansFilterRequestCopyWithImpl(_$_BeauticiansFilterRequest _value,
-      $Res Function(_$_BeauticiansFilterRequest) _then)
+class __$$_ServiceCategoryClassCopyWithImpl<$Res>
+    extends _$ServiceCategoryClassCopyWithImpl<$Res, _$_ServiceCategoryClass>
+    implements _$$_ServiceCategoryClassCopyWith<$Res> {
+  __$$_ServiceCategoryClassCopyWithImpl(_$_ServiceCategoryClass _value,
+      $Res Function(_$_ServiceCategoryClass) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filters = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
   }) {
-    return _then(_$_BeauticiansFilterRequest(
-      filters: freezed == filters
-          ? _value.filters
-          : filters // ignore: cast_nullable_to_non_nullable
-              as Filters?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_BeauticiansFilterRequest implements _BeauticiansFilterRequest {
-  const _$_BeauticiansFilterRequest({this.filters});
-
-  factory _$_BeauticiansFilterRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_BeauticiansFilterRequestFromJson(json);
-
-  @override
-  final Filters? filters;
-
-  @override
-  String toString() {
-    return 'BeauticiansFilterRequest(filters: $filters)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_BeauticiansFilterRequest &&
-            (identical(other.filters, filters) || other.filters == filters));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, filters);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_BeauticiansFilterRequestCopyWith<_$_BeauticiansFilterRequest>
-      get copyWith => __$$_BeauticiansFilterRequestCopyWithImpl<
-          _$_BeauticiansFilterRequest>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_BeauticiansFilterRequestToJson(
-      this,
-    );
-  }
-}
-
-abstract class _BeauticiansFilterRequest implements BeauticiansFilterRequest {
-  const factory _BeauticiansFilterRequest({final Filters? filters}) =
-      _$_BeauticiansFilterRequest;
-
-  factory _BeauticiansFilterRequest.fromJson(Map<String, dynamic> json) =
-      _$_BeauticiansFilterRequest.fromJson;
-
-  @override
-  Filters? get filters;
-  @override
-  @JsonKey(ignore: true)
-  _$$_BeauticiansFilterRequestCopyWith<_$_BeauticiansFilterRequest>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-Filters _$FiltersFromJson(Map<String, dynamic> json) {
-  return _Filters.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Filters {
-  String? get search => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
-  String? get date => throw _privateConstructorUsedError;
-  int? get avgRating => throw _privateConstructorUsedError;
-  @JsonKey(name: "price_range")
-  PriceRange? get priceRange => throw _privateConstructorUsedError;
-  @JsonKey(name: "service_type")
-  String? get serviceType => throw _privateConstructorUsedError;
-  @JsonKey(name: "service_category")
-  String? get serviceCategory => throw _privateConstructorUsedError;
-  @JsonKey(name: "sort_price")
-  String? get sortPrice => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FiltersCopyWith<Filters> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FiltersCopyWith<$Res> {
-  factory $FiltersCopyWith(Filters value, $Res Function(Filters) then) =
-      _$FiltersCopyWithImpl<$Res, Filters>;
-  @useResult
-  $Res call(
-      {String? search,
-      String? location,
-      String? date,
-      int? avgRating,
-      @JsonKey(name: "price_range") PriceRange? priceRange,
-      @JsonKey(name: "service_type") String? serviceType,
-      @JsonKey(name: "service_category") String? serviceCategory,
-      @JsonKey(name: "sort_price") String? sortPrice});
-
-  $PriceRangeCopyWith<$Res>? get priceRange;
-}
-
-/// @nodoc
-class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
-    implements $FiltersCopyWith<$Res> {
-  _$FiltersCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? search = freezed,
-    Object? location = freezed,
-    Object? date = freezed,
-    Object? avgRating = freezed,
-    Object? priceRange = freezed,
-    Object? serviceType = freezed,
-    Object? serviceCategory = freezed,
-    Object? sortPrice = freezed,
-  }) {
-    return _then(_value.copyWith(
-      search: freezed == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
+    return _then(_$_ServiceCategoryClass(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avgRating: freezed == avgRating
-          ? _value.avgRating
-          : avgRating // ignore: cast_nullable_to_non_nullable
-              as int?,
-      priceRange: freezed == priceRange
-          ? _value.priceRange
-          : priceRange // ignore: cast_nullable_to_non_nullable
-              as PriceRange?,
-      serviceType: freezed == serviceType
-          ? _value.serviceType
-          : serviceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceCategory: freezed == serviceCategory
-          ? _value.serviceCategory
-          : serviceCategory // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sortPrice: freezed == sortPrice
-          ? _value.sortPrice
-          : sortPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PriceRangeCopyWith<$Res>? get priceRange {
-    if (_value.priceRange == null) {
-      return null;
-    }
-
-    return $PriceRangeCopyWith<$Res>(_value.priceRange!, (value) {
-      return _then(_value.copyWith(priceRange: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_FiltersCopyWith<$Res> implements $FiltersCopyWith<$Res> {
-  factory _$$_FiltersCopyWith(
-          _$_Filters value, $Res Function(_$_Filters) then) =
-      __$$_FiltersCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? search,
-      String? location,
-      String? date,
-      int? avgRating,
-      @JsonKey(name: "price_range") PriceRange? priceRange,
-      @JsonKey(name: "service_type") String? serviceType,
-      @JsonKey(name: "service_category") String? serviceCategory,
-      @JsonKey(name: "sort_price") String? sortPrice});
-
-  @override
-  $PriceRangeCopyWith<$Res>? get priceRange;
-}
-
-/// @nodoc
-class __$$_FiltersCopyWithImpl<$Res>
-    extends _$FiltersCopyWithImpl<$Res, _$_Filters>
-    implements _$$_FiltersCopyWith<$Res> {
-  __$$_FiltersCopyWithImpl(_$_Filters _value, $Res Function(_$_Filters) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? search = freezed,
-    Object? location = freezed,
-    Object? date = freezed,
-    Object? avgRating = freezed,
-    Object? priceRange = freezed,
-    Object? serviceType = freezed,
-    Object? serviceCategory = freezed,
-    Object? sortPrice = freezed,
-  }) {
-    return _then(_$_Filters(
-      search: freezed == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avgRating: freezed == avgRating
-          ? _value.avgRating
-          : avgRating // ignore: cast_nullable_to_non_nullable
-              as int?,
-      priceRange: freezed == priceRange
-          ? _value.priceRange
-          : priceRange // ignore: cast_nullable_to_non_nullable
-              as PriceRange?,
-      serviceType: freezed == serviceType
-          ? _value.serviceType
-          : serviceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceCategory: freezed == serviceCategory
-          ? _value.serviceCategory
-          : serviceCategory // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sortPrice: freezed == sortPrice
-          ? _value.sortPrice
-          : sortPrice // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -2661,276 +2673,63 @@ class __$$_FiltersCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Filters implements _Filters {
-  const _$_Filters(
-      {this.search,
-      this.location,
-      this.date,
-      this.avgRating,
-      @JsonKey(name: "price_range") this.priceRange,
-      @JsonKey(name: "service_type") this.serviceType,
-      @JsonKey(name: "service_category") this.serviceCategory,
-      @JsonKey(name: "sort_price") this.sortPrice});
+class _$_ServiceCategoryClass implements _ServiceCategoryClass {
+  const _$_ServiceCategoryClass({this.name, this.id});
 
-  factory _$_Filters.fromJson(Map<String, dynamic> json) =>
-      _$$_FiltersFromJson(json);
+  factory _$_ServiceCategoryClass.fromJson(Map<String, dynamic> json) =>
+      _$$_ServiceCategoryClassFromJson(json);
 
   @override
-  final String? search;
+  final String? name;
   @override
-  final String? location;
-  @override
-  final String? date;
-  @override
-  final int? avgRating;
-  @override
-  @JsonKey(name: "price_range")
-  final PriceRange? priceRange;
-  @override
-  @JsonKey(name: "service_type")
-  final String? serviceType;
-  @override
-  @JsonKey(name: "service_category")
-  final String? serviceCategory;
-  @override
-  @JsonKey(name: "sort_price")
-  final String? sortPrice;
+  final String? id;
 
   @override
   String toString() {
-    return 'Filters(search: $search, location: $location, date: $date, avgRating: $avgRating, priceRange: $priceRange, serviceType: $serviceType, serviceCategory: $serviceCategory, sortPrice: $sortPrice)';
+    return 'ServiceCategoryClass(name: $name, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Filters &&
-            (identical(other.search, search) || other.search == search) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.avgRating, avgRating) ||
-                other.avgRating == avgRating) &&
-            (identical(other.priceRange, priceRange) ||
-                other.priceRange == priceRange) &&
-            (identical(other.serviceType, serviceType) ||
-                other.serviceType == serviceType) &&
-            (identical(other.serviceCategory, serviceCategory) ||
-                other.serviceCategory == serviceCategory) &&
-            (identical(other.sortPrice, sortPrice) ||
-                other.sortPrice == sortPrice));
+            other is _$_ServiceCategoryClass &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, search, location, date,
-      avgRating, priceRange, serviceType, serviceCategory, sortPrice);
+  int get hashCode => Object.hash(runtimeType, name, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FiltersCopyWith<_$_Filters> get copyWith =>
-      __$$_FiltersCopyWithImpl<_$_Filters>(this, _$identity);
+  _$$_ServiceCategoryClassCopyWith<_$_ServiceCategoryClass> get copyWith =>
+      __$$_ServiceCategoryClassCopyWithImpl<_$_ServiceCategoryClass>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FiltersToJson(
+    return _$$_ServiceCategoryClassToJson(
       this,
     );
   }
 }
 
-abstract class _Filters implements Filters {
-  const factory _Filters(
-      {final String? search,
-      final String? location,
-      final String? date,
-      final int? avgRating,
-      @JsonKey(name: "price_range") final PriceRange? priceRange,
-      @JsonKey(name: "service_type") final String? serviceType,
-      @JsonKey(name: "service_category") final String? serviceCategory,
-      @JsonKey(name: "sort_price") final String? sortPrice}) = _$_Filters;
+abstract class _ServiceCategoryClass implements ServiceCategoryClass {
+  const factory _ServiceCategoryClass({final String? name, final String? id}) =
+      _$_ServiceCategoryClass;
 
-  factory _Filters.fromJson(Map<String, dynamic> json) = _$_Filters.fromJson;
+  factory _ServiceCategoryClass.fromJson(Map<String, dynamic> json) =
+      _$_ServiceCategoryClass.fromJson;
 
   @override
-  String? get search;
+  String? get name;
   @override
-  String? get location;
-  @override
-  String? get date;
-  @override
-  int? get avgRating;
-  @override
-  @JsonKey(name: "price_range")
-  PriceRange? get priceRange;
-  @override
-  @JsonKey(name: "service_type")
-  String? get serviceType;
-  @override
-  @JsonKey(name: "service_category")
-  String? get serviceCategory;
-  @override
-  @JsonKey(name: "sort_price")
-  String? get sortPrice;
+  String? get id;
   @override
   @JsonKey(ignore: true)
-  _$$_FiltersCopyWith<_$_Filters> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-PriceRange _$PriceRangeFromJson(Map<String, dynamic> json) {
-  return _PriceRange.fromJson(json);
-}
-
-/// @nodoc
-mixin _$PriceRange {
-  int? get minPrice => throw _privateConstructorUsedError;
-  int? get maxPrice => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PriceRangeCopyWith<PriceRange> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PriceRangeCopyWith<$Res> {
-  factory $PriceRangeCopyWith(
-          PriceRange value, $Res Function(PriceRange) then) =
-      _$PriceRangeCopyWithImpl<$Res, PriceRange>;
-  @useResult
-  $Res call({int? minPrice, int? maxPrice});
-}
-
-/// @nodoc
-class _$PriceRangeCopyWithImpl<$Res, $Val extends PriceRange>
-    implements $PriceRangeCopyWith<$Res> {
-  _$PriceRangeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? minPrice = freezed,
-    Object? maxPrice = freezed,
-  }) {
-    return _then(_value.copyWith(
-      minPrice: freezed == minPrice
-          ? _value.minPrice
-          : minPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxPrice: freezed == maxPrice
-          ? _value.maxPrice
-          : maxPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_PriceRangeCopyWith<$Res>
-    implements $PriceRangeCopyWith<$Res> {
-  factory _$$_PriceRangeCopyWith(
-          _$_PriceRange value, $Res Function(_$_PriceRange) then) =
-      __$$_PriceRangeCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int? minPrice, int? maxPrice});
-}
-
-/// @nodoc
-class __$$_PriceRangeCopyWithImpl<$Res>
-    extends _$PriceRangeCopyWithImpl<$Res, _$_PriceRange>
-    implements _$$_PriceRangeCopyWith<$Res> {
-  __$$_PriceRangeCopyWithImpl(
-      _$_PriceRange _value, $Res Function(_$_PriceRange) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? minPrice = freezed,
-    Object? maxPrice = freezed,
-  }) {
-    return _then(_$_PriceRange(
-      minPrice: freezed == minPrice
-          ? _value.minPrice
-          : minPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxPrice: freezed == maxPrice
-          ? _value.maxPrice
-          : maxPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_PriceRange implements _PriceRange {
-  const _$_PriceRange({this.minPrice, this.maxPrice});
-
-  factory _$_PriceRange.fromJson(Map<String, dynamic> json) =>
-      _$$_PriceRangeFromJson(json);
-
-  @override
-  final int? minPrice;
-  @override
-  final int? maxPrice;
-
-  @override
-  String toString() {
-    return 'PriceRange(minPrice: $minPrice, maxPrice: $maxPrice)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_PriceRange &&
-            (identical(other.minPrice, minPrice) ||
-                other.minPrice == minPrice) &&
-            (identical(other.maxPrice, maxPrice) ||
-                other.maxPrice == maxPrice));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, minPrice, maxPrice);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_PriceRangeCopyWith<_$_PriceRange> get copyWith =>
-      __$$_PriceRangeCopyWithImpl<_$_PriceRange>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PriceRangeToJson(
-      this,
-    );
-  }
-}
-
-abstract class _PriceRange implements PriceRange {
-  const factory _PriceRange({final int? minPrice, final int? maxPrice}) =
-      _$_PriceRange;
-
-  factory _PriceRange.fromJson(Map<String, dynamic> json) =
-      _$_PriceRange.fromJson;
-
-  @override
-  int? get minPrice;
-  @override
-  int? get maxPrice;
-  @override
-  @JsonKey(ignore: true)
-  _$$_PriceRangeCopyWith<_$_PriceRange> get copyWith =>
+  _$$_ServiceCategoryClassCopyWith<_$_ServiceCategoryClass> get copyWith =>
       throw _privateConstructorUsedError;
 }

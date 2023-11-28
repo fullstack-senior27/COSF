@@ -95,9 +95,11 @@ final GoRouter routers = GoRouter(routes: [
         )
       ]),
   GoRoute(
-    path: '/serviceDetails',
-    builder: (context, state) => const ServiceDetailsPage(),
-  ),
+      path: '/serviceDetails',
+      builder: (context, state) {
+        String id = state.extra.toString();
+        return ServiceDetailsPage(id: id);
+      }),
   GoRoute(
       path: '/signUp',
       builder: (context, state) => const DashboardFreePage(
@@ -133,12 +135,15 @@ final GoRouter routers = GoRouter(routes: [
           const DashboardFreePage(child: BeauticiansListPageView())),
       routes: [
         GoRoute(
-          path: 'service-details',
-          builder: (context, state) =>
-              const DashboardFreePage(child: ServiceDetailsPage()),
-          pageBuilder: defaultPageBuilder(
-              const DashboardFreePage(child: ServiceDetailsPage())),
-        )
+            path: 'service-details',
+            builder: (context, state) {
+              String id = state.extra.toString();
+              return ServiceDetailsPage(id: id);
+            }
+
+            // pageBuilder: defaultPageBuilder(
+            //     const DashboardFreePage(child: ServiceDetailsPage())),
+            )
       ]),
   GoRoute(
     path: '/edit-profile',

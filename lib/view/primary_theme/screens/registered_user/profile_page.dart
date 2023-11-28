@@ -1,4 +1,5 @@
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -546,7 +547,9 @@ class _ProfilePageState extends State<ProfilePage>
                 SizedBox(height: 20.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17.w),
-                  child: const ProfileReviews(),
+                  child: const ProfileReviews(
+                    beauticianDetailResponse: BeauticianDetailResponse(),
+                  ),
                 ),
                 SizedBox(height: 40.h),
                 const Footer(),

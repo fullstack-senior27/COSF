@@ -17,6 +17,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
+import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart'
+    as beautician;
 
 import '../../../../../utils/app_sizes.dart';
 
@@ -266,6 +268,7 @@ class _BeauticiansListPageViewState
                       ),
                       Expanded(
                         child: TextField(
+                          controller: _homePageViewModel.locationController,
                           style: GoogleFonts.urbanist(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
@@ -308,7 +311,7 @@ class _BeauticiansListPageViewState
                       ),
                       Expanded(
                         child: TextField(
-                          controller: _dateController,
+                          controller: _homePageViewModel.dateController,
                           style: GoogleFonts.urbanist(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
@@ -379,12 +382,51 @@ class _BeauticiansListPageViewState
                               ),
                             ),
                             onPressed: () {
-                              ref.read(homePageViewModel).fetchAllSalons(
-                                    ref
-                                        .read(homePageViewModel)
-                                        .searchController
-                                        .text,
-                                  );
+                              // print(_viewModel.searchController.text);
+                              if (_homePageViewModel
+                                      .searchController.text.length >
+                                  3) {
+                                _homePageViewModel.getBeauticiansByFilter(
+                                    beautician.BeauticiansFilterRequest(
+                                        filters: beautician.Filters(
+                                  search:
+                                      _homePageViewModel.searchController.text,
+
+                                  location: _homePageViewModel
+                                          .locationController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel
+                                          .locationController.text,
+                                  date: _homePageViewModel
+                                          .dateController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel.dateController.text,
+                                  // avgRating: null,
+                                  // priceRange:
+                                  //     const beautician.PriceRange(
+                                  //         minPrice: 0,
+                                  //         maxPrice: 200),
+                                )));
+                              }
+                              if (_homePageViewModel
+                                      .searchController.text.length <
+                                  4) {
+                                _homePageViewModel.getBeauticiansByFilter(
+                                    beautician.BeauticiansFilterRequest(
+                                        filters: beautician.Filters(
+                                  // search: "",
+                                  location: _homePageViewModel
+                                          .locationController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel
+                                          .locationController.text,
+                                  date: _homePageViewModel
+                                          .dateController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel.dateController.text,
+                                )));
+                              }
+                              context.go("/beautician-listing");
                             },
                             child: Text(
                               "Search",
@@ -536,6 +578,7 @@ class _BeauticiansListPageViewState
                       height: 10.h,
                     ),
                     TextField(
+                      controller: _homePageViewModel.locationController,
                       decoration: InputDecoration(
                         hintText: "Location",
                         hintStyle: GoogleFonts.urbanist(
@@ -565,7 +608,7 @@ class _BeauticiansListPageViewState
                       height: 10.h,
                     ),
                     TextField(
-                      controller: _dateController,
+                      controller: _homePageViewModel.dateController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(
@@ -636,12 +679,46 @@ class _BeauticiansListPageViewState
                           ),
                         ),
                         onPressed: () {
-                          ref.read(homePageViewModel).fetchAllSalons(
-                                ref
-                                    .read(homePageViewModel)
-                                    .searchController
-                                    .text,
-                              );
+                          // print(_viewModel.searchController.text);
+                          if (_homePageViewModel.searchController.text.length >
+                              3) {
+                            _homePageViewModel.getBeauticiansByFilter(
+                                beautician.BeauticiansFilterRequest(
+                                    filters: beautician.Filters(
+                              search: _homePageViewModel.searchController.text,
+
+                              location: _homePageViewModel
+                                      .locationController.text.isEmpty
+                                  ? null
+                                  : _homePageViewModel.locationController.text,
+                              date:
+                                  _homePageViewModel.dateController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel.dateController.text,
+                              // avgRating: null,
+                              // priceRange:
+                              //     const beautician.PriceRange(
+                              //         minPrice: 0,
+                              //         maxPrice: 200),
+                            )));
+                          }
+                          if (_homePageViewModel.searchController.text.length <
+                              4) {
+                            _homePageViewModel.getBeauticiansByFilter(
+                                beautician.BeauticiansFilterRequest(
+                                    filters: beautician.Filters(
+                              search: "",
+                              location: _homePageViewModel
+                                      .locationController.text.isEmpty
+                                  ? null
+                                  : _homePageViewModel.locationController.text,
+                              date:
+                                  _homePageViewModel.dateController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel.dateController.text,
+                            )));
+                          }
+                          context.go("/beautician-listing");
                         },
                         child: const Text(
                           "Search",
@@ -728,26 +805,26 @@ class _BeauticiansListPageViewState
                                   });
 
                                   if (index > 0) {
-                                    ref.read(homePageViewModel).fetchAllSalons(
-                                          ref
-                                              .read(homePageViewModel)
-                                              .searchController
-                                              .text,
-                                          serviceType: ref
-                                                  .read(homePageViewModel)
-                                                  .services
-                                                  .data?[selected - 1]
-                                                  .serviceType
-                                                  ?.id ??
-                                              "",
-                                        );
+                                    ref
+                                        .read(homePageViewModel)
+                                        .getBeauticiansByFilter(
+                                            beautician.BeauticiansFilterRequest(
+                                                filters: beautician.Filters(
+                                          search: "",
+                                          serviceCategory: items[index],
+                                          // serviceType: "",
+                                          // location: "",
+                                          // avgRating: null,
+                                          // priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
+                                        )));
                                   } else {
-                                    ref.read(homePageViewModel).fetchAllSalons(
-                                          ref
-                                              .read(homePageViewModel)
-                                              .searchController
-                                              .text,
-                                        );
+                                    ref
+                                        .read(homePageViewModel)
+                                        .getBeauticiansByFilter(const beautician
+                                                .BeauticiansFilterRequest(
+                                            filters: beautician.Filters(
+                                          search: "",
+                                        )));
                                   }
                                 },
                                 child: FittedBox(

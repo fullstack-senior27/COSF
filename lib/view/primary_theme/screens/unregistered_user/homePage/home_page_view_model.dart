@@ -6,6 +6,7 @@ import 'package:cosmetropolis/data/remote/public/public_repo_impl.dart';
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart'
     as salon;
 import 'package:cosmetropolis/data/remote/salon/salon_repo_impl.dart';
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/data/remote/services/models/service_categories_model.dart';
 import 'package:cosmetropolis/data/remote/services/models/service_types_model.dart';
 import 'package:cosmetropolis/data/remote/services/models/services_model.dart';
@@ -26,7 +27,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
 
   final ServicesRepoImpl _servicesRepoImpl = ServicesRepoImpl();
   final SalonRepoImpl _salonRepoImpl = SalonRepoImpl();
-  TextEditingController searchController = TextEditingController();
+
   final PublicRepoImpl _publicRepoImpl = PublicRepoImpl(ApiClient());
 
   /// DATA MEMBERS
@@ -48,6 +49,19 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
   BeauticiansListResponse? _beauticiansListResponse;
   BeauticiansListResponse? get beauticiansListResponse =>
       _beauticiansListResponse;
+
+  BeauticianDetailResponse? _beauticianDetailResponse;
+  BeauticianDetailResponse? get beauticianDetailResponse =>
+      _beauticianDetailResponse;
+  TextEditingController searchController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  double priceRange = 2000;
+
+  String category = "";
+  int service = -1;
+  int avgRating = -1;
+  int sortPrice = -1;
 
   void showSnackbar(String message) {
     view?.showSnackbar(message, color: Colors.black);
@@ -164,5 +178,16 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
               _beauticiansListResponse = r;
               notifyListeners();
             }));
+  }
+
+  Future<void> getBeauticianDetails(BeauticianDetailRequest request) async {
+    toggleLoading();
+    await _servicesRepoImpl.getBeauticianDetails(request).then((value) {
+      toggleLoading();
+      return value.fold((l) => showSnackbar(l.message), (r) {
+        _beauticianDetailResponse = r;
+        notifyListeners();
+      });
+    });
   }
 }

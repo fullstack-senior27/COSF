@@ -1,3 +1,4 @@
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -41,12 +42,11 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 style: urbanist600(kBlack, 18),
               ),
               IconButton(
-                onPressed: () => context.pop(), 
-                icon: Icon(
-                  Icons.close,
-                  color: kGrey,
-                )
-              )
+                  onPressed: () => context.pop(),
+                  icon: Icon(
+                    Icons.close,
+                    color: kGrey,
+                  ))
             ],
           ),
           SizedBox(height: 20.h),
@@ -726,7 +726,11 @@ class PhotosTab extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20.h),
-        Text("Pinned Photos", style: TextStyle(color: kBlack, fontSize: 18, fontWeight: FontWeight.w700),),
+        Text(
+          "Pinned Photos",
+          style: TextStyle(
+              color: kBlack, fontSize: 18, fontWeight: FontWeight.w700),
+        ),
         SizedBox(height: 20.h),
         Container(
           color: const Color(0xffE0F3FD),
@@ -736,8 +740,7 @@ class PhotosTab extends StatelessWidget {
               CircleAvatar(
                 radius: 30.r,
                 backgroundColor: kWhite,
-                child:
-                    Image.asset("assets/icons/pin_black.webp", height: 30.h),
+                child: Image.asset("assets/icons/pin_black.webp", height: 30.h),
               ),
               SizedBox(width: 5.w),
               Expanded(
@@ -2250,7 +2253,8 @@ class _EditUpcomingHoursState extends State<EditUpcomingHours> {
 }
 
 class ProfileReviews extends StatelessWidget {
-  const ProfileReviews({super.key});
+  final BeauticianDetailResponse beauticianDetailResponse;
+  const ProfileReviews({super.key, required this.beauticianDetailResponse});
 
   @override
   Widget build(BuildContext context) {
@@ -2274,13 +2278,16 @@ class ProfileReviews extends StatelessWidget {
                     SizedBox(
                       width: 5.w,
                     ),
-                    Text('4.82', style: urbanist600(kBlack, 24)),
+                    Text("${beauticianDetailResponse.data?.avgRating ?? 0}",
+                        style: urbanist600(kBlack, 24)),
                   ],
                 ),
                 SizedBox(
                   height: 5.h,
                 ),
-                Text('856k booking reviews', style: urbanist400(kBlack, 12)),
+                Text(
+                    '${beauticianDetailResponse.data?.ratingCount ?? 0} booking reviews',
+                    style: urbanist400(kBlack, 12)),
               ],
             ),
             const Spacer(),
@@ -2343,7 +2350,7 @@ class ProfileReviews extends StatelessWidget {
         ),
         SizedBox(height: 40.h),
         ...List.generate(
-          9,
+          beauticianDetailResponse.data?.reviews?.length ?? 0,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Container(
@@ -2371,12 +2378,16 @@ class ProfileReviews extends StatelessWidget {
               ),
               width: double.infinity,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.network(
+                        // beauticianDetailResponse
+                        //         .data?.reviews?[index].user?.image
+                        //         .toString() ??
                         "https://st4.depositphotos.com/4509995/21763/i/600/depositphotos_217634160-stock-photo-portrait-of-white-young-woman.jpg",
                         width: MediaQuery.of(context).size.width * 0.1,
                       ),
@@ -2388,7 +2399,10 @@ class ProfileReviews extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Jacob Jones",
+                              beauticianDetailResponse
+                                      .data?.reviews?[index].user?.name
+                                      .toString() ??
+                                  "",
                               style: urbanist600(kBlack, 14),
                             ),
                             // SizedBox(
@@ -2400,6 +2414,16 @@ class ProfileReviews extends StatelessWidget {
                                 "April 2023 • Haltu, Kolkata, West Bengal 700078, India",
                                 style: urbanist400(kBlack, 12),
                               ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                              beauticianDetailResponse
+                                      .data?.reviews?[index].text
+                                      .toString() ??
+                                  "",
+                              style: urbanist400(kdescription, 12),
                             ),
 
                             if (MediaQuery.of(context).size.width < 920)
@@ -2429,7 +2453,10 @@ class ProfileReviews extends StatelessWidget {
                             children: [
                               const Spacer(),
                               RatingBar.builder(
-                                initialRating: 3,
+                                initialRating: beauticianDetailResponse
+                                        .data?.reviews?[index].rating
+                                        ?.toDouble() ??
+                                    0,
                                 minRating: 1,
                                 allowHalfRating: true,
                                 itemSize: 20,
@@ -2450,13 +2477,6 @@ class ProfileReviews extends StatelessWidget {
                         Container()
                     ],
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    "Very happy with my visit at this salon. It was my first time there which made me a bit nervous. Esme was very helpful, knowledgeable, beauticianl and attentive. I am very happy with my new hairstyle. Very nice atmosphere. It’s hard to find a hairdresser you can trust but I think I just did. Highly recommended.",
-                    style: urbanist400(kdescription, 12),
-                  )
                 ],
               ),
             ),

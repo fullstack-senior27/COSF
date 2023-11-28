@@ -155,11 +155,12 @@ class Filters with _$Filters {
   const factory Filters({
     String? search,
     String? location,
-    DateTime? date,
+    String? date,
     int? avgRating,
     @JsonKey(name: "price_range") PriceRange? priceRange,
     @JsonKey(name: "service_type") String? serviceType,
     @JsonKey(name: "service_category") String? serviceCategory,
+    @JsonKey(name: "sort_price") String? sortPrice,
   }) = _Filters;
 
   factory Filters.fromJson(Map<String, dynamic> json) =>
