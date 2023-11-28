@@ -76,7 +76,7 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
       ratingCount: json['ratingCount'] as int?,
-      avgRating: json['avgRating'] as int?,
+      avgRating: (json['avgRating'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
@@ -133,7 +133,7 @@ _$_Review _$$_ReviewFromJson(Map<String, dynamic> json) => _$_Review(
       id: json['_id'] as String?,
       beautician: json['beautician'] as String?,
       text: json['text'] as String?,
-      rating: json['rating'] as int?,
+      rating: (json['rating'] as num?)?.toDouble(),
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),

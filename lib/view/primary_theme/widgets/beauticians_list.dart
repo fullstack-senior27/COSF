@@ -418,7 +418,7 @@ class BeauticiansListWebView extends StatelessWidget {
 }
 
 class BeauticiansListMobView extends StatelessWidget {
-  final Salon salonDetails;
+  final Result? salonDetails;
   const BeauticiansListMobView({super.key, required this.salonDetails});
 
   @override
@@ -426,7 +426,8 @@ class BeauticiansListMobView extends StatelessWidget {
     List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
     return InkWell(
       onTap: () {
-        context.go("/beautician-listing/service-details");
+        context.go("/beautician-listing/service-details",
+            extra: salonDetails?.id ?? "");
       },
       child: Container(
         decoration: BoxDecoration(
@@ -447,7 +448,7 @@ class BeauticiansListMobView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: DecorationImage(
-                    image: NetworkImage(salonDetails.image ??
+                    image: NetworkImage(salonDetails?.image ??
                         "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                     fit: BoxFit.cover,
                   ),
@@ -459,7 +460,7 @@ class BeauticiansListMobView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    salonDetails.name ?? "",
+                    salonDetails?.name ?? "",
                     style: GoogleFonts.urbanist(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -489,7 +490,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      salonDetails.address ?? "",
+                      salonDetails?.address ?? "",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.urbanist(
@@ -512,7 +513,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   RatingBar.builder(
                     ignoreGestures: true,
                     itemSize: 20.sp,
-                    initialRating: salonDetails.avgRating ?? 0,
+                    initialRating: salonDetails?.avgRating ?? 0,
                     allowHalfRating: true,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,
@@ -522,7 +523,7 @@ class BeauticiansListMobView extends StatelessWidget {
                     unratedColor: kGrey,
                   ),
                   Text(
-                    "${salonDetails.avgRating} (${salonDetails.ratingCount} Reviews)",
+                    "${salonDetails?.avgRating} (${salonDetails?.ratingCount} Reviews)",
                     style: GoogleFonts.urbanist(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -668,7 +669,7 @@ class BeauticiansListMobView extends StatelessWidget {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: salonDetails.services?.length ?? 0,
+                itemCount: salonDetails?.services?.length ?? 0,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -679,7 +680,7 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  salonDetails.services?[index].name ?? "",
+                                  salonDetails?.services?[index].name ?? "",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w600,
@@ -703,7 +704,7 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "${salonDetails.services?[index].time ?? ""} Mins - \$${salonDetails.services?[index].price ?? ""}",
+                                  "${salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${salonDetails?.services?[index].price ?? ""}",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,

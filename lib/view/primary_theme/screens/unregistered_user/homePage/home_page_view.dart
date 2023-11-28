@@ -1052,6 +1052,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                     .name ??
                                                 "";
                                             context.go("/beautician-listing");
+                                            //
                                           },
                                           icon: const Icon(
                                             Icons.arrow_forward,

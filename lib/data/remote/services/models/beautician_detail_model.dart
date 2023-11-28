@@ -67,7 +67,7 @@ class Data with _$Data {
     List<ServiceCategory>? serviceCategories,
     List<Review>? reviews,
     int? ratingCount,
-    int? avgRating,
+    double? avgRating,
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
@@ -94,7 +94,7 @@ class Review with _$Review {
     @JsonKey(name: "_id") String? id,
     String? beautician,
     String? text,
-    int? rating,
+    double? rating,
     User? user,
     @JsonKey(name: "__v") int? v,
   }) = _Review;

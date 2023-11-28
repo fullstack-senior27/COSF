@@ -403,7 +403,7 @@ mixin _$Data {
       throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
-  int? get avgRating => throw _privateConstructorUsedError;
+  double? get avgRating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -441,7 +441,7 @@ abstract class $DataCopyWith<$Res> {
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      int? avgRating});
+      double? avgRating});
 }
 
 /// @nodoc
@@ -588,7 +588,7 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
       avgRating: freezed == avgRating
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 }
@@ -625,7 +625,7 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      int? avgRating});
+      double? avgRating});
 }
 
 /// @nodoc
@@ -768,7 +768,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
       avgRating: freezed == avgRating
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -941,7 +941,7 @@ class _$_Data implements _Data {
   @override
   final int? ratingCount;
   @override
-  final int? avgRating;
+  final double? avgRating;
 
   @override
   String toString() {
@@ -1065,7 +1065,7 @@ abstract class _Data implements Data {
       final List<ServiceCategory>? serviceCategories,
       final List<Review>? reviews,
       final int? ratingCount,
-      final int? avgRating}) = _$_Data;
+      final double? avgRating}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
@@ -1122,7 +1122,7 @@ abstract class _Data implements Data {
   @override
   int? get ratingCount;
   @override
-  int? get avgRating;
+  double? get avgRating;
   @override
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
@@ -1384,7 +1384,7 @@ mixin _$Review {
   String? get id => throw _privateConstructorUsedError;
   String? get beautician => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
-  int? get rating => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: "__v")
   int? get v => throw _privateConstructorUsedError;
@@ -1403,7 +1403,7 @@ abstract class $ReviewCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       String? text,
-      int? rating,
+      double? rating,
       User? user,
       @JsonKey(name: "__v") int? v});
 
@@ -1446,7 +1446,7 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1481,7 +1481,7 @@ abstract class _$$_ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       String? text,
-      int? rating,
+      double? rating,
       User? user,
       @JsonKey(name: "__v") int? v});
 
@@ -1522,7 +1522,7 @@ class __$$_ReviewCopyWithImpl<$Res>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1557,7 +1557,7 @@ class _$_Review implements _Review {
   @override
   final String? text;
   @override
-  final int? rating;
+  final double? rating;
   @override
   final User? user;
   @override
@@ -1607,7 +1607,7 @@ abstract class _Review implements Review {
       {@JsonKey(name: "_id") final String? id,
       final String? beautician,
       final String? text,
-      final int? rating,
+      final double? rating,
       final User? user,
       @JsonKey(name: "__v") final int? v}) = _$_Review;
 
@@ -1621,7 +1621,7 @@ abstract class _Review implements Review {
   @override
   String? get text;
   @override
-  int? get rating;
+  double? get rating;
   @override
   User? get user;
   @override

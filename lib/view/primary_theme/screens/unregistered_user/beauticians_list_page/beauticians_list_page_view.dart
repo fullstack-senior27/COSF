@@ -1018,44 +1018,44 @@ class _BeauticiansListPageViewState
                                   //   },
                                   // ),
                                   SizedBox(
-                                    child: _homePageViewModel.loading
-                                        ? const Center(
-                                            child: CircularProgressIndicator(
-                                              color: kBlack,
-                                            ),
+                                    child: _homePageViewModel
+                                            .beauticiansListResponse!
+                                            .data
+                                            .results
+                                            .isNotEmpty
+                                        ? ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: _homePageViewModel
+                                                    .beauticiansListResponse
+                                                    ?.data
+                                                    .results
+                                                    .length ??
+                                                0,
+                                            itemBuilder: (context, index) {
+                                              return Column(
+                                                children: [
+                                                  BeauticiansListMobView(
+                                                    salonDetails: _homePageViewModel
+                                                        .beauticiansListResponse
+                                                        ?.data
+                                                        .results[index],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           )
-                                        : _homePageViewModel.salons.isNotEmpty
-                                            ? ListView.builder(
-                                                shrinkWrap: true,
-                                                physics:
-                                                    NeverScrollableScrollPhysics(),
-                                                itemCount: _homePageViewModel
-                                                    .salons.length,
-                                                itemBuilder: (context, index) {
-                                                  return Column(
-                                                    children: [
-                                                      BeauticiansListMobView(
-                                                        salonDetails:
-                                                            _homePageViewModel
-                                                                .salons[index],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 20.h,
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              )
-                                            : const Center(
-                                                child: Text(
-                                                  "No Salons/Beauticians/Services Found :(",
-                                                  style: TextStyle(
-                                                      color: kBlack,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
+                                        : const Center(
+                                            child: Text(
+                                              "No Salons/Beauticians/Services Found :(",
+                                              style: TextStyle(
+                                                  color: kBlack,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
                                   ),
                                 ],
                               ),
