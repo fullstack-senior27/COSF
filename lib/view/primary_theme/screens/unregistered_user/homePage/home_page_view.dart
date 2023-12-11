@@ -546,348 +546,374 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                             ),
                     )
                   else
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Column(
-                        children: [
-                          SearchField<beautician.Result>(
-                            controller: _viewModel.searchController,
-                            hint: "Services or beautician name",
-                            itemHeight: 60,
-                            maxSuggestionsInViewPort: 10,
-                            offset: const Offset(0, 59),
-                            suggestionsDecoration: SuggestionDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            onSearchTextChanged: (p0) {
-                              if (p0.isEmpty) {
-                                _viewModel.clearFilter();
-                              }
-                              if (p0.length > 3) {
-                                _viewModel.getBeauticiansByFilter(
-                                  beautician.BeauticiansFilterRequest(
-                                      filters: beautician.Filters(
-                                    search: p0,
-                                  )),
-                                );
-                              }
-                            },
-                            searchInputDecoration: InputDecoration(
-                              hintText: "Services or beautician name",
-                              hintStyle: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.all(10.sp),
-                                child: const ImageIcon(
-                                  AssetImage(
-                                    "assets/icons/search.webp",
+                    isLoading
+                        ? const CircularProgressIndicator()
+                        : Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Column(
+                              children: [
+                                SearchField<beautician.Result>(
+                                  controller: _viewModel.searchController,
+                                  hint: "Services or beautician name",
+                                  itemHeight: 60,
+                                  maxSuggestionsInViewPort: 10,
+                                  offset: const Offset(0, 59),
+                                  suggestionsDecoration: SuggestionDecoration(
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
-                                  color: Color.fromARGB(155, 97, 95, 95),
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
-                                ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
-                                ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                            ),
-                            marginColor: Colors.white,
-                            suggestions: _viewModel
-                                .beauticiansListResponse!.data.results
-                                .map(
-                                  (e) => SearchFieldListItem<beautician.Result>(
-                                    e.name ?? "",
-                                    item: e,
-                                    // Use child to show Custom Widgets in the suggestions
-                                    // defaults to Text widget
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      height: 60,
-                                      color: kWhite,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[200],
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.search,
-                                                color: kGrey,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                          gapW8,
-                                          Flexible(
-                                            child: Container(
-                                              width: 250,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    e.name ?? "",
-                                                    style: const TextStyle(
-                                                        fontSize: 12),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                  if (e.services?.isNotEmpty ??
-                                                      true)
-                                                    Text(
-                                                      "${e.services?.first.name ?? ""} | ${e.name ?? ""}",
-                                                      style: const TextStyle(
-                                                          fontSize: 12,
-                                                          color: kGrey),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    )
-                                                  else
-                                                    Container(),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          // Spacer(),
-                                          Expanded(
+                                  onSearchTextChanged: (p0) {
+                                    if (p0.isEmpty) {
+                                      _viewModel.clearFilter();
+                                    }
+                                    if (p0.length > 3) {
+                                      _viewModel.getBeauticiansByFilter(
+                                        beautician.BeauticiansFilterRequest(
+                                            filters: beautician.Filters(
+                                          search: p0,
+                                        )),
+                                      );
+                                    }
+                                  },
+                                  searchInputDecoration: InputDecoration(
+                                    hintText: "Services or beautician name",
+                                    hintStyle: GoogleFonts.urbanist(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    suffixIcon: Padding(
+                                      padding: EdgeInsets.all(10.sp),
+                                      child: const ImageIcon(
+                                        AssetImage(
+                                          "assets/icons/search.webp",
+                                        ),
+                                        color: Color.fromARGB(155, 97, 95, 95),
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                  ),
+                                  marginColor: Colors.white,
+                                  suggestions: _viewModel
+                                      .beauticiansListResponse!.data.results
+                                      .map(
+                                        (e) => SearchFieldListItem<
+                                            beautician.Result>(
+                                          e.name ?? "",
+                                          item: e,
+                                          // Use child to show Custom Widgets in the suggestions
+                                          // defaults to Text widget
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            height: 60,
+                                            color: kWhite,
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
                                               children: [
-                                                Text(
-                                                  "${e.avgRating ?? 0}",
-                                                  style: const TextStyle(
+                                                Container(
+                                                  height: 30,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey[200],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                  ),
+                                                  child: const Center(
+                                                    child: Icon(
+                                                      Icons.search,
                                                       color: kGrey,
-                                                      fontSize: 12),
+                                                      size: 15,
+                                                    ),
+                                                  ),
                                                 ),
-                                                const Icon(
-                                                  Icons.star_rounded,
-                                                  color: kGrey,
-                                                  size: 20,
+                                                gapW8,
+                                                Flexible(
+                                                  child: Container(
+                                                    width: 250,
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          e.name ?? "",
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 12),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                        if (e.services
+                                                                ?.isNotEmpty ??
+                                                            true)
+                                                          Text(
+                                                            "${e.services?.first.name ?? ""} | ${e.name ?? ""}",
+                                                            style:
+                                                                const TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color:
+                                                                        kGrey),
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          )
+                                                        else
+                                                          Container(),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                // Spacer(),
+                                                Expanded(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      Text(
+                                                        "${e.avgRating ?? 0}",
+                                                        style: const TextStyle(
+                                                            color: kGrey,
+                                                            fontSize: 12),
+                                                      ),
+                                                      const Icon(
+                                                        Icons.star_rounded,
+                                                        color: kGrey,
+                                                        size: 20,
+                                                      )
+                                                    ],
+                                                  ),
                                                 )
                                               ],
                                             ),
-                                          )
-                                        ],
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                                // TextField(
+                                //   style: GoogleFonts.urbanist(
+                                //     fontSize: 14.sp,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                //   decoration: InputDecoration(
+                                //     hintText: "Services or beautician name",
+                                //     hintStyle: GoogleFonts.urbanist(
+                                //       color: kGrey,
+                                //       fontSize: 14.sp,
+                                //       fontWeight: FontWeight.w600,
+                                //     ),
+                                //     suffixIcon: const Icon(
+                                //       Icons.search,
+                                //       color: kGrey,
+                                //     ),
+                                //     enabledBorder: OutlineInputBorder(
+                                //       borderSide: const BorderSide(
+                                //         color: kWhite,
+                                //       ),
+                                //       borderRadius: BorderRadius.circular(10.r),
+                                //     ),
+                                //     focusedBorder: OutlineInputBorder(
+                                //       borderSide: const BorderSide(
+                                //         color: kWhite,
+                                //       ),
+                                //       borderRadius: BorderRadius.circular(10.r),
+                                //     ),
+                                //   ),
+                                // ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                TextField(
+                                  controller: _viewModel.locationController,
+                                  style: GoogleFonts.urbanist(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: "Location",
+                                    hintStyle: GoogleFonts.urbanist(
+                                      color: kGrey,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    suffixIcon: const Icon(
+                                      Icons.location_on,
+                                      color: kGrey,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                TextField(
+                                  controller: _viewModel.dateController,
+                                  keyboardType: TextInputType.datetime,
+                                  style: GoogleFonts.urbanist(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: "Date",
+                                    hintStyle: GoogleFonts.urbanist(
+                                      color: kGrey,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    suffixIcon: InkWell(
+                                      onTap: () async {
+                                        DateTime? pickedDate =
+                                            await showDatePicker(
+                                          context:
+                                              context, //context of current state
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(
+                                            2000,
+                                          ), //DateTime.now() - not to allow to choose before today.
+                                          lastDate: DateTime(2101),
+                                        );
+
+                                        if (pickedDate != null) {
+                                          //pickedDate output format => 2021-03-10 00:00:00.000
+                                          String formattedDate =
+                                              DateFormat('yyyy-MM-dd')
+                                                  .format(pickedDate);
+
+                                          _dateController.text =
+                                              formattedDate; //set output date to TextField value.
+                                          //formatted date output using intl package =>  2021-03-16
+                                        }
+                                      },
+                                      child: const Icon(
+                                        Icons.date_range,
+                                        color: kGrey,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      borderSide: const BorderSide(
+                                        color: kWhite,
                                       ),
                                     ),
                                   ),
-                                )
-                                .toList(),
-                          ),
-                          // TextField(
-                          //   style: GoogleFonts.urbanist(
-                          //     fontSize: 14.sp,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          //   decoration: InputDecoration(
-                          //     hintText: "Services or beautician name",
-                          //     hintStyle: GoogleFonts.urbanist(
-                          //       color: kGrey,
-                          //       fontSize: 14.sp,
-                          //       fontWeight: FontWeight.w600,
-                          //     ),
-                          //     suffixIcon: const Icon(
-                          //       Icons.search,
-                          //       color: kGrey,
-                          //     ),
-                          //     enabledBorder: OutlineInputBorder(
-                          //       borderSide: const BorderSide(
-                          //         color: kWhite,
-                          //       ),
-                          //       borderRadius: BorderRadius.circular(10.r),
-                          //     ),
-                          //     focusedBorder: OutlineInputBorder(
-                          //       borderSide: const BorderSide(
-                          //         color: kWhite,
-                          //       ),
-                          //       borderRadius: BorderRadius.circular(10.r),
-                          //     ),
-                          //   ),
-                          // ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          TextField(
-                            controller: _viewModel.locationController,
-                            style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Location",
-                              hintStyle: GoogleFonts.urbanist(
-                                color: kGrey,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              suffixIcon: const Icon(
-                                Icons.location_on,
-                                color: kGrey,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
                                 ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
+                                SizedBox(
+                                  height: 10.h,
                                 ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          TextField(
-                            controller: _viewModel.dateController,
-                            keyboardType: TextInputType.datetime,
-                            style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Date",
-                              hintStyle: GoogleFonts.urbanist(
-                                color: kGrey,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              suffixIcon: InkWell(
-                                onTap: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                    context: context, //context of current state
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(
-                                      2000,
-                                    ), //DateTime.now() - not to allow to choose before today.
-                                    lastDate: DateTime(2101),
-                                  );
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical:
+                                            MediaQuery.of(context).size.width >
+                                                    700
+                                                ? 15.h
+                                                : 16.h,
+                                      ),
+                                      backgroundColor: kBlue,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.r),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // print(_viewModel.searchController.text);
+                                      if (_viewModel
+                                              .searchController.text.length >
+                                          3) {
+                                        _viewModel.getBeauticiansByFilter(
+                                            beautician.BeauticiansFilterRequest(
+                                                filters: beautician.Filters(
+                                          search:
+                                              _viewModel.searchController.text,
 
-                                  if (pickedDate != null) {
-                                    //pickedDate output format => 2021-03-10 00:00:00.000
-                                    String formattedDate =
-                                        DateFormat('yyyy-MM-dd')
-                                            .format(pickedDate);
-
-                                    _dateController.text =
-                                        formattedDate; //set output date to TextField value.
-                                    //formatted date output using intl package =>  2021-03-16
-                                  }
-                                },
-                                child: const Icon(
-                                  Icons.date_range,
-                                  color: kGrey,
+                                          location: _viewModel
+                                                  .locationController
+                                                  .text
+                                                  .isEmpty
+                                              ? null
+                                              : _viewModel
+                                                  .locationController.text,
+                                          date: _viewModel
+                                                  .dateController.text.isEmpty
+                                              ? null
+                                              : _viewModel.dateController.text,
+                                          // avgRating: null,
+                                          // priceRange:
+                                          //     const beautician.PriceRange(
+                                          //         minPrice: 0,
+                                          //         maxPrice: 200),
+                                        )));
+                                      }
+                                      if (_viewModel
+                                              .searchController.text.length <
+                                          4) {
+                                        _viewModel.getBeauticiansByFilter(
+                                            beautician.BeauticiansFilterRequest(
+                                                filters: beautician.Filters(
+                                          search: _viewModel.locationController
+                                                      .text.isEmpty &&
+                                                  _viewModel.locationController
+                                                      .text.isEmpty
+                                              ? ""
+                                              : null,
+                                          location: _viewModel
+                                                  .locationController
+                                                  .text
+                                                  .isEmpty
+                                              ? null
+                                              : _viewModel
+                                                  .locationController.text,
+                                          date: _viewModel
+                                                  .dateController.text.isEmpty
+                                              ? null
+                                              : _viewModel.dateController.text,
+                                        )));
+                                      }
+                                      context.go("/beautician-listing");
+                                    },
+                                    child: Text(
+                                      "Search",
+                                      style: TextStyle(
+                                        color: kWhite,
+                                        fontSize: 14.sp,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: kWhite,
-                                ),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.r),
-                                borderSide: const BorderSide(
-                                  color: kWhite,
-                                ),
-                              ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                  vertical:
-                                      MediaQuery.of(context).size.width > 700
-                                          ? 15.h
-                                          : 16.h,
-                                ),
-                                backgroundColor: kBlue,
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.r),
-                                ),
-                              ),
-                              onPressed: () {
-                                // print(_viewModel.searchController.text);
-                                if (_viewModel.searchController.text.length >
-                                    3) {
-                                  _viewModel.getBeauticiansByFilter(
-                                      beautician.BeauticiansFilterRequest(
-                                          filters: beautician.Filters(
-                                    search: _viewModel.searchController.text,
-
-                                    location: _viewModel
-                                            .locationController.text.isEmpty
-                                        ? null
-                                        : _viewModel.locationController.text,
-                                    date: _viewModel.dateController.text.isEmpty
-                                        ? null
-                                        : _viewModel.dateController.text,
-                                    // avgRating: null,
-                                    // priceRange:
-                                    //     const beautician.PriceRange(
-                                    //         minPrice: 0,
-                                    //         maxPrice: 200),
-                                  )));
-                                }
-                                if (_viewModel.searchController.text.length <
-                                    4) {
-                                  _viewModel.getBeauticiansByFilter(
-                                      beautician.BeauticiansFilterRequest(
-                                          filters: beautician.Filters(
-                                    search: _viewModel.locationController.text
-                                                .isEmpty &&
-                                            _viewModel
-                                                .locationController.text.isEmpty
-                                        ? ""
-                                        : null,
-                                    location: _viewModel
-                                            .locationController.text.isEmpty
-                                        ? null
-                                        : _viewModel.locationController.text,
-                                    date: _viewModel.dateController.text.isEmpty
-                                        ? null
-                                        : _viewModel.dateController.text,
-                                  )));
-                                }
-                                context.go("/beautician-listing");
-                              },
-                              child: Text(
-                                "Search",
-                                style: TextStyle(
-                                  color: kWhite,
-                                  fontSize: 14.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                          )
                 ],
               )
             ],

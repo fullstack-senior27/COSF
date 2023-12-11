@@ -8,6 +8,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketi
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beautician_login.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/beauticians_list_page/beauticians_list_page_view.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_details_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
@@ -24,7 +25,7 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signu
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../data/remote/public/models/blogs_details_model.dart';
+import 'package:cosmetropolis/data/remote/public/models/blogs_details_model.dart';
 
 enum AppRoute {
   splash,
@@ -56,6 +57,12 @@ final GoRouter routers = GoRouter(routes: [
           const DashboardFreePage(child: LandingPage()),
       pageBuilder:
           defaultPageBuilder(const DashboardFreePage(child: LandingPage()))),
+  GoRoute(
+      path: '/beauticianLogin',
+      builder: (context, state) =>
+          const DashboardFreePage(child: BeauticianLogin()),
+      pageBuilder: defaultPageBuilder(
+          const DashboardFreePage(child: BeauticianLogin()))),
   GoRoute(
       path: '/pricing',
       builder: (context, state) => const PricingDetails(),

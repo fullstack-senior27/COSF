@@ -1,12 +1,11 @@
 import 'package:avatar_stack/avatar_stack.dart';
-import 'package:cosmetropolis/data/remote/beautician/registration.dart';
+import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/country.dart';
-import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:country_calling_code_picker/functions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,23 +14,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LandingPage extends ConsumerStatefulWidget {
-  const LandingPage({super.key});
+class BeauticianLogin extends ConsumerStatefulWidget {
+  const BeauticianLogin({super.key});
 
   @override
-  ConsumerState<LandingPage> createState() => _LandingPageState();
+  ConsumerState<BeauticianLogin> createState() => _BeauticianLoginState();
 }
 
-class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
+class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
+    with BaseScreenView {
   late BeauticianViewModel _viewModel;
   Country? selectedCountry;
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
   bool isAgree = false;
   late ImageProvider image1;
-  final nameController = TextEditingController();
+
   final emailController = TextEditingController();
-  final phoneController = TextEditingController();
+
   final passwordController = TextEditingController();
   bool isLoading = false;
 
@@ -106,7 +106,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
             child: Padding(
               padding: EdgeInsets.only(left: 10.w),
               child: SizedBox(
-                height: 450.h,
+                height: 400.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -210,7 +210,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                   horizontal: 10.w,
                   vertical: 20.h,
                 ),
-                // height: 455.h,
+                height: 450.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20.r)),
                   color: Colors.white,
@@ -225,38 +225,6 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    TextFormField(
-                      controller: nameController,
-                      style: GoogleFonts.urbanist(
-                        color: kBlack,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: kWhite,
-                        floatingLabelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(),
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(),
-                        labelText: "Enter your first Name",
-                        hintText: "Enter your first Name",
-                      ),
-
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter your first Name';
-                        }
-                        return null;
-                      },
                     ),
                     SizedBox(
                       height: 20.h,
@@ -325,69 +293,6 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     SizedBox(
                       height: 20.h,
                     ),
-                    // TextFormField(
-                    //   controller: phoneController,
-                    //   style: GoogleFonts.urbanist(
-                    //     color: kBlack,
-                    //     fontSize: 15.sp,
-                    //     fontWeight: FontWeight.w500,
-                    //   ),
-                    //   keyboardType: TextInputType.phone,
-                    //   decoration: InputDecoration(
-                    //     filled: true,
-                    //     fillColor: kWhite,
-                    //     floatingLabelStyle: const TextStyle(
-                    //       color: Colors.black,
-                    //     ),
-                    //     focusedBorder: const OutlineInputBorder(),
-                    //     border: const OutlineInputBorder(),
-                    //     enabledBorder: const OutlineInputBorder(),
-                    //     labelText: "Phone Number",
-                    //     hintText: "Enter your phone number",
-                    //     prefixIcon: InkWell(
-                    //       onTap: () {
-                    //         _showCountryPicker();
-                    //       },
-                    //       child: Padding(
-                    //         padding: const EdgeInsets.only(
-                    //           left: 10,
-                    //           right: 5,
-                    //         ),
-                    //         child: SizedBox(
-                    //           width: 65,
-                    //           child: Row(
-                    //             mainAxisAlignment:
-                    //                 MainAxisAlignment.spaceBetween,
-                    //             children: [
-                    //               Image.asset(
-                    //                 selectedCountryFlag,
-                    //                 package: countryCodePackageName,
-                    //                 width: 35,
-                    //                 height: 30,
-                    //                 fit: BoxFit.fill,
-                    //               ),
-                    //               const Icon(
-                    //                 Icons.arrow_drop_down,
-                    //                 color: Colors.black,
-                    //               )
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-
-                    //   // The validator receives the text that the user has entered.
-                    //   validator: (value) {
-                    //     if (value!.isEmpty) {
-                    //       return 'Please enter your phone number';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
-                    // SizedBox(
-                    //   height: 20.h,
-                    // ),
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
@@ -442,13 +347,11 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                         onPressed: () async {
                           isLoading = true;
                           setState(() {});
-                          await _viewModel.registerBeautician(
-                              BeauticianRegisterRequestModel(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  // phone: phoneController.text,
-                                  role: "beautician",
-                                  name: nameController.text),
+                          await _viewModel.loginBeautician(
+                              BeauticianLoginRequestModel(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ),
                               context);
                           isLoading = false;
                           setState(() {});
@@ -487,20 +390,20 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                       child: RichText(
                           text: TextSpan(children: [
                         TextSpan(
-                          text: "Already have an account? ",
+                          text: "Don't have an account? ",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                           ),
                         ),
                         TextSpan(
-                            text: "Login",
+                            text: "Sign Up",
                             style: GoogleFonts.urbanist(
                                 fontSize: 12.sp,
                                 color: kBlue,
                                 fontWeight: FontWeight.w600),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                context.go("/beauticianLogin");
+                                context.go("/landing");
                               })
                       ])),
                     )
@@ -657,33 +560,6 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     height: 20.h,
                   ),
                   TextFormField(
-                    controller: nameController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: kWhite,
-                      floatingLabelStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      focusedBorder: OutlineInputBorder(),
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(),
-                      labelText: "Enter your  Name",
-                      hintText: "Enter your  Name",
-                    ),
-
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your  Name';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextFormField(
                     controller: emailController,
                     style: GoogleFonts.urbanist(
                       fontSize: 18.sp,
@@ -742,63 +618,6 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                       return null;
                     },
                   ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
-                  // TextFormField(
-                  //   controller: phoneController,
-                  //   keyboardType: TextInputType.phone,
-                  //   decoration: InputDecoration(
-                  //     filled: true,
-                  //     fillColor: kWhite,
-                  //     floatingLabelStyle: const TextStyle(
-                  //       color: Colors.black,
-                  //     ),
-                  //     focusedBorder: const OutlineInputBorder(),
-                  //     border: const OutlineInputBorder(),
-                  //     enabledBorder: const OutlineInputBorder(),
-                  //     labelText: "Phone Number",
-                  //     hintText: "Enter your phone number",
-                  //     prefixIcon: InkWell(
-                  //       onTap: () {
-                  //         _showCountryPicker();
-                  //       },
-                  //       child: Padding(
-                  //         padding: const EdgeInsets.only(
-                  //           left: 10,
-                  //           right: 5,
-                  //         ),
-                  //         child: SizedBox(
-                  //           width: 65,
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //             children: [
-                  //               Image.asset(
-                  //                 selectedCountryFlag,
-                  //                 package: countryCodePackageName,
-                  //                 width: 35,
-                  //                 height: 30,
-                  //                 fit: BoxFit.fill,
-                  //               ),
-                  //               const Icon(
-                  //                 Icons.arrow_drop_down,
-                  //                 color: Colors.black,
-                  //               )
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-
-                  //   // The validator receives the text that the user has entered.
-                  //   validator: (value) {
-                  //     if (value!.isEmpty) {
-                  //       return 'Please enter your phone number';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
                   SizedBox(
                     height: 20.h,
                   ),
@@ -854,15 +673,16 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () async {
+                        // context.go("/dashboard-login");
+                        // ref.read(styleProvider).setSelectedPage("Calendar"),
+                        // Get.offAll(() => const DashboardLoginPage()),
                         isLoading = true;
                         setState(() {});
-                        await _viewModel.registerBeautician(
-                            BeauticianRegisterRequestModel(
-                                email: emailController.text,
-                                password: passwordController.text,
-                                // phone: phoneController.text,
-                                role: "beautician",
-                                name: nameController.text),
+                        await _viewModel.loginBeautician(
+                            BeauticianLoginRequestModel(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
                             context);
                         isLoading = false;
                         setState(() {});
@@ -901,20 +721,20 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     child: RichText(
                         text: TextSpan(children: [
                       TextSpan(
-                        text: "Already have an account? ",
+                        text: "Don't have an account? ",
                         style: GoogleFonts.urbanist(
                           fontSize: 12.sp,
                         ),
                       ),
                       TextSpan(
-                          text: "Login",
+                          text: "Sign Up",
                           style: GoogleFonts.urbanist(
                               fontSize: 12.sp,
                               color: kBlue,
                               fontWeight: FontWeight.w600),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.go("/beauticianLogin");
+                              context.go("/landing");
                             })
                     ])),
                   )

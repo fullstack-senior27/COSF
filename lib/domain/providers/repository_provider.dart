@@ -1,3 +1,5 @@
+import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
+import 'package:cosmetropolis/data/remote/beautician/beautician_repo_impl.dart';
 import 'package:cosmetropolis/data/remote/newsList/news_list_repo.dart';
 import 'package:cosmetropolis/data/remote/newsList/news_list_repo_impl.dart';
 import 'package:cosmetropolis/data/remote/public/public_repo.dart';
@@ -21,6 +23,12 @@ final userRepositoryProvider = Provider<UserRepo>(
 
 final publicRepositoryProvider = Provider<PublicRepo>(
   (ref) => PublicRepoImpl(
+    ref.read(apiClientProvider),
+  ),
+);
+
+final beauticianRepositoryProvider = Provider<BeauticianRepo>(
+  (ref) => BeauticianRepoImpl(
     ref.read(apiClientProvider),
   ),
 );
