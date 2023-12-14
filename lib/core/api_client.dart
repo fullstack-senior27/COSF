@@ -1,8 +1,8 @@
+import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/core/exceptions.dart';
-import 'package:cosmetropolis/environment.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/logger.dart';
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiClient {
   static const String TOP_HEADLINES = 'top-headlines';
@@ -38,7 +38,10 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> postWithParams(
-      String path, dynamic data, Map<String, dynamic> params) async {
+    String path,
+    dynamic data,
+    Map<String, dynamic> params,
+  ) async {
     try {
       return await dio.post(path, data: data, queryParameters: params);
     } on DioError catch (e) {
@@ -48,11 +51,18 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> postWithToken(
-      String path, dynamic data, String token) async {
+    String path,
+    dynamic data,
+  ) async {
     try {
-      return await dio.post(path,
-          data: data,
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return await dio.post(
+        path,
+        data: data,
+        options: Options(headers: {
+          'Authorization':
+              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
+        }),
+      );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());
       throw ApiException(e.response!.data["message"].toString());
@@ -60,11 +70,18 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> patchWithToken(
-      String path, dynamic data, String token) async {
+    String path,
+    dynamic data,
+  ) async {
     try {
-      return await dio.patch(path,
-          data: data,
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return await dio.patch(
+        path,
+        data: data,
+        options: Options(headers: {
+          'Authorization':
+              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
+        }),
+      );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());
       throw ApiException(e.response!.data["message"].toString());
@@ -81,10 +98,16 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> delete(
-      String path, String token) async {
+    String path,
+  ) async {
     try {
-      return await dio.delete(path,
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return await dio.delete(
+        path,
+        options: Options(headers: {
+          'Authorization':
+              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
+        }),
+      );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());
       throw ApiException(e.response!.data["message"].toString());
@@ -101,10 +124,16 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> getWithToken(
-      String path, String token) async {
+    String path,
+  ) async {
     try {
-      return await dio.get(path,
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      return await dio.get(
+        path,
+        options: Options(headers: {
+          'Authorization':
+              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
+        }),
+      );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());
       throw ApiException(e.response!.data["message"].toString());

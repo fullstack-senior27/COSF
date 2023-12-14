@@ -1,6 +1,15 @@
+import 'package:cosmetropolis/core/core.dart';
+import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart'
+    as edit;
+import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
@@ -8,262 +17,365 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
-class PersonalInfo extends StatefulWidget {
+class PersonalInfo extends ConsumerStatefulWidget {
   const PersonalInfo({super.key});
 
   @override
-  State<PersonalInfo> createState() => _PersonalInfoState();
+  ConsumerState<PersonalInfo> createState() => _PersonalInfoState();
 }
 
-class _PersonalInfoState extends State<PersonalInfo> {
+class _PersonalInfoState extends ConsumerState<PersonalInfo>
+    with BaseScreenView {
+  late BeauticianViewModel _viewModel;
+
+  late ImageProvider image1;
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final websiteController = TextEditingController();
+  final aboutMeController = TextEditingController();
+  final professionController = TextEditingController();
+  bool isLoading = false;
+  bool isSave = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   image1 = const AssetImage("assets/icons/landing.webp");
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    // image1 = const AssetImage("assets/icons/landing.webp");
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    getData();
+  }
+
+  void getData() async {
+    isLoading = true;
+    setState(() {});
+    await _viewModel.getBeauticianProfileDetails(
+        BeauticianProfileRequest(
+            beauticianId:
+                SharedPreferenceService.getString(AppConstants.userId)),
+        context);
+    nameController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.name ?? "";
+    emailController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.email ?? "";
+    phoneController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.phone ?? "";
+    websiteController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.website ?? "";
+    aboutMeController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.about ?? "";
+    professionController.text =
+        _viewModel.beauticianProfileResponseModel?.data?.profession ?? "";
+    isLoading = false;
+    setState(() {});
+  }
+
   List<String> imgList = [];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 15.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Personal Info",
-                style: urbanist600(kBlack, 18),
-              ),
-              IconButton(
-                  onPressed: () => context.pop(),
-                  icon: Icon(
-                    Icons.close,
-                    color: kGrey,
-                  ))
-            ],
-          ),
-          SizedBox(height: 20.h),
-          Text(
-            "Name",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "John Doe",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "My Profession*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Hair Stylist",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "My Specialty*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Select 2 specialist",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "About Me*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            maxLines: 5,
-            decoration: InputDecoration(
-              hintText: "About Me",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "Email*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "tim.jennings@example.com",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "Phone Number*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 10.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "906-414-8272",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "My Cosmetropolis Website*",
-            style: urbanist400(kBlack, 13),
-          ),
-          SizedBox(height: 5.h),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Cosmetropolis.com/Kristin Watson",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kBlue),
-              ),
-            ),
-          ),
-          SizedBox(height: 30.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor: kWhite,
-                  padding: MediaQuery.of(context).size.width > 680
-                      ? EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w)
-                      : EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.r),
-                    side: const BorderSide(
-                      color: kGrey,
+    _viewModel = ref.watch(beauticianViewModel);
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 15.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Personal Info",
+                      style: urbanist600(kBlack, 18),
+                    ),
+                    IconButton(
+                        onPressed: () => context.pop(),
+                        icon: const Icon(
+                          Icons.close,
+                          color: kGrey,
+                        ))
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "Name",
+                  style: urbanist400(kBlack, 13),
+                ),
+                SizedBox(height: 5.h),
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: "John Doe",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
                     ),
                   ),
                 ),
-                child: Text(
-                  "Cancel",
-                  style: urbanist400(kGrey, 14),
+                SizedBox(height: 10.h),
+                Text(
+                  "My Profession*",
+                  style: urbanist400(kBlack, 13),
                 ),
-              ),
-              SizedBox(width: 5.w),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kBlack,
-                  padding: MediaQuery.of(context).size.width > 680
-                      ? EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w)
-                      : EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.r),
+                SizedBox(height: 5.h),
+                TextField(
+                  controller: professionController,
+                  decoration: InputDecoration(
+                    hintText: "Hair Stylist",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
                   ),
-                  // minimumSize: Size(100.w, 40.h),
                 ),
-                child: Text(
-                  "Save",
-                  style: urbanist400(kWhite, 14),
+                SizedBox(height: 10.h),
+                Text(
+                  "My Specialty*",
+                  style: urbanist400(kBlack, 13),
                 ),
-              ),
-            ],
-          )
-        ],
+                SizedBox(height: 5.h),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Select 2 specialist",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  "About Me*",
+                  style: urbanist400(kBlack, 13),
+                ),
+                SizedBox(height: 5.h),
+                TextField(
+                  controller: aboutMeController,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: "About Me",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  "Email*",
+                  style: urbanist400(kBlack, 13),
+                ),
+                SizedBox(height: 5.h),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hintText: "tim.jennings@example.com",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  "Phone Number*",
+                  style: urbanist400(kBlack, 13),
+                ),
+                SizedBox(height: 10.h),
+                TextField(
+                  controller: phoneController,
+                  decoration: InputDecoration(
+                    hintText: "906-414-8272",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  "My Cosmetropolis Website*",
+                  style: urbanist400(kBlack, 13),
+                ),
+                SizedBox(height: 5.h),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Cosmetropolis.com/Kristin Watson",
+                    hintStyle: urbanist400(kGrey, 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kGrey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.r),
+                      borderSide: const BorderSide(color: kBlue),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        backgroundColor: kWhite,
+                        padding: MediaQuery.of(context).size.width > 680
+                            ? EdgeInsets.symmetric(
+                                vertical: 20.h, horizontal: 5.w)
+                            : EdgeInsets.symmetric(
+                                vertical: 10.h, horizontal: 5.w),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r),
+                          side: const BorderSide(
+                            color: kGrey,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Cancel",
+                        style: urbanist400(kGrey, 14),
+                      ),
+                    ),
+                    SizedBox(width: 5.w),
+                    ElevatedButton(
+                      onPressed: () {
+                        isSave = true;
+                        setState(() {});
+                        _viewModel.updateBeauticianProfile(
+                            BeauticianUpdateProfileRequest(
+                              // name: nameController.text,
+                              email: emailController.text,
+                              phone: phoneController.text,
+                              about: aboutMeController.text,
+                              website: websiteController.text,
+                              profession: professionController.text,
+                            ),
+                            context);
+                        isSave = false;
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kBlack,
+                        padding: MediaQuery.of(context).size.width > 680
+                            ? EdgeInsets.symmetric(
+                                vertical: 20.h, horizontal: 5.w)
+                            : EdgeInsets.symmetric(
+                                vertical: 10.h, horizontal: 5.w),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r),
+                        ),
+                        // minimumSize: Size(100.w, 40.h),
+                      ),
+                      child: isSave
+                          ? const Center(
+                              child: SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: kWhite,
+                                  )))
+                          : Text(
+                              "Save",
+                              style: urbanist400(kWhite, 14),
+                            ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
       ),
     );
+    // TODO: implement showSnackbar
   }
 }
 
@@ -726,7 +838,7 @@ class PhotosTab extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20.h),
-        Text(
+        const Text(
           "Pinned Photos",
           style: TextStyle(
               color: kBlack, fontSize: 18, fontWeight: FontWeight.w700),
@@ -838,8 +950,33 @@ class PhotosTab extends StatelessWidget {
   }
 }
 
-class ManageAvailability extends StatelessWidget {
+class ManageAvailability extends ConsumerStatefulWidget {
   const ManageAvailability({super.key});
+
+  @override
+  ConsumerState<ManageAvailability> createState() => _ManageAvailabilityState();
+}
+
+class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
+    with BaseScreenView {
+  bool monday = false;
+  bool tuesday = false;
+  bool wednesday = false;
+  bool thursday = false;
+  bool friday = false;
+  bool saturday = false;
+  bool sunday = false;
+
+  bool isLoading = false;
+  late BeauticianViewModel _viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    // image1 = const AssetImage("assets/icons/landing.webp");
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    // getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1009,7 +1146,39 @@ class ManageAvailability extends StatelessWidget {
                                 ),
                                 SizedBox(width: 10.w),
                                 ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    isLoading = true;
+                                    setState(() {});
+                                    await _viewModel
+                                        .updateBeauticianAvailability(
+                                            edit.BeauticianAvailabilityRequest(
+                                                availability: [
+                                                  edit.Availability(
+                                                      day: "Monday",
+                                                      isAvailable: monday),
+                                                  edit.Availability(
+                                                      day: "Tuesday",
+                                                      isAvailable: tuesday),
+                                                  edit.Availability(
+                                                      day: "Wednesday",
+                                                      isAvailable: wednesday),
+                                                  edit.Availability(
+                                                      day: "Thursday",
+                                                      isAvailable: thursday),
+                                                  edit.Availability(
+                                                      day: "Friday",
+                                                      isAvailable: friday),
+                                                  edit.Availability(
+                                                      day: "Saturday",
+                                                      isAvailable: saturday),
+                                                  edit.Availability(
+                                                      day: "Sunday",
+                                                      isAvailable: sunday)
+                                                ]),
+                                            context);
+
+                                    isLoading = false;
+                                    setState(() {});
                                     context.pop();
                                   },
                                   style: ElevatedButton.styleFrom(
@@ -1023,10 +1192,18 @@ class ManageAvailability extends StatelessWidget {
                                     ),
                                     minimumSize: Size(100.w, 40.h),
                                   ),
-                                  child: Text(
-                                    "Save",
-                                    style: urbanist400(kWhite, 14),
-                                  ),
+                                  child: isLoading
+                                      ? const Center(
+                                          child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                color: kWhite,
+                                              )))
+                                      : Text(
+                                          "Save",
+                                          style: urbanist400(kWhite, 14),
+                                        ),
                                 ),
                               ],
                             )
@@ -1110,7 +1287,46 @@ class ManageAvailability extends StatelessWidget {
                                       SizedBox(width: 5.w),
                                       Expanded(
                                         child: ElevatedButton(
-                                          onPressed: () {
+                                          onPressed: () async {
+                                            isLoading = true;
+                                            setState(() {});
+                                            await _viewModel
+                                                .updateBeauticianAvailability(
+                                                    edit.BeauticianAvailabilityRequest(
+                                                        availability: [
+                                                          edit.Availability(
+                                                              day: "Monday",
+                                                              isAvailable:
+                                                                  monday),
+                                                          edit.Availability(
+                                                              day: "Tuesday",
+                                                              isAvailable:
+                                                                  tuesday),
+                                                          edit.Availability(
+                                                              day: "Wednesday",
+                                                              isAvailable:
+                                                                  wednesday),
+                                                          edit.Availability(
+                                                              day: "Thursday",
+                                                              isAvailable:
+                                                                  thursday),
+                                                          edit.Availability(
+                                                              day: "Friday",
+                                                              isAvailable:
+                                                                  friday),
+                                                          edit.Availability(
+                                                              day: "Saturday",
+                                                              isAvailable:
+                                                                  saturday),
+                                                          edit.Availability(
+                                                              day: "Sunday",
+                                                              isAvailable:
+                                                                  sunday)
+                                                        ]),
+                                                    context);
+
+                                            isLoading = false;
+                                            setState(() {});
                                             context.pop();
                                           },
                                           style: ElevatedButton.styleFrom(
@@ -1125,10 +1341,20 @@ class ManageAvailability extends StatelessWidget {
                                             ),
                                             minimumSize: Size(100.w, 40.h),
                                           ),
-                                          child: Text(
-                                            "Save",
-                                            style: urbanist400(kWhite, 14),
-                                          ),
+                                          child: isLoading
+                                              ? const Center(
+                                                  child: SizedBox(
+                                                      height: 20,
+                                                      width: 20,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color: kWhite,
+                                                      )))
+                                              : Text(
+                                                  "Save",
+                                                  style:
+                                                      urbanist400(kWhite, 14),
+                                                ),
                                         ),
                                       ),
                                     ],
@@ -1703,237 +1929,294 @@ class ManageAvailability extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget editAvailability() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Divider(
-        color: klines,
+  Widget editAvailability() {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Divider(
+              color: klines,
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Let Clients book online",
+                    style: urbanist400(kdescription, 18)),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: true,
+                    onChanged: (value) {},
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              "Timezone*",
+              style: urbanist600(kBlack, 14),
+            ),
+            SizedBox(height: 5.h),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "US/Pacific (GMT - 800)",
+                hintStyle: urbanist400(kGrey, 12),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Monday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: monday,
+                    onChanged: (value) {
+                      setState(() {
+                        monday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Tuesday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: tuesday,
+                    onChanged: (value) {
+                      setState(() {
+                        tuesday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Wednesday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: wednesday,
+                    onChanged: (value) {
+                      setState(() {
+                        wednesday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Thursday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: thursday,
+                    onChanged: (value) {
+                      setState(() {
+                        thursday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Friday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: friday,
+                    onChanged: (value) {
+                      setState(() {
+                        friday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Saturday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: saturday,
+                    onChanged: (value) {
+                      setState(() {
+                        saturday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Sunday",
+                  style: urbanist500(kBlack, 16),
+                ),
+                Theme(
+                  data: ThemeData(
+                    useMaterial3: true,
+                    colorScheme:
+                        ColorScheme.fromSwatch().copyWith(outline: kdisable),
+                  ),
+                  child: Switch(
+                    value: sunday,
+                    onChanged: (value) {
+                      setState(() {
+                        sunday = value;
+                      });
+                    },
+                    activeTrackColor: kBlack,
+                    activeColor: kWhite,
+                    inactiveThumbColor: kWhite,
+                    inactiveTrackColor: kdisable,
+                    focusColor: kBlack,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
       ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Let Clients book online", style: urbanist400(kdescription, 18)),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: true,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Text(
-        "Timezone*",
-        style: urbanist600(kBlack, 14),
-      ),
-      SizedBox(height: 5.h),
-      TextField(
-        decoration: InputDecoration(
-          hintText: "US/Pacific (GMT - 800)",
-          hintStyle: urbanist400(kGrey, 12),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: const BorderSide(color: kGrey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-          ),
-        ),
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Monday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Tuesday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Wednesday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Thursday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Friday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Saturday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Sunday",
-            style: urbanist500(kBlack, 16),
-          ),
-          Theme(
-            data: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSwatch().copyWith(outline: kdisable),
-            ),
-            child: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeTrackColor: kBlack,
-              activeColor: kWhite,
-              inactiveThumbColor: kWhite,
-              inactiveTrackColor: kdisable,
-              focusColor: kBlack,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 20.h),
-    ],
-  );
+    );
+    // TODO: implement showSnackbar
+  }
 }
 
 class EditUpcomingHours extends StatefulWidget {

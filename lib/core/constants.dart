@@ -5,6 +5,7 @@ class AppConstants {
 
   static String baseUrl = 'http://164.92.110.131/v1/';
   static String accessToken = "access_token";
+  static String userId = "user_id";
   static const String privacy =
       "https://docs.google.com/document/d/1Xal4FScKhZXLwyQQ2msEnflQC7l8NxaHyC5niCU9Y6Y";
   static const String terms =

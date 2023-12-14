@@ -754,6 +754,12 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
 
   @override
   void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
     // TODO: implement showSnackbar
   }
 }

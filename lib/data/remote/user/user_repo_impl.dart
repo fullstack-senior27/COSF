@@ -69,7 +69,6 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.postWithToken(
         "${AppConstants.baseUrl}auth/forgot-password/user",
         userLoginRequest.toJson(),
-        token,
       );
       log("Sucess ====> ${response.toString()}");
       return Right(UserForgotPasswordResponse.fromJson(response.data!));
@@ -86,7 +85,6 @@ class UserRepoImpl implements UserRepo {
     try {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/profile",
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(ProfileDetailsResponse.fromJson(response.data!));
@@ -105,7 +103,6 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.patchWithToken(
         "${AppConstants.baseUrl}users/profile/update",
         editProfile.toJson(),
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(USerEditProfile.fromJson(response.data!));
@@ -124,7 +121,6 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.postWithToken(
         "${AppConstants.baseUrl}users/card/create",
         addCardRequest.toJson(),
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(CreateCardResponse.fromJson(response.data!));
@@ -141,7 +137,6 @@ class UserRepoImpl implements UserRepo {
     try {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/cards/list",
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(CardsListResponse.fromJson(response.data!));
@@ -159,7 +154,6 @@ class UserRepoImpl implements UserRepo {
     try {
       final response = await _apiClient.delete(
         "${AppConstants.baseUrl}users/card/delete/$cardID",
-        tolken,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(DeleteCardResponse.fromJson(response.data!));
@@ -178,7 +172,6 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.patchWithToken(
         "${AppConstants.baseUrl}users/change_password",
         request.toJson(),
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(ChangePasswordResponse.fromJson(response.data!));
@@ -195,7 +188,6 @@ class UserRepoImpl implements UserRepo {
     try {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/appointments/all",
-        token,
       );
       Logger.printInfo("Sucess ====> ${response.toString()}");
       return Right(GetAllUserAppointments.fromJson(response.data!));

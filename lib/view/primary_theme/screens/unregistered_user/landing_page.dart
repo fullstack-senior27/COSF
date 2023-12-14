@@ -210,7 +210,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                   horizontal: 10.w,
                   vertical: 20.h,
                 ),
-                // height: 455.h,
+                height: 500.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20.r)),
                   color: Colors.white,
@@ -934,6 +934,12 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
 
   @override
   void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
     // TODO: implement showSnackbar
   }
 }
