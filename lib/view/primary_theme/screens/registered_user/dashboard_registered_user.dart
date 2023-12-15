@@ -1,13 +1,6 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/clients_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/growth_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketing_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/loginuser_dashboard_nav.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +22,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_final_locals
-    String navbarSection = ref.watch(styleProvider).selectedPage;
+    // String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(

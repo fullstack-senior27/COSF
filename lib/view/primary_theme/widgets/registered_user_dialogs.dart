@@ -1,16 +1,47 @@
+import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddClient extends StatelessWidget {
+class AddClient extends ConsumerStatefulWidget {
   const AddClient({super.key});
+
+  @override
+  ConsumerState<AddClient> createState() => _AddClientState();
+}
+
+class _AddClientState extends ConsumerState<AddClient> with BaseScreenView {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final homeNumberController = TextEditingController();
+  final streetController = TextEditingController();
+  final aptController = TextEditingController();
+  final stateController = TextEditingController();
+  final cityController = TextEditingController();
+  final zipCodeController = TextEditingController();
+  final birthdayController = TextEditingController();
+
+  late BeauticianViewModel _viewModel;
+  bool isLoading = false;
+  @override
+  void initState() {
+    super.initState();
+    // image1 = const AssetImage("assets/icons/landing.webp");
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    // getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +59,7 @@ class AddClient extends StatelessWidget {
                   Text("Name*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       hintText: "Name",
                       hintStyle: urbanist400(kGrey, 14),
@@ -53,6 +85,7 @@ class AddClient extends StatelessWidget {
                   Text("Email*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email",
                       hintStyle: urbanist400(kGrey, 14),
@@ -82,6 +115,7 @@ class AddClient extends StatelessWidget {
                   Text("Mobile Number", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: phoneController,
                     decoration: InputDecoration(
                       hintText: "Mobile Number",
                       hintStyle: urbanist400(kGrey, 14),
@@ -107,6 +141,7 @@ class AddClient extends StatelessWidget {
                   Text("Home Number", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: homeNumberController,
                     decoration: InputDecoration(
                       hintText: "Home Number",
                       hintStyle: urbanist400(kGrey, 14),
@@ -136,6 +171,7 @@ class AddClient extends StatelessWidget {
                   Text("Street Address*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: streetController,
                     decoration: InputDecoration(
                       hintText: "Street Address",
                       hintStyle: urbanist400(kGrey, 14),
@@ -164,6 +200,7 @@ class AddClient extends StatelessWidget {
                   ),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: aptController,
                     decoration: InputDecoration(
                       hintText: "Suite, Apt, etc. (optional)",
                       hintStyle: urbanist400(kGrey, 14),
@@ -193,6 +230,7 @@ class AddClient extends StatelessWidget {
                   Text("City*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: cityController,
                     decoration: InputDecoration(
                       hintText: "City",
                       hintStyle: urbanist400(kGrey, 14),
@@ -218,6 +256,7 @@ class AddClient extends StatelessWidget {
                   Text("State*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: stateController,
                     decoration: InputDecoration(
                       hintText: "State",
                       hintStyle: urbanist400(kGrey, 14),
@@ -247,6 +286,7 @@ class AddClient extends StatelessWidget {
                   Text("ZIP*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: zipCodeController,
                     decoration: InputDecoration(
                       hintText: "ZIP",
                       hintStyle: urbanist400(kGrey, 14),
@@ -272,6 +312,8 @@ class AddClient extends StatelessWidget {
                   Text("Birthday*", style: urbanist500(kBlack, 14)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    readOnly: true,
+                    controller: birthdayController,
                     decoration: InputDecoration(
                       hintText: "Birthday",
                       hintStyle: urbanist400(kGrey, 14),
@@ -281,6 +323,32 @@ class AddClient extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6.r),
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                            context: context, //context of current state
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(
+                              2000,
+                            ), //DateTime.now() - not to allow to choose before today.
+                            lastDate: DateTime(2101),
+                          );
+
+                          if (pickedDate != null) {
+                            //pickedDate output format => 2021-03-10 00:00:00.000
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                            birthdayController.text =
+                                formattedDate; //set output date to TextField value.
+                            //formatted date output using intl package =>  2021-03-16
+                          }
+                        },
+                        child: const Icon(
+                          Icons.date_range,
+                          color: kGrey,
+                        ),
                       ),
                     ),
                   ),
@@ -292,15 +360,62 @@ class AddClient extends StatelessWidget {
         SizedBox(
           height: 20.h,
         ),
-        SizedBox(
-          height: 40.h,
-          width: double.infinity,
-          child: BlackButton(context, "Save", () {
-            context.pop();
-          }),
-        )
+        if (isLoading)
+          const Center(
+            child: SizedBox(
+              height: 25,
+              width: 25,
+              child: CircularProgressIndicator(
+                color: kBlack,
+              ),
+            ),
+          )
+        else
+          SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: BlackButton(context, "Save", () async {
+              isLoading = true;
+              setState(() {});
+              await _viewModel.addNewClient(
+                context,
+                AddClientRequest(
+                  name: nameController.text,
+                  email: emailController.text,
+                  phone: phoneController.text,
+                  homeNumber: homeNumberController.text,
+                  streetAddress: streetController.text,
+                  apt: int.parse(aptController.text),
+                  city: cityController.text,
+                  state: stateController.text,
+                  zip: zipCodeController.text,
+                  birthday: birthdayController.text,
+                  isOffline: true,
+                ),
+              );
+              isLoading = false;
+              setState(() {});
+              context.pop();
+            }),
+          )
       ],
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }
 
@@ -332,11 +447,11 @@ class EditClient extends StatelessWidget {
                             style: urbanist600(kBlack, 16),
                           ),
                           IconButton(
-                            onPressed: () => context.pop(), 
-                            icon: Icon(
+                            onPressed: () => context.pop(),
+                            icon: const Icon(
                               Icons.close,
                               color: kGrey,
-                            )
+                            ),
                           )
                         ],
                       ),
@@ -379,11 +494,11 @@ class EditClient extends StatelessWidget {
                             style: urbanist600(kBlack, 16),
                           ),
                           IconButton(
-                            onPressed: () => context.pop(), 
-                            icon: Icon(
+                            onPressed: () => context.pop(),
+                            icon: const Icon(
                               Icons.close,
                               color: kGrey,
-                            )
+                            ),
                           )
                         ],
                       ),
@@ -488,11 +603,11 @@ class EditClient extends StatelessWidget {
                             style: urbanist600(kBlack, 16),
                           ),
                           IconButton(
-                            onPressed: () => context.pop(), 
-                            icon: Icon(
+                            onPressed: () => context.pop(),
+                            icon: const Icon(
                               Icons.close,
                               color: kGrey,
-                            )
+                            ),
                           )
                         ],
                       ),
@@ -1976,100 +2091,100 @@ class OnlineBookingProfile extends StatelessWidget {
         GestureDetector(
           onTap: () {
             MediaQuery.of(context).size.width > 700
-                  ? showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: const Color(0xfff8f8f8),
-                          content: SingleChildScrollView(
-                            child: SizedBox(
-                              width: MediaQuery.of(
-                                        context,
-                                      ).size.width >
-                                      900
-                                  ? 400
-                                  : MediaQuery.of(
-                                        context,
-                                      ).size.width *
-                                      0.8,
-                              child: const OnlineBooking(),
-                            ),
-                          ),
-                        );
-                      },
-                    )
-                  :
-
-                  // bottom sheet for service menu
-                  fullBottomSheet(
-                      context,
-                      SingleChildScrollView(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 10.h),
-                              const OnlineBooking(),
-                            ],
+                ? showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: const Color(0xfff8f8f8),
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            width: MediaQuery.of(
+                                      context,
+                                    ).size.width >
+                                    900
+                                ? 400
+                                : MediaQuery.of(
+                                      context,
+                                    ).size.width *
+                                    0.8,
+                            child: const OnlineBooking(),
                           ),
                         ),
-                      ),
-                    );
-            },
-            child: Container(
-              color: kWhite,
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-              child: Row(
-                children: [
-                  Text(
-                    "Online booking",
-                    style: urbanist400(kGrey, 18),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      MediaQuery.of(context).size.width > 700
-                  ? showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: const Color(0xfff8f8f8),
-                          content: SingleChildScrollView(
-                            child: SizedBox(
-                              width: MediaQuery.of(
-                                        context,
-                                      ).size.width >
-                                      900
-                                  ? 400
-                                  : MediaQuery.of(
-                                        context,
-                                      ).size.width *
-                                      0.8,
-                              child: const OnlineBooking(),
-                            ),
-                          ),
-                        );
-                      },
-                    )
-                  :
+                      );
+                    },
+                  )
+                :
 
-                  // bottom sheet for service menu
-                  fullBottomSheet(
-                      context,
-                      SingleChildScrollView(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 10.h),
-                              const OnlineBooking(),
-                            ],
-                          ),
+                // bottom sheet for service menu
+                fullBottomSheet(
+                    context,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 10.h),
+                            const OnlineBooking(),
+                          ],
                         ),
                       ),
-                    );
+                    ),
+                  );
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            child: Row(
+              children: [
+                Text(
+                  "Online booking",
+                  style: urbanist400(kGrey, 18),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    MediaQuery.of(context).size.width > 700
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 400
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const OnlineBooking(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        :
+
+                        // bottom sheet for service menu
+                        fullBottomSheet(
+                            context,
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 10.h),
+                                    const OnlineBooking(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
                   },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -2152,7 +2267,8 @@ class OnlineBookingProfile extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                 ),
                                 backgroundColor: const Color(0xfff8f8f8),
                                 content: SingleChildScrollView(
@@ -2185,7 +2301,8 @@ class OnlineBookingProfile extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: const [],
                                     ),
                                     SizedBox(height: 10.h),
@@ -2314,7 +2431,8 @@ class OnlineBookingProfile extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Business Info",
@@ -2366,7 +2484,8 @@ class OnlineBookingProfile extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "Business Info",
@@ -2514,7 +2633,8 @@ class OnlineBookingProfile extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Social Info",
@@ -2566,7 +2686,8 @@ class OnlineBookingProfile extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "Social Info",
@@ -2744,7 +2865,8 @@ class OnlineBookingProfile extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Photos",
@@ -2796,7 +2918,8 @@ class OnlineBookingProfile extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "Photos",
@@ -3047,7 +3170,9 @@ class _OnlineBookingState extends State<OnlineBooking> {
             SizedBox(
               height: 40.h,
               // width: 100.w,
-              child: BlackButton(context, "Save", () {context.pop();}),
+              child: BlackButton(context, "Save", () {
+                context.pop();
+              }),
             ),
           ],
         )

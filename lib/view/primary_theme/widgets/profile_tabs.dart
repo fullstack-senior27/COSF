@@ -58,14 +58,15 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
     getData();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     isLoading = true;
     setState(() {});
     await _viewModel.getBeauticianProfileDetails(
-        BeauticianProfileRequest(
-            beauticianId:
-                SharedPreferenceService.getString(AppConstants.userId)),
-        context);
+      BeauticianProfileRequest(
+        beauticianId: SharedPreferenceService.getString(AppConstants.userId),
+      ),
+      context,
+    );
     nameController.text =
         _viewModel.beauticianProfileResponseModel?.data?.name ?? "";
     emailController.text =
@@ -106,11 +107,12 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                       style: urbanist600(kBlack, 18),
                     ),
                     IconButton(
-                        onPressed: () => context.pop(),
-                        icon: const Icon(
-                          Icons.close,
-                          color: kGrey,
-                        ))
+                      onPressed: () => context.pop(),
+                      icon: const Icon(
+                        Icons.close,
+                        color: kGrey,
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(height: 20.h),
@@ -297,9 +299,13 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                         backgroundColor: kWhite,
                         padding: MediaQuery.of(context).size.width > 680
                             ? EdgeInsets.symmetric(
-                                vertical: 20.h, horizontal: 5.w)
+                                vertical: 20.h,
+                                horizontal: 5.w,
+                              )
                             : EdgeInsets.symmetric(
-                                vertical: 10.h, horizontal: 5.w),
+                                vertical: 10.h,
+                                horizontal: 5.w,
+                              ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.r),
                           side: const BorderSide(
@@ -318,15 +324,16 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                         isSave = true;
                         setState(() {});
                         _viewModel.updateBeauticianProfile(
-                            BeauticianUpdateProfileRequest(
-                              // name: nameController.text,
-                              email: emailController.text,
-                              phone: phoneController.text,
-                              about: aboutMeController.text,
-                              website: websiteController.text,
-                              profession: professionController.text,
-                            ),
-                            context);
+                          BeauticianUpdateProfileRequest(
+                            // name: nameController.text,
+                            email: emailController.text,
+                            phone: phoneController.text,
+                            about: aboutMeController.text,
+                            website: websiteController.text,
+                            profession: professionController.text,
+                          ),
+                          context,
+                        );
                         isSave = false;
                         setState(() {});
                       },
@@ -334,9 +341,13 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                         backgroundColor: kBlack,
                         padding: MediaQuery.of(context).size.width > 680
                             ? EdgeInsets.symmetric(
-                                vertical: 20.h, horizontal: 5.w)
+                                vertical: 20.h,
+                                horizontal: 5.w,
+                              )
                             : EdgeInsets.symmetric(
-                                vertical: 10.h, horizontal: 5.w),
+                                vertical: 10.h,
+                                horizontal: 5.w,
+                              ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.r),
                         ),
@@ -345,11 +356,13 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                       child: isSave
                           ? const Center(
                               child: SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: CircularProgressIndicator(
-                                    color: kWhite,
-                                  )))
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: kWhite,
+                                ),
+                              ),
+                            )
                           : Text(
                               "Save",
                               style: urbanist400(kWhite, 14),
@@ -780,7 +793,7 @@ class PhotosTab extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           // height: 150.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.r),
@@ -792,12 +805,11 @@ class PhotosTab extends StatelessWidget {
             radius: Radius.circular(5.r),
             borderType: BorderType.RRect,
             strokeCap: StrokeCap.round,
-            dashPattern: [6, 5, 6, 5],
+            dashPattern: const [6, 5, 6, 5],
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.r),
               child: Center(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 20.h),
                     const Icon(
@@ -841,7 +853,10 @@ class PhotosTab extends StatelessWidget {
         const Text(
           "Pinned Photos",
           style: TextStyle(
-              color: kBlack, fontSize: 18, fontWeight: FontWeight.w700),
+            color: kBlack,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         SizedBox(height: 20.h),
         Container(
@@ -1151,31 +1166,40 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                     setState(() {});
                                     await _viewModel
                                         .updateBeauticianAvailability(
-                                            edit.BeauticianAvailabilityRequest(
-                                                availability: [
-                                                  edit.Availability(
-                                                      day: "Monday",
-                                                      isAvailable: monday),
-                                                  edit.Availability(
-                                                      day: "Tuesday",
-                                                      isAvailable: tuesday),
-                                                  edit.Availability(
-                                                      day: "Wednesday",
-                                                      isAvailable: wednesday),
-                                                  edit.Availability(
-                                                      day: "Thursday",
-                                                      isAvailable: thursday),
-                                                  edit.Availability(
-                                                      day: "Friday",
-                                                      isAvailable: friday),
-                                                  edit.Availability(
-                                                      day: "Saturday",
-                                                      isAvailable: saturday),
-                                                  edit.Availability(
-                                                      day: "Sunday",
-                                                      isAvailable: sunday)
-                                                ]),
-                                            context);
+                                      edit.BeauticianAvailabilityRequest(
+                                        availability: [
+                                          edit.Availability(
+                                            day: "Monday",
+                                            isAvailable: monday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Tuesday",
+                                            isAvailable: tuesday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Wednesday",
+                                            isAvailable: wednesday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Thursday",
+                                            isAvailable: thursday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Friday",
+                                            isAvailable: friday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Saturday",
+                                            isAvailable: saturday,
+                                          ),
+                                          edit.Availability(
+                                            day: "Sunday",
+                                            isAvailable: sunday,
+                                          )
+                                        ],
+                                      ),
+                                      context,
+                                    );
 
                                     isLoading = false;
                                     setState(() {});
@@ -1195,11 +1219,13 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                   child: isLoading
                                       ? const Center(
                                           child: SizedBox(
-                                              height: 20,
-                                              width: 20,
-                                              child: CircularProgressIndicator(
-                                                color: kWhite,
-                                              )))
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: kWhite,
+                                            ),
+                                          ),
+                                        )
                                       : Text(
                                           "Save",
                                           style: urbanist400(kWhite, 14),
@@ -1292,38 +1318,40 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                             setState(() {});
                                             await _viewModel
                                                 .updateBeauticianAvailability(
-                                                    edit.BeauticianAvailabilityRequest(
-                                                        availability: [
-                                                          edit.Availability(
-                                                              day: "Monday",
-                                                              isAvailable:
-                                                                  monday),
-                                                          edit.Availability(
-                                                              day: "Tuesday",
-                                                              isAvailable:
-                                                                  tuesday),
-                                                          edit.Availability(
-                                                              day: "Wednesday",
-                                                              isAvailable:
-                                                                  wednesday),
-                                                          edit.Availability(
-                                                              day: "Thursday",
-                                                              isAvailable:
-                                                                  thursday),
-                                                          edit.Availability(
-                                                              day: "Friday",
-                                                              isAvailable:
-                                                                  friday),
-                                                          edit.Availability(
-                                                              day: "Saturday",
-                                                              isAvailable:
-                                                                  saturday),
-                                                          edit.Availability(
-                                                              day: "Sunday",
-                                                              isAvailable:
-                                                                  sunday)
-                                                        ]),
-                                                    context);
+                                              edit.BeauticianAvailabilityRequest(
+                                                availability: [
+                                                  edit.Availability(
+                                                    day: "Monday",
+                                                    isAvailable: monday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Tuesday",
+                                                    isAvailable: tuesday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Wednesday",
+                                                    isAvailable: wednesday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Thursday",
+                                                    isAvailable: thursday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Friday",
+                                                    isAvailable: friday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Saturday",
+                                                    isAvailable: saturday,
+                                                  ),
+                                                  edit.Availability(
+                                                    day: "Sunday",
+                                                    isAvailable: sunday,
+                                                  )
+                                                ],
+                                              ),
+                                              context,
+                                            );
 
                                             isLoading = false;
                                             setState(() {});
@@ -1344,12 +1372,14 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                           child: isLoading
                                               ? const Center(
                                                   child: SizedBox(
-                                                      height: 20,
-                                                      width: 20,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: kWhite,
-                                                      )))
+                                                    height: 20,
+                                                    width: 20,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: kWhite,
+                                                    ),
+                                                  ),
+                                                )
                                               : Text(
                                                   "Save",
                                                   style:
@@ -1943,8 +1973,10 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Let Clients book online",
-                    style: urbanist400(kdescription, 18)),
+                Text(
+                  "Let Clients book online",
+                  style: urbanist400(kdescription, 18),
+                ),
                 Theme(
                   data: ThemeData(
                     useMaterial3: true,
@@ -2561,16 +2593,19 @@ class ProfileReviews extends StatelessWidget {
                     SizedBox(
                       width: 5.w,
                     ),
-                    Text("${beauticianDetailResponse.data?.avgRating ?? 0}",
-                        style: urbanist600(kBlack, 24)),
+                    Text(
+                      "${beauticianDetailResponse.data?.avgRating ?? 0}",
+                      style: urbanist600(kBlack, 24),
+                    ),
                   ],
                 ),
                 SizedBox(
                   height: 5.h,
                 ),
                 Text(
-                    '${beauticianDetailResponse.data?.ratingCount ?? 0} booking reviews',
-                    style: urbanist400(kBlack, 12)),
+                  '${beauticianDetailResponse.data?.ratingCount ?? 0} booking reviews',
+                  style: urbanist400(kBlack, 12),
+                ),
               ],
             ),
             const Spacer(),

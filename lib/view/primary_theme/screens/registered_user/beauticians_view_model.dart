@@ -1,4 +1,5 @@
 import 'package:cosmetropolis/core/constants.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
@@ -135,6 +136,20 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
     await _beauticianRepo
         .updateBeauticianAvailability(beauticianAvailabilityRequest)
         .then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> addNewClient(
+    BuildContext context,
+    AddClientRequest addClientRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.addClient(addClientRequest).then(
           (value) => value.fold((l) {
             showSnackbar(l.message);
           }, (r) {

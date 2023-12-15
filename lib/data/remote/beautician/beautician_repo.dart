@@ -1,4 +1,5 @@
 import 'package:cosmetropolis/core/exceptions.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -25,4 +26,7 @@ abstract class BeauticianRepo {
   Future<Either<ApiException, BeauticianAvailabilityResponse>>
       updateBeauticianAvailability(
           BeauticianAvailabilityRequest beauticianAvailabilityRequest);
+
+  Future<Either<ApiException, AddClientResponse>> addClient(
+      AddClientRequest addClientRequest);
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cosmetropolis/core/api_client.dart';
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/core/exceptions.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -91,6 +92,21 @@ class BeauticianRepoImpl implements BeauticianRepo {
           beauticianAvailabilityRequest.toJson());
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianAvailabilityResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, AddClientResponse>> addClient(
+      AddClientRequest addClientRequest) async {
+    try {
+      final response = await _apiClient.postWithToken(
+          "${AppConstants.baseUrl}beautician/clients/new/add",
+          addClientRequest.toJson());
+      log("Sucess ====> ${response.toString()}");
+      return Right(AddClientResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

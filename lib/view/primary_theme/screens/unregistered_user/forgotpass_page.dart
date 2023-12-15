@@ -167,10 +167,12 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage>
                               setState(() {});
                               await _viewModel.forgotPassword(
                                 UserForgotPasswordRequest(
-                                    email: emailController.text),
+                                  email: emailController.text,
+                                ),
                                 context,
                                 SharedPreferenceService.getString(
-                                        AppConstants.accessToken) ??
+                                      AppConstants.accessToken,
+                                    ) ??
                                     "",
                               );
                               isLoading = false;
@@ -188,11 +190,12 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage>
                             child: isLoading
                                 ? Center(
                                     child: SizedBox(
-                                        height: 20.h,
-                                        width: 20.h,
-                                        child: const CircularProgressIndicator(
-                                          color: kWhite,
-                                        )),
+                                      height: 20.h,
+                                      width: 20.h,
+                                      child: const CircularProgressIndicator(
+                                        color: kWhite,
+                                      ),
+                                    ),
                                   )
                                 : Text(
                                     "Reset my Password",

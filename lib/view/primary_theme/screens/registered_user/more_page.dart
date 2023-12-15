@@ -1,9 +1,6 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
@@ -16,7 +13,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,7 +87,8 @@ class _MorePageState extends ConsumerState<MorePage> {
                 itemCount: 12,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) => GestureDetector(
+                itemBuilder: (BuildContext context, int index) =>
+                    GestureDetector(
                   onTap: () {
                     if (index == 0) {
                       showModalBottomSheet(

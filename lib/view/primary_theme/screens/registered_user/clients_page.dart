@@ -8,7 +8,6 @@ import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -322,12 +321,12 @@ class _ClintsPageState extends State<ClintsPage> {
                                                         ),
                                                       ),
                                                       IconButton(
-                                                        onPressed: () => context.pop(), 
-                                                        icon: Icon(
-                                                          Icons.close,
-                                                          color: kGrey,
-                                                        )
-                                                      )
+                                                          onPressed: () =>
+                                                              context.pop(),
+                                                          icon: Icon(
+                                                            Icons.close,
+                                                            color: kGrey,
+                                                          ))
                                                     ],
                                                   ),
                                                   backgroundColor:
@@ -390,12 +389,12 @@ class _ClintsPageState extends State<ClintsPage> {
                                                         ),
                                                       ),
                                                       IconButton(
-                                                        onPressed: () => context.pop(), 
-                                                        icon: Icon(
-                                                          Icons.close,
-                                                          color: kGrey,
-                                                        )
-                                                      )
+                                                          onPressed: () =>
+                                                              context.pop(),
+                                                          icon: Icon(
+                                                            Icons.close,
+                                                            color: kGrey,
+                                                          ))
                                                     ],
                                                   ),
                                                   backgroundColor:
@@ -929,12 +928,12 @@ class _ClintsPageState extends State<ClintsPage> {
                                                             ),
                                                           ),
                                                           IconButton(
-                                                            onPressed: () => context.pop(), 
-                                                            icon: Icon(
-                                                              Icons.close,
-                                                              color: kGrey,
-                                                            )
-                                                          )
+                                                              onPressed: () =>
+                                                                  context.pop(),
+                                                              icon: Icon(
+                                                                Icons.close,
+                                                                color: kGrey,
+                                                              ))
                                                         ],
                                                       ),
                                                       backgroundColor:

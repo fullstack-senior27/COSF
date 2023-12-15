@@ -66,50 +66,48 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
                     SizedBox(
                       height: 0.h,
                     ),
-                  Container(
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            context.pop();
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_outlined,
-                            color: Colors.black,
-                            size: 13.sp,
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          color: Colors.black,
+                          size: 13.sp,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 0.w,
+                      ),
+                      Text(
+                        "Blog",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: kBlack,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          color: Colors.black,
+                          size: 13.sp,
+                        ),
+                      ),
+                      Text(
+                        "Blog Details",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(
+                            0xffFFBB0D,
                           ),
                         ),
-                        SizedBox(
-                          width: 0.w,
-                        ),
-                        Text(
-                          "Blog",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            color: kBlack,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_back_ios_outlined,
-                            color: Colors.black,
-                            size: 13.sp,
-                          ),
-                        ),
-                        Text(
-                          "Blog Details",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(
-                              0xffFFBB0D,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

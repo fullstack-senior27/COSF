@@ -23,7 +23,6 @@ class LandingPage extends ConsumerStatefulWidget {
 }
 
 class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
-  late BeauticianViewModel _viewModel;
   Country? selectedCountry;
   String selectedCountryCode = '+91';
   String selectedCountryFlag = 'flags/usa.png';
@@ -40,7 +39,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
   //   super.initState();
   //   image1 = const AssetImage("assets/icons/landing.webp");
   // }
-
+  late BeauticianViewModel _viewModel;
   @override
   void initState() {
     super.initState();
@@ -443,13 +442,15 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                           isLoading = true;
                           setState(() {});
                           await _viewModel.registerBeautician(
-                              BeauticianRegisterRequestModel(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  // phone: phoneController.text,
-                                  role: "beautician",
-                                  name: nameController.text),
-                              context);
+                            BeauticianRegisterRequestModel(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              // phone: phoneController.text,
+                              role: "beautician",
+                              name: nameController.text,
+                            ),
+                            context,
+                          );
                           isLoading = false;
                           setState(() {});
                         },
@@ -485,24 +486,29 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     ),
                     Align(
                       child: RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                          text: "Already have an account? ",
-                          style: GoogleFonts.urbanist(
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                        TextSpan(
-                            text: "Login",
-                            style: GoogleFonts.urbanist(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Already have an account? ",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Login",
+                              style: GoogleFonts.urbanist(
                                 fontSize: 12.sp,
                                 color: kBlue,
-                                fontWeight: FontWeight.w600),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                context.go("/beauticianLogin");
-                              })
-                      ])),
+                                fontWeight: FontWeight.w600,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  context.go("/beauticianLogin");
+                                },
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -857,13 +863,15 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                         isLoading = true;
                         setState(() {});
                         await _viewModel.registerBeautician(
-                            BeauticianRegisterRequestModel(
-                                email: emailController.text,
-                                password: passwordController.text,
-                                // phone: phoneController.text,
-                                role: "beautician",
-                                name: nameController.text),
-                            context);
+                          BeauticianRegisterRequestModel(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            // phone: phoneController.text,
+                            role: "beautician",
+                            name: nameController.text,
+                          ),
+                          context,
+                        );
                         isLoading = false;
                         setState(() {});
                       },
@@ -899,24 +907,29 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                   ),
                   Align(
                     child: RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                        text: "Already have an account? ",
-                        style: GoogleFonts.urbanist(
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                      TextSpan(
-                          text: "Login",
-                          style: GoogleFonts.urbanist(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Already have an account? ",
+                            style: GoogleFonts.urbanist(
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Login",
+                            style: GoogleFonts.urbanist(
                               fontSize: 12.sp,
                               color: kBlue,
-                              fontWeight: FontWeight.w600),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.go("/beauticianLogin");
-                            })
-                    ])),
+                              fontWeight: FontWeight.w600,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                context.go("/beauticianLogin");
+                              },
+                          )
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
