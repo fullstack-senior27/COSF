@@ -1,6 +1,8 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -150,6 +152,36 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   ) async {
     toggleLoading();
     await _beauticianRepo.addClient(addClientRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> addService(
+    BuildContext context,
+    CreateServiceRequest createServiceRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.createService(createServiceRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> addServiceCategory(
+    BuildContext context,
+    CreateServiceCategoryRequest createServiceCategoryRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo
+        .createServiceCategory(createServiceCategoryRequest)
+        .then(
           (value) => value.fold((l) {
             showSnackbar(l.message);
           }, (r) {

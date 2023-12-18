@@ -11,10 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router/go_router.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
@@ -51,7 +48,7 @@ class _ProfileEditState extends State<ProfileEdit>
   int selected = 0;
   List<Widget> screens = [
     const ServiceI(
-      data: BeauticianDetailResponse(),
+      data: null,
     ),
     const ReviewI(
       beauticianDetailResponse: BeauticianDetailResponse(),

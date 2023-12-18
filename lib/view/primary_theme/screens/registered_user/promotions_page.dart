@@ -77,7 +77,8 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                         SingleChildScrollView(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 15.h),
+                                              vertical: 15.h,
+                                            ),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -170,7 +171,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                           ),
                                           IconButton(
                                             onPressed: () => context.pop(),
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.close,
                                               color: kGrey,
                                             ),

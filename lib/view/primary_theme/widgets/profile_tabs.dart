@@ -10,6 +10,9 @@ import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
@@ -632,6 +635,7 @@ class ServiceMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nameController = TextEditingController();
     return Padding(
       padding: MediaQuery.of(context).size.width > 700
           ? EdgeInsets.symmetric(horizontal: 60.w)
@@ -667,7 +671,41 @@ class ServiceMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 15.h),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Add New Service",
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
+                                ),
+                                onPressed: () {
+                                  context.pop();
+                                },
+                              ),
+                            ],
+                          ),
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: const SingleChildScrollView(
+                            child: CreateService(),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kBlack,
                     padding:
@@ -751,7 +789,126 @@ class ServiceMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Add New Service Category",
+                                style: urbanist600(
+                                  kBlack,
+                                  16,
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () => context.pop(),
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: kGrey,
+                                  ))
+                            ],
+                          ),
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(
+                                        context,
+                                      ).size.width >
+                                      900
+                                  ? 400
+                                  : MediaQuery.of(
+                                        context,
+                                      ).size.width *
+                                      0.8,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  Text(
+                                    "Category Name*",
+                                    style: urbanist500(
+                                      kBlack,
+                                      16,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5.h),
+                                  TextFormField(
+                                    controller: nameController,
+                                    maxLines: 3,
+                                    decoration: InputDecoration(
+                                      hintText: "Category Name",
+                                      hintStyle: urbanist400(
+                                        kGrey,
+                                        14,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          6.r,
+                                        ),
+                                        borderSide: const BorderSide(
+                                          color: kGrey,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          6.r,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: Row(
+                                      // mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        const Spacer(),
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 40.h,
+                                            width: double.infinity,
+                                            child: BlackOutlineButton(
+                                                context, "Cancel", () {
+                                              Navigator.pop(
+                                                context,
+                                              );
+                                            }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 40.h,
+                                            width: double.infinity,
+                                            child: BlackButton(context, "Save",
+                                                () {
+                                              Navigator.pop(
+                                                context,
+                                              );
+                                            }),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kBlack,
                     padding:

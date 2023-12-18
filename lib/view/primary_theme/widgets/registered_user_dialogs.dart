@@ -1,14 +1,18 @@
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/public_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -3298,5 +3302,387 @@ class SocialInfo extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class CreateService extends ConsumerStatefulWidget {
+  const CreateService({super.key});
+
+  @override
+  ConsumerState<CreateService> createState() => _CreateServiceState();
+}
+
+class _CreateServiceState extends ConsumerState<CreateService>
+    with BaseScreenView {
+  bool saving = false;
+  bool isLoading = false;
+  final nameController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final priceController = TextEditingController();
+  final durationController = TextEditingController();
+  String category = "";
+  String serviceType = "";
+  late BeauticianViewModel _viewModel;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+
+    getData();
+  }
+
+  void getData() async {
+    isLoading = true;
+    setState(() {});
+    await ref.read(homePageViewModel).getServiceTypes();
+
+    await ref.read(homePageViewModel).getServiceCategories();
+
+    isLoading = false;
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: kBlack,
+            ),
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text("Create Service", style: urbanist600(kBlack, 16)),
+              SizedBox(height: 20.h),
+              Text(
+                "Service Name*",
+                style: urbanist500(
+                  kBlack,
+                  16,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  hintText: "Service Name",
+                  hintStyle: urbanist400(
+                    kGrey,
+                    14,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      6.r,
+                    ),
+                    borderSide: const BorderSide(
+                      color: kGrey,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      6.r,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "Service Description*",
+                style: urbanist500(
+                  kBlack,
+                  16,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              TextFormField(
+                controller: descriptionController,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  hintText: "Service Description",
+                  hintStyle: urbanist400(
+                    kGrey,
+                    14,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      6.r,
+                    ),
+                    borderSide: const BorderSide(
+                      color: kGrey,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      6.r,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Duration in Minutes*",
+                          style: urbanist500(
+                            kBlack,
+                            16,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        TextFormField(
+                          controller: durationController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Duration in minutes",
+                            hintStyle: urbanist400(
+                              kGrey,
+                              14,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                6.r,
+                              ),
+                              borderSide: const BorderSide(
+                                color: kGrey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                6.r,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Price*",
+                          style: urbanist500(
+                            kBlack,
+                            16,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        TextFormField(
+                          controller: priceController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Price",
+                            hintStyle: urbanist400(
+                              kGrey,
+                              14,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                6.r,
+                              ),
+                              borderSide: const BorderSide(
+                                color: kGrey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                6.r,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "Service Type",
+                style: urbanist500(kBlack, 14),
+              ),
+              SizedBox(height: 5.h),
+              DropdownButtonFormField<String>(
+                dropdownColor: kWhite,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: klines),
+                  ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: klines),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+                  // suffixIcon: Icon(Icons.arrow_drop_down),
+                ),
+                items: [
+                  ...List.generate(
+                    ref
+                            .read(homePageViewModel)
+                            .serviceTypesList
+                            ?.data
+                            ?.length ??
+                        0,
+                    (index) => DropdownMenuItem<String>(
+                      value: ref
+                              .read(homePageViewModel)
+                              .serviceTypesList
+                              ?.data?[index]
+                              .id ??
+                          '',
+                      child: Text(
+                        ref
+                                .read(homePageViewModel)
+                                .serviceTypesList
+                                ?.data?[index]
+                                .name ??
+                            '',
+                        style: urbanist400(kGrey, 12),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  )
+                ],
+                onChanged: (String? value) {
+                  serviceType = value ?? "";
+                },
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "Service Category",
+                style: urbanist500(kBlack, 14),
+              ),
+              SizedBox(height: 5.h),
+              DropdownButtonFormField<String>(
+                dropdownColor: kWhite,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: klines),
+                  ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: klines),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+                  // suffixIcon: Icon(Icons.arrow_drop_down),
+                ),
+                items: [
+                  ...List.generate(
+                    ref
+                            .read(homePageViewModel)
+                            .serviceCategoriesList
+                            ?.data
+                            ?.length ??
+                        0,
+                    (index) => DropdownMenuItem<String>(
+                      value: ref
+                              .read(homePageViewModel)
+                              .serviceCategoriesList
+                              ?.data?[index]
+                              .id ??
+                          '',
+                      child: Text(
+                        ref
+                                .read(homePageViewModel)
+                                .serviceCategoriesList
+                                ?.data?[index]
+                                .name ??
+                            '',
+                        style: urbanist400(kGrey, 12),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  )
+                ],
+                onChanged: (String? value) {
+                  category = value ?? "";
+                },
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  BlackOutlineButton(context, "Cancel", () {
+                    context.pop();
+                  }),
+                  const SizedBox(width: 15),
+                  if (saving)
+                    const SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: CircularProgressIndicator(
+                          color: kBlack,
+                        ))
+                  else
+                    SizedBox(
+                      height: 40.h,
+                      // width: 100.w,
+                      child: BlackButton(context, "Save", () async {
+                        saving = true;
+                        setState(() {});
+                        await _viewModel.addService(
+                            context,
+                            CreateServiceRequest(
+                              name: nameController.text,
+                              description: descriptionController.text,
+                              price: int.parse(priceController.text),
+                              category: category,
+                              serviceType: serviceType,
+                              durationInMinutes:
+                                  int.parse(durationController.text),
+                            ));
+                        saving = false;
+                        setState(() {});
+                        context.pop();
+                      }),
+                    ),
+                ],
+              )
+            ],
+          );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }

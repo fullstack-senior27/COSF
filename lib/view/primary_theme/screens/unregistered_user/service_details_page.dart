@@ -730,10 +730,10 @@ class ReviewI extends StatelessWidget {
 }
 
 class ServiceI extends StatelessWidget {
-  final BeauticianDetailResponse data;
+  final BeauticianDetailResponse? data;
   const ServiceI({
     super.key,
-    required this.data,
+    this.data,
   });
 
   @override
@@ -742,7 +742,7 @@ class ServiceI extends StatelessWidget {
       child: Column(
         children: [
           service(
-            beauticianDetailResponse: data,
+            beauticianDetailResponse: null,
           ),
           Visibility(
             visible: MediaQuery.of(context).size.width < 700,
@@ -913,10 +913,10 @@ class Sidebar extends StatelessWidget {
 }
 
 class service extends StatelessWidget {
-  final BeauticianDetailResponse beauticianDetailResponse;
+  final BeauticianDetailResponse? beauticianDetailResponse;
   const service({
     super.key,
-    required this.beauticianDetailResponse,
+    this.beauticianDetailResponse,
   });
 
   @override
@@ -969,7 +969,7 @@ class service extends StatelessWidget {
           height: 30.h,
         ),
         ...List.generate(
-          beauticianDetailResponse.data!.services?.length ?? 0,
+          beauticianDetailResponse?.data?.services?.length ?? 0,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Container(
@@ -1006,7 +1006,7 @@ class service extends StatelessWidget {
                       children: [
                         Text(
                           beauticianDetailResponse
-                                  .data!.services![index].name ??
+                                  ?.data?.services![index].name ??
                               "",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
@@ -1021,7 +1021,7 @@ class service extends StatelessWidget {
                           width: 200.w,
                           child: ReadMoreText(
                             beauticianDetailResponse
-                                    .data!.services![index].description ??
+                                    ?.data?.services![index].description ??
                                 "",
                             colorClickableText: kBlue,
                             trimMode: TrimMode.Line,
@@ -1039,7 +1039,7 @@ class service extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  "${beauticianDetailResponse.data!.services![index].durationInMinutes}min | \$${beauticianDetailResponse.data!.services![index].price}",
+                                  "${beauticianDetailResponse?.data?.services![index].durationInMinutes}min | \$${beauticianDetailResponse?.data?.services![index].price}",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
                                     fontSize: 12.sp,

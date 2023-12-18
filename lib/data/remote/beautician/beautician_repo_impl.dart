@@ -5,6 +5,8 @@ import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
@@ -107,6 +109,39 @@ class BeauticianRepoImpl implements BeauticianRepo {
           addClientRequest.toJson());
       log("Sucess ====> ${response.toString()}");
       return Right(AddClientResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, CreateServiceCategoryResponse>>
+      createServiceCategory(
+    CreateServiceCategoryRequest createServiceCategoryRequest,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+          "${AppConstants.baseUrl}beautician/service/category/create",
+          createServiceCategoryRequest.toJson());
+      log("Sucess ====> ${response.toString()}");
+      return Right(CreateServiceCategoryResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, CreateServiceResponse>> createService(
+    CreateServiceRequest createServiceRequest,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+          "${AppConstants.baseUrl}beautician/service/create",
+          createServiceRequest.toJson());
+      log("Sucess ====> ${response.toString()}");
+      return Right(CreateServiceResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));
