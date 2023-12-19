@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
@@ -182,6 +183,20 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
     await _beauticianRepo
         .createServiceCategory(createServiceCategoryRequest)
         .then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> addProduct(
+    BuildContext context,
+    AddProductRequest createServiceCategoryRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.addProduct(createServiceCategoryRequest).then(
           (value) => value.fold((l) {
             showSnackbar(l.message);
           }, (r) {

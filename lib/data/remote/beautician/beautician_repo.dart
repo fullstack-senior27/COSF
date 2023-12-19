@@ -1,8 +1,10 @@
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
@@ -40,4 +42,10 @@ abstract class BeauticianRepo {
   Future<Either<ApiException, CreateServiceResponse>> createService(
     CreateServiceRequest createServiceRequest,
   );
+
+  Future<Either<ApiException, AddProductResponse>> addProduct(
+    AddProductRequest addProductRequest,
+  );
+
+  Future<Either<ApiException, GetProductsResponse>> getProfileDetails();
 }

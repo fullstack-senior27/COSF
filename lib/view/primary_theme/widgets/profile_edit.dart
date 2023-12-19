@@ -47,9 +47,7 @@ class _ProfileEditState extends State<ProfileEdit>
   int selectedScreen = 0;
   int selected = 0;
   List<Widget> screens = [
-    const ServiceI(
-      data: null,
-    ),
+    const ServiceI(),
     const ReviewI(
       beauticianDetailResponse: BeauticianDetailResponse(),
     ),

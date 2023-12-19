@@ -1,4 +1,5 @@
 import 'package:cosmetropolis/core/core.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart'
     as edit;
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
@@ -630,12 +631,27 @@ class _BusinessInfoState extends State<BusinessInfo> {
   }
 }
 
-class ServiceMenu extends StatelessWidget {
+class ServiceMenu extends ConsumerStatefulWidget {
   const ServiceMenu({super.key});
 
   @override
+  ConsumerState<ServiceMenu> createState() => _ServiceMenuState();
+}
+
+class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
+  final nameController = TextEditingController();
+  late BeauticianViewModel _viewModel;
+  bool isLoading = false;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    // getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
     return Padding(
       padding: MediaQuery.of(context).size.width > 700
           ? EdgeInsets.symmetric(horizontal: 60.w)
@@ -793,118 +809,143 @@ class ServiceMenu extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Add New Service Category",
-                                style: urbanist600(
-                                  kBlack,
-                                  16,
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () => context.pop(),
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: kGrey,
-                                  ))
-                            ],
-                          ),
-                          backgroundColor: const Color(0xfff8f8f8),
-                          content: SingleChildScrollView(
-                            child: SizedBox(
-                              width: MediaQuery.of(
-                                        context,
-                                      ).size.width >
-                                      900
-                                  ? 400
-                                  : MediaQuery.of(
-                                        context,
-                                      ).size.width *
-                                      0.8,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
                                   Text(
-                                    "Category Name*",
-                                    style: urbanist500(
+                                    "Add New Service Category",
+                                    style: urbanist600(
                                       kBlack,
                                       16,
                                     ),
                                   ),
-                                  SizedBox(height: 5.h),
-                                  TextFormField(
-                                    controller: nameController,
-                                    maxLines: 3,
-                                    decoration: InputDecoration(
-                                      hintText: "Category Name",
-                                      hintStyle: urbanist400(
-                                        kGrey,
-                                        14,
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          6.r,
-                                        ),
-                                        borderSide: const BorderSide(
-                                          color: kGrey,
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          6.r,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: Row(
-                                      // mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        const Spacer(),
-                                        Expanded(
-                                          child: SizedBox(
-                                            height: 40.h,
-                                            width: double.infinity,
-                                            child: BlackOutlineButton(
-                                                context, "Cancel", () {
-                                              Navigator.pop(
-                                                context,
-                                              );
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 5.w,
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            height: 40.h,
-                                            width: double.infinity,
-                                            child: BlackButton(context, "Save",
-                                                () {
-                                              Navigator.pop(
-                                                context,
-                                              );
-                                            }),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                  IconButton(
+                                      onPressed: () => context.pop(),
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: kGrey,
+                                      ))
                                 ],
                               ),
-                            ),
-                          ),
+                              backgroundColor: const Color(0xfff8f8f8),
+                              content: SingleChildScrollView(
+                                child: SizedBox(
+                                  width: MediaQuery.of(
+                                            context,
+                                          ).size.width >
+                                          900
+                                      ? 400
+                                      : MediaQuery.of(
+                                            context,
+                                          ).size.width *
+                                          0.8,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Text(
+                                        "Category Name*",
+                                        style: urbanist500(
+                                          kBlack,
+                                          16,
+                                        ),
+                                      ),
+                                      SizedBox(height: 5.h),
+                                      TextFormField(
+                                        controller: nameController,
+                                        maxLines: 3,
+                                        decoration: InputDecoration(
+                                          hintText: "Category Name",
+                                          hintStyle: urbanist400(
+                                            kGrey,
+                                            14,
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              6.r,
+                                            ),
+                                            borderSide: const BorderSide(
+                                              color: kGrey,
+                                            ),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              6.r,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: Row(
+                                          // mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            const Spacer(),
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 40.h,
+                                                width: double.infinity,
+                                                child: BlackOutlineButton(
+                                                    context, "Cancel", () {
+                                                  Navigator.pop(
+                                                    context,
+                                                  );
+                                                }),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5.w,
+                                            ),
+                                            if (isLoading)
+                                              const SizedBox(
+                                                  height: 25,
+                                                  width: 25,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: kBlack,
+                                                  ))
+                                            else
+                                              Expanded(
+                                                child: SizedBox(
+                                                  height: 40.h,
+                                                  width: double.infinity,
+                                                  child: BlackButton(
+                                                      context, "Save",
+                                                      () async {
+                                                    isLoading = true;
+                                                    setState(() {});
+                                                    await _viewModel
+                                                        .addServiceCategory(
+                                                            context,
+                                                            CreateServiceCategoryRequest(
+                                                                name:
+                                                                    nameController
+                                                                        .text));
+                                                    isLoading = false;
+                                                    setState(() {});
+                                                    context.pop();
+                                                  }),
+                                                ),
+                                              )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         );
                       },
                     );
@@ -929,6 +970,22 @@ class ServiceMenu extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }
 

@@ -4,13 +4,16 @@ import 'package:cosmetropolis/core/api_client.dart';
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:dartz/dartz.dart';
 
 import 'get_profile_details.dart';
@@ -142,6 +145,38 @@ class BeauticianRepoImpl implements BeauticianRepo {
           createServiceRequest.toJson());
       log("Sucess ====> ${response.toString()}");
       return Right(CreateServiceResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, AddProductResponse>> addProduct(
+    AddProductRequest addProductRequest,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+          "${AppConstants.baseUrl}beautician/products/create",
+          addProductRequest.toJson());
+      log("Sucess ====> ${response.toString()}");
+      return Right(AddProductResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, GetProductsResponse>> getProfileDetails() async {
+    try {
+      final response = await _apiClient
+          .getWithParams("${AppConstants.baseUrl}beautician/products", {
+        "beauticianId":
+            " ${SharedPreferenceService.getString(AppConstants.userId) ?? ""}",
+      });
+      log("Sucess ====> ${response.toString()}");
+      return Right(GetProductsResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

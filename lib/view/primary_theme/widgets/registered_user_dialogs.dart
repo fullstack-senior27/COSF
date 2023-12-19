@@ -1,4 +1,5 @@
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
@@ -1999,8 +2000,44 @@ class AddClientPhoto extends StatelessWidget {
   }
 }
 
-class AddProduct extends StatelessWidget {
+class AddProduct extends ConsumerStatefulWidget {
   const AddProduct({super.key});
+
+  @override
+  ConsumerState<AddProduct> createState() => _AddProductState();
+}
+
+class _AddProductState extends ConsumerState<AddProduct> with BaseScreenView {
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
+
+  bool isLoading = false;
+
+  late BeauticianViewModel _viewModel;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    // getData();
+  }
+
+  final nameController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final linkController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -2013,6 +2050,7 @@ class AddProduct extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         TextFormField(
+          controller: nameController,
           decoration: InputDecoration(
             hintText: "Product Name",
             hintStyle: urbanist400(kGrey, 14),
@@ -2032,6 +2070,7 @@ class AddProduct extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         TextFormField(
+          controller: descriptionController,
           maxLines: 4,
           decoration: InputDecoration(
             hintText: "Product uses, attributes & price",
@@ -2052,6 +2091,7 @@ class AddProduct extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         TextFormField(
+          controller: linkController,
           decoration: InputDecoration(
             hintText: "https://www.example.com",
             hintStyle: urbanist400(kGrey, 14),
@@ -2068,13 +2108,36 @@ class AddProduct extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            BlackOutlineButton(context, "Cancel", () {}),
+            BlackOutlineButton(context, "Cancel", () {
+              context.pop();
+            }),
             const SizedBox(width: 15),
-            SizedBox(
-              height: 40.h,
-              // width: 100.w,
-              child: BlackButton(context, "Save", () {}),
-            ),
+            if (isLoading)
+              const SizedBox(
+                height: 25,
+                width: 25,
+                child: CircularProgressIndicator(
+                  color: kBlack,
+                ),
+              )
+            else
+              SizedBox(
+                height: 40.h,
+                // width: 100.w,
+                child: BlackButton(context, "Save", () async {
+                  isLoading = true;
+                  setState(() {});
+                  await _viewModel.addProduct(
+                      context,
+                      AddProductRequest(
+                          title: nameController.text,
+                          description: descriptionController.text,
+                          link: linkController.text));
+                  isLoading = false;
+                  setState(() {});
+                  context.pop();
+                }),
+              ),
           ],
         )
       ],

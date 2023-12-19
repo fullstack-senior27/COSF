@@ -139,4 +139,19 @@ class ApiClient {
       throw ApiException(e.response!.data["message"].toString());
     }
   }
+
+  Future<Response<Map<String, dynamic>>> getWithParams(
+    String path,
+    Map<String, dynamic> params,
+  ) async {
+    try {
+      return await dio.get(
+        path,
+        queryParameters: params,
+      );
+    } on DioError catch (e) {
+      Logger.printError(e.message.toString());
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
 }
