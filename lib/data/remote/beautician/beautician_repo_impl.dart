@@ -8,15 +8,16 @@ import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
+import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:dartz/dartz.dart';
-
-import 'get_profile_details.dart';
 
 class BeauticianRepoImpl implements BeauticianRepo {
   final ApiClient _apiClient;
@@ -26,11 +27,13 @@ class BeauticianRepoImpl implements BeauticianRepo {
   @override
   Future<Either<ApiException, BeauticianRegisterResponseModel>>
       beauticianRegister(
-          BeauticianRegisterRequestModel beauticianRegisterRequestModel) async {
+    BeauticianRegisterRequestModel beauticianRegisterRequestModel,
+  ) async {
     try {
       final response = await _apiClient.post(
-          "${AppConstants.baseUrl}auth/register/beautician",
-          beauticianRegisterRequestModel.toJson());
+        "${AppConstants.baseUrl}auth/register/beautician",
+        beauticianRegisterRequestModel.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianRegisterResponseModel.fromJson(response.data!));
     } catch (e) {
@@ -41,11 +44,13 @@ class BeauticianRepoImpl implements BeauticianRepo {
 
   @override
   Future<Either<ApiException, BeauticianLoginResponseModel>> beauticianLogin(
-      BeauticianLoginRequestModel beauticianRegisterRequestModel) async {
+    BeauticianLoginRequestModel beauticianRegisterRequestModel,
+  ) async {
     try {
       final response = await _apiClient.post(
-          "${AppConstants.baseUrl}auth/login/beautician",
-          beauticianRegisterRequestModel.toJson());
+        "${AppConstants.baseUrl}auth/login/beautician",
+        beauticianRegisterRequestModel.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianLoginResponseModel.fromJson(response.data!));
     } catch (e) {
@@ -61,8 +66,9 @@ class BeauticianRepoImpl implements BeauticianRepo {
   ) async {
     try {
       final response = await _apiClient.postWithToken(
-          "${AppConstants.baseUrl}beautician/profile",
-          beauticianProfileRequest.toJson());
+        "${AppConstants.baseUrl}beautician/profile",
+        beauticianProfileRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianProfileResponse.fromJson(response.data!));
     } catch (e) {
@@ -74,11 +80,13 @@ class BeauticianRepoImpl implements BeauticianRepo {
   @override
   Future<Either<ApiException, BeauticianUpdateProfileResponse>>
       updateBeauticianProfile(
-          BeauticianUpdateProfileRequest beauticianProfileRequest) async {
+    BeauticianUpdateProfileRequest beauticianProfileRequest,
+  ) async {
     try {
       final response = await _apiClient.patchWithToken(
-          "${AppConstants.baseUrl}beautician/profile/edit",
-          beauticianProfileRequest.toJson());
+        "${AppConstants.baseUrl}beautician/profile/edit",
+        beauticianProfileRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianUpdateProfileResponse.fromJson(response.data!));
     } catch (e) {
@@ -90,11 +98,13 @@ class BeauticianRepoImpl implements BeauticianRepo {
   @override
   Future<Either<ApiException, BeauticianAvailabilityResponse>>
       updateBeauticianAvailability(
-          BeauticianAvailabilityRequest beauticianAvailabilityRequest) async {
+    BeauticianAvailabilityRequest beauticianAvailabilityRequest,
+  ) async {
     try {
       final response = await _apiClient.patchWithToken(
-          "${AppConstants.baseUrl}beautician/availability/add",
-          beauticianAvailabilityRequest.toJson());
+        "${AppConstants.baseUrl}beautician/availability/add",
+        beauticianAvailabilityRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(BeauticianAvailabilityResponse.fromJson(response.data!));
     } catch (e) {
@@ -105,11 +115,13 @@ class BeauticianRepoImpl implements BeauticianRepo {
 
   @override
   Future<Either<ApiException, AddClientResponse>> addClient(
-      AddClientRequest addClientRequest) async {
+    AddClientRequest addClientRequest,
+  ) async {
     try {
       final response = await _apiClient.postWithToken(
-          "${AppConstants.baseUrl}beautician/clients/new/add",
-          addClientRequest.toJson());
+        "${AppConstants.baseUrl}beautician/clients/new/add",
+        addClientRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(AddClientResponse.fromJson(response.data!));
     } catch (e) {
@@ -125,8 +137,9 @@ class BeauticianRepoImpl implements BeauticianRepo {
   ) async {
     try {
       final response = await _apiClient.postWithToken(
-          "${AppConstants.baseUrl}beautician/service/category/create",
-          createServiceCategoryRequest.toJson());
+        "${AppConstants.baseUrl}beautician/service/category/create",
+        createServiceCategoryRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(CreateServiceCategoryResponse.fromJson(response.data!));
     } catch (e) {
@@ -141,8 +154,9 @@ class BeauticianRepoImpl implements BeauticianRepo {
   ) async {
     try {
       final response = await _apiClient.postWithToken(
-          "${AppConstants.baseUrl}beautician/service/create",
-          createServiceRequest.toJson());
+        "${AppConstants.baseUrl}beautician/service/create",
+        createServiceRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(CreateServiceResponse.fromJson(response.data!));
     } catch (e) {
@@ -157,8 +171,9 @@ class BeauticianRepoImpl implements BeauticianRepo {
   ) async {
     try {
       final response = await _apiClient.postWithToken(
-          "${AppConstants.baseUrl}beautician/products/create",
-          addProductRequest.toJson());
+        "${AppConstants.baseUrl}beautician/products/create",
+        addProductRequest.toJson(),
+      );
       log("Sucess ====> ${response.toString()}");
       return Right(AddProductResponse.fromJson(response.data!));
     } catch (e) {
@@ -168,15 +183,48 @@ class BeauticianRepoImpl implements BeauticianRepo {
   }
 
   @override
-  Future<Either<ApiException, GetProductsResponse>> getProfileDetails() async {
+  Future<Either<ApiException, GetProductsResponse>> getProducts() async {
     try {
       final response = await _apiClient
           .getWithParams("${AppConstants.baseUrl}beautician/products", {
         "beauticianId":
-            " ${SharedPreferenceService.getString(AppConstants.userId) ?? ""}",
+            SharedPreferenceService.getString(AppConstants.userId) ?? "",
       });
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(GetProductsResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, DeleteProductResponse>> deleteProduct(
+    String id,
+  ) async {
+    try {
+      final response = await _apiClient
+          .delete("${AppConstants.baseUrl}beautician/products/delete/$id");
+      log("Sucess ====> $response");
+      return Right(DeleteProductResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, UpdateProductResponse>> updateProduct(
+    String id,
+    UpdateProductRequest updateProductRequest,
+  ) async {
+    try {
+      final response = await _apiClient.patchWithToken(
+        "${AppConstants.baseUrl}beautician/products/edit/$id",
+        updateProductRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(UpdateProductResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

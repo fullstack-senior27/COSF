@@ -1,12 +1,19 @@
+import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
 
@@ -452,188 +459,856 @@ class _ProfilePreviewState extends State<ProfilePreview>
   }
 }
 
-class ProductsCard extends StatelessWidget {
+class ProductsCard extends ConsumerStatefulWidget {
   const ProductsCard({super.key});
 
   @override
+  ConsumerState<ProductsCard> createState() => _ProductsCardState();
+}
+
+class _ProductsCardState extends ConsumerState<ProductsCard>
+    with BaseScreenView {
+  bool isLoading = false;
+
+  late BeauticianViewModel _viewModel;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    getData();
+  }
+
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final linkcontroller = TextEditingController();
+
+  bool updating = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+
+    linkcontroller.dispose();
+  }
+
+  void getData() async {
+    isLoading = true;
+    setState(() {});
+    await _viewModel.getProduct(context);
+    isLoading = false;
+    setState(() {});
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Add Products to your profile",
-              style: urbanist400(kBlack, 16),
+    _viewModel = ref.watch(beauticianViewModel);
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: kBlack,
             ),
-            FittedBox(
-              child: SizedBox(
-                height: 40.h,
-                child: ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Add Client Photo",
-                                style: GoogleFonts.urbanist(
-                                  color: kBlack,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Add Products to your profile",
+                    style: urbanist400(kBlack, 16),
+                  ),
+                  FittedBox(
+                    child: SizedBox(
+                      height: 40.h,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Add Client Photo",
+                                      style: GoogleFonts.urbanist(
+                                        color: kBlack,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: kGrey,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.close,
-                                  color: kGrey,
+                                backgroundColor: const Color(0xfff8f8f8),
+                                content: SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(
+                                              context,
+                                            ).size.width >
+                                            900
+                                        ? 400
+                                        : MediaQuery.of(
+                                              context,
+                                            ).size.width *
+                                            0.8,
+                                    child: const AddProduct(),
+                                  ),
                                 ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: kBlack,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.r),
                           ),
-                          backgroundColor: const Color(0xfff8f8f8),
-                          content: SingleChildScrollView(
-                            child: SizedBox(
-                              width: MediaQuery.of(
-                                        context,
-                                      ).size.width >
-                                      900
-                                  ? 400
-                                  : MediaQuery.of(
-                                        context,
-                                      ).size.width *
-                                      0.8,
-                              child: const AddProduct(),
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kBlack,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.r),
+                        ),
+                        child: Text(
+                          "Add Product",
+                          style: urbanist400(kWhite, 12),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    "Add Product",
-                    style: urbanist400(kWhite, 12),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        ...List.generate(
-          5,
-          (index) => Padding(
-            padding: EdgeInsets.only(bottom: 20.h),
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 10.h,
-              ),
-              decoration: BoxDecoration(
-                color: kWhite,
-                borderRadius: BorderRadius.circular(5.r),
-                border: Border.all(
-                  color: kdisable,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: kGrey.withOpacity(0.05),
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: const Offset(
-                      0,
-                      1,
-                    ), // changes position of shadow
                   ),
                 ],
               ),
-              width: double.infinity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.network(
-                    "https://tse1.mm.bing.net/th?id=OIP.3B1u2WR60N8Yhdl4E7OsvAHaKJ&pid=Api&P=0&h=180",
-                    // width: 30.w,
-                    height: 50.h,
-                  ),
-                  SizedBox(
-                    width: 3.w,
-                  ),
-                  Expanded(
-                    child: Column(
+              SizedBox(
+                height: 20.h,
+              ),
+              ...List.generate(
+                _viewModel.getProductsResponseModel?.data?.length ?? 0,
+                (index) => Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 10.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: kWhite,
+                      borderRadius: BorderRadius.circular(5.r),
+                      border: Border.all(
+                        color: kdisable,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: kGrey.withOpacity(0.05),
+                          spreadRadius: 5,
+                          blurRadius: 5,
+                          offset: const Offset(
+                            0,
+                            1,
+                          ), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    width: double.infinity,
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Hair Growth Oil",
-                          style: GoogleFonts.urbanist(
-                            color: kBlack,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        Image.network(
+                          "https://tse1.mm.bing.net/th?id=OIP.3B1u2WR60N8Yhdl4E7OsvAHaKJ&pid=Api&P=0&h=180",
+                          // width: 30.w,
+                          height: 50.h,
                         ),
-                        // SizedBox(
-                        //   height: 10.h,
-                        // ),
                         SizedBox(
-                          width: 200.w,
-                          child: ReadMoreText(
-                            "Hair is not included but can be provided for an additional fee. Please check",
-                            colorClickableText: kBlue,
-                            trimMode: TrimMode.Line,
-                            trimCollapsedText: 'Read more',
-                            trimExpandedText: ' Read less',
-                            style: urbanist400(kGrey, 12),
+                          width: 3.w,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                _viewModel.getProductsResponseModel
+                                        ?.data?[index].title ??
+                                    "",
+                                style: GoogleFonts.urbanist(
+                                  color: kBlack,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              // SizedBox(
+                              //   height: 10.h,
+                              // ),
+                              SizedBox(
+                                width: 200.w,
+                                child: ReadMoreText(
+                                  _viewModel.getProductsResponseModel
+                                          ?.data?[index].description ??
+                                      "",
+                                  colorClickableText: kBlue,
+                                  trimMode: TrimMode.Line,
+                                  trimCollapsedText: 'Read more',
+                                  trimExpandedText: ' Read less',
+                                  style: urbanist400(kGrey, 12),
+                                ),
+                              ),
+                              if (MediaQuery.of(context).size.width < 920)
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () async {
+                                          updating = true;
+                                          setState(() {});
+                                          _viewModel.deleteProduct(
+                                            context,
+                                            _viewModel.getProductsResponseModel
+                                                    ?.data?[index].id ??
+                                                "",
+                                          );
+                                          updating = false;
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete_rounded,
+                                          color: kBlack,
+                                          size: 25,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          titleController.text = _viewModel
+                                                  .getProductsResponseModel
+                                                  ?.data?[index]
+                                                  .title ??
+                                              "";
+                                          descriptionController.text =
+                                              _viewModel
+                                                      .getProductsResponseModel
+                                                      ?.data?[index]
+                                                      .description ??
+                                                  "";
+                                          linkcontroller.text = _viewModel
+                                                  .getProductsResponseModel
+                                                  ?.data?[index]
+                                                  .link ??
+                                              "";
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "Edit Product",
+                                                      style:
+                                                          GoogleFonts.urbanist(
+                                                        color: kBlack,
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    IconButton(
+                                                      icon: const Icon(
+                                                        Icons.close,
+                                                        color: kGrey,
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                                backgroundColor:
+                                                    const Color(0xfff8f8f8),
+                                                content: SingleChildScrollView(
+                                                  child: SizedBox(
+                                                    width: MediaQuery.of(
+                                                              context,
+                                                            ).size.width >
+                                                            900
+                                                        ? 400
+                                                        : MediaQuery.of(
+                                                              context,
+                                                            ).size.width *
+                                                            0.8,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          "Title*",
+                                                          style: urbanist500(
+                                                            kBlack,
+                                                            14,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          controller:
+                                                              titleController,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "Product Name",
+                                                            hintStyle:
+                                                                urbanist400(
+                                                              kGrey,
+                                                              14,
+                                                            ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: kGrey,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Text(
+                                                          "Description*",
+                                                          style: urbanist500(
+                                                            kBlack,
+                                                            14,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          controller:
+                                                              descriptionController,
+                                                          maxLines: 4,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "Product uses, attributes & price",
+                                                            hintStyle:
+                                                                urbanist400(
+                                                              kGrey,
+                                                              14,
+                                                            ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: kGrey,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Text(
+                                                          "Link (OPTIONAL)*",
+                                                          style: urbanist500(
+                                                            kBlack,
+                                                            14,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 5.h),
+                                                        TextFormField(
+                                                          controller:
+                                                              linkcontroller,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "https://www.example.com",
+                                                            hintStyle:
+                                                                urbanist400(
+                                                              kGrey,
+                                                              14,
+                                                            ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: kGrey,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                6.r,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.h,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            BlackOutlineButton(
+                                                                context,
+                                                                "Cancel", () {
+                                                              context.pop();
+                                                            }),
+                                                            const SizedBox(
+                                                              width: 15,
+                                                            ),
+                                                            if (updating)
+                                                              const SizedBox(
+                                                                height: 25,
+                                                                width: 25,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  color: kBlack,
+                                                                ),
+                                                              )
+                                                            else
+                                                              SizedBox(
+                                                                height: 40.h,
+                                                                // width: 100.w,
+                                                                child:
+                                                                    BlackButton(
+                                                                        context,
+                                                                        "Save",
+                                                                        () async {
+                                                                  updating =
+                                                                      true;
+                                                                  setState(
+                                                                    () {},
+                                                                  );
+                                                                  await _viewModel
+                                                                      .updateProduct(
+                                                                    context,
+                                                                    UpdateProductRequest(
+                                                                      title: titleController
+                                                                          .text,
+                                                                      description:
+                                                                          descriptionController
+                                                                              .text,
+                                                                      link: linkcontroller
+                                                                          .text,
+                                                                    ),
+                                                                    _viewModel
+                                                                            .getProductsResponseModel
+                                                                            ?.data?[index]
+                                                                            .id ??
+                                                                        "",
+                                                                  );
+                                                                  updating =
+                                                                      false;
+                                                                  setState(
+                                                                    () {},
+                                                                  );
+                                                                  context.pop();
+                                                                }),
+                                                              ),
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 10.w,
+                                            vertical: 5.h,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: kBlack,
+                                            borderRadius: BorderRadius.circular(
+                                              5.r,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            "Edit",
+                                            style: GoogleFonts.urbanist(
+                                              color: kWhite,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              else
+                                Container()
+                            ],
                           ),
                         ),
-                        if (MediaQuery.of(context).size.width < 920)
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.h),
+                        if (MediaQuery.of(context).size.width > 920)
+                          Expanded(
                             child: Row(
                               children: [
+                                const Spacer(),
                                 IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
+                                  onPressed: () async {
+                                    updating = true;
+                                    setState(() {});
+                                    _viewModel.deleteProduct(
+                                      context,
+                                      _viewModel.getProductsResponseModel
+                                              ?.data?[index].id ??
+                                          "",
+                                    );
+                                    updating = false;
+                                    setState(() {});
+                                  },
+                                  icon: Icon(
                                     Icons.delete_rounded,
                                     color: kBlack,
-                                    size: 25,
+                                    size: 15.sp,
                                   ),
                                 ),
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 10.w,
-                                    vertical: 5.h,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: kBlack,
-                                    borderRadius: BorderRadius.circular(
-                                      5.r,
+                                InkWell(
+                                  onTap: () {
+                                    titleController.text = _viewModel
+                                            .getProductsResponseModel
+                                            ?.data?[index]
+                                            .title ??
+                                        "";
+                                    descriptionController.text = _viewModel
+                                            .getProductsResponseModel
+                                            ?.data?[index]
+                                            .description ??
+                                        "";
+                                    linkcontroller.text = _viewModel
+                                            .getProductsResponseModel
+                                            ?.data?[index]
+                                            .link ??
+                                        "";
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Edit Product",
+                                                style: GoogleFonts.urbanist(
+                                                  color: kBlack,
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              IconButton(
+                                                icon: const Icon(
+                                                  Icons.close,
+                                                  color: kGrey,
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                          backgroundColor:
+                                              const Color(0xfff8f8f8),
+                                          content: SingleChildScrollView(
+                                            child: SizedBox(
+                                              width: MediaQuery.of(
+                                                        context,
+                                                      ).size.width >
+                                                      900
+                                                  ? 400
+                                                  : MediaQuery.of(
+                                                        context,
+                                                      ).size.width *
+                                                      0.8,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Title*",
+                                                    style: urbanist500(
+                                                      kBlack,
+                                                      14,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 5.h),
+                                                  TextFormField(
+                                                    controller: titleController,
+                                                    decoration: InputDecoration(
+                                                      hintText: "Product Name",
+                                                      hintStyle: urbanist400(
+                                                        kGrey,
+                                                        14,
+                                                      ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          color: kGrey,
+                                                        ),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                  Text(
+                                                    "Description*",
+                                                    style: urbanist500(
+                                                      kBlack,
+                                                      14,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 5.h),
+                                                  TextFormField(
+                                                    controller:
+                                                        descriptionController,
+                                                    maxLines: 4,
+                                                    decoration: InputDecoration(
+                                                      hintText:
+                                                          "Product uses, attributes & price",
+                                                      hintStyle: urbanist400(
+                                                        kGrey,
+                                                        14,
+                                                      ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          color: kGrey,
+                                                        ),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                  Text(
+                                                    "Link (OPTIONAL)*",
+                                                    style: urbanist500(
+                                                      kBlack,
+                                                      14,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 5.h),
+                                                  TextFormField(
+                                                    controller: linkcontroller,
+                                                    decoration: InputDecoration(
+                                                      hintText:
+                                                          "https://www.example.com",
+                                                      hintStyle: urbanist400(
+                                                        kGrey,
+                                                        14,
+                                                      ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          color: kGrey,
+                                                        ),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          6.r,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20.h,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      BlackOutlineButton(
+                                                          context, "Cancel",
+                                                          () {
+                                                        context.pop();
+                                                      }),
+                                                      const SizedBox(
+                                                        width: 15,
+                                                      ),
+                                                      if (updating)
+                                                        const SizedBox(
+                                                          height: 25,
+                                                          width: 25,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            color: kBlack,
+                                                          ),
+                                                        )
+                                                      else
+                                                        SizedBox(
+                                                          height: 40.h,
+                                                          // width: 100.w,
+                                                          child: BlackButton(
+                                                              context, "Save",
+                                                              () async {
+                                                            updating = true;
+                                                            setState(
+                                                              () {},
+                                                            );
+                                                            await _viewModel
+                                                                .updateProduct(
+                                                              context,
+                                                              UpdateProductRequest(
+                                                                title:
+                                                                    titleController
+                                                                        .text,
+                                                                description:
+                                                                    descriptionController
+                                                                        .text,
+                                                                link:
+                                                                    linkcontroller
+                                                                        .text,
+                                                              ),
+                                                              _viewModel
+                                                                      .getProductsResponseModel
+                                                                      ?.data?[
+                                                                          index]
+                                                                      .id ??
+                                                                  "",
+                                                            );
+                                                            updating = false;
+                                                            setState(
+                                                              () {},
+                                                            );
+                                                            context.pop();
+                                                          }),
+                                                        ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w,
+                                      vertical: 5.h,
                                     ),
-                                  ),
-                                  child: Text(
-                                    "Edit",
-                                    style: GoogleFonts.urbanist(
-                                      color: kWhite,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
+                                    decoration: BoxDecoration(
+                                      color: kBlack,
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Edit",
+                                      style: GoogleFonts.urbanist(
+                                        color: kWhite,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
                                 )
@@ -645,53 +1320,9 @@ class ProductsCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (MediaQuery.of(context).size.width > 920)
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.delete_rounded,
-                              color: kBlack,
-                              size: 15.sp,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10.w,
-                              vertical: 5.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: kBlack,
-                              borderRadius: BorderRadius.circular(
-                                5.r,
-                              ),
-                            ),
-                            child: Text(
-                              "Edit",
-                              style: GoogleFonts.urbanist(
-                                color: kWhite,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  else
-                    Container()
-                ],
-              ),
-            ),
-          ),
-        )
-      ],
-    );
+                ),
+              )
+            ],
+          );
   }
 }

@@ -131,7 +131,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 ),
                                               ),
                                               IconButton(
-                                                onPressed: () => context.pop(), 
+                                                onPressed: () => context.pop(),
                                                 icon: Icon(
                                                   Icons.close,
                                                   color: kGrey,
@@ -209,6 +209,29 @@ class _CalendarPageState extends State<CalendarPage> {
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.7,
                       child: WeekView(
+                        // timeLineBuilder: (date) {
+                        //   return Container(
+                        //     decoration: BoxDecoration(
+                        //       color: kBlack,
+                        //       borderRadius: BorderRadius.circular(10.r),
+                        //     ),
+                        //     child: Text(
+                        //       "${date.day}",
+                        //       style: TextStyle(color: kWhite),
+                        //     ),
+                        //   );
+                        // },
+                        eventTileBuilder: (date, events, boundary,
+                                startDuration, endDuration) =>
+                            Container(
+                                decoration: BoxDecoration(
+                                  color: kBlack,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Text(
+                                  "${date.day}",
+                                  style: TextStyle(color: kWhite),
+                                )),
                         headerStyle: HeaderStyle(
                           // we use kwhite color for this component because we need to hide the header
                           decoration: BoxDecoration(
@@ -335,12 +358,12 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 ),
                                               ),
                                               IconButton(
-                                                onPressed: () => context.pop(), 
-                                                icon: Icon(
-                                                  Icons.close,
-                                                  color: kGrey,
-                                                )
-                                              )
+                                                  onPressed: () =>
+                                                      context.pop(),
+                                                  icon: Icon(
+                                                    Icons.close,
+                                                    color: kGrey,
+                                                  ))
                                               // const Icon(
                                               //   Icons.close,
                                               //   color: kGrey,

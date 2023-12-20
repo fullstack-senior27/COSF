@@ -5,9 +5,11 @@ import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/domain/providers/providers.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
@@ -42,6 +44,10 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   BeauticianProfileResponse? _beauticianProfileResponseModel;
   BeauticianProfileResponse? get beauticianProfileResponseModel =>
       _beauticianProfileResponseModel;
+
+  GetProductsResponse? _getProductsResponseModel;
+  GetProductsResponse? get getProductsResponseModel =>
+      _getProductsResponseModel;
 
   Future<void> registerBeautician(
     BeauticianRegisterRequestModel beauticianRegisterRequestModel,
@@ -201,6 +207,57 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             showSnackbar(l.message);
           }, (r) {
             showSnackbar(r.message ?? "");
+            getProduct(context);
+            // notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> getProduct(
+    BuildContext context,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.getProducts().then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message ?? "");
+            _getProductsResponseModel = r;
+            notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> deleteProduct(BuildContext context, String id) async {
+    toggleLoading();
+    await _beauticianRepo
+        .deleteProduct(
+          id,
+        )
+        .then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            getProduct(context);
+            // notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> updateProduct(
+    BuildContext context,
+    UpdateProductRequest updateProductRequest,
+    String id,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.updateProduct(id, updateProductRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            getProduct(context);
+            // notifyListeners();
           }),
         );
   }

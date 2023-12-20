@@ -3,11 +3,13 @@ import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
+import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:dartz/dartz.dart';
 
@@ -47,5 +49,10 @@ abstract class BeauticianRepo {
     AddProductRequest addProductRequest,
   );
 
-  Future<Either<ApiException, GetProductsResponse>> getProfileDetails();
+  Future<Either<ApiException, GetProductsResponse>> getProducts();
+
+  Future<Either<ApiException, DeleteProductResponse>> deleteProduct(String id);
+
+  Future<Either<ApiException, UpdateProductResponse>> updateProduct(
+      String id, UpdateProductRequest updateProductRequest);
 }
