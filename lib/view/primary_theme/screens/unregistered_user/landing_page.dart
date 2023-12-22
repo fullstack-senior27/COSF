@@ -34,11 +34,6 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
   final passwordController = TextEditingController();
   bool isLoading = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   image1 = const AssetImage("assets/icons/landing.webp");
-  // }
   late BeauticianViewModel _viewModel;
   @override
   void initState() {

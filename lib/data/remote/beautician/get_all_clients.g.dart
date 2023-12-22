@@ -30,6 +30,8 @@ _$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(
       client: json['client'] == null
           ? null
           : Client.fromJson(json['client'] as Map<String, dynamic>),
+      isBlocked: json['isBlocked'] as bool?,
+      reasonForBlocking: json['reasonForBlocking'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -44,6 +46,8 @@ Map<String, dynamic> _$$_DatumToJson(_$_Datum instance) => <String, dynamic>{
       '_id': instance.id,
       'beautician': instance.beautician,
       'client': instance.client,
+      'isBlocked': instance.isBlocked,
+      'reasonForBlocking': instance.reasonForBlocking,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       '__v': instance.v,

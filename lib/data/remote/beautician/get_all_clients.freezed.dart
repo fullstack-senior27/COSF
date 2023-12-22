@@ -223,6 +223,8 @@ mixin _$Datum {
   String? get id => throw _privateConstructorUsedError;
   String? get beautician => throw _privateConstructorUsedError;
   Client? get client => throw _privateConstructorUsedError;
+  bool? get isBlocked => throw _privateConstructorUsedError;
+  String? get reasonForBlocking => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "__v")
@@ -243,6 +245,8 @@ abstract class $DatumCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       Client? client,
+      bool? isBlocked,
+      String? reasonForBlocking,
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v,
@@ -267,6 +271,8 @@ class _$DatumCopyWithImpl<$Res, $Val extends Datum>
     Object? id = freezed,
     Object? beautician = freezed,
     Object? client = freezed,
+    Object? isBlocked = freezed,
+    Object? reasonForBlocking = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
@@ -285,6 +291,14 @@ class _$DatumCopyWithImpl<$Res, $Val extends Datum>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client?,
+      isBlocked: freezed == isBlocked
+          ? _value.isBlocked
+          : isBlocked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonForBlocking: freezed == reasonForBlocking
+          ? _value.reasonForBlocking
+          : reasonForBlocking // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -327,6 +341,8 @@ abstract class _$$_DatumCopyWith<$Res> implements $DatumCopyWith<$Res> {
       {@JsonKey(name: "_id") String? id,
       String? beautician,
       Client? client,
+      bool? isBlocked,
+      String? reasonForBlocking,
       DateTime? createdAt,
       DateTime? updatedAt,
       @JsonKey(name: "__v") int? v,
@@ -348,6 +364,8 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
     Object? id = freezed,
     Object? beautician = freezed,
     Object? client = freezed,
+    Object? isBlocked = freezed,
+    Object? reasonForBlocking = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
@@ -366,6 +384,14 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client?,
+      isBlocked: freezed == isBlocked
+          ? _value.isBlocked
+          : isBlocked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonForBlocking: freezed == reasonForBlocking
+          ? _value.reasonForBlocking
+          : reasonForBlocking // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -393,6 +419,8 @@ class _$_Datum implements _Datum {
       {@JsonKey(name: "_id") this.id,
       this.beautician,
       this.client,
+      this.isBlocked,
+      this.reasonForBlocking,
       this.createdAt,
       this.updatedAt,
       @JsonKey(name: "__v") this.v,
@@ -409,6 +437,10 @@ class _$_Datum implements _Datum {
   @override
   final Client? client;
   @override
+  final bool? isBlocked;
+  @override
+  final String? reasonForBlocking;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
@@ -420,7 +452,7 @@ class _$_Datum implements _Datum {
 
   @override
   String toString() {
-    return 'Datum(id: $id, beautician: $beautician, client: $client, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, offlineClient: $offlineClient)';
+    return 'Datum(id: $id, beautician: $beautician, client: $client, isBlocked: $isBlocked, reasonForBlocking: $reasonForBlocking, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, offlineClient: $offlineClient)';
   }
 
   @override
@@ -432,6 +464,10 @@ class _$_Datum implements _Datum {
             (identical(other.beautician, beautician) ||
                 other.beautician == beautician) &&
             (identical(other.client, client) || other.client == client) &&
+            (identical(other.isBlocked, isBlocked) ||
+                other.isBlocked == isBlocked) &&
+            (identical(other.reasonForBlocking, reasonForBlocking) ||
+                other.reasonForBlocking == reasonForBlocking) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -448,6 +484,8 @@ class _$_Datum implements _Datum {
       id,
       beautician,
       client,
+      isBlocked,
+      reasonForBlocking,
       createdAt,
       updatedAt,
       v,
@@ -472,6 +510,8 @@ abstract class _Datum implements Datum {
       {@JsonKey(name: "_id") final String? id,
       final String? beautician,
       final Client? client,
+      final bool? isBlocked,
+      final String? reasonForBlocking,
       final DateTime? createdAt,
       final DateTime? updatedAt,
       @JsonKey(name: "__v") final int? v,
@@ -486,6 +526,10 @@ abstract class _Datum implements Datum {
   String? get beautician;
   @override
   Client? get client;
+  @override
+  bool? get isBlocked;
+  @override
+  String? get reasonForBlocking;
   @override
   DateTime? get createdAt;
   @override

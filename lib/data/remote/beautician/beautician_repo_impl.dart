@@ -6,10 +6,15 @@ import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
+import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_note.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -225,6 +230,97 @@ class BeauticianRepoImpl implements BeauticianRepo {
       );
       log("Sucess ====> $response");
       return Right(UpdateProductResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, GetAllClients>> getAllClients() async {
+    try {
+      final response = await _apiClient
+          .getWithToken("${AppConstants.baseUrl}beautician/clients");
+      log("Sucess ====> $response");
+      return Right(GetAllClients.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, GetClientById>> getClientById(String id) async {
+    try {
+      final response = await _apiClient
+          .getWithToken("${AppConstants.baseUrl}beautician/client/$id");
+      log("Sucess ====> $response");
+      return Right(GetClientById.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, EditClientResponse>> editClient(
+    String clientId,
+    EditClientRequest editClientRequest,
+  ) async {
+    try {
+      final response = await _apiClient.patchWithTokenParams(
+          "${AppConstants.baseUrl}beautician/clients/update",
+          editClientRequest.toJson(),
+          {"clientId": clientId});
+      log("Sucess ====> $response");
+      return Right(EditClientResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, EditClientResponse>> deleteClient(
+      String id) async {
+    try {
+      final response = await _apiClient.delete(
+          "${AppConstants.baseUrl}beautician/client/delete?clientId=$id");
+      log("Sucess ====> $response");
+      return Right(EditClientResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, CreateNoteResponse>> createNote(
+    CreateNoteRequest createNoteRequest,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+        "${AppConstants.baseUrl}beautician/notes/create",
+        createNoteRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(CreateNoteResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, EditClientResponse>> blockClient(
+      BlockClientRequest editClientRequest) async {
+    try {
+      final response = await _apiClient.postWithToken(
+        "${AppConstants.baseUrl}beautician/client/block",
+        editClientRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(EditClientResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

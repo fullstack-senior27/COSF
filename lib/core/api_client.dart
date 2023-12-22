@@ -32,7 +32,7 @@ class ApiClient {
     try {
       return await dio.post(path, data: data);
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -45,7 +45,7 @@ class ApiClient {
     try {
       return await dio.post(path, data: data, queryParameters: params);
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -64,7 +64,7 @@ class ApiClient {
         }),
       );
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -83,7 +83,28 @@ class ApiClient {
         }),
       );
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
+      throw ApiException(e.response!.data["message"].toString());
+    }
+  }
+
+  Future<Response<Map<String, dynamic>>> patchWithTokenParams(
+    String path,
+    dynamic data,
+    Map<String, dynamic> params,
+  ) async {
+    try {
+      return await dio.patch(
+        path,
+        data: data,
+        queryParameters: params,
+        options: Options(headers: {
+          'Authorization':
+              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
+        }),
+      );
+    } on DioError catch (e) {
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -92,7 +113,7 @@ class ApiClient {
     try {
       return await dio.put(path, data: data);
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -109,7 +130,7 @@ class ApiClient {
         }),
       );
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }
@@ -118,7 +139,7 @@ class ApiClient {
     try {
       return await dio.get(path);
     } on DioError catch (e) {
-      Logger.printError(e.message.toString());
+      Logger.printError(e.message);
       throw ApiException(e.response!.data["message"].toString());
     }
   }

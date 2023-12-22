@@ -2,9 +2,15 @@ import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
+import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_note.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart'
+    as clients;
+import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -48,6 +54,12 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   GetProductsResponse? _getProductsResponseModel;
   GetProductsResponse? get getProductsResponseModel =>
       _getProductsResponseModel;
+
+  clients.GetAllClients? _getAllClients;
+  clients.GetAllClients? get allClients => _getAllClients;
+
+  GetClientById? _getClientByIdResponseModel;
+  GetClientById? get getClientByIdResponseModel => _getClientByIdResponseModel;
 
   Future<void> registerBeautician(
     BeauticianRegisterRequestModel beauticianRegisterRequestModel,
@@ -163,6 +175,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             showSnackbar(l.message);
           }, (r) {
             showSnackbar(r.message ?? "");
+            getAllClients(context);
           }),
         );
   }
@@ -258,6 +271,103 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             showSnackbar(r.message ?? "");
             getProduct(context);
             // notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> getAllClients(
+    BuildContext context,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.getAllClients().then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message ?? "");
+            _getAllClients = r;
+            notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> getClientById(BuildContext context, String id) async {
+    toggleLoading();
+    await _beauticianRepo.getClientById(id).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message ?? "");
+            _getClientByIdResponseModel = r;
+            notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> editClient(
+    BuildContext context,
+    EditClientRequest editClientRequest,
+    String id,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.editClient(id, editClientRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            getClientById(context, id);
+            getAllClients(context);
+            // notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> deleteClient(BuildContext context, String id) async {
+    toggleLoading();
+    await _beauticianRepo.deleteClient(id).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) async {
+            await getAllClients(context);
+            if (allClients?.data?.isNotEmpty ?? false) {
+              await getClientById(
+                  context, allClients?.data?[0].client?.id ?? "");
+            }
+            context.pop();
+            showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> createNote(
+    BuildContext context,
+    CreateNoteRequest createNoteRequest,
+    String id,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.createNote(createNoteRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            getClientById(context, id);
+          }),
+        );
+  }
+
+  Future<void> blockClient(BuildContext context, String id,
+      BlockClientRequest blockClientRequest) async {
+    toggleLoading();
+    await _beauticianRepo.blockClient(blockClientRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) async {
+            await getAllClients(context);
+            if (allClients?.data?.isNotEmpty ?? false) {
+              await getClientById(
+                  context, allClients?.data?[0].client?.id ?? "");
+            }
+            context.pop();
+            showSnackbar(r.message ?? "");
           }),
         );
   }

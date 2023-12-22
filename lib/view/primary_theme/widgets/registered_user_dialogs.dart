@@ -1,6 +1,9 @@
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
+import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
+import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
@@ -424,8 +427,67 @@ class _AddClientState extends ConsumerState<AddClient> with BaseScreenView {
   }
 }
 
-class EditClient extends StatelessWidget {
-  const EditClient({super.key});
+bool blocking = false;
+
+class EditClient extends ConsumerStatefulWidget {
+  final GetClientById? data;
+  const EditClient({super.key, required this.data});
+
+  @override
+  ConsumerState<EditClient> createState() => _EditClientState();
+}
+
+class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final homeNumberController = TextEditingController();
+  final streetController = TextEditingController();
+  final aptController = TextEditingController();
+  final stateController = TextEditingController();
+  final cityController = TextEditingController();
+  final zipCodeController = TextEditingController();
+  final birthdayController = TextEditingController();
+
+  final reasonController = TextEditingController();
+
+  late BeauticianViewModel _viewModel;
+  bool isLoading = false;
+  bool deleting = false;
+  @override
+  void initState() {
+    super.initState();
+    // image1 = const AssetImage("assets/icons/landing.webp");
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    nameController.text = widget.data?.data?.client?.name ?? "";
+    emailController.text = widget.data?.data?.client?.email ?? "";
+    phoneController.text = widget.data?.data?.client?.phone ?? "";
+    homeNumberController.text = widget.data?.data?.client?.homeNumber ?? "";
+    streetController.text = widget.data?.data?.client?.streetAddress ?? "";
+    aptController.text = widget.data?.data?.client?.apt.toString() ?? "";
+    stateController.text = widget.data?.data?.client?.state ?? "";
+    cityController.text = widget.data?.data?.client?.city ?? "";
+    zipCodeController.text = widget.data?.data?.client?.zip ?? "";
+    birthdayController.text = DateFormat('yyyy-MM-dd')
+        .format(widget.data?.data?.client?.birthday ?? DateTime.now());
+    // getData();
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -490,97 +552,129 @@ class EditClient extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Block Client",
-                            style: urbanist600(kBlack, 16),
-                          ),
-                          IconButton(
-                            onPressed: () => context.pop(),
-                            icon: const Icon(
-                              Icons.close,
-                              color: kGrey,
-                            ),
-                          )
-                        ],
-                      ),
-                      backgroundColor: const Color(0xfff8f8f8),
-                      content: SingleChildScrollView(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width > 900
-                              ? 400
-                              : MediaQuery.of(context).size.width * 0.8,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    return StatefulBuilder(
+                      builder: (context, setState) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Please add a reason for blocking this client",
-                                style: urbanist400(kBlack, 12),
+                                "Block Client",
+                                style: urbanist600(kBlack, 16),
                               ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Text("Reason*", style: urbanist500(kBlack, 16)),
-                              SizedBox(height: 5.h),
-                              TextFormField(
-                                maxLines: 4,
-                                decoration: InputDecoration(
-                                  hintText: "Type reason",
-                                  hintStyle: urbanist400(kGrey, 14),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(6.r),
-                                    borderSide: const BorderSide(color: kGrey),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(6.r),
-                                  ),
+                              IconButton(
+                                onPressed: () => context.pop(),
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              SizedBox(
-                                width: double.infinity,
-                                child: Row(
-                                  // mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Spacer(),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 40.h,
-                                        width: double.infinity,
-                                        child: BlackOutlineButton(
-                                            context, "Cancel", () {
-                                          context.pop();
-                                        }),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 40.h,
-                                        width: double.infinity,
-                                        child:
-                                            BlackButton(context, "Submit", () {
-                                          context.pop();
-                                        }),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              )
                             ],
                           ),
-                        ),
-                      ),
-                      // actions: [
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width > 900
+                                  ? 400
+                                  : MediaQuery.of(context).size.width * 0.8,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Please add a reason for blocking this client",
+                                    style: urbanist400(kBlack, 12),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  Text("Reason*",
+                                      style: urbanist500(kBlack, 16)),
+                                  SizedBox(height: 5.h),
+                                  TextFormField(
+                                    controller: reasonController,
+                                    maxLines: 4,
+                                    decoration: InputDecoration(
+                                      hintText: "Type reason",
+                                      hintStyle: urbanist400(kGrey, 14),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.r),
+                                        borderSide:
+                                            const BorderSide(color: kGrey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.r),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: Row(
+                                      // mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        const Spacer(),
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 40.h,
+                                            width: double.infinity,
+                                            child: BlackOutlineButton(
+                                                context, "Cancel", () {
+                                              context.pop();
+                                            }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        if (blocking)
+                                          const CircularProgressIndicator(
+                                            color: kBlack,
+                                          )
+                                        else
+                                          Expanded(
+                                            child: SizedBox(
+                                              height: 40.h,
+                                              width: double.infinity,
+                                              child: BlackButton(
+                                                  context, "Submit", () async {
+                                                blocking = true;
+                                                setState(() {});
+                                                await _viewModel.blockClient(
+                                                    context,
+                                                    widget.data?.data?.client
+                                                            ?.id ??
+                                                        "",
+                                                    BlockClientRequest(
+                                                        reason: reasonController
+                                                            .text,
+                                                        clientId: widget
+                                                                .data
+                                                                ?.data
+                                                                ?.client
+                                                                ?.id ??
+                                                            ""));
+                                                blocking = false;
+                                                setState(() {});
+                                                context.pop();
+                                              }),
+                                            ),
+                                          )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          // actions: [
 
-                      // ],
+                          // ],
+                        );
+                      },
                     );
                   },
                 );
@@ -599,58 +693,74 @@ class EditClient extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Confirm",
-                            style: urbanist600(kBlack, 16),
-                          ),
-                          IconButton(
-                            onPressed: () => context.pop(),
-                            icon: const Icon(
-                              Icons.close,
-                              color: kGrey,
-                            ),
-                          )
-                        ],
-                      ),
-                      backgroundColor: const Color(0xfff8f8f8),
-                      content: SingleChildScrollView(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width > 900
-                              ? 400
-                              : MediaQuery.of(context).size.width * 0.8,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    return StatefulBuilder(
+                      builder: (context, setState) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Are you sure you want to delete this client?\nThere's no undo!",
-                                style: urbanist400(kBlack, 14),
+                                "Confirm",
+                                style: urbanist600(kBlack, 16),
                               ),
-                              SizedBox(
-                                height: 40.h,
-                              ),
-                              SizedBox(
-                                height: 40.h,
-                                width: double.infinity,
-                                child: BlackButton(context, "Delete", () {}),
-                              ),
-                              SizedBox(height: 10.h),
-                              SizedBox(
-                                height: 40.h,
-                                width: double.infinity,
-                                child: BlackOutlineButton(
-                                  context,
-                                  "Cancel",
-                                  () {},
+                              IconButton(
+                                onPressed: () {
+                                  context.pop();
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: kGrey,
                                 ),
                               )
                             ],
                           ),
-                        ),
-                      ),
+                          backgroundColor: const Color(0xfff8f8f8),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width > 900
+                                  ? 400
+                                  : MediaQuery.of(context).size.width * 0.8,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Are you sure you want to delete this client?\nThere's no undo!",
+                                    style: urbanist400(kBlack, 14),
+                                  ),
+                                  SizedBox(
+                                    height: 40.h,
+                                  ),
+                                  SizedBox(
+                                    height: 40.h,
+                                    width: double.infinity,
+                                    child: BlackButton(context,
+                                        deleting ? "Deleting..." : "Delete",
+                                        () async {
+                                      deleting = true;
+                                      setState(() {});
+                                      await _viewModel.deleteClient(context,
+                                          widget.data?.data?.client?.id ?? "");
+
+                                      deleting = false;
+                                      setState(() {});
+                                    }),
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  SizedBox(
+                                    height: 40.h,
+                                    width: double.infinity,
+                                    child: BlackOutlineButton(
+                                      context,
+                                      "Cancel",
+                                      () {},
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 );
@@ -681,6 +791,7 @@ class EditClient extends StatelessWidget {
                   Text("Name*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       hintText: "Name",
                       hintStyle: urbanist400(kGrey, 14),
@@ -706,6 +817,7 @@ class EditClient extends StatelessWidget {
                   Text("Email*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email",
                       hintStyle: urbanist400(kGrey, 14),
@@ -735,6 +847,7 @@ class EditClient extends StatelessWidget {
                   Text("Mobile Number", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: phoneController,
                     decoration: InputDecoration(
                       hintText: "Mobile Number",
                       hintStyle: urbanist400(kGrey, 14),
@@ -760,6 +873,7 @@ class EditClient extends StatelessWidget {
                   Text("Home Number", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: homeNumberController,
                     decoration: InputDecoration(
                       hintText: "Home Number",
                       hintStyle: urbanist400(kGrey, 14),
@@ -789,6 +903,7 @@ class EditClient extends StatelessWidget {
                   Text("Street Address*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: streetController,
                     decoration: InputDecoration(
                       hintText: "Street Address",
                       hintStyle: urbanist400(kGrey, 14),
@@ -817,6 +932,7 @@ class EditClient extends StatelessWidget {
                   ),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: aptController,
                     decoration: InputDecoration(
                       hintText: "Suite, Apt, etc. (optional)",
                       hintStyle: urbanist400(kGrey, 14),
@@ -846,6 +962,7 @@ class EditClient extends StatelessWidget {
                   Text("City*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: cityController,
                     decoration: InputDecoration(
                       hintText: "City",
                       hintStyle: urbanist400(kGrey, 14),
@@ -871,6 +988,7 @@ class EditClient extends StatelessWidget {
                   Text("State*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: stateController,
                     decoration: InputDecoration(
                       hintText: "State",
                       hintStyle: urbanist400(kGrey, 14),
@@ -900,6 +1018,7 @@ class EditClient extends StatelessWidget {
                   Text("ZIP*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: zipCodeController,
                     decoration: InputDecoration(
                       hintText: "ZIP",
                       hintStyle: urbanist400(kGrey, 14),
@@ -925,6 +1044,7 @@ class EditClient extends StatelessWidget {
                   Text("Birthday*", style: urbanist500(kBlack, 16)),
                   SizedBox(height: 5.h),
                   TextFormField(
+                    controller: birthdayController,
                     decoration: InputDecoration(
                       hintText: "Birthday",
                       hintStyle: urbanist400(kGrey, 14),
@@ -945,13 +1065,43 @@ class EditClient extends StatelessWidget {
         SizedBox(
           height: 20.h,
         ),
-        SizedBox(
-          height: 40.h,
-          width: double.infinity,
-          child: BlackButton(context, "Save", () {
-            context.pop();
-          }),
-        )
+        if (isLoading)
+          const SizedBox(
+            height: 25,
+            width: 25,
+            child: CircularProgressIndicator(
+              color: kBlack,
+            ),
+          )
+        else
+          SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: BlackButton(context, "Save", () async {
+              isLoading = true;
+              setState(() {});
+              await _viewModel.editClient(
+                  context,
+                  EditClientRequest(
+                    name: nameController.text,
+                    phone: phoneController.text,
+                    homeNumber: homeNumberController.text,
+                    apt: int.parse(aptController.text),
+                    city: cityController.text,
+                    state: stateController.text,
+                    zip: zipCodeController.text,
+                    birthday: DateFormat('yyyy-MM-dd').format(
+                      widget.data?.data?.client?.birthday ?? DateTime.now(),
+                    ),
+                    streetAddress: streetController.text,
+                    email: emailController.text,
+                  ),
+                  widget.data?.data?.client?.id ?? "");
+              isLoading = false;
+              setState(() {});
+              context.pop();
+            }),
+          )
       ],
     );
   }

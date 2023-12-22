@@ -31,6 +31,8 @@ class Datum with _$Datum {
     @JsonKey(name: "_id") String? id,
     String? beautician,
     Client? client,
+    bool? isBlocked,
+    String? reasonForBlocking,
     DateTime? createdAt,
     DateTime? updatedAt,
     @JsonKey(name: "__v") int? v,

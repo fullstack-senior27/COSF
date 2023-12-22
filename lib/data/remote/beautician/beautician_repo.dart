@@ -1,10 +1,15 @@
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
+import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/create_note.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/login.dart';
@@ -55,4 +60,20 @@ abstract class BeauticianRepo {
 
   Future<Either<ApiException, UpdateProductResponse>> updateProduct(
       String id, UpdateProductRequest updateProductRequest);
+
+  Future<Either<ApiException, GetAllClients>> getAllClients();
+
+  Future<Either<ApiException, GetClientById>> getClientById(String id);
+
+  Future<Either<ApiException, EditClientResponse>> editClient(
+      String clientId, EditClientRequest editClientRequest);
+
+  Future<Either<ApiException, EditClientResponse>> deleteClient(String id);
+
+  Future<Either<ApiException, CreateNoteResponse>> createNote(
+    CreateNoteRequest createNoteRequest,
+  );
+
+  Future<Either<ApiException, EditClientResponse>> blockClient(
+      BlockClientRequest editClientRequest);
 }
