@@ -17,7 +17,7 @@ String beauticianAvailabilityRequestToJson(
 @freezed
 class BeauticianAvailabilityRequest with _$BeauticianAvailabilityRequest {
   const factory BeauticianAvailabilityRequest({
-    List<Availability>? availability,
+    List<Availability>? availableDays,
   }) = _BeauticianAvailabilityRequest;
 
   factory BeauticianAvailabilityRequest.fromJson(Map<String, dynamic> json) =>

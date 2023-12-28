@@ -484,6 +484,10 @@ mixin _$Result {
   List<Review>? get reviews => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
   double? get avgRating => throw _privateConstructorUsedError;
+  List<AvailableDay>? get availableDays => throw _privateConstructorUsedError;
+  List<Afternoon>? get afternoon => throw _privateConstructorUsedError;
+  List<Afternoon>? get evening => throw _privateConstructorUsedError;
+  List<Afternoon>? get morning => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -521,7 +525,11 @@ abstract class $ResultCopyWith<$Res> {
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      double? avgRating});
+      double? avgRating,
+      List<AvailableDay>? availableDays,
+      List<Afternoon>? afternoon,
+      List<Afternoon>? evening,
+      List<Afternoon>? morning});
 }
 
 /// @nodoc
@@ -563,6 +571,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? reviews = freezed,
     Object? ratingCount = freezed,
     Object? avgRating = freezed,
+    Object? availableDays = freezed,
+    Object? afternoon = freezed,
+    Object? evening = freezed,
+    Object? morning = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -669,6 +681,22 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
               as double?,
+      availableDays: freezed == availableDays
+          ? _value.availableDays
+          : availableDays // ignore: cast_nullable_to_non_nullable
+              as List<AvailableDay>?,
+      afternoon: freezed == afternoon
+          ? _value.afternoon
+          : afternoon // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
+      evening: freezed == evening
+          ? _value.evening
+          : evening // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
+      morning: freezed == morning
+          ? _value.morning
+          : morning // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
     ) as $Val);
   }
 }
@@ -705,7 +733,11 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       List<ServiceCategory>? serviceCategories,
       List<Review>? reviews,
       int? ratingCount,
-      double? avgRating});
+      double? avgRating,
+      List<AvailableDay>? availableDays,
+      List<Afternoon>? afternoon,
+      List<Afternoon>? evening,
+      List<Afternoon>? morning});
 }
 
 /// @nodoc
@@ -744,6 +776,10 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? reviews = freezed,
     Object? ratingCount = freezed,
     Object? avgRating = freezed,
+    Object? availableDays = freezed,
+    Object? afternoon = freezed,
+    Object? evening = freezed,
+    Object? morning = freezed,
   }) {
     return _then(_$_Result(
       id: freezed == id
@@ -850,6 +886,22 @@ class __$$_ResultCopyWithImpl<$Res>
           ? _value.avgRating
           : avgRating // ignore: cast_nullable_to_non_nullable
               as double?,
+      availableDays: freezed == availableDays
+          ? _value._availableDays
+          : availableDays // ignore: cast_nullable_to_non_nullable
+              as List<AvailableDay>?,
+      afternoon: freezed == afternoon
+          ? _value._afternoon
+          : afternoon // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
+      evening: freezed == evening
+          ? _value._evening
+          : evening // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
+      morning: freezed == morning
+          ? _value._morning
+          : morning // ignore: cast_nullable_to_non_nullable
+              as List<Afternoon>?,
     ));
   }
 }
@@ -883,7 +935,11 @@ class _$_Result implements _Result {
       final List<ServiceCategory>? serviceCategories,
       final List<Review>? reviews,
       this.ratingCount,
-      this.avgRating})
+      this.avgRating,
+      final List<AvailableDay>? availableDays,
+      final List<Afternoon>? afternoon,
+      final List<Afternoon>? evening,
+      final List<Afternoon>? morning})
       : _photos = photos,
         _speciality = speciality,
         _notes = notes,
@@ -892,7 +948,11 @@ class _$_Result implements _Result {
         _services = services,
         _products = products,
         _serviceCategories = serviceCategories,
-        _reviews = reviews;
+        _reviews = reviews,
+        _availableDays = availableDays,
+        _afternoon = afternoon,
+        _evening = evening,
+        _morning = morning;
 
   factory _$_Result.fromJson(Map<String, dynamic> json) =>
       _$$_ResultFromJson(json);
@@ -1024,10 +1084,49 @@ class _$_Result implements _Result {
   final int? ratingCount;
   @override
   final double? avgRating;
+  final List<AvailableDay>? _availableDays;
+  @override
+  List<AvailableDay>? get availableDays {
+    final value = _availableDays;
+    if (value == null) return null;
+    if (_availableDays is EqualUnmodifiableListView) return _availableDays;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Afternoon>? _afternoon;
+  @override
+  List<Afternoon>? get afternoon {
+    final value = _afternoon;
+    if (value == null) return null;
+    if (_afternoon is EqualUnmodifiableListView) return _afternoon;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Afternoon>? _evening;
+  @override
+  List<Afternoon>? get evening {
+    final value = _evening;
+    if (value == null) return null;
+    if (_evening is EqualUnmodifiableListView) return _evening;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Afternoon>? _morning;
+  @override
+  List<Afternoon>? get morning {
+    final value = _morning;
+    if (value == null) return null;
+    if (_morning is EqualUnmodifiableListView) return _morning;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Result(id: $id, image: $image, role: $role, photos: $photos, profession: $profession, about: $about, website: $website, isEmailVerified: $isEmailVerified, speciality: $speciality, accountId: $accountId, name: $name, email: $email, phone: $phone, notes: $notes, availability: $availability, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, address: $address, blockedClients: $blockedClients, services: $services, products: $products, serviceCategories: $serviceCategories, reviews: $reviews, ratingCount: $ratingCount, avgRating: $avgRating)';
+    return 'Result(id: $id, image: $image, role: $role, photos: $photos, profession: $profession, about: $about, website: $website, isEmailVerified: $isEmailVerified, speciality: $speciality, accountId: $accountId, name: $name, email: $email, phone: $phone, notes: $notes, availability: $availability, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, address: $address, blockedClients: $blockedClients, services: $services, products: $products, serviceCategories: $serviceCategories, reviews: $reviews, ratingCount: $ratingCount, avgRating: $avgRating, availableDays: $availableDays, afternoon: $afternoon, evening: $evening, morning: $morning)';
   }
 
   @override
@@ -1071,7 +1170,13 @@ class _$_Result implements _Result {
             (identical(other.ratingCount, ratingCount) ||
                 other.ratingCount == ratingCount) &&
             (identical(other.avgRating, avgRating) ||
-                other.avgRating == avgRating));
+                other.avgRating == avgRating) &&
+            const DeepCollectionEquality()
+                .equals(other._availableDays, _availableDays) &&
+            const DeepCollectionEquality()
+                .equals(other._afternoon, _afternoon) &&
+            const DeepCollectionEquality().equals(other._evening, _evening) &&
+            const DeepCollectionEquality().equals(other._morning, _morning));
   }
 
   @JsonKey(ignore: true)
@@ -1103,7 +1208,11 @@ class _$_Result implements _Result {
         const DeepCollectionEquality().hash(_serviceCategories),
         const DeepCollectionEquality().hash(_reviews),
         ratingCount,
-        avgRating
+        avgRating,
+        const DeepCollectionEquality().hash(_availableDays),
+        const DeepCollectionEquality().hash(_afternoon),
+        const DeepCollectionEquality().hash(_evening),
+        const DeepCollectionEquality().hash(_morning)
       ]);
 
   @JsonKey(ignore: true)
@@ -1147,7 +1256,11 @@ abstract class _Result implements Result {
       final List<ServiceCategory>? serviceCategories,
       final List<Review>? reviews,
       final int? ratingCount,
-      final double? avgRating}) = _$_Result;
+      final double? avgRating,
+      final List<AvailableDay>? availableDays,
+      final List<Afternoon>? afternoon,
+      final List<Afternoon>? evening,
+      final List<Afternoon>? morning}) = _$_Result;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$_Result.fromJson;
 
@@ -1206,8 +1319,390 @@ abstract class _Result implements Result {
   @override
   double? get avgRating;
   @override
+  List<AvailableDay>? get availableDays;
+  @override
+  List<Afternoon>? get afternoon;
+  @override
+  List<Afternoon>? get evening;
+  @override
+  List<Afternoon>? get morning;
+  @override
   @JsonKey(ignore: true)
   _$$_ResultCopyWith<_$_Result> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+AvailableDay _$AvailableDayFromJson(Map<String, dynamic> json) {
+  return _AvailableDay.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AvailableDay {
+  bool? get isAvailable => throw _privateConstructorUsedError;
+  String? get day => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
+  String? get id => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AvailableDayCopyWith<AvailableDay> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AvailableDayCopyWith<$Res> {
+  factory $AvailableDayCopyWith(
+          AvailableDay value, $Res Function(AvailableDay) then) =
+      _$AvailableDayCopyWithImpl<$Res, AvailableDay>;
+  @useResult
+  $Res call(
+      {bool? isAvailable,
+      String? day,
+      @JsonKey(name: '_id') String? id,
+      DateTime? date});
+}
+
+/// @nodoc
+class _$AvailableDayCopyWithImpl<$Res, $Val extends AvailableDay>
+    implements $AvailableDayCopyWith<$Res> {
+  _$AvailableDayCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isAvailable = freezed,
+    Object? day = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isAvailable: freezed == isAvailable
+          ? _value.isAvailable
+          : isAvailable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_AvailableDayCopyWith<$Res>
+    implements $AvailableDayCopyWith<$Res> {
+  factory _$$_AvailableDayCopyWith(
+          _$_AvailableDay value, $Res Function(_$_AvailableDay) then) =
+      __$$_AvailableDayCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool? isAvailable,
+      String? day,
+      @JsonKey(name: '_id') String? id,
+      DateTime? date});
+}
+
+/// @nodoc
+class __$$_AvailableDayCopyWithImpl<$Res>
+    extends _$AvailableDayCopyWithImpl<$Res, _$_AvailableDay>
+    implements _$$_AvailableDayCopyWith<$Res> {
+  __$$_AvailableDayCopyWithImpl(
+      _$_AvailableDay _value, $Res Function(_$_AvailableDay) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isAvailable = freezed,
+    Object? day = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_$_AvailableDay(
+      isAvailable: freezed == isAvailable
+          ? _value.isAvailable
+          : isAvailable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_AvailableDay implements _AvailableDay {
+  const _$_AvailableDay(
+      {this.isAvailable, this.day, @JsonKey(name: '_id') this.id, this.date});
+
+  factory _$_AvailableDay.fromJson(Map<String, dynamic> json) =>
+      _$$_AvailableDayFromJson(json);
+
+  @override
+  final bool? isAvailable;
+  @override
+  final String? day;
+  @override
+  @JsonKey(name: '_id')
+  final String? id;
+  @override
+  final DateTime? date;
+
+  @override
+  String toString() {
+    return 'AvailableDay(isAvailable: $isAvailable, day: $day, id: $id, date: $date)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AvailableDay &&
+            (identical(other.isAvailable, isAvailable) ||
+                other.isAvailable == isAvailable) &&
+            (identical(other.day, day) || other.day == day) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, isAvailable, day, id, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AvailableDayCopyWith<_$_AvailableDay> get copyWith =>
+      __$$_AvailableDayCopyWithImpl<_$_AvailableDay>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AvailableDayToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AvailableDay implements AvailableDay {
+  const factory _AvailableDay(
+      {final bool? isAvailable,
+      final String? day,
+      @JsonKey(name: '_id') final String? id,
+      final DateTime? date}) = _$_AvailableDay;
+
+  factory _AvailableDay.fromJson(Map<String, dynamic> json) =
+      _$_AvailableDay.fromJson;
+
+  @override
+  bool? get isAvailable;
+  @override
+  String? get day;
+  @override
+  @JsonKey(name: '_id')
+  String? get id;
+  @override
+  DateTime? get date;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AvailableDayCopyWith<_$_AvailableDay> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Afternoon _$AfternoonFromJson(Map<String, dynamic> json) {
+  return _Afternoon.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Afternoon {
+  dynamic get isBooked => throw _privateConstructorUsedError;
+  String? get time => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
+  String? get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AfternoonCopyWith<Afternoon> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AfternoonCopyWith<$Res> {
+  factory $AfternoonCopyWith(Afternoon value, $Res Function(Afternoon) then) =
+      _$AfternoonCopyWithImpl<$Res, Afternoon>;
+  @useResult
+  $Res call({dynamic isBooked, String? time, @JsonKey(name: '_id') String? id});
+}
+
+/// @nodoc
+class _$AfternoonCopyWithImpl<$Res, $Val extends Afternoon>
+    implements $AfternoonCopyWith<$Res> {
+  _$AfternoonCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isBooked = freezed,
+    Object? time = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isBooked: freezed == isBooked
+          ? _value.isBooked
+          : isBooked // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_AfternoonCopyWith<$Res> implements $AfternoonCopyWith<$Res> {
+  factory _$$_AfternoonCopyWith(
+          _$_Afternoon value, $Res Function(_$_Afternoon) then) =
+      __$$_AfternoonCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({dynamic isBooked, String? time, @JsonKey(name: '_id') String? id});
+}
+
+/// @nodoc
+class __$$_AfternoonCopyWithImpl<$Res>
+    extends _$AfternoonCopyWithImpl<$Res, _$_Afternoon>
+    implements _$$_AfternoonCopyWith<$Res> {
+  __$$_AfternoonCopyWithImpl(
+      _$_Afternoon _value, $Res Function(_$_Afternoon) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isBooked = freezed,
+    Object? time = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_$_Afternoon(
+      isBooked: freezed == isBooked
+          ? _value.isBooked
+          : isBooked // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Afternoon implements _Afternoon {
+  const _$_Afternoon({this.isBooked, this.time, @JsonKey(name: '_id') this.id});
+
+  factory _$_Afternoon.fromJson(Map<String, dynamic> json) =>
+      _$$_AfternoonFromJson(json);
+
+  @override
+  final dynamic isBooked;
+  @override
+  final String? time;
+  @override
+  @JsonKey(name: '_id')
+  final String? id;
+
+  @override
+  String toString() {
+    return 'Afternoon(isBooked: $isBooked, time: $time, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Afternoon &&
+            const DeepCollectionEquality().equals(other.isBooked, isBooked) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(isBooked), time, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AfternoonCopyWith<_$_Afternoon> get copyWith =>
+      __$$_AfternoonCopyWithImpl<_$_Afternoon>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AfternoonToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Afternoon implements Afternoon {
+  const factory _Afternoon(
+      {final dynamic isBooked,
+      final String? time,
+      @JsonKey(name: '_id') final String? id}) = _$_Afternoon;
+
+  factory _Afternoon.fromJson(Map<String, dynamic> json) =
+      _$_Afternoon.fromJson;
+
+  @override
+  dynamic get isBooked;
+  @override
+  String? get time;
+  @override
+  @JsonKey(name: '_id')
+  String? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AfternoonCopyWith<_$_Afternoon> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

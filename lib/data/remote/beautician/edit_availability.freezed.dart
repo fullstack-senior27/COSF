@@ -21,7 +21,7 @@ BeauticianAvailabilityRequest _$BeauticianAvailabilityRequestFromJson(
 
 /// @nodoc
 mixin _$BeauticianAvailabilityRequest {
-  List<Availability>? get availability => throw _privateConstructorUsedError;
+  List<Availability>? get availableDays => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $BeauticianAvailabilityRequestCopyWith<$Res> {
       _$BeauticianAvailabilityRequestCopyWithImpl<$Res,
           BeauticianAvailabilityRequest>;
   @useResult
-  $Res call({List<Availability>? availability});
+  $Res call({List<Availability>? availableDays});
 }
 
 /// @nodoc
@@ -54,12 +54,12 @@ class _$BeauticianAvailabilityRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? availability = freezed,
+    Object? availableDays = freezed,
   }) {
     return _then(_value.copyWith(
-      availability: freezed == availability
-          ? _value.availability
-          : availability // ignore: cast_nullable_to_non_nullable
+      availableDays: freezed == availableDays
+          ? _value.availableDays
+          : availableDays // ignore: cast_nullable_to_non_nullable
               as List<Availability>?,
     ) as $Val);
   }
@@ -74,7 +74,7 @@ abstract class _$$_BeauticianAvailabilityRequestCopyWith<$Res>
       __$$_BeauticianAvailabilityRequestCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Availability>? availability});
+  $Res call({List<Availability>? availableDays});
 }
 
 /// @nodoc
@@ -90,12 +90,12 @@ class __$$_BeauticianAvailabilityRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? availability = freezed,
+    Object? availableDays = freezed,
   }) {
     return _then(_$_BeauticianAvailabilityRequest(
-      availability: freezed == availability
-          ? _value._availability
-          : availability // ignore: cast_nullable_to_non_nullable
+      availableDays: freezed == availableDays
+          ? _value._availableDays
+          : availableDays // ignore: cast_nullable_to_non_nullable
               as List<Availability>?,
     ));
   }
@@ -106,26 +106,26 @@ class __$$_BeauticianAvailabilityRequestCopyWithImpl<$Res>
 class _$_BeauticianAvailabilityRequest
     implements _BeauticianAvailabilityRequest {
   const _$_BeauticianAvailabilityRequest(
-      {final List<Availability>? availability})
-      : _availability = availability;
+      {final List<Availability>? availableDays})
+      : _availableDays = availableDays;
 
   factory _$_BeauticianAvailabilityRequest.fromJson(
           Map<String, dynamic> json) =>
       _$$_BeauticianAvailabilityRequestFromJson(json);
 
-  final List<Availability>? _availability;
+  final List<Availability>? _availableDays;
   @override
-  List<Availability>? get availability {
-    final value = _availability;
+  List<Availability>? get availableDays {
+    final value = _availableDays;
     if (value == null) return null;
-    if (_availability is EqualUnmodifiableListView) return _availability;
+    if (_availableDays is EqualUnmodifiableListView) return _availableDays;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'BeauticianAvailabilityRequest(availability: $availability)';
+    return 'BeauticianAvailabilityRequest(availableDays: $availableDays)';
   }
 
   @override
@@ -134,13 +134,13 @@ class _$_BeauticianAvailabilityRequest
         (other.runtimeType == runtimeType &&
             other is _$_BeauticianAvailabilityRequest &&
             const DeepCollectionEquality()
-                .equals(other._availability, _availability));
+                .equals(other._availableDays, _availableDays));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_availability));
+      runtimeType, const DeepCollectionEquality().hash(_availableDays));
 
   @JsonKey(ignore: true)
   @override
@@ -160,14 +160,14 @@ class _$_BeauticianAvailabilityRequest
 abstract class _BeauticianAvailabilityRequest
     implements BeauticianAvailabilityRequest {
   const factory _BeauticianAvailabilityRequest(
-          {final List<Availability>? availability}) =
+          {final List<Availability>? availableDays}) =
       _$_BeauticianAvailabilityRequest;
 
   factory _BeauticianAvailabilityRequest.fromJson(Map<String, dynamic> json) =
       _$_BeauticianAvailabilityRequest.fromJson;
 
   @override
-  List<Availability>? get availability;
+  List<Availability>? get availableDays;
   @override
   @JsonKey(ignore: true)
   _$$_BeauticianAvailabilityRequestCopyWith<_$_BeauticianAvailabilityRequest>

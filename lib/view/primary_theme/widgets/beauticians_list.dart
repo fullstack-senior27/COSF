@@ -1,6 +1,5 @@
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
 import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart';
-import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +41,7 @@ class BeauticiansListWebView extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: Container(
-                      height: 160.h,
+                      // height: 160.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: DecorationImage(
@@ -59,7 +58,7 @@ class BeauticiansListWebView extends StatelessWidget {
                   Expanded(
                     flex: 7,
                     child: SizedBox(
-                      height: 160.h,
+                      height: 180.h,
                       child: Column(
                         children: [
                           Expanded(
@@ -167,57 +166,72 @@ class BeauticiansListWebView extends StatelessWidget {
                                   height: 30.h,
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 10.h),
-                                    child: ListView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: timings.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 1.w,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              // setState(() {
-                                              //   selected = index;
-                                              // });
-                                            },
-                                            child: FittedBox(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    5.r,
-                                                  ),
-                                                  color:
-                                                      const Color(0xffd1d1d1),
-                                                  // border: Border.all(
-                                                  //   color: selected != index
-                                                  //       ? Colors.grey
-                                                  //       : Colors.transparent,
-                                                  //   width: 1.0,
-                                                  // ),
+                                    child: salonDetails?.morning?.isEmpty ??
+                                            true
+                                        ? Text(
+                                            "No slots found",
+                                            style: GoogleFonts.urbanist(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: kGrey,
+                                            ),
+                                          )
+                                        : ListView.builder(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                salonDetails?.morning?.length ??
+                                                    0,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 1.w,
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    timings[index],
-                                                    style: GoogleFonts.urbanist(
-                                                      fontSize: 12.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: kBlack,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    // setState(() {
+                                                    //   selected = index;
+                                                    // });
+                                                  },
+                                                  child: FittedBox(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          5.r,
+                                                        ),
+                                                        color: const Color(
+                                                            0xffd1d1d1),
+                                                        // border: Border.all(
+                                                        //   color: selected != index
+                                                        //       ? Colors.grey
+                                                        //       : Colors.transparent,
+                                                        //   width: 1.0,
+                                                        // ),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Text(
+                                                          "${salonDetails?.morning?[index].time}",
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            fontSize: 12.sp,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: kBlack,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
+                                              );
+                                            },
                                           ),
-                                        );
-                                      },
-                                    ),
                                   ),
                                 ),
                               ),
@@ -243,50 +257,151 @@ class BeauticiansListWebView extends StatelessWidget {
                                   height: 30.h,
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 10.h),
-                                    child: ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: timings.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 1.w,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              // setState(() {
-                                              //   selected = index;
-                                              // });
-                                            },
-                                            child: FittedBox(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    5.r,
-                                                  ),
-                                                  color: kWhite,
-                                                  border: Border.all(),
+                                    child: salonDetails?.afternoon?.isEmpty ??
+                                            true
+                                        ? Text(
+                                            "No slots found",
+                                            style: GoogleFonts.urbanist(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: kGrey,
+                                            ),
+                                          )
+                                        : ListView.builder(
+                                            physics:
+                                                const BouncingScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: salonDetails
+                                                    ?.afternoon?.length ??
+                                                0,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 1.w,
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    timings[index],
-                                                    style: GoogleFonts.urbanist(
-                                                      fontSize: 12.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: kBlack,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    // setState(() {
+                                                    //   selected = index;
+                                                    // });
+                                                  },
+                                                  child: FittedBox(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          5.r,
+                                                        ),
+                                                        color: kWhite,
+                                                        border: Border.all(),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Text(
+                                                          "${salonDetails?.afternoon?[index].time}",
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            fontSize: 12.sp,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: kBlack,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
+                                              );
+                                            },
                                           ),
-                                        );
-                                      },
-                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FittedBox(
+                                child: Text(
+                                  "EVENING    ",
+                                  style: GoogleFonts.urbanist(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: kBlack,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 5.w),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 30.h,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(bottom: 10.h),
+                                    child: salonDetails?.evening?.isEmpty ??
+                                            true
+                                        ? Text(
+                                            "No slots found",
+                                            style: GoogleFonts.urbanist(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: kGrey,
+                                            ),
+                                          )
+                                        : ListView.builder(
+                                            physics:
+                                                const BouncingScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                salonDetails?.evening?.length ??
+                                                    0,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 1.w,
+                                                ),
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    // setState(() {
+                                                    //   selected = index;
+                                                    // });
+                                                  },
+                                                  child: FittedBox(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          5.r,
+                                                        ),
+                                                        color: kWhite,
+                                                        border: Border.all(),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Text(
+                                                          "${salonDetails?.evening?[index].time}",
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            fontSize: 12.sp,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: kBlack,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                   ),
                                 ),
                               ),

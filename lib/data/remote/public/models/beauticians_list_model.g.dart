@@ -85,6 +85,18 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
           .toList(),
       ratingCount: json['ratingCount'] as int?,
       avgRating: (json['avgRating'] as num?)?.toDouble(),
+      availableDays: (json['availableDays'] as List<dynamic>?)
+          ?.map((e) => AvailableDay.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      afternoon: (json['afternoon'] as List<dynamic>?)
+          ?.map((e) => Afternoon.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      evening: (json['evening'] as List<dynamic>?)
+          ?.map((e) => Afternoon.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      morning: (json['morning'] as List<dynamic>?)
+          ?.map((e) => Afternoon.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
@@ -114,6 +126,40 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'reviews': instance.reviews,
       'ratingCount': instance.ratingCount,
       'avgRating': instance.avgRating,
+      'availableDays': instance.availableDays,
+      'afternoon': instance.afternoon,
+      'evening': instance.evening,
+      'morning': instance.morning,
+    };
+
+_$_AvailableDay _$$_AvailableDayFromJson(Map<String, dynamic> json) =>
+    _$_AvailableDay(
+      isAvailable: json['isAvailable'] as bool?,
+      day: json['day'] as String?,
+      id: json['_id'] as String?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+    );
+
+Map<String, dynamic> _$$_AvailableDayToJson(_$_AvailableDay instance) =>
+    <String, dynamic>{
+      'isAvailable': instance.isAvailable,
+      'day': instance.day,
+      '_id': instance.id,
+      'date': instance.date?.toIso8601String(),
+    };
+
+_$_Afternoon _$$_AfternoonFromJson(Map<String, dynamic> json) => _$_Afternoon(
+      isBooked: json['isBooked'],
+      time: json['time'] as String?,
+      id: json['_id'] as String?,
+    );
+
+Map<String, dynamic> _$$_AfternoonToJson(_$_Afternoon instance) =>
+    <String, dynamic>{
+      'isBooked': instance.isBooked,
+      'time': instance.time,
+      '_id': instance.id,
     };
 
 _$_Availability _$$_AvailabilityFromJson(Map<String, dynamic> json) =>

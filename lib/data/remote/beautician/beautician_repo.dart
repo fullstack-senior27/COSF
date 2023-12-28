@@ -7,6 +7,8 @@ import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
@@ -16,6 +18,7 @@ import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class BeauticianRepo {
@@ -76,4 +79,11 @@ abstract class BeauticianRepo {
 
   Future<Either<ApiException, EditClientResponse>> blockClient(
       BlockClientRequest editClientRequest);
+
+  Future<Either<ApiException, UpdateSlotResponse>> updateSlot(
+    UpdateSlotRequest updateSlotRequest,
+  );
+
+  Future<Either<ApiException, availability.BeauticianAvailabilityResponse>>
+      getBeauticianAvailability(String id);
 }

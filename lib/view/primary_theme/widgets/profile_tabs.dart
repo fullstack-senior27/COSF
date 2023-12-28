@@ -4,6 +4,7 @@ import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart'
     as edit;
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
@@ -11,7 +12,6 @@ import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -824,11 +824,12 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                     ),
                                   ),
                                   IconButton(
-                                      onPressed: () => context.pop(),
-                                      icon: const Icon(
-                                        Icons.close,
-                                        color: kGrey,
-                                      ))
+                                    onPressed: () => context.pop(),
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: kGrey,
+                                    ),
+                                  )
                                 ],
                               ),
                               backgroundColor: const Color(0xfff8f8f8),
@@ -908,12 +909,13 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                             ),
                                             if (isLoading)
                                               const SizedBox(
-                                                  height: 25,
-                                                  width: 25,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: kBlack,
-                                                  ))
+                                                height: 25,
+                                                width: 25,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: kBlack,
+                                                ),
+                                              )
                                             else
                                               Expanded(
                                                 child: SizedBox(
@@ -926,11 +928,12 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                                     setState(() {});
                                                     await _viewModel
                                                         .addServiceCategory(
-                                                            context,
-                                                            CreateServiceCategoryRequest(
-                                                                name:
-                                                                    nameController
-                                                                        .text));
+                                                      context,
+                                                      CreateServiceCategoryRequest(
+                                                        name:
+                                                            nameController.text,
+                                                      ),
+                                                    );
                                                     isLoading = false;
                                                     setState(() {});
                                                     context.pop();
@@ -1197,6 +1200,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
   bool sunday = false;
 
   bool isLoading = false;
+  bool saving = false;
   late BeauticianViewModel _viewModel;
 
   @override
@@ -1204,7 +1208,67 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
     super.initState();
     // image1 = const AssetImage("assets/icons/landing.webp");
     _viewModel = ref.read(beauticianViewModel)..attachView(this);
-    // getData();
+    getData();
+  }
+
+  Future<void> getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _viewModel.getBeauticianAvailability(
+      context,
+    );
+    final daysCount =
+        _viewModel.beauticianAvailabilityResponseModel?.data?.days?.length ?? 0;
+
+    for (int i = 0; i < daysCount; i++) {
+      if (_viewModel.beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Monday") {
+        monday = _viewModel.beauticianAvailabilityResponseModel?.data?.days?[i]
+                .isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Tuesday") {
+        tuesday = _viewModel.beauticianAvailabilityResponseModel?.data?.days?[i]
+                .isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Wednesday") {
+        wednesday = _viewModel.beauticianAvailabilityResponseModel?.data
+                ?.days?[i].isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Thursday") {
+        thursday = _viewModel.beauticianAvailabilityResponseModel?.data
+                ?.days?[i].isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Friday") {
+        friday = _viewModel.beauticianAvailabilityResponseModel?.data?.days?[i]
+                .isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Saturday") {
+        saturday = _viewModel.beauticianAvailabilityResponseModel?.data
+                ?.days?[i].isAvailable ??
+            false;
+      } else if (_viewModel
+              .beauticianAvailabilityResponseModel?.data?.days?[i].day ==
+          "Sunday") {
+        sunday = _viewModel.beauticianAvailabilityResponseModel?.data?.days?[i]
+                .isAvailable ??
+            false;
+      }
+    }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -1345,7 +1409,11 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
                           content: SingleChildScrollView(
-                            child: editAvailability(),
+                            child: isLoading
+                                ? const CircularProgressIndicator(
+                                    color: kBlack,
+                                  )
+                                : editAvailability(),
                           ),
                           actions: [
                             Row(
@@ -1376,12 +1444,12 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                 SizedBox(width: 10.w),
                                 ElevatedButton(
                                   onPressed: () async {
-                                    isLoading = true;
+                                    saving = true;
                                     setState(() {});
                                     await _viewModel
                                         .updateBeauticianAvailability(
                                       edit.BeauticianAvailabilityRequest(
-                                        availability: [
+                                        availableDays: [
                                           edit.Availability(
                                             day: "Monday",
                                             isAvailable: monday,
@@ -1415,7 +1483,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                       context,
                                     );
 
-                                    isLoading = false;
+                                    saving = false;
                                     setState(() {});
                                     context.pop();
                                   },
@@ -1430,7 +1498,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                     ),
                                     minimumSize: Size(100.w, 40.h),
                                   ),
-                                  child: isLoading
+                                  child: saving
                                       ? const Center(
                                           child: SizedBox(
                                             height: 20,
@@ -1490,7 +1558,11 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 15.w),
-                                  child: editAvailability(),
+                                  child: isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: kBlack,
+                                        )
+                                      : editAvailability(),
                                 ),
                                 SizedBox(height: 15.h),
                                 Padding(
@@ -1528,12 +1600,12 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () async {
-                                            isLoading = true;
+                                            saving = true;
                                             setState(() {});
                                             await _viewModel
                                                 .updateBeauticianAvailability(
                                               edit.BeauticianAvailabilityRequest(
-                                                availability: [
+                                                availableDays: [
                                                   edit.Availability(
                                                     day: "Monday",
                                                     isAvailable: monday,
@@ -1567,7 +1639,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                               context,
                                             );
 
-                                            isLoading = false;
+                                            saving = false;
                                             setState(() {});
                                             context.pop();
                                           },
@@ -1583,7 +1655,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                             ),
                                             minimumSize: Size(100.w, 40.h),
                                           ),
-                                          child: isLoading
+                                          child: saving
                                               ? const Center(
                                                   child: SizedBox(
                                                     height: 20,
@@ -1661,59 +1733,62 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                             ],
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
-                          content: const SingleChildScrollView(
-                            child: EditUpcomingHours(),
+                          content: SingleChildScrollView(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: const EditUpcomingHours(),
+                            ),
                           ),
-                          actions: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: kWhite,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 20.h,
-                                      horizontal: 5.w,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      side: const BorderSide(
-                                        color: kGrey,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    "Cancel",
-                                    style: urbanist400(kGrey, 14),
-                                  ),
-                                ),
-                                SizedBox(width: 10.w),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: kBlack,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 20.h,
-                                      horizontal: 5.w,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                    ),
-                                    minimumSize: Size(100.w, 40.h),
-                                  ),
-                                  child: Text(
-                                    "Save",
-                                    style: urbanist400(kWhite, 14),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                          // actions: [
+                          //   Row(
+                          //     mainAxisAlignment: MainAxisAlignment.end,
+                          //     children: [
+                          //       TextButton(
+                          //         onPressed: () {
+                          //           context.pop();
+                          //         },
+                          //         style: TextButton.styleFrom(
+                          //           backgroundColor: kWhite,
+                          //           padding: EdgeInsets.symmetric(
+                          //             vertical: 20.h,
+                          //             horizontal: 5.w,
+                          //           ),
+                          //           shape: RoundedRectangleBorder(
+                          //             borderRadius: BorderRadius.circular(5.r),
+                          //             side: const BorderSide(
+                          //               color: kGrey,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //         child: Text(
+                          //           "Cancel",
+                          //           style: urbanist400(kGrey, 14),
+                          //         ),
+                          //       ),
+                          //       SizedBox(width: 10.w),
+                          //       ElevatedButton(
+                          //         onPressed: () {
+                          //           context.pop();
+                          //         },
+                          //         style: ElevatedButton.styleFrom(
+                          //           backgroundColor: kBlack,
+                          //           padding: EdgeInsets.symmetric(
+                          //             vertical: 20.h,
+                          //             horizontal: 5.w,
+                          //           ),
+                          //           shape: RoundedRectangleBorder(
+                          //             borderRadius: BorderRadius.circular(5.r),
+                          //           ),
+                          //           minimumSize: Size(100.w, 40.h),
+                          //         ),
+                          //         child: Text(
+                          //           "Save",
+                          //           style: urbanist400(kWhite, 14),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   )
+                          // ],
                         );
                       },
                     )
@@ -1722,7 +1797,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                       context: context,
                       builder: (context) {
                         return SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.9,
+                          // height: MediaQuery.of(context).size.height * 0.9,
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -1754,69 +1829,11 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                 ),
                                 SizedBox(height: 5.h),
                                 Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.w),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15.w, vertical: 20.h),
                                   child: const EditUpcomingHours(),
                                 ),
-                                SizedBox(height: 15.h),
-                                Padding(
-                                  padding: EdgeInsets.all(13.w),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Expanded(
-                                        child: TextButton(
-                                          onPressed: () {
-                                            context.pop();
-                                          },
-                                          style: TextButton.styleFrom(
-                                            backgroundColor: kWhite,
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: 20.h,
-                                              horizontal: 5.w,
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.r),
-                                              side: const BorderSide(
-                                                color: kGrey,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Cancel",
-                                            style: urbanist400(kGrey, 14),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 5.w),
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            context.pop();
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: kBlack,
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: 20.h,
-                                              horizontal: 5.w,
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.r),
-                                            ),
-                                            minimumSize: Size(100.w, 40.h),
-                                          ),
-                                          child: Text(
-                                            "Save",
-                                            style: urbanist400(kWhite, 14),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
+                                // SizedBox(height: 15.h),
                               ],
                             ),
                           ),
@@ -2465,319 +2482,528 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
   }
 }
 
-class EditUpcomingHours extends StatefulWidget {
+class EditUpcomingHours extends ConsumerStatefulWidget {
   const EditUpcomingHours({super.key});
 
   @override
-  State<EditUpcomingHours> createState() => _EditUpcomingHoursState();
+  ConsumerState<EditUpcomingHours> createState() => _EditUpcomingHoursState();
 }
 
-class _EditUpcomingHoursState extends State<EditUpcomingHours> {
-  DateTime now = DateTime.now();
+class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
+    with BaseScreenView {
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
 
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
+
+  late BeauticianViewModel _viewModel;
+  bool isLoading = false;
+  bool saving = false;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    getData();
+  }
+
+  Future<void> getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _viewModel.getBeauticianAvailability(
+      context,
+    );
+    final morningCount = _viewModel.beauticianAvailabilityResponseModel?.data
+            ?.slots?.morning?.length ??
+        0;
+    final afternoonCount = _viewModel.beauticianAvailabilityResponseModel?.data
+            ?.slots?.afternoon?.length ??
+        0;
+    final eveningCount = _viewModel.beauticianAvailabilityResponseModel?.data
+            ?.slots?.evening?.length ??
+        0;
+    for (int i = 0; i < morningCount; i++) {
+      morning.add(
+        Slots(
+          time: _viewModel.beauticianAvailabilityResponseModel?.data?.slots
+              ?.morning?[i].time,
+        ),
+      );
+    }
+    for (int i = 0; i < afternoonCount; i++) {
+      afternoon.add(
+        Slots(
+          time: _viewModel.beauticianAvailabilityResponseModel?.data?.slots
+              ?.afternoon?[i].time,
+        ),
+      );
+    }
+    for (int i = 0; i < eveningCount; i++) {
+      evening.add(
+        Slots(
+          time: _viewModel.beauticianAvailabilityResponseModel?.data?.slots
+              ?.evening?[i].time,
+        ),
+      );
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  DateTime now = DateTime.now();
+  List<Slots> morning = [];
+  List<Slots> afternoon = [];
+  List<Slots> evening = [];
   // Format the date
   String formattedDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Divider(
-          color: klines,
-        ),
-        SizedBox(height: 20.h),
-        GestureDetector(
-          onTap: () {
-            // Show the date picker
-            showDatePicker(
-              context: context,
-              initialDate: now,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(3000),
-            ).then((value) {
-              // Set the date
-              setState(() {
-                formattedDate = DateFormat('MMMM d, yyyy').format(value!);
-              });
-            });
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    _viewModel = ref.watch(beauticianViewModel);
+    return isLoading
+        ? const Center(
+            child: FittedBox(
+              child: CircularProgressIndicator(
+                color: kBlack,
+              ),
+            ),
+          )
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.arrow_back_ios_outlined,
-                color: kBlack,
-                size: 20,
+              const Divider(
+                color: klines,
               ),
-              SizedBox(width: 10.w),
-              Text(
-                formattedDate,
-                style: urbanist500(kBlack, 16),
+              SizedBox(height: 20.h),
+              GestureDetector(
+                onTap: () {
+                  // Show the date picker
+                  showDatePicker(
+                    context: context,
+                    initialDate: now,
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(3000),
+                  ).then((value) {
+                    // Set the date
+                    setState(() {
+                      formattedDate = DateFormat('MMMM d, yyyy').format(value!);
+                    });
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.arrow_back_ios_outlined,
+                      color: kBlack,
+                      size: 20,
+                    ),
+                    SizedBox(width: 10.w),
+                    Text(
+                      formattedDate,
+                      style: urbanist500(kBlack, 16),
+                    ),
+                    SizedBox(width: 10.w),
+                    const Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: kBlack,
+                      size: 20,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(width: 10.w),
-              const Icon(
-                Icons.arrow_forward_ios_outlined,
-                color: kBlack,
-                size: 20,
+              SizedBox(height: 20.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Morning",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(height: 5.h),
+                        Wrap(
+                          children: [
+                            ...List.generate(
+                              morning.length,
+                              (index) => Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 3.w,
+                                  vertical: 8.h,
+                                ),
+                                margin: EdgeInsets.only(right: 3.w),
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: kBlack, width: 1),
+                                ),
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        morning[index].time ?? "",
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          morning.removeAt(index);
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(Icons.cancel_outlined),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      //time picker
+                      TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      // morning.time.contains(
+                      //   pickedTime!.format(
+                      //                     context),
+                      // )
+                      //check if its already containing the time
+                      bool containsTime = morning.any(
+                        (slot) => slot.time == pickedTime?.format(context),
+                      );
+
+                      if (!containsTime) {
+                        morning.add(
+                          Slots(
+                            time: pickedTime!.format(context),
+                          ),
+                        );
+                        setState(() {});
+                      }
+                    },
+                    child: Container(
+                      // height: 30.h,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 3.w,
+                        vertical: 8.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kBlack,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: klines, width: 1),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Add",
+                            style: urbanist500(
+                              kWhite,
+                              14,
+                            ),
+                          ),
+                          SizedBox(width: 5.w),
+                          const Icon(Icons.add, color: kWhite),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
+              SizedBox(height: 20.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Afternoon",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(height: 5.h),
+                        Wrap(
+                          children: [
+                            ...List.generate(
+                              afternoon.length,
+                              (index) => Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 3.w,
+                                  vertical: 8.h,
+                                ),
+                                margin: EdgeInsets.only(right: 3.w),
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: kBlack, width: 1),
+                                ),
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        afternoon[index].time ?? "",
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          afternoon.removeAt(index);
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(Icons.cancel_outlined),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      //time picker
+                      TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      // morning.time.contains(
+                      //   pickedTime!.format(
+                      //                     context),
+                      // )
+                      //check if its already containing the time
+                      bool containsTime = afternoon.any(
+                        (slot) => slot.time == pickedTime?.format(context),
+                      );
+
+                      if (!containsTime) {
+                        afternoon.add(
+                          Slots(
+                            time: pickedTime!.format(context),
+                          ),
+                        );
+                        setState(() {});
+                      }
+                    },
+                    child: Container(
+                      // height: 30.h,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 3.w,
+                        vertical: 8.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kBlack,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: klines, width: 1),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Add",
+                            style: urbanist500(
+                              kWhite,
+                              14,
+                            ),
+                          ),
+                          SizedBox(width: 5.w),
+                          const Icon(Icons.add, color: kWhite),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Evening",
+                          style: urbanist600(kBlack, 16),
+                        ),
+                        SizedBox(height: 5.h),
+                        Wrap(
+                          children: [
+                            ...List.generate(
+                              evening.length,
+                              (index) => Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 3.w,
+                                  vertical: 8.h,
+                                ),
+                                margin: EdgeInsets.only(right: 3.w),
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(),
+                                ),
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        evening[index].time ?? "",
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          morning.removeAt(index);
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(Icons.cancel_outlined),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      //time picker
+                      TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      // morning.time.contains(
+                      //   pickedTime!.format(
+                      //                     context),
+                      // )
+                      //check if its already containing the time
+                      bool containsTime = evening.any(
+                        (slot) => slot.time == pickedTime?.format(context),
+                      );
+
+                      if (!containsTime) {
+                        evening.add(
+                          Slots(
+                            time: pickedTime!.format(context),
+                          ),
+                        );
+                        setState(() {});
+                      }
+                    },
+                    child: Container(
+                      // height: 30.h,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 3.w,
+                        vertical: 8.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kBlack,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: klines, width: 1),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Add",
+                            style: urbanist500(
+                              kWhite,
+                              14,
+                            ),
+                          ),
+                          SizedBox(width: 5.w),
+                          const Icon(Icons.add, color: kWhite),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: kWhite,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 20.h,
+                          horizontal: 5.w,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r),
+                          side: const BorderSide(
+                            color: kGrey,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Cancel",
+                        style: urbanist400(kGrey, 14),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 5.w),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        saving = true;
+                        setState(() {});
+                        await _viewModel.updateSlot(
+                          context,
+                          UpdateSlotRequest(
+                            morning: morning,
+                            afternoon: afternoon,
+                            evening: evening,
+                          ),
+                        );
+                        saving = false;
+                        setState(() {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kBlack,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 20.h,
+                          horizontal: 5.w,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r),
+                        ),
+                        minimumSize: Size(100.w, 40.h),
+                      ),
+                      child: Text(
+                        saving ? "Saving..." : "Save",
+                        style: urbanist400(kWhite, 14),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
-          ),
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Monday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "24 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Tuesday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "25 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Wednesday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "26 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Thursday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "27 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Friday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "28 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Saturday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "29 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Sunday",
-                  style: urbanist500(kBlack, 16),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "30 April, 2023",
-                  style: urbanist400(kGrey, 12),
-                ),
-              ],
-            ),
-            Theme(
-              data: ThemeData(
-                useMaterial3: true,
-                colorScheme:
-                    ColorScheme.fromSwatch().copyWith(outline: kdisable),
-              ),
-              child: Switch(
-                value: false,
-                onChanged: (value) {},
-                activeTrackColor: kBlack,
-                activeColor: kWhite,
-                inactiveThumbColor: kWhite,
-                inactiveTrackColor: kdisable,
-                focusColor: kBlack,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-      ],
-    );
+          );
   }
 }
 

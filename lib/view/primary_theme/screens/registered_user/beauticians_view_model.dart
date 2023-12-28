@@ -17,6 +17,7 @@ import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
 import 'package:cosmetropolis/domain/providers/providers.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/helpers/base_view_model.dart';
@@ -24,6 +25,8 @@ import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
 
 final beauticianViewModel = ChangeNotifierProvider(
   (ref) => BeauticianViewModel(
@@ -60,6 +63,12 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
 
   GetClientById? _getClientByIdResponseModel;
   GetClientById? get getClientByIdResponseModel => _getClientByIdResponseModel;
+
+  availability.BeauticianAvailabilityResponse?
+      _beauticianAvailabilityResponseModel;
+  availability.BeauticianAvailabilityResponse?
+      get beauticianAvailabilityResponseModel =>
+          _beauticianAvailabilityResponseModel;
 
   Future<void> registerBeautician(
     BeauticianRegisterRequestModel beauticianRegisterRequestModel,
@@ -161,6 +170,8 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             showSnackbar(l.message);
           }, (r) {
             showSnackbar(r.message ?? "");
+            getBeauticianAvailability(context);
+            notifyListeners();
           }),
         );
   }
@@ -368,6 +379,39 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             }
             context.pop();
             showSnackbar(r.message ?? "");
+          }),
+        );
+  }
+
+  Future<void> updateSlot(
+    BuildContext context,
+    UpdateSlotRequest updateSlotRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.updateSlot(updateSlotRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            context.pop();
+          }),
+        );
+  }
+
+  Future<void> getBeauticianAvailability(
+    BuildContext context,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo
+        .getBeauticianAvailability(
+            SharedPreferenceService.getString(AppConstants.userId) ?? "")
+        .then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message ?? "");
+            _beauticianAvailabilityResponseModel = r;
+            notifyListeners();
           }),
         );
   }

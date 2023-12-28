@@ -21,7 +21,10 @@ import 'package:cosmetropolis/data/remote/beautician/login.dart';
 import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
+import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
 import 'package:dartz/dartz.dart';
 
 class BeauticianRepoImpl implements BeauticianRepo {
@@ -321,6 +324,39 @@ class BeauticianRepoImpl implements BeauticianRepo {
       );
       log("Sucess ====> $response");
       return Right(EditClientResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, UpdateSlotResponse>> updateSlot(
+    UpdateSlotRequest updateSlotRequest,
+  ) async {
+    try {
+      final response = await _apiClient.patchWithToken(
+        "${AppConstants.baseUrl}beautician/availability/slots/add",
+        updateSlotRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(UpdateSlotResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, availability.BeauticianAvailabilityResponse>>
+      getBeauticianAvailability(String id) async {
+    try {
+      final response = await _apiClient.getWithToken(
+        "${AppConstants.baseUrl}beautician/availability/list?beauticianId=$id",
+      );
+      log("Sucess ====> $response");
+      return Right(
+          availability.BeauticianAvailabilityResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

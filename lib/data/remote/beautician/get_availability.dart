@@ -5,36 +5,69 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'get_availability.freezed.dart';
 part 'get_availability.g.dart';
 
-GetBeauticianAvailability getBeauticianAvailabilityFromJson(String str) =>
-    GetBeauticianAvailability.fromJson(
+BeauticianAvailabilityResponse beauticianAvailabilityResponseFromJson(
+        String str) =>
+    BeauticianAvailabilityResponse.fromJson(
         json.decode(str) as Map<String, dynamic>);
 
-String getBeauticianAvailabilityToJson(GetBeauticianAvailability data) =>
+String beauticianAvailabilityResponseToJson(
+        BeauticianAvailabilityResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-class GetBeauticianAvailability with _$GetBeauticianAvailability {
-  const factory GetBeauticianAvailability({
+class BeauticianAvailabilityResponse with _$BeauticianAvailabilityResponse {
+  const factory BeauticianAvailabilityResponse({
     int? code,
     String? message,
     bool? isSuccess,
-    List<Datum>? data,
-  }) = _GetBeauticianAvailability;
+    Data? data,
+  }) = _BeauticianAvailabilityResponse;
 
-  factory GetBeauticianAvailability.fromJson(Map<String, dynamic> json) =>
-      _$GetBeauticianAvailabilityFromJson(json);
+  factory BeauticianAvailabilityResponse.fromJson(Map<String, dynamic> json) =>
+      _$BeauticianAvailabilityResponseFromJson(json);
 }
 
 @freezed
-class Datum with _$Datum {
-  const factory Datum({
-    dynamic date,
-    String? day,
-    String? startTime,
-    String? endTime,
-    bool? isAvailable,
-    @JsonKey(name: '_id') String? id,
-  }) = _Datum;
+class Data with _$Data {
+  const factory Data({
+    List<Day>? days,
+    Slots? slots,
+  }) = _Data;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+}
+
+@freezed
+class Day with _$Day {
+  const factory Day({
+    bool? isAvailable,
+    String? day,
+    @JsonKey(name: '_id') String? id,
+    DateTime? date,
+  }) = _Day;
+
+  factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
+}
+
+@freezed
+class Slots with _$Slots {
+  const factory Slots({
+    List<Afternoon>? morning,
+    List<Afternoon>? afternoon,
+    List<Afternoon>? evening,
+  }) = _Slots;
+
+  factory Slots.fromJson(Map<String, dynamic> json) => _$SlotsFromJson(json);
+}
+
+@freezed
+class Afternoon with _$Afternoon {
+  const factory Afternoon({
+    bool? isBooked,
+    String? time,
+    @JsonKey(name: '_id') String? id,
+  }) = _Afternoon;
+
+  factory Afternoon.fromJson(Map<String, dynamic> json) =>
+      _$AfternoonFromJson(json);
 }

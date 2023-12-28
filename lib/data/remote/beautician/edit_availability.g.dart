@@ -9,7 +9,7 @@ part of 'edit_availability.dart';
 _$_BeauticianAvailabilityRequest _$$_BeauticianAvailabilityRequestFromJson(
         Map<String, dynamic> json) =>
     _$_BeauticianAvailabilityRequest(
-      availability: (json['availability'] as List<dynamic>?)
+      availableDays: (json['availableDays'] as List<dynamic>?)
           ?.map((e) => Availability.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,7 +17,7 @@ _$_BeauticianAvailabilityRequest _$$_BeauticianAvailabilityRequestFromJson(
 Map<String, dynamic> _$$_BeauticianAvailabilityRequestToJson(
         _$_BeauticianAvailabilityRequest instance) =>
     <String, dynamic>{
-      'availability': instance.availability,
+      'availableDays': instance.availableDays,
     };
 
 _$_Availability _$$_AvailabilityFromJson(Map<String, dynamic> json) =>

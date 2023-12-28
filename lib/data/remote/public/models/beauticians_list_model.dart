@@ -65,9 +65,38 @@ class Result with _$Result {
     List<Review>? reviews,
     int? ratingCount,
     double? avgRating,
+    List<AvailableDay>? availableDays,
+    List<Afternoon>? afternoon,
+    List<Afternoon>? evening,
+    List<Afternoon>? morning,
   }) = _Result;
 
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+}
+
+@freezed
+class AvailableDay with _$AvailableDay {
+  const factory AvailableDay({
+    bool? isAvailable,
+    String? day,
+    @JsonKey(name: '_id') String? id,
+    DateTime? date,
+  }) = _AvailableDay;
+
+  factory AvailableDay.fromJson(Map<String, dynamic> json) =>
+      _$AvailableDayFromJson(json);
+}
+
+@freezed
+class Afternoon with _$Afternoon {
+  const factory Afternoon({
+    dynamic isBooked,
+    String? time,
+    @JsonKey(name: '_id') String? id,
+  }) = _Afternoon;
+
+  factory Afternoon.fromJson(Map<String, dynamic> json) =>
+      _$AfternoonFromJson(json);
 }
 
 @freezed
