@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/user/models/edit_profile_user.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/file_picker.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/change_password_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
@@ -210,11 +213,13 @@ class EditProfileDialog extends ConsumerStatefulWidget {
   // String lastName = "";
   final String email;
   final String phoneNumber;
+  final String profilePic;
   const EditProfileDialog(
       {super.key,
       required this.name,
       required this.email,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.profilePic});
 
   @override
   ConsumerState<EditProfileDialog> createState() => _EditProfileDialogState();
@@ -225,6 +230,7 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
   bool sms = false;
   late UserViewModel _viewModel;
   bool isLoading = false;
+  String profilePic = "";
   @override
   void initState() {
     _viewModel = ref.read(userViewModel)..attachView(this);
@@ -234,7 +240,13 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
         widget.name.split(" ").length > 1 ? widget.name.split(" ")[1] : "";
     emailController.text = widget.email;
     phoneNumberController.text = widget.phoneNumber;
+    getData();
     super.initState();
+  }
+
+  void getData() async {
+    _viewModel.profilePic =
+        widget.profilePic == "null" ? "" : widget.profilePic;
   }
 
   final firstNameController = TextEditingController();
@@ -270,8 +282,11 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                     ),
                   ),
                   child: CircleAvatar(
-                    backgroundImage: const NetworkImage(
-                      'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
+                    backgroundColor: kBlack,
+                    backgroundImage: NetworkImage(
+                      _viewModel.profilePic == ""
+                          ? "https://cosmetrospace.sfo3.digitaloceanspaces.com/unknown.jpg"
+                          : _viewModel.profilePic,
                     ), // Set the image for the circle avatar
                     radius: 30
                         .r, // Adjust the radius to control the size of the avatar
@@ -293,9 +308,8 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                     ),
                   ],
                 ),
-                const Spacer(),
-                Visibility(
-                  visible: MediaQuery.of(context).size.width > 600,
+                // const Spacer(),
+                Expanded(
                   child: Column(
                     children: [
                       Text(
@@ -308,7 +322,14 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                       SizedBox(height: 5.h),
                       FittedBox(
                         child: TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await openPickImageDialog(
+                              context,
+                            );
+                            _viewModel.profilePic = imgUrl;
+                            setState(() {});
+                            log("Image clicked>>>>>>>>>>>>>>> ${_viewModel.profilePic}");
+                          },
                           icon: Image.asset(
                             "assets/icons/export.webp",
                             height: 15.h,
@@ -560,6 +581,7 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                 setState(() {});
                 await _viewModel.updateUserProfileDetails(
                   USerEditProfile(
+                      image: _viewModel.profilePic,
                       name:
                           "${firstNameController.text} ${lastNameController.text}",
                       email: emailController.text,

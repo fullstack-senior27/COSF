@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client_photo.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_note.dart';
@@ -11,6 +12,7 @@ import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
     as availability;
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
@@ -19,6 +21,8 @@ import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
+import 'package:cosmetropolis/data/remote/booking/models/create_appointment.dart';
+import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class BeauticianRepo {
@@ -86,4 +90,18 @@ abstract class BeauticianRepo {
 
   Future<Either<ApiException, availability.BeauticianAvailabilityResponse>>
       getBeauticianAvailability(String id);
+
+  Future<Either<ApiException, AddPhotoResponse>> addClientPhoto(
+    AddPhotoRequest addPhotoRequest,
+    String id,
+  );
+  Future<Either<ApiException, BeauticianServicesResponse>>
+      getBeauticianServices(
+    BeauticianServicesRequest beauticianServicesRequest,
+  );
+
+  Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
+      CreateAppointmentRequest createAppointmentRequest);
+
+  Future<Either<ApiException, GetAllUserAppointments>> getAllAppointments();
 }

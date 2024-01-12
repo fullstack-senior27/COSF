@@ -150,7 +150,7 @@ Map<String, dynamic> _$$_AvailableDayToJson(_$_AvailableDay instance) =>
     };
 
 _$_Afternoon _$$_AfternoonFromJson(Map<String, dynamic> json) => _$_Afternoon(
-      isBooked: json['isBooked'],
+      isBooked: json['isBooked'] as bool?,
       time: json['time'] as String?,
       id: json['_id'] as String?,
     );

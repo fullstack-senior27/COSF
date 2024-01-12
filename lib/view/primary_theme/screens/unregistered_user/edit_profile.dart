@@ -384,8 +384,23 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                       ),
                                     ),
                                     child: CircleAvatar(
-                                      backgroundImage: const NetworkImage(
-                                        "https://i.imgur.com/YITuclG.pngs",
+                                      backgroundColor: kBlack,
+                                      backgroundImage: NetworkImage(
+                                        _viewModel.profileDetailsResponse?.data
+                                                        ?.image
+                                                        .toString() ==
+                                                    "" ||
+                                                _viewModel
+                                                        .profileDetailsResponse
+                                                        ?.data
+                                                        ?.image
+                                                        .toString() ==
+                                                    null
+                                            ? "https://cosmetrospace.sfo3.digitaloceanspaces.com/unknown.jpg"
+                                            : _viewModel.profileDetailsResponse
+                                                    ?.data?.image
+                                                    .toString() ??
+                                                "https://cosmetrospace.sfo3.digitaloceanspaces.com/unknown.jpg",
                                       ), // Set the image for the circle avatar
                                       radius: 50
                                           .r, // Adjust the radius to control the size of the avatar
@@ -554,6 +569,12 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                 .profileDetailsResponse
                                                                 ?.data
                                                                 ?.phone ??
+                                                            "",
+                                                        profilePic: _viewModel
+                                                                .profileDetailsResponse
+                                                                ?.data
+                                                                ?.image
+                                                                .toString() ??
                                                             "",
                                                       ),
                                                     ),
@@ -727,6 +748,12 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                     ?.data
                                                                     ?.phone ??
                                                                 "",
+                                                            profilePic: _viewModel
+                                                                    .profileDetailsResponse
+                                                                    ?.data
+                                                                    ?.image
+                                                                    .toString() ??
+                                                                "",
                                                           ),
                                                         ],
                                                       ),
@@ -823,13 +850,17 @@ class _EditProfileState extends ConsumerState<EditProfile>
                             controller: _tabcontroller,
                             children: [
                               if (MediaQuery.of(context).size.width > 450)
-                                AppointmentsTable(
-                                  data: _viewModel.allUserAppointments!,
+                                SingleChildScrollView(
+                                  child: AppointmentsTable(
+                                    data: _viewModel.allUserAppointments!,
+                                  ),
                                 )
                               else
                                 ListView.builder(
                                   physics: const BouncingScrollPhysics(),
-                                  itemCount: 4,
+                                  itemCount: _viewModel.allUserAppointments
+                                          ?.data?.results?.length ??
+                                      0,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return Padding(
@@ -869,7 +900,14 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        "Akeba Thomson",
+                                                        _viewModel
+                                                                .allUserAppointments
+                                                                ?.data
+                                                                ?.results?[
+                                                                    index]
+                                                                .beautician
+                                                                ?.name ??
+                                                            "",
                                                         style: urbanist500(
                                                           kBlack,
                                                           14,
@@ -889,9 +927,16 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                   Container(
                                                     height: 10.h,
                                                     width: 10.w,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      color: Colors.red,
+                                                    decoration: BoxDecoration(
+                                                      color: _viewModel
+                                                                  .allUserAppointments
+                                                                  ?.data
+                                                                  ?.results?[
+                                                                      index]
+                                                                  .status ==
+                                                              "confirmed"
+                                                          ? Colors.green
+                                                          : Colors.red,
                                                       shape: BoxShape.circle,
                                                     ),
                                                   ),
@@ -899,9 +944,22 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                     width: 3.w,
                                                   ),
                                                   Text(
-                                                    "Pending",
+                                                    _viewModel
+                                                            .allUserAppointments
+                                                            ?.data
+                                                            ?.results?[index]
+                                                            .status ??
+                                                        "",
                                                     style: urbanist600(
-                                                      Colors.red,
+                                                      _viewModel
+                                                                  .allUserAppointments
+                                                                  ?.data
+                                                                  ?.results?[
+                                                                      index]
+                                                                  .status ==
+                                                              "confirmed"
+                                                          ? Colors.green
+                                                          : Colors.red,
                                                       10,
                                                     ),
                                                   ),
@@ -917,16 +975,34 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                               ),
                                               child: Text(
                                                 "Services",
-                                                style: urbanist500(kBlack, 14),
+                                                style: urbanist600(kBlack, 14),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: 7.w,
-                                              ),
-                                              child: Text(
-                                                "Services hair cut, hair color, shawing",
-                                                style: urbanist400(kBlack, 12),
+                                            // Padding(
+                                            //   padding: EdgeInsets.symmetric(
+                                            //     horizontal: 7.w,
+                                            //   ),
+                                            //   child: Text(
+                                            //     "Services hair cut, hair color, shawing",
+                                            //     style: urbanist400(kBlack, 12),
+                                            //   ),
+                                            // ),
+                                            ...List.generate(
+                                              _viewModel
+                                                      .allUserAppointments
+                                                      ?.data
+                                                      ?.results?[index]
+                                                      .services
+                                                      ?.length ??
+                                                  0,
+                                              (ind) => Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 7.w),
+                                                child: Text(
+                                                  "${_viewModel.allUserAppointments?.data?.results?[index].services?[ind].name ?? ""}, ",
+                                                  style:
+                                                      urbanist500(kBlack, 12),
+                                                ),
                                               ),
                                             ),
                                             SizedBox(
@@ -942,14 +1018,14 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "20-04-2023",
+                                                    "${_viewModel.allUserAppointments?.data?.results?[index].date.toString().split(" ")[0]}",
                                                     style: urbanist500(
                                                       kBlack,
                                                       14,
                                                     ),
                                                   ),
                                                   Text(
-                                                    "\$120.00",
+                                                    "\$${_viewModel.allUserAppointments?.data?.results?[index].amount}",
                                                     style: urbanist500(
                                                       kBlack,
                                                       14,
@@ -968,14 +1044,14 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "12:30 PM",
+                                                    "${_viewModel.allUserAppointments?.data?.results?[index].timeSlot}",
                                                     style: urbanist400(
                                                       kdescription,
                                                       10,
                                                     ),
                                                   ),
                                                   Text(
-                                                    "Paid",
+                                                    "${_viewModel.allUserAppointments?.data?.results?[index].paymentStatus}",
                                                     style: urbanist400(
                                                       kdescription,
                                                       10,

@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client_photo.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
@@ -7,6 +10,7 @@ import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/file_picker.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
@@ -1224,9 +1228,41 @@ class MergeClient extends StatelessWidget {
   }
 }
 
-class AddPhoto extends StatelessWidget {
-  const AddPhoto({super.key});
+class AddPhoto extends ConsumerStatefulWidget {
+  final String id;
+  const AddPhoto({super.key, required this.id});
 
+  @override
+  ConsumerState<AddPhoto> createState() => _AddPhotoState();
+}
+
+class _AddPhotoState extends ConsumerState<AddPhoto> with BaseScreenView {
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
+
+  late BeauticianViewModel _viewModel;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+  }
+
+  bool isLoading = false;
+  String? photo;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1246,7 +1282,19 @@ class AddPhoto extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                BlackButton(context, "Upload Photo", () {})
+                BlackButton(context, "Upload Photo", () async {
+                  await openPickImageDialog(context);
+                  photo = imgUrl;
+                  log(photo ?? "No photo");
+                  photo != null
+                      ? await _viewModel.addClientPhoto(
+                          context,
+                          AddPhotoRequest(photoUrls: [photo ?? ""]),
+                          widget.id,
+                        )
+                      : log("no photo");
+                  // context.pop();
+                })
               ],
             ),
           ),

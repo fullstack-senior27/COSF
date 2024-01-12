@@ -463,15 +463,17 @@ mixin _$Result {
   List<Service>? get services => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get paymentStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "_id")
   String? get id => throw _privateConstructorUsedError;
   Beautician? get beautician => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
-  String? get zipcode => throw _privateConstructorUsedError;
-  String? get user => throw _privateConstructorUsedError;
+  String? get zipcode =>
+      throw _privateConstructorUsedError; // Beautician? user,
   int? get amount => throw _privateConstructorUsedError;
-  String? get startTime => throw _privateConstructorUsedError;
+  String? get timeSlot => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "__v")
   int? get v => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -488,16 +490,15 @@ abstract class $ResultCopyWith<$Res> {
       {List<Service>? services,
       String? status,
       String? paymentStatus,
-      String? id,
+      @JsonKey(name: "_id") String? id,
       Beautician? beautician,
       DateTime? date,
       String? zipcode,
-      String? user,
       int? amount,
-      String? startTime,
+      String? timeSlot,
       DateTime? createdAt,
       DateTime? updatedAt,
-      int? v});
+      @JsonKey(name: "__v") int? v});
 
   $BeauticianCopyWith<$Res>? get beautician;
 }
@@ -522,9 +523,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? beautician = freezed,
     Object? date = freezed,
     Object? zipcode = freezed,
-    Object? user = freezed,
     Object? amount = freezed,
-    Object? startTime = freezed,
+    Object? timeSlot = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
@@ -558,17 +558,13 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.zipcode
           : zipcode // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
+      timeSlot: freezed == timeSlot
+          ? _value.timeSlot
+          : timeSlot // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -608,16 +604,15 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       {List<Service>? services,
       String? status,
       String? paymentStatus,
-      String? id,
+      @JsonKey(name: "_id") String? id,
       Beautician? beautician,
       DateTime? date,
       String? zipcode,
-      String? user,
       int? amount,
-      String? startTime,
+      String? timeSlot,
       DateTime? createdAt,
       DateTime? updatedAt,
-      int? v});
+      @JsonKey(name: "__v") int? v});
 
   @override
   $BeauticianCopyWith<$Res>? get beautician;
@@ -640,9 +635,8 @@ class __$$_ResultCopyWithImpl<$Res>
     Object? beautician = freezed,
     Object? date = freezed,
     Object? zipcode = freezed,
-    Object? user = freezed,
     Object? amount = freezed,
-    Object? startTime = freezed,
+    Object? timeSlot = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? v = freezed,
@@ -676,17 +670,13 @@ class __$$_ResultCopyWithImpl<$Res>
           ? _value.zipcode
           : zipcode // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as String?,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
+      timeSlot: freezed == timeSlot
+          ? _value.timeSlot
+          : timeSlot // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -711,16 +701,15 @@ class _$_Result implements _Result {
       {final List<Service>? services,
       this.status,
       this.paymentStatus,
-      this.id,
+      @JsonKey(name: "_id") this.id,
       this.beautician,
       this.date,
       this.zipcode,
-      this.user,
       this.amount,
-      this.startTime,
+      this.timeSlot,
       this.createdAt,
       this.updatedAt,
-      this.v})
+      @JsonKey(name: "__v") this.v})
       : _services = services;
 
   factory _$_Result.fromJson(Map<String, dynamic> json) =>
@@ -741,6 +730,7 @@ class _$_Result implements _Result {
   @override
   final String? paymentStatus;
   @override
+  @JsonKey(name: "_id")
   final String? id;
   @override
   final Beautician? beautician;
@@ -748,22 +738,22 @@ class _$_Result implements _Result {
   final DateTime? date;
   @override
   final String? zipcode;
-  @override
-  final String? user;
+// Beautician? user,
   @override
   final int? amount;
   @override
-  final String? startTime;
+  final String? timeSlot;
   @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
   @override
+  @JsonKey(name: "__v")
   final int? v;
 
   @override
   String toString() {
-    return 'Result(services: $services, status: $status, paymentStatus: $paymentStatus, id: $id, beautician: $beautician, date: $date, zipcode: $zipcode, user: $user, amount: $amount, startTime: $startTime, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
+    return 'Result(services: $services, status: $status, paymentStatus: $paymentStatus, id: $id, beautician: $beautician, date: $date, zipcode: $zipcode, amount: $amount, timeSlot: $timeSlot, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
   }
 
   @override
@@ -780,10 +770,9 @@ class _$_Result implements _Result {
                 other.beautician == beautician) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.zipcode, zipcode) || other.zipcode == zipcode) &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
+            (identical(other.timeSlot, timeSlot) ||
+                other.timeSlot == timeSlot) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -802,9 +791,8 @@ class _$_Result implements _Result {
       beautician,
       date,
       zipcode,
-      user,
       amount,
-      startTime,
+      timeSlot,
       createdAt,
       updatedAt,
       v);
@@ -828,16 +816,15 @@ abstract class _Result implements Result {
       {final List<Service>? services,
       final String? status,
       final String? paymentStatus,
-      final String? id,
+      @JsonKey(name: "_id") final String? id,
       final Beautician? beautician,
       final DateTime? date,
       final String? zipcode,
-      final String? user,
       final int? amount,
-      final String? startTime,
+      final String? timeSlot,
       final DateTime? createdAt,
       final DateTime? updatedAt,
-      final int? v}) = _$_Result;
+      @JsonKey(name: "__v") final int? v}) = _$_Result;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$_Result.fromJson;
 
@@ -848,6 +835,7 @@ abstract class _Result implements Result {
   @override
   String? get paymentStatus;
   @override
+  @JsonKey(name: "_id")
   String? get id;
   @override
   Beautician? get beautician;
@@ -855,17 +843,16 @@ abstract class _Result implements Result {
   DateTime? get date;
   @override
   String? get zipcode;
-  @override
-  String? get user;
-  @override
+  @override // Beautician? user,
   int? get amount;
   @override
-  String? get startTime;
+  String? get timeSlot;
   @override
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
   @override
+  @JsonKey(name: "__v")
   int? get v;
   @override
   @JsonKey(ignore: true)
@@ -879,25 +866,7 @@ Beautician _$BeauticianFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Beautician {
-  dynamic get image => throw _privateConstructorUsedError;
-  String? get role => throw _privateConstructorUsedError;
-  List<dynamic>? get photos => throw _privateConstructorUsedError;
-  String? get profession => throw _privateConstructorUsedError;
-  dynamic get about => throw _privateConstructorUsedError;
-  String? get website => throw _privateConstructorUsedError;
-  bool? get isEmailVerified => throw _privateConstructorUsedError;
-  List<String>? get speciality => throw _privateConstructorUsedError;
-  List<String>? get services => throw _privateConstructorUsedError;
-  List<String>? get serviceCategories => throw _privateConstructorUsedError;
-  List<dynamic>? get reviews => throw _privateConstructorUsedError;
-  List<dynamic>? get products => throw _privateConstructorUsedError;
-  String? get accountId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-  List<dynamic>? get notes => throw _privateConstructorUsedError;
-  List<Availability>? get availability => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -912,27 +881,7 @@ abstract class $BeauticianCopyWith<$Res> {
           Beautician value, $Res Function(Beautician) then) =
       _$BeauticianCopyWithImpl<$Res, Beautician>;
   @useResult
-  $Res call(
-      {dynamic image,
-      String? role,
-      List<dynamic>? photos,
-      String? profession,
-      dynamic about,
-      String? website,
-      bool? isEmailVerified,
-      List<String>? speciality,
-      List<String>? services,
-      List<String>? serviceCategories,
-      List<dynamic>? reviews,
-      List<dynamic>? products,
-      String? accountId,
-      String? name,
-      String? email,
-      String? phone,
-      List<dynamic>? notes,
-      List<Availability>? availability,
-      String? address,
-      String? id});
+  $Res call({String? name, String? id});
 }
 
 /// @nodoc
@@ -948,103 +897,13 @@ class _$BeauticianCopyWithImpl<$Res, $Val extends Beautician>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = freezed,
-    Object? role = freezed,
-    Object? photos = freezed,
-    Object? profession = freezed,
-    Object? about = freezed,
-    Object? website = freezed,
-    Object? isEmailVerified = freezed,
-    Object? speciality = freezed,
-    Object? services = freezed,
-    Object? serviceCategories = freezed,
-    Object? reviews = freezed,
-    Object? products = freezed,
-    Object? accountId = freezed,
     Object? name = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? notes = freezed,
-    Object? availability = freezed,
-    Object? address = freezed,
     Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photos: freezed == photos
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      profession: freezed == profession
-          ? _value.profession
-          : profession // ignore: cast_nullable_to_non_nullable
-              as String?,
-      about: freezed == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      website: freezed == website
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isEmailVerified: freezed == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      speciality: freezed == speciality
-          ? _value.speciality
-          : speciality // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      services: freezed == services
-          ? _value.services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      serviceCategories: freezed == serviceCategories
-          ? _value.serviceCategories
-          : serviceCategories // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      reviews: freezed == reviews
-          ? _value.reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      accountId: freezed == accountId
-          ? _value.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      availability: freezed == availability
-          ? _value.availability
-          : availability // ignore: cast_nullable_to_non_nullable
-              as List<Availability>?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       id: freezed == id
           ? _value.id
@@ -1062,27 +921,7 @@ abstract class _$$_BeauticianCopyWith<$Res>
       __$$_BeauticianCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {dynamic image,
-      String? role,
-      List<dynamic>? photos,
-      String? profession,
-      dynamic about,
-      String? website,
-      bool? isEmailVerified,
-      List<String>? speciality,
-      List<String>? services,
-      List<String>? serviceCategories,
-      List<dynamic>? reviews,
-      List<dynamic>? products,
-      String? accountId,
-      String? name,
-      String? email,
-      String? phone,
-      List<dynamic>? notes,
-      List<Availability>? availability,
-      String? address,
-      String? id});
+  $Res call({String? name, String? id});
 }
 
 /// @nodoc
@@ -1096,103 +935,13 @@ class __$$_BeauticianCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = freezed,
-    Object? role = freezed,
-    Object? photos = freezed,
-    Object? profession = freezed,
-    Object? about = freezed,
-    Object? website = freezed,
-    Object? isEmailVerified = freezed,
-    Object? speciality = freezed,
-    Object? services = freezed,
-    Object? serviceCategories = freezed,
-    Object? reviews = freezed,
-    Object? products = freezed,
-    Object? accountId = freezed,
     Object? name = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? notes = freezed,
-    Object? availability = freezed,
-    Object? address = freezed,
     Object? id = freezed,
   }) {
     return _then(_$_Beautician(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photos: freezed == photos
-          ? _value._photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      profession: freezed == profession
-          ? _value.profession
-          : profession // ignore: cast_nullable_to_non_nullable
-              as String?,
-      about: freezed == about
-          ? _value.about
-          : about // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      website: freezed == website
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isEmailVerified: freezed == isEmailVerified
-          ? _value.isEmailVerified
-          : isEmailVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      speciality: freezed == speciality
-          ? _value._speciality
-          : speciality // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      services: freezed == services
-          ? _value._services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      serviceCategories: freezed == serviceCategories
-          ? _value._serviceCategories
-          : serviceCategories // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      reviews: freezed == reviews
-          ? _value._reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      products: freezed == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      accountId: freezed == accountId
-          ? _value.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notes: freezed == notes
-          ? _value._notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      availability: freezed == availability
-          ? _value._availability
-          : availability // ignore: cast_nullable_to_non_nullable
-              as List<Availability>?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       id: freezed == id
           ? _value.id
@@ -1205,148 +954,19 @@ class __$$_BeauticianCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Beautician implements _Beautician {
-  const _$_Beautician(
-      {this.image,
-      this.role,
-      final List<dynamic>? photos,
-      this.profession,
-      this.about,
-      this.website,
-      this.isEmailVerified,
-      final List<String>? speciality,
-      final List<String>? services,
-      final List<String>? serviceCategories,
-      final List<dynamic>? reviews,
-      final List<dynamic>? products,
-      this.accountId,
-      this.name,
-      this.email,
-      this.phone,
-      final List<dynamic>? notes,
-      final List<Availability>? availability,
-      this.address,
-      this.id})
-      : _photos = photos,
-        _speciality = speciality,
-        _services = services,
-        _serviceCategories = serviceCategories,
-        _reviews = reviews,
-        _products = products,
-        _notes = notes,
-        _availability = availability;
+  const _$_Beautician({this.name, this.id});
 
   factory _$_Beautician.fromJson(Map<String, dynamic> json) =>
       _$$_BeauticianFromJson(json);
 
   @override
-  final dynamic image;
-  @override
-  final String? role;
-  final List<dynamic>? _photos;
-  @override
-  List<dynamic>? get photos {
-    final value = _photos;
-    if (value == null) return null;
-    if (_photos is EqualUnmodifiableListView) return _photos;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final String? profession;
-  @override
-  final dynamic about;
-  @override
-  final String? website;
-  @override
-  final bool? isEmailVerified;
-  final List<String>? _speciality;
-  @override
-  List<String>? get speciality {
-    final value = _speciality;
-    if (value == null) return null;
-    if (_speciality is EqualUnmodifiableListView) return _speciality;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _services;
-  @override
-  List<String>? get services {
-    final value = _services;
-    if (value == null) return null;
-    if (_services is EqualUnmodifiableListView) return _services;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _serviceCategories;
-  @override
-  List<String>? get serviceCategories {
-    final value = _serviceCategories;
-    if (value == null) return null;
-    if (_serviceCategories is EqualUnmodifiableListView)
-      return _serviceCategories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<dynamic>? _reviews;
-  @override
-  List<dynamic>? get reviews {
-    final value = _reviews;
-    if (value == null) return null;
-    if (_reviews is EqualUnmodifiableListView) return _reviews;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<dynamic>? _products;
-  @override
-  List<dynamic>? get products {
-    final value = _products;
-    if (value == null) return null;
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final String? accountId;
-  @override
   final String? name;
-  @override
-  final String? email;
-  @override
-  final String? phone;
-  final List<dynamic>? _notes;
-  @override
-  List<dynamic>? get notes {
-    final value = _notes;
-    if (value == null) return null;
-    if (_notes is EqualUnmodifiableListView) return _notes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Availability>? _availability;
-  @override
-  List<Availability>? get availability {
-    final value = _availability;
-    if (value == null) return null;
-    if (_availability is EqualUnmodifiableListView) return _availability;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final String? address;
   @override
   final String? id;
 
   @override
   String toString() {
-    return 'Beautician(image: $image, role: $role, photos: $photos, profession: $profession, about: $about, website: $website, isEmailVerified: $isEmailVerified, speciality: $speciality, services: $services, serviceCategories: $serviceCategories, reviews: $reviews, products: $products, accountId: $accountId, name: $name, email: $email, phone: $phone, notes: $notes, availability: $availability, address: $address, id: $id)';
+    return 'Beautician(name: $name, id: $id)';
   }
 
   @override
@@ -1354,59 +974,13 @@ class _$_Beautician implements _Beautician {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Beautician &&
-            const DeepCollectionEquality().equals(other.image, image) &&
-            (identical(other.role, role) || other.role == role) &&
-            const DeepCollectionEquality().equals(other._photos, _photos) &&
-            (identical(other.profession, profession) ||
-                other.profession == profession) &&
-            const DeepCollectionEquality().equals(other.about, about) &&
-            (identical(other.website, website) || other.website == website) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                other.isEmailVerified == isEmailVerified) &&
-            const DeepCollectionEquality()
-                .equals(other._speciality, _speciality) &&
-            const DeepCollectionEquality().equals(other._services, _services) &&
-            const DeepCollectionEquality()
-                .equals(other._serviceCategories, _serviceCategories) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
-            (identical(other.accountId, accountId) ||
-                other.accountId == accountId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            const DeepCollectionEquality().equals(other._notes, _notes) &&
-            const DeepCollectionEquality()
-                .equals(other._availability, _availability) &&
-            (identical(other.address, address) || other.address == address) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(image),
-        role,
-        const DeepCollectionEquality().hash(_photos),
-        profession,
-        const DeepCollectionEquality().hash(about),
-        website,
-        isEmailVerified,
-        const DeepCollectionEquality().hash(_speciality),
-        const DeepCollectionEquality().hash(_services),
-        const DeepCollectionEquality().hash(_serviceCategories),
-        const DeepCollectionEquality().hash(_reviews),
-        const DeepCollectionEquality().hash(_products),
-        accountId,
-        name,
-        email,
-        phone,
-        const DeepCollectionEquality().hash(_notes),
-        const DeepCollectionEquality().hash(_availability),
-        address,
-        id
-      ]);
+  int get hashCode => Object.hash(runtimeType, name, id);
 
   @JsonKey(ignore: true)
   @override
@@ -1423,317 +997,19 @@ class _$_Beautician implements _Beautician {
 }
 
 abstract class _Beautician implements Beautician {
-  const factory _Beautician(
-      {final dynamic image,
-      final String? role,
-      final List<dynamic>? photos,
-      final String? profession,
-      final dynamic about,
-      final String? website,
-      final bool? isEmailVerified,
-      final List<String>? speciality,
-      final List<String>? services,
-      final List<String>? serviceCategories,
-      final List<dynamic>? reviews,
-      final List<dynamic>? products,
-      final String? accountId,
-      final String? name,
-      final String? email,
-      final String? phone,
-      final List<dynamic>? notes,
-      final List<Availability>? availability,
-      final String? address,
-      final String? id}) = _$_Beautician;
+  const factory _Beautician({final String? name, final String? id}) =
+      _$_Beautician;
 
   factory _Beautician.fromJson(Map<String, dynamic> json) =
       _$_Beautician.fromJson;
 
   @override
-  dynamic get image;
-  @override
-  String? get role;
-  @override
-  List<dynamic>? get photos;
-  @override
-  String? get profession;
-  @override
-  dynamic get about;
-  @override
-  String? get website;
-  @override
-  bool? get isEmailVerified;
-  @override
-  List<String>? get speciality;
-  @override
-  List<String>? get services;
-  @override
-  List<String>? get serviceCategories;
-  @override
-  List<dynamic>? get reviews;
-  @override
-  List<dynamic>? get products;
-  @override
-  String? get accountId;
-  @override
   String? get name;
-  @override
-  String? get email;
-  @override
-  String? get phone;
-  @override
-  List<dynamic>? get notes;
-  @override
-  List<Availability>? get availability;
-  @override
-  String? get address;
   @override
   String? get id;
   @override
   @JsonKey(ignore: true)
   _$$_BeauticianCopyWith<_$_Beautician> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Availability _$AvailabilityFromJson(Map<String, dynamic> json) {
-  return _Availability.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Availability {
-  DateTime? get date => throw _privateConstructorUsedError;
-  String? get day => throw _privateConstructorUsedError;
-  String? get startTime => throw _privateConstructorUsedError;
-  String? get endTime => throw _privateConstructorUsedError;
-  bool? get isAvailable => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AvailabilityCopyWith<Availability> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AvailabilityCopyWith<$Res> {
-  factory $AvailabilityCopyWith(
-          Availability value, $Res Function(Availability) then) =
-      _$AvailabilityCopyWithImpl<$Res, Availability>;
-  @useResult
-  $Res call(
-      {DateTime? date,
-      String? day,
-      String? startTime,
-      String? endTime,
-      bool? isAvailable,
-      String? id});
-}
-
-/// @nodoc
-class _$AvailabilityCopyWithImpl<$Res, $Val extends Availability>
-    implements $AvailabilityCopyWith<$Res> {
-  _$AvailabilityCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? date = freezed,
-    Object? day = freezed,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
-    Object? isAvailable = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      day: freezed == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAvailable: freezed == isAvailable
-          ? _value.isAvailable
-          : isAvailable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_AvailabilityCopyWith<$Res>
-    implements $AvailabilityCopyWith<$Res> {
-  factory _$$_AvailabilityCopyWith(
-          _$_Availability value, $Res Function(_$_Availability) then) =
-      __$$_AvailabilityCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {DateTime? date,
-      String? day,
-      String? startTime,
-      String? endTime,
-      bool? isAvailable,
-      String? id});
-}
-
-/// @nodoc
-class __$$_AvailabilityCopyWithImpl<$Res>
-    extends _$AvailabilityCopyWithImpl<$Res, _$_Availability>
-    implements _$$_AvailabilityCopyWith<$Res> {
-  __$$_AvailabilityCopyWithImpl(
-      _$_Availability _value, $Res Function(_$_Availability) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? date = freezed,
-    Object? day = freezed,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
-    Object? isAvailable = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_$_Availability(
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      day: freezed == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isAvailable: freezed == isAvailable
-          ? _value.isAvailable
-          : isAvailable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Availability implements _Availability {
-  const _$_Availability(
-      {this.date,
-      this.day,
-      this.startTime,
-      this.endTime,
-      this.isAvailable,
-      this.id});
-
-  factory _$_Availability.fromJson(Map<String, dynamic> json) =>
-      _$$_AvailabilityFromJson(json);
-
-  @override
-  final DateTime? date;
-  @override
-  final String? day;
-  @override
-  final String? startTime;
-  @override
-  final String? endTime;
-  @override
-  final bool? isAvailable;
-  @override
-  final String? id;
-
-  @override
-  String toString() {
-    return 'Availability(date: $date, day: $day, startTime: $startTime, endTime: $endTime, isAvailable: $isAvailable, id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Availability &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.day, day) || other.day == day) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
-            (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.isAvailable, isAvailable) ||
-                other.isAvailable == isAvailable) &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, date, day, startTime, endTime, isAvailable, id);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AvailabilityCopyWith<_$_Availability> get copyWith =>
-      __$$_AvailabilityCopyWithImpl<_$_Availability>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AvailabilityToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Availability implements Availability {
-  const factory _Availability(
-      {final DateTime? date,
-      final String? day,
-      final String? startTime,
-      final String? endTime,
-      final bool? isAvailable,
-      final String? id}) = _$_Availability;
-
-  factory _Availability.fromJson(Map<String, dynamic> json) =
-      _$_Availability.fromJson;
-
-  @override
-  DateTime? get date;
-  @override
-  String? get day;
-  @override
-  String? get startTime;
-  @override
-  String? get endTime;
-  @override
-  bool? get isAvailable;
-  @override
-  String? get id;
-  @override
-  @JsonKey(ignore: true)
-  _$$_AvailabilityCopyWith<_$_Availability> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1748,7 +1024,9 @@ mixin _$Service {
   int? get price => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get durationInMinutes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'service_category')
   String? get serviceCategory => throw _privateConstructorUsedError;
+  @JsonKey(name: 'service_type')
   String? get serviceType => throw _privateConstructorUsedError;
   String? get beautician => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
@@ -1769,8 +1047,8 @@ abstract class $ServiceCopyWith<$Res> {
       int? price,
       String? description,
       int? durationInMinutes,
-      String? serviceCategory,
-      String? serviceType,
+      @JsonKey(name: 'service_category') String? serviceCategory,
+      @JsonKey(name: 'service_type') String? serviceType,
       String? beautician,
       String? id});
 }
@@ -1852,8 +1130,8 @@ abstract class _$$_ServiceCopyWith<$Res> implements $ServiceCopyWith<$Res> {
       int? price,
       String? description,
       int? durationInMinutes,
-      String? serviceCategory,
-      String? serviceType,
+      @JsonKey(name: 'service_category') String? serviceCategory,
+      @JsonKey(name: 'service_type') String? serviceType,
       String? beautician,
       String? id});
 }
@@ -1928,8 +1206,8 @@ class _$_Service implements _Service {
       this.price,
       this.description,
       this.durationInMinutes,
-      this.serviceCategory,
-      this.serviceType,
+      @JsonKey(name: 'service_category') this.serviceCategory,
+      @JsonKey(name: 'service_type') this.serviceType,
       this.beautician,
       this.id});
 
@@ -1947,8 +1225,10 @@ class _$_Service implements _Service {
   @override
   final int? durationInMinutes;
   @override
+  @JsonKey(name: 'service_category')
   final String? serviceCategory;
   @override
+  @JsonKey(name: 'service_type')
   final String? serviceType;
   @override
   final String? beautician;
@@ -2017,8 +1297,8 @@ abstract class _Service implements Service {
       final int? price,
       final String? description,
       final int? durationInMinutes,
-      final String? serviceCategory,
-      final String? serviceType,
+      @JsonKey(name: 'service_category') final String? serviceCategory,
+      @JsonKey(name: 'service_type') final String? serviceType,
       final String? beautician,
       final String? id}) = _$_Service;
 
@@ -2035,8 +1315,10 @@ abstract class _Service implements Service {
   @override
   int? get durationInMinutes;
   @override
+  @JsonKey(name: 'service_category')
   String? get serviceCategory;
   @override
+  @JsonKey(name: 'service_type')
   String? get serviceType;
   @override
   String? get beautician;

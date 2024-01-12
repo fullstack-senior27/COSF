@@ -87,7 +87,7 @@ class AppointmentsTable extends StatelessWidget {
                       Text(
                           "${data.data?.results?[index].date.toString().split(" ")[0]}",
                           style: urbanist500(kBlack, 12)),
-                      Text("${data.data?.results?[index].startTime}",
+                      Text("${data.data?.results?[index].timeSlot}",
                           style: urbanist400(kdescription, 9)),
                     ],
                   ),
@@ -111,8 +111,11 @@ class AppointmentsTable extends StatelessWidget {
                       Container(
                         height: 5.h,
                         width: 5.w,
-                        decoration: const BoxDecoration(
-                          color: Colors.green,
+                        decoration: BoxDecoration(
+                          color:
+                              data.data?.results?[index].status == "confirmed"
+                                  ? Colors.green
+                                  : Colors.red,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -172,7 +175,8 @@ class AppointmentsTable extends StatelessWidget {
 }
 
 class EarningsTable extends StatelessWidget {
-  const EarningsTable({super.key});
+  final GetAllUserAppointments? data;
+  const EarningsTable({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +198,7 @@ class EarningsTable extends StatelessWidget {
         ],
         rows: [
           ...List.generate(
-            5,
+            data?.data?.results?.length ?? 0,
             (index) => DataRow(
               cells: [
                 DataCell(
@@ -216,7 +220,7 @@ class EarningsTable extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Akeba Thomson",
+                            "${data?.data?.results?[index].beautician?.name}",
                             style: urbanist500(
                               kBlack,
                               12,
@@ -234,26 +238,34 @@ class EarningsTable extends StatelessWidget {
                     ],
                   ),
                 ),
-                DataCell(
-                  Text(
-                    "Hair Cut, Hair Color, Shaing",
-                    style: urbanist500(kBlack, 12),
+                DataCell(Row(children: [
+                  ...List.generate(
+                    data?.data?.results?[index].services?.length ?? 0,
+                    (index) => Text(
+                      "${data?.data?.results?[index].services?[index].name}, ",
+                      style: urbanist500(kBlack, 12),
+                    ),
                   ),
-                ),
+                ])),
                 DataCell(
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("23-02-2023", style: urbanist500(kBlack, 12)),
-                      Text("12:30 PM", style: urbanist400(kdescription, 9)),
+                      Text(
+                          "${data?.data?.results?[index].date.toString().split(" ").first}",
+                          style: urbanist500(kBlack, 12)),
+                      Text("${data?.data?.results?[index].timeSlot}",
+                          style: urbanist400(kdescription, 9)),
                     ],
                   ),
                 ),
                 DataCell(
                   Column(
                     children: [
-                      Text("\$200", style: urbanist500(kBlack, 12)),
-                      Text("Paid", style: urbanist400(kdescription, 9)),
+                      Text("\$${data?.data?.results?[index].amount}",
+                          style: urbanist500(kBlack, 12)),
+                      Text(data?.data?.results?[index].paymentStatus ?? "",
+                          style: urbanist400(kdescription, 9)),
                     ],
                   ),
                 ),
@@ -275,7 +287,7 @@ class EarningsTable extends StatelessWidget {
                         width: 2.w,
                       ),
                       Text(
-                        "Confirmed",
+                        data?.data?.results?[index].status ?? "",
                         style: urbanist600(Colors.green, 11),
                       )
                     ],

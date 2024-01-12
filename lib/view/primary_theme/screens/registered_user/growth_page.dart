@@ -1099,9 +1099,10 @@ class _GrowthPageState extends State<GrowthPage>
                         height: 20.h,
                       ),
                       const SizedBox(
-                        width: double.infinity,
-                        child: EarningsTable(),
-                      ),
+                          width: double.infinity,
+                          child: Text(
+                            "Earnings table will be here",
+                          )),
                     ],
                   ),
                 ),

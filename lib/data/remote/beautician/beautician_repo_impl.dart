@@ -4,6 +4,7 @@ import 'package:cosmetropolis/core/api_client.dart';
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client_photo.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
@@ -14,6 +15,7 @@ import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
@@ -22,6 +24,8 @@ import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
+import 'package:cosmetropolis/data/remote/booking/models/create_appointment.dart';
+import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
     as availability;
@@ -357,6 +361,73 @@ class BeauticianRepoImpl implements BeauticianRepo {
       log("Sucess ====> $response");
       return Right(
           availability.BeauticianAvailabilityResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, AddPhotoResponse>> addClientPhoto(
+    AddPhotoRequest addPhotoRequest,
+    String id,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+        "${AppConstants.baseUrl}beautician/clients/upload-image?clientId=$id",
+        addPhotoRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(AddPhotoResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, BeauticianServicesResponse>>
+      getBeauticianServices(
+    BeauticianServicesRequest beauticianServicesRequest,
+  ) async {
+    try {
+      final response = await _apiClient.postWithToken(
+        "${AppConstants.baseUrl}services",
+        beauticianServicesRequest.toJson(),
+      );
+      log("Sucess ====> $response");
+      return Right(BeauticianServicesResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
+      CreateAppointmentRequest createAppointmentRequest) async {
+    try {
+      final response = await _apiClient.postWithToken(
+        "${AppConstants.baseUrl}beautician/appointments/create",
+        createAppointmentRequest.toJson(),
+      );
+      log("Sucess ====> ${response.toString()}");
+      return Right(CreateAppointmentResponse.fromJson(response.data!));
+    } catch (e) {
+      log("Error =====> $e");
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, GetAllUserAppointments>>
+      getAllAppointments() async {
+    try {
+      final response = await _apiClient.getWithToken(
+        "${AppConstants.baseUrl}beautician/appointments/all",
+      );
+      log("Sucess ====> ${response.toString()}");
+      return Right(GetAllUserAppointments.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));

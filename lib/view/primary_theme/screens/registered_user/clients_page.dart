@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_note.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
+import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
@@ -9,6 +11,7 @@ import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
@@ -79,7 +82,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
       );
       isClientDetailLoading = false;
     }
-
+    await _viewModel.getAllAppointments();
     isclientLoading = false;
     setState(() {});
   }
@@ -100,12 +103,18 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
     List<Widget> screens = [
       All(
         data: _viewModel.getClientByIdResponseModel,
+        appointments:
+            _viewModel.allUserAppointments ?? GetAllUserAppointments(),
       ),
       Notes(
         data: _viewModel.getClientByIdResponseModel,
       ),
-      const Appoinments(),
-      const Photos(),
+      Appoinments(
+        data: _viewModel.allUserAppointments ?? GetAllUserAppointments(),
+      ),
+      Photos(
+        data: _viewModel.getClientByIdResponseModel,
+      ),
     ];
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -421,7 +430,13 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                   context,
                                                                 ).size.width *
                                                                 0.8,
-                                                        child: const AddPhoto(),
+                                                        child: AddPhoto(
+                                                            id: _viewModel
+                                                                    .getClientByIdResponseModel
+                                                                    ?.data
+                                                                    ?.client
+                                                                    ?.id ??
+                                                                ""),
                                                       ),
                                                     ),
                                                   );
@@ -786,13 +801,29 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const CalendarPage(),
-                                                ),
-                                              );
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) => AlertDialog(
+                                                      content: SingleChildScrollView(
+                                                          child: SizedBox(
+                                                              width: MediaQuery
+                                                                              .of(
+                                                                                  context)
+                                                                          .size
+                                                                          .width >
+                                                                      720
+                                                                  ? MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.5
+                                                                  : MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.9,
+                                                              child:
+                                                                  const ClientAppointmentBooking()))));
                                             },
                                             child: Column(
                                               children: [
@@ -1549,14 +1580,16 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
 }
 
 class Photos extends StatelessWidget {
+  final GetClientById? data;
   const Photos({
     super.key,
+    required this.data,
   });
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 20,
+      itemCount: data?.data?.photos?.length ?? 0,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -1565,17 +1598,17 @@ class Photos extends StatelessWidget {
         mainAxisSpacing: 10,
       ),
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              10.r,
+        return ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(20.r)),
+          child: CachedNetworkImage(
+            imageUrl: data?.data?.photos?[index] ?? "",
+            // width: double.infinity,
+            // height: 140.h,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => const Center(
+              child: CircularProgressIndicator(),
             ),
-            image: const DecorationImage(
-              image: NetworkImage(
-                "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180",
-              ),
-              fit: BoxFit.cover,
-            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         );
       },
@@ -1584,8 +1617,10 @@ class Photos extends StatelessWidget {
 }
 
 class Appoinments extends StatelessWidget {
+  final GetAllUserAppointments data;
   const Appoinments({
     super.key,
+    required this.data,
   });
 
   @override
@@ -1595,7 +1630,9 @@ class Appoinments extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        const EarningsTable(),
+        EarningsTable(
+          data: data,
+        ),
       ],
     );
   }
@@ -1707,9 +1744,11 @@ class Notes extends StatelessWidget {
 
 class All extends StatelessWidget {
   final GetClientById? data;
+  final GetAllUserAppointments? appointments;
   const All({
     super.key,
     required this.data,
+    required this.appointments,
   });
 
   @override
@@ -1899,7 +1938,7 @@ class All extends StatelessWidget {
           height: 182.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: appointments?.data?.results?.length ?? 0,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(
@@ -1946,7 +1985,9 @@ class All extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Akeba Thomson",
+                                  appointments?.data?.results?[index].beautician
+                                          ?.name ??
+                                      "",
                                   style: urbanist500(
                                     kBlack,
                                     14,
@@ -1962,8 +2003,14 @@ class All extends StatelessWidget {
                                       Container(
                                         height: 10.h,
                                         width: 10.w,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.red,
+                                        decoration: BoxDecoration(
+                                          color: appointments
+                                                      ?.data
+                                                      ?.results?[index]
+                                                      .status ==
+                                                  "confirmed"
+                                              ? Colors.green
+                                              : Colors.red,
                                           shape: BoxShape.circle,
                                         ),
                                       ),
@@ -1971,8 +2018,16 @@ class All extends StatelessWidget {
                                         height: 20.h,
                                       ),
                                       Text(
-                                        "Pending",
-                                        style: urbanist600(Colors.red, 10),
+                                        appointments?.data?.results?[index]
+                                                .status ??
+                                            "",
+                                        style: urbanist600(
+                                            appointments?.data?.results?[index]
+                                                        .status ==
+                                                    "confirmed"
+                                                ? Colors.green
+                                                : Colors.red,
+                                            10),
                                       )
                                     ],
                                   ),
@@ -1987,8 +2042,12 @@ class All extends StatelessWidget {
                                   Container(
                                     height: 10.h,
                                     width: 10.w,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.red,
+                                    decoration: BoxDecoration(
+                                      color: appointments?.data?.results?[index]
+                                                  .status ==
+                                              "confirmed"
+                                          ? Colors.green
+                                          : Colors.red,
                                       shape: BoxShape.circle,
                                     ),
                                   ),
@@ -1996,8 +2055,16 @@ class All extends StatelessWidget {
                                     height: 20.h,
                                   ),
                                   Text(
-                                    "Pending",
-                                    style: urbanist600(Colors.red, 10),
+                                    appointments
+                                            ?.data?.results?[index].status ??
+                                        "",
+                                    style: urbanist600(
+                                        appointments?.data?.results?[index]
+                                                    .status ==
+                                                "confirmed"
+                                            ? Colors.green
+                                            : Colors.red,
+                                        10),
                                   )
                                 ],
                               ),
@@ -2020,15 +2087,14 @@ class All extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 7.w,
-                        ),
-                        child: Text(
-                          "Services hair cut, hair color, shawing",
-                          style: urbanist400(
-                            kBlack,
-                            12,
+                      ...List.generate(
+                        appointments?.data?.results?[index].services?.length ??
+                            0,
+                        (ind) => Padding(
+                          padding: EdgeInsets.only(left: 7.w),
+                          child: Text(
+                            "${appointments?.data?.results?[index].services?[ind].name ?? ""}, ",
+                            style: urbanist500(kBlack, 12),
                           ),
                         ),
                       ),
@@ -2043,14 +2109,14 @@ class All extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "20-04-2023",
+                              "${appointments?.data?.results?[index].date.toString().split(" ")[0]}",
                               style: urbanist500(
                                 kBlack,
                                 14,
                               ),
                             ),
                             Text(
-                              "\$120.00",
+                              "\$${appointments?.data?.results?[index].amount}",
                               style: urbanist500(
                                 kBlack,
                                 14,
@@ -2067,14 +2133,14 @@ class All extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "12:30 PM",
+                              "${appointments?.data?.results?[index].timeSlot}",
                               style: urbanist400(
                                 kdescription,
                                 10,
                               ),
                             ),
                             Text(
-                              "Paid",
+                              "${appointments?.data?.results?[index].paymentStatus}",
                               style: urbanist400(
                                 kdescription,
                                 10,
@@ -2087,7 +2153,10 @@ class All extends StatelessWidget {
                       Container(
                         height: 10.h,
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: appointments?.data?.results?[index].status ==
+                                  "confirmed"
+                              ? Colors.green
+                              : Colors.red,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(
                               10.r,
@@ -2110,38 +2179,36 @@ class All extends StatelessWidget {
           height: 120.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: data?.data?.photos?.length ?? 0,
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.only(
-                  right: 3.w,
-                ),
-                child: Container(
-                  height: 120.h,
-                  //
-                  width: MediaQuery.of(
-                            context,
-                          ).size.width >
-                          1200
-                      ? 40.w
-                      : MediaQuery.of(context).size.width > 800
-                          ? 60.w
-                          : MediaQuery.of(context).size.width > 500
-                              ? 80.w
-                              : 140.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      10.r,
-                    ),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                        "https://tse3.mm.bing.net/th?id=OIP.qYQ35uBFjE3Izk9sx8v0HwHaE_&pid=Api&P=0&h=180",
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+                  padding: EdgeInsets.only(
+                    right: 3.w,
                   ),
-                ),
-              );
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                    child: CachedNetworkImage(
+                      imageUrl: data?.data?.photos?[index] ?? "",
+                      height: 120.h,
+                      //
+                      width: MediaQuery.of(
+                                context,
+                              ).size.width >
+                              1200
+                          ? 40.w
+                          : MediaQuery.of(context).size.width > 800
+                              ? 60.w
+                              : MediaQuery.of(context).size.width > 500
+                                  ? 80.w
+                                  : 140.w,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  ));
             },
           ),
         )

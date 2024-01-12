@@ -231,7 +231,9 @@ class _ReportingPageState extends State<ReportingPage> {
                             SizedBox(
                               height: 40.h,
                             ),
-                            const EarningsTable(),
+                            const Text(
+                              "Earnings table will be here",
+                            ),
                             SizedBox(
                               height: 40.h,
                             ),
@@ -409,7 +411,9 @@ class _ReportingPageState extends State<ReportingPage> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        const EarningsTable(),
+                        const Text(
+                          "Earnings table will be here",
+                        ),
                         SizedBox(
                           height: 40.h,
                         ),

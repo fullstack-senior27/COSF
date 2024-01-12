@@ -1,5 +1,6 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_client.dart';
+import 'package:cosmetropolis/data/remote/beautician/add_client_photo.dart';
 import 'package:cosmetropolis/data/remote/beautician/add_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/beautician_repo.dart';
 import 'package:cosmetropolis/data/remote/beautician/block_client.dart';
@@ -10,6 +11,10 @@ import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart'
     as clients;
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
+import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart'
+    as services;
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_profile_details.dart';
@@ -18,6 +23,8 @@ import 'package:cosmetropolis/data/remote/beautician/registration.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_profile_details.dart';
 import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
+import 'package:cosmetropolis/data/remote/booking/models/create_appointment.dart';
+import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:cosmetropolis/domain/providers/providers.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/helpers/base_view_model.dart';
@@ -25,8 +32,6 @@ import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
-    as availability;
 
 final beauticianViewModel = ChangeNotifierProvider(
   (ref) => BeauticianViewModel(
@@ -69,6 +74,39 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   availability.BeauticianAvailabilityResponse?
       get beauticianAvailabilityResponseModel =>
           _beauticianAvailabilityResponseModel;
+
+  services.BeauticianServicesResponse? _beauticianServicesResponseModel;
+  services.BeauticianServicesResponse? get beauticianServicesResponseModel =>
+      _beauticianServicesResponseModel;
+
+  DateTime? _selectedDate;
+  DateTime? get selectedDate => _selectedDate;
+  void setSelectedDate(DateTime? value) {
+    _selectedDate = value;
+    notifyListeners();
+  }
+
+  String _selectedSlot = "";
+  String get selectedSlot => _selectedSlot;
+  void setSelectedSlot(String value) {
+    _selectedSlot = value;
+    notifyListeners();
+  }
+
+  List<services.Datum> _selectedService = [];
+  List<services.Datum> get selectedService => _selectedService;
+  void addServices(services.Datum? value) {
+    _selectedService.add(value!);
+    notifyListeners();
+  }
+
+  void removeServices(services.Datum? value) {
+    _selectedService.remove(value);
+    notifyListeners();
+  }
+
+  GetAllUserAppointments? _allUserAppointments;
+  GetAllUserAppointments? get allUserAppointments => _allUserAppointments;
 
   Future<void> registerBeautician(
     BeauticianRegisterRequestModel beauticianRegisterRequestModel,
@@ -411,6 +449,74 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
           }, (r) {
             // showSnackbar(r.message ?? "");
             _beauticianAvailabilityResponseModel = r;
+            notifyListeners();
+          }),
+        );
+  }
+
+  Future<void> addClientPhoto(
+    BuildContext context,
+    AddPhotoRequest addPhotoRequest,
+    String id,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.addClientPhoto(addPhotoRequest, id).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            showSnackbar(r.message ?? "");
+            getClientById(context, id);
+            context.pop();
+          }),
+        );
+  }
+
+  Future<void> getServicesByBeautician(
+    BuildContext context,
+    services.BeauticianServicesRequest beauticianServicesRequest,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.getBeauticianServices(beauticianServicesRequest).then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            _beauticianServicesResponseModel = r;
+            notifyListeners();
+            // showSnackbar(r.message ?? "");
+            // context.pop();
+          }),
+        );
+  }
+
+  Future<void> makeAppointment(
+      CreateAppointmentRequest request, BuildContext context) async {
+    toggleLoading();
+    await _beauticianRepo.createAppointment(request).then(
+          (value) => value.fold(
+            (l) {
+              showSnackbar(l.message);
+              _selectedService.clear();
+              notifyListeners();
+              context.pop();
+            },
+            (r) {
+              showSnackbar(r.message!);
+              _selectedService.clear();
+              notifyListeners();
+              context.pop();
+            },
+          ),
+        );
+  }
+
+  Future<void> getAllAppointments() async {
+    toggleLoading();
+    await _beauticianRepo.getAllAppointments().then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message!);
+            _allUserAppointments = r;
             notifyListeners();
           }),
         );

@@ -1539,7 +1539,7 @@ Afternoon _$AfternoonFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Afternoon {
-  dynamic get isBooked => throw _privateConstructorUsedError;
+  bool? get isBooked => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
   @JsonKey(name: '_id')
   String? get id => throw _privateConstructorUsedError;
@@ -1555,7 +1555,7 @@ abstract class $AfternoonCopyWith<$Res> {
   factory $AfternoonCopyWith(Afternoon value, $Res Function(Afternoon) then) =
       _$AfternoonCopyWithImpl<$Res, Afternoon>;
   @useResult
-  $Res call({dynamic isBooked, String? time, @JsonKey(name: '_id') String? id});
+  $Res call({bool? isBooked, String? time, @JsonKey(name: '_id') String? id});
 }
 
 /// @nodoc
@@ -1579,7 +1579,7 @@ class _$AfternoonCopyWithImpl<$Res, $Val extends Afternoon>
       isBooked: freezed == isBooked
           ? _value.isBooked
           : isBooked // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -1599,7 +1599,7 @@ abstract class _$$_AfternoonCopyWith<$Res> implements $AfternoonCopyWith<$Res> {
       __$$_AfternoonCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic isBooked, String? time, @JsonKey(name: '_id') String? id});
+  $Res call({bool? isBooked, String? time, @JsonKey(name: '_id') String? id});
 }
 
 /// @nodoc
@@ -1621,7 +1621,7 @@ class __$$_AfternoonCopyWithImpl<$Res>
       isBooked: freezed == isBooked
           ? _value.isBooked
           : isBooked // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -1643,7 +1643,7 @@ class _$_Afternoon implements _Afternoon {
       _$$_AfternoonFromJson(json);
 
   @override
-  final dynamic isBooked;
+  final bool? isBooked;
   @override
   final String? time;
   @override
@@ -1660,15 +1660,15 @@ class _$_Afternoon implements _Afternoon {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Afternoon &&
-            const DeepCollectionEquality().equals(other.isBooked, isBooked) &&
+            (identical(other.isBooked, isBooked) ||
+                other.isBooked == isBooked) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(isBooked), time, id);
+  int get hashCode => Object.hash(runtimeType, isBooked, time, id);
 
   @JsonKey(ignore: true)
   @override
@@ -1686,7 +1686,7 @@ class _$_Afternoon implements _Afternoon {
 
 abstract class _Afternoon implements Afternoon {
   const factory _Afternoon(
-      {final dynamic isBooked,
+      {final bool? isBooked,
       final String? time,
       @JsonKey(name: '_id') final String? id}) = _$_Afternoon;
 
@@ -1694,7 +1694,7 @@ abstract class _Afternoon implements Afternoon {
       _$_Afternoon.fromJson;
 
   @override
-  dynamic get isBooked;
+  bool? get isBooked;
   @override
   String? get time;
   @override

@@ -29,7 +29,7 @@ class GetClientById with _$GetClientById {
 class Data with _$Data {
   const factory Data({
     Client? client,
-    List<dynamic>? photos,
+    List<String>? photos,
     List<ClientNote>? clientNote,
   }) = _Data;
 

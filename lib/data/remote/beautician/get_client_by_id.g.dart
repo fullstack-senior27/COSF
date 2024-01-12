@@ -28,7 +28,8 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
       client: json['client'] == null
           ? null
           : Client.fromJson(json['client'] as Map<String, dynamic>),
-      photos: json['photos'] as List<dynamic>?,
+      photos:
+          (json['photos'] as List<dynamic>?)?.map((e) => e as String).toList(),
       clientNote: (json['clientNote'] as List<dynamic>?)
           ?.map((e) => ClientNote.fromJson(e as Map<String, dynamic>))
           .toList(),

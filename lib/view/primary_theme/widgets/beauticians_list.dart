@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
+import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,13 +16,19 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
-class BeauticiansListWebView extends StatelessWidget {
+class BeauticiansListWebView extends ConsumerStatefulWidget {
   final Result? salonDetails;
   const BeauticiansListWebView({super.key, required this.salonDetails});
 
   @override
+  ConsumerState<BeauticiansListWebView> createState() =>
+      _BeauticiansListWebViewState();
+}
+
+class _BeauticiansListWebViewState
+    extends ConsumerState<BeauticiansListWebView> {
+  @override
   Widget build(BuildContext context) {
-    List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
     return Container(
       decoration: BoxDecoration(
         color: kWhite,
@@ -29,7 +41,7 @@ class BeauticiansListWebView extends StatelessWidget {
       child: InkWell(
         onTap: () {
           context.go("/beautician-listing/service-details",
-              extra: salonDetails?.id ?? "");
+              extra: widget.salonDetails?.id ?? "");
         },
         child: Padding(
           padding: EdgeInsets.all(10.h),
@@ -45,7 +57,7 @@ class BeauticiansListWebView extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: DecorationImage(
-                          image: NetworkImage(salonDetails?.image ??
+                          image: NetworkImage(widget.salonDetails?.image ??
                               "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                           fit: BoxFit.cover,
                         ),
@@ -58,7 +70,7 @@ class BeauticiansListWebView extends StatelessWidget {
                   Expanded(
                     flex: 7,
                     child: SizedBox(
-                      height: 180.h,
+                      height: 238.h,
                       child: Column(
                         children: [
                           Expanded(
@@ -69,7 +81,7 @@ class BeauticiansListWebView extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                salonDetails?.name ?? "",
+                                widget.salonDetails?.name ?? "",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
@@ -99,7 +111,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  salonDetails?.address ?? "",
+                                  widget.salonDetails?.address ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.urbanist(
@@ -108,9 +120,6 @@ class BeauticiansListWebView extends StatelessWidget {
                                     color: kdescription,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20.h,
                               ),
                             ],
                           ),
@@ -122,8 +131,9 @@ class BeauticiansListWebView extends StatelessWidget {
                               RatingBar.builder(
                                 ignoreGestures: true,
                                 itemSize: 20.sp,
-                                initialRating:
-                                    salonDetails?.avgRating?.toDouble() ?? 0,
+                                initialRating: widget.salonDetails?.avgRating
+                                        ?.toDouble() ??
+                                    0,
                                 allowHalfRating: true,
                                 itemBuilder: (context, _) => const Icon(
                                   Icons.star_rounded,
@@ -133,7 +143,7 @@ class BeauticiansListWebView extends StatelessWidget {
                                 unratedColor: kGrey,
                               ),
                               Text(
-                                "${salonDetails?.avgRating} (${salonDetails?.ratingCount} Reviews)",
+                                "${widget.salonDetails?.avgRating} (${widget.salonDetails?.ratingCount} Reviews)",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
@@ -143,9 +153,8 @@ class BeauticiansListWebView extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 5.h,
+                            height: 10.h,
                           ),
-                          const Spacer(),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -163,76 +172,72 @@ class BeauticiansListWebView extends StatelessWidget {
                               SizedBox(width: 5.w),
                               Expanded(
                                 child: SizedBox(
-                                  height: 30.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 10.h),
-                                    child: salonDetails?.morning?.isEmpty ??
-                                            true
-                                        ? Text(
-                                            "No slots found",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: kGrey,
-                                            ),
-                                          )
-                                        : ListView.builder(
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
-                                                salonDetails?.morning?.length ??
-                                                    0,
-                                            itemBuilder: (context, index) {
-                                              return Padding(
+                                  height: 50.h,
+                                  child: widget
+                                              .salonDetails?.morning?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.morning?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
+                                              child: Container(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: 1.w,
+                                                    horizontal: 5),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 10.h, right: 1.w),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    5.r,
+                                                  ),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.morning?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.morning?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
                                                 ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    // setState(() {
-                                                    //   selected = index;
-                                                    // });
-                                                  },
-                                                  child: FittedBox(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          5.r,
-                                                        ),
-                                                        color: const Color(
-                                                            0xffd1d1d1),
-                                                        // border: Border.all(
-                                                        //   color: selected != index
-                                                        //       ? Colors.grey
-                                                        //       : Colors.transparent,
-                                                        //   width: 1.0,
-                                                        // ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          "${salonDetails?.morning?[index].time}",
-                                                          style: GoogleFonts
-                                                              .urbanist(
-                                                            fontSize: 12.sp,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: kBlack,
-                                                          ),
-                                                        ),
-                                                      ),
+                                                child: Center(
+                                                  child: Text(
+                                                    "${widget.salonDetails?.morning?[index].time}",
+                                                    style: GoogleFonts.urbanist(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: kBlack,
                                                     ),
                                                   ),
                                                 ),
-                                              );
-                                            },
-                                          ),
-                                  ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                 ),
                               ),
                             ],
@@ -254,70 +259,74 @@ class BeauticiansListWebView extends StatelessWidget {
                               SizedBox(width: 5.w),
                               Expanded(
                                 child: SizedBox(
-                                  height: 30.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 10.h),
-                                    child: salonDetails?.afternoon?.isEmpty ??
-                                            true
-                                        ? Text(
-                                            "No slots found",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: kGrey,
-                                            ),
-                                          )
-                                        : ListView.builder(
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: salonDetails
-                                                    ?.afternoon?.length ??
-                                                0,
-                                            itemBuilder: (context, index) {
-                                              return Padding(
+                                  height: 50.h,
+                                  child: widget.salonDetails?.afternoon
+                                              ?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.afternoon?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
+                                              child: Container(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: 1.w,
+                                                    horizontal: 5),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 10.h, right: 1.w),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    5.r,
+                                                  ),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.afternoon?[
+                                                                  index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.afternoon?[
+                                                                  index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
                                                 ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    // setState(() {
-                                                    //   selected = index;
-                                                    // });
-                                                  },
-                                                  child: FittedBox(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          5.r,
-                                                        ),
-                                                        color: kWhite,
-                                                        border: Border.all(),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          "${salonDetails?.afternoon?[index].time}",
-                                                          style: GoogleFonts
-                                                              .urbanist(
-                                                            fontSize: 12.sp,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: kBlack,
-                                                          ),
-                                                        ),
-                                                      ),
+                                                child: Center(
+                                                  child: Text(
+                                                    "${widget.salonDetails?.afternoon?[index].time}",
+                                                    style: GoogleFonts.urbanist(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: kBlack,
                                                     ),
                                                   ),
                                                 ),
-                                              );
-                                            },
-                                          ),
-                                  ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                 ),
                               ),
                             ],
@@ -339,70 +348,72 @@ class BeauticiansListWebView extends StatelessWidget {
                               SizedBox(width: 5.w),
                               Expanded(
                                 child: SizedBox(
-                                  height: 30.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 10.h),
-                                    child: salonDetails?.evening?.isEmpty ??
-                                            true
-                                        ? Text(
-                                            "No slots found",
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: kGrey,
-                                            ),
-                                          )
-                                        : ListView.builder(
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
-                                                salonDetails?.evening?.length ??
-                                                    0,
-                                            itemBuilder: (context, index) {
-                                              return Padding(
+                                  height: 50.h,
+                                  child: widget
+                                              .salonDetails?.evening?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.evening?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
+                                              child: Container(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: 1.w,
+                                                    horizontal: 5),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 10.h, right: 1.w),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    5.r,
+                                                  ),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.evening?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.evening?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
                                                 ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    // setState(() {
-                                                    //   selected = index;
-                                                    // });
-                                                  },
-                                                  child: FittedBox(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          5.r,
-                                                        ),
-                                                        color: kWhite,
-                                                        border: Border.all(),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          "${salonDetails?.evening?[index].time}",
-                                                          style: GoogleFonts
-                                                              .urbanist(
-                                                            fontSize: 12.sp,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: kBlack,
-                                                          ),
-                                                        ),
-                                                      ),
+                                                child: Center(
+                                                  child: Text(
+                                                    "${widget.salonDetails?.evening?[index].time}",
+                                                    style: GoogleFonts.urbanist(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: kBlack,
                                                     ),
                                                   ),
                                                 ),
-                                              );
-                                            },
-                                          ),
-                                  ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                 ),
                               ),
                             ],
@@ -419,9 +430,9 @@ class BeauticiansListWebView extends StatelessWidget {
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: salonDetails?.services?.length ?? 0,
+                itemCount: widget.salonDetails?.services?.length ?? 0,
                 separatorBuilder: (context, index) {
-                  return Divider(
+                  return const Divider(
                     color: kGrey,
                   );
                 },
@@ -431,7 +442,7 @@ class BeauticiansListWebView extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          salonDetails?.services?[index].name ?? "",
+                          widget.salonDetails?.services?[index].name ?? "",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
@@ -447,7 +458,7 @@ class BeauticiansListWebView extends StatelessWidget {
                         // ),
                         const Spacer(),
                         Text(
-                          "${salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${salonDetails?.services?[index].price ?? 0}",
+                          "${widget.salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${widget.salonDetails?.services?[index].price ?? 0}",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
@@ -491,12 +502,33 @@ class BeauticiansListWebView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go("/beautician-listing/service-details",
+                          extra: widget.salonDetails?.id ?? "");
+                    },
                     child: const Text("More Information"),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(MediaQuery.of(context).size.width);
+                      ref
+                          .read(userViewModel)
+                          .setSelectedSalon(widget.salonDetails);
+                      if (SharedPreferenceService.getString(
+                                  AppConstants.accessToken) ==
+                              null ||
+                          SharedPreferenceService.getString(
+                                  AppConstants.accessToken) ==
+                              "") {
+                        showDialog(
+                            context: context,
+                            builder: (builder) => AlertDialog(
+                                scrollable: true,
+                                content: const LoginDialog()));
+                      } else {
+                        //validate
+                        log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
+                        ref.read(userViewModel).validate(context);
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: const MaterialStatePropertyAll(kBlack),
@@ -532,17 +564,23 @@ class BeauticiansListWebView extends StatelessWidget {
   }
 }
 
-class BeauticiansListMobView extends StatelessWidget {
+class BeauticiansListMobView extends ConsumerStatefulWidget {
   final Result? salonDetails;
   const BeauticiansListMobView({super.key, required this.salonDetails});
 
   @override
+  ConsumerState<BeauticiansListMobView> createState() =>
+      _BeauticiansListMobViewState();
+}
+
+class _BeauticiansListMobViewState
+    extends ConsumerState<BeauticiansListMobView> {
+  @override
   Widget build(BuildContext context) {
-    List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
     return InkWell(
       onTap: () {
         context.go("/beautician-listing/service-details",
-            extra: salonDetails?.id ?? "");
+            extra: widget.salonDetails?.id ?? "");
       },
       child: Container(
         decoration: BoxDecoration(
@@ -563,7 +601,7 @@ class BeauticiansListMobView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: DecorationImage(
-                    image: NetworkImage(salonDetails?.image ??
+                    image: NetworkImage(widget.salonDetails?.image ??
                         "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI"),
                     fit: BoxFit.cover,
                   ),
@@ -575,7 +613,7 @@ class BeauticiansListMobView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    salonDetails?.name ?? "",
+                    widget.salonDetails?.name ?? "",
                     style: GoogleFonts.urbanist(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -605,7 +643,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      salonDetails?.address ?? "",
+                      widget.salonDetails?.address ?? "",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.urbanist(
@@ -628,7 +666,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   RatingBar.builder(
                     ignoreGestures: true,
                     itemSize: 20.sp,
-                    initialRating: salonDetails?.avgRating ?? 0,
+                    initialRating: widget.salonDetails?.avgRating ?? 0,
                     allowHalfRating: true,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,
@@ -638,7 +676,7 @@ class BeauticiansListMobView extends StatelessWidget {
                     unratedColor: kGrey,
                   ),
                   Text(
-                    "${salonDetails?.avgRating} (${salonDetails?.ratingCount} Reviews)",
+                    "${widget.salonDetails?.avgRating} (${widget.salonDetails?.ratingCount} Reviews)",
                     style: GoogleFonts.urbanist(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -668,52 +706,62 @@ class BeauticiansListMobView extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Expanded(
                     child: SizedBox(
-                      height: 30.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.h),
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: timings.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 1.w),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // setState(() {
-                                  //   selected = index;
-                                  // });
-                                },
-                                child: FittedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.morning?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.morning?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
                                   child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    margin: EdgeInsets.only(
+                                        bottom: 10.h, right: 3.w),
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: const Color(0xffd1d1d1),
-                                      // border: Border.all(
-                                      //   color: selected != index
-                                      //       ? Colors.grey
-                                      //       : Colors.transparent,
-                                      //   width: 1.0,
-                                      // ),
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget.salonDetails
+                                                  ?.morning?[index].isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget.salonDetails
+                                                  ?.morning?[index].isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    child: Center(
                                       child: Text(
-                                        timings[index],
+                                        "${widget.salonDetails?.morning?[index].time}",
                                         style: GoogleFonts.urbanist(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w400,
                                           color: kBlack,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
@@ -735,47 +783,143 @@ class BeauticiansListMobView extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Expanded(
                     child: SizedBox(
-                      height: 30.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.h),
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: timings.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 1.w),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // setState(() {
-                                  //   selected = index;
-                                  // });
-                                },
-                                child: FittedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.afternoon?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.afternoon?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
                                   child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    margin: EdgeInsets.only(
+                                        bottom: 10.h, right: 3.w),
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: kWhite,
-                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget
+                                                  .salonDetails
+                                                  ?.afternoon?[index]
+                                                  .isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget
+                                                  .salonDetails
+                                                  ?.afternoon?[index]
+                                                  .isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    child: Center(
                                       child: Text(
-                                        timings[index],
+                                        "${widget.salonDetails?.afternoon?[index].time}",
                                         style: GoogleFonts.urbanist(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w400,
                                           color: kBlack,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                                );
+                              },
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FittedBox(
+                    child: Text(
+                      "EVENING    ",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: kBlack,
                       ),
+                    ),
+                  ),
+                  SizedBox(width: 5.w),
+                  Expanded(
+                    child: SizedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.evening?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.evening?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    margin: EdgeInsets.only(
+                                        bottom: 10.h, right: 3.w),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget.salonDetails
+                                                  ?.evening?[index].isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget.salonDetails
+                                                  ?.evening?[index].isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "${widget.salonDetails?.evening?[index].time}",
+                                        style: GoogleFonts.urbanist(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: kBlack,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
@@ -784,7 +928,7 @@ class BeauticiansListMobView extends StatelessWidget {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: salonDetails?.services?.length ?? 0,
+                itemCount: widget.salonDetails?.services?.length ?? 0,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -795,7 +939,8 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  salonDetails?.services?[index].name ?? "",
+                                  widget.salonDetails?.services?[index].name ??
+                                      "",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w600,
@@ -819,7 +964,7 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "${salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${salonDetails?.services?[index].price ?? ""}",
+                                  "${widget.salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${widget.salonDetails?.services?[index].price ?? ""}",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
@@ -869,7 +1014,10 @@ class BeauticiansListMobView extends StatelessWidget {
                   border: Border.all(color: kBlue, width: 2),
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.go("/beautician-listing/service-details",
+                        extra: widget.salonDetails?.id ?? "");
+                  },
                   child: Text(
                     "More Information",
                     style: GoogleFonts.urbanist(
@@ -887,7 +1035,24 @@ class BeauticiansListMobView extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    print(MediaQuery.of(context).size.width);
+                    ref
+                        .read(userViewModel)
+                        .setSelectedSalon(widget.salonDetails);
+                    if (SharedPreferenceService.getString(
+                                AppConstants.accessToken) ==
+                            null ||
+                        SharedPreferenceService.getString(
+                                AppConstants.accessToken) ==
+                            "") {
+                      showDialog(
+                          context: context,
+                          builder: (builder) => AlertDialog(
+                              scrollable: true, content: const LoginDialog()));
+                    } else {
+                      //validate
+                      log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
+                      ref.read(userViewModel).validate(context);
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: const MaterialStatePropertyAll(kBlack),

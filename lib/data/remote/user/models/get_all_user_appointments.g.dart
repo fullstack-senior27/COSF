@@ -50,115 +50,48 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
           .toList(),
       status: json['status'] as String?,
       paymentStatus: json['paymentStatus'] as String?,
-      id: json['id'] as String?,
+      id: json['_id'] as String?,
       beautician: json['beautician'] == null
           ? null
           : Beautician.fromJson(json['beautician'] as Map<String, dynamic>),
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       zipcode: json['zipcode'] as String?,
-      user: json['user'] as String?,
       amount: json['amount'] as int?,
-      startTime: json['startTime'] as String?,
+      timeSlot: json['timeSlot'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      v: json['v'] as int?,
+      v: json['__v'] as int?,
     );
 
 Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'services': instance.services,
       'status': instance.status,
       'paymentStatus': instance.paymentStatus,
-      'id': instance.id,
+      '_id': instance.id,
       'beautician': instance.beautician,
       'date': instance.date?.toIso8601String(),
       'zipcode': instance.zipcode,
-      'user': instance.user,
       'amount': instance.amount,
-      'startTime': instance.startTime,
+      'timeSlot': instance.timeSlot,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'v': instance.v,
+      '__v': instance.v,
     };
 
 _$_Beautician _$$_BeauticianFromJson(Map<String, dynamic> json) =>
     _$_Beautician(
-      image: json['image'],
-      role: json['role'] as String?,
-      photos: json['photos'] as List<dynamic>?,
-      profession: json['profession'] as String?,
-      about: json['about'],
-      website: json['website'] as String?,
-      isEmailVerified: json['isEmailVerified'] as bool?,
-      speciality: (json['speciality'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      services: (json['services'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      serviceCategories: (json['serviceCategories'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      reviews: json['reviews'] as List<dynamic>?,
-      products: json['products'] as List<dynamic>?,
-      accountId: json['accountId'] as String?,
       name: json['name'] as String?,
-      email: json['email'] as String?,
-      phone: json['phone'] as String?,
-      notes: json['notes'] as List<dynamic>?,
-      availability: (json['availability'] as List<dynamic>?)
-          ?.map((e) => Availability.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      address: json['address'] as String?,
       id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$_BeauticianToJson(_$_Beautician instance) =>
     <String, dynamic>{
-      'image': instance.image,
-      'role': instance.role,
-      'photos': instance.photos,
-      'profession': instance.profession,
-      'about': instance.about,
-      'website': instance.website,
-      'isEmailVerified': instance.isEmailVerified,
-      'speciality': instance.speciality,
-      'services': instance.services,
-      'serviceCategories': instance.serviceCategories,
-      'reviews': instance.reviews,
-      'products': instance.products,
-      'accountId': instance.accountId,
       'name': instance.name,
-      'email': instance.email,
-      'phone': instance.phone,
-      'notes': instance.notes,
-      'availability': instance.availability,
-      'address': instance.address,
-      'id': instance.id,
-    };
-
-_$_Availability _$$_AvailabilityFromJson(Map<String, dynamic> json) =>
-    _$_Availability(
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      day: json['day'] as String?,
-      startTime: json['startTime'] as String?,
-      endTime: json['endTime'] as String?,
-      isAvailable: json['isAvailable'] as bool?,
-      id: json['id'] as String?,
-    );
-
-Map<String, dynamic> _$$_AvailabilityToJson(_$_Availability instance) =>
-    <String, dynamic>{
-      'date': instance.date?.toIso8601String(),
-      'day': instance.day,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'isAvailable': instance.isAvailable,
       'id': instance.id,
     };
 
@@ -168,8 +101,8 @@ _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
       price: json['price'] as int?,
       description: json['description'] as String?,
       durationInMinutes: json['durationInMinutes'] as int?,
-      serviceCategory: json['serviceCategory'] as String?,
-      serviceType: json['serviceType'] as String?,
+      serviceCategory: json['service_category'] as String?,
+      serviceType: json['service_type'] as String?,
       beautician: json['beautician'] as String?,
       id: json['id'] as String?,
     );
@@ -181,8 +114,8 @@ Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
       'price': instance.price,
       'description': instance.description,
       'durationInMinutes': instance.durationInMinutes,
-      'serviceCategory': instance.serviceCategory,
-      'serviceType': instance.serviceType,
+      'service_category': instance.serviceCategory,
+      'service_type': instance.serviceType,
       'beautician': instance.beautician,
       'id': instance.id,
     };

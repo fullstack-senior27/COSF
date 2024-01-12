@@ -90,7 +90,7 @@ class AvailableDay with _$AvailableDay {
 @freezed
 class Afternoon with _$Afternoon {
   const factory Afternoon({
-    dynamic isBooked,
+    bool? isBooked,
     String? time,
     @JsonKey(name: '_id') String? id,
   }) = _Afternoon;

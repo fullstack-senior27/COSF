@@ -227,7 +227,7 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Data {
   Client? get client => throw _privateConstructorUsedError;
-  List<dynamic>? get photos => throw _privateConstructorUsedError;
+  List<String>? get photos => throw _privateConstructorUsedError;
   List<ClientNote>? get clientNote => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -241,7 +241,7 @@ abstract class $DataCopyWith<$Res> {
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
   $Res call(
-      {Client? client, List<dynamic>? photos, List<ClientNote>? clientNote});
+      {Client? client, List<String>? photos, List<ClientNote>? clientNote});
 
   $ClientCopyWith<$Res>? get client;
 }
@@ -271,7 +271,7 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
       photos: freezed == photos
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<String>?,
       clientNote: freezed == clientNote
           ? _value.clientNote
           : clientNote // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Client? client, List<dynamic>? photos, List<ClientNote>? clientNote});
+      {Client? client, List<String>? photos, List<ClientNote>? clientNote});
 
   @override
   $ClientCopyWith<$Res>? get client;
@@ -326,7 +326,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
       photos: freezed == photos
           ? _value._photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<String>?,
       clientNote: freezed == clientNote
           ? _value._clientNote
           : clientNote // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 class _$_Data implements _Data {
   const _$_Data(
       {this.client,
-      final List<dynamic>? photos,
+      final List<String>? photos,
       final List<ClientNote>? clientNote})
       : _photos = photos,
         _clientNote = clientNote;
@@ -349,9 +349,9 @@ class _$_Data implements _Data {
 
   @override
   final Client? client;
-  final List<dynamic>? _photos;
+  final List<String>? _photos;
   @override
-  List<dynamic>? get photos {
+  List<String>? get photos {
     final value = _photos;
     if (value == null) return null;
     if (_photos is EqualUnmodifiableListView) return _photos;
@@ -410,7 +410,7 @@ class _$_Data implements _Data {
 abstract class _Data implements Data {
   const factory _Data(
       {final Client? client,
-      final List<dynamic>? photos,
+      final List<String>? photos,
       final List<ClientNote>? clientNote}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
@@ -418,7 +418,7 @@ abstract class _Data implements Data {
   @override
   Client? get client;
   @override
-  List<dynamic>? get photos;
+  List<String>? get photos;
   @override
   List<ClientNote>? get clientNote;
   @override
