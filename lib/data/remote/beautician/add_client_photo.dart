@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'add_client_photo.freezed.dart';
 part 'add_client_photo.g.dart';

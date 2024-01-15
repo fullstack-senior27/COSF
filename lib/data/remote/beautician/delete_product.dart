@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'delete_product.freezed.dart';
 part 'delete_product.g.dart';

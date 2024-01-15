@@ -1,17 +1,11 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
-import 'package:cosmetropolis/routes/navigator_service.dart';
-import 'package:cosmetropolis/routes/route_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/locator.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signup_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 DateTime get _now => DateTime.now();
 

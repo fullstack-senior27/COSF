@@ -1,3 +1,4 @@
+import 'package:cosmetropolis/data/remote/public/models/blogs_details_model.dart';
 import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/view/navigation/navigation_page.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
@@ -25,8 +26,6 @@ import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/signu
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:cosmetropolis/data/remote/public/models/blogs_details_model.dart';
-
 enum AppRoute {
   splash,
   navigation,
@@ -48,7 +47,7 @@ final GoRouter routers = GoRouter(routes: [
   GoRoute(
       path: '/navigation',
       builder: (context, state) => const NavigationPage(),
-      pageBuilder: defaultPageBuilder(const NavigationPage())),
+      pageBuilder: defaultPageBuilder(const NavigationPage()),),
 
   //free user (without login)
   GoRoute(
@@ -56,29 +55,29 @@ final GoRouter routers = GoRouter(routes: [
       builder: (context, state) =>
           const DashboardFreePage(child: LandingPage()),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: LandingPage()))),
+          defaultPageBuilder(const DashboardFreePage(child: LandingPage())),),
   GoRoute(
       path: '/beauticianLogin',
       builder: (context, state) =>
           const DashboardFreePage(child: BeauticianLogin()),
       pageBuilder: defaultPageBuilder(
-          const DashboardFreePage(child: BeauticianLogin()))),
+          const DashboardFreePage(child: BeauticianLogin()),),),
   GoRoute(
       path: '/pricing',
       builder: (context, state) => const PricingDetails(),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: PricingDetails()))),
+          defaultPageBuilder(const DashboardFreePage(child: PricingDetails())),),
   GoRoute(
       path: '/help',
       builder: (context, state) => const DashboardFreePage(child: HelpPage()),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: HelpPage()))),
+          defaultPageBuilder(const DashboardFreePage(child: HelpPage())),),
   GoRoute(
     path: '/help/:nav',
     builder: (context, state) => DashboardFreePage(
         child: HelpPage(
       nav: int.parse(state.pathParameters['nav'].toString()),
-    )),
+    ),),
     // pageBuilder: defaultPageBuilder(DashboardFreePage(child: HelpPage(nav: int.parse(state.pathParameters['nav'].toString()),)),)
   ),
   GoRoute(
@@ -100,20 +99,20 @@ final GoRouter routers = GoRouter(routes: [
           builder: (context, state) => const FortgotPassPage(),
           pageBuilder: defaultPageBuilder(const FortgotPassPage()),
         )
-      ]),
+      ],),
   GoRoute(
       path: '/serviceDetails',
       builder: (context, state) {
         String id = state.extra.toString();
         return ServiceDetailsPage(id: id);
-      }),
+      },),
   GoRoute(
       path: '/signUp',
       builder: (context, state) => const DashboardFreePage(
             child: SignupPage(),
           ),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: SignupPage()))),
+          defaultPageBuilder(const DashboardFreePage(child: SignupPage())),),
   GoRoute(
       path: '/blogs',
       builder: (context, state) => const DashboardFreePage(child: BlogPage()),
@@ -128,30 +127,30 @@ final GoRouter routers = GoRouter(routes: [
             return DashboardFreePage(
                 child: BlogDetailsPage(
               data: data,
-            ));
+            ),);
           },
           // pageBuilder: defaultPageBuilder(
           //      DashboardFreePage(child: BlogDetailsPage(data: data,))),
         )
-      ]),
+      ],),
   GoRoute(
       path: '/beautician-listing',
       builder: (context, state) =>
           const DashboardFreePage(child: BeauticiansListPageView()),
       pageBuilder: defaultPageBuilder(
-          const DashboardFreePage(child: BeauticiansListPageView())),
+          const DashboardFreePage(child: BeauticiansListPageView()),),
       routes: [
         GoRoute(
             path: 'service-details',
             builder: (context, state) {
               String id = state.extra.toString();
               return ServiceDetailsPage(id: id);
-            }
+            },
 
             // pageBuilder: defaultPageBuilder(
             //     const DashboardFreePage(child: ServiceDetailsPage())),
             )
-      ]),
+      ],),
   GoRoute(
     path: '/edit-profile',
     builder: (context, state) => const DashboardFreePage(child: EditProfile()),
@@ -167,69 +166,69 @@ final GoRouter routers = GoRouter(routes: [
   ),
   GoRoute(
       path: '/dashboard-login',
-      builder: (context, state) => DashboardLoginPage(
+      builder: (context, state) => const DashboardLoginPage(
             child: CalendarPage(),
           ),
-      pageBuilder: defaultPageBuilder(DashboardLoginPage(
+      pageBuilder: defaultPageBuilder(const DashboardLoginPage(
         child: CalendarPage(),
-      )),
+      ),),
       routes: [
         GoRoute(
           path: 'client',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: ClintsPage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: ClintsPage(),
-          )),
+          ),),
         ),
         GoRoute(
           path: 'growth',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: GrowthPage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: GrowthPage(),
-          )),
+          ),),
         ),
         GoRoute(
           path: 'marketing',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: MarketingPage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: MarketingPage(),
-          )),
+          ),),
         ),
         GoRoute(
           path: 'promotions',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: PromotionsPage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: PromotionsPage(),
-          )),
+          ),),
         ),
         GoRoute(
           path: 'profile',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: ProfilePage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: ProfilePage(),
-          )),
+          ),),
         ),
         GoRoute(
           path: 'more',
-          builder: (context, state) => DashboardLoginPage(
+          builder: (context, state) => const DashboardLoginPage(
             child: MorePage(),
           ),
-          pageBuilder: defaultPageBuilder(DashboardLoginPage(
+          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
             child: MorePage(),
-          )),
+          ),),
         ),
-      ]),
-]);
+      ],),
+],);
 
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context,
@@ -257,7 +256,7 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
 
 Page<dynamic> Function(BuildContext, GoRouterState) defaultPageBuilder<T>(
         Widget child,
-        {GoRouterState? state}) =>
+        {GoRouterState? state,}) =>
     (BuildContext context, state) {
       return buildPageWithDefaultTransition<T>(
         context: context,

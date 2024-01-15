@@ -1,8 +1,7 @@
-import 'package:circular_chart_flutter/circular_chart_flutter.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:pie_chart/pie_chart.dart';
 
@@ -27,7 +26,7 @@ LineChartData get sampleData1 => LineChartData(
     minX: 0,
     maxX: 6,
     minY: 0,
-    maxY: 4);
+    maxY: 4,);
 
 List<LineChartBarData> get lineBarsData =>
     [lineChartBarData1, lineChartBarData2];
@@ -66,7 +65,7 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
   }
 
   return Text(text,
-      style: urbanist400(kdescription, 12), textAlign: TextAlign.center);
+      style: urbanist400(kdescription, 12), textAlign: TextAlign.center,);
 }
 
 SideTitles leftTitles() => SideTitles(
@@ -124,8 +123,8 @@ FlGridData get gridData =>
 FlBorderData get borderData => FlBorderData(
       show: true,
       border: const Border(
-        bottom: BorderSide(color: klines, width: 1),
-        left: BorderSide(color: klines, width: 1),
+        bottom: BorderSide(color: klines),
+        left: BorderSide(color: klines),
         right: BorderSide(color: Colors.transparent),
         top: BorderSide(color: Colors.transparent),
       ),
@@ -146,7 +145,7 @@ LineChartBarData get lineChartBarData1 => LineChartBarData(
           FlSpot(2, 2.8),
           FlSpot(1, 2),
           FlSpot(0, 0.6),
-        ]);
+        ],);
 
 LineChartBarData get lineChartBarData2 => LineChartBarData(
         isCurved: true,
@@ -163,7 +162,7 @@ LineChartBarData get lineChartBarData2 => LineChartBarData(
           FlSpot(2, 2.5),
           FlSpot(1, 1.6),
           FlSpot(0, 1),
-        ]);
+        ],);
 
 //create bar chart with 2 bar data
 // class MyBarChart extends StatelessWidget {
@@ -243,8 +242,8 @@ LineChartBarData get lineChartBarData2 => LineChartBarData(
 //     );
 
 class BarChartSample2 extends StatefulWidget {
-  BarChartSample2({super.key});
-  final Color leftBarColor = Color(0xff2A382A);
+  const BarChartSample2({super.key});
+  final Color leftBarColor = const Color(0xff2A382A);
   final Color rightBarColor = kBlue;
   final Color avgColor = kGrey;
   @override
@@ -296,9 +295,6 @@ class BarChartSample2State extends State<BarChartSample2> {
           children: <Widget>[
             Row(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                // makeTransactionsIcon(),
-              ],
             ),
             const SizedBox(
               height: 38,
@@ -347,7 +343,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                                 .barRods
                                 .map((rod) {
                               return rod.copyWith(
-                                  toY: avg, color: widget.avgColor);
+                                  toY: avg, color: widget.avgColor,);
                             }).toList(),
                           );
                         }
@@ -379,7 +375,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                     ),
                   ),
                   borderData: FlBorderData(
-                      show: true, border: Border.all(color: klines, width: 1)),
+                      show: true, border: Border.all(color: klines),),
                   barGroups: showingBarGroups,
                   gridData: FlGridData(show: true),
                 ),
@@ -444,12 +440,12 @@ class BarChartSample2State extends State<BarChartSample2> {
             toY: y1,
             color: widget.leftBarColor,
             width: width,
-            borderRadius: BorderRadius.zero),
+            borderRadius: BorderRadius.zero,),
         BarChartRodData(
             toY: y2,
             color: widget.rightBarColor,
             width: width,
-            borderRadius: BorderRadius.zero),
+            borderRadius: BorderRadius.zero,),
       ],
     );
   }
@@ -469,13 +465,13 @@ class MyPie extends StatelessWidget {
           title: "Medium box braids",
           radius: radius,
           titleStyle: urbanist400(kGrey, 12),
-          titlePositionPercentageOffset: 1),
+          titlePositionPercentageOffset: 1,),
       PieChartSectionData(
           color: kBlue,
           title: "Soft Locs",
           radius: radius,
           titleStyle: urbanist400(kGrey, 12),
-          titlePositionPercentageOffset: 1),
+          titlePositionPercentageOffset: 1,),
       PieChartSectionData(
         color: kBlue,
         title: "Beads and Braids",
@@ -535,6 +531,6 @@ class MyPie extends StatelessWidget {
     ];
 
     return PieChart(PieChartData(
-        sections: pieData, centerSpaceRadius: 0, sectionsSpace: 1));
+        sections: pieData, centerSpaceRadius: 0, sectionsSpace: 1,),);
   }
 }

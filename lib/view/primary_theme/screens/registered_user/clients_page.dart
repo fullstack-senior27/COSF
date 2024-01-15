@@ -9,7 +9,6 @@ import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
@@ -69,7 +68,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
   bool isClientDetailLoading = false;
   bool addNotes = false;
 
-  void getData() async {
+  Future<void> getData() async {
     isclientLoading = true;
     setState(() {});
     await _viewModel.getAllClients(context);
@@ -104,13 +103,13 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
       All(
         data: _viewModel.getClientByIdResponseModel,
         appointments:
-            _viewModel.allUserAppointments ?? GetAllUserAppointments(),
+            _viewModel.allUserAppointments ?? const GetAllUserAppointments(),
       ),
       Notes(
         data: _viewModel.getClientByIdResponseModel,
       ),
       Appoinments(
-        data: _viewModel.allUserAppointments ?? GetAllUserAppointments(),
+        data: _viewModel.allUserAppointments ?? const GetAllUserAppointments(),
       ),
       Photos(
         data: _viewModel.getClientByIdResponseModel,
@@ -431,12 +430,13 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                 ).size.width *
                                                                 0.8,
                                                         child: AddPhoto(
-                                                            id: _viewModel
-                                                                    .getClientByIdResponseModel
-                                                                    ?.data
-                                                                    ?.client
-                                                                    ?.id ??
-                                                                ""),
+                                                          id: _viewModel
+                                                                  .getClientByIdResponseModel
+                                                                  ?.data
+                                                                  ?.client
+                                                                  ?.id ??
+                                                              "",
+                                                        ),
                                                       ),
                                                     ),
                                                   );
@@ -510,7 +510,8 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                         ),
                                                         backgroundColor:
                                                             const Color(
-                                                                0xfff8f8f8),
+                                                          0xfff8f8f8,
+                                                        ),
                                                         content:
                                                             SingleChildScrollView(
                                                           child: SizedBox(
@@ -751,9 +752,10 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                                 true;
                                                                             setState(() {});
                                                                             await _viewModel.createNote(
-                                                                                context,
-                                                                                CreateNoteRequest(note: notesController.text, formula: formulaController.text, products: selectedProducts, client: _viewModel.getClientByIdResponseModel?.data?.client?.id ?? ""),
-                                                                                _viewModel.getClientByIdResponseModel?.data?.client?.id ?? "");
+                                                                              context,
+                                                                              CreateNoteRequest(note: notesController.text, formula: formulaController.text, products: selectedProducts, client: _viewModel.getClientByIdResponseModel?.data?.client?.id ?? ""),
+                                                                              _viewModel.getClientByIdResponseModel?.data?.client?.id ?? "",
+                                                                            );
                                                                             selectedProducts.clear();
                                                                             productValues.clear();
                                                                             notesController.clear();
@@ -802,28 +804,30 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                           GestureDetector(
                                             onTap: () {
                                               showDialog(
-                                                  context: context,
-                                                  builder: (context) => AlertDialog(
-                                                      content: SingleChildScrollView(
-                                                          child: SizedBox(
-                                                              width: MediaQuery
-                                                                              .of(
-                                                                                  context)
-                                                                          .size
-                                                                          .width >
-                                                                      720
-                                                                  ? MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.5
-                                                                  : MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.9,
-                                                              child:
-                                                                  const ClientAppointmentBooking()))));
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                  content:
+                                                      SingleChildScrollView(
+                                                    child: SizedBox(
+                                                      width: MediaQuery.of(
+                                                                context,
+                                                              ).size.width >
+                                                              720
+                                                          ? MediaQuery.of(
+                                                                context,
+                                                              ).size.width *
+                                                              0.5
+                                                          : MediaQuery.of(
+                                                                context,
+                                                              ).size.width *
+                                                              0.9,
+                                                      child:
+                                                          const ClientAppointmentBooking(),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
                                             },
                                             child: Column(
                                               children: [
@@ -1382,11 +1386,13 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                     if (_viewModel.allClients?.data?[index]
                                             .isBlocked ??
                                         false)
-                                      Text("Blocked",
-                                          style: urbanist600(
-                                            Colors.red,
-                                            12,
-                                          ))
+                                      Text(
+                                        "Blocked",
+                                        style: urbanist600(
+                                          Colors.red,
+                                          12,
+                                        ),
+                                      )
                                     else
                                       BlackButton(context, "View", () async {
                                         isClientDetailLoading = true;
@@ -1630,7 +1636,7 @@ class Appoinments extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        EarningsTable(
+        AppointmentsTable(
           data: data,
         ),
       ],
@@ -1703,10 +1709,13 @@ class Notes extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat("dd MMMM yyyy").format(DateTime.parse(data
-                                ?.data?.clientNote?[index].createdAt
-                                .toString() ??
-                            "")),
+                        DateFormat("dd MMMM yyyy").format(
+                          DateTime.parse(
+                            data?.data?.clientNote?[index].createdAt
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                         style: urbanist400(
                           kdescription,
                           14,
@@ -1894,10 +1903,13 @@ class All extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            DateFormat("dd MMMM yyyy").format(DateTime.parse(
+                            DateFormat("dd MMMM yyyy").format(
+                              DateTime.parse(
                                 data?.data?.clientNote?[index].createdAt
                                         .toString() ??
-                                    "")),
+                                    "",
+                              ),
+                            ),
                             style: urbanist400(
                               kdescription,
                               14,
@@ -2022,12 +2034,13 @@ class All extends StatelessWidget {
                                                 .status ??
                                             "",
                                         style: urbanist600(
-                                            appointments?.data?.results?[index]
-                                                        .status ==
-                                                    "confirmed"
-                                                ? Colors.green
-                                                : Colors.red,
-                                            10),
+                                          appointments?.data?.results?[index]
+                                                      .status ==
+                                                  "confirmed"
+                                              ? Colors.green
+                                              : Colors.red,
+                                          10,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -2059,12 +2072,13 @@ class All extends StatelessWidget {
                                             ?.data?.results?[index].status ??
                                         "",
                                     style: urbanist600(
-                                        appointments?.data?.results?[index]
-                                                    .status ==
-                                                "confirmed"
-                                            ? Colors.green
-                                            : Colors.red,
-                                        10),
+                                      appointments?.data?.results?[index]
+                                                  .status ==
+                                              "confirmed"
+                                          ? Colors.green
+                                          : Colors.red,
+                                      10,
+                                    ),
                                   )
                                 ],
                               ),
@@ -2182,33 +2196,34 @@ class All extends StatelessWidget {
             itemCount: data?.data?.photos?.length ?? 0,
             itemBuilder: (context, index) {
               return Padding(
-                  padding: EdgeInsets.only(
-                    right: 3.w,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                    child: CachedNetworkImage(
-                      imageUrl: data?.data?.photos?[index] ?? "",
-                      height: 120.h,
-                      //
-                      width: MediaQuery.of(
-                                context,
-                              ).size.width >
-                              1200
-                          ? 40.w
-                          : MediaQuery.of(context).size.width > 800
-                              ? 60.w
-                              : MediaQuery.of(context).size.width > 500
-                                  ? 80.w
-                                  : 140.w,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                padding: EdgeInsets.only(
+                  right: 3.w,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                  child: CachedNetworkImage(
+                    imageUrl: data?.data?.photos?[index] ?? "",
+                    height: 120.h,
+                    //
+                    width: MediaQuery.of(
+                              context,
+                            ).size.width >
+                            1200
+                        ? 40.w
+                        : MediaQuery.of(context).size.width > 800
+                            ? 60.w
+                            : MediaQuery.of(context).size.width > 500
+                                ? 80.w
+                                : 140.w,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
                     ),
-                  ));
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
+              );
             },
           ),
         )

@@ -1,12 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_forgot_password.freezed.dart';
 part 'user_forgot_password.g.dart';
 
 UserForgotPasswordRequest userForgotPasswordRequestFromJson(String str) =>
     UserForgotPasswordRequest.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String userForgotPasswordRequestToJson(UserForgotPasswordRequest data) =>
     json.encode(data.toJson());
@@ -23,7 +24,7 @@ class UserForgotPasswordRequest with _$UserForgotPasswordRequest {
 
 UserForgotPasswordResponse userForgotPasswordResponseFromJson(String str) =>
     UserForgotPasswordResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String userForgotPasswordResponseToJson(UserForgotPasswordResponse data) =>
     json.encode(data.toJson());

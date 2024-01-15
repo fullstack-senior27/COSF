@@ -25,7 +25,7 @@ class BeauticianProfileRequest with _$BeauticianProfileRequest {
 
 BeauticianProfileResponse beauticianProfileResponseFromJson(String str) =>
     BeauticianProfileResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianProfileResponseToJson(BeauticianProfileResponse data) =>
     json.encode(data.toJson());

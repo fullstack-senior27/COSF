@@ -1,6 +1,5 @@
 import 'package:cosmetropolis/core/core.dart';
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
-import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/salon/salon_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';

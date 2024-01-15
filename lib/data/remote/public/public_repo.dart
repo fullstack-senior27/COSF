@@ -9,12 +9,12 @@ import 'package:dartz/dartz.dart';
 
 abstract class PublicRepo {
   Future<Either<ApiException, AllBlogsResponse>> getAllBlogs(
-      int page, int limit);
+      int page, int limit,);
 
   Future<Either<ApiException, AllBlogCategoriesResponse>> getAllCategories();
 
   Future<Either<ApiException, AllBlogsResponse>> getBlogsByCategory(
-      int page, int limit, BlogCategoryRequest blogCategoryRequest);
+      int page, int limit, BlogCategoryRequest blogCategoryRequest,);
 
   Future<Either<ApiException, BlogDetailsResponse>> getBlogDetails(String id);
 

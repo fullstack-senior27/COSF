@@ -61,7 +61,7 @@ class ApiClient {
         options: Options(headers: {
           'Authorization':
               'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        }),
+        },),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -80,7 +80,7 @@ class ApiClient {
         options: Options(headers: {
           'Authorization':
               'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        }),
+        },),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -101,7 +101,7 @@ class ApiClient {
         options: Options(headers: {
           'Authorization':
               'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        }),
+        },),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -127,7 +127,7 @@ class ApiClient {
         options: Options(headers: {
           'Authorization':
               'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        }),
+        },),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -153,7 +153,7 @@ class ApiClient {
         options: Options(headers: {
           'Authorization':
               'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        }),
+        },),
       );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());

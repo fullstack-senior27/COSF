@@ -91,7 +91,7 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
     notifyListeners();
   }
 
-  List<salon.Service> _selectedService = [];
+  final List<salon.Service> _selectedService = [];
   List<salon.Service> get selectedService => _selectedService;
   void addService(salon.Service? value) {
     _selectedService.add(value!);
@@ -189,22 +189,22 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
     toggleLoading();
     await _userRepository
         .getUserProfileDetails(
-            SharedPreferenceService.getString(AppConstants.accessToken) ?? "")
+            SharedPreferenceService.getString(AppConstants.accessToken) ?? "",)
         .then(
           (value) => value.fold(
             (l) {
               // showSnackbar(l.message);
               showDialog(
                   context: context,
-                  builder: (builder) => AlertDialog(
-                      scrollable: true, content: const LoginDialog()));
+                  builder: (builder) => const AlertDialog(
+                      scrollable: true, content: LoginDialog(),),);
             },
             (r) {
               // _profileDetailsResponse = r;
               showDialog(
                   context: context,
-                  builder: (builder) => AlertDialog(
-                      scrollable: true, content: const SelectDate()));
+                  builder: (builder) => const AlertDialog(
+                      scrollable: true, content: SelectDate(),),);
               // showSnackbar(r.message!);
               notifyListeners();
             },
@@ -308,7 +308,7 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
   }
 
   Future<void> makeAppointment(
-      CreateAppointmentRequest request, BuildContext context) async {
+      CreateAppointmentRequest request, BuildContext context,) async {
     toggleLoading();
     await _bookingRepo.createAppointment(request).then(
           (value) => value.fold(

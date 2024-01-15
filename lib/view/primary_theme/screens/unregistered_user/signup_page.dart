@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:cosmetropolis/data/remote/user/models/user_register_model.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
@@ -319,7 +318,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                                 phone: phoneNumberController.text,
                                 name: nameController.text,
                                 role: "user",
-                              ).toString());
+                              ).toString(),);
                               print(
                                 UserRegisterRequest(
                                   email: emailController.text,
@@ -337,7 +336,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                                     name: nameController.text,
                                     role: "user",
                                   ),
-                                  context);
+                                  context,);
                               isLoading = false;
                               setState(() {});
                             },
@@ -357,7 +356,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                                         width: 20.h,
                                         child: const CircularProgressIndicator(
                                           color: kWhite,
-                                        )),
+                                        ),),
                                   )
                                 : Text(
                                     "Sign Up",

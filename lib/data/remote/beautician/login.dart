@@ -7,7 +7,7 @@ part 'login.g.dart';
 
 BeauticianLoginRequestModel beauticianLoginRequestModelFromJson(String str) =>
     BeauticianLoginRequestModel.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianLoginRequestModelToJson(BeauticianLoginRequestModel data) =>
     json.encode(data.toJson());
@@ -25,7 +25,7 @@ class BeauticianLoginRequestModel with _$BeauticianLoginRequestModel {
 
 BeauticianLoginResponseModel beauticianLoginResponseModelFromJson(String str) =>
     BeauticianLoginResponseModel.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianLoginResponseModelToJson(BeauticianLoginResponseModel data) =>
     json.encode(data.toJson());

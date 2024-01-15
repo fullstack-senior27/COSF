@@ -1018,7 +1018,6 @@ class PhotosTab extends StatelessWidget {
           ),
           child: DottedBorder(
             color: kGrey,
-            strokeWidth: 1,
             radius: Radius.circular(5.r),
             borderType: BorderType.RRect,
             strokeCap: StrokeCap.round,
@@ -1830,7 +1829,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                 SizedBox(height: 5.h),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 15.w, vertical: 20.h),
+                                      horizontal: 15.w, vertical: 20.h,),
                                   child: const EditUpcomingHours(),
                                 ),
                                 // SizedBox(height: 15.h),
@@ -2652,7 +2651,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                                 decoration: BoxDecoration(
                                   color: kWhite,
                                   borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: kBlack, width: 1),
+                                  border: Border.all(),
                                 ),
                                 child: FittedBox(
                                   child: Row(
@@ -2711,7 +2710,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                       decoration: BoxDecoration(
                         color: kBlack,
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: klines, width: 1),
+                        border: Border.all(color: klines),
                       ),
                       child: Row(
                         children: [
@@ -2756,7 +2755,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                                 decoration: BoxDecoration(
                                   color: kWhite,
                                   borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: kBlack, width: 1),
+                                  border: Border.all(),
                                 ),
                                 child: FittedBox(
                                   child: Row(
@@ -2815,7 +2814,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                       decoration: BoxDecoration(
                         color: kBlack,
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: klines, width: 1),
+                        border: Border.all(color: klines),
                       ),
                       child: Row(
                         children: [
@@ -2919,7 +2918,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                       decoration: BoxDecoration(
                         color: kBlack,
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: klines, width: 1),
+                        border: Border.all(color: klines),
                       ),
                       child: Row(
                         children: [

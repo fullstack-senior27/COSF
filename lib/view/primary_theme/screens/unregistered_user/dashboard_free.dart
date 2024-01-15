@@ -221,7 +221,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
             ],
           ),
         ),
-        body: widget.child);
+        body: widget.child,);
     // return Scaffold(
     //   key: scaffoldKey,
     // drawer: Drawer(

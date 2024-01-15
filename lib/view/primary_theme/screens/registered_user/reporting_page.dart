@@ -3,7 +3,6 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -352,7 +351,7 @@ class _ReportingPageState extends State<ReportingPage> {
                               child: SizedBox(
                                 height: 400.h,
                                 // width: double.infinity,
-                                child: BarChartSample2(),
+                                child: const BarChartSample2(),
                               ),
                             ),
                             SizedBox(
@@ -421,7 +420,7 @@ class _ReportingPageState extends State<ReportingPage> {
                           child: SizedBox(
                             height: 400.h,
                             // width: double.infinity,
-                            child: BarChartSample2(),
+                            child: const BarChartSample2(),
                           ),
                         ),
                         SizedBox(

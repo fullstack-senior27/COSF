@@ -168,8 +168,8 @@ class _LoginPageState extends ConsumerState<LoginPage> with BaseScreenView {
                               await _viewModel.login(
                                   UserLoginRequest(
                                       email: emailController.text,
-                                      password: passwordController.text),
-                                  context);
+                                      password: passwordController.text,),
+                                  context,);
                               isLoading = false;
                               setState(() {});
                             },
@@ -189,7 +189,7 @@ class _LoginPageState extends ConsumerState<LoginPage> with BaseScreenView {
                                         width: 20.h,
                                         child: const CircularProgressIndicator(
                                           color: kWhite,
-                                        )),
+                                        ),),
                                   )
                                 : Text(
                                     "Sign in",

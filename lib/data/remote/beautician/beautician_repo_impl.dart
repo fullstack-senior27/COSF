@@ -15,6 +15,8 @@ import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
 import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
@@ -27,8 +29,6 @@ import 'package:cosmetropolis/data/remote/beautician/update_slot.dart';
 import 'package:cosmetropolis/data/remote/booking/models/create_appointment.dart';
 import 'package:cosmetropolis/data/remote/user/models/get_all_user_appointments.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
-import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
-    as availability;
 import 'package:dartz/dartz.dart';
 
 class BeauticianRepoImpl implements BeauticianRepo {
@@ -278,7 +278,7 @@ class BeauticianRepoImpl implements BeauticianRepo {
       final response = await _apiClient.patchWithTokenParams(
           "${AppConstants.baseUrl}beautician/clients/update",
           editClientRequest.toJson(),
-          {"clientId": clientId});
+          {"clientId": clientId},);
       log("Sucess ====> $response");
       return Right(EditClientResponse.fromJson(response.data!));
     } catch (e) {
@@ -289,10 +289,10 @@ class BeauticianRepoImpl implements BeauticianRepo {
 
   @override
   Future<Either<ApiException, EditClientResponse>> deleteClient(
-      String id) async {
+      String id,) async {
     try {
       final response = await _apiClient.delete(
-          "${AppConstants.baseUrl}beautician/client/delete?clientId=$id");
+          "${AppConstants.baseUrl}beautician/client/delete?clientId=$id",);
       log("Sucess ====> $response");
       return Right(EditClientResponse.fromJson(response.data!));
     } catch (e) {
@@ -320,7 +320,7 @@ class BeauticianRepoImpl implements BeauticianRepo {
 
   @override
   Future<Either<ApiException, EditClientResponse>> blockClient(
-      BlockClientRequest editClientRequest) async {
+      BlockClientRequest editClientRequest,) async {
     try {
       final response = await _apiClient.postWithToken(
         "${AppConstants.baseUrl}beautician/client/block",
@@ -360,7 +360,7 @@ class BeauticianRepoImpl implements BeauticianRepo {
       );
       log("Sucess ====> $response");
       return Right(
-          availability.BeauticianAvailabilityResponse.fromJson(response.data!));
+          availability.BeauticianAvailabilityResponse.fromJson(response.data!),);
     } catch (e) {
       log("Error =====> $e");
       return Left(ApiException(e.toString()));
@@ -405,7 +405,7 @@ class BeauticianRepoImpl implements BeauticianRepo {
 
   @override
   Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
-      CreateAppointmentRequest createAppointmentRequest) async {
+      CreateAppointmentRequest createAppointmentRequest,) async {
     try {
       final response = await _apiClient.postWithToken(
         "${AppConstants.baseUrl}beautician/appointments/create",

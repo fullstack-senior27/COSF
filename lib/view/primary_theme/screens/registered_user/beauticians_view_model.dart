@@ -93,7 +93,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
     notifyListeners();
   }
 
-  List<services.Datum> _selectedService = [];
+  final List<services.Datum> _selectedService = [];
   List<services.Datum> get selectedService => _selectedService;
   void addServices(services.Datum? value) {
     _selectedService.add(value!);
@@ -379,7 +379,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             await getAllClients(context);
             if (allClients?.data?.isNotEmpty ?? false) {
               await getClientById(
-                  context, allClients?.data?[0].client?.id ?? "");
+                  context, allClients?.data?[0].client?.id ?? "",);
             }
             context.pop();
             showSnackbar(r.message ?? "");
@@ -404,7 +404,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   }
 
   Future<void> blockClient(BuildContext context, String id,
-      BlockClientRequest blockClientRequest) async {
+      BlockClientRequest blockClientRequest,) async {
     toggleLoading();
     await _beauticianRepo.blockClient(blockClientRequest).then(
           (value) => value.fold((l) {
@@ -413,7 +413,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
             await getAllClients(context);
             if (allClients?.data?.isNotEmpty ?? false) {
               await getClientById(
-                  context, allClients?.data?[0].client?.id ?? "");
+                  context, allClients?.data?[0].client?.id ?? "",);
             }
             context.pop();
             showSnackbar(r.message ?? "");
@@ -442,7 +442,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
     toggleLoading();
     await _beauticianRepo
         .getBeauticianAvailability(
-            SharedPreferenceService.getString(AppConstants.userId) ?? "")
+            SharedPreferenceService.getString(AppConstants.userId) ?? "",)
         .then(
           (value) => value.fold((l) {
             showSnackbar(l.message);
@@ -489,7 +489,7 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   }
 
   Future<void> makeAppointment(
-      CreateAppointmentRequest request, BuildContext context) async {
+      CreateAppointmentRequest request, BuildContext context,) async {
     toggleLoading();
     await _beauticianRepo.createAppointment(request).then(
           (value) => value.fold(

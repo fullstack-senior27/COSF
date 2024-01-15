@@ -1,12 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_beautician_services.freezed.dart';
 part 'get_beautician_services.g.dart';
 
 BeauticianServicesRequest beauticianServicesRequestFromJson(String str) =>
     BeauticianServicesRequest.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianServicesRequestToJson(BeauticianServicesRequest data) =>
     json.encode(data.toJson());
@@ -23,7 +24,7 @@ class BeauticianServicesRequest with _$BeauticianServicesRequest {
 
 BeauticianServicesResponse beauticianServicesResponseFromJson(String str) =>
     BeauticianServicesResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianServicesResponseToJson(BeauticianServicesResponse data) =>
     json.encode(data.toJson());

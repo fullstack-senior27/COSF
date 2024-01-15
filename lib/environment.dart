@@ -38,7 +38,7 @@ class Environment {
           ],
           path: 'assets/languages',
           fallbackLocale: const Locale('en', 'US'),
-          child: MyApp(),
+          child: const MyApp(),
         ),
       ),
     );

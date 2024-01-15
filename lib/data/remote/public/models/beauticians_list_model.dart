@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'beauticians_list_model.freezed.dart';
 part 'beauticians_list_model.g.dart';

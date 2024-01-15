@@ -8,10 +8,10 @@ import 'package:cosmetropolis/data/remote/beautician/create_service.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
-import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
-    as availability;
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
+    as availability;
 import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_client_by_id.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_products.dart';
@@ -28,25 +28,25 @@ import 'package:dartz/dartz.dart';
 abstract class BeauticianRepo {
   Future<Either<ApiException, BeauticianRegisterResponseModel>>
       beauticianRegister(
-          BeauticianRegisterRequestModel beauticianRegisterRequestModel);
+          BeauticianRegisterRequestModel beauticianRegisterRequestModel,);
 
   Future<Either<ApiException, BeauticianLoginResponseModel>> beauticianLogin(
-      BeauticianLoginRequestModel beauticianRegisterRequestModel);
+      BeauticianLoginRequestModel beauticianRegisterRequestModel,);
 
   Future<Either<ApiException, BeauticianProfileResponse>>
       getBeauticianProfileDetails(
-          BeauticianProfileRequest beauticianProfileRequest);
+          BeauticianProfileRequest beauticianProfileRequest,);
 
   Future<Either<ApiException, BeauticianUpdateProfileResponse>>
       updateBeauticianProfile(
-          BeauticianUpdateProfileRequest beauticianProfileRequest);
+          BeauticianUpdateProfileRequest beauticianProfileRequest,);
 
   Future<Either<ApiException, BeauticianAvailabilityResponse>>
       updateBeauticianAvailability(
-          BeauticianAvailabilityRequest beauticianAvailabilityRequest);
+          BeauticianAvailabilityRequest beauticianAvailabilityRequest,);
 
   Future<Either<ApiException, AddClientResponse>> addClient(
-      AddClientRequest addClientRequest);
+      AddClientRequest addClientRequest,);
 
   Future<Either<ApiException, CreateServiceCategoryResponse>>
       createServiceCategory(
@@ -66,14 +66,14 @@ abstract class BeauticianRepo {
   Future<Either<ApiException, DeleteProductResponse>> deleteProduct(String id);
 
   Future<Either<ApiException, UpdateProductResponse>> updateProduct(
-      String id, UpdateProductRequest updateProductRequest);
+      String id, UpdateProductRequest updateProductRequest,);
 
   Future<Either<ApiException, GetAllClients>> getAllClients();
 
   Future<Either<ApiException, GetClientById>> getClientById(String id);
 
   Future<Either<ApiException, EditClientResponse>> editClient(
-      String clientId, EditClientRequest editClientRequest);
+      String clientId, EditClientRequest editClientRequest,);
 
   Future<Either<ApiException, EditClientResponse>> deleteClient(String id);
 
@@ -82,7 +82,7 @@ abstract class BeauticianRepo {
   );
 
   Future<Either<ApiException, EditClientResponse>> blockClient(
-      BlockClientRequest editClientRequest);
+      BlockClientRequest editClientRequest,);
 
   Future<Either<ApiException, UpdateSlotResponse>> updateSlot(
     UpdateSlotRequest updateSlotRequest,
@@ -101,7 +101,7 @@ abstract class BeauticianRepo {
   );
 
   Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
-      CreateAppointmentRequest createAppointmentRequest);
+      CreateAppointmentRequest createAppointmentRequest,);
 
   Future<Either<ApiException, GetAllUserAppointments>> getAllAppointments();
 }

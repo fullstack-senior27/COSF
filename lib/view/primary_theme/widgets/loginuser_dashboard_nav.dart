@@ -1,5 +1,4 @@
 import 'package:cosmetropolis/core/constants.dart';
-import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

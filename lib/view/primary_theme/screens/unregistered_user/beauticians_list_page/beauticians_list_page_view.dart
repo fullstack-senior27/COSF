@@ -1,5 +1,5 @@
-import 'dart:math';
-
+import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart'
+    as beautician;
 import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
@@ -12,13 +12,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
-import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart'
-    as beautician;
 
 import '../../../../../utils/app_sizes.dart';
 

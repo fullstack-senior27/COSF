@@ -6,12 +6,12 @@ part 'edit_availability.freezed.dart';
 part 'edit_availability.g.dart';
 
 BeauticianAvailabilityRequest beauticianAvailabilityRequestFromJson(
-        String str) =>
+        String str,) =>
     BeauticianAvailabilityRequest.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianAvailabilityRequestToJson(
-        BeauticianAvailabilityRequest data) =>
+        BeauticianAvailabilityRequest data,) =>
     json.encode(data.toJson());
 
 @freezed
@@ -36,12 +36,12 @@ class Availability with _$Availability {
 }
 
 BeauticianAvailabilityResponse beauticianAvailabilityResponseFromJson(
-        String str) =>
+        String str,) =>
     BeauticianAvailabilityResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianAvailabilityResponseToJson(
-        BeauticianAvailabilityResponse data) =>
+        BeauticianAvailabilityResponse data,) =>
     json.encode(data.toJson());
 
 @freezed

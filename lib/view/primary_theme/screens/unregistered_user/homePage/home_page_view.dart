@@ -3,7 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart'
     as beautician;
-import 'package:cosmetropolis/data/remote/salon/models/salon_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/utils.dart';
@@ -14,7 +13,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
@@ -83,7 +81,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
     );
   }
 
-  void getData() async {
+  Future<void> getData() async {
     isLoading = true;
     setState(() {});
     await _viewModel
@@ -95,7 +93,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
       // location: "",
       // avgRating: null,
       // priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
-    )));
+    ),),);
     isLoading = false;
     setState(() {});
   }
@@ -179,9 +177,10 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                             beautician.BeauticiansFilterRequest(
                                                 filters: beautician.Filters(
                                               search: p0,
-                                            )),
+                                            ),),
                                           );
                                         }
+                                        return null;
                                       },
                                       searchInputDecoration: InputDecoration(
                                         hintText: "Services or beautician name",
@@ -227,7 +226,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                               child: Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                        horizontal: 8),
+                                                        horizontal: 8,),
                                                 height: 60,
                                                 color: kWhite,
                                                 child: Row(
@@ -251,7 +250,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                     ),
                                                     gapW8,
                                                     Flexible(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                         width: 250,
                                                         child: Column(
                                                           mainAxisAlignment:
@@ -263,7 +262,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                               style:
                                                                   const TextStyle(
                                                                       fontSize:
-                                                                          12),
+                                                                          12,),
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -277,7 +276,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                                     fontSize:
                                                                         12,
                                                                     color:
-                                                                        kGrey),
+                                                                        kGrey,),
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
@@ -302,7 +301,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                                     color:
                                                                         kGrey,
                                                                     fontSize:
-                                                                        12),
+                                                                        12,),
                                                           ),
                                                           const Icon(
                                                             Icons.star_rounded,
@@ -427,7 +426,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                 "assets/icons/calendar.webp",
                                               ),
                                               color: Color.fromARGB(
-                                                  155, 97, 95, 95),
+                                                  155, 97, 95, 95,),
                                             ),
                                           ),
                                         ),
@@ -495,7 +494,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                               //     const beautician.PriceRange(
                                               //         minPrice: 0,
                                               //         maxPrice: 200),
-                                            )));
+                                            ),),);
                                           }
                                           if (_viewModel.searchController.text
                                                   .length <
@@ -527,7 +526,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                   ? null
                                                   : _viewModel
                                                       .dateController.text,
-                                            )));
+                                            ),),);
                                           }
                                           context.go("/beautician-listing");
                                         },
@@ -570,9 +569,10 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                         beautician.BeauticiansFilterRequest(
                                             filters: beautician.Filters(
                                           search: p0,
-                                        )),
+                                        ),),
                                       );
                                     }
+                                    return null;
                                   },
                                   searchInputDecoration: InputDecoration(
                                     hintText: "Services or beautician name",
@@ -614,7 +614,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                           // defaults to Text widget
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 8),
+                                                horizontal: 8,),
                                             height: 60,
                                             color: kWhite,
                                             child: Row(
@@ -626,7 +626,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                     color: Colors.grey[200],
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30),
+                                                            30,),
                                                   ),
                                                   child: const Center(
                                                     child: Icon(
@@ -638,7 +638,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                 ),
                                                 gapW8,
                                                 Flexible(
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     width: 250,
                                                     child: Column(
                                                       mainAxisAlignment:
@@ -649,7 +649,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                           e.name ?? "",
                                                           style:
                                                               const TextStyle(
-                                                                  fontSize: 12),
+                                                                  fontSize: 12,),
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                         ),
@@ -663,7 +663,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                                     fontSize:
                                                                         12,
                                                                     color:
-                                                                        kGrey),
+                                                                        kGrey,),
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
@@ -684,7 +684,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                         "${e.avgRating ?? 0}",
                                                         style: const TextStyle(
                                                             color: kGrey,
-                                                            fontSize: 12),
+                                                            fontSize: 12,),
                                                       ),
                                                       const Icon(
                                                         Icons.star_rounded,
@@ -873,7 +873,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                           //     const beautician.PriceRange(
                                           //         minPrice: 0,
                                           //         maxPrice: 200),
-                                        )));
+                                        ),),);
                                       }
                                       if (_viewModel
                                               .searchController.text.length <
@@ -898,7 +898,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                   .dateController.text.isEmpty
                                               ? null
                                               : _viewModel.dateController.text,
-                                        )));
+                                        ),),);
                                       }
                                       context.go("/beautician-listing");
                                     },
@@ -990,11 +990,11 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                     aspectRatio: 0.95,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        border: Border.all(color: kBlack),
+                                        border: Border.all(),
                                       ),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(0.r)),
+                                            Radius.circular(0.r),),
                                         child: CachedNetworkImage(
                                           imageUrl:
                                               "https://dummyimage.com/300.png/09f/fff",
@@ -1071,7 +1071,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                                                       ?.data?[index]
                                                       .name ??
                                                   "",
-                                            )));
+                                            ),),);
                                             _viewModel.category = _viewModel
                                                     .serviceCategoriesList
                                                     ?.data?[index]

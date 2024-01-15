@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class BookingRepo {
   Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
-      CreateAppointmentRequest createAppointmentRequest);
+      CreateAppointmentRequest createAppointmentRequest,);
 }

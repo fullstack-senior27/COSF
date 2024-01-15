@@ -6,12 +6,12 @@ part 'registration.freezed.dart';
 part 'registration.g.dart';
 
 BeauticianRegisterRequestModel beauticianRegisterRequestModelFromJson(
-        String str) =>
+        String str,) =>
     BeauticianRegisterRequestModel.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianRegisterRequestModelToJson(
-        BeauticianRegisterRequestModel data) =>
+        BeauticianRegisterRequestModel data,) =>
     json.encode(data.toJson());
 
 @freezed
@@ -29,12 +29,12 @@ class BeauticianRegisterRequestModel with _$BeauticianRegisterRequestModel {
 }
 
 BeauticianRegisterResponseModel beauticianRegisterResponseModelFromJson(
-        String str) =>
+        String str,) =>
     BeauticianRegisterResponseModel.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianRegisterResponseModelToJson(
-        BeauticianRegisterResponseModel data) =>
+        BeauticianRegisterResponseModel data,) =>
     json.encode(data.toJson());
 
 @freezed

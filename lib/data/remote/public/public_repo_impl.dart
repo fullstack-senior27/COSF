@@ -19,7 +19,7 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, AllBlogsResponse>> getAllBlogs(
-      int page, int limit) async {
+      int page, int limit,) async {
     try {
       final response =
           await _apiClient.postWithParams("${AppConstants.baseUrl}blogs", {}, {
@@ -50,7 +50,7 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, AllBlogsResponse>> getBlogsByCategory(
-      int page, int limit, BlogCategoryRequest blogCategoryRequest) async {
+      int page, int limit, BlogCategoryRequest blogCategoryRequest,) async {
     try {
       final response = await _apiClient.post(
         "${AppConstants.baseUrl}blogs",
@@ -66,7 +66,7 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, BlogDetailsResponse>> getBlogDetails(
-      String id) async {
+      String id,) async {
     try {
       final response = await _apiClient.get("${AppConstants.baseUrl}blogs/$id");
       log("Sucess ====> ${response.toString()}");
@@ -79,7 +79,7 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, RelatedBlogsResponse>> getRelatedBlogs(
-      String id) async {
+      String id,) async {
     try {
       final response =
           await _apiClient.get("${AppConstants.baseUrl}blogs/related/$id");
@@ -105,6 +105,7 @@ class PublicRepoImpl implements PublicRepo {
     }
   }
 
+  @override
   Future<Either<ApiException, ServiceTypesList>> getServiceTypes() async {
     try {
       final response =

@@ -13,30 +13,30 @@ import 'package:dartz/dartz.dart';
 
 abstract class UserRepo {
   Future<Either<ApiException, UserRegisterResponse>> registerUser(
-      UserRegisterRequest userRegisterRequest);
+      UserRegisterRequest userRegisterRequest,);
 
   Future<Either<ApiException, UserLoginResponse>> loginUser(
-      UserLoginRequest userLoginRequest);
+      UserLoginRequest userLoginRequest,);
 
   Future<Either<ApiException, UserForgotPasswordResponse>> forgotPasswordUser(
-      UserForgotPasswordRequest userLoginRequest, String token);
+      UserForgotPasswordRequest userLoginRequest, String token,);
 
   Future<Either<ApiException, ProfileDetailsResponse>> getUserProfileDetails(
-      String token);
+      String token,);
 
   Future<Either<ApiException, USerEditProfile>> updateUserProfileDetails(
-      USerEditProfile editProfile, String token);
+      USerEditProfile editProfile, String token,);
   Future<Either<ApiException, CreateCardResponse>> addCard(
-      CreateCardRequest addCardRequest, String token);
+      CreateCardRequest addCardRequest, String token,);
 
   Future<Either<ApiException, CardsListResponse>> getCardsList(String token);
 
   Future<Either<ApiException, DeleteCardResponse>> deleteCard(
-      String tolken, String cardID);
+      String tolken, String cardID,);
 
   Future<Either<ApiException, ChangePasswordResponse>> changePassword(
-      ChangePasswordRequest request, String token);
+      ChangePasswordRequest request, String token,);
 
   Future<Either<ApiException, GetAllUserAppointments>> getAllAppointments(
-      String token);
+      String token,);
 }

@@ -72,7 +72,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
       {String price = "200",
       String sortPrice = "low",
       String serviceType = "",
-      String rating = "1"}) async {
+      String rating = "1",}) async {
     toggleLoading();
     Map<String, dynamic> requestModel = {
       "search": searchText,
@@ -87,11 +87,11 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
 
     final Response response = await ApiClient().post(
         '${AppConstants.baseUrl}beautician/get-all-salon',
-        jsonEncode(requestModel));
+        jsonEncode(requestModel),);
 
     salon.SalonResponseModel salonResponseModel =
         salon.SalonResponseModel.fromJson(
-            response.data as Map<String, dynamic>);
+            response.data as Map<String, dynamic>,);
 
     _allSalons.clear();
     _salons.clear();
@@ -111,7 +111,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
   void filterSearch(String text) {
     List<salon.Salon> filteredList = _allSalons
         .where((element) =>
-            (element.name?.toLowerCase() ?? "").contains(text.toLowerCase()))
+            (element.name?.toLowerCase() ?? "").contains(text.toLowerCase()),)
         .toList();
     _salons = filteredList;
     notifyListeners();
@@ -155,7 +155,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
             }, (r) {
               _serviceCategoriesList = r;
               notifyListeners();
-            }));
+            }),);
   }
 
   Future<void> getServiceTypes() async {
@@ -165,7 +165,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
         }, (r) {
           _serviceTypesList = r;
           notifyListeners();
-        }));
+        }),);
   }
 
   Future<void> getBeauticiansByFilter(BeauticiansFilterRequest request) async {
@@ -177,7 +177,7 @@ class HomePageViewModel extends BaseViewModel<BaseScreenView> {
             }, (r) {
               _beauticiansListResponse = r;
               notifyListeners();
-            }));
+            }),);
   }
 
   Future<void> getBeauticianDetails(BeauticianDetailRequest request) async {

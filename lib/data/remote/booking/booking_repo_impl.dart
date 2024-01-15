@@ -14,7 +14,7 @@ class BookingRepoImpl implements BookingRepo {
 
   @override
   Future<Either<ApiException, CreateAppointmentResponse>> createAppointment(
-      CreateAppointmentRequest createAppointmentRequest) async {
+      CreateAppointmentRequest createAppointmentRequest,) async {
     try {
       final response = await _apiClient.postWithToken(
         "${AppConstants.baseUrl}users/appointment/create",

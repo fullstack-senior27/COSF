@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
 import 'package:cosmetropolis/data/remote/booking/models/create_appointment.dart';
-import 'package:cosmetropolis/domain/providers/providers.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
@@ -216,19 +215,19 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Morning - ${ref.read(userViewModel).selectedSalon?.morning?[index].time}");
+                                        "Morning - ${ref.read(userViewModel).selectedSalon?.morning?[index].time}",);
                                     log(ref.read(userViewModel).selectedSlot ??
-                                        "");
+                                        "",);
                                     context.pop();
                                     showDialog(
                                         context: context,
-                                        builder: (builder) => AlertDialog(
+                                        builder: (builder) => const AlertDialog(
                                               content: SelectService(),
-                                            ));
+                                            ),);
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -316,19 +315,19 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Afternoon - ${ref.read(userViewModel).selectedSalon?.afternoon?[index].time}");
+                                        "Afternoon - ${ref.read(userViewModel).selectedSalon?.afternoon?[index].time}",);
                                     log(ref.read(userViewModel).selectedSlot ??
-                                        "");
+                                        "",);
                                     context.pop();
                                     showDialog(
                                         context: context,
-                                        builder: (builder) => AlertDialog(
+                                        builder: (builder) => const AlertDialog(
                                               content: SelectService(),
-                                            ));
+                                            ),);
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -416,19 +415,19 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Evening - ${ref.read(userViewModel).selectedSalon?.evening?[index].time}");
+                                        "Evening - ${ref.read(userViewModel).selectedSalon?.evening?[index].time}",);
                                     log(ref.read(userViewModel).selectedSlot ??
-                                        "");
+                                        "",);
                                     context.pop();
                                     showDialog(
                                         context: context,
-                                        builder: (builder) => AlertDialog(
+                                        builder: (builder) => const AlertDialog(
                                               content: SelectService(),
-                                            ));
+                                            ),);
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -612,7 +611,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
                 width: MediaQuery.of(context).size.width > 720
                     ? MediaQuery.of(context).size.width * 0.5
                     : MediaQuery.of(context).size.width * 0.9,
-                child: const SelectSlot()),
+                child: const SelectSlot(),),
           ),
         );
       },
@@ -1139,7 +1138,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ...List.generate(
-                  (_viewModel.selectedService.length ?? 0),
+                  _viewModel.selectedService.length ?? 0,
                   (index) => SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1499,7 +1498,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
                   zipcode: zipController.text,
                   timeSlot: _viewModel.selectedSlot.split(" - ").last,
                 ),
-                context);
+                context,);
             // context.pop();
 
             // showDialog(
@@ -1611,33 +1610,33 @@ class _SelectServiceState extends ConsumerState<SelectService> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         (ref.watch(userViewModel).selectedService.contains(ref
                                 .watch(userViewModel)
                                 .selectedSalon
-                                ?.services?[index]))
+                                ?.services?[index],))
                             ? ref.watch(userViewModel).removeService(ref
                                 .watch(userViewModel)
                                 .selectedSalon
-                                ?.services?[index])
+                                ?.services?[index],)
                             : ref.watch(userViewModel).addService(ref
                                 .watch(userViewModel)
                                 .selectedSalon
-                                ?.services?[index]);
+                                ?.services?[index],);
 
                         log(ref
                             .watch(userViewModel)
                             .selectedService
                             .length
-                            .toString());
+                            .toString(),);
                       },
                       child: (ref.watch(userViewModel).selectedService.contains(
                               ref
                                   .watch(userViewModel)
                                   .selectedSalon
-                                  ?.services?[index]))
+                                  ?.services?[index],))
                           ? CircleAvatar(
                               backgroundColor: kBlue,
                               radius: 20.r,
@@ -1769,9 +1768,9 @@ class _SelectServiceState extends ConsumerState<SelectService> {
             context.pop();
             showDialog(
                 context: context,
-                builder: (builder) => AlertDialog(
+                builder: (builder) => const AlertDialog(
                       content: AddService(),
-                    ));
+                    ),);
           }),
         )
       ],
@@ -2216,7 +2215,7 @@ class _ClientAppointmentBookingState
         context,
         BeauticianServicesRequest(
             beauticianId:
-                SharedPreferenceService.getString(AppConstants.userId)));
+                SharedPreferenceService.getString(AppConstants.userId),),);
 
     setState(() {
       isLoading = false;
@@ -2231,7 +2230,7 @@ class _ClientAppointmentBookingState
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           color: kLightBlue,
           child: Text(
             "Select Date",
@@ -2314,7 +2313,7 @@ class _ClientAppointmentBookingState
         ),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           color: kLightBlue,
           child: Text(
             "Select Slot",
@@ -2390,12 +2389,12 @@ class _ClientAppointmentBookingState
                                             ?.slots
                                             ?.morning?[index]
                                             .time ??
-                                        "");
+                                        "",);
                                     log("selected slot ${_viewModel.selectedSlot}");
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -2504,12 +2503,12 @@ class _ClientAppointmentBookingState
                                             ?.slots
                                             ?.afternoon?[index]
                                             .time ??
-                                        "");
+                                        "",);
                                     log("selected slot ${_viewModel.selectedSlot}");
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -2618,12 +2617,12 @@ class _ClientAppointmentBookingState
                                             ?.slots
                                             ?.evening?[index]
                                             .time ??
-                                        "");
+                                        "",);
                                     log("selected slot ${_viewModel.selectedSlot}");
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                        horizontal: 5,),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -2689,7 +2688,7 @@ class _ClientAppointmentBookingState
         ),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           color: kLightBlue,
           child: Text(
             "Select Service",
@@ -2739,20 +2738,20 @@ class _ClientAppointmentBookingState
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         (_viewModel.selectedService.contains(_viewModel
-                                .beauticianServicesResponseModel?.data?[index]))
+                                .beauticianServicesResponseModel?.data?[index],))
                             ? _viewModel.removeServices(_viewModel
-                                .beauticianServicesResponseModel?.data?[index])
+                                .beauticianServicesResponseModel?.data?[index],)
                             : _viewModel.addServices(_viewModel
-                                .beauticianServicesResponseModel?.data?[index]);
+                                .beauticianServicesResponseModel?.data?[index],);
 
                         log(_viewModel.selectedService.length.toString());
                       },
                       child: (_viewModel.selectedService.contains(_viewModel
-                              .beauticianServicesResponseModel?.data?[index]))
+                              .beauticianServicesResponseModel?.data?[index],))
                           ? CircleAvatar(
                               backgroundColor: kBlue,
                               radius: 20.r,
@@ -2809,12 +2808,12 @@ class _ClientAppointmentBookingState
                   zipcode:
                       _viewModel.getClientByIdResponseModel?.data?.client?.zip,
                 ),
-                context);
+                context,);
             saving = false;
             setState(() {});
           }),
         )
-      ]),
+      ],),
     );
   }
 }

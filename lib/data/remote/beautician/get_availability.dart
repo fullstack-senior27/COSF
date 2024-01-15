@@ -6,12 +6,12 @@ part 'get_availability.freezed.dart';
 part 'get_availability.g.dart';
 
 BeauticianAvailabilityResponse beauticianAvailabilityResponseFromJson(
-        String str) =>
+        String str,) =>
     BeauticianAvailabilityResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianAvailabilityResponseToJson(
-        BeauticianAvailabilityResponse data) =>
+        BeauticianAvailabilityResponse data,) =>
     json.encode(data.toJson());
 
 @freezed

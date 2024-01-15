@@ -14,7 +14,6 @@ import 'package:cosmetropolis/utils/file_picker.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/public_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
@@ -592,7 +591,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                     height: 20.h,
                                   ),
                                   Text("Reason*",
-                                      style: urbanist500(kBlack, 16)),
+                                      style: urbanist500(kBlack, 16),),
                                   SizedBox(height: 5.h),
                                   TextFormField(
                                     controller: reasonController,
@@ -660,7 +659,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                                                 ?.data
                                                                 ?.client
                                                                 ?.id ??
-                                                            ""));
+                                                            "",),);
                                                 blocking = false;
                                                 setState(() {});
                                                 context.pop();
@@ -743,7 +742,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                       deleting = true;
                                       setState(() {});
                                       await _viewModel.deleteClient(context,
-                                          widget.data?.data?.client?.id ?? "");
+                                          widget.data?.data?.client?.id ?? "",);
 
                                       deleting = false;
                                       setState(() {});
@@ -1100,7 +1099,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                     streetAddress: streetController.text,
                     email: emailController.text,
                   ),
-                  widget.data?.data?.client?.id ?? "");
+                  widget.data?.data?.client?.id ?? "",);
               isLoading = false;
               setState(() {});
               context.pop();
@@ -2330,7 +2329,7 @@ class _AddProductState extends ConsumerState<AddProduct> with BaseScreenView {
                       AddProductRequest(
                           title: nameController.text,
                           description: descriptionController.text,
-                          link: linkController.text));
+                          link: linkController.text,),);
                   isLoading = false;
                   setState(() {});
                   context.pop();
@@ -2504,7 +2503,6 @@ class OnlineBookingProfile extends StatelessWidget {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [],
                             ),
                             SizedBox(height: 10.h),
                             const PersonalInfo(),
@@ -2568,7 +2566,6 @@ class OnlineBookingProfile extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: const [],
                                     ),
                                     SizedBox(height: 10.h),
                                     const PersonalInfo(),
@@ -3593,7 +3590,7 @@ class _CreateServiceState extends ConsumerState<CreateService>
     getData();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     isLoading = true;
     setState(() {});
     await ref.read(homePageViewModel).getServiceTypes();
@@ -3901,7 +3898,7 @@ class _CreateServiceState extends ConsumerState<CreateService>
                         width: 25,
                         child: CircularProgressIndicator(
                           color: kBlack,
-                        ))
+                        ),)
                   else
                     SizedBox(
                       height: 40.h,
@@ -3919,7 +3916,7 @@ class _CreateServiceState extends ConsumerState<CreateService>
                               serviceType: serviceType,
                               durationInMinutes:
                                   int.parse(durationController.text),
-                            ));
+                            ),);
                         saving = false;
                         setState(() {});
                         context.pop();

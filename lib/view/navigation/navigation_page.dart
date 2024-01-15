@@ -1,5 +1,4 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/dashboard_free.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

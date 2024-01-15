@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:cosmetropolis/core/core.dart';
 import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/data/remote/services/models/services_model.dart';
-import 'package:cosmetropolis/core/exceptions.dart';
 import 'package:cosmetropolis/data/remote/services/services_repo.dart';
 import 'package:cosmetropolis/utils/logger.dart';
 import 'package:dartz/dartz.dart';
@@ -18,7 +15,7 @@ class ServicesRepoImpl implements ServicesRepo {
           .post("${AppConstants.baseUrl}beautician/get-all-service", {});
       print(response.data.toString());
       return Right(ServicesResponseModel.fromJson(
-          response.data as Map<String, dynamic>));
+          response.data as Map<String, dynamic>,),);
     } catch (e) {
       Logger.printError(e.toString());
       return Left(ApiException(e.toString()));
@@ -32,10 +29,10 @@ class ServicesRepoImpl implements ServicesRepo {
     try {
       final Response response = await ApiClient().post(
           "${AppConstants.baseUrl}beautician/list",
-          beauticiansFilterRequestModel.toJson());
+          beauticiansFilterRequestModel.toJson(),);
       print(response.data.toString());
       return Right(BeauticiansListResponse.fromJson(
-          response.data as Map<String, dynamic>));
+          response.data as Map<String, dynamic>,),);
     } catch (e) {
       Logger.printError(e.toString());
       return Left(ApiException(e.toString()));
@@ -51,7 +48,7 @@ class ServicesRepoImpl implements ServicesRepo {
           .post("${AppConstants.baseUrl}beautician/profile", request.toJson());
       print(response.data.toString());
       return Right(BeauticianDetailResponse.fromJson(
-          response.data as Map<String, dynamic>));
+          response.data as Map<String, dynamic>,),);
     } catch (e) {
       Logger.printError(e.toString());
       return Left(ApiException(e.toString()));

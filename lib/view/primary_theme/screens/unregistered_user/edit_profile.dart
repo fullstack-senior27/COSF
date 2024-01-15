@@ -44,16 +44,16 @@ class _EditProfileState extends ConsumerState<EditProfile>
     getData();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     print(SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
     isLoading = true;
     setState(() {});
     await _viewModel.getProfileDetails(
-        SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+        SharedPreferenceService.getString(AppConstants.accessToken) ?? "",);
     await _viewModel.getCardsList(
-        SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+        SharedPreferenceService.getString(AppConstants.accessToken) ?? "",);
     await _viewModel.getAllAppointments(
-        SharedPreferenceService.getString(AppConstants.accessToken) ?? "");
+        SharedPreferenceService.getString(AppConstants.accessToken) ?? "",);
 
     isLoading = false;
     setState(() {});
@@ -76,7 +76,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
     // ignore: parameter_assignments
     input = input.replaceAll(RegExp(r'\D'), '');
 
-    if (input.length > 0) {
+    if (input.isNotEmpty) {
       final year = input.substring(input.length - 2);
       final month = input.substring(0, input.length - 2);
       return '$month/$year';
@@ -327,7 +327,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
           ? const Center(
               child: CircularProgressIndicator(
               color: kBlack,
-            ))
+            ),)
           : SingleChildScrollView(
               child: Column(
                 children: [
@@ -683,10 +683,10 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                           BorderRadius.only(
                                                         topLeft:
                                                             Radius.circular(
-                                                                20.r),
+                                                                20.r,),
                                                         topRight:
                                                             Radius.circular(
-                                                                20.r),
+                                                                20.r,),
                                                       ),
                                                     ),
                                                     child: Padding(
@@ -1277,7 +1277,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                               height: 30.h,
                                                             ),
                                                             SizedBox(
-                                                                width: 5.w),
+                                                                width: 5.w,),
                                                             Expanded(
                                                               child: Text(
                                                                 '**** **** **** ${_viewModel.cardsListResponse?.data?[index].last4}',
@@ -1301,14 +1301,14 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                             await _viewModel.deleteCard(
                                                                 SharedPreferenceService.getString(
                                                                         AppConstants
-                                                                            .accessToken) ??
+                                                                            .accessToken,) ??
                                                                     "",
                                                                 _viewModel
                                                                         .cardsListResponse
                                                                         ?.data?[
                                                                             index]
                                                                         .id ??
-                                                                    "");
+                                                                    "",);
 
                                                             deleteCard = false;
                                                             setState(() {});
@@ -1370,7 +1370,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                       Text(
                                                         "Add New Card",
                                                         style: urbanist600(
-                                                            kBlack, 18),
+                                                            kBlack, 18,),
                                                       ),
                                                       SizedBox(
                                                         height: 10.h,
@@ -1398,9 +1398,9 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         title: Row(
                                                           children: [
                                                             const Text(
-                                                                'Credit Card'),
+                                                                'Credit Card',),
                                                             SizedBox(
-                                                                width: 5.w),
+                                                                width: 5.w,),
                                                             Image.network(
                                                               'https://tse3.mm.bing.net/th?id=OIP.8hSdZiAvNki23CzVyAvSLQHaEK&pid=Api&P=0&h=180',
                                                               // width: 60.w,
@@ -1436,7 +1436,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                   cardNumberController,
                                                               decoration:
                                                                   InputDecoration(
-                                                                counter: SizedBox
+                                                                counter: const SizedBox
                                                                     .shrink(),
                                                                 hintText:
                                                                     "Card Number",
@@ -1661,16 +1661,16 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                           .text,
                                                                       expMonth: int.parse(
                                                                           dateController.text.split("/")[
-                                                                              0]),
+                                                                              0],),
                                                                       expYear: int
                                                                           .parse(
-                                                                              "20${dateController.text.split("/")[1]}"),
+                                                                              "20${dateController.text.split("/")[1]}",),
                                                                       cvc: cvvController
-                                                                          .text)),
+                                                                          .text,),),
                                                               SharedPreferenceService
                                                                       .getString(
                                                                           AppConstants
-                                                                              .accessToken) ??
+                                                                              .accessToken,) ??
                                                                   "",
                                                             );
                                                             cardNumberController
@@ -1717,7 +1717,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                 style:
                                                                     urbanist600(
                                                                         kWhite,
-                                                                        16),
+                                                                        16,),
                                                               ),
                                                       ),
                                                       SizedBox(height: 20.h),
@@ -1767,7 +1767,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            7.r),
+                                                            7.r,),
                                                   ),
                                                   tileColor: kWhite,
                                                   leading: Radio(
@@ -1812,7 +1812,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         decoration:
                                                             InputDecoration(
                                                           counter:
-                                                              SizedBox.shrink(),
+                                                              const SizedBox.shrink(),
                                                           hintText:
                                                               "Card Number",
                                                           hintStyle:
@@ -2006,16 +2006,16 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                     dateController
                                                                             .text
                                                                             .split("/")[
-                                                                        0]),
+                                                                        0],),
                                                                 expYear: int.parse(
-                                                                    "20${dateController.text.split("/")[1]}"),
+                                                                    "20${dateController.text.split("/")[1]}",),
                                                                 cvc:
                                                                     cvvController
-                                                                        .text)),
+                                                                        .text,),),
                                                         SharedPreferenceService
                                                                 .getString(
                                                                     AppConstants
-                                                                        .accessToken) ??
+                                                                        .accessToken,) ??
                                                             "",
                                                       );
                                                       cardNumberController
@@ -2030,7 +2030,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                       ElevatedButton.styleFrom(
                                                     backgroundColor: kBlack,
                                                     minimumSize: Size(
-                                                        double.infinity, 50.h),
+                                                        double.infinity, 50.h,),
                                                     shape:
                                                         RoundedRectangleBorder(
                                                       borderRadius:
@@ -2053,7 +2053,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                       : Text(
                                                           "Add New Card",
                                                           style: urbanist600(
-                                                              kWhite, 16),
+                                                              kWhite, 16,),
                                                         ),
                                                 ),
                                                 SizedBox(height: 20.h),

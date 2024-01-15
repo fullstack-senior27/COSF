@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:html' as html;
 import 'dart:io';
 
+import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/logger.dart';
 import 'package:flutter/foundation.dart';
@@ -10,8 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-
-import '../core/constants.dart';
 
 // setter getter for uploadfile response
 String _imgUrl = "";
@@ -81,7 +80,7 @@ Future<File?> openPickImageDialog(
                         "Camera",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.copyWith(fontSize: 16, color: kBlack),
                       ),
                     ],
@@ -135,7 +134,7 @@ Future<File?> openPickImageDialog(
                         "Gallery",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.copyWith(fontSize: 16, color: kBlack),
                       ),
                     ],
@@ -350,15 +349,15 @@ Future<String> uploadFile(File file) async {
 
   // var response = await request.send();
 
-  var request = http.MultipartRequest(
+  final request = http.MultipartRequest(
     'POST',
     Uri.parse("${AppConstants.baseUrl}file-upload/"),
   );
 
   // Add the file to the request
-  var fileStream = http.ByteStream(file.openRead());
-  var length = await file.length();
-  var multipartFile = http.MultipartFile(
+  final fileStream = http.ByteStream(file.openRead());
+  final length = await file.length();
+  final multipartFile = http.MultipartFile(
     'file',
     fileStream,
     length,
@@ -367,14 +366,14 @@ Future<String> uploadFile(File file) async {
   request.files.add(multipartFile);
 
   // Send the request
-  var response = await request.send();
+  final response = await request.send();
 
   // Check the response status
   if (response.statusCode == 200) {
-    var responseBody = await response.stream.bytesToString();
+    final responseBody = await response.stream.bytesToString();
 
     // Parse the response as JSON
-    var jsonResponse = jsonDecode(responseBody);
+    final jsonResponse = jsonDecode(responseBody);
 
     // Extract the image URL from the response
     String imageUrl = jsonResponse['data'] as String;
@@ -388,14 +387,14 @@ Future<String> uploadFile(File file) async {
 }
 
 Future<String> uploadFileWeb(Uint8List bytes) async {
-  var request = http.MultipartRequest(
+  final request = http.MultipartRequest(
     'POST',
     Uri.parse("${AppConstants.baseUrl}file-upload/"),
   );
 
-  var blob = html.Blob([bytes]);
-  var webFile = html.File([blob], 'file', {'type': blob.type});
-  var multipartFile = http.MultipartFile.fromBytes(
+  final blob = html.Blob([bytes]);
+  final webFile = html.File([blob], 'file', {'type': blob.type});
+  final multipartFile = http.MultipartFile.fromBytes(
     'file',
     utf8.encode(webFile.name),
     // bytes,
@@ -404,7 +403,7 @@ Future<String> uploadFileWeb(Uint8List bytes) async {
 
   request.files.add(multipartFile);
 
-  var response = await request.send();
+  final response = await request.send();
 
   // var request = http.MultipartRequest(
   //   'POST',
@@ -427,10 +426,10 @@ Future<String> uploadFileWeb(Uint8List bytes) async {
 
   // // Check the response status
   if (response.statusCode == 200) {
-    var responseBody = await response.stream.bytesToString();
+    final responseBody = await response.stream.bytesToString();
 
     // Parse the response as JSON
-    var jsonResponse = jsonDecode(responseBody);
+    final jsonResponse = jsonDecode(responseBody);
 
     // Extract the image URL from the response
     String imageUrl = jsonResponse['data'] as String;

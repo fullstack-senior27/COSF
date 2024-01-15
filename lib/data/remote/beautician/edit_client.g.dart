@@ -21,7 +21,7 @@ _$_EditClientRequest _$$_EditClientRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$_EditClientRequestToJson(
-        _$_EditClientRequest instance) =>
+        _$_EditClientRequest instance,) =>
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
@@ -36,7 +36,7 @@ Map<String, dynamic> _$$_EditClientRequestToJson(
     };
 
 _$_EditClientResponse _$$_EditClientResponseFromJson(
-        Map<String, dynamic> json) =>
+        Map<String, dynamic> json,) =>
     _$_EditClientResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -44,7 +44,7 @@ _$_EditClientResponse _$$_EditClientResponseFromJson(
     );
 
 Map<String, dynamic> _$$_EditClientResponseToJson(
-        _$_EditClientResponse instance) =>
+        _$_EditClientResponse instance,) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

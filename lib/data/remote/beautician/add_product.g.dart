@@ -14,7 +14,7 @@ _$_AddProductRequest _$$_AddProductRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$_AddProductRequestToJson(
-        _$_AddProductRequest instance) =>
+        _$_AddProductRequest instance,) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$_AddProductRequestToJson(
     };
 
 _$_AddProductResponse _$$_AddProductResponseFromJson(
-        Map<String, dynamic> json) =>
+        Map<String, dynamic> json,) =>
     _$_AddProductResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -33,7 +33,7 @@ _$_AddProductResponse _$$_AddProductResponseFromJson(
     );
 
 Map<String, dynamic> _$$_AddProductResponseToJson(
-        _$_AddProductResponse instance) =>
+        _$_AddProductResponse instance,) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

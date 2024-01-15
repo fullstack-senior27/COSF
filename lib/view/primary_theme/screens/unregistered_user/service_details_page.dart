@@ -88,11 +88,11 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
     _viewModel = ref.watch(homePageViewModel);
     List<Widget> screens = [
       ServiceI(
-        data: _viewModel.beauticianDetailResponse ?? BeauticianDetailResponse(),
+        data: _viewModel.beauticianDetailResponse ?? const BeauticianDetailResponse(),
       ),
       ReviewI(
         beauticianDetailResponse:
-            _viewModel.beauticianDetailResponse ?? BeauticianDetailResponse(),
+            _viewModel.beauticianDetailResponse ?? const BeauticianDetailResponse(),
       ),
       const aboutI(),
       const productI(),
@@ -497,7 +497,7 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 3.w),
+                                            horizontal: 3.w,),
                                         child: GestureDetector(
                                           onTap: () {
                                             setState(() {
@@ -741,8 +741,8 @@ class ServiceI extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          service(
-            beauticianDetailResponse: null,
+          const service(
+            
           ),
           Visibility(
             visible: MediaQuery.of(context).size.width < 700,
@@ -1152,10 +1152,10 @@ class service extends StatelessWidget {
                                         ),
                                         IconButton(
                                             onPressed: () => context.pop(),
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.close,
                                               color: kGrey,
-                                            ))
+                                            ),)
                                       ],
                                     ),
                                     backgroundColor: const Color(0xfff8f8f8),

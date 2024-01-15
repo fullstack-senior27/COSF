@@ -6,12 +6,12 @@ part 'update_profile_details.freezed.dart';
 part 'update_profile_details.g.dart';
 
 BeauticianUpdateProfileRequest beauticianUpdateProfileRequestFromJson(
-        String str) =>
+        String str,) =>
     BeauticianUpdateProfileRequest.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianUpdateProfileRequestToJson(
-        BeauticianUpdateProfileRequest data) =>
+        BeauticianUpdateProfileRequest data,) =>
     json.encode(data.toJson());
 
 @freezed
@@ -31,12 +31,12 @@ class BeauticianUpdateProfileRequest with _$BeauticianUpdateProfileRequest {
 }
 
 BeauticianUpdateProfileResponse beauticianUpdateProfileResponseFromJson(
-        String str) =>
+        String str,) =>
     BeauticianUpdateProfileResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String beauticianUpdateProfileResponseToJson(
-        BeauticianUpdateProfileResponse data) =>
+        BeauticianUpdateProfileResponse data,) =>
     json.encode(data.toJson());
 
 @freezed

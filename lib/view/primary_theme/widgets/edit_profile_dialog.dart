@@ -174,10 +174,10 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
                   await _viewModel.changePassword(
                       ChangePasswordRequest(
                           oldPassword: oldPasswordController.text,
-                          newPassword: newPasswordController.text),
+                          newPassword: newPasswordController.text,),
                       SharedPreferenceService.getString(
-                              AppConstants.accessToken) ??
-                          "");
+                              AppConstants.accessToken,) ??
+                          "",);
                   isLoading = false;
                   setState(() {});
                 }
@@ -219,7 +219,7 @@ class EditProfileDialog extends ConsumerStatefulWidget {
       required this.name,
       required this.email,
       required this.phoneNumber,
-      required this.profilePic});
+      required this.profilePic,});
 
   @override
   ConsumerState<EditProfileDialog> createState() => _EditProfileDialogState();
@@ -244,7 +244,7 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
     super.initState();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     _viewModel.profilePic =
         widget.profilePic == "null" ? "" : widget.profilePic;
   }
@@ -585,7 +585,7 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                       name:
                           "${firstNameController.text} ${lastNameController.text}",
                       email: emailController.text,
-                      phone: phoneNumberController.text),
+                      phone: phoneNumberController.text,),
                   SharedPreferenceService.getString(AppConstants.accessToken) ??
                       "",
                 );

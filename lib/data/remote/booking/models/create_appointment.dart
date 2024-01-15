@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_appointment.freezed.dart';
 part 'create_appointment.g.dart';
@@ -27,7 +28,7 @@ class CreateAppointmentRequest with _$CreateAppointmentRequest {
 
 CreateAppointmentResponse createAppointmentResponseFromJson(String str) =>
     CreateAppointmentResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String createAppointmentResponseToJson(CreateAppointmentResponse data) =>
     json.encode(data.toJson());

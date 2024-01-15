@@ -1,12 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'all_categories_model.freezed.dart';
 part 'all_categories_model.g.dart';
 
 AllBlogCategoriesResponse allBlogCategoriesResponseFromJson(String str) =>
     AllBlogCategoriesResponse.fromJson(
-        json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,);
 
 String allBlogCategoriesResponseToJson(AllBlogCategoriesResponse data) =>
     json.encode(data.toJson());

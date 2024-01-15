@@ -47,7 +47,7 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
               // showSnackbar(r.message);
               _allBlogsResponse = r;
               notifyListeners();
-            }));
+            }),);
   }
 
   Future<void> getAllCategories() async {
@@ -57,11 +57,11 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
         }, (r) {
           _allBlogCategoriesResponse = r;
           notifyListeners();
-        }));
+        }),);
   }
 
   Future<void> getBlogsByCategory(
-      int page, int limit, BlogCategoryRequest blogCategoryRequest) async {
+      int page, int limit, BlogCategoryRequest blogCategoryRequest,) async {
     toggleLoading();
     await _publicRepository
         .getBlogsByCategory(page, limit, blogCategoryRequest)
@@ -71,7 +71,7 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
               // showSnackbar(r.message);
               _allBlogsResponse = r;
               notifyListeners();
-            }));
+            }),);
   }
 
   Future<void> getBlogDetails(String id, BuildContext context) async {
@@ -85,9 +85,9 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
             return BlogDetailsPage(
               data: _blogDetailsResponse?.data,
             );
-          }));
+          },),);
           notifyListeners();
-        }));
+        }),);
   }
 
   Future<void> getRelatedBlogs(
@@ -100,6 +100,6 @@ class PublicViewModel extends BaseViewModel<BaseScreenView> {
           _relatedBlogsResponse = r;
           // context.go("/blogs/blog-details", extra: _blogDetailsResponse?.data);
           notifyListeners();
-        }));
+        }),);
   }
 }

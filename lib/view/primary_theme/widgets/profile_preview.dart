@@ -48,10 +48,10 @@ class _ProfilePreviewState extends State<ProfilePreview>
   int selectedScreen = 0;
   int selected = 0;
   List<Widget> screens = [
-    ServiceI(
+    const ServiceI(
       data: BeauticianDetailResponse(),
     ),
-    ReviewI(
+    const ReviewI(
       beauticianDetailResponse: BeauticianDetailResponse(),
     ),
     const aboutI(),
@@ -494,7 +494,7 @@ class _ProductsCardState extends ConsumerState<ProductsCard>
     linkcontroller.dispose();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     isLoading = true;
     setState(() {});
     await _viewModel.getProduct(context);

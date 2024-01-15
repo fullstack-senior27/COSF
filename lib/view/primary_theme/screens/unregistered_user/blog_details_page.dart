@@ -38,7 +38,7 @@ class _BlogDetailsPageState extends ConsumerState<BlogDetailsPage>
     _viewModel.detachView();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     isLoading = true;
     setState(() {});
     await _viewModel.getRelatedBlogs(widget.data?.id ?? "");

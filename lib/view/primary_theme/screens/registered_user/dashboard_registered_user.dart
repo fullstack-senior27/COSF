@@ -1,5 +1,4 @@
 import 'package:cosmetropolis/core/constants.dart';
-import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/loginuser_dashboard_nav.dart';
 import 'package:flutter/foundation.dart';

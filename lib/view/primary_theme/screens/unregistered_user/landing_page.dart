@@ -6,7 +6,6 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:country_calling_code_picker/country.dart';
-import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:country_calling_code_picker/functions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

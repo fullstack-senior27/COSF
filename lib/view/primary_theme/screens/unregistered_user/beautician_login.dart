@@ -352,7 +352,7 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                                 email: emailController.text,
                                 password: passwordController.text,
                               ),
-                              context);
+                              context,);
                           isLoading = false;
                           setState(() {});
                         },
@@ -400,12 +400,12 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                             style: GoogleFonts.urbanist(
                                 fontSize: 12.sp,
                                 color: kBlue,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 context.go("/landing");
-                              })
-                      ])),
+                              },)
+                      ],),),
                     )
                   ],
                 ),
@@ -683,7 +683,7 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                               email: emailController.text,
                               password: passwordController.text,
                             ),
-                            context);
+                            context,);
                         isLoading = false;
                         setState(() {});
                       },
@@ -731,12 +731,12 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                           style: GoogleFonts.urbanist(
                               fontSize: 12.sp,
                               color: kBlue,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600,),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               context.go("/landing");
-                            })
-                    ])),
+                            },)
+                    ],),),
                   )
                 ],
               ),
