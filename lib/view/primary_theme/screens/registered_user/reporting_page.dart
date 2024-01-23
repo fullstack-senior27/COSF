@@ -1,8 +1,10 @@
 import 'package:circular_chart_flutter/circular_chart_flutter.dart';
+import 'package:cosmetropolis/data/remote/growth/models/beautician_earnings.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,12 +19,12 @@ class ReportingPage extends StatefulWidget {
 class _ReportingPageState extends State<ReportingPage> {
   int _selectedCategory = 0;
   List<String> categories = ["Gross Sale", "Transactions"];
-  Map<String, double> dataMap = {
-    "Flutter": 5,
-    "React": 3,
-    "Xamarin": 2,
-    "Ionic": 2,
-  };
+  // Map<String, double> dataMap = {
+  //   "Flutter": 5,
+  //   "React": 3,
+  //   "Xamarin": 2,
+  //   "Ionic": 2,
+  // };
 
   @override
   Widget build(BuildContext context) {
@@ -410,9 +412,7 @@ class _ReportingPageState extends State<ReportingPage> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        const Text(
-                          "Earnings table will be here",
-                        ),
+                        const EarningsTable(data: BeauticianEarnings()),
                         SizedBox(
                           height: 40.h,
                         ),

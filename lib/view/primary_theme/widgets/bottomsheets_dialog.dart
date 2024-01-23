@@ -215,19 +215,21 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Morning - ${ref.read(userViewModel).selectedSalon?.morning?[index].time}",);
-                                    log(ref.read(userViewModel).selectedSlot ??
-                                        "",);
+                                          "Morning - ${ref.read(userViewModel).selectedSalon?.morning?[index].time}",
+                                        );
+                                    log(ref.read(userViewModel).selectedSlot);
                                     context.pop();
                                     showDialog(
-                                        context: context,
-                                        builder: (builder) => const AlertDialog(
-                                              content: SelectService(),
-                                            ),);
+                                      context: context,
+                                      builder: (builder) => const AlertDialog(
+                                        content: SelectService(),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -315,19 +317,21 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Afternoon - ${ref.read(userViewModel).selectedSalon?.afternoon?[index].time}",);
-                                    log(ref.read(userViewModel).selectedSlot ??
-                                        "",);
+                                          "Afternoon - ${ref.read(userViewModel).selectedSalon?.afternoon?[index].time}",
+                                        );
+                                    log(ref.read(userViewModel).selectedSlot);
                                     context.pop();
                                     showDialog(
-                                        context: context,
-                                        builder: (builder) => const AlertDialog(
-                                              content: SelectService(),
-                                            ),);
+                                      context: context,
+                                      builder: (builder) => const AlertDialog(
+                                        content: SelectService(),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -415,19 +419,21 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                                 return GestureDetector(
                                   onTap: () {
                                     ref.read(userViewModel).setSelectedSlot(
-                                        "Evening - ${ref.read(userViewModel).selectedSalon?.evening?[index].time}",);
-                                    log(ref.read(userViewModel).selectedSlot ??
-                                        "",);
+                                          "Evening - ${ref.read(userViewModel).selectedSalon?.evening?[index].time}",
+                                        );
+                                    log(ref.read(userViewModel).selectedSlot);
                                     context.pop();
                                     showDialog(
-                                        context: context,
-                                        builder: (builder) => const AlertDialog(
-                                              content: SelectService(),
-                                            ),);
+                                      context: context,
+                                      builder: (builder) => const AlertDialog(
+                                        content: SelectService(),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(right: 1.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
@@ -608,10 +614,11 @@ class _SelectDateState extends ConsumerState<SelectDate> {
           backgroundColor: const Color(0xfff8f8f8),
           content: SingleChildScrollView(
             child: SizedBox(
-                width: MediaQuery.of(context).size.width > 720
-                    ? MediaQuery.of(context).size.width * 0.5
-                    : MediaQuery.of(context).size.width * 0.9,
-                child: const SelectSlot(),),
+              width: MediaQuery.of(context).size.width > 720
+                  ? MediaQuery.of(context).size.width * 0.5
+                  : MediaQuery.of(context).size.width * 0.9,
+              child: const SelectSlot(),
+            ),
           ),
         );
       },
@@ -1490,15 +1497,16 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
             //   timeSlot: ref.read(userViewModel).selectedSlot.split(" - ").last,
             // ).toString());
             await _viewModel.makeAppointment(
-                CreateAppointmentRequest(
-                  beautician: _viewModel.selectedSalon?.id,
-                  user: SharedPreferenceService.getString(AppConstants.userId),
-                  date: _viewModel.selectedDate,
-                  services: selectedServiceId,
-                  zipcode: zipController.text,
-                  timeSlot: _viewModel.selectedSlot.split(" - ").last,
-                ),
-                context,);
+              CreateAppointmentRequest(
+                beautician: _viewModel.selectedSalon?.id,
+                user: SharedPreferenceService.getString(AppConstants.userId),
+                date: _viewModel.selectedDate,
+                services: selectedServiceId,
+                zipcode: zipController.text,
+                timeSlot: _viewModel.selectedSlot.split(" - ").last,
+              ),
+              context,
+            );
             // context.pop();
 
             // showDialog(
@@ -1613,30 +1621,39 @@ class _SelectServiceState extends ConsumerState<SelectService> {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        (ref.watch(userViewModel).selectedService.contains(ref
-                                .watch(userViewModel)
-                                .selectedSalon
-                                ?.services?[index],))
-                            ? ref.watch(userViewModel).removeService(ref
-                                .watch(userViewModel)
-                                .selectedSalon
-                                ?.services?[index],)
-                            : ref.watch(userViewModel).addService(ref
-                                .watch(userViewModel)
-                                .selectedSalon
-                                ?.services?[index],);
+                        (ref.watch(userViewModel).selectedService.contains(
+                                  ref
+                                      .watch(userViewModel)
+                                      .selectedSalon
+                                      ?.services?[index],
+                                ))
+                            ? ref.watch(userViewModel).removeService(
+                                  ref
+                                      .watch(userViewModel)
+                                      .selectedSalon
+                                      ?.services?[index],
+                                )
+                            : ref.watch(userViewModel).addService(
+                                  ref
+                                      .watch(userViewModel)
+                                      .selectedSalon
+                                      ?.services?[index],
+                                );
 
-                        log(ref
-                            .watch(userViewModel)
-                            .selectedService
-                            .length
-                            .toString(),);
+                        log(
+                          ref
+                              .watch(userViewModel)
+                              .selectedService
+                              .length
+                              .toString(),
+                        );
                       },
                       child: (ref.watch(userViewModel).selectedService.contains(
-                              ref
-                                  .watch(userViewModel)
-                                  .selectedSalon
-                                  ?.services?[index],))
+                                ref
+                                    .watch(userViewModel)
+                                    .selectedSalon
+                                    ?.services?[index],
+                              ))
                           ? CircleAvatar(
                               backgroundColor: kBlue,
                               radius: 20.r,
@@ -1767,10 +1784,11 @@ class _SelectServiceState extends ConsumerState<SelectService> {
           child: BlackButton(context, "Continue", () {
             context.pop();
             showDialog(
-                context: context,
-                builder: (builder) => const AlertDialog(
-                      content: AddService(),
-                    ),);
+              context: context,
+              builder: (builder) => const AlertDialog(
+                content: AddService(),
+              ),
+            );
           }),
         )
       ],
@@ -2212,10 +2230,11 @@ class _ClientAppointmentBookingState
     );
 
     await _viewModel.getServicesByBeautician(
-        context,
-        BeauticianServicesRequest(
-            beauticianId:
-                SharedPreferenceService.getString(AppConstants.userId),),);
+      context,
+      BeauticianServicesRequest(
+        beauticianId: SharedPreferenceService.getString(AppConstants.userId),
+      ),
+    );
 
     setState(() {
       isLoading = false;
@@ -2227,577 +2246,596 @@ class _ClientAppointmentBookingState
     ref.watch(beauticianViewModel);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(5),
-          color: kLightBlue,
-          child: Text(
-            "Select Date",
-            style: TextStyle(
-              fontSize: 14.sp,
-              color: kdarkPrime,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        SizedBox(
-          // height: MediaQuery.of(context).size.height * 0.5,
-          // width: MediaQuery.of(context).size.width,
-          child: TableCalendar(
-            weekNumbersVisible: true,
-            firstDay: DateTime.now(),
-            focusedDay: today,
-            lastDay: DateTime.now().add(const Duration(days: 7)),
-            headerStyle: HeaderStyle(
-              titleCentered: true,
-              titleTextStyle: GoogleFonts.urbanist(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-              formatButtonVisible: false,
-            ),
-            rowHeight: 40.h,
-            selectedDayPredicate: (day) {
-              return isSameDay(day, today);
-            },
-            onDaySelected: _onDaySelected,
-            daysOfWeekStyle: DaysOfWeekStyle(
-              weekdayStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-              weekendStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-            ),
-            calendarStyle: CalendarStyle(
-              selectedDecoration: const BoxDecoration(
-                color: kBlack,
-                shape: BoxShape.circle,
-              ),
-              selectedTextStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kWhite,
-              ),
-              todayDecoration: BoxDecoration(
-                color: kWhite,
-                shape: BoxShape.circle,
-                border: Border.all(),
-              ),
-              todayTextStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-              defaultTextStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-              weekendTextStyle: GoogleFonts.urbanist(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
-                color: kdescription,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(5),
-          color: kLightBlue,
-          child: Text(
-            "Select Slot",
-            style: TextStyle(
-              fontSize: 14.sp,
-              color: kdarkPrime,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        if (isLoading)
-          const Center(
-            child: CircularProgressIndicator(),
-          )
-        else
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Container(
-            decoration: BoxDecoration(
-              color: kWhite,
-              borderRadius: BorderRadius.circular(10.r),
-              border: Border.all(color: klines),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Morning",
-                    style: GoogleFonts.urbanist(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: kBlack,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.h),
-                    child: SizedBox(
-                      height: 40.h,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: _viewModel.beauticianAvailabilityResponseModel
-                                  ?.data?.slots?.morning?.isEmpty ??
-                              true
-                          ? Text(
-                              "No slots found",
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: kGrey,
-                              ),
-                            )
-                          : ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _viewModel
-                                      .beauticianAvailabilityResponseModel
-                                      ?.data
-                                      ?.slots
-                                      ?.morning
-                                      ?.length ??
-                                  0,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    _viewModel.setSelectedSlot(_viewModel
-                                            .beauticianAvailabilityResponseModel
-                                            ?.data
-                                            ?.slots
-                                            ?.morning?[index]
-                                            .time ??
-                                        "",);
-                                    log("selected slot ${_viewModel.selectedSlot}");
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
-                                    margin: EdgeInsets.only(right: 1.w),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                        5.r,
-                                      ),
-                                      border: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.morning?[index]
-                                                  .isBooked ??
-                                              false
-                                          ? null
-                                          : Border.all(),
-                                      color: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.morning?[index]
-                                                  .time ==
-                                              _viewModel.selectedSlot
-                                          ? kBlack
-                                          : _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.morning?[index]
-                                                      .isBooked ??
-                                                  false
-                                              ? const Color(0xffd1d1d1)
-                                              : kWhite,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.morning?[index].time}",
-                                        style: GoogleFonts.urbanist(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.morning?[index]
-                                                      .time ==
-                                                  _viewModel.selectedSlot
-                                              ? kWhite
-                                              : kBlack,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                    ),
-                  ),
-                  const Divider(
-                    color: klines,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    "Afternoon",
-                    style: GoogleFonts.urbanist(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: kBlack,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.h),
-                    child: SizedBox(
-                      height: 40.h,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: _viewModel.beauticianAvailabilityResponseModel
-                                  ?.data?.slots?.afternoon?.isEmpty ??
-                              true
-                          ? Text(
-                              "No slots found",
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: kGrey,
-                              ),
-                            )
-                          : ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _viewModel
-                                      .beauticianAvailabilityResponseModel
-                                      ?.data
-                                      ?.slots
-                                      ?.afternoon
-                                      ?.length ??
-                                  0,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    _viewModel.setSelectedSlot(_viewModel
-                                            .beauticianAvailabilityResponseModel
-                                            ?.data
-                                            ?.slots
-                                            ?.afternoon?[index]
-                                            .time ??
-                                        "",);
-                                    log("selected slot ${_viewModel.selectedSlot}");
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
-                                    margin: EdgeInsets.only(right: 1.w),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                        5.r,
-                                      ),
-                                      border: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.afternoon?[index]
-                                                  .isBooked ??
-                                              false
-                                          ? null
-                                          : Border.all(),
-                                      color: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.afternoon?[index]
-                                                  .time ==
-                                              _viewModel.selectedSlot
-                                          ? kBlack
-                                          : _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.afternoon?[index]
-                                                      .isBooked ??
-                                                  false
-                                              ? const Color(0xffd1d1d1)
-                                              : kWhite,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.afternoon?[index].time}",
-                                        style: GoogleFonts.urbanist(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.afternoon?[index]
-                                                      .time ==
-                                                  _viewModel.selectedSlot
-                                              ? kWhite
-                                              : kBlack,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                    ),
-                  ),
-                  const Divider(
-                    color: klines,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    "Evening",
-                    style: GoogleFonts.urbanist(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: kBlack,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.h),
-                    child: SizedBox(
-                      height: 40.h,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: _viewModel.beauticianAvailabilityResponseModel
-                                  ?.data?.slots?.evening?.isEmpty ??
-                              true
-                          ? Text(
-                              "No slots found",
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: kGrey,
-                              ),
-                            )
-                          : ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _viewModel
-                                      .beauticianAvailabilityResponseModel
-                                      ?.data
-                                      ?.slots
-                                      ?.evening
-                                      ?.length ??
-                                  0,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    _viewModel.setSelectedSlot(_viewModel
-                                            .beauticianAvailabilityResponseModel
-                                            ?.data
-                                            ?.slots
-                                            ?.evening?[index]
-                                            .time ??
-                                        "",);
-                                    log("selected slot ${_viewModel.selectedSlot}");
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5,),
-                                    margin: EdgeInsets.only(right: 1.w),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                        5.r,
-                                      ),
-                                      border: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.evening?[index]
-                                                  .isBooked ??
-                                              false
-                                          ? null
-                                          : Border.all(),
-                                      color: _viewModel
-                                                  .beauticianAvailabilityResponseModel
-                                                  ?.data
-                                                  ?.slots
-                                                  ?.evening?[index]
-                                                  .time ==
-                                              _viewModel.selectedSlot
-                                          ? kBlack
-                                          : _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.evening?[index]
-                                                      .isBooked ??
-                                                  false
-                                              ? const Color(0xffd1d1d1)
-                                              : kWhite,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.evening?[index].time}",
-                                        style: GoogleFonts.urbanist(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: _viewModel
-                                                      .beauticianAvailabilityResponseModel
-                                                      ?.data
-                                                      ?.slots
-                                                      ?.evening?[index]
-                                                      .time ==
-                                                  _viewModel.selectedSlot
-                                              ? kWhite
-                                              : kBlack,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                    ),
-                  ),
-                ],
+            width: double.infinity,
+            padding: const EdgeInsets.all(5),
+            color: kLightBlue,
+            child: Text(
+              "Select Date",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: kdarkPrime,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(5),
-          color: kLightBlue,
-          child: Text(
-            "Select Service",
-            style: TextStyle(
-              fontSize: 14.sp,
-              color: kdarkPrime,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        ...List.generate(
-          _viewModel.beauticianServicesResponseModel?.data?.length ?? 0,
-          (index) => Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: Container(
-              decoration: BoxDecoration(
-                color: kWhite,
-                borderRadius: BorderRadius.circular(10.r),
+          SizedBox(
+            // height: MediaQuery.of(context).size.height * 0.5,
+            // width: MediaQuery.of(context).size.width,
+            child: TableCalendar(
+              weekNumbersVisible: true,
+              firstDay: DateTime.now(),
+              focusedDay: today,
+              lastDay: DateTime.now().add(const Duration(days: 7)),
+              headerStyle: HeaderStyle(
+                titleCentered: true,
+                titleTextStyle: GoogleFonts.urbanist(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
+                ),
+                formatButtonVisible: false,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(10.h),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _viewModel.beauticianServicesResponseModel
-                                  ?.data?[index].name ??
-                              "",
-                          style: GoogleFonts.urbanist(
-                            color: kBlack,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          "\$${_viewModel.beauticianServicesResponseModel?.data?[index].price ?? ""} and up for ${_viewModel.beauticianServicesResponseModel?.data?[index].durationInMinutes ?? ""} minutes",
-                          style: GoogleFonts.urbanist(
-                            color: kGrey,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        (_viewModel.selectedService.contains(_viewModel
-                                .beauticianServicesResponseModel?.data?[index],))
-                            ? _viewModel.removeServices(_viewModel
-                                .beauticianServicesResponseModel?.data?[index],)
-                            : _viewModel.addServices(_viewModel
-                                .beauticianServicesResponseModel?.data?[index],);
-
-                        log(_viewModel.selectedService.length.toString());
-                      },
-                      child: (_viewModel.selectedService.contains(_viewModel
-                              .beauticianServicesResponseModel?.data?[index],))
-                          ? CircleAvatar(
-                              backgroundColor: kBlue,
-                              radius: 20.r,
-                              child: Icon(
-                                Icons.check,
-                                color: kWhite,
-                                size: 20.sp,
-                              ),
-                            )
-                          : Container(
-                              height: 40.r,
-                              width: 40.r,
-                              decoration: BoxDecoration(
-                                color: kWhite,
-                                border: Border.all(),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.add,
-                                color: kBlack,
-                                size: 20.sp,
-                              ),
-                            ),
-                    )
-                  ],
+              rowHeight: 40.h,
+              selectedDayPredicate: (day) {
+                return isSameDay(day, today);
+              },
+              onDaySelected: _onDaySelected,
+              daysOfWeekStyle: DaysOfWeekStyle(
+                weekdayStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
+                ),
+                weekendStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
+                ),
+              ),
+              calendarStyle: CalendarStyle(
+                selectedDecoration: const BoxDecoration(
+                  color: kBlack,
+                  shape: BoxShape.circle,
+                ),
+                selectedTextStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kWhite,
+                ),
+                todayDecoration: BoxDecoration(
+                  color: kWhite,
+                  shape: BoxShape.circle,
+                  border: Border.all(),
+                ),
+                todayTextStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
+                ),
+                defaultTextStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
+                ),
+                weekendTextStyle: GoogleFonts.urbanist(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: kdescription,
                 ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: BlackButton(
-              context, saving ? "Processing..." : "Create Appointment",
-              () async {
-            List<String> selectedServiceID = [];
-            saving = true;
-            setState(() {});
-            for (int i = 0; i < _viewModel.selectedService.length; i++) {
-              selectedServiceID
-                  .add(_viewModel.selectedService[i].id.toString());
-            }
-            await _viewModel.makeAppointment(
+          SizedBox(
+            height: 10.h,
+          ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(5),
+            color: kLightBlue,
+            child: Text(
+              "Select Slot",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: kdarkPrime,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          if (isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            )
+          else
+            Container(
+              decoration: BoxDecoration(
+                color: kWhite,
+                borderRadius: BorderRadius.circular(10.r),
+                border: Border.all(color: klines),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Morning",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        color: kBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      child: SizedBox(
+                        height: 40.h,
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: _viewModel.beauticianAvailabilityResponseModel
+                                    ?.data?.slots?.morning?.isEmpty ??
+                                true
+                            ? Text(
+                                "No slots found",
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: kGrey,
+                                ),
+                              )
+                            : ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _viewModel
+                                        .beauticianAvailabilityResponseModel
+                                        ?.data
+                                        ?.slots
+                                        ?.morning
+                                        ?.length ??
+                                    0,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _viewModel.setSelectedSlot(
+                                        _viewModel
+                                                .beauticianAvailabilityResponseModel
+                                                ?.data
+                                                ?.slots
+                                                ?.morning?[index]
+                                                .time ??
+                                            "",
+                                      );
+                                      log("selected slot ${_viewModel.selectedSlot}");
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 5,
+                                      ),
+                                      margin: EdgeInsets.only(right: 1.w),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          5.r,
+                                        ),
+                                        border: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.morning?[index]
+                                                    .isBooked ??
+                                                false
+                                            ? null
+                                            : Border.all(),
+                                        color: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.morning?[index]
+                                                    .time ==
+                                                _viewModel.selectedSlot
+                                            ? kBlack
+                                            : _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.morning?[index]
+                                                        .isBooked ??
+                                                    false
+                                                ? const Color(0xffd1d1d1)
+                                                : kWhite,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.morning?[index].time}",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.morning?[index]
+                                                        .time ==
+                                                    _viewModel.selectedSlot
+                                                ? kWhite
+                                                : kBlack,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                    const Divider(
+                      color: klines,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      "Afternoon",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        color: kBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      child: SizedBox(
+                        height: 40.h,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: _viewModel.beauticianAvailabilityResponseModel
+                                    ?.data?.slots?.afternoon?.isEmpty ??
+                                true
+                            ? Text(
+                                "No slots found",
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: kGrey,
+                                ),
+                              )
+                            : ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _viewModel
+                                        .beauticianAvailabilityResponseModel
+                                        ?.data
+                                        ?.slots
+                                        ?.afternoon
+                                        ?.length ??
+                                    0,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _viewModel.setSelectedSlot(
+                                        _viewModel
+                                                .beauticianAvailabilityResponseModel
+                                                ?.data
+                                                ?.slots
+                                                ?.afternoon?[index]
+                                                .time ??
+                                            "",
+                                      );
+                                      log("selected slot ${_viewModel.selectedSlot}");
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 5,
+                                      ),
+                                      margin: EdgeInsets.only(right: 1.w),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          5.r,
+                                        ),
+                                        border: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.afternoon?[index]
+                                                    .isBooked ??
+                                                false
+                                            ? null
+                                            : Border.all(),
+                                        color: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.afternoon?[index]
+                                                    .time ==
+                                                _viewModel.selectedSlot
+                                            ? kBlack
+                                            : _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.afternoon?[index]
+                                                        .isBooked ??
+                                                    false
+                                                ? const Color(0xffd1d1d1)
+                                                : kWhite,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.afternoon?[index].time}",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.afternoon?[index]
+                                                        .time ==
+                                                    _viewModel.selectedSlot
+                                                ? kWhite
+                                                : kBlack,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                    const Divider(
+                      color: klines,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      "Evening",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        color: kBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      child: SizedBox(
+                        height: 40.h,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: _viewModel.beauticianAvailabilityResponseModel
+                                    ?.data?.slots?.evening?.isEmpty ??
+                                true
+                            ? Text(
+                                "No slots found",
+                                style: GoogleFonts.urbanist(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: kGrey,
+                                ),
+                              )
+                            : ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _viewModel
+                                        .beauticianAvailabilityResponseModel
+                                        ?.data
+                                        ?.slots
+                                        ?.evening
+                                        ?.length ??
+                                    0,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _viewModel.setSelectedSlot(
+                                        _viewModel
+                                                .beauticianAvailabilityResponseModel
+                                                ?.data
+                                                ?.slots
+                                                ?.evening?[index]
+                                                .time ??
+                                            "",
+                                      );
+                                      log("selected slot ${_viewModel.selectedSlot}");
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 5,
+                                      ),
+                                      margin: EdgeInsets.only(right: 1.w),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          5.r,
+                                        ),
+                                        border: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.evening?[index]
+                                                    .isBooked ??
+                                                false
+                                            ? null
+                                            : Border.all(),
+                                        color: _viewModel
+                                                    .beauticianAvailabilityResponseModel
+                                                    ?.data
+                                                    ?.slots
+                                                    ?.evening?[index]
+                                                    .time ==
+                                                _viewModel.selectedSlot
+                                            ? kBlack
+                                            : _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.evening?[index]
+                                                        .isBooked ??
+                                                    false
+                                                ? const Color(0xffd1d1d1)
+                                                : kWhite,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "${_viewModel.beauticianAvailabilityResponseModel?.data?.slots?.evening?[index].time}",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: _viewModel
+                                                        .beauticianAvailabilityResponseModel
+                                                        ?.data
+                                                        ?.slots
+                                                        ?.evening?[index]
+                                                        .time ==
+                                                    _viewModel.selectedSlot
+                                                ? kWhite
+                                                : kBlack,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(5),
+            color: kLightBlue,
+            child: Text(
+              "Select Service",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: kdarkPrime,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          ...List.generate(
+            _viewModel.beauticianServicesResponseModel?.data?.length ?? 0,
+            (index) => Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: kWhite,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(10.h),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _viewModel.beauticianServicesResponseModel
+                                    ?.data?[index].name ??
+                                "",
+                            style: GoogleFonts.urbanist(
+                              color: kBlack,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "\$${_viewModel.beauticianServicesResponseModel?.data?[index].price ?? ""} and up for ${_viewModel.beauticianServicesResponseModel?.data?[index].durationInMinutes ?? ""} minutes",
+                            style: GoogleFonts.urbanist(
+                              color: kGrey,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          (_viewModel.selectedService.contains(
+                            _viewModel
+                                .beauticianServicesResponseModel?.data?[index],
+                          ))
+                              ? _viewModel.removeServices(
+                                  _viewModel.beauticianServicesResponseModel
+                                      ?.data?[index],
+                                )
+                              : _viewModel.addServices(
+                                  _viewModel.beauticianServicesResponseModel
+                                      ?.data?[index],
+                                );
+
+                          log(_viewModel.selectedService.length.toString());
+                        },
+                        child: (_viewModel.selectedService.contains(
+                          _viewModel
+                              .beauticianServicesResponseModel?.data?[index],
+                        ))
+                            ? CircleAvatar(
+                                backgroundColor: kBlue,
+                                radius: 20.r,
+                                child: Icon(
+                                  Icons.check,
+                                  color: kWhite,
+                                  size: 20.sp,
+                                ),
+                              )
+                            : Container(
+                                height: 40.r,
+                                width: 40.r,
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  border: Border.all(),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  color: kBlack,
+                                  size: 20.sp,
+                                ),
+                              ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: BlackButton(
+                context, saving ? "Processing..." : "Create Appointment",
+                () async {
+              List<String> selectedServiceID = [];
+              saving = true;
+              setState(() {});
+              for (int i = 0; i < _viewModel.selectedService.length; i++) {
+                selectedServiceID
+                    .add(_viewModel.selectedService[i].id.toString());
+              }
+              await _viewModel.makeAppointment(
                 CreateAppointmentRequest(
                   user: _viewModel.getClientByIdResponseModel?.data?.client?.id,
                   beautician:
@@ -2808,12 +2846,14 @@ class _ClientAppointmentBookingState
                   zipcode:
                       _viewModel.getClientByIdResponseModel?.data?.client?.zip,
                 ),
-                context,);
-            saving = false;
-            setState(() {});
-          }),
-        )
-      ],),
+                context,
+              );
+              saving = false;
+              setState(() {});
+            }),
+          )
+        ],
+      ),
     );
   }
 }

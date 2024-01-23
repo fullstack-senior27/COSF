@@ -42,55 +42,64 @@ enum AppRoute {
 
 // flutter packages pub run build_runner build --delete-conflicting-outputs
 
-final GoRouter routers = GoRouter(routes: [
-  ///=============== UNREGISTERED USER ===============///
-  GoRoute(
+final GoRouter routers = GoRouter(
+  routes: [
+    ///=============== UNREGISTERED USER ===============///
+    GoRoute(
       path: '/navigation',
       builder: (context, state) => const NavigationPage(),
-      pageBuilder: defaultPageBuilder(const NavigationPage()),),
+      pageBuilder: defaultPageBuilder(const NavigationPage()),
+    ),
 
-  //free user (without login)
-  GoRoute(
+    //free user (without login)
+    GoRoute(
       path: '/landing',
       builder: (context, state) =>
           const DashboardFreePage(child: LandingPage()),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: LandingPage())),),
-  GoRoute(
+          defaultPageBuilder(const DashboardFreePage(child: LandingPage())),
+    ),
+    GoRoute(
       path: '/beauticianLogin',
       builder: (context, state) =>
           const DashboardFreePage(child: BeauticianLogin()),
       pageBuilder: defaultPageBuilder(
-          const DashboardFreePage(child: BeauticianLogin()),),),
-  GoRoute(
+        const DashboardFreePage(child: BeauticianLogin()),
+      ),
+    ),
+    GoRoute(
       path: '/pricing',
       builder: (context, state) => const PricingDetails(),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: PricingDetails())),),
-  GoRoute(
+          defaultPageBuilder(const DashboardFreePage(child: PricingDetails())),
+    ),
+    GoRoute(
       path: '/help',
       builder: (context, state) => const DashboardFreePage(child: HelpPage()),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: HelpPage())),),
-  GoRoute(
-    path: '/help/:nav',
-    builder: (context, state) => DashboardFreePage(
+          defaultPageBuilder(const DashboardFreePage(child: HelpPage())),
+    ),
+    GoRoute(
+      path: '/help/:nav',
+      builder: (context, state) => DashboardFreePage(
         child: HelpPage(
-      nav: int.parse(state.pathParameters['nav'].toString()),
-    ),),
-    // pageBuilder: defaultPageBuilder(DashboardFreePage(child: HelpPage(nav: int.parse(state.pathParameters['nav'].toString()),)),)
-  ),
-  GoRoute(
-    path: '/',
-    builder: (context, state) => const DashboardFreePage(child: HomePageView()),
-    pageBuilder:
-        defaultPageBuilder(const DashboardFreePage(child: HomePageView())),
-  ),
-  GoRoute(
+          nav: int.parse(state.pathParameters['nav'].toString()),
+        ),
+      ),
+      // pageBuilder: defaultPageBuilder(DashboardFreePage(child: HelpPage(nav: int.parse(state.pathParameters['nav'].toString()),)),)
+    ),
+    GoRoute(
+      path: '/',
+      builder: (context, state) =>
+          const DashboardFreePage(child: HomePageView()),
+      pageBuilder:
+          defaultPageBuilder(const DashboardFreePage(child: HomePageView())),
+    ),
+    GoRoute(
       path: '/login',
       builder: (context, state) => const DashboardFreePage(
-            child: LoginPage(),
-          ),
+        child: LoginPage(),
+      ),
       pageBuilder:
           defaultPageBuilder(const DashboardFreePage(child: LoginPage())),
       routes: [
@@ -99,21 +108,24 @@ final GoRouter routers = GoRouter(routes: [
           builder: (context, state) => const FortgotPassPage(),
           pageBuilder: defaultPageBuilder(const FortgotPassPage()),
         )
-      ],),
-  GoRoute(
+      ],
+    ),
+    GoRoute(
       path: '/serviceDetails',
       builder: (context, state) {
         String id = state.extra.toString();
         return ServiceDetailsPage(id: id);
-      },),
-  GoRoute(
+      },
+    ),
+    GoRoute(
       path: '/signUp',
       builder: (context, state) => const DashboardFreePage(
-            child: SignupPage(),
-          ),
+        child: SignupPage(),
+      ),
       pageBuilder:
-          defaultPageBuilder(const DashboardFreePage(child: SignupPage())),),
-  GoRoute(
+          defaultPageBuilder(const DashboardFreePage(child: SignupPage())),
+    ),
+    GoRoute(
       path: '/blogs',
       builder: (context, state) => const DashboardFreePage(child: BlogPage()),
       pageBuilder:
@@ -125,110 +137,130 @@ final GoRouter routers = GoRouter(routes: [
             // String groupId = state.extra.toString();
             final Data data = state.extra! as Data;
             return DashboardFreePage(
-                child: BlogDetailsPage(
-              data: data,
-            ),);
+              child: BlogDetailsPage(
+                data: data,
+              ),
+            );
           },
           // pageBuilder: defaultPageBuilder(
           //      DashboardFreePage(child: BlogDetailsPage(data: data,))),
         )
-      ],),
-  GoRoute(
+      ],
+    ),
+    GoRoute(
       path: '/beautician-listing',
       builder: (context, state) =>
           const DashboardFreePage(child: BeauticiansListPageView()),
       pageBuilder: defaultPageBuilder(
-          const DashboardFreePage(child: BeauticiansListPageView()),),
+        const DashboardFreePage(child: BeauticiansListPageView()),
+      ),
       routes: [
         GoRoute(
-            path: 'service-details',
-            builder: (context, state) {
-              String id = state.extra.toString();
-              return ServiceDetailsPage(id: id);
-            },
+          path: 'service-details',
+          builder: (context, state) {
+            String id = state.extra.toString();
+            return ServiceDetailsPage(id: id);
+          },
 
-            // pageBuilder: defaultPageBuilder(
-            //     const DashboardFreePage(child: ServiceDetailsPage())),
-            )
-      ],),
-  GoRoute(
-    path: '/edit-profile',
-    builder: (context, state) => const DashboardFreePage(child: EditProfile()),
-    pageBuilder:
-        defaultPageBuilder(const DashboardFreePage(child: EditProfile())),
-  ),
+          // pageBuilder: defaultPageBuilder(
+          //     const DashboardFreePage(child: ServiceDetailsPage())),
+        )
+      ],
+    ),
+    GoRoute(
+      path: '/edit-profile',
+      builder: (context, state) => const EditProfile(),
+      pageBuilder: defaultPageBuilder(EditProfile()),
+    ),
 
-  ///=============== REGISTERED USER ===============///
-  GoRoute(
-    path: '/text-editor',
-    builder: (context, state) => DashboardFreePage(child: TextEditorPage()),
-    pageBuilder: defaultPageBuilder(DashboardFreePage(child: TextEditorPage())),
-  ),
-  GoRoute(
+    ///=============== REGISTERED USER ===============///
+    GoRoute(
+      path: '/text-editor',
+      builder: (context, state) => DashboardFreePage(child: TextEditorPage()),
+      pageBuilder:
+          defaultPageBuilder(DashboardFreePage(child: TextEditorPage())),
+    ),
+    GoRoute(
       path: '/dashboard-login',
       builder: (context, state) => const DashboardLoginPage(
-            child: CalendarPage(),
-          ),
-      pageBuilder: defaultPageBuilder(const DashboardLoginPage(
         child: CalendarPage(),
-      ),),
+      ),
+      pageBuilder: defaultPageBuilder(
+        const DashboardLoginPage(
+          child: CalendarPage(),
+        ),
+      ),
       routes: [
         GoRoute(
           path: 'client',
           builder: (context, state) => const DashboardLoginPage(
             child: ClintsPage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: ClintsPage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: ClintsPage(),
+            ),
+          ),
         ),
         GoRoute(
           path: 'growth',
           builder: (context, state) => const DashboardLoginPage(
             child: GrowthPage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: GrowthPage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: GrowthPage(),
+            ),
+          ),
         ),
         GoRoute(
           path: 'marketing',
           builder: (context, state) => const DashboardLoginPage(
             child: MarketingPage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: MarketingPage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: MarketingPage(),
+            ),
+          ),
         ),
         GoRoute(
           path: 'promotions',
           builder: (context, state) => const DashboardLoginPage(
             child: PromotionsPage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: PromotionsPage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: PromotionsPage(),
+            ),
+          ),
         ),
         GoRoute(
           path: 'profile',
           builder: (context, state) => const DashboardLoginPage(
             child: ProfilePage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: ProfilePage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: ProfilePage(),
+            ),
+          ),
         ),
         GoRoute(
           path: 'more',
           builder: (context, state) => const DashboardLoginPage(
             child: MorePage(),
           ),
-          pageBuilder: defaultPageBuilder(const DashboardLoginPage(
-            child: MorePage(),
-          ),),
+          pageBuilder: defaultPageBuilder(
+            const DashboardLoginPage(
+              child: MorePage(),
+            ),
+          ),
         ),
-      ],),
-],);
+      ],
+    ),
+  ],
+);
 
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context,
@@ -255,8 +287,9 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
 }
 
 Page<dynamic> Function(BuildContext, GoRouterState) defaultPageBuilder<T>(
-        Widget child,
-        {GoRouterState? state,}) =>
+  Widget child, {
+  GoRouterState? state,
+}) =>
     (BuildContext context, state) {
       return buildPageWithDefaultTransition<T>(
         context: context,

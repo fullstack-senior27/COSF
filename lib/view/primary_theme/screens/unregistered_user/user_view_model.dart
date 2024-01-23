@@ -189,22 +189,29 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
     toggleLoading();
     await _userRepository
         .getUserProfileDetails(
-            SharedPreferenceService.getString(AppConstants.accessToken) ?? "",)
+          SharedPreferenceService.getString(AppConstants.accessToken) ?? "",
+        )
         .then(
           (value) => value.fold(
             (l) {
               // showSnackbar(l.message);
               showDialog(
-                  context: context,
-                  builder: (builder) => const AlertDialog(
-                      scrollable: true, content: LoginDialog(),),);
+                context: context,
+                builder: (builder) => const AlertDialog(
+                  scrollable: true,
+                  content: LoginDialog(),
+                ),
+              );
             },
             (r) {
               // _profileDetailsResponse = r;
               showDialog(
-                  context: context,
-                  builder: (builder) => const AlertDialog(
-                      scrollable: true, content: SelectDate(),),);
+                context: context,
+                builder: (builder) => const AlertDialog(
+                  scrollable: true,
+                  content: SelectDate(),
+                ),
+              );
               // showSnackbar(r.message!);
               notifyListeners();
             },
@@ -300,7 +307,7 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
           (value) => value.fold((l) {
             showSnackbar(l.message);
           }, (r) {
-            showSnackbar(r.message!);
+            // showSnackbar(r.message!);
             _allUserAppointments = r;
             notifyListeners();
           }),
@@ -308,7 +315,9 @@ class UserViewModel extends BaseViewModel<BaseScreenView> {
   }
 
   Future<void> makeAppointment(
-      CreateAppointmentRequest request, BuildContext context,) async {
+    CreateAppointmentRequest request,
+    BuildContext context,
+  ) async {
     toggleLoading();
     await _bookingRepo.createAppointment(request).then(
           (value) => value.fold(
