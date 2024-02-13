@@ -29,7 +29,7 @@ class _BeauticiansListWebViewState
     extends ConsumerState<BeauticiansListWebView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: kWhite,
         border: Border.all(
@@ -40,8 +40,11 @@ class _BeauticiansListWebViewState
       ),
       child: InkWell(
         onTap: () {
-          context.go("/beautician-listing/service-details",
-              extra: widget.salonDetails?.id ?? "",);
+          ref.read(userViewModel).setSelectedSalon(widget.salonDetails);
+          context.go(
+            "/beautician-listing/service-details",
+            extra: widget.salonDetails?.id ?? "",
+          );
         },
         child: Padding(
           padding: EdgeInsets.all(10.h),
@@ -57,8 +60,10 @@ class _BeauticiansListWebViewState
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         image: DecorationImage(
-                          image: NetworkImage(widget.salonDetails?.image ??
-                              "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",),
+                          image: NetworkImage(
+                            widget.salonDetails?.image ??
+                                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -199,10 +204,14 @@ class _BeauticiansListWebViewState
                                                 // });
                                               },
                                               child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 5,),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
                                                 margin: EdgeInsets.only(
-                                                    bottom: 10.h, right: 1.w,),
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -286,10 +295,14 @@ class _BeauticiansListWebViewState
                                                 // });
                                               },
                                               child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 5,),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
                                                 margin: EdgeInsets.only(
-                                                    bottom: 10.h, right: 1.w,),
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -375,10 +388,14 @@ class _BeauticiansListWebViewState
                                                 // });
                                               },
                                               child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 5,),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
                                                 margin: EdgeInsets.only(
-                                                    bottom: 10.h, right: 1.w,),
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -503,8 +520,13 @@ class _BeauticiansListWebViewState
                 children: [
                   TextButton(
                     onPressed: () {
-                      context.go("/beautician-listing/service-details",
-                          extra: widget.salonDetails?.id ?? "",);
+                      ref
+                          .read(userViewModel)
+                          .setSelectedSalon(widget.salonDetails);
+                      context.go(
+                        "/beautician-listing/service-details",
+                        extra: widget.salonDetails?.id ?? "",
+                      );
                     },
                     child: const Text("More Information"),
                   ),
@@ -514,16 +536,20 @@ class _BeauticiansListWebViewState
                           .read(userViewModel)
                           .setSelectedSalon(widget.salonDetails);
                       if (SharedPreferenceService.getString(
-                                  AppConstants.accessToken,) ==
+                                AppConstants.accessToken,
+                              ) ==
                               null ||
                           SharedPreferenceService.getString(
-                                  AppConstants.accessToken,) ==
+                                AppConstants.accessToken,
+                              ) ==
                               "") {
                         showDialog(
-                            context: context,
-                            builder: (builder) => const AlertDialog(
-                                scrollable: true,
-                                content: LoginDialog(),),);
+                          context: context,
+                          builder: (builder) => const AlertDialog(
+                            scrollable: true,
+                            content: LoginDialog(),
+                          ),
+                        );
                       } else {
                         //validate
                         log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
@@ -550,7 +576,7 @@ class _BeauticiansListWebViewState
                         color: kWhite,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(
@@ -579,10 +605,13 @@ class _BeauticiansListMobViewState
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.go("/beautician-listing/service-details",
-            extra: widget.salonDetails?.id ?? "",);
+        ref.read(userViewModel).setSelectedSalon(widget.salonDetails);
+        context.go(
+          "/beautician-listing/service-details",
+          extra: widget.salonDetails?.id ?? "",
+        );
       },
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: kWhite,
           border: Border.all(
@@ -601,8 +630,10 @@ class _BeauticiansListMobViewState
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: DecorationImage(
-                    image: NetworkImage(widget.salonDetails?.image ??
-                        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",),
+                    image: NetworkImage(
+                      widget.salonDetails?.image ??
+                          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -729,10 +760,13 @@ class _BeauticiansListMobViewState
                                     // });
                                   },
                                   child: Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(
-                                        bottom: 10.h, right: 3.w,),
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                         5.r,
@@ -806,10 +840,13 @@ class _BeauticiansListMobViewState
                                     // });
                                   },
                                   child: Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(
-                                        bottom: 10.h, right: 3.w,),
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                         5.r,
@@ -887,10 +924,13 @@ class _BeauticiansListMobViewState
                                     // });
                                   },
                                   child: Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
                                     margin: EdgeInsets.only(
-                                        bottom: 10.h, right: 3.w,),
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                         5.r,
@@ -1015,8 +1055,13 @@ class _BeauticiansListMobViewState
                 ),
                 child: TextButton(
                   onPressed: () {
-                    context.go("/beautician-listing/service-details",
-                        extra: widget.salonDetails?.id ?? "",);
+                    ref
+                        .read(userViewModel)
+                        .setSelectedSalon(widget.salonDetails);
+                    context.go(
+                      "/beautician-listing/service-details",
+                      extra: widget.salonDetails?.id ?? "",
+                    );
                   },
                   child: Text(
                     "More Information",
@@ -1039,15 +1084,20 @@ class _BeauticiansListMobViewState
                         .read(userViewModel)
                         .setSelectedSalon(widget.salonDetails);
                     if (SharedPreferenceService.getString(
-                                AppConstants.accessToken,) ==
+                              AppConstants.accessToken,
+                            ) ==
                             null ||
                         SharedPreferenceService.getString(
-                                AppConstants.accessToken,) ==
+                              AppConstants.accessToken,
+                            ) ==
                             "") {
                       showDialog(
-                          context: context,
-                          builder: (builder) => const AlertDialog(
-                              scrollable: true, content: LoginDialog(),),);
+                        context: context,
+                        builder: (builder) => const AlertDialog(
+                          scrollable: true,
+                          content: LoginDialog(),
+                        ),
+                      );
                     } else {
                       //validate
                       log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
@@ -1083,10 +1133,11 @@ class _BeauticiansListMobViewState
 class BeauticiansSideFilter extends ConsumerStatefulWidget {
   int upperFilterIndex;
   int selectedService;
-  BeauticiansSideFilter(
-      {super.key,
-      required this.upperFilterIndex,
-      required this.selectedService,});
+  BeauticiansSideFilter({
+    super.key,
+    required this.upperFilterIndex,
+    required this.selectedService,
+  });
 
   @override
   ConsumerState<BeauticiansSideFilter> createState() =>
@@ -1102,7 +1153,7 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
     'Hair Spa',
     'Makeup',
     'Nail Art',
-    'Manicure and Pedicure'
+    'Manicure and Pedicure',
   ];
 
   // int selectedSortPrice = -1;
@@ -1138,55 +1189,59 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
               ),
             ),
             SizedBox(
-                height: 45,
-                child: MaterialButton(
-                  onPressed: () {
-                    if (ref.read(homePageViewModel).priceRange < 2000 ||
+              height: 45,
+              child: MaterialButton(
+                onPressed: () {
+                  if (ref.read(homePageViewModel).priceRange < 2000 ||
+                      ref.read(homePageViewModel).sortPrice != -1 ||
+                      ref.read(homePageViewModel).avgRating != -1 ||
+                      widget.selectedService != -1) {
+                    setState(() {
+                      ref.read(homePageViewModel).priceRange = 2000;
+                      ref.read(homePageViewModel).avgRating = -1;
+                      widget.upperFilterIndex = 0;
+                      selectedService = -1;
+                      ref.read(homePageViewModel).sortPrice = -1;
+                    });
+
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          const BeauticiansFilterRequest(
+                            filters: Filters(
+                              search: "",
+                            ),
+                          ),
+                        );
+                  }
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                color: (ref.read(homePageViewModel).priceRange < 2000 ||
                         ref.read(homePageViewModel).sortPrice != -1 ||
                         ref.read(homePageViewModel).avgRating != -1 ||
-                        widget.selectedService != -1) {
-                      setState(() {
-                        ref.read(homePageViewModel).priceRange = 2000;
-                        ref.read(homePageViewModel).avgRating = -1;
-                        widget.upperFilterIndex = 0;
-                        selectedService = -1;
-                        ref.read(homePageViewModel).sortPrice = -1;
-                      });
-
-                      ref.read(homePageViewModel).getBeauticiansByFilter(
-                              const BeauticiansFilterRequest(
-                                  filters: Filters(
-                            search: "",
-                          ),),);
-                    }
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),),
-                  color: (ref.read(homePageViewModel).priceRange < 2000 ||
-                          ref.read(homePageViewModel).sortPrice != -1 ||
-                          ref.read(homePageViewModel).avgRating != -1 ||
-                          selectedService != -1)
-                      ? Colors.redAccent
-                      : kGrey,
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.filter_alt_off_rounded,
-                        color: kWhite,
-                      ),
-                      Text(
-                        "Clear",
-                        style: TextStyle(color: kWhite),
-                      ),
-                    ],
-                  ),
-                ),),
+                        selectedService != -1)
+                    ? Colors.redAccent
+                    : kGrey,
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.filter_alt_off_rounded,
+                      color: kWhite,
+                    ),
+                    Text(
+                      "Clear",
+                      style: TextStyle(color: kWhite),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         SizedBox(
           height: 10.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1253,60 +1308,63 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                     max: 2000,
                     value: ref.read(homePageViewModel).priceRange,
                     onChangeEnd: (value) {
-                      ref
-                          .read(homePageViewModel)
-                          .getBeauticiansByFilter(BeauticiansFilterRequest(
+                      ref.read(homePageViewModel).getBeauticiansByFilter(
+                            BeauticiansFilterRequest(
                               filters: Filters(
-                            search: ref
-                                        .read(homePageViewModel)
-                                        .locationController
-                                        .text
-                                        .isEmpty &&
-                                    ref
+                                search: ref
+                                            .read(homePageViewModel)
+                                            .locationController
+                                            .text
+                                            .isEmpty &&
+                                        ref
+                                            .read(homePageViewModel)
+                                            .locationController
+                                            .text
+                                            .isEmpty
+                                    ? ""
+                                    : null,
+                                location: ref
                                         .read(homePageViewModel)
                                         .locationController
                                         .text
                                         .isEmpty
-                                ? ""
-                                : null,
-                            location: ref
-                                    .read(homePageViewModel)
-                                    .locationController
-                                    .text
-                                    .isEmpty
-                                ? null
-                                : ref
-                                    .read(homePageViewModel)
-                                    .locationController
-                                    .text,
-                            date: ref
-                                    .read(homePageViewModel)
-                                    .dateController
-                                    .text
-                                    .isEmpty
-                                ? null
-                                : ref
-                                    .read(homePageViewModel)
-                                    .dateController
-                                    .text,
-                            sortPrice:
-                                ref.read(homePageViewModel).sortPrice == -1
                                     ? null
-                                    : sortPriceList[
-                                        ref.read(homePageViewModel).sortPrice],
-                            priceRange: PriceRange(
-                              minPrice: 0,
-                              maxPrice: ref
-                                  .read(homePageViewModel)
-                                  .priceRange
-                                  .round(),
+                                    : ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text,
+                                date: ref
+                                        .read(homePageViewModel)
+                                        .dateController
+                                        .text
+                                        .isEmpty
+                                    ? null
+                                    : ref
+                                        .read(homePageViewModel)
+                                        .dateController
+                                        .text,
+                                sortPrice:
+                                    ref.read(homePageViewModel).sortPrice == -1
+                                        ? null
+                                        : sortPriceList[ref
+                                            .read(homePageViewModel)
+                                            .sortPrice],
+                                priceRange: PriceRange(
+                                  minPrice: 0,
+                                  maxPrice: ref
+                                      .read(homePageViewModel)
+                                      .priceRange
+                                      .round(),
+                                ),
+                                avgRating:
+                                    ref.read(homePageViewModel).avgRating == -1
+                                        ? null
+                                        : ratings[ref
+                                            .read(homePageViewModel)
+                                            .avgRating],
+                              ),
                             ),
-                            avgRating:
-                                ref.read(homePageViewModel).avgRating == -1
-                                    ? null
-                                    : ratings[
-                                        ref.read(homePageViewModel).avgRating],
-                          ),),);
+                          );
                       // ref.read(homePageViewModel).fetchAllSalons(
                       //     ref.read(homePageViewModel).searchController.text,
                       //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
@@ -1362,7 +1420,7 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1417,52 +1475,63 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       }
                     });
 
-                    ref
-                        .read(homePageViewModel)
-                        .getBeauticiansByFilter(BeauticiansFilterRequest(
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          BeauticiansFilterRequest(
                             filters: Filters(
-                          search: ref
-                                      .read(homePageViewModel)
-                                      .locationController
-                                      .text
-                                      .isEmpty &&
-                                  ref
+                              search: ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty &&
+                                      ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty
+                                  ? ""
+                                  : null,
+                              location: ref
                                       .read(homePageViewModel)
                                       .locationController
                                       .text
                                       .isEmpty
-                              ? ""
-                              : null,
-                          location: ref
-                                  .read(homePageViewModel)
-                                  .locationController
-                                  .text
-                                  .isEmpty
-                              ? null
-                              : ref
-                                  .read(homePageViewModel)
-                                  .locationController
-                                  .text,
-                          date: ref
-                                  .read(homePageViewModel)
-                                  .dateController
-                                  .text
-                                  .isEmpty
-                              ? null
-                              : ref.read(homePageViewModel).dateController.text,
-                          sortPrice: ref.read(homePageViewModel).sortPrice == -1
-                              ? null
-                              : sortPriceList[
-                                  ref.read(homePageViewModel).sortPrice],
-                          priceRange: PriceRange(
-                            minPrice: 0,
-                            maxPrice:
-                                ref.read(homePageViewModel).priceRange.round(),
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text,
+                              date: ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text,
+                              sortPrice:
+                                  ref.read(homePageViewModel).sortPrice == -1
+                                      ? null
+                                      : sortPriceList[ref
+                                          .read(homePageViewModel)
+                                          .sortPrice],
+                              priceRange: PriceRange(
+                                minPrice: 0,
+                                maxPrice: ref
+                                    .read(homePageViewModel)
+                                    .priceRange
+                                    .round(),
+                              ),
+                              avgRating:
+                                  ref.read(homePageViewModel).avgRating == -1
+                                      ? null
+                                      : ratings[ref
+                                          .read(homePageViewModel)
+                                          .avgRating],
+                            ),
                           ),
-                          avgRating: ref.read(homePageViewModel).avgRating == -1
-                              ? null
-                              : ratings[ref.read(homePageViewModel).avgRating],
-                        ),),);
+                        );
 
                     // ref.read(homePageViewModel).fetchAllSalons(
                     //     ref.read(homePageViewModel).searchController.text,
@@ -1511,52 +1580,63 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       }
                     });
 
-                    ref
-                        .read(homePageViewModel)
-                        .getBeauticiansByFilter(BeauticiansFilterRequest(
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          BeauticiansFilterRequest(
                             filters: Filters(
-                          search: ref
-                                      .read(homePageViewModel)
-                                      .locationController
-                                      .text
-                                      .isEmpty &&
-                                  ref
+                              search: ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty &&
+                                      ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty
+                                  ? ""
+                                  : null,
+                              location: ref
                                       .read(homePageViewModel)
                                       .locationController
                                       .text
                                       .isEmpty
-                              ? ""
-                              : null,
-                          location: ref
-                                  .read(homePageViewModel)
-                                  .locationController
-                                  .text
-                                  .isEmpty
-                              ? null
-                              : ref
-                                  .read(homePageViewModel)
-                                  .locationController
-                                  .text,
-                          date: ref
-                                  .read(homePageViewModel)
-                                  .dateController
-                                  .text
-                                  .isEmpty
-                              ? null
-                              : ref.read(homePageViewModel).dateController.text,
-                          sortPrice: ref.read(homePageViewModel).sortPrice == -1
-                              ? null
-                              : sortPriceList[
-                                  ref.read(homePageViewModel).sortPrice],
-                          priceRange: PriceRange(
-                            minPrice: 0,
-                            maxPrice:
-                                ref.read(homePageViewModel).priceRange.round(),
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text,
+                              date: ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text,
+                              sortPrice:
+                                  ref.read(homePageViewModel).sortPrice == -1
+                                      ? null
+                                      : sortPriceList[ref
+                                          .read(homePageViewModel)
+                                          .sortPrice],
+                              priceRange: PriceRange(
+                                minPrice: 0,
+                                maxPrice: ref
+                                    .read(homePageViewModel)
+                                    .priceRange
+                                    .round(),
+                              ),
+                              avgRating:
+                                  ref.read(homePageViewModel).avgRating == -1
+                                      ? null
+                                      : ratings[ref
+                                          .read(homePageViewModel)
+                                          .avgRating],
+                            ),
                           ),
-                          avgRating: ref.read(homePageViewModel).avgRating == -1
-                              ? null
-                              : ratings[ref.read(homePageViewModel).avgRating],
-                        ),),);
+                        );
 
                     // ref.read(homePageViewModel).fetchAllSalons(
                     //     ref.read(homePageViewModel).searchController.text,
@@ -1585,7 +1665,7 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1688,7 +1768,7 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1759,52 +1839,61 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       ref.read(homePageViewModel).avgRating = value;
                     }
                   });
-                  ref
-                      .read(homePageViewModel)
-                      .getBeauticiansByFilter(BeauticiansFilterRequest(
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
                           filters: Filters(
-                        search: ref
-                                    .read(homePageViewModel)
-                                    .locationController
-                                    .text
-                                    .isEmpty &&
-                                ref
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
                                     .read(homePageViewModel)
                                     .locationController
                                     .text
                                     .isEmpty
-                            ? ""
-                            : null,
-                        location: ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text,
-                        date: ref
-                                .read(homePageViewModel)
-                                .dateController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref.read(homePageViewModel).dateController.text,
-                        sortPrice: ref.read(homePageViewModel).sortPrice == -1
-                            ? null
-                            : sortPriceList[
-                                ref.read(homePageViewModel).sortPrice],
-                        priceRange: PriceRange(
-                          minPrice: 0,
-                          maxPrice:
-                              ref.read(homePageViewModel).priceRange.round(),
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
                         ),
-                        avgRating: ref.read(homePageViewModel).avgRating == -1
-                            ? null
-                            : ratings[ref.read(homePageViewModel).avgRating],
-                      ),),);
+                      );
 
                   // ref.read(homePageViewModel).fetchAllSalons(
                   //     ref.read(homePageViewModel).searchController.text,
@@ -1900,52 +1989,61 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                       ref.read(homePageViewModel).avgRating = value;
                     }
                   });
-                  ref
-                      .read(homePageViewModel)
-                      .getBeauticiansByFilter(BeauticiansFilterRequest(
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
                           filters: Filters(
-                        search: ref
-                                    .read(homePageViewModel)
-                                    .locationController
-                                    .text
-                                    .isEmpty &&
-                                ref
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
                                     .read(homePageViewModel)
                                     .locationController
                                     .text
                                     .isEmpty
-                            ? ""
-                            : null,
-                        location: ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text,
-                        date: ref
-                                .read(homePageViewModel)
-                                .dateController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref.read(homePageViewModel).dateController.text,
-                        sortPrice: ref.read(homePageViewModel).sortPrice == -1
-                            ? null
-                            : sortPriceList[
-                                ref.read(homePageViewModel).sortPrice],
-                        priceRange: PriceRange(
-                          minPrice: 0,
-                          maxPrice:
-                              ref.read(homePageViewModel).priceRange.round(),
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
                         ),
-                        avgRating: ref.read(homePageViewModel).avgRating == -1
-                            ? null
-                            : ratings[ref.read(homePageViewModel).avgRating],
-                      ),),);
+                      );
 
                   // ref.read(homePageViewModel).fetchAllSalons(
                   //     ref.read(homePageViewModel).searchController.text,
@@ -2073,52 +2171,61 @@ class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
                     }
                   });
 
-                  ref
-                      .read(homePageViewModel)
-                      .getBeauticiansByFilter(BeauticiansFilterRequest(
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
                           filters: Filters(
-                        search: ref
-                                    .read(homePageViewModel)
-                                    .locationController
-                                    .text
-                                    .isEmpty &&
-                                ref
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
                                     .read(homePageViewModel)
                                     .locationController
                                     .text
                                     .isEmpty
-                            ? ""
-                            : null,
-                        location: ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref
-                                .read(homePageViewModel)
-                                .locationController
-                                .text,
-                        date: ref
-                                .read(homePageViewModel)
-                                .dateController
-                                .text
-                                .isEmpty
-                            ? null
-                            : ref.read(homePageViewModel).dateController.text,
-                        sortPrice: ref.read(homePageViewModel).sortPrice == -1
-                            ? null
-                            : sortPriceList[
-                                ref.read(homePageViewModel).sortPrice],
-                        priceRange: PriceRange(
-                          minPrice: 0,
-                          maxPrice:
-                              ref.read(homePageViewModel).priceRange.round(),
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
                         ),
-                        avgRating: ref.read(homePageViewModel).avgRating == -1
-                            ? null
-                            : ratings[ref.read(homePageViewModel).avgRating],
-                      ),),);
+                      );
 
                   // ref.read(homePageViewModel).fetchAllSalons(
                   //     ref.read(homePageViewModel).searchController.text,

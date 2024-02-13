@@ -7,19 +7,22 @@ part of 'beautician_detail_model.dart';
 // **************************************************************************
 
 _$_BeauticianDetailRequest _$$_BeauticianDetailRequestFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_BeauticianDetailRequest(
       beauticianId: json['beauticianId'] as String?,
     );
 
 Map<String, dynamic> _$$_BeauticianDetailRequestToJson(
-        _$_BeauticianDetailRequest instance) =>
+  _$_BeauticianDetailRequest instance,
+) =>
     <String, dynamic>{
       'beauticianId': instance.beauticianId,
     };
 
 _$_BeauticianDetailResponse _$$_BeauticianDetailResponseFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_BeauticianDetailResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -30,7 +33,8 @@ _$_BeauticianDetailResponse _$$_BeauticianDetailResponseFromJson(
     );
 
 Map<String, dynamic> _$$_BeauticianDetailResponseToJson(
-        _$_BeauticianDetailResponse instance) =>
+  _$_BeauticianDetailResponse instance,
+) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -205,11 +209,13 @@ _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
       serviceCategory: json['serviceCategory'] == null
           ? null
           : ServiceCategoryClass.fromJson(
-              json['serviceCategory'] as Map<String, dynamic>),
+              json['serviceCategory'] as Map<String, dynamic>,
+            ),
       serviceType: json['serviceType'] == null
           ? null
           : ServiceCategoryClass.fromJson(
-              json['serviceType'] as Map<String, dynamic>),
+              json['serviceType'] as Map<String, dynamic>,
+            ),
       beautician: json['beautician'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -237,14 +243,16 @@ Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
     };
 
 _$_ServiceCategoryClass _$$_ServiceCategoryClassFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_ServiceCategoryClass(
       name: json['name'] as String?,
       id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$_ServiceCategoryClassToJson(
-        _$_ServiceCategoryClass instance) =>
+  _$_ServiceCategoryClass instance,
+) =>
     <String, dynamic>{
       'name': instance.name,
       'id': instance.id,

@@ -260,11 +260,15 @@ class _EditProfileState extends ConsumerState<EditProfile>
                               context: context,
                               position: MediaQuery.of(context).size.width > 700
                                   ? RelativeRect.fromLTRB(90.w, 62.h, 50.w, 0)
-                                  : RelativeRect.fromLTRB(60.w, 95.h, 25.w, 0),
+                                  : RelativeRect.fromLTRB(52.w, 62.h, 50.w, 0),
                               items: [
                                 const PopupMenuItem<String>(
                                   value: 'My Account',
                                   child: Text('My Account'),
+                                ),
+                                const PopupMenuItem<String>(
+                                  value: 'Home',
+                                  child: Text('Home'),
                                 ),
                                 const PopupMenuItem<String>(
                                   value: 'Beauty Blog',
@@ -273,10 +277,6 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                 const PopupMenuItem<String>(
                                   value: 'I am a Beautician',
                                   child: Text('I am a Beautician'),
-                                ),
-                                const PopupMenuItem<String>(
-                                  value: 'Help',
-                                  child: Text('Help'),
                                 ),
                                 const PopupMenuItem<String>(
                                   value: 'Log Out',
@@ -288,28 +288,17 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                 switch (value) {
                                   case 'My Account':
                                     break;
+                                  case 'Home':
+                                    context.go("/");
+                                    break;
                                   case 'Beauty Blog':
-                                    // Get.to(() => const BlogPage());
-                                    context.go('/blogs');
+                                    context.go("/blogs");
                                     break;
                                   case 'I am a Beautician':
                                     ref
                                         .watch(styleProvider)
                                         .setSelectedPage(value);
-                                    Get.off(() => const NavigationPage());
-
-                                    break;
-                                  case 'Help': // Help
-                                    ref
-                                        .watch(styleProvider)
-                                        .setSelectedPage(value);
-                                    Get.off(() => const NavigationPage());
-                                    break;
-                                  case 'Log Out': // Log Out
-                                    ref
-                                        .watch(styleProvider)
-                                        .setSelectedPage('Sign In');
-                                    Get.off(() => const NavigationPage());
+                                    //  Get.to(() => const DashboardFreePage());
 
                                     break;
                                   default:
@@ -328,7 +317,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                           width: 7.w,
                         ),
                       ],
-                    )
+                    ),
                 ],
               ),
             ),
@@ -474,7 +463,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         Icons.close,
                                                         color: kGrey,
                                                       ),
-                                                    )
+                                                    ),
                                                   ],
                                                 ),
                                                 backgroundColor:
@@ -556,7 +545,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                             Icons.close,
                                                             color: kGrey,
                                                           ),
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                     backgroundColor:
@@ -741,7 +730,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                   Icons.close,
                                                                   color: kGrey,
                                                                 ),
-                                                              )
+                                                              ),
                                                             ],
                                                           ),
                                                           SizedBox(
@@ -792,7 +781,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                         Text(
                                           "Edit Profile",
                                           style: urbanist600(kBlue, 14),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -935,7 +924,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                         "assets/icons/verify.webp",
                                                         height: 15.h,
                                                         width: 15.w,
-                                                      )
+                                                      ),
                                                     ],
                                                   ),
                                                   const Spacer(),
@@ -1692,7 +1681,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                                     dateController
                                                                         .text
                                                                         .split(
-                                                                            "/")[0],
+                                                                      "/",
+                                                                    )[0],
                                                                   ),
                                                                   expYear:
                                                                       int.parse(
@@ -2047,7 +2037,8 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                                               dateController
                                                                   .text
                                                                   .split(
-                                                                      "/")[0],
+                                                                "/",
+                                                              )[0],
                                                             ),
                                                             expYear: int.parse(
                                                               "20${dateController.text.split("/")[1]}",
@@ -2114,14 +2105,14 @@ class _EditProfileState extends ConsumerState<EditProfile>
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const Footer()
+                  const Footer(),
                 ],
               ),
             ),

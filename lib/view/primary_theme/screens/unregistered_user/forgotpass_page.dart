@@ -259,7 +259,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage>
                               ref
                                   .read(styleProvider)
                                   .setSelectedPage("Sign Up"),
-                              Get.back()
+                              Get.back(),
                             },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,
@@ -304,7 +304,7 @@ class _FortgotPassPageState extends ConsumerState<FortgotPassPage>
                   Container(),
               ],
             ),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),

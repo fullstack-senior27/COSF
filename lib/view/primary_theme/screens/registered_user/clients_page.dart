@@ -26,7 +26,7 @@ List<String> allImgesection = [
   "https://i.imgur.com/2CuqQCO.webp",
   "https://i.imgur.com/CR0PyPk.webp",
   "https://i.imgur.com/gqnN08c.webp",
-  "https://i.imgur.com/2txrGqz.webp"
+  "https://i.imgur.com/2txrGqz.webp",
 ];
 
 class ClintsPage extends ConsumerStatefulWidget {
@@ -218,9 +218,9 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                               "Export Client List",
                                               style: urbanist500(kBlack, 13),
                                             ),
-                                          )
+                                          ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -250,9 +250,9 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                               "Import Phone Contacts",
                                               style: urbanist500(kBlack, 13),
                                             ),
-                                          )
+                                          ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -293,7 +293,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                     Icons.close,
                                                     color: kGrey,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                             backgroundColor:
@@ -336,7 +336,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                             "Add a Client",
                                             style: urbanist500(kWhite, 12),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -351,7 +351,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                 color: kBlack,
                               )
                             else
-                              Container(
+                              DecoratedBox(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.r),
                                   border: Border.all(color: klines),
@@ -412,7 +412,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                             Icons.close,
                                                             color: kGrey,
                                                           ),
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                     backgroundColor:
@@ -457,7 +457,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                   "Add Photo",
                                                   style:
                                                       urbanist500(kBlack, 12),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -505,7 +505,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                 Icons.close,
                                                                 color: kGrey,
                                                               ),
-                                                            )
+                                                            ),
                                                           ],
                                                         ),
                                                         backgroundColor:
@@ -766,7 +766,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                             context.pop();
                                                                           }),
                                                                         ),
-                                                                      )
+                                                                      ),
                                                                     ],
                                                                   ),
                                                                 ),
@@ -794,7 +794,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                   "Add Note",
                                                   style:
                                                       urbanist500(kBlack, 12),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -843,7 +843,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                   "Book Next",
                                                   style:
                                                       urbanist500(kBlack, 12),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -945,7 +945,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                     color:
                                                                         kGrey,
                                                                   ),
-                                                                )
+                                                                ),
                                                               ],
                                                             ),
                                                             backgroundColor:
@@ -997,7 +997,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                               kBlue,
                                                               14,
                                                             ),
-                                                          )
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -1155,7 +1155,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                                 Icons.close,
                                                                 color: kGrey,
                                                               ),
-                                                            )
+                                                            ),
                                                           ],
                                                         ),
                                                         backgroundColor:
@@ -1206,7 +1206,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                                                           kBlue,
                                                           14,
                                                         ),
-                                                      )
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -1276,7 +1276,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -1294,7 +1294,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
       "https://i.imgur.com/2CuqQCO.webp",
       "https://i.imgur.com/CR0PyPk.webp",
       "https://i.imgur.com/gqnN08c.webp",
-      "https://i.imgur.com/2txrGqz.webp"
+      "https://i.imgur.com/2txrGqz.webp",
     ];
 
     return Column(
@@ -1339,7 +1339,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
         SizedBox(
           height: 15.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.r),
             border: Border.all(color: klines),
@@ -1411,9 +1411,9 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                               ),
                               const Divider(
                                 color: klines,
-                              )
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       );
                     },
@@ -1459,7 +1459,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                           Text(
                             "Add Clients From Contacts",
                             style: urbanist500(kWhite, 12),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1492,7 +1492,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                           Text(
                             "Add New Client",
                             style: urbanist500(kBlack, 12),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1527,7 +1527,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                               Text(
                                 "Get More Clients",
                                 style: urbanist600(kBlack, 12),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1557,7 +1557,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                               Text(
                                 "Show Me",
                                 style: urbanist600(kBlack, 12),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1575,7 +1575,7 @@ class _ClintsPageState extends ConsumerState<ClintsPage> with BaseScreenView {
                   "Need help importing your client list? We can help.\nSend your client list Here",
                   style: urbanist500(kBlack, 10),
                   textAlign: TextAlign.center,
-                )
+                ),
               ],
             ),
           ),
@@ -1673,7 +1673,7 @@ class Notes extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      DecoratedBox(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(
                             20.r,
@@ -1703,7 +1703,7 @@ class Notes extends StatelessWidget {
                                   kBlack,
                                   12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1720,7 +1720,7 @@ class Notes extends StatelessWidget {
                           kdescription,
                           14,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -1743,7 +1743,7 @@ class Notes extends StatelessWidget {
             ),
             const Divider(
               color: klines,
-            )
+            ),
           ],
         );
       },
@@ -1791,7 +1791,7 @@ class All extends StatelessWidget {
                           SizedBox(
                             width: 10.w,
                           ),
-                          Container(
+                          DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(
                                 20.r,
@@ -1820,7 +1820,7 @@ class All extends StatelessWidget {
                                   Text(
                                     "Client Photo",
                                     style: urbanist500(kBlue, 12),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -1832,15 +1832,15 @@ class All extends StatelessWidget {
                               kdescription,
                               14,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                     const Divider(
                       color: klines,
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             );
           },
@@ -1870,7 +1870,7 @@ class All extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(
                                 20.r,
@@ -1897,7 +1897,7 @@ class All extends StatelessWidget {
                                   Text(
                                     "Note",
                                     style: urbanist500(kBlack, 12),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -1914,7 +1914,7 @@ class All extends StatelessWidget {
                               kdescription,
                               14,
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -1937,7 +1937,7 @@ class All extends StatelessWidget {
                 ),
                 const Divider(
                   color: klines,
-                )
+                ),
               ],
             );
           },
@@ -2041,10 +2041,10 @@ class All extends StatelessWidget {
                                               : Colors.red,
                                           10,
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             const Spacer(),
@@ -2079,10 +2079,10 @@ class All extends StatelessWidget {
                                           : Colors.red,
                                       10,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -2180,7 +2180,7 @@ class All extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -2226,7 +2226,7 @@ class All extends StatelessWidget {
               );
             },
           ),
-        )
+        ),
       ],
     );
   }

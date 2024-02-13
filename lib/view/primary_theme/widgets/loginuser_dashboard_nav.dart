@@ -30,7 +30,7 @@ class _NavbarLoginUserDashboardWidgetState
               Divider(
                 color: kGrey.withOpacity(0.5),
                 thickness: 1,
-              )
+              ),
             ],
           )
         : Column(
@@ -39,7 +39,7 @@ class _NavbarLoginUserDashboardWidgetState
               Divider(
                 color: kGrey.withOpacity(0.5),
                 thickness: 1,
-              )
+              ),
             ],
           );
   }
@@ -226,7 +226,7 @@ class _NavbarLoginUserDashboardWidgetState
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -256,9 +256,9 @@ class _NavbarLoginUserDashboardWidgetState
                 color: kBlue,
                 size: 30.sp,
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

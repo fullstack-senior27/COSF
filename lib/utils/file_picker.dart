@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:html' as html;
 import 'dart:io';
 
 import 'package:cosmetropolis/core/constants.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 
 // setter getter for uploadfile response
 String _imgUrl = "";
@@ -89,36 +87,36 @@ Future<File?> openPickImageDialog(
                 MaterialButton(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   onPressed: () async {
-                    if (kIsWeb) {
-                      Uint8List? bytesFromPicker =
-                          await ImagePickerWeb.getImageAsBytes();
-                      if (bytesFromPicker != null) {
+                    // if (kIsWeb) {
+                    //   Uint8List? bytesFromPicker =
+                    //       await ImagePickerWeb.getImageAsBytes();
+                    //   if (bytesFromPicker != null) {
+                    //     imgUrl = "";
+                    //     imgUrl = await uploadFileWeb(bytesFromPicker);
+                    //     log("imgUrl $imgUrl");
+                    //   }
+                    //   Navigator.pop(context);
+                    //   // imgUrl = "";
+
+                    //   // imgUrl = await uploadFile(file!);
+                    //   // // file = image;
+                    //   // log("imgUrl $imgUrl");
+                    // } else {
+                    await pickImage(ImageSource.gallery).then((image) async {
+                      if (image == null) {
+                        // _snackbarService.showSnackbar(
+                        //     message: "Image capture failed");
+                      } else {
+                        file = image;
+                        log("file $file");
                         imgUrl = "";
-                        imgUrl = await uploadFileWeb(bytesFromPicker);
+
+                        imgUrl = await uploadFile(file!);
+                        // file = image;
                         log("imgUrl $imgUrl");
                       }
-                      Navigator.pop(context);
-                      // imgUrl = "";
-
-                      // imgUrl = await uploadFile(file!);
-                      // // file = image;
-                      // log("imgUrl $imgUrl");
-                    } else {
-                      await pickImage(ImageSource.gallery).then((image) async {
-                        if (image == null) {
-                          // _snackbarService.showSnackbar(
-                          //     message: "Image capture failed");
-                        } else {
-                          file = image;
-                          log("file $file");
-                          imgUrl = "";
-
-                          imgUrl = await uploadFile(file!);
-                          // file = image;
-                          log("imgUrl $imgUrl");
-                        }
-                      });
-                    }
+                    });
+                    // }
 
                     Navigator.pop(context);
                   },
@@ -386,58 +384,58 @@ Future<String> uploadFile(File file) async {
   }
 }
 
-Future<String> uploadFileWeb(Uint8List bytes) async {
-  final request = http.MultipartRequest(
-    'POST',
-    Uri.parse("${AppConstants.baseUrl}file-upload/"),
-  );
+// Future<String> uploadFileWeb(Uint8List bytes) async {
+//   final request = http.MultipartRequest(
+//     'POST',
+//     Uri.parse("${AppConstants.baseUrl}file-upload/"),
+//   );
 
-  final blob = html.Blob([bytes]);
-  final webFile = html.File([blob], 'file', {'type': blob.type});
-  final multipartFile = http.MultipartFile.fromBytes(
-    'file',
-    utf8.encode(webFile.name),
-    // bytes,
-    filename: webFile.name,
-  );
+//   final blob = html.Blob([bytes]);
+//   final webFile = html.File([blob], 'file', {'type': blob.type});
+//   final multipartFile = http.MultipartFile.fromBytes(
+//     'file',
+//     utf8.encode(webFile.name),
+//     // bytes,
+//     filename: webFile.name,
+//   );
 
-  request.files.add(multipartFile);
+//   request.files.add(multipartFile);
 
-  final response = await request.send();
+//   final response = await request.send();
 
-  // var request = http.MultipartRequest(
-  //   'POST',
-  //   Uri.parse("${AppConstants.baseUrl}file-upload/"),
-  // );
+//   // var request = http.MultipartRequest(
+//   //   'POST',
+//   //   Uri.parse("${AppConstants.baseUrl}file-upload/"),
+//   // );
 
-  // Add the file to the request
-  // var fileStream = http.ByteStream(file.openRead());
-  // var length = await file.length();
-  // var multipartFile = http.MultipartFile(
-  //   'file',
-  //   fileStream,
-  //   length,
-  //   filename: file.path.split('/').last,
-  // );
-  // request.files.add(multipartFile);
+//   // Add the file to the request
+//   // var fileStream = http.ByteStream(file.openRead());
+//   // var length = await file.length();
+//   // var multipartFile = http.MultipartFile(
+//   //   'file',
+//   //   fileStream,
+//   //   length,
+//   //   filename: file.path.split('/').last,
+//   // );
+//   // request.files.add(multipartFile);
 
-  // // Send the request
-  // var response = await request.send();
+//   // // Send the request
+//   // var response = await request.send();
 
-  // // Check the response status
-  if (response.statusCode == 200) {
-    final responseBody = await response.stream.bytesToString();
+//   // // Check the response status
+//   if (response.statusCode == 200) {
+//     final responseBody = await response.stream.bytesToString();
 
-    // Parse the response as JSON
-    final jsonResponse = jsonDecode(responseBody);
+//     // Parse the response as JSON
+//     final jsonResponse = jsonDecode(responseBody);
 
-    // Extract the image URL from the response
-    String imageUrl = jsonResponse['data'] as String;
+//     // Extract the image URL from the response
+//     String imageUrl = jsonResponse['data'] as String;
 
-    Logger.printInfo(response.toString());
-    return imageUrl;
-  } else {
-    print('File upload failed with status: ${response.statusCode}');
-    return "";
-  }
-}
+//     Logger.printInfo(response.toString());
+//     return imageUrl;
+//   } else {
+//     print('File upload failed with status: ${response.statusCode}');
+//     return "";
+//   }
+// }

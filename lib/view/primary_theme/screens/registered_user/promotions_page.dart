@@ -106,7 +106,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                                         Icons.close,
                                                         color: kGrey,
                                                       ),
-                                                    )
+                                                    ),
                                                   ],
                                                 ),
                                                 SizedBox(height: 10.h),
@@ -137,12 +137,12 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             )
                           else
-                            Container()
+                            Container(),
                         ],
                       ),
                     ),
@@ -175,7 +175,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                               Icons.close,
                                               color: kGrey,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                       backgroundColor: const Color(0xfff8f8f8),
@@ -217,12 +217,12 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )
                     else
-                      Container()
+                      Container(),
                   ],
                 ),
               ),
@@ -307,7 +307,7 @@ class PromotionCard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   decoration: TextDecoration.underline,
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -419,9 +419,9 @@ class PromotionCard extends StatelessWidget {
                     style: TextStyle(color: kBlack),
                   ),
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

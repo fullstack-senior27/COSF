@@ -105,7 +105,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                 },
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
 
@@ -201,7 +201,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                   Text(
                                     "Appts Booked",
                                     style: urbanist600(kBlack, 14),
-                                  )
+                                  ),
                                 ],
                               ),
                               SizedBox(
@@ -218,9 +218,9 @@ class _ReportingPageState extends State<ReportingPage> {
                                   Text(
                                     "0",
                                     style: urbanist600(kBlack, 18),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -435,7 +435,7 @@ class _ReportingPageState extends State<ReportingPage> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

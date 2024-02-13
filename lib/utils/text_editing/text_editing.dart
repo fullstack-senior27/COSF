@@ -37,9 +37,9 @@ class _TextEditorPageState extends State<TextEditorPage> {
                           icon: Icons.save_outlined,
                           action: () => null,
                           isSelected: false,
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
               ),
             ),
@@ -100,7 +100,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

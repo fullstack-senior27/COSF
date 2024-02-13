@@ -408,7 +408,7 @@ class _AddClientState extends ConsumerState<AddClient> with BaseScreenView {
               setState(() {});
               context.pop();
             }),
-          )
+          ),
       ],
     );
   }
@@ -522,7 +522,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                               Icons.close,
                               color: kGrey,
                             ),
-                          )
+                          ),
                         ],
                       ),
                       backgroundColor: const Color(0xfff8f8f8),
@@ -571,7 +571,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                   Icons.close,
                                   color: kGrey,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
@@ -590,8 +590,10 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                   SizedBox(
                                     height: 20.h,
                                   ),
-                                  Text("Reason*",
-                                      style: urbanist500(kBlack, 16),),
+                                  Text(
+                                    "Reason*",
+                                    style: urbanist500(kBlack, 16),
+                                  ),
                                   SizedBox(height: 5.h),
                                   TextFormField(
                                     controller: reasonController,
@@ -647,25 +649,24 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                                 blocking = true;
                                                 setState(() {});
                                                 await _viewModel.blockClient(
-                                                    context,
-                                                    widget.data?.data?.client
-                                                            ?.id ??
+                                                  context,
+                                                  widget.data?.data?.client
+                                                          ?.id ??
+                                                      "",
+                                                  BlockClientRequest(
+                                                    reason:
+                                                        reasonController.text,
+                                                    clientId: widget.data?.data
+                                                            ?.client?.id ??
                                                         "",
-                                                    BlockClientRequest(
-                                                        reason: reasonController
-                                                            .text,
-                                                        clientId: widget
-                                                                .data
-                                                                ?.data
-                                                                ?.client
-                                                                ?.id ??
-                                                            "",),);
+                                                  ),
+                                                );
                                                 blocking = false;
                                                 setState(() {});
                                                 context.pop();
                                               }),
                                             ),
-                                          )
+                                          ),
                                       ],
                                     ),
                                   ),
@@ -714,7 +715,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                   Icons.close,
                                   color: kGrey,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
@@ -741,8 +742,10 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                         () async {
                                       deleting = true;
                                       setState(() {});
-                                      await _viewModel.deleteClient(context,
-                                          widget.data?.data?.client?.id ?? "",);
+                                      await _viewModel.deleteClient(
+                                        context,
+                                        widget.data?.data?.client?.id ?? "",
+                                      );
 
                                       deleting = false;
                                       setState(() {});
@@ -757,7 +760,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                                       "Cancel",
                                       () {},
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -779,7 +782,7 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
                   Text("Delete", style: urbanist500(kBlack, 12)),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -1084,27 +1087,28 @@ class _EditClientState extends ConsumerState<EditClient> with BaseScreenView {
               isLoading = true;
               setState(() {});
               await _viewModel.editClient(
-                  context,
-                  EditClientRequest(
-                    name: nameController.text,
-                    phone: phoneController.text,
-                    homeNumber: homeNumberController.text,
-                    apt: int.parse(aptController.text),
-                    city: cityController.text,
-                    state: stateController.text,
-                    zip: zipCodeController.text,
-                    birthday: DateFormat('yyyy-MM-dd').format(
-                      widget.data?.data?.client?.birthday ?? DateTime.now(),
-                    ),
-                    streetAddress: streetController.text,
-                    email: emailController.text,
+                context,
+                EditClientRequest(
+                  name: nameController.text,
+                  phone: phoneController.text,
+                  homeNumber: homeNumberController.text,
+                  apt: int.parse(aptController.text),
+                  city: cityController.text,
+                  state: stateController.text,
+                  zip: zipCodeController.text,
+                  birthday: DateFormat('yyyy-MM-dd').format(
+                    widget.data?.data?.client?.birthday ?? DateTime.now(),
                   ),
-                  widget.data?.data?.client?.id ?? "",);
+                  streetAddress: streetController.text,
+                  email: emailController.text,
+                ),
+                widget.data?.data?.client?.id ?? "",
+              );
               isLoading = false;
               setState(() {});
               context.pop();
             }),
-          )
+          ),
       ],
     );
   }
@@ -1182,9 +1186,9 @@ class MergeClient extends StatelessWidget {
                     ),
                     const Divider(
                       color: klines,
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             );
           },
@@ -1218,7 +1222,7 @@ class MergeClient extends StatelessWidget {
                     context.pop();
                   }),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -1293,7 +1297,7 @@ class _AddPhotoState extends ConsumerState<AddPhoto> with BaseScreenView {
                         )
                       : log("no photo");
                   // context.pop();
-                })
+                }),
               ],
             ),
           ),
@@ -1316,7 +1320,7 @@ class _AddPhotoState extends ConsumerState<AddPhoto> with BaseScreenView {
                 SizedBox(
                   height: 10.h,
                 ),
-                BlackButton(context, "Import From Instagram", () {})
+                BlackButton(context, "Import From Instagram", () {}),
               ],
             ),
           ),
@@ -1343,7 +1347,7 @@ class _AddPhotoState extends ConsumerState<AddPhoto> with BaseScreenView {
                 SizedBox(
                   height: 10.h,
                 ),
-                BlackButton(context, "Import From Instagram", () {})
+                BlackButton(context, "Import From Instagram", () {}),
               ],
             ),
           ),
@@ -1362,7 +1366,7 @@ class SelectClient extends StatelessWidget {
       "https://i.imgur.com/2CuqQCO.webp",
       "https://i.imgur.com/CR0PyPk.webp",
       "https://i.imgur.com/gqnN08c.webp",
-      "https://i.imgur.com/2txrGqz.webp"
+      "https://i.imgur.com/2txrGqz.webp",
     ];
     return Column(
       children: [
@@ -1446,9 +1450,9 @@ class SelectClient extends StatelessWidget {
                             ),
                             const Divider(
                               color: klines,
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     );
                   },
@@ -1494,7 +1498,7 @@ class SelectClient extends StatelessWidget {
                           Text(
                             "Add Clients From Contacts",
                             style: urbanist500(kWhite, 12),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1527,7 +1531,7 @@ class SelectClient extends StatelessWidget {
                           Text(
                             "Add New Client",
                             style: urbanist500(kBlack, 12),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -1562,7 +1566,7 @@ class SelectClient extends StatelessWidget {
                               Text(
                                 "Get More Clients",
                                 style: urbanist600(kBlack, 12),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1592,7 +1596,7 @@ class SelectClient extends StatelessWidget {
                               Text(
                                 "Show Me",
                                 style: urbanist600(kBlack, 12),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1610,7 +1614,7 @@ class SelectClient extends StatelessWidget {
                   "Need help importing your client list? We can help.\nSend your client list Here",
                   style: urbanist500(kBlack, 10),
                   textAlign: TextAlign.center,
-                )
+                ),
               ],
             ),
           ),
@@ -1856,7 +1860,7 @@ class CreatePromotion extends StatelessWidget {
                         onPressed: () {
                           context.pop();
                         },
-                      )
+                      ),
                     ],
                   ),
                   backgroundColor: const Color(0xfff8f8f8),
@@ -1878,7 +1882,7 @@ class CreatePromotion extends StatelessWidget {
               },
             );
           }),
-        )
+        ),
       ],
     );
   }
@@ -1938,7 +1942,7 @@ class ScheduledPromotion extends StatelessWidget {
               child: BlackButton(context, "Publish", () {}),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -1955,13 +1959,13 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
   List<String> attractText = [
     "4 new clients",
     "6 new clients",
-    "6+ new clients"
+    "6+ new clients",
   ];
   List<String> increaseText = ["\$75 More", "\$150 More", "6+ new clients"];
   List<String> streamlineText = [
     "Be an expert on Cosmetropolis features",
     "Transition my clients to Cosmetropolis",
-    "Polish my service menu + Pricing"
+    "Polish my service menu + Pricing",
   ];
   @override
   Widget build(BuildContext context) {
@@ -2015,7 +2019,7 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
                     ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(height: 20.h),
@@ -2058,7 +2062,7 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
                     ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -2108,7 +2112,7 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
                     ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(height: 20.h),
@@ -2116,7 +2120,7 @@ class _SetMonthlyGoalState extends State<SetMonthlyGoal> {
           height: 40.h,
           width: double.infinity,
           child: BlackButton(context, "Set Goal", () {}),
-        )
+        ),
       ],
     );
   }
@@ -2131,7 +2135,7 @@ class AddClientPhoto extends StatelessWidget {
       "https://i.imgur.com/2CuqQCO.webp",
       "https://i.imgur.com/CR0PyPk.webp",
       "https://i.imgur.com/gqnN08c.webp",
-      "https://i.imgur.com/2txrGqz.webp"
+      "https://i.imgur.com/2txrGqz.webp",
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2182,9 +2186,9 @@ class AddClientPhoto extends StatelessWidget {
                     ),
                     const Divider(
                       color: klines,
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             );
           },
@@ -2325,18 +2329,20 @@ class _AddProductState extends ConsumerState<AddProduct> with BaseScreenView {
                   isLoading = true;
                   setState(() {});
                   await _viewModel.addProduct(
-                      context,
-                      AddProductRequest(
-                          title: nameController.text,
-                          description: descriptionController.text,
-                          link: linkController.text,),);
+                    context,
+                    AddProductRequest(
+                      title: nameController.text,
+                      description: descriptionController.text,
+                      link: linkController.text,
+                    ),
+                  );
                   isLoading = false;
                   setState(() {});
                   context.pop();
                 }),
               ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -2664,7 +2670,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                     Icons.close,
                                     color: kGrey,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 10.h),
@@ -2765,7 +2771,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                             Icons.close,
                                             color: kGrey,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     SizedBox(height: 10.h),
@@ -2866,7 +2872,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                     Icons.close,
                                     color: kGrey,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 10.h),
@@ -2967,7 +2973,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                             Icons.close,
                                             color: kGrey,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     SizedBox(height: 10.h),
@@ -3098,7 +3104,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                     Icons.close,
                                     color: kGrey,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 10.h),
@@ -3199,7 +3205,7 @@ class OnlineBookingProfile extends StatelessWidget {
                                             Icons.close,
                                             color: kGrey,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     SizedBox(height: 10.h),
@@ -3291,7 +3297,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-            )
+            ),
           ],
           onChanged: (String? value) {
             // Handle dropdown value change
@@ -3327,7 +3333,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-            )
+            ),
           ],
           onChanged: (String? value) {
             // Handle dropdown value change
@@ -3437,7 +3443,7 @@ class _OnlineBookingState extends State<OnlineBooking> {
               }),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -3557,7 +3563,7 @@ class SocialInfo extends StatelessWidget {
               child: BlackButton(context, "Save", () {}),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -3827,7 +3833,7 @@ class _CreateServiceState extends ConsumerState<CreateService>
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  )
+                  ),
                 ],
                 onChanged: (String? value) {
                   serviceType = value ?? "";
@@ -3878,7 +3884,7 @@ class _CreateServiceState extends ConsumerState<CreateService>
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  )
+                  ),
                 ],
                 onChanged: (String? value) {
                   category = value ?? "";
@@ -3894,11 +3900,12 @@ class _CreateServiceState extends ConsumerState<CreateService>
                   const SizedBox(width: 15),
                   if (saving)
                     const SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: CircularProgressIndicator(
-                          color: kBlack,
-                        ),)
+                      height: 25,
+                      width: 25,
+                      child: CircularProgressIndicator(
+                        color: kBlack,
+                      ),
+                    )
                   else
                     SizedBox(
                       height: 40.h,
@@ -3907,23 +3914,24 @@ class _CreateServiceState extends ConsumerState<CreateService>
                         saving = true;
                         setState(() {});
                         await _viewModel.addService(
-                            context,
-                            CreateServiceRequest(
-                              name: nameController.text,
-                              description: descriptionController.text,
-                              price: int.parse(priceController.text),
-                              category: category,
-                              serviceType: serviceType,
-                              durationInMinutes:
-                                  int.parse(durationController.text),
-                            ),);
+                          context,
+                          CreateServiceRequest(
+                            name: nameController.text,
+                            description: descriptionController.text,
+                            price: int.parse(priceController.text),
+                            category: category,
+                            serviceType: serviceType,
+                            durationInMinutes:
+                                int.parse(durationController.text),
+                          ),
+                        );
                         saving = false;
                         setState(() {});
                         context.pop();
                       }),
                     ),
                 ],
-              )
+              ),
             ],
           );
   }

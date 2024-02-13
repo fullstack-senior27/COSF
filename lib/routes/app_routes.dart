@@ -107,7 +107,7 @@ final GoRouter routers = GoRouter(
           path: 'forgotPassword',
           builder: (context, state) => const FortgotPassPage(),
           pageBuilder: defaultPageBuilder(const FortgotPassPage()),
-        )
+        ),
       ],
     ),
     GoRoute(
@@ -144,7 +144,7 @@ final GoRouter routers = GoRouter(
           },
           // pageBuilder: defaultPageBuilder(
           //      DashboardFreePage(child: BlogDetailsPage(data: data,))),
-        )
+        ),
       ],
     ),
     GoRoute(
@@ -164,7 +164,7 @@ final GoRouter routers = GoRouter(
 
           // pageBuilder: defaultPageBuilder(
           //     const DashboardFreePage(child: ServiceDetailsPage())),
-        )
+        ),
       ],
     ),
     GoRoute(

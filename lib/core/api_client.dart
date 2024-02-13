@@ -58,10 +58,12 @@ class ApiClient {
       return await dio.post(
         path,
         data: data,
-        options: Options(headers: {
-          'Authorization':
-              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        },),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}',
+          },
+        ),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -77,10 +79,12 @@ class ApiClient {
       return await dio.patch(
         path,
         data: data,
-        options: Options(headers: {
-          'Authorization':
-              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        },),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}',
+          },
+        ),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -98,10 +102,12 @@ class ApiClient {
         path,
         data: data,
         queryParameters: params,
-        options: Options(headers: {
-          'Authorization':
-              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        },),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}',
+          },
+        ),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -124,10 +130,12 @@ class ApiClient {
     try {
       return await dio.delete(
         path,
-        options: Options(headers: {
-          'Authorization':
-              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        },),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}',
+          },
+        ),
       );
     } on DioError catch (e) {
       Logger.printError(e.message);
@@ -150,10 +158,12 @@ class ApiClient {
     try {
       return await dio.get(
         path,
-        options: Options(headers: {
-          'Authorization':
-              'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}'
-        },),
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${SharedPreferenceService.getString(AppConstants.accessToken) ?? ""}',
+          },
+        ),
       );
     } on DioError catch (e) {
       Logger.printError(e.message.toString());

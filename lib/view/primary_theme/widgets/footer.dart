@@ -73,7 +73,7 @@ class _FooterState extends State<Footer> {
                                   fit: BoxFit.cover,
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -316,7 +316,7 @@ class _FooterState extends State<Footer> {
                                     fit: BoxFit.contain,
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -400,7 +400,7 @@ class _FooterState extends State<Footer> {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -620,7 +620,7 @@ class _FooterState extends State<Footer> {
                               fit: BoxFit.contain,
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

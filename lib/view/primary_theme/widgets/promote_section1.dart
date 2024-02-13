@@ -162,7 +162,7 @@ class PromoteSection1 extends StatelessWidget {
                             ],
                           );
                         },
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -323,7 +323,7 @@ class PromoteSection1 extends StatelessWidget {
                           Visibility(
                             visible: MediaQuery.of(context).size.width > 680,
                             child: const Expanded(child: HelpfulBlogsSection()),
-                          )
+                          ),
                         ],
                       ),
                       Visibility(
@@ -398,7 +398,7 @@ class PromoteSection1 extends StatelessWidget {
                             SizedBox(
                               height: 20.h,
                             ),
-                            const HelpfulBlogsSection()
+                            const HelpfulBlogsSection(),
                           ],
                         ),
                       ),
@@ -517,7 +517,7 @@ class PromoteSection1 extends StatelessWidget {
                           SizedBox(
                             width: 10.w,
                           ),
-                          const Expanded(child: HelpfulBlogsSection())
+                          const Expanded(child: HelpfulBlogsSection()),
                         ],
                       ),
                       SizedBox(
@@ -670,7 +670,7 @@ class PromoteSection1 extends StatelessWidget {
                             child: HelpfulBlogsSection(),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -680,7 +680,7 @@ class PromoteSection1 extends StatelessWidget {
               ],
             ),
           ),
-          const Footer()
+          const Footer(),
         ],
       ),
     );

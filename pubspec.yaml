@@ -63,7 +63,7 @@ dependencies:
   http: 
   image_collapse: ^1.0.1
   image_picker: 
-  image_picker_web: 
+  # image_picker_web: 
   introduction_screen: ^3.1.4
   latlong2: null
   linear_progress_bar: ^1.1.0

@@ -151,7 +151,7 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -161,7 +161,7 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Container(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               color: kWhite,
               borderRadius: BorderRadius.circular(10.r),
@@ -527,7 +527,7 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
                   Icons.arrow_forward_ios_rounded,
                   color: kBlack,
                   size: 30.h,
-                )
+                ),
               ],
             ),
           ),
@@ -564,7 +564,7 @@ class _SelectSlotState extends ConsumerState<SelectSlot> {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -608,7 +608,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
                   Icons.close,
                   color: kGrey,
                 ),
-              )
+              ),
             ],
           ),
           backgroundColor: const Color(0xfff8f8f8),
@@ -709,7 +709,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
           SizedBox(
             height: 10.h,
           ),
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               color: kWhite,
               borderRadius: BorderRadius.circular(10.r),
@@ -748,7 +748,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
                   SizedBox(
                     width: 10.w,
                   ),
-                  BlackButton(context, "Add Service", () {})
+                  BlackButton(context, "Add Service", () {}),
                 ],
               ),
             ),
@@ -796,7 +796,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -918,7 +918,7 @@ class _SelectDateState extends ConsumerState<SelectDate> {
                     Icons.arrow_forward_ios_rounded,
                     color: kBlack,
                     size: 30.h,
-                  )
+                  ),
                 ],
               ),
             ),
@@ -1134,7 +1134,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
         // SizedBox(
         //   height: 10.h,
         // ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             borderRadius: BorderRadius.circular(10.r),
@@ -1172,7 +1172,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -1180,7 +1180,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
         SizedBox(
           height: 10.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             borderRadius: BorderRadius.circular(10.r),
@@ -1543,7 +1543,7 @@ class _AddServiceState extends ConsumerState<AddService> with BaseScreenView {
             //   },
             // );
           }),
-        )
+        ),
       ],
     );
   }
@@ -1583,7 +1583,7 @@ class _SelectServiceState extends ConsumerState<SelectService> {
           ref.read(userViewModel).selectedSalon?.services?.length ?? 0,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: 10.h),
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 color: kWhite,
                 borderRadius: BorderRadius.circular(10.r),
@@ -1677,7 +1677,7 @@ class _SelectServiceState extends ConsumerState<SelectService> {
                                 size: 20.sp,
                               ),
                             ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -1790,7 +1790,7 @@ class _SelectServiceState extends ConsumerState<SelectService> {
               ),
             );
           }),
-        )
+        ),
       ],
     );
   }
@@ -1950,7 +1950,7 @@ class PaymentMethod extends StatelessWidget {
                           color: kGrey,
                           size: 18.sp,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   backgroundColor: const Color(0xfff8f8f8),
@@ -1983,7 +1983,7 @@ class PaymentMethod extends StatelessWidget {
               },
             );
           }),
-        )
+        ),
       ],
     );
   }
@@ -2353,7 +2353,7 @@ class _ClientAppointmentBookingState
               child: CircularProgressIndicator(),
             )
           else
-            Container(
+            DecoratedBox(
               decoration: BoxDecoration(
                 color: kWhite,
                 borderRadius: BorderRadius.circular(10.r),
@@ -2736,7 +2736,7 @@ class _ClientAppointmentBookingState
             _viewModel.beauticianServicesResponseModel?.data?.length ?? 0,
             (index) => Padding(
               padding: EdgeInsets.only(bottom: 10.h),
-              child: Container(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: kWhite,
                   borderRadius: BorderRadius.circular(10.r),
@@ -2813,7 +2813,7 @@ class _ClientAppointmentBookingState
                                   size: 20.sp,
                                 ),
                               ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -2851,7 +2851,7 @@ class _ClientAppointmentBookingState
               saving = false;
               setState(() {});
             }),
-          )
+          ),
         ],
       ),
     );

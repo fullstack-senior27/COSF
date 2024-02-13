@@ -42,7 +42,7 @@ class _ProfileEditState extends State<ProfileEdit>
     "Client Relationship",
     "Brows",
     "Beautician Growth",
-    "Beard Style"
+    "Beard Style",
   ];
   int selectedScreen = 0;
   int selected = 0;
@@ -78,22 +78,22 @@ class _ProfileEditState extends State<ProfileEdit>
     List<String> title = [
       "Link your bank account",
       "Add services",
-      "Add availability"
+      "Add availability",
     ];
     List<String> description = [
       "So you can book and be paid by clients on Cosmetropolis",
       "So clients can know what to book with you",
-      "So clients know when you're available to book"
+      "So clients know when you're available to book",
     ];
     List<String> image = [
       "assets/icons/bank_acc.webp",
       "assets/icons/services.webp",
-      "assets/icons/availability.webp"
+      "assets/icons/availability.webp",
     ];
     List<String> buttontxt = [
       "Connect Account",
       "Add Services",
-      "Set Up Availability"
+      "Set Up Availability",
     ];
 
     return SingleChildScrollView(
@@ -362,7 +362,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   onPressed: () {
                                     context.pop();
                                   },
-                                )
+                                ),
                               ],
                             ),
                             backgroundColor: const Color(0xfff8f8f8),
@@ -414,7 +414,7 @@ class _ProfileEditState extends State<ProfileEdit>
                               Icons.arrow_forward_ios_outlined,
                               color: kBlack,
                               size: 20,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -451,7 +451,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 onPressed: () {
                                   context.pop();
                                 },
-                              )
+                              ),
                             ],
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
@@ -493,7 +493,7 @@ class _ProfileEditState extends State<ProfileEdit>
                             Icons.arrow_forward_ios_outlined,
                             color: kBlack,
                             size: 20,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -903,7 +903,7 @@ class _ProfileEditState extends State<ProfileEdit>
                               Text(
                                 "Edit",
                                 style: urbanist600(kBlue, 14),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -967,7 +967,7 @@ class _ProfileEditState extends State<ProfileEdit>
                         flex: 2,
                         child: SingleChildScrollView(child: Sidebar()),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -1053,7 +1053,7 @@ Widget sideEdit() {
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
           ],
         ),
         SizedBox(
@@ -1179,7 +1179,7 @@ Widget sideEdit() {
                         color: kdisable,
                       )
                     else
-                      const SizedBox.shrink()
+                      const SizedBox.shrink(),
                   ],
                 ),
               );

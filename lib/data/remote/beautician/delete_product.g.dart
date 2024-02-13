@@ -7,7 +7,8 @@ part of 'delete_product.dart';
 // **************************************************************************
 
 _$_DeleteProductResponse _$$_DeleteProductResponseFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_DeleteProductResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -18,7 +19,8 @@ _$_DeleteProductResponse _$$_DeleteProductResponseFromJson(
     );
 
 Map<String, dynamic> _$$_DeleteProductResponseToJson(
-        _$_DeleteProductResponse instance) =>
+  _$_DeleteProductResponse instance,
+) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

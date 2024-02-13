@@ -73,7 +73,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
               webview(context)
             else
               mobileview(context),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),
@@ -499,16 +499,16 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                                 ..onTap = () {
                                   context.go("/beauticianLogin");
                                 },
-                            )
+                            ),
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -920,15 +920,15 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                               ..onTap = () {
                                 context.go("/beauticianLogin");
                               },
-                          )
+                          ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -128,7 +128,7 @@ class _HelpPageState extends State<HelpPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -173,7 +173,7 @@ class _HelpPageState extends State<HelpPage> {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )
@@ -231,11 +231,11 @@ class _HelpPageState extends State<HelpPage> {
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )
@@ -415,9 +415,9 @@ class _HelpPageState extends State<HelpPage> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -425,7 +425,7 @@ class _HelpPageState extends State<HelpPage> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  const Footer()
+                  const Footer(),
                 ],
               ),
             ),

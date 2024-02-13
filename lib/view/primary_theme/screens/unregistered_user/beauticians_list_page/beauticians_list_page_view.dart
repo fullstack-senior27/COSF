@@ -51,8 +51,9 @@ class _BeauticiansListPageViewState
                   0);
           i++) {
         items.add(
-            ref.read(homePageViewModel).serviceCategoriesList?.data?[i].name ??
-                "");
+          ref.read(homePageViewModel).serviceCategoriesList?.data?[i].name ??
+              "",
+        );
       }
       print(items);
     });
@@ -153,7 +154,8 @@ class _BeauticiansListPageViewState
                                 .filterSearch(p0.item?.name ?? "");
                           },
                           suggestionsDecoration: SuggestionDecoration(
-                              borderRadius: BorderRadius.circular(5)),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                           searchInputDecoration: InputDecoration(
                             hintText: "Services or beautician name",
                             hintStyle: GoogleFonts.urbanist(
@@ -187,68 +189,75 @@ class _BeauticiansListPageViewState
                               .read(homePageViewModel)
                               .allSalons
                               .map(
-                                (e) => SearchFieldListItem<Salon>(e.name ?? "",
-                                    item: e,
-                                    // Use child to show Custom Widgets in the suggestions
-                                    // defaults to Text widget
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      height: 60,
-                                      color: kWhite,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey[200],
-                                                borderRadius:
-                                                    BorderRadius.circular(30)),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.search,
-                                                color: kGrey,
-                                                size: 15,
-                                              ),
+                                (e) => SearchFieldListItem<Salon>(
+                                  e.name ?? "",
+                                  item: e,
+                                  // Use child to show Custom Widgets in the suggestions
+                                  // defaults to Text widget
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    height: 60,
+                                    color: kWhite,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                          ),
+                                          child: const Center(
+                                            child: Icon(
+                                              Icons.search,
+                                              color: kGrey,
+                                              size: 15,
                                             ),
                                           ),
-                                          gapW8,
-                                          Flexible(
-                                              child: Container(
-                                                  width: 250,
-                                                  child: Text(
-                                                    e.name ?? "",
-                                                    style: const TextStyle(
-                                                        fontSize: 12),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ))),
-                                          // Spacer(),
-                                          Expanded(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "${e.avgRating ?? 0}",
-                                                  style: const TextStyle(
-                                                      color: kGrey,
-                                                      fontSize: 12),
-                                                ),
-                                                const Icon(
-                                                  Icons.star_rounded,
-                                                  color: kGrey,
-                                                  size: 20,
-                                                )
-                                              ],
+                                        ),
+                                        gapW8,
+                                        Flexible(
+                                          child: Container(
+                                            width: 250,
+                                            child: Text(
+                                              e.name ?? "",
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    )),
+                                          ),
+                                        ),
+                                        // Spacer(),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                "${e.avgRating ?? 0}",
+                                                style: const TextStyle(
+                                                  color: kGrey,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.star_rounded,
+                                                color: kGrey,
+                                                size: 20,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               )
                               .toList(),
                         ),
@@ -384,44 +393,50 @@ class _BeauticiansListPageViewState
                                       .searchController.text.length >
                                   3) {
                                 _homePageViewModel.getBeauticiansByFilter(
-                                    beautician.BeauticiansFilterRequest(
-                                        filters: beautician.Filters(
-                                  search:
-                                      _homePageViewModel.searchController.text,
+                                  beautician.BeauticiansFilterRequest(
+                                    filters: beautician.Filters(
+                                      search: _homePageViewModel
+                                          .searchController.text,
 
-                                  location: _homePageViewModel
-                                          .locationController.text.isEmpty
-                                      ? null
-                                      : _homePageViewModel
-                                          .locationController.text,
-                                  date: _homePageViewModel
-                                          .dateController.text.isEmpty
-                                      ? null
-                                      : _homePageViewModel.dateController.text,
-                                  // avgRating: null,
-                                  // priceRange:
-                                  //     const beautician.PriceRange(
-                                  //         minPrice: 0,
-                                  //         maxPrice: 200),
-                                )));
+                                      location: _homePageViewModel
+                                              .locationController.text.isEmpty
+                                          ? null
+                                          : _homePageViewModel
+                                              .locationController.text,
+                                      date: _homePageViewModel
+                                              .dateController.text.isEmpty
+                                          ? null
+                                          : _homePageViewModel
+                                              .dateController.text,
+                                      // avgRating: null,
+                                      // priceRange:
+                                      //     const beautician.PriceRange(
+                                      //         minPrice: 0,
+                                      //         maxPrice: 200),
+                                    ),
+                                  ),
+                                );
                               }
                               if (_homePageViewModel
                                       .searchController.text.length <
                                   4) {
                                 _homePageViewModel.getBeauticiansByFilter(
-                                    beautician.BeauticiansFilterRequest(
-                                        filters: beautician.Filters(
-                                  // search: "",
-                                  location: _homePageViewModel
-                                          .locationController.text.isEmpty
-                                      ? null
-                                      : _homePageViewModel
-                                          .locationController.text,
-                                  date: _homePageViewModel
-                                          .dateController.text.isEmpty
-                                      ? null
-                                      : _homePageViewModel.dateController.text,
-                                )));
+                                  beautician.BeauticiansFilterRequest(
+                                    filters: beautician.Filters(
+                                      // search: "",
+                                      location: _homePageViewModel
+                                              .locationController.text.isEmpty
+                                          ? null
+                                          : _homePageViewModel
+                                              .locationController.text,
+                                      date: _homePageViewModel
+                                              .dateController.text.isEmpty
+                                          ? null
+                                          : _homePageViewModel
+                                              .dateController.text,
+                                    ),
+                                  ),
+                                );
                               }
                               context.go("/beautician-listing");
                             },
@@ -462,7 +477,8 @@ class _BeauticiansListPageViewState
                         _homePageViewModel.filterSearch(p0.item?.name ?? "");
                       },
                       suggestionsDecoration: SuggestionDecoration(
-                          borderRadius: BorderRadius.circular(5)),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       searchInputDecoration: InputDecoration(
                         hintText: "Services or beautician name",
                         hintStyle: GoogleFonts.urbanist(
@@ -508,66 +524,72 @@ class _BeauticiansListPageViewState
                           .read(homePageViewModel)
                           .allSalons
                           .map(
-                            (e) => SearchFieldListItem<Salon>(e.name ?? "",
-                                item: e,
-                                // Use child to show Custom Widgets in the suggestions
-                                // defaults to Text widget
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  height: 60,
-                                  color: kWhite,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: 30,
-                                        width: 30,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.search,
-                                            color: kGrey,
-                                            size: 15,
-                                          ),
+                            (e) => SearchFieldListItem<Salon>(
+                              e.name ?? "",
+                              item: e,
+                              // Use child to show Custom Widgets in the suggestions
+                              // defaults to Text widget
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                height: 60,
+                                color: kWhite,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.search,
+                                          color: kGrey,
+                                          size: 15,
                                         ),
                                       ),
-                                      gapW8,
-                                      Flexible(
-                                          child: Container(
-                                              width: 250,
-                                              child: Text(
-                                                e.name ?? "",
-                                                style: const TextStyle(
-                                                    fontSize: 12),
-                                                overflow: TextOverflow.ellipsis,
-                                              ))),
-                                      // Spacer(),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              "${e.avgRating ?? 0}",
-                                              style: const TextStyle(
-                                                  color: kGrey, fontSize: 12),
-                                            ),
-                                            const Icon(
-                                              Icons.star_rounded,
-                                              color: kGrey,
-                                              size: 20,
-                                            )
-                                          ],
+                                    ),
+                                    gapW8,
+                                    Flexible(
+                                      child: Container(
+                                        width: 250,
+                                        child: Text(
+                                          e.name ?? "",
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                )),
+                                      ),
+                                    ),
+                                    // Spacer(),
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "${e.avgRating ?? 0}",
+                                            style: const TextStyle(
+                                              color: kGrey,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.star_rounded,
+                                            color: kGrey,
+                                            size: 20,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           )
                           .toList(),
                     ),
@@ -635,7 +657,7 @@ class _BeauticiansListPageViewState
                               String formattedDate =
                                   DateFormat('yyyy-MM-dd').format(pickedDate);
 
-                              _dateController.text =
+                              _homePageViewModel.dateController.text =
                                   formattedDate; //set output date to TextField value.
                               //formatted date output using intl package =>  2021-03-16
                             }
@@ -680,40 +702,47 @@ class _BeauticiansListPageViewState
                           if (_homePageViewModel.searchController.text.length >
                               3) {
                             _homePageViewModel.getBeauticiansByFilter(
-                                beautician.BeauticiansFilterRequest(
-                                    filters: beautician.Filters(
-                              search: _homePageViewModel.searchController.text,
+                              beautician.BeauticiansFilterRequest(
+                                filters: beautician.Filters(
+                                  search:
+                                      _homePageViewModel.searchController.text,
 
-                              location: _homePageViewModel
-                                      .locationController.text.isEmpty
-                                  ? null
-                                  : _homePageViewModel.locationController.text,
-                              date:
-                                  _homePageViewModel.dateController.text.isEmpty
+                                  location: _homePageViewModel
+                                          .locationController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel
+                                          .locationController.text,
+                                  date: _homePageViewModel
+                                          .dateController.text.isEmpty
                                       ? null
                                       : _homePageViewModel.dateController.text,
-                              // avgRating: null,
-                              // priceRange:
-                              //     const beautician.PriceRange(
-                              //         minPrice: 0,
-                              //         maxPrice: 200),
-                            )));
+                                  // avgRating: null,
+                                  // priceRange:
+                                  //     const beautician.PriceRange(
+                                  //         minPrice: 0,
+                                  //         maxPrice: 200),
+                                ),
+                              ),
+                            );
                           }
                           if (_homePageViewModel.searchController.text.length <
                               4) {
                             _homePageViewModel.getBeauticiansByFilter(
-                                beautician.BeauticiansFilterRequest(
-                                    filters: beautician.Filters(
-                              search: "",
-                              location: _homePageViewModel
-                                      .locationController.text.isEmpty
-                                  ? null
-                                  : _homePageViewModel.locationController.text,
-                              date:
-                                  _homePageViewModel.dateController.text.isEmpty
+                              beautician.BeauticiansFilterRequest(
+                                filters: beautician.Filters(
+                                  search: "",
+                                  location: _homePageViewModel
+                                          .locationController.text.isEmpty
+                                      ? null
+                                      : _homePageViewModel
+                                          .locationController.text,
+                                  date: _homePageViewModel
+                                          .dateController.text.isEmpty
                                       ? null
                                       : _homePageViewModel.dateController.text,
-                            )));
+                                ),
+                              ),
+                            );
                           }
                           context.go("/beautician-listing");
                         },
@@ -805,23 +834,28 @@ class _BeauticiansListPageViewState
                                     ref
                                         .read(homePageViewModel)
                                         .getBeauticiansByFilter(
-                                            beautician.BeauticiansFilterRequest(
-                                                filters: beautician.Filters(
-                                          search: "",
-                                          serviceCategory: items[index],
-                                          // serviceType: "",
-                                          // location: "",
-                                          // avgRating: null,
-                                          // priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
-                                        )));
+                                          beautician.BeauticiansFilterRequest(
+                                            filters: beautician.Filters(
+                                              search: "",
+                                              serviceCategory: items[index],
+                                              // serviceType: "",
+                                              // location: "",
+                                              // avgRating: null,
+                                              // priceRange: beautician.PriceRange(minPrice: 0, maxPrice: 200),
+                                            ),
+                                          ),
+                                        );
                                   } else {
                                     ref
                                         .read(homePageViewModel)
-                                        .getBeauticiansByFilter(const beautician
-                                                .BeauticiansFilterRequest(
+                                        .getBeauticiansByFilter(
+                                          const beautician
+                                              .BeauticiansFilterRequest(
                                             filters: beautician.Filters(
-                                          search: "",
-                                        )));
+                                              search: "",
+                                            ),
+                                          ),
+                                        );
                                   }
                                 },
                                 child: FittedBox(
@@ -949,10 +983,10 @@ class _BeauticiansListPageViewState
                                                 child: Text(
                                                   "No Salons/Beauticians/Services Found :(",
                                                   style: TextStyle(
-                                                      color: kBlack,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
+                                                    color: kBlack,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
                                                 ),
                                               ),
                                   ),
@@ -1022,6 +1056,8 @@ class _BeauticiansListPageViewState
                                             .isNotEmpty
                                         ? ListView.builder(
                                             shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
                                             itemCount: _homePageViewModel
                                                     .beauticiansListResponse
                                                     ?.data
@@ -1048,9 +1084,10 @@ class _BeauticiansListPageViewState
                                             child: Text(
                                               "No Salons/Beauticians/Services Found :(",
                                               style: TextStyle(
-                                                  color: kBlack,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
+                                                color: kBlack,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18,
+                                              ),
                                             ),
                                           ),
                                   ),
@@ -1079,7 +1116,7 @@ class _BeauticiansListPageViewState
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

@@ -35,7 +35,7 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}auth/register/user",
         userRegisterRequest.toJson(),
       );
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(UserRegisterResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -52,7 +52,6 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}auth/login/user",
         userLoginRequest.toJson(),
       );
-      print("Sucess ====> ${response.toString()}");
 
       return Right(UserLoginResponse.fromJson(response.data!));
     } catch (e) {
@@ -70,7 +69,7 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}auth/forgot-password/user",
         userLoginRequest.toJson(),
       );
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(UserForgotPasswordResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -86,7 +85,7 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/profile",
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(ProfileDetailsResponse.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -104,7 +103,7 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}users/profile/update",
         editProfile.toJson(),
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(USerEditProfile.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -122,7 +121,7 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}users/card/create",
         addCardRequest.toJson(),
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(CreateCardResponse.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -138,7 +137,7 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/cards/list",
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(CardsListResponse.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -155,7 +154,7 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.delete(
         "${AppConstants.baseUrl}users/card/delete/$cardID",
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(DeleteCardResponse.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -173,7 +172,7 @@ class UserRepoImpl implements UserRepo {
         "${AppConstants.baseUrl}users/change_password",
         request.toJson(),
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(ChangePasswordResponse.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");
@@ -189,7 +188,7 @@ class UserRepoImpl implements UserRepo {
       final response = await _apiClient.getWithToken(
         "${AppConstants.baseUrl}users/appointments/all",
       );
-      Logger.printInfo("Sucess ====> ${response.toString()}");
+      Logger.printInfo("Sucess ====> $response");
       return Right(GetAllUserAppointments.fromJson(response.data!));
     } catch (e) {
       Logger.printWarning("Error =====> $e");

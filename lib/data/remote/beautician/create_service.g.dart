@@ -7,7 +7,8 @@ part of 'create_service.dart';
 // **************************************************************************
 
 _$_CreateServiceRequest _$$_CreateServiceRequestFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_CreateServiceRequest(
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -18,7 +19,8 @@ _$_CreateServiceRequest _$$_CreateServiceRequestFromJson(
     );
 
 Map<String, dynamic> _$$_CreateServiceRequestToJson(
-        _$_CreateServiceRequest instance) =>
+  _$_CreateServiceRequest instance,
+) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
@@ -29,7 +31,8 @@ Map<String, dynamic> _$$_CreateServiceRequestToJson(
     };
 
 _$_CreateServiceResponse _$$_CreateServiceResponseFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_CreateServiceResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -40,7 +43,8 @@ _$_CreateServiceResponse _$$_CreateServiceResponseFromJson(
     );
 
 Map<String, dynamic> _$$_CreateServiceResponseToJson(
-        _$_CreateServiceResponse instance) =>
+  _$_CreateServiceResponse instance,
+) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

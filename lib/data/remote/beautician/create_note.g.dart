@@ -17,7 +17,8 @@ _$_CreateNoteRequest _$$_CreateNoteRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$_CreateNoteRequestToJson(
-        _$_CreateNoteRequest instance) =>
+  _$_CreateNoteRequest instance,
+) =>
     <String, dynamic>{
       'note': instance.note,
       'formula': instance.formula,
@@ -26,7 +27,8 @@ Map<String, dynamic> _$$_CreateNoteRequestToJson(
     };
 
 _$_CreateNoteResponse _$$_CreateNoteResponseFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$_CreateNoteResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -37,7 +39,8 @@ _$_CreateNoteResponse _$$_CreateNoteResponseFromJson(
     );
 
 Map<String, dynamic> _$$_CreateNoteResponseToJson(
-        _$_CreateNoteResponse instance) =>
+  _$_CreateNoteResponse instance,
+) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

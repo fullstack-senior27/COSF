@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_preview.dart';
@@ -71,7 +76,7 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
     "Client Relationship",
     "Brows",
     "Beautician Growth",
-    "Beard Style"
+    "Beard Style",
   ];
   int selectedScreen = 0;
 
@@ -88,11 +93,12 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
     _viewModel = ref.watch(homePageViewModel);
     List<Widget> screens = [
       ServiceI(
-        data: _viewModel.beauticianDetailResponse ?? const BeauticianDetailResponse(),
+        data: _viewModel.beauticianDetailResponse ??
+            const BeauticianDetailResponse(),
       ),
       ReviewI(
-        beauticianDetailResponse:
-            _viewModel.beauticianDetailResponse ?? const BeauticianDetailResponse(),
+        beauticianDetailResponse: _viewModel.beauticianDetailResponse ??
+            const BeauticianDetailResponse(),
       ),
       const aboutI(),
       const productI(),
@@ -319,7 +325,7 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
                           ],
                         ),
                         if (MediaQuery.of(context).size.width > 700)
@@ -424,7 +430,7 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
                             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
                             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
                             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-                            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+                            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
                           ],
                         ),
                         SizedBox(
@@ -497,7 +503,8 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 3.w,),
+                                          horizontal: 3.w,
+                                        ),
                                         child: GestureDetector(
                                           onTap: () {
                                             setState(() {
@@ -605,13 +612,13 @@ class _ServiceDetailsPageState extends ConsumerState<ServiceDetailsPage>
                                 flex: 2,
                                 child: SingleChildScrollView(child: Sidebar()),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  const Footer()
+                  const Footer(),
                 ],
               ),
             ),
@@ -741,9 +748,7 @@ class ServiceI extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const service(
-            
-          ),
+          service(beauticianDetailResponse: data),
           Visibility(
             visible: MediaQuery.of(context).size.width < 700,
             child: Padding(
@@ -896,7 +901,7 @@ class Sidebar extends StatelessWidget {
                           color: kdisable,
                         )
                       else
-                        const SizedBox.shrink()
+                        const SizedBox.shrink(),
                     ],
                   ),
                 );
@@ -905,20 +910,25 @@ class Sidebar extends StatelessWidget {
           ),
           SizedBox(
             height: 20.h,
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-class service extends StatelessWidget {
+class service extends ConsumerStatefulWidget {
   final BeauticianDetailResponse? beauticianDetailResponse;
   const service({
     super.key,
     this.beauticianDetailResponse,
   });
 
+  @override
+  ConsumerState<service> createState() => _serviceState();
+}
+
+class _serviceState extends ConsumerState<service> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -969,7 +979,7 @@ class service extends StatelessWidget {
           height: 30.h,
         ),
         ...List.generate(
-          beauticianDetailResponse?.data?.services?.length ?? 0,
+          widget.beauticianDetailResponse?.data?.services?.length ?? 0,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Container(
@@ -1005,8 +1015,8 @@ class service extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          beauticianDetailResponse
-                                  ?.data?.services![index].name ??
+                          widget.beauticianDetailResponse?.data
+                                  ?.services![index].name ??
                               "",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
@@ -1020,8 +1030,8 @@ class service extends StatelessWidget {
                         SizedBox(
                           width: 200.w,
                           child: ReadMoreText(
-                            beauticianDetailResponse
-                                    ?.data?.services![index].description ??
+                            widget.beauticianDetailResponse?.data
+                                    ?.services![index].description ??
                                 "",
                             colorClickableText: kBlue,
                             trimMode: TrimMode.Line,
@@ -1039,7 +1049,7 @@ class service extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  "${beauticianDetailResponse?.data?.services![index].durationInMinutes}min | \$${beauticianDetailResponse?.data?.services![index].price}",
+                                  "${widget.beauticianDetailResponse?.data?.services![index].durationInMinutes}min | \$${widget.beauticianDetailResponse?.data?.services![index].price}",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
                                     fontSize: 12.sp,
@@ -1051,41 +1061,62 @@ class service extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "Your appointment with",
-                                                style: GoogleFonts.urbanist(
-                                                  color: kBlack,
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  context.pop();
-                                                },
-                                                icon: const Icon(
-                                                  Icons.close,
-                                                  color: kGrey,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          backgroundColor:
-                                              const Color(0xfff8f8f8),
-                                          content: const SingleChildScrollView(
-                                            child: SelectDate(),
-                                          ),
-                                        );
-                                      },
-                                    );
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (BuildContext context) {
+                                    //     return AlertDialog(
+                                    //       title: Row(
+                                    //         mainAxisAlignment:
+                                    //             MainAxisAlignment.spaceBetween,
+                                    //         children: [
+                                    //           Text(
+                                    //             "Your appointment with",
+                                    //             style: GoogleFonts.urbanist(
+                                    //               color: kBlack,
+                                    //               fontSize: 16.sp,
+                                    //               fontWeight: FontWeight.w600,
+                                    //             ),
+                                    //           ),
+                                    //           IconButton(
+                                    //             onPressed: () {
+                                    //               context.pop();
+                                    //             },
+                                    //             icon: const Icon(
+                                    //               Icons.close,
+                                    //               color: kGrey,
+                                    //             ),
+                                    //           ),
+                                    //         ],
+                                    //       ),
+                                    //       backgroundColor:
+                                    //           const Color(0xfff8f8f8),
+                                    //       content: const SingleChildScrollView(
+                                    //         child: SelectDate(),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    // );
+
+                                    if (SharedPreferenceService.getString(
+                                              AppConstants.accessToken,
+                                            ) ==
+                                            null ||
+                                        SharedPreferenceService.getString(
+                                              AppConstants.accessToken,
+                                            ) ==
+                                            "") {
+                                      showDialog(
+                                        context: context,
+                                        builder: (builder) => const AlertDialog(
+                                          scrollable: true,
+                                          content: LoginDialog(),
+                                        ),
+                                      );
+                                    } else {
+                                      //validate
+                                      log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
+                                      ref.read(userViewModel).validate(context);
+                                    }
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
@@ -1107,12 +1138,12 @@ class service extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
                         else
-                          Container()
+                          Container(),
                       ],
                     ),
                   ),
@@ -1151,11 +1182,12 @@ class service extends StatelessWidget {
                                           ),
                                         ),
                                         IconButton(
-                                            onPressed: () => context.pop(),
-                                            icon: const Icon(
-                                              Icons.close,
-                                              color: kGrey,
-                                            ),)
+                                          onPressed: () => context.pop(),
+                                          icon: const Icon(
+                                            Icons.close,
+                                            color: kGrey,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     backgroundColor: const Color(0xfff8f8f8),
@@ -1186,17 +1218,17 @@ class service extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     )
                   else
-                    Container()
+                    Container(),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

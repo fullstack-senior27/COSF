@@ -204,7 +204,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                           onPressed: () {
                                                             context.pop();
                                                           },
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                     backgroundColor:
@@ -250,12 +250,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 ),
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -292,7 +292,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                     onPressed: () {
                                                       context.pop();
                                                     },
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                               backgroundColor:
@@ -335,12 +335,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           ),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -519,10 +519,10 @@ class _GrowthPageState extends State<GrowthPage>
                                               style: urbanist500(kBlack, 12),
                                             ),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -566,14 +566,14 @@ class _GrowthPageState extends State<GrowthPage>
                                               style: urbanist500(kBlack, 12),
                                             ),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -643,12 +643,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -676,12 +676,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -819,7 +819,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -886,7 +886,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -953,7 +953,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1202,7 +1202,7 @@ class _GrowthPageState extends State<GrowthPage>
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -1295,12 +1295,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -1328,12 +1328,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -1348,7 +1348,7 @@ class _GrowthPageState extends State<GrowthPage>
             ),
           ),
           //Report Section
-          const ReportingPage()
+          const ReportingPage(),
         ],
       ),
     );
@@ -1534,7 +1534,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                               Text(
                                 "No appointments",
                                 style: urbanist400(kBlack, 12),
-                              )
+                              ),
                             ],
                           ),
                           SizedBox(
@@ -1617,7 +1617,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                       Text(
                                         "\$${_viewModel.beauticianBalance?.data?.totalEarning ?? 0}",
                                         style: urbanist600(kBlue, 20),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1659,7 +1659,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                           "\$${_viewModel.beauticianBalance?.data?.withdrawBalance ?? 0}",
                                           style: urbanist600(kBlack, 20),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1706,7 +1706,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                           "\$${_viewModel.beauticianBalance?.data?.remainingAmount ?? 0}",
                                           style: urbanist600(kBlack, 20),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1751,7 +1751,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                       Text(
                                         "\$${_viewModel.beauticianBalance?.data?.totalEarning ?? 0}",
                                         style: urbanist600(kBlue, 20),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1800,7 +1800,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                           "\$${_viewModel.beauticianBalance?.data?.withdrawBalance ?? 0}",
                                           style: urbanist600(kBlack, 20),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1847,7 +1847,7 @@ class _EarningsPageState extends ConsumerState<EarningsPage>
                                           "\$${_viewModel.beauticianBalance?.data?.remainingAmount ?? 0}",
                                           style: urbanist600(kBlack, 20),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),

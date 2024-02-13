@@ -28,12 +28,12 @@ class _ProfilePageState extends State<ProfilePage>
   List<String> promoteListTitle = [
     "Drive client bookings on social media",
     "Transition calls and messages to online booking",
-    "Get clients to pre book their next appointment"
+    "Get clients to pre book their next appointment",
   ];
   List<String> promoteListDesc = [
     "Downloadable assets, scripts, and tutorials to help drive clients to book you online.",
     "Manage all your inbound and outbound communication with our helpful templates & tips.",
-    "Helpful guides to help your clients see the benefits of booking you online."
+    "Helpful guides to help your clients see the benefits of booking you online.",
   ];
   @override
   void initState() {
@@ -324,7 +324,7 @@ class _ProfilePageState extends State<ProfilePage>
                                           child: Container(),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -448,7 +448,7 @@ class _ProfilePageState extends State<ProfilePage>
                                           Icons.arrow_forward_ios_rounded,
                                           size: 20.sp,
                                           color: kBlack,
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -456,7 +456,7 @@ class _ProfilePageState extends State<ProfilePage>
                               );
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -555,7 +555,7 @@ class _ProfilePageState extends State<ProfilePage>
                 const Footer(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

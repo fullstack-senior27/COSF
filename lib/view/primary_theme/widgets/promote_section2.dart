@@ -191,7 +191,7 @@ class PromoteSection2 extends StatelessWidget {
                                     "Hello, you have reached [name] of [Salon Name]. I am sorry I am not able to answer your call right now. You can see my availability, service offerings, business hours and book online on StyleSeat.com/krishnarajchauhan. Please leave a detailed message including your name and phone number for any other questions. Thank you for calling!",
                                     style: urbanist400(kGrey, 12),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -270,7 +270,7 @@ class PromoteSection2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -313,7 +313,7 @@ class PromoteSection2 extends StatelessWidget {
                       SizedBox(
                         width: 75.w,
                         child: const BlackButtonSmall(text: "Create Compaign"),
-                      )
+                      ),
                     ],
                   ),
                 ),

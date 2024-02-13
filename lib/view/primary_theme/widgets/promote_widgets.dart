@@ -120,7 +120,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -154,7 +154,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -188,7 +188,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -222,7 +222,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(

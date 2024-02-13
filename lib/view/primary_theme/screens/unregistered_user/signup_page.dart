@@ -1,4 +1,3 @@
-
 import 'package:cosmetropolis/data/remote/user/models/user_register_model.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
@@ -150,7 +149,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                                       const Icon(
                                         Icons.arrow_drop_down,
                                         color: Colors.black,
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -312,13 +311,15 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                             onPressed: () async {
                               isLoading = true;
                               setState(() {});
-                              print(UserRegisterRequest(
-                                email: emailController.text,
-                                password: passwordController.text,
-                                phone: phoneNumberController.text,
-                                name: nameController.text,
-                                role: "user",
-                              ).toString(),);
+                              print(
+                                UserRegisterRequest(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  phone: phoneNumberController.text,
+                                  name: nameController.text,
+                                  role: "user",
+                                ).toString(),
+                              );
                               print(
                                 UserRegisterRequest(
                                   email: emailController.text,
@@ -329,14 +330,15 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                                 ),
                               );
                               await _viewModel.register(
-                                  UserRegisterRequest(
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    phone: phoneNumberController.text,
-                                    name: nameController.text,
-                                    role: "user",
-                                  ),
-                                  context,);
+                                UserRegisterRequest(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  phone: phoneNumberController.text,
+                                  name: nameController.text,
+                                  role: "user",
+                                ),
+                                context,
+                              );
                               isLoading = false;
                               setState(() {});
                             },
@@ -352,11 +354,12 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                             child: isLoading
                                 ? Center(
                                     child: SizedBox(
-                                        height: 20.h,
-                                        width: 20.h,
-                                        child: const CircularProgressIndicator(
-                                          color: kWhite,
-                                        ),),
+                                      height: 20.h,
+                                      width: 20.h,
+                                      child: const CircularProgressIndicator(
+                                        color: kWhite,
+                                      ),
+                                    ),
                                   )
                                 : Text(
                                     "Sign Up",
@@ -425,7 +428,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () => {
-                              ref.read(styleProvider).setSelectedPage("Log In")
+                              ref.read(styleProvider).setSelectedPage("Log In"),
                             },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,
@@ -468,7 +471,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                   Container(),
               ],
             ),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),

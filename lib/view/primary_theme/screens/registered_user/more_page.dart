@@ -264,7 +264,7 @@ class _MorePageState extends ConsumerState<MorePage> {
               ),
             ),
             SizedBox(height: 20.h),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),
@@ -415,7 +415,7 @@ class _BillPageState extends State<BillPage> {
                   value: 't',
                   groupValue: const ['t', 'n'],
                   onChanged: (value) {},
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -751,7 +751,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -988,7 +988,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -1274,7 +1274,7 @@ class _EmailCreateState extends State<EmailCreate> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -1546,7 +1546,7 @@ class _EmailPreviewState extends State<EmailPreview> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -1655,7 +1655,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1724,7 +1724,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1768,7 +1768,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1814,7 +1814,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1842,7 +1842,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

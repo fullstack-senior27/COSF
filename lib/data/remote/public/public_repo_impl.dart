@@ -19,14 +19,16 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, AllBlogsResponse>> getAllBlogs(
-      int page, int limit,) async {
+    int page,
+    int limit,
+  ) async {
     try {
       final response =
           await _apiClient.postWithParams("${AppConstants.baseUrl}blogs", {}, {
         "page": page,
         "limit": limit,
       });
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(AllBlogsResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -40,7 +42,7 @@ class PublicRepoImpl implements PublicRepo {
     try {
       final response =
           await _apiClient.get("${AppConstants.baseUrl}blogs/categories/all");
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(AllBlogCategoriesResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -50,13 +52,16 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, AllBlogsResponse>> getBlogsByCategory(
-      int page, int limit, BlogCategoryRequest blogCategoryRequest,) async {
+    int page,
+    int limit,
+    BlogCategoryRequest blogCategoryRequest,
+  ) async {
     try {
       final response = await _apiClient.post(
         "${AppConstants.baseUrl}blogs",
         blogCategoryRequest.toJson(),
       );
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(AllBlogsResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -66,10 +71,11 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, BlogDetailsResponse>> getBlogDetails(
-      String id,) async {
+    String id,
+  ) async {
     try {
       final response = await _apiClient.get("${AppConstants.baseUrl}blogs/$id");
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(BlogDetailsResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -79,11 +85,12 @@ class PublicRepoImpl implements PublicRepo {
 
   @override
   Future<Either<ApiException, RelatedBlogsResponse>> getRelatedBlogs(
-      String id,) async {
+    String id,
+  ) async {
     try {
       final response =
           await _apiClient.get("${AppConstants.baseUrl}blogs/related/$id");
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(RelatedBlogsResponse.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -97,7 +104,7 @@ class PublicRepoImpl implements PublicRepo {
     try {
       final response = await _apiClient
           .get("${AppConstants.baseUrl}services/categories/all");
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(ServiceCategoriesList.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");
@@ -110,7 +117,7 @@ class PublicRepoImpl implements PublicRepo {
     try {
       final response =
           await _apiClient.get("${AppConstants.baseUrl}services/types/all");
-      log("Sucess ====> ${response.toString()}");
+      log("Sucess ====> $response");
       return Right(ServiceTypesList.fromJson(response.data!));
     } catch (e) {
       log("Error =====> $e");

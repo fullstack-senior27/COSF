@@ -80,7 +80,7 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
               webview(context)
             else
               mobileview(context),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),
@@ -348,11 +348,12 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                           isLoading = true;
                           setState(() {});
                           await _viewModel.loginBeautician(
-                              BeauticianLoginRequestModel(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              ),
-                              context,);
+                            BeauticianLoginRequestModel(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
+                            context,
+                          );
                           isLoading = false;
                           setState(() {});
                         },
@@ -388,30 +389,35 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                     ),
                     Align(
                       child: RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                          text: "Don't have an account? ",
-                          style: GoogleFonts.urbanist(
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                        TextSpan(
-                            text: "Sign Up",
-                            style: GoogleFonts.urbanist(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Don't have an account? ",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Sign Up",
+                              style: GoogleFonts.urbanist(
                                 fontSize: 12.sp,
                                 color: kBlue,
-                                fontWeight: FontWeight.w600,),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                context.go("/landing");
-                              },)
-                      ],),),
-                    )
+                                fontWeight: FontWeight.w600,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  context.go("/landing");
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -679,11 +685,12 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                         isLoading = true;
                         setState(() {});
                         await _viewModel.loginBeautician(
-                            BeauticianLoginRequestModel(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                            context,);
+                          BeauticianLoginRequestModel(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          ),
+                          context,
+                        );
                         isLoading = false;
                         setState(() {});
                       },
@@ -719,29 +726,34 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                   ),
                   Align(
                     child: RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                        text: "Don't have an account? ",
-                        style: GoogleFonts.urbanist(
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                      TextSpan(
-                          text: "Sign Up",
-                          style: GoogleFonts.urbanist(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Don't have an account? ",
+                            style: GoogleFonts.urbanist(
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Sign Up",
+                            style: GoogleFonts.urbanist(
                               fontSize: 12.sp,
                               color: kBlue,
-                              fontWeight: FontWeight.w600,),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.go("/landing");
-                            },)
-                    ],),),
-                  )
+                              fontWeight: FontWeight.w600,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                context.go("/landing");
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

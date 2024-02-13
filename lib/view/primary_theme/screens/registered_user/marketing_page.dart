@@ -107,12 +107,12 @@ class _MarketingPageState extends State<MarketingPage>
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 )
                               else
-                                Container()
+                                Container(),
                             ],
                           ),
                         ),
@@ -140,12 +140,12 @@ class _MarketingPageState extends State<MarketingPage>
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
                         else
-                          Container()
+                          Container(),
                       ],
                     ),
                   ),
@@ -276,7 +276,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -342,7 +342,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -408,7 +408,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -486,7 +486,7 @@ class ProfileStatus extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -668,7 +668,7 @@ class Overview extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -734,7 +734,7 @@ class Overview extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -818,7 +818,7 @@ class Overview extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -957,7 +957,7 @@ class MarketingOverviewCard extends StatelessWidget {
                 SizedBox(
                   width: 1.w,
                 ),
-                Text("1 Minute", style: urbanist400(kBlack, 11))
+                Text("1 Minute", style: urbanist400(kBlack, 11)),
               ],
             ),
           ),

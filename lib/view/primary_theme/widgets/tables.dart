@@ -66,7 +66,7 @@ class AppointmentsTable extends StatelessWidget {
                           Image.asset(
                             "assets/icons/verify.webp",
                             height: 10.h,
-                          )
+                          ),
                         ],
                       ),
                     ],
@@ -143,7 +143,7 @@ class AppointmentsTable extends StatelessWidget {
                               : Colors.red,
                           14,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -171,7 +171,7 @@ class AppointmentsTable extends StatelessWidget {
                               Icons.arrow_drop_down,
                               color: kGrey,
                               size: 20.sp,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -252,8 +252,9 @@ class EarningsTable extends StatelessWidget {
                     children: [
                       Text(
                         DateFormat("dd-MM-yyyy").format(
-                            data?.data?[index].bookingDateTime?.date ??
-                                DateTime.now()),
+                          data?.data?[index].bookingDateTime?.date ??
+                              DateTime.now(),
+                        ),
                         style: urbanist500(kBlack, 12),
                       ),
                       Text(
@@ -268,21 +269,23 @@ class EarningsTable extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                          height: 5.h,
-                          width: 5.w,
-                          decoration: BoxDecoration(
-                            color: data?.data?[index].status == "paid"
-                                ? Colors.green
-                                : Colors.red,
-                            shape: BoxShape.circle,
-                          )),
+                        height: 5.h,
+                        width: 5.w,
+                        decoration: BoxDecoration(
+                          color: data?.data?[index].status == "paid"
+                              ? Colors.green
+                              : Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                       Text(
                         "${data?.data?[index].status} ",
                         style: urbanist500(
-                            data?.data?[index].status == "paid"
-                                ? Colors.green
-                                : Colors.red,
-                            12),
+                          data?.data?[index].status == "paid"
+                              ? Colors.green
+                              : Colors.red,
+                          12,
+                        ),
                       ),
                     ],
                   ),
@@ -293,8 +296,9 @@ class EarningsTable extends StatelessWidget {
                     children: [
                       Text(
                         DateFormat("dd-MM-yyyy").format(
-                            data?.data?[index].bookingDateTime?.date ??
-                                DateTime.now()),
+                          data?.data?[index].bookingDateTime?.date ??
+                              DateTime.now(),
+                        ),
                         style: urbanist500(kBlack, 12),
                       ),
                       Text(
@@ -374,7 +378,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -416,7 +420,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -458,7 +462,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -500,7 +504,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -542,7 +546,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -584,7 +588,7 @@ class PayoutsTable extends StatelessWidget {
                     Text(
                       "Paid",
                       style: urbanist600(Colors.green, 10),
-                    )
+                    ),
                   ],
                 ),
               ),

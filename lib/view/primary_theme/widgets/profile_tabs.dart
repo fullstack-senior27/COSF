@@ -116,7 +116,7 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                         Icons.close,
                         color: kGrey,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(height: 20.h),
@@ -373,7 +373,7 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
                             ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           );
@@ -829,7 +829,7 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                       Icons.close,
                                       color: kGrey,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                               backgroundColor: const Color(0xfff8f8f8),
@@ -939,7 +939,7 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                                     context.pop();
                                                   }),
                                                 ),
-                                              )
+                                              ),
                                           ],
                                         ),
                                       ),
@@ -1003,7 +1003,7 @@ class PhotosTab extends StatelessWidget {
       "https://i.imgur.com/svLt1SE.webp",
       "https://i.imgur.com/FDXC3nI.webp",
       "https://i.imgur.com/jA407EU.webp",
-      "https://i.imgur.com/fIL9cnJ.webp"
+      "https://i.imgur.com/fIL9cnJ.webp",
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1175,7 +1175,7 @@ class PhotosTab extends StatelessWidget {
               ],
             );
           },
-        )
+        ),
       ],
     );
   }
@@ -1476,7 +1476,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                           edit.Availability(
                                             day: "Sunday",
                                             isAvailable: sunday,
-                                          )
+                                          ),
                                         ],
                                       ),
                                       context,
@@ -1513,7 +1513,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                         ),
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         );
                       },
@@ -1632,7 +1632,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                                   edit.Availability(
                                                     day: "Sunday",
                                                     isAvailable: sunday,
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                               context,
@@ -1674,7 +1674,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                       ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -1829,7 +1829,9 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                 SizedBox(height: 5.h),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 15.w, vertical: 20.h,),
+                                    horizontal: 15.w,
+                                    vertical: 20.h,
+                                  ),
                                   child: const EditUpcomingHours(),
                                 ),
                                 // SizedBox(height: 15.h),
@@ -1910,7 +1912,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                           Text(
                             "You have no upcoming time off scheduled.",
                             style: urbanist400(kBlack, 14),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -2026,7 +2028,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                                           style: urbanist400(kWhite, 14),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 );
                               },
@@ -2048,7 +2050,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                             style: urbanist400(kWhite, 14),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   );
                 },
@@ -2184,7 +2186,7 @@ class _ManageAvailabilityState extends ConsumerState<ManageAvailability>
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -2670,9 +2672,9 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -2726,7 +2728,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: 20.h),
@@ -2774,9 +2776,9 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -2830,7 +2832,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: 20.h),
@@ -2878,9 +2880,9 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -2934,7 +2936,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: 20.h),
@@ -3000,7 +3002,7 @@ class _EditUpcomingHoursState extends ConsumerState<EditUpcomingHours>
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           );
   }
@@ -3200,7 +3202,7 @@ class ProfileReviews extends StatelessWidget {
                                 },
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -3231,14 +3233,14 @@ class ProfileReviews extends StatelessWidget {
                           ),
                         )
                       else
-                        Container()
+                        Container(),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

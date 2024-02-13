@@ -43,7 +43,7 @@ class _ProfilePreviewState extends State<ProfilePreview>
     "Client Relationship",
     "Brows",
     "Beautician Growth",
-    "Beard Style"
+    "Beard Style",
   ];
   int selectedScreen = 0;
   int selected = 0;
@@ -446,7 +446,7 @@ class _ProfilePreviewState extends State<ProfilePreview>
                         flex: 2,
                         child: SingleChildScrollView(child: Sidebar()),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -968,7 +968,7 @@ class _ProductsCardState extends ConsumerState<ProductsCard>
                                                                 }),
                                                               ),
                                                           ],
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -997,12 +997,12 @@ class _ProductsCardState extends ConsumerState<ProductsCard>
                                             ),
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 )
                               else
-                                Container()
+                                Container(),
                             ],
                           ),
                         ),
@@ -1282,7 +1282,7 @@ class _ProductsCardState extends ConsumerState<ProductsCard>
                                                           }),
                                                         ),
                                                     ],
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -1311,17 +1311,17 @@ class _ProductsCardState extends ConsumerState<ProductsCard>
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
                         else
-                          Container()
+                          Container(),
                       ],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           );
   }

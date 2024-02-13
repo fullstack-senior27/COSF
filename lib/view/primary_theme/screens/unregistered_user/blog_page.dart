@@ -61,7 +61,7 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
     "Client Relationship",
     "Brows",
     "Beautician Growth",
-    "Beard Style"
+    "Beard Style",
   ];
 
   int _currentPage = 0;
@@ -336,7 +336,7 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                                     fontWeight: FontWeight.w500,
                                                     color: kyellow,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                             SizedBox(
@@ -435,12 +435,12 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                                                   color: kWhite,
                                                 ),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                               SizedBox(
@@ -629,7 +629,7 @@ class _BlogPageState extends ConsumerState<BlogPage> with BaseScreenView {
                               ],
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     SizedBox(

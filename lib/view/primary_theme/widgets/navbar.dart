@@ -201,7 +201,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -242,9 +242,9 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                 color: kBlue,
                 size: 30.sp,
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }
