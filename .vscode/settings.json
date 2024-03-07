@@ -1,19 +1,15 @@
 {
-
-    "yaml.schemas": {
-        "file:///Users/ayushmaji/.vscode/extensions/atlassian.atlascode-3.0.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
-        "https://json.schemastore.org/pubspec.json": "file:///Users/ayushmaji/Desktop/fortmindz/cosmetropolis-app/pubspec.yaml"
-    },
-    "dart.flutterDaemonLogFile": null,
-    "cmake.sourceDirectory": "/Users/ayushmaji/Desktop/fortmindz/cosmetropolis-app/windows/runner",
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    // Remove .fvm files from search
-    "search.exclude": {
-        "**/.fvm": true
-    },
-    // Remove from file watching
-    "files.watcherExclude": {
-        "**/.fvm": true
-    }
-    
+  "yaml.schemas": {
+    "file:///Users/ayushmaji/.vscode/extensions/atlassian.atlascode-3.0.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+    "https://json.schemastore.org/pubspec.json": "file:///Users/ayushmaji/Desktop/fortmindz/cosmetropolis-app/pubspec.yaml"
+  },
+  "dart.flutterDaemonLogFile": null,
+  "cmake.sourceDirectory": "/Users/ayushmaji/Desktop/fortmindz/cosmetropolis-app/windows/runner",
+  "dart.flutterSdkPath": ".fvm/versions/3.7.9",
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  }
 }

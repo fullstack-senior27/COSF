@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_final_locals, use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:cosmetropolis/core/core.dart';
 import 'package:cosmetropolis/data/remote/beautician/create_service_category.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart'
@@ -9,8 +13,11 @@ import 'package:cosmetropolis/data/remote/services/models/beautician_detail_mode
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/services/shared_preference_service.dart';
+import 'package:cosmetropolis/utils/app_sizes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/file_picker.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
@@ -46,7 +53,7 @@ class _PersonalInfoState extends ConsumerState<PersonalInfo>
   final aboutMeController = TextEditingController();
   final professionController = TextEditingController();
   bool isLoading = false;
-  bool isSave = false;
+  bool isSave = false;  
 
   // @override
   // void initState() {
@@ -642,16 +649,24 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
   final nameController = TextEditingController();
   late BeauticianViewModel _viewModel;
   bool isLoading = false;
+
+  bool photoLoader = false;
+  String imageUrl = "";
+
   @override
   void initState() {
     super.initState();
 
-    _viewModel = ref.read(beauticianViewModel)..attachView(this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _viewModel = ref.read(beauticianViewModel)..attachView(this);
+      _viewModel.getAllServiceCategory(context);
+    });
     // getData();
   }
 
   @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(beauticianViewModel);
     return Padding(
       padding: MediaQuery.of(context).size.width > 700
           ? EdgeInsets.symmetric(horizontal: 60.w)
@@ -783,7 +798,7 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
           ),
           SizedBox(height: 20.h),
           Container(
-            width: double.infinity,
+            width: 900,
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             color: kWhite,
             child: Column(
@@ -809,8 +824,8 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return StatefulBuilder(
-                          builder: (context, setState) {
+                        return Consumer(
+                          builder: (context, ref2, categorySetState) {
                             return AlertDialog(
                               title: Row(
                                 mainAxisAlignment:
@@ -848,6 +863,48 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      SizedBox(
+                                        child: ref2.watch(filePickerProvider).loading ? const Center(
+                                          child: CircularProgressIndicator(color: Colors.black,),
+                                        ) : ref2.watch(filePickerProvider).imgUrl != "" ? Container(
+                                            height: 200,
+                                            child: Image.network(ref2.watch(filePickerProvider).imgUrl, fit: BoxFit.contain,),
+                                        ) : Center(
+                                          child: DottedBorder(
+                                            borderType: BorderType.RRect,
+                                            radius: Radius.circular(5.r),
+                                            dashPattern: const [6, 2, 6, 2],
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                await ref2.watch(filePickerProvider).openPickImageDialog(context).then((value) {
+                                                  Logger.printError(ref2.watch(filePickerProvider).imgUrl);
+                                                });
+                                              },
+                                              child: MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: SizedBox(
+                                                  height: 200,
+                                                  width: 400,
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Image.asset("assets/icons/add_photo.webp", height: 50, width: 50,),
+                                                      gapH4,
+                                                      Text(
+                                                        "Add a Category Image",
+                                                        style: urbanist500(
+                                                          kBlack,
+                                                          12
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(
                                         height: 20.h,
                                       ),
@@ -932,10 +989,15 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
                                                       CreateServiceCategoryRequest(
                                                         name:
                                                             nameController.text,
+                                                        imageUrl: ref2.watch(filePickerProvider).imgUrl,
                                                       ),
-                                                    );
+                                                    ).then((value) {
+                                                      _viewModel.getAllServiceCategory(context);
+                                                    });
                                                     isLoading = false;
                                                     setState(() {});
+                                                    nameController.clear();
+                                                    ref2.watch(filePickerProvider).setImg("");
                                                     context.pop();
                                                   }),
                                                 ),

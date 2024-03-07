@@ -17,6 +17,7 @@ String createServiceCategoryRequestToJson(CreateServiceCategoryRequest data) =>
 class CreateServiceCategoryRequest with _$CreateServiceCategoryRequest {
   const factory CreateServiceCategoryRequest({
     String? name,
+    String? imageUrl
   }) = _CreateServiceCategoryRequest;
 
   factory CreateServiceCategoryRequest.fromJson(Map<String, dynamic> json) =>
@@ -53,6 +54,7 @@ class Data with _$Data {
   const factory Data({
     String? name,
     String? id,
+    String? imageUrl
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);

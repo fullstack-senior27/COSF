@@ -11,6 +11,7 @@ import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart'
     as clients;
+import 'package:cosmetropolis/data/remote/beautician/get_all_service_category_model.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
     as availability;
 import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart'
@@ -62,6 +63,11 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
   GetProductsResponse? _getProductsResponseModel;
   GetProductsResponse? get getProductsResponseModel =>
       _getProductsResponseModel;
+
+  
+  GetAllServiceCategoryResponseModel _getAllServiceCategoryResponseModel = GetAllServiceCategoryResponseModel();
+  GetAllServiceCategoryResponseModel get getAllServiceCategoryResponseModel => _getAllServiceCategoryResponseModel;
+
 
   clients.GetAllClients? _getAllClients;
   clients.GetAllClients? get allClients => _getAllClients;
@@ -517,6 +523,22 @@ class BeauticianViewModel extends BaseViewModel<BaseScreenView> {
           }, (r) {
             // showSnackbar(r.message!);
             _allUserAppointments = r;
+            notifyListeners();
+          }),
+        );
+  }
+
+
+  Future<void> getAllServiceCategory(
+    BuildContext context,
+  ) async {
+    toggleLoading();
+    await _beauticianRepo.getAllServiceCategory().then(
+          (value) => value.fold((l) {
+            showSnackbar(l.message);
+          }, (r) {
+            // showSnackbar(r.message ?? "");
+            _getAllServiceCategoryResponseModel = r;
             notifyListeners();
           }),
         );

@@ -2,6 +2,7 @@ import 'package:better_cupertino_slider/better_cupertino_slider.dart';
 import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/beauticians_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_preview.dart';
@@ -12,16 +13,17 @@ import 'package:cosmetropolis/view/primary_theme/widgets/promote_section3.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/promote_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  ConsumerState<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>
+class _ProfilePageState extends ConsumerState<ProfilePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontroller;
   int promoteNumber = 0;
@@ -507,6 +509,32 @@ class _ProfilePageState extends State<ProfilePage>
                 children: [
                   SizedBox(height: 20.h),
                   const ServiceMenu(),
+                  SizedBox(height: 20.h),
+                  Container(
+                    width: 900,
+                    height: 100,
+                    color: Colors.white,
+                    margin: EdgeInsets.only(right: 90),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 200,
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              if (ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl == null || (ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl?.isEmpty ?? true)) Image.asset(
+                                "assets/icons/services.webp",
+                                height: 55.h,
+                              ) else Image.network(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl ?? "", height: 55.h),
+                              Text(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].name ?? "")
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                   SizedBox(height: 40.h),
                   const Footer(),
                 ],

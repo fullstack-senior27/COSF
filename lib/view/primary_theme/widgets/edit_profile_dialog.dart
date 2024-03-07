@@ -323,10 +323,10 @@ class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
                       FittedBox(
                         child: TextButton.icon(
                           onPressed: () async {
-                            await openPickImageDialog(
+                            await ref.watch(filePickerProvider).openPickImageDialog(
                               context,
                             );
-                            _viewModel.profilePic = imgUrl;
+                            // _viewModel.profilePic = imgUrl;
                             setState(() {});
                             log("Image clicked>>>>>>>>>>>>>>> ${_viewModel.profilePic}");
                           },

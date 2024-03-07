@@ -22,6 +22,7 @@ CreateServiceCategoryRequest _$CreateServiceCategoryRequestFromJson(
 /// @nodoc
 mixin _$CreateServiceCategoryRequest {
   String? get name => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,7 @@ abstract class $CreateServiceCategoryRequestCopyWith<$Res> {
       _$CreateServiceCategoryRequestCopyWithImpl<$Res,
           CreateServiceCategoryRequest>;
   @useResult
-  $Res call({String? name});
+  $Res call({String? name, String? imageUrl});
 }
 
 /// @nodoc
@@ -55,11 +56,16 @@ class _$CreateServiceCategoryRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -74,7 +80,7 @@ abstract class _$$_CreateServiceCategoryRequestCopyWith<$Res>
       __$$_CreateServiceCategoryRequestCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name});
+  $Res call({String? name, String? imageUrl});
 }
 
 /// @nodoc
@@ -91,11 +97,16 @@ class __$$_CreateServiceCategoryRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$_CreateServiceCategoryRequest(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -104,17 +115,19 @@ class __$$_CreateServiceCategoryRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CreateServiceCategoryRequest implements _CreateServiceCategoryRequest {
-  const _$_CreateServiceCategoryRequest({this.name});
+  const _$_CreateServiceCategoryRequest({this.name, this.imageUrl});
 
   factory _$_CreateServiceCategoryRequest.fromJson(Map<String, dynamic> json) =>
       _$$_CreateServiceCategoryRequestFromJson(json);
 
   @override
   final String? name;
+  @override
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'CreateServiceCategoryRequest(name: $name)';
+    return 'CreateServiceCategoryRequest(name: $name, imageUrl: $imageUrl)';
   }
 
   @override
@@ -122,12 +135,14 @@ class _$_CreateServiceCategoryRequest implements _CreateServiceCategoryRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreateServiceCategoryRequest &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, name, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -146,14 +161,17 @@ class _$_CreateServiceCategoryRequest implements _CreateServiceCategoryRequest {
 
 abstract class _CreateServiceCategoryRequest
     implements CreateServiceCategoryRequest {
-  const factory _CreateServiceCategoryRequest({final String? name}) =
-      _$_CreateServiceCategoryRequest;
+  const factory _CreateServiceCategoryRequest(
+      {final String? name,
+      final String? imageUrl}) = _$_CreateServiceCategoryRequest;
 
   factory _CreateServiceCategoryRequest.fromJson(Map<String, dynamic> json) =
       _$_CreateServiceCategoryRequest.fromJson;
 
   @override
   String? get name;
+  @override
+  String? get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_CreateServiceCategoryRequestCopyWith<_$_CreateServiceCategoryRequest>
@@ -386,6 +404,7 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 mixin _$Data {
   String? get name => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -397,7 +416,7 @@ abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
-  $Res call({String? name, String? id});
+  $Res call({String? name, String? id, String? imageUrl});
 }
 
 /// @nodoc
@@ -415,6 +434,7 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
   $Res call({
     Object? name = freezed,
     Object? id = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -424,6 +444,10 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -435,7 +459,7 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
       __$$_DataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String? id});
+  $Res call({String? name, String? id, String? imageUrl});
 }
 
 /// @nodoc
@@ -449,6 +473,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
   $Res call({
     Object? name = freezed,
     Object? id = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$_Data(
       name: freezed == name
@@ -459,6 +484,10 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -466,7 +495,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 /// @nodoc
 @JsonSerializable()
 class _$_Data implements _Data {
-  const _$_Data({this.name, this.id});
+  const _$_Data({this.name, this.id, this.imageUrl});
 
   factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
 
@@ -474,10 +503,12 @@ class _$_Data implements _Data {
   final String? name;
   @override
   final String? id;
+  @override
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'Data(name: $name, id: $id)';
+    return 'Data(name: $name, id: $id, imageUrl: $imageUrl)';
   }
 
   @override
@@ -486,12 +517,14 @@ class _$_Data implements _Data {
         (other.runtimeType == runtimeType &&
             other is _$_Data &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, id);
+  int get hashCode => Object.hash(runtimeType, name, id, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -508,7 +541,8 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements Data {
-  const factory _Data({final String? name, final String? id}) = _$_Data;
+  const factory _Data(
+      {final String? name, final String? id, final String? imageUrl}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
@@ -516,6 +550,8 @@ abstract class _Data implements Data {
   String? get name;
   @override
   String? get id;
+  @override
+  String? get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;

@@ -47,7 +47,7 @@ _$_AddClientResponse _$$_AddClientResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$_AddClientResponseToJson(
-        _$_AddClientResponse instance,) =>
+        _$_AddClientResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

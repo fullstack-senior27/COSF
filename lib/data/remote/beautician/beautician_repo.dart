@@ -10,6 +10,7 @@ import 'package:cosmetropolis/data/remote/beautician/delete_product.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_availability.dart';
 import 'package:cosmetropolis/data/remote/beautician/edit_client.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_all_clients.dart';
+import 'package:cosmetropolis/data/remote/beautician/get_all_service_category_model.dart';
 import 'package:cosmetropolis/data/remote/beautician/get_availability.dart'
     as availability;
 import 'package:cosmetropolis/data/remote/beautician/get_beautician_services.dart';
@@ -104,4 +105,6 @@ abstract class BeauticianRepo {
       CreateAppointmentRequest createAppointmentRequest,);
 
   Future<Either<ApiException, GetAllUserAppointments>> getAllAppointments();
+
+  Future<Either<ApiException, GetAllServiceCategoryResponseModel>> getAllServiceCategory();
 }

@@ -7,7 +7,7 @@ part of 'update_product.dart';
 // **************************************************************************
 
 _$_UpdateProductRequest _$$_UpdateProductRequestFromJson(
-        Map<String, dynamic> json,) =>
+        Map<String, dynamic> json) =>
     _$_UpdateProductRequest(
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -15,7 +15,7 @@ _$_UpdateProductRequest _$$_UpdateProductRequestFromJson(
     );
 
 Map<String, dynamic> _$$_UpdateProductRequestToJson(
-        _$_UpdateProductRequest instance,) =>
+        _$_UpdateProductRequest instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_UpdateProductRequestToJson(
     };
 
 _$_UpdateProductResponse _$$_UpdateProductResponseFromJson(
-        Map<String, dynamic> json,) =>
+        Map<String, dynamic> json) =>
     _$_UpdateProductResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -34,7 +34,7 @@ _$_UpdateProductResponse _$$_UpdateProductResponseFromJson(
     );
 
 Map<String, dynamic> _$$_UpdateProductResponseToJson(
-        _$_UpdateProductResponse instance,) =>
+        _$_UpdateProductResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

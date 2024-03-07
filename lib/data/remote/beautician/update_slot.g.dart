@@ -20,7 +20,7 @@ _$_UpdateSlotRequest _$$_UpdateSlotRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$_UpdateSlotRequestToJson(
-        _$_UpdateSlotRequest instance,) =>
+        _$_UpdateSlotRequest instance) =>
     <String, dynamic>{
       'morning': instance.morning,
       'afternoon': instance.afternoon,
@@ -38,7 +38,7 @@ Map<String, dynamic> _$$_SlotsToJson(_$_Slots instance) => <String, dynamic>{
     };
 
 _$_UpdateSlotResponse _$$_UpdateSlotResponseFromJson(
-        Map<String, dynamic> json,) =>
+        Map<String, dynamic> json) =>
     _$_UpdateSlotResponse(
       code: json['code'] as int?,
       message: json['message'] as String?,
@@ -49,7 +49,7 @@ _$_UpdateSlotResponse _$$_UpdateSlotResponseFromJson(
     );
 
 Map<String, dynamic> _$$_UpdateSlotResponseToJson(
-        _$_UpdateSlotResponse instance,) =>
+        _$_UpdateSlotResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -57,6 +57,6 @@ Map<String, dynamic> _$$_UpdateSlotResponseToJson(
       'data': instance.data,
     };
 
-_$_Data _$$_DataFromJson(Map<String, dynamic> json) => const _$_Data();
+_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data();
 
 Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{};

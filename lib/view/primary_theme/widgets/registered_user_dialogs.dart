@@ -1282,8 +1282,8 @@ class _AddPhotoState extends ConsumerState<AddPhoto> with BaseScreenView {
                   height: 10.h,
                 ),
                 BlackButton(context, "Upload Photo", () async {
-                  await openPickImageDialog(context);
-                  photo = imgUrl;
+                  await await ref.watch(filePickerProvider).openPickImageDialog(context);
+                  // photo = imgUrl;
                   log(photo ?? "No photo");
                   photo != null
                       ? await _viewModel.addClientPhoto(
