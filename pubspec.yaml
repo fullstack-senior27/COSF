@@ -79,13 +79,15 @@ dependencies:
   table_calendar: null
   url_launcher: ^6.1.9
   url_strategy: ^0.2.0
-  webview_flutter: ^4.0.2
+  webview_flutter:
   flutter_cache_manager: ^3.3.1
   easy_stepper:
   flutter_rte: ^1.0.0
   dotted_border: ^2.0.0+3
   searchfield: ^0.8.4
   hovering: ^1.0.4
+  # image_network: 
+  # image_network:
 
 dev_dependencies:
   build_runner: null

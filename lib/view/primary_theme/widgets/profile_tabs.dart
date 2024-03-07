@@ -798,7 +798,7 @@ class _ServiceMenuState extends ConsumerState<ServiceMenu> with BaseScreenView {
           ),
           SizedBox(height: 20.h),
           Container(
-            width: 900,
+            width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             color: kWhite,
             child: Column(

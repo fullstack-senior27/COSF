@@ -2,6 +2,7 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:cosmetropolis/domain/providers/theme_provider.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/view/components/error_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +37,18 @@ class MyApp extends ConsumerWidget {
             locale: context.locale,
             themeMode: themeManager.currentTheme,
             debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+                return CustomErrorPage(errorDetails: errorDetails);
+              };
+
+              // return MediaQuery(
+              //   data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+              //   child: child!,
+              // );
+              return child!;
+              
+            },
             theme: ThemeData(
               useMaterial3: true,
               colorScheme: ColorScheme.fromSwatch().copyWith(outline: kBlue),

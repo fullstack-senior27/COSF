@@ -1054,9 +1054,9 @@ class _EmailMarketingState extends State<EmailMarketing> {
             ),
             EasyStepper(
               defaultStepBorderType: BorderType.normal,
-              lineType: LineType.normal,
+              // lineType: LineType.normal,
               activeStep: activeStep,
-              lineLength: 80,
+              // lineLength: 80,
               stepRadius: 20,
               unreachedStepIconColor: kBlack,
               unreachedStepBorderColor: kBlack,
@@ -1066,9 +1066,9 @@ class _EmailMarketingState extends State<EmailMarketing> {
               activeStepBorderColor: kblueColor,
               activeStepIconColor: kWhite,
               activeStepBackgroundColor: kblueColor,
-              finishedLineColor: kblueColor,
+              // finishedLineColor: kblueColor,
               finishedStepBackgroundColor: kblueColor,
-              unreachedLineColor: kBlack,
+              // unreachedLineColor: kBlack,
               unreachedStepBorderType: BorderType.dotted,
               showLoadingAnimation: false,
               steps: const [

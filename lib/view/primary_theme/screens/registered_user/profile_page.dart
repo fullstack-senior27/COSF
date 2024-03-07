@@ -16,6 +16,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../utils/app_sizes.dart';
+
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
@@ -511,23 +513,43 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                   const ServiceMenu(),
                   SizedBox(height: 20.h),
                   Container(
-                    width: 900,
+                    width: double.infinity,
                     height: 100,
                     color: Colors.white,
-                    margin: EdgeInsets.only(right: 90),
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?.length ?? 0,
                       itemBuilder: (context, index) {
                         return Container(
-                          width: 200,
-                          color: Colors.white,
+                          width: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            border: Border.all(color: kBlack,)
+                          ),
+                          // margin: EdgeInsets.only(
+                          //   left: index == 0 ? 16 : 0,
+                          //   right: index == (ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?.length ?? 0) - 1
+                          //     ? 16 : 0,
+                          // ),
+                          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           child: Row(
                             children: [
+                              gapW4,
+
                               if (ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl == null || (ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl?.isEmpty ?? true)) Image.asset(
                                 "assets/icons/services.webp",
                                 height: 55.h,
-                              ) else Image.network(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl ?? "", height: 55.h),
+                              ) else if(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl?.contains("https://cosmetrospace") ?? false) 
+
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                  child: Image.network(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].imageUrl ?? "", height: 80.h)
+                                )
+
+                              else Image.network("https://static.thenounproject.com/png/504708-200.png", height: 80.h),
+
+                              gapW10,
+
                               Text(ref.watch(beauticianViewModel).getAllServiceCategoryResponseModel.data?[index].name ?? "")
                             ],
                           ),
