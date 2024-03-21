@@ -4,8 +4,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/promote_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 
 class PromoteSection2 extends StatelessWidget {
   const PromoteSection2({super.key});
@@ -40,7 +39,7 @@ class PromoteSection2 extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {
-                              Get.back();
+                              context.pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios,
@@ -86,7 +85,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/sms.png",
+                        "assets/icons/sms.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -137,7 +136,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/calls.png",
+                        "assets/icons/calls.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -192,7 +191,7 @@ class PromoteSection2 extends StatelessWidget {
                                     "Hello, you have reached [name] of [Salon Name]. I am sorry I am not able to answer your call right now. You can see my availability, service offerings, business hours and book online on StyleSeat.com/krishnarajchauhan. Please leave a detailed message including your name and phone number for any other questions. Thank you for calling!",
                                     style: urbanist400(kGrey, 12),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -271,7 +270,7 @@ class PromoteSection2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -290,7 +289,7 @@ class PromoteSection2 extends StatelessWidget {
                         height: 20.h,
                       ),
                       Image.asset(
-                        "assets/icons/email.png",
+                        "assets/icons/email.webp",
                         height: 60.h,
                       ),
                       SizedBox(
@@ -314,7 +313,7 @@ class PromoteSection2 extends StatelessWidget {
                       SizedBox(
                         width: 75.w,
                         child: const BlackButtonSmall(text: "Create Compaign"),
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -1,58 +1,56 @@
+import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../utils/colors.dart';
-import '../../../utils/text_styles.dart';
 
 class CopyField extends StatelessWidget {
   const CopyField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Expanded(
-        child: SizedBox(
-          height: 40.h,
-          child: TextField(
-            readOnly: true,
-            decoration: InputDecoration(
-              hintText: "Cosmetropolis.com/",
-              hintStyle: urbanist400(kGrey, 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.r),
-                borderSide: const BorderSide(color: kGrey),
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 40.h,
+            child: TextField(
+              readOnly: true,
+              decoration: InputDecoration(
+                hintText: "Cosmetropolis.com/",
+                hintStyle: urbanist400(kGrey, 12),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
               ),
             ),
           ),
         ),
-      ),
-      SizedBox(
-        width: 5.w,
-      ),
-      GestureDetector(
-        onTap: () {
-          print(MediaQuery.of(context).size.width);
-        },
-        child: Container(
+        SizedBox(
+          width: 5.w,
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: Container(
             height: 40.h,
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             decoration: BoxDecoration(
               color: kBlack,
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Center(child: Text("Copy", style: urbanist600(kWhite, 12)))),
-      ),
-    ]);
+            child: Center(child: Text("Copy", style: urbanist600(kWhite, 12))),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -67,13 +65,14 @@ class BlackButtonSmall extends StatelessWidget {
         print(MediaQuery.of(context).size.width);
       },
       child: Container(
-          height: 40.h,
-          padding: EdgeInsets.symmetric(horizontal: 8.w),
-          decoration: BoxDecoration(
-            color: kBlack,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Center(child: Text(text, style: urbanist600(kWhite, 12)))),
+        height: 40.h,
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        decoration: BoxDecoration(
+          color: kBlack,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(child: Text(text, style: urbanist600(kWhite, 12))),
+      ),
     );
   }
 }
@@ -121,7 +120,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -131,10 +130,11 @@ class HelpfulBlogsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-                "https://tse4.mm.bing.net/th?id=OIP.LvecETOAVmYiwukoi9SDLQHaEK&pid=Api&P=0&h=180",
-                height: 60,
-                width: 60,
-                fit: BoxFit.cover),
+              "https://tse4.mm.bing.net/th?id=OIP.LvecETOAVmYiwukoi9SDLQHaEK&pid=Api&P=0&h=180",
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
             SizedBox(
               width: 3.w,
             ),
@@ -154,7 +154,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -164,10 +164,11 @@ class HelpfulBlogsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-                "https://tse4.mm.bing.net/th?id=OIP.j4SvRBaGAhJxK-g-q6pNBAHaDt&pid=Api&P=0&h=180",
-                height: 60,
-                width: 60,
-                fit: BoxFit.cover),
+              "https://tse4.mm.bing.net/th?id=OIP.j4SvRBaGAhJxK-g-q6pNBAHaDt&pid=Api&P=0&h=180",
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
             SizedBox(
               width: 3.w,
             ),
@@ -187,7 +188,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -197,10 +198,11 @@ class HelpfulBlogsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-                "https://tse1.mm.bing.net/th?id=OIP.QPrlnFDnTsbLTp-tusCrqgHaE8&pid=Api&P=0&h=180",
-                height: 60,
-                width: 60,
-                fit: BoxFit.cover),
+              "https://tse1.mm.bing.net/th?id=OIP.QPrlnFDnTsbLTp-tusCrqgHaE8&pid=Api&P=0&h=180",
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
             SizedBox(
               width: 3.w,
             ),
@@ -220,7 +222,7 @@ class HelpfulBlogsSection extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         SizedBox(

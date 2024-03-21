@@ -1,16 +1,17 @@
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/registered_user/growth_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/registered_user/reporting_page.dart';
-import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/tables.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widgets/registered_user_dialogs.dart';
 
 class GrowthPage extends StatefulWidget {
   const GrowthPage({super.key});
@@ -108,7 +109,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Your Business Growth",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -152,7 +153,7 @@ class _GrowthPageState extends State<GrowthPage>
                                               //               style: GoogleFonts
                                               //                   .urbanist(
                                               //                 color: kBlack,
-                                              //                 fontSize: 18.sp,
+                                              //                 fontSize: 16.sp,
                                               //                 fontWeight:
                                               //                     FontWeight
                                               //                         .w600,
@@ -160,7 +161,7 @@ class _GrowthPageState extends State<GrowthPage>
                                               //             ),
                                               //             InkWell(
                                               //               onTap: () {
-                                              //                 Get.back();
+                                              //                 context.pop();
                                               //               },
                                               //               child: const Icon(
                                               //                 Icons.close,
@@ -190,7 +191,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                           style: GoogleFonts
                                                               .urbanist(
                                                             color: kBlack,
-                                                            fontSize: 18.sp,
+                                                            fontSize: 16.sp,
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                           ),
@@ -201,9 +202,9 @@ class _GrowthPageState extends State<GrowthPage>
                                                             color: kGrey,
                                                           ),
                                                           onPressed: () {
-                                                            Get.back();
+                                                            context.pop();
                                                           },
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                     backgroundColor:
@@ -249,12 +250,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 ),
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -278,7 +279,7 @@ class _GrowthPageState extends State<GrowthPage>
                                                     "Set a monthly goal and we’ll give you\ntips on how to get there.",
                                                     style: GoogleFonts.urbanist(
                                                       color: kBlack,
-                                                      fontSize: 18.sp,
+                                                      fontSize: 16.sp,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -289,9 +290,9 @@ class _GrowthPageState extends State<GrowthPage>
                                                       color: kGrey,
                                                     ),
                                                     onPressed: () {
-                                                      Get.back();
+                                                      context.pop();
                                                     },
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                               backgroundColor:
@@ -334,12 +335,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           ),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -487,7 +488,7 @@ class _GrowthPageState extends State<GrowthPage>
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/growth_works.png",
+                                    "assets/icons/growth_works.webp",
                                     height: 40.h,
                                   ),
                                   SizedBox(
@@ -518,10 +519,10 @@ class _GrowthPageState extends State<GrowthPage>
                                               style: urbanist500(kBlack, 12),
                                             ),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -534,7 +535,7 @@ class _GrowthPageState extends State<GrowthPage>
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/growth_setup.png",
+                                    "assets/icons/growth_setup.webp",
                                     height: 40.h,
                                   ),
                                   SizedBox(
@@ -565,14 +566,14 @@ class _GrowthPageState extends State<GrowthPage>
                                               style: urbanist500(kBlack, 12),
                                             ),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -600,7 +601,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Hi John Wick",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -642,12 +643,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -675,12 +676,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -746,375 +747,7 @@ class _GrowthPageState extends State<GrowthPage>
             ),
           ),
           //Earnings Section>>>>>>>>>>>>>>
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 17.w),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      Row(
-                        // mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Net Earnings Today",
-                                style: urbanist600(kBlack, 18),
-                              ),
-                              Text(
-                                "\$0.00",
-                                style: urbanist600(kBlack, 16),
-                              ),
-                              Text(
-                                "No appointments",
-                                style: urbanist400(kBlack, 12),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            width: 15.w,
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: DropdownButtonFormField<String>(
-                              dropdownColor: kWhite,
-                              isExpanded: true,
-                              decoration: InputDecoration(
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: klines),
-                                ),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: klines),
-                                ),
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10.w),
-                                // suffixIcon: Icon(Icons.arrow_drop_down),
-                              ),
-                              items: [
-                                DropdownMenuItem<String>(
-                                  value: 'Today',
-                                  child: Text(
-                                    'Today',
-                                    style: urbanist400(kGrey, 12),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                DropdownMenuItem<String>(
-                                  value: 'Yesterday',
-                                  child: Text(
-                                    'Yesterday',
-                                    style: urbanist400(kGrey, 12),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                DropdownMenuItem<String>(
-                                  value: 'April 1, 2020',
-                                  child: Text(
-                                    'April 1, 2020',
-                                    style: urbanist400(kGrey, 12),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                              onChanged: (String? value) {
-                                // Handle dropdown value change
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: 100.h,
-                                // width: 40.w,
-                                decoration: BoxDecoration(
-                                  color: kBlue.withOpacity(0.25),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Total Earning",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      Text(
-                                        "\$9,600",
-                                        style: urbanist600(kBlue, 20),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: SizedBox(
-                              width: 5.w,
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: Expanded(
-                              child: Container(
-                                height: 100.h,
-                                // width: 30.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Withdraw Balance",
-                                        style: urbanist600(kGrey, 12),
-                                        maxLines: 2,
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "\$3500",
-                                          style: urbanist600(kBlack, 20),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: SizedBox(
-                              width: 5.w,
-                            ),
-                          ),
-                          Visibility(
-                            visible: MediaQuery.of(context).size.width > 860,
-                            child: Expanded(
-                              child: Container(
-                                height: 100.h,
-                                // width: 30.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 10.h,
-                                    horizontal: 3.w,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        MediaQuery.of(context).size.width > 700
-                                            ? "Remaining Amount"
-                                            : "Remaining/nAmount",
-                                        maxLines: 2,
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "\$5,560",
-                                          style: urbanist600(kBlack, 20),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Visibility(
-                        visible: MediaQuery.of(context).size.width < 861,
-                        child: SizedBox(
-                          height: 20.h,
-                        ),
-                      ),
-                      if (MediaQuery.of(context).size.width < 861)
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: MediaQuery.of(context).size.width > 415
-                                    ? 90.h
-                                    : 80.h,
-                                // width: 40.w,
-                                decoration: BoxDecoration(
-                                  color: kBlue.withOpacity(0.25),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Total Earning",
-                                        style: urbanist600(kGrey, 12),
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      Text(
-                                        "\$9,600",
-                                        style: urbanist600(kBlue, 20),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: MediaQuery.of(context).size.width > 415
-                                    ? 90.h
-                                    : 80.h,
-                                // width: 30.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FittedBox(
-                                        child: Text(
-                                          "Withdraw",
-                                          style: urbanist600(kGrey, 12),
-                                          // maxLines: 2,
-                                        ),
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "Balance",
-                                          style: urbanist600(kGrey, 12),
-                                          // maxLines: 2,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: SizedBox(
-                                          height: 10.h,
-                                        ),
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "\$3500",
-                                          style: urbanist600(kBlack, 20),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: MediaQuery.of(context).size.width > 415
-                                    ? 90.h
-                                    : 80.h,
-                                // width: 30.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: klines),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FittedBox(
-                                        child: Text(
-                                          "Remaining",
-                                          style: urbanist600(kGrey, 12),
-                                        ),
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "Amount",
-                                          style: urbanist600(kGrey, 12),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: SizedBox(
-                                          height: 10.h,
-                                        ),
-                                      ),
-                                      FittedBox(
-                                        child: Text(
-                                          "\$5,560",
-                                          style: urbanist600(kBlack, 20),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      else
-                        Container(),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      const SizedBox(
-                        width: double.infinity,
-                        child: EarningsTable(),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                const Footer(),
-              ],
-            ),
-          ),
+          EarningsPage(),
           //Payouts section>>>>>>>>>>>>>>>>>>>>>>>>>
           SingleChildScrollView(
             child: Column(
@@ -1186,7 +819,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1253,7 +886,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1320,7 +953,7 @@ class _GrowthPageState extends State<GrowthPage>
                                         "\$5,560",
                                         style: urbanist600(kBlack, 20),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1569,7 +1202,7 @@ class _GrowthPageState extends State<GrowthPage>
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -1620,7 +1253,7 @@ class _GrowthPageState extends State<GrowthPage>
                                     "Sign up for Cosmetropolis payments",
                                     style: GoogleFonts.urbanist(
                                       color: kBlack,
-                                      fontSize: 14.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -1662,12 +1295,12 @@ class _GrowthPageState extends State<GrowthPage>
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
                                   else
-                                    Container()
+                                    Container(),
                                 ],
                               ),
                             ),
@@ -1695,12 +1328,12 @@ class _GrowthPageState extends State<GrowthPage>
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
                             else
-                              Container()
+                              Container(),
                           ],
                         ),
                       ),
@@ -1715,7 +1348,7 @@ class _GrowthPageState extends State<GrowthPage>
             ),
           ),
           //Report Section
-          const ReportingPage()
+          const ReportingPage(),
         ],
       ),
     );
@@ -1755,7 +1388,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth1.png",
+                "assets/icons/growth1.webp",
                 height: 20.h,
               ),
               SizedBox(
@@ -1777,7 +1410,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth2.png",
+                "assets/icons/growth2.webp",
                 height: 20.h,
               ),
               SizedBox(
@@ -1799,7 +1432,7 @@ class GrowthCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                "assets/icons/growth3.png",
+                "assets/icons/growth3.webp",
                 height: 20.h,
               ),
               SizedBox(
@@ -1819,5 +1452,429 @@ class GrowthCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class EarningsPage extends ConsumerStatefulWidget {
+  const EarningsPage({super.key});
+
+  @override
+  ConsumerState<EarningsPage> createState() => _EarningsPageState();
+}
+
+class _EarningsPageState extends ConsumerState<EarningsPage>
+    with BaseScreenView {
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    // TODO: implement navigateToScreen
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
+
+  late GrowthViewModel _viewModel;
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = ref.read(growthViewModel)..attachView(this);
+    getData();
+  }
+
+  bool isLoading = false;
+
+  void getData() async {
+    isLoading = true;
+    setState(() {});
+    await _viewModel.getBeauticianEarnings(context);
+    await _viewModel.getBeauticianBalance(context);
+    isLoading = false;
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _viewModel = ref.watch(growthViewModel);
+    return isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17.w),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      Row(
+                        // mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Net Earnings Today",
+                                style: urbanist600(kBlack, 18),
+                              ),
+                              Text(
+                                "\$0.00",
+                                style: urbanist600(kBlack, 16),
+                              ),
+                              Text(
+                                "No appointments",
+                                style: urbanist400(kBlack, 12),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: DropdownButtonFormField<String>(
+                              dropdownColor: kWhite,
+                              isExpanded: true,
+                              decoration: InputDecoration(
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: klines),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: klines),
+                                ),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10.w),
+                                // suffixIcon: Icon(Icons.arrow_drop_down),
+                              ),
+                              items: [
+                                DropdownMenuItem<String>(
+                                  value: 'Today',
+                                  child: Text(
+                                    'Today',
+                                    style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: 'Yesterday',
+                                  child: Text(
+                                    'Yesterday',
+                                    style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: 'April 1, 2020',
+                                  child: Text(
+                                    'April 1, 2020',
+                                    style: urbanist400(kGrey, 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                              onChanged: (String? value) {
+                                // Handle dropdown value change
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              flex: 2,
+                              child: Container(
+                                height: 100.h,
+                                // width: 40.w,
+                                decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Total Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        "\$${_viewModel.beauticianBalance?.data?.totalEarning ?? 0}",
+                                        style: urbanist600(kBlue, 20),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: SizedBox(
+                              width: 5.w,
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              child: Container(
+                                height: 100.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Withdraw Balance",
+                                        style: urbanist600(kGrey, 12),
+                                        maxLines: 2,
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$${_viewModel.beauticianBalance?.data?.withdrawBalance ?? 0}",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: SizedBox(
+                              width: 5.w,
+                            ),
+                          ),
+                          Visibility(
+                            visible: MediaQuery.of(context).size.width > 860,
+                            child: Expanded(
+                              child: Container(
+                                height: 100.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 10.h,
+                                    horizontal: 3.w,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        MediaQuery.of(context).size.width > 700
+                                            ? "Remaining Amount"
+                                            : "Remaining/nAmount",
+                                        maxLines: 2,
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$${_viewModel.beauticianBalance?.data?.remainingAmount ?? 0}",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Visibility(
+                        visible: MediaQuery.of(context).size.width < 861,
+                        child: SizedBox(
+                          height: 20.h,
+                        ),
+                      ),
+                      if (MediaQuery.of(context).size.width < 861)
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 40.w,
+                                decoration: BoxDecoration(
+                                  color: kBlue.withOpacity(0.25),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Total Earning",
+                                        style: urbanist600(kGrey, 12),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        "\$${_viewModel.beauticianBalance?.data?.totalEarning ?? 0}",
+                                        style: urbanist600(kBlue, 20),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      FittedBox(
+                                        child: Text(
+                                          "Withdraw",
+                                          style: urbanist600(kGrey, 12),
+                                          // maxLines: 2,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "Balance",
+                                          style: urbanist600(kGrey, 12),
+                                          // maxLines: 2,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 10.h,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$${_viewModel.beauticianBalance?.data?.withdrawBalance ?? 0}",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width > 415
+                                    ? 90.h
+                                    : 80.h,
+                                // width: 30.w,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: klines),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      FittedBox(
+                                        child: Text(
+                                          "Remaining",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "Amount",
+                                          style: urbanist600(kGrey, 12),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 10.h,
+                                        ),
+                                      ),
+                                      FittedBox(
+                                        child: Text(
+                                          "\$${_viewModel.beauticianBalance?.data?.remainingAmount ?? 0}",
+                                          style: urbanist600(kBlack, 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      else
+                        Container(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: EarningsTable(
+                          data: _viewModel.beauticianEarnings,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                const Footer(),
+              ],
+            ),
+          );
   }
 }

@@ -1,9 +1,6 @@
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/utils/text_editing/text_editing.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/blog_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/help_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_edit.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/profile_tabs.dart';
@@ -16,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MorePage extends ConsumerStatefulWidget {
@@ -55,18 +53,18 @@ class _MorePageState extends ConsumerState<MorePage> {
     "Learn best practices and practical tips from our dedicated team of experts.",
   ];
   List<String> iconUrl = [
-    'assets/icons/more/edit_profile.png',
-    'assets/icons/more/plan_and_bill.png',
-    'assets/icons/more/front_desk.png',
-    'assets/icons/more/login_and_security.png',
-    'assets/icons/more/notification_settings.png',
-    'assets/icons/more/email_marketing.png',
-    'assets/icons/more/online_booking_Profile.png',
-    'assets/icons/more/promotions.png',
-    'assets/icons/more/payments.png',
-    'assets/icons/more/cosmetropolis_blog.png',
-    'assets/icons/more/instagram_book_button.png',
-    'assets/icons/more/help_center.png',
+    'assets/icons/edit_profile.webp',
+    'assets/icons/plan_and_bill.webp',
+    'assets/icons/front_desk.webp',
+    'assets/icons/login_and_security.webp',
+    'assets/icons/notification_settings.webp',
+    'assets/icons/email_marketing.webp',
+    'assets/icons/online_booking_Profile.webp',
+    'assets/icons/promotions.webp',
+    'assets/icons/payments.webp',
+    'assets/icons/cosmetropolis_blog.webp',
+    'assets/icons/instagram_book_button.webp',
+    'assets/icons/help_center.webp',
   ];
   @override
   Widget build(BuildContext context) {
@@ -89,7 +87,8 @@ class _MorePageState extends ConsumerState<MorePage> {
                 itemCount: 12,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) => InkWell(
+                itemBuilder: (BuildContext context, int index) =>
+                    GestureDetector(
                   onTap: () {
                     if (index == 0) {
                       showModalBottomSheet(
@@ -109,7 +108,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                     children: [
                                       IconButton(
                                         onPressed: () {
-                                          Get.back();
+                                          context.pop();
                                         },
                                         icon: const Icon(
                                           Icons.close,
@@ -195,7 +194,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                   "Online Booking & Profile",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -205,7 +204,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                                     color: kGrey,
                                   ),
                                   onPressed: () {
-                                    Get.back();
+                                    context.pop();
                                   },
                                 ),
                               ],
@@ -238,7 +237,8 @@ class _MorePageState extends ConsumerState<MorePage> {
                         ),
                       );
                     } else if (index == 9) {
-                      Get.to(() => const BlogPage());
+                      // Get.to(() => const BlogPage());
+                      context.go('/blogs');
                     } else if (index == 10) {
                       showModalBottomSheet(
                         shape: const RoundedRectangleBorder(),
@@ -247,7 +247,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                         builder: (context) => const PromoteSection1(),
                       );
                     } else {
-                      Get.to(() => const HelpPage(nav: 1));
+                      context.go('/help');
                     }
                   },
                   child: MoreCard(
@@ -264,7 +264,7 @@ class _MorePageState extends ConsumerState<MorePage> {
               ),
             ),
             SizedBox(height: 20.h),
-            const Footer()
+            const Footer(),
           ],
         ),
       ),
@@ -285,41 +285,52 @@ class MoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10.r),
-        ),
-        border: Border.all(
-          color: kdisable,
-          width: 0.3.w,
-        ),
-      ),
-      child: ListTile(
-        contentPadding: MediaQuery.of(context).size.width > 700
-            ? EdgeInsets.only(right: 5.w)
-            : EdgeInsets.only(right: 8.w, left: 8.w),
-        leading: Image.asset(
-          iconUrl,
-          height: 25.h,
-          width: 25.w,
-        ),
-        title: Text(
-          cardName,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.r),
+          ),
+          border: Border.all(
+            color: kdisable,
+            width: 0.3.w,
           ),
         ),
-        subtitle: Text(
-          cardDescription,
-          style: GoogleFonts.urbanist(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
+        child: ListTile(
+          contentPadding: MediaQuery.of(context).size.width > 700
+              ? EdgeInsets.only(right: 5.w)
+              : EdgeInsets.only(right: 8.w, left: 8.w),
+          leading: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Image.asset(
+              iconUrl,
+              height: 25.h,
+              width: 25.w,
+            ),
+          ),
+          title: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Text(
+              cardName,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          subtitle: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Text(
+              cardDescription,
+              style: GoogleFonts.urbanist(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
           ),
         ),
       ),
@@ -351,7 +362,7 @@ class _BillPageState extends State<BillPage> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -361,7 +372,7 @@ class _BillPageState extends State<BillPage> {
                 Text(
                   "Plan & Billing Details",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -369,7 +380,7 @@ class _BillPageState extends State<BillPage> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -404,7 +415,7 @@ class _BillPageState extends State<BillPage> {
                   value: 't',
                   groupValue: const ['t', 'n'],
                   onChanged: (value) {},
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -413,7 +424,7 @@ class _BillPageState extends State<BillPage> {
             Text(
               "Scheduling Plan",
               style: GoogleFonts.urbanist(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
                 color: kBlack,
               ),
@@ -468,7 +479,7 @@ class _BillPageState extends State<BillPage> {
             Text(
               "Payment Details",
               style: GoogleFonts.urbanist(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
                 color: kBlack,
               ),
@@ -637,7 +648,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -647,7 +658,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                 Text(
                   "Login & Security",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -655,7 +666,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -670,7 +681,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
             SizedBox(height: 20.h),
             InkWell(
               onTap: () {
-                Get.back();
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (context) => const AlertDialog(
@@ -707,7 +718,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
             SizedBox(height: 20.h),
             InkWell(
               onTap: () {
-                Get.back();
+                context.pop();
                 showDialog(
                   context: context,
                   builder: (context) => const AlertDialog(
@@ -740,7 +751,7 @@ class _LoginandSecuriryState extends State<LoginandSecuriry> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -816,7 +827,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       onPressed: () {
-                        Get.back();
+                        context.pop();
                       },
                       child: Text(
                         "Save",
@@ -847,7 +858,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       onPressed: () {
-                        Get.back();
+                        context.pop();
                       },
                       child: Text(
                         "Cancel",
@@ -896,7 +907,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -906,7 +917,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 Text(
                   "Notification Settings",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -914,7 +925,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -977,7 +988,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -1011,7 +1022,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
@@ -1021,7 +1032,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
                 Text(
                   "Email Marketing",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
@@ -1029,7 +1040,7 @@ class _EmailMarketingState extends State<EmailMarketing> {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    Get.back();
+                    context.pop();
                   },
                   icon: const Icon(
                     Icons.close,
@@ -1117,7 +1128,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "First, choose your template, campaign name, and subject line.",
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
@@ -1129,7 +1140,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Template",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1142,7 +1153,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "Template",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1167,7 +1178,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Email Name*",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1180,7 +1191,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "Email Name",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1205,7 +1216,7 @@ class _EmailCreateState extends State<EmailCreate> {
           Text(
             "Subject line*",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1218,7 +1229,7 @@ class _EmailCreateState extends State<EmailCreate> {
             decoration: InputDecoration(
               hintText: "See you soon?",
               hintStyle: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontFamily: 'Urbanist',
                 fontWeight: FontWeight.w400,
                 letterSpacing: 0.24,
@@ -1256,14 +1267,14 @@ class _EmailCreateState extends State<EmailCreate> {
                 "Continue",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -1289,7 +1300,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
           Text(
             "Which clients would you like to send this campaign to?.",
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
@@ -1301,7 +1312,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
           Text(
             "Recipients",
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.w400,
               letterSpacing: 0.24,
@@ -1322,7 +1333,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 title: Text(
                   "All Clients",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 0.24,
                   ),
@@ -1330,7 +1341,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 subtitle: Text(
                   "Everyone in your client list with an email address.",
                   style: GoogleFonts.urbanist(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: kGrey,
                     fontWeight: FontWeight.w200,
                     letterSpacing: 0.24,
@@ -1363,7 +1374,7 @@ class _EmailRecipientsState extends State<EmailRecipients> {
                 "Continue",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1407,7 +1418,7 @@ class _EmailComposeState extends State<EmailCompose> {
                 title: Text(
                   "Headline",
                   style: GoogleFonts.urbanist(
-                    fontSize: 15.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 0.24,
                   ),
@@ -1415,7 +1426,7 @@ class _EmailComposeState extends State<EmailCompose> {
                 subtitle: Text(
                   "Lorem ipsum dolor sit amet consectetur.",
                   style: GoogleFonts.urbanist(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: kGrey,
                     fontWeight: FontWeight.w200,
                     letterSpacing: 0.24,
@@ -1423,7 +1434,8 @@ class _EmailComposeState extends State<EmailCompose> {
                 ),
                 trailing: IconButton(
                   onPressed: () {
-                    Get.to(TextEditorPage());
+                    // Get.to(TextEditorPage());
+                    context.go('/text-editor');
                   },
                   icon: const Icon(Icons.edit),
                 ),
@@ -1455,7 +1467,7 @@ class _EmailPreviewState extends State<EmailPreview> {
           Text(
             "Headline",
             style: GoogleFonts.urbanist(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
             ),
@@ -1477,7 +1489,7 @@ class _EmailPreviewState extends State<EmailPreview> {
           Text(
             "Sending to",
             style: GoogleFonts.urbanist(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.24,
             ),
@@ -1495,7 +1507,7 @@ class _EmailPreviewState extends State<EmailPreview> {
               title: Text(
                 "Client Name",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.24,
                 ),
@@ -1527,14 +1539,14 @@ class _EmailPreviewState extends State<EmailPreview> {
                 "Send",
                 style: TextStyle(
                   color: kWhite,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -1569,7 +1581,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               contentPadding: EdgeInsets.zero,
               leading: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios,
@@ -1579,14 +1591,14 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Payment & No-Show Protection",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -1600,7 +1612,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             Text(
               "Ready to get paid?",
               style: GoogleFonts.urbanist(
-                fontSize: 15.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.black,
               ),
@@ -1643,7 +1655,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1666,7 +1678,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             Text(
               "Complete these steps",
               style: GoogleFonts.urbanist(
-                fontSize: 15.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.black,
               ),
@@ -1712,7 +1724,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1756,7 +1768,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1802,7 +1814,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                       color: kBlack,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(
@@ -1830,7 +1842,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -1858,14 +1870,14 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Verify Your Identity",
                 style: GoogleFonts.urbanist(
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -1904,7 +1916,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "First Name",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1941,7 +1953,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Wick",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -1978,7 +1990,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "(987) 654 3210",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2015,7 +2027,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "1234",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2052,7 +2064,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "--/--/--",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2154,14 +2166,14 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Where should we send your payouts? Pay booking fee now, this card will be charged at time of service. Learn More",
                 style: GoogleFonts.urbanist(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -2187,7 +2199,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Name",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2224,7 +2236,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2261,7 +2273,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2297,7 +2309,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
             TextFormField(
               decoration: InputDecoration(
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2381,14 +2393,14 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               title: Text(
                 "Add your mailing address",
                 style: GoogleFonts.urbanist(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),
               trailing: IconButton(
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 icon: const Icon(
                   Icons.close,
@@ -2414,7 +2426,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2451,7 +2463,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2488,7 +2500,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "e.g South ave 123",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2525,7 +2537,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "State",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,
@@ -2562,7 +2574,7 @@ class _PaymentNoShowProtectionState extends State<PaymentNoShowProtection> {
               decoration: InputDecoration(
                 hintText: "Zip",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.24,

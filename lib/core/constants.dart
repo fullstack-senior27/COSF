@@ -3,6 +3,9 @@ class AppConstants {
   static bool isStylePrimary = false;
   static String selectedPage = "Home";
 
+  static String baseUrl = 'http://164.92.110.131/v1/';
+  static String accessToken = "access_token";
+  static String userId = "user_id";
   static const String privacy =
       "https://docs.google.com/document/d/1Xal4FScKhZXLwyQQ2msEnflQC7l8NxaHyC5niCU9Y6Y";
   static const String terms =
@@ -10,8 +13,8 @@ class AppConstants {
 
   static const List<String> chipNames = ["Google", "Apple", "Facebook"];
   static const List<String> chipIcons = [
-    "assets/icons/google.png",
-    "assets/icons/apple.png",
-    "assets/icons/facebook.png",
+    "assets/icons/google.webp",
+    "assets/icons/apple.webp",
+    "assets/icons/facebook.webp",
   ];
 }

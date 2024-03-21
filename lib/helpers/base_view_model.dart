@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 abstract class BaseViewModel<T> extends ChangeNotifier {
   late T? view;
-  bool loading = true;
+  bool loading = false;
   String? _errorMessage;
   bool disposed = false;
 

@@ -4,8 +4,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/promote_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 
 class PromoteSection3 extends StatelessWidget {
   const PromoteSection3({super.key});
@@ -40,7 +39,7 @@ class PromoteSection3 extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {
-                              Get.back();
+                              context.pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios,

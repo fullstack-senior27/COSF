@@ -18,7 +18,7 @@ class _FooterState extends State<Footer> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/footer.png"),
+                image: AssetImage("assets/icons/footer.webp"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -37,7 +37,7 @@ class _FooterState extends State<Footer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              "assets/icons/logo_big.png",
+                              "assets/icons/logo_big.webp",
                               width: 90.w,
                             ),
                             SizedBox(height: 20.h),
@@ -46,7 +46,7 @@ class _FooterState extends State<Footer> {
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                               ),
                             ),
                             SizedBox(height: 20.h),
@@ -55,25 +55,25 @@ class _FooterState extends State<Footer> {
                               style: GoogleFonts.urbanist(
                                 color: kBlack,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                               ),
                             ),
                             SizedBox(height: 15.h),
                             Row(
                               children: [
                                 Image.asset(
-                                  "assets/images/playstore.png",
+                                  "assets/icons/playstore.webp",
                                   width: 40.w,
                                   fit: BoxFit.cover,
                                 ),
                                 SizedBox(width: 5.w),
                                 Image.asset(
-                                  "assets/images/appstore.png",
+                                  "assets/icons/appstore.webp",
                                   width: 40.w,
                                   fit: BoxFit.cover,
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -89,7 +89,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 10.h),
@@ -98,7 +98,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -107,7 +107,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -116,7 +116,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -125,7 +125,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -134,7 +134,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -143,7 +143,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ],
@@ -162,7 +162,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 10.h),
@@ -171,7 +171,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -180,7 +180,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -189,7 +189,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -198,7 +198,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -207,7 +207,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 5.h),
@@ -216,7 +216,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ],
@@ -236,14 +236,14 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 10.h),
                               TextField(
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 17.sp,
+                                  fontSize: 15.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 keyboardType: TextInputType.emailAddress,
@@ -259,7 +259,7 @@ class _FooterState extends State<Footer> {
                                   hintStyle: GoogleFonts.urbanist(
                                     color: kBlack,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                   ),
                                   suffixIcon: const Icon(
                                     Icons.send_outlined,
@@ -277,7 +277,7 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 20.h),
@@ -286,37 +286,37 @@ class _FooterState extends State<Footer> {
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                               SizedBox(height: 15.h),
                               Row(
                                 children: [
                                   Image.asset(
-                                    "assets/icons/facebook.png",
+                                    "assets/icons/facebook.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/insta.png",
+                                    "assets/icons/insta.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/twitter.png",
+                                    "assets/icons/twitter.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                   SizedBox(width: 3.w),
                                   Image.asset(
-                                    "assets/icons/linkdin.png",
+                                    "assets/icons/linkdin.webp",
                                     height: 40.h,
                                     fit: BoxFit.contain,
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -336,7 +336,7 @@ class _FooterState extends State<Footer> {
                     style: GoogleFonts.urbanist(
                       color: kBlack,
                       fontWeight: FontWeight.w400,
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ),
@@ -347,7 +347,7 @@ class _FooterState extends State<Footer> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/footer.png"),
+                image: AssetImage("assets/icons/footer.webp"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -360,7 +360,7 @@ class _FooterState extends State<Footer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        "assets/icons/logo_big.png",
+                        "assets/icons/logo_big.webp",
                         fit: BoxFit.contain,
                         height: 60.h,
                       ),
@@ -370,7 +370,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -379,7 +379,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 15.h),
@@ -387,20 +387,20 @@ class _FooterState extends State<Footer> {
                         children: [
                           Flexible(
                             child: Image.asset(
-                              "assets/images/playstore.png",
+                              "assets/icons/playstore.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                           ),
                           Expanded(
                             child: Image.asset(
-                              "assets/images/appstore.png",
+                              "assets/icons/appstore.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -413,7 +413,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w700,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 10.h),
@@ -422,7 +422,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 5.h),
@@ -431,7 +431,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 5.h),
@@ -440,7 +440,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 5.h),
@@ -449,7 +449,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 5.h),
@@ -458,7 +458,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                     SizedBox(height: 5.h),
@@ -467,7 +467,7 @@ class _FooterState extends State<Footer> {
                       style: GoogleFonts.urbanist(
                         color: kBlack,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ],
@@ -482,7 +482,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -491,7 +491,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 5.h),
@@ -500,7 +500,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 5.h),
@@ -509,7 +509,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 5.h),
@@ -518,7 +518,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 5.h),
@@ -527,7 +527,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                       SizedBox(height: 5.h),
@@ -536,7 +536,7 @@ class _FooterState extends State<Footer> {
                         style: GoogleFonts.urbanist(
                           color: kBlack,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],
@@ -553,7 +553,7 @@ class _FooterState extends State<Footer> {
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(height: 10.h),
@@ -563,7 +563,7 @@ class _FooterState extends State<Footer> {
                             hintStyle: GoogleFonts.urbanist(
                               color: kBlack,
                               fontWeight: FontWeight.w400,
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                             ),
                             suffixIcon: const Icon(
                               Icons.send_outlined,
@@ -581,7 +581,7 @@ class _FooterState extends State<Footer> {
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontWeight: FontWeight.w400,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(height: 20.h),
@@ -590,37 +590,37 @@ class _FooterState extends State<Footer> {
                           style: GoogleFonts.urbanist(
                             color: kBlack,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(height: 15.h),
                         Row(
                           children: [
                             Image.asset(
-                              "assets/icons/facebook.png",
+                              "assets/icons/facebook.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/insta.png",
+                              "assets/icons/insta.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/twitter.png",
+                              "assets/icons/twitter.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                             SizedBox(width: 3.w),
                             Image.asset(
-                              "assets/icons/linkdin.png",
+                              "assets/icons/linkdin.webp",
                               height: 40.h,
                               fit: BoxFit.contain,
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -637,7 +637,7 @@ class _FooterState extends State<Footer> {
                     style: GoogleFonts.urbanist(
                       color: kBlack,
                       fontWeight: FontWeight.w400,
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ),

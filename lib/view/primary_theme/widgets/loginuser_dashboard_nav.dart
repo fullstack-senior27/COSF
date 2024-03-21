@@ -1,9 +1,9 @@
 import 'package:cosmetropolis/core/constants.dart';
-import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavbarLoginUserDashboardWidget extends ConsumerStatefulWidget {
@@ -30,7 +30,7 @@ class _NavbarLoginUserDashboardWidgetState
               Divider(
                 color: kGrey.withOpacity(0.5),
                 thickness: 1,
-              )
+              ),
             ],
           )
         : Column(
@@ -39,7 +39,7 @@ class _NavbarLoginUserDashboardWidgetState
               Divider(
                 color: kGrey.withOpacity(0.5),
                 thickness: 1,
-              )
+              ),
             ],
           );
   }
@@ -50,7 +50,7 @@ class _NavbarLoginUserDashboardWidgetState
       child: Row(
         children: [
           Image.asset(
-            "assets/icons/logo_big.png",
+            "assets/icons/logo_big.webp",
             width: 60.w,
             height: 50.h,
             fit: BoxFit.contain,
@@ -64,8 +64,7 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Calendar");
-                  setState(() {});
+                  context.go('/dashboard-login');
                 },
                 child: Text(
                   "Calendar",
@@ -74,7 +73,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Calendar"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -83,8 +82,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Clients");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("Clients");
+                  // setState(() {});
+                  context.go('/dashboard-login/client');
                 },
                 child: Text(
                   "Clients",
@@ -93,7 +93,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Clients"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -102,8 +102,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Growth");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("Growth");
+                  // setState(() {});
+                  context.go('/dashboard-login/growth');
                 },
                 child: Text(
                   "Growth",
@@ -112,7 +113,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Growth"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -121,8 +122,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Marketing");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("Marketing");
+                  // setState(() {});
+                  context.go('/dashboard-login/marketing');
                 },
                 child: Text(
                   "Marketing",
@@ -131,7 +133,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Marketing"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -140,8 +142,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Promotions");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("Promotions");
+                  // setState(() {});
+                  context.go('/dashboard-login/promotions');
                 },
                 child: Text(
                   "Promotions",
@@ -150,7 +153,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Promotions"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -159,8 +162,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Profile");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("Profile");
+                  // setState(() {});
+                  context.go('/dashboard-login/profile');
                 },
                 child: Text(
                   "Profile",
@@ -169,7 +173,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "Profile"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -178,8 +182,9 @@ class _NavbarLoginUserDashboardWidgetState
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("More");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("More");
+                  // setState(() {});
+                  context.go('/dashboard-login/more');
                 },
                 child: Text(
                   "More...",
@@ -188,7 +193,7 @@ class _NavbarLoginUserDashboardWidgetState
                     fontWeight: AppConstants.selectedPage == "More"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -221,7 +226,7 @@ class _NavbarLoginUserDashboardWidgetState
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -234,7 +239,7 @@ class _NavbarLoginUserDashboardWidgetState
         Padding(
           padding: EdgeInsets.only(left: 8.w),
           child: Image.asset(
-            "assets/icons/logo_small.png",
+            "assets/icons/logo_small.webp",
             height: 50.h,
             width: 50.h,
           ),
@@ -251,9 +256,9 @@ class _NavbarLoginUserDashboardWidgetState
                 color: kBlue,
                 size: 30.sp,
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

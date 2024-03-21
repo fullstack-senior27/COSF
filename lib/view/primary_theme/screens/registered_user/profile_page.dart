@@ -1,4 +1,5 @@
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
@@ -27,12 +28,12 @@ class _ProfilePageState extends State<ProfilePage>
   List<String> promoteListTitle = [
     "Drive client bookings on social media",
     "Transition calls and messages to online booking",
-    "Get clients to pre book their next appointment"
+    "Get clients to pre book their next appointment",
   ];
   List<String> promoteListDesc = [
     "Downloadable assets, scripts, and tutorials to help drive clients to book you online.",
     "Manage all your inbound and outbound communication with our helpful templates & tips.",
-    "Helpful guides to help your clients see the benefits of booking you online."
+    "Helpful guides to help your clients see the benefits of booking you online.",
   ];
   @override
   void initState() {
@@ -323,7 +324,7 @@ class _ProfilePageState extends State<ProfilePage>
                                           child: Container(),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -447,7 +448,7 @@ class _ProfilePageState extends State<ProfilePage>
                                           Icons.arrow_forward_ios_rounded,
                                           size: 20.sp,
                                           color: kBlack,
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -455,7 +456,7 @@ class _ProfilePageState extends State<ProfilePage>
                               );
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -546,13 +547,15 @@ class _ProfilePageState extends State<ProfilePage>
                 SizedBox(height: 20.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17.w),
-                  child: const ProfileReviews(),
+                  child: const ProfileReviews(
+                    beauticianDetailResponse: BeauticianDetailResponse(),
+                  ),
                 ),
                 SizedBox(height: 40.h),
                 const Footer(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,130 +1,262 @@
+import 'dart:developer';
+
+import 'package:cosmetropolis/core/constants.dart';
+import 'package:cosmetropolis/data/remote/user/models/edit_profile_user.dart';
+import 'package:cosmetropolis/helpers/base_screen_view.dart';
+import 'package:cosmetropolis/routes/app_routes.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/file_picker.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/change_password_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/buttons_banners.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
-class ChangePasswordDialog extends StatelessWidget {
+class ChangePasswordDialog extends ConsumerStatefulWidget {
   const ChangePasswordDialog({super.key});
 
   @override
+  ConsumerState<ChangePasswordDialog> createState() =>
+      _ChangePasswordDialogState();
+}
+
+class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
+    with BaseScreenView {
+  late UserViewModel _viewModel;
+  final oldPasswordController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = ref.read(userViewModel)..attachView(this);
+  }
+
+  @override
+  void dispose() {
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(userViewModel);
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
           ? 500
           : MediaQuery.of(context).size.width * 0.7,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Secure your account with a new password. Update your login credentials now to keep your information safe and protect your privacy.",
-            style: urbanist400(kBlack, 12),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "Old Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your old password",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Secure your account with a new password. Update your login credentials now to keep your information safe and protect your privacy.",
+              style: urbanist400(kBlack, 12),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Old Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              controller: oldPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your old password",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "New Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            "Changing your password is quick and easy, and gives you peace of mind that your information is secure. Update your login credentials now to keep your account safe and secure.",
-            style: urbanist400(kBlack, 12),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your new password",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "New Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Changing your password is quick and easy, and gives you peace of mind that your information is secure. Update your login credentials now to keep your account safe and secure.",
+              style: urbanist400(kBlack, 12),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 8) {
+                  return "Password must be at least 8 characters";
+                } else if (value != confirmPasswordController.text) {
+                  return "Passwords do not match";
+                } else {
+                  return null;
+                }
+              },
+              controller: newPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your new password",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            "Confirm Password*",
-            style: urbanist500(kBlack, 16),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your new password again",
-              hintStyle: urbanist400(kGrey, 14),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: const BorderSide(color: kGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "Confirm Password*",
+              style: urbanist500(kBlack, 16),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 8) {
+                  return "Password must be at least 8 characters";
+                } else if (value != newPasswordController.text) {
+                  return "Passwords do not match";
+                } else {
+                  return null;
+                }
+              },
+              controller: confirmPasswordController,
+              decoration: InputDecoration(
+                hintText: "Enter your new password again",
+                hintStyle: urbanist400(kGrey, 14),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(color: kGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 40.h,
-          ),
-          SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: BlackButton(context, "Save", () {
-              Navigator.pop(context);
-            }),
-          )
-        ],
+            SizedBox(
+              height: 40.h,
+            ),
+            SizedBox(
+              height: 40.h,
+              width: double.infinity,
+              child: BlackButton(context, isLoading ? "Saving..." : "Save",
+                  () async {
+                if (formKey.currentState!.validate()) {
+                  isLoading = true;
+                  setState(() {});
+                  await _viewModel.changePassword(
+                      ChangePasswordRequest(
+                          oldPassword: oldPasswordController.text,
+                          newPassword: newPasswordController.text,),
+                      SharedPreferenceService.getString(
+                              AppConstants.accessToken,) ??
+                          "",);
+                  isLoading = false;
+                  setState(() {});
+                }
+
+                Navigator.pop(context);
+              }),
+            )
+          ],
+        ),
       ),
     );
   }
-}
-
-class EditProfileDialog extends StatefulWidget {
-  const EditProfileDialog({super.key});
 
   @override
-  State<EditProfileDialog> createState() => _EditProfileDialogState();
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
+  }
 }
 
-class _EditProfileDialogState extends State<EditProfileDialog> {
+class EditProfileDialog extends ConsumerStatefulWidget {
+  final String name;
+  // String lastName = "";
+  final String email;
+  final String phoneNumber;
+  final String profilePic;
+  const EditProfileDialog(
+      {super.key,
+      required this.name,
+      required this.email,
+      required this.phoneNumber,
+      required this.profilePic,});
+
+  @override
+  ConsumerState<EditProfileDialog> createState() => _EditProfileDialogState();
+}
+
+class _EditProfileDialogState extends ConsumerState<EditProfileDialog>
+    with BaseScreenView {
   bool sms = false;
+  late UserViewModel _viewModel;
+  bool isLoading = false;
+  String profilePic = "";
+  @override
+  void initState() {
+    _viewModel = ref.read(userViewModel)..attachView(this);
+    // getData();
+    firstNameController.text = widget.name.split(" ")[0];
+    lastNameController.text =
+        widget.name.split(" ").length > 1 ? widget.name.split(" ")[1] : "";
+    emailController.text = widget.email;
+    phoneNumberController.text = widget.phoneNumber;
+    getData();
+    super.initState();
+  }
+
+  Future<void> getData() async {
+    _viewModel.profilePic =
+        widget.profilePic == "null" ? "" : widget.profilePic;
+  }
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    _viewModel = ref.watch(userViewModel);
     return SizedBox(
       width: MediaQuery.of(context).size.width > 900
           ? 700
@@ -150,8 +282,11 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                     ),
                   ),
                   child: CircleAvatar(
-                    backgroundImage: const NetworkImage(
-                      'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
+                    backgroundColor: kBlack,
+                    backgroundImage: NetworkImage(
+                      _viewModel.profilePic == ""
+                          ? "https://cosmetrospace.sfo3.digitaloceanspaces.com/unknown.jpg"
+                          : _viewModel.profilePic,
                     ), // Set the image for the circle avatar
                     radius: 30
                         .r, // Adjust the radius to control the size of the avatar
@@ -163,19 +298,18 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("John Wick", style: urbanist600(kBlack, 16)),
+                    Text(widget.name, style: urbanist600(kBlack, 16)),
                     SizedBox(
                       height: 5.h,
                     ),
-                    Text("John@gmail.com", style: urbanist400(kGrey, 12)),
+                    Text(widget.email, style: urbanist400(kGrey, 12)),
                     SizedBox(
                       height: 5.h,
                     ),
                   ],
                 ),
-                const Spacer(),
-                Visibility(
-                  visible: MediaQuery.of(context).size.width > 600,
+                // const Spacer(),
+                Expanded(
                   child: Column(
                     children: [
                       Text(
@@ -188,9 +322,16 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       SizedBox(height: 5.h),
                       FittedBox(
                         child: TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await openPickImageDialog(
+                              context,
+                            );
+                            _viewModel.profilePic = imgUrl;
+                            setState(() {});
+                            log("Image clicked>>>>>>>>>>>>>>> ${_viewModel.profilePic}");
+                          },
                           icon: Image.asset(
-                            "assets/icons/export.png",
+                            "assets/icons/export.webp",
                             height: 15.h,
                             color: kBlue,
                           ),
@@ -217,6 +358,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("First Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: firstNameController,
                         decoration: InputDecoration(
                           hintText: "John",
                           hintStyle: urbanist400(kGrey, 14),
@@ -242,6 +384,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Last Name", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: lastNameController,
                         decoration: InputDecoration(
                           hintText: "Wick",
                           hintStyle: urbanist400(kGrey, 14),
@@ -274,6 +417,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Email", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: "John@gmail.com",
                           hintStyle: urbanist400(kGrey, 14),
@@ -299,6 +443,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       Text("Phone Number", style: urbanist500(kBlack, 16)),
                       SizedBox(height: 5.h),
                       TextFormField(
+                        controller: phoneNumberController,
                         decoration: InputDecoration(
                           hintText: "+234 000 000 0000",
                           hintStyle: urbanist400(kGrey, 14),
@@ -430,13 +575,44 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
             child: SizedBox(
               height: 40.h,
               width: double.infinity,
-              child: BlackButton(context, "Save", () {
-                Get.back();
+              child: BlackButton(context, isLoading ? "Updating..." : "Save",
+                  () async {
+                isLoading = true;
+                setState(() {});
+                await _viewModel.updateUserProfileDetails(
+                  USerEditProfile(
+                      image: _viewModel.profilePic,
+                      name:
+                          "${firstNameController.text} ${lastNameController.text}",
+                      email: emailController.text,
+                      phone: phoneNumberController.text,),
+                  SharedPreferenceService.getString(AppConstants.accessToken) ??
+                      "",
+                );
+                isLoading = false;
+                setState(() {});
+                context.pop();
               }),
             ),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void navigateToScreen(AppRoute appRoute, {Map<String, String>? params}) {
+    context.pushNamed(appRoute.name);
+  }
+
+  @override
+  void showSnackbar(String message, {Color? color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+      ),
+    );
+    // TODO: implement showSnackbar
   }
 }

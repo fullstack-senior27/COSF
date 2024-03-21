@@ -3,16 +3,14 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheet.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widgets/registered_user_dialogs.dart';
 
 DateTime get _now => DateTime.now();
 
@@ -59,12 +57,12 @@ class _CalendarPageState extends State<CalendarPage> {
                               daysHaveCircularBorder: true,
                               daysTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekendTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekdayTextStyle: GoogleFonts.urbanist(
@@ -74,7 +72,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               ),
                               headerTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               headerTitleTouchable: true,
@@ -125,15 +123,13 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 "Select Client",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              InkWell(
-                                                onTap: () {
-                                                  Get.back();
-                                                },
-                                                child: const Icon(
+                                              IconButton(
+                                                onPressed: () => context.pop(),
+                                                icon: const Icon(
                                                   Icons.close,
                                                   color: kGrey,
                                                 ),
@@ -141,10 +137,10 @@ class _CalendarPageState extends State<CalendarPage> {
                                             ],
                                           ),
                                           SizedBox(height: 10.h),
-                                          SelectClient(),
+                                          const SelectClient(),
                                         ],
                                       ),
-                                    ));
+                                    ),);
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.75,
@@ -210,6 +206,29 @@ class _CalendarPageState extends State<CalendarPage> {
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.7,
                       child: WeekView(
+                        // timeLineBuilder: (date) {
+                        //   return Container(
+                        //     decoration: BoxDecoration(
+                        //       color: kBlack,
+                        //       borderRadius: BorderRadius.circular(10.r),
+                        //     ),
+                        //     child: Text(
+                        //       "${date.day}",
+                        //       style: TextStyle(color: kWhite),
+                        //     ),
+                        //   );
+                        // },
+                        eventTileBuilder: (date, events, boundary,
+                                startDuration, endDuration,) =>
+                            Container(
+                                decoration: BoxDecoration(
+                                  color: kBlack,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Text(
+                                  "${date.day}",
+                                  style: const TextStyle(color: kWhite),
+                                ),),
                         headerStyle: HeaderStyle(
                           // we use kwhite color for this component because we need to hide the header
                           decoration: BoxDecoration(
@@ -218,7 +237,7 @@ class _CalendarPageState extends State<CalendarPage> {
                           ),
                           headerTextStyle: GoogleFonts.urbanist(
                             color: kWhite,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                           ),
                           leftIcon: const Icon(
@@ -265,12 +284,12 @@ class _CalendarPageState extends State<CalendarPage> {
                               daysHaveCircularBorder: true,
                               daysTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekendTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                               weekdayTextStyle: GoogleFonts.urbanist(
@@ -280,7 +299,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               ),
                               headerTextStyle: GoogleFonts.urbanist(
                                 color: kBlack,
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                               headerTitleTouchable: true,
@@ -318,7 +337,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               padding: EdgeInsets.only(top: 30.h),
                               child: InkWell(
                                 onTap: () {
-                                  if (MediaQuery.of(context).size.width > 700)
+                                  if (MediaQuery.of(context).size.width > 700) {
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -331,14 +350,21 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 "Select Client",
                                                 style: GoogleFonts.urbanist(
                                                   color: kBlack,
-                                                  fontSize: 18.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              const Icon(
-                                                Icons.close,
-                                                color: kGrey,
-                                              )
+                                              IconButton(
+                                                  onPressed: () =>
+                                                      context.pop(),
+                                                  icon: const Icon(
+                                                    Icons.close,
+                                                    color: kGrey,
+                                                  ),)
+                                              // const Icon(
+                                              //   Icons.close,
+                                              //   color: kGrey,
+                                              // )
                                             ],
                                           ),
                                           backgroundColor:
@@ -360,8 +386,9 @@ class _CalendarPageState extends State<CalendarPage> {
                                         );
                                       },
                                     );
-                                  else
-                                    filterBottomSheet(context, SelectClient());
+                                  } else {
+                                    filterBottomSheet(context, const SelectClient());
+                                  }
                                 },
                                 child: Container(
                                   width: 90.w,

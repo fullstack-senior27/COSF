@@ -1,5 +1,6 @@
 // ignore_for_file: use_decorated_box
 
+import 'package:cosmetropolis/data/remote/services/models/beautician_detail_model.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
@@ -10,8 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_collapse/image_collapse.dart';
 import 'package:latlong2/latlong.dart';
@@ -42,13 +42,15 @@ class _ProfileEditState extends State<ProfileEdit>
     "Client Relationship",
     "Brows",
     "Beautician Growth",
-    "Beard Style"
+    "Beard Style",
   ];
   int selectedScreen = 0;
   int selected = 0;
   List<Widget> screens = [
     const ServiceI(),
-    const ReviewI(),
+    const ReviewI(
+      beauticianDetailResponse: BeauticianDetailResponse(),
+    ),
     const aboutI(),
     const productI(),
   ];
@@ -70,28 +72,28 @@ class _ProfileEditState extends State<ProfileEdit>
     //   StepsCard(
     //     title: "Link your bank account",
     //     description: "So you can book and be paid by clients on Cosmetropolis",
-    //     image: "assets/icons/bank_acc.png",
+    //     image: "assets/icons/bank_acc.webp",
     //     buttontxt: "Connect Account",
     //   ),
     List<String> title = [
       "Link your bank account",
       "Add services",
-      "Add availability"
+      "Add availability",
     ];
     List<String> description = [
       "So you can book and be paid by clients on Cosmetropolis",
       "So clients can know what to book with you",
-      "So clients know when you're available to book"
+      "So clients know when you're available to book",
     ];
     List<String> image = [
-      "assets/icons/bank_acc.png",
-      "assets/icons/services.png",
-      "assets/icons/availability.png"
+      "assets/icons/bank_acc.webp",
+      "assets/icons/services.webp",
+      "assets/icons/availability.webp",
     ];
     List<String> buttontxt = [
       "Connect Account",
       "Add Services",
-      "Set Up Availability"
+      "Set Up Availability",
     ];
 
     return SingleChildScrollView(
@@ -171,25 +173,25 @@ class _ProfileEditState extends State<ProfileEdit>
                       child: Row(
                         children: [
                           Image.asset(
-                            "assets/icons/facebook.png",
+                            "assets/icons/facebook.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/insta.png",
+                            "assets/icons/insta.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/twitter.png",
+                            "assets/icons/twitter.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
                           SizedBox(width: 3.w),
                           Image.asset(
-                            "assets/icons/linkdin.png",
+                            "assets/icons/linkdin.webp",
                             height: 30.h,
                             fit: BoxFit.contain,
                           ),
@@ -204,25 +206,25 @@ class _ProfileEditState extends State<ProfileEdit>
                   child: Row(
                     children: [
                       Image.asset(
-                        "assets/icons/facebook.png",
+                        "assets/icons/facebook.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/insta.png",
+                        "assets/icons/insta.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/twitter.png",
+                        "assets/icons/twitter.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
                       SizedBox(width: 10.w),
                       Image.asset(
-                        "assets/icons/linkdin.png",
+                        "assets/icons/linkdin.webp",
                         height: 30.h,
                         fit: BoxFit.contain,
                       ),
@@ -301,7 +303,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 "Add Client Photo",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -311,7 +313,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   color: kGrey,
                                 ),
                                 onPressed: () {
-                                  Get.back();
+                                  context.pop();
                                 },
                               ),
                             ],
@@ -348,7 +350,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                   "Add Client Photo",
                                   style: GoogleFonts.urbanist(
                                     color: kBlack,
-                                    fontSize: 18.sp,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -358,9 +360,9 @@ class _ProfileEditState extends State<ProfileEdit>
                                     color: kGrey,
                                   ),
                                   onPressed: () {
-                                    Get.back();
+                                    context.pop();
                                   },
-                                )
+                                ),
                               ],
                             ),
                             backgroundColor: const Color(0xfff8f8f8),
@@ -412,7 +414,7 @@ class _ProfileEditState extends State<ProfileEdit>
                               Icons.arrow_forward_ios_outlined,
                               color: kBlack,
                               size: 20,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -437,7 +439,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 "Set a monthly goal and we’ll give you\ntips on how to get there.",
                                 style: GoogleFonts.urbanist(
                                   color: kBlack,
-                                  fontSize: 18.sp,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -447,9 +449,9 @@ class _ProfileEditState extends State<ProfileEdit>
                                   color: kGrey,
                                 ),
                                 onPressed: () {
-                                  Get.back();
+                                  context.pop();
                                 },
-                              )
+                              ),
                             ],
                           ),
                           backgroundColor: const Color(0xfff8f8f8),
@@ -491,7 +493,7 @@ class _ProfileEditState extends State<ProfileEdit>
                             Icons.arrow_forward_ios_outlined,
                             color: kBlack,
                             size: 20,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -542,7 +544,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                             "Online Booking & Profile",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -857,7 +859,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                         "Online Booking & Profile",
                                         style: GoogleFonts.urbanist(
                                           color: kBlack,
-                                          fontSize: 18.sp,
+                                          fontSize: 16.sp,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -901,7 +903,7 @@ class _ProfileEditState extends State<ProfileEdit>
                               Text(
                                 "Edit",
                                 style: urbanist600(kBlue, 14),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -965,7 +967,7 @@ class _ProfileEditState extends State<ProfileEdit>
                         flex: 2,
                         child: SingleChildScrollView(child: Sidebar()),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -1047,11 +1049,11 @@ Widget sideEdit() {
           titleGallery: "Gallery",
           imageUrls: [
             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-            "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.png",
+            "https://images.news18.com/ibnlive/uploads/2022/11/001-10-1-166782742016x9.webp",
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
             "https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
-            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60"
+            "https://plus.unsplash.com/premium_photo-1677616798094-d34c85b61e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60",
           ],
         ),
         SizedBox(
@@ -1158,7 +1160,7 @@ Widget sideEdit() {
                           "Monday",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -1166,7 +1168,7 @@ Widget sideEdit() {
                           "10:00 - 20:00",
                           style: GoogleFonts.urbanist(
                             color: kBlack,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -1177,7 +1179,7 @@ Widget sideEdit() {
                         color: kdisable,
                       )
                     else
-                      const SizedBox.shrink()
+                      const SizedBox.shrink(),
                   ],
                 ),
               );

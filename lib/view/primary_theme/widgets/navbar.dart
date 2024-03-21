@@ -1,12 +1,12 @@
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
+import 'package:cosmetropolis/routes/navigator_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/pricing_details_page.dart';
+import 'package:cosmetropolis/view/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavbarFreeWidget extends ConsumerStatefulWidget {
@@ -22,6 +22,7 @@ class NavbarFreeWidget extends ConsumerStatefulWidget {
 }
 
 class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
+  final NavigationService _navigationService = locator<NavigationService>();
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width > 980
@@ -36,7 +37,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(
-            "assets/icons/logo_big.png",
+            "assets/icons/logo_big.webp",
             width: 60.w,
             height: 50.h,
             fit: BoxFit.contain,
@@ -60,17 +61,19 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Home");
-                  setState(() {});
+                  // _navigationService.navigateTo(HomeRoute);
+                  // ref.read(styleProvider).setSelectedPage("Home");
+                  // setState(() {});
+                  context.go('/');
                 },
                 child: Text(
                   "Home",
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Home"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -79,17 +82,19 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("I am a Beautician");
-                  setState(() {});
+                  // ref.read(styleProvider).setSelectedPage("I am a Beautician");
+                  // _navigationService.navigateTo(LandingRoute);
+                  // setState(() {});
+                  context.go('/landing');
                 },
                 child: Text(
                   "I am a Beautician",
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "I am a Beautician"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -98,17 +103,19 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Sign Up");
-                  setState(() {});
+                  // _navigationService.navigateTo(SignupRoute);
+                  // ref.read(styleProvider).setSelectedPage("Sign Up");
+                  // setState(() {});
+                  context.go('/signUp');
                 },
                 child: Text(
                   "Sign Up",
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Sign Up"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -117,17 +124,19 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Log In");
-                  setState(() {});
+                  // _navigationService.navigateTo(LoginRoute);
+                  // ref.read(styleProvider).setSelectedPage("Log In");
+                  // setState(() {});
+                  context.go('/login');
                 },
                 child: Text(
                   "Log In",
                   style: GoogleFonts.urbanist(
                     color: kBlack,
                     fontWeight: AppConstants.selectedPage == "Log In"
-                        ? FontWeight.w700
+                        ? FontWeight.w400
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -136,8 +145,10 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  ref.read(styleProvider).setSelectedPage("Help");
-                  setState(() {});
+                  // _navigationService.navigateTo(HelpRoute);
+                  // ref.read(styleProvider).setSelectedPage("Help");
+                  // setState(() {});
+                  context.go('/help');
                 },
                 child: Text(
                   "Help",
@@ -146,7 +157,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     fontWeight: AppConstants.selectedPage == "Help"
                         ? FontWeight.w700
                         : FontWeight.w400,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -164,13 +175,13 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     ),
                   ),
                   onPressed: () {
-                    Get.to(() => const PricingDetails());
+                    context.go("/pricing");
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ImageIcon(
-                        const AssetImage("assets/icons/gift.png"),
+                        const AssetImage("assets/icons/gift.webp"),
                         color: kWhite,
                         size: 20.sp,
                       ),
@@ -182,7 +193,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                         style: GoogleFonts.urbanist(
                           color: kWhite,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],
@@ -190,7 +201,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -203,7 +214,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
         Padding(
           padding: EdgeInsets.only(left: 8.w),
           child: Image.asset(
-            "assets/icons/logo_small.png",
+            "assets/icons/logo_small.webp",
             height: 50.h,
             width: 50.h,
           ),
@@ -231,9 +242,9 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                 color: kBlue,
                 size: 30.sp,
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

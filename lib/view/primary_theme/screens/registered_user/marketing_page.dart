@@ -107,12 +107,12 @@ class _MarketingPageState extends State<MarketingPage>
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 )
                               else
-                                Container()
+                                Container(),
                             ],
                           ),
                         ),
@@ -140,12 +140,12 @@ class _MarketingPageState extends State<MarketingPage>
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
                         else
-                          Container()
+                          Container(),
                       ],
                     ),
                   ),
@@ -228,7 +228,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -276,7 +276,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -294,7 +294,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -342,7 +342,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -360,7 +360,7 @@ class ProfileStatus extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -408,7 +408,7 @@ class ProfileStatus extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -423,7 +423,7 @@ class ProfileStatus extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -486,7 +486,7 @@ class ProfileStatus extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -496,7 +496,7 @@ class ProfileStatus extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -522,7 +522,7 @@ class ProfileStatus extends StatelessWidget {
             "Hear why top professionals love StyleSeat",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -556,7 +556,7 @@ class ProfileStatus extends StatelessWidget {
                                 ),
                                 image: const DecorationImage(
                                   image: NetworkImage(
-                                    "https://i.imgur.com/Yl5A28c.png",
+                                    "https://i.imgur.com/Yl5A28c.webp",
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -620,7 +620,7 @@ class Overview extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -668,7 +668,7 @@ class Overview extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -686,7 +686,7 @@ class Overview extends StatelessWidget {
                     border: Border.all(color: klines),
                     image: const DecorationImage(
                       image: AssetImage(
-                        "assets/images/promotion_bg.png",
+                        "assets/icons/promotion_bg.webp",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -734,7 +734,7 @@ class Overview extends StatelessWidget {
                             "\$5,560",
                             style: urbanist600(kBlack, 20),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -755,7 +755,7 @@ class Overview extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -818,7 +818,7 @@ class Overview extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -828,7 +828,7 @@ class Overview extends StatelessWidget {
             "How Cosmetropolis marketing works",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -854,7 +854,7 @@ class Overview extends StatelessWidget {
             "Hear why top professionals love StyleSeat",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -888,7 +888,7 @@ class Overview extends StatelessWidget {
                                 ),
                                 image: const DecorationImage(
                                   image: NetworkImage(
-                                    "https://i.imgur.com/Yl5A28c.png",
+                                    "https://i.imgur.com/Yl5A28c.webp",
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -957,7 +957,7 @@ class MarketingOverviewCard extends StatelessWidget {
                 SizedBox(
                   width: 1.w,
                 ),
-                Text("1 Minute", style: urbanist400(kBlack, 11))
+                Text("1 Minute", style: urbanist400(kBlack, 11)),
               ],
             ),
           ),
@@ -974,7 +974,7 @@ class MarketingOverviewCard extends StatelessWidget {
           ),
           CircleAvatar(
             backgroundImage: const NetworkImage(
-              "https://i.imgur.com/Fyponv9.png",
+              "https://i.imgur.com/Fyponv9.webp",
             ),
             radius: 30.r,
           ),

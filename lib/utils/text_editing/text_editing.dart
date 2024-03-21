@@ -2,7 +2,7 @@ import 'package:cosmetropolis/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rte/flutter_rte.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextEditorPage extends StatefulWidget {
@@ -37,9 +37,9 @@ class _TextEditorPageState extends State<TextEditorPage> {
                           icon: Icons.save_outlined,
                           action: () => null,
                           isSelected: false,
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
               ),
             ),
@@ -47,7 +47,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
             Text(
               'Headline',
               style: GoogleFonts.urbanist(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -63,7 +63,7 @@ class _TextEditorPageState extends State<TextEditorPage> {
             Text(
               'Description (optional)*',
               style: GoogleFonts.urbanist(
-                fontSize: 16.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -90,17 +90,17 @@ class _TextEditorPageState extends State<TextEditorPage> {
                   ),
                 ),
                 onPressed: () {
-                  Get.back();
+                  context.pop();
                 },
                 child: Text(
                   'Save',
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

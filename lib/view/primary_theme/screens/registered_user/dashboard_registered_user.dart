@@ -1,22 +1,16 @@
 import 'package:cosmetropolis/core/constants.dart';
-import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/calendar_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/clients_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/growth_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/marketing_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/more_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/profile_page.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/registered_user/promotions_page.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/loginuser_dashboard_nav.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DashboardLoginPage extends ConsumerStatefulWidget {
-  const DashboardLoginPage({super.key});
+  final Widget child;
+  const DashboardLoginPage({super.key, required this.child});
 
   @override
   ConsumerState<DashboardLoginPage> createState() => _DashboardLoginPageState();
@@ -27,7 +21,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_final_locals
-    String navbarSection = ref.watch(styleProvider).selectedPage;
+    // String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(
@@ -48,15 +42,13 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ListTile(
               leading: const Icon(Icons.home),
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Calendar");
-                setState(() {});
+                context.go('/dashboard-login');
               },
               title: Text(
                 "Calendar",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Calendar"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -66,15 +58,16 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ListTile(
               leading: const Icon(Icons.message),
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Clients");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Clients");
+                // setState(() {});
+                context.go('/dashboard-login/client');
               },
               title: Text(
                 "Clients",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Clients"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -83,16 +76,17 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Growth");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Growth");
+                // setState(() {});
+                context.go('/dashboard-login/growth');
               },
               leading: const Icon(Icons.account_circle),
               title: Text(
                 "Growth",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Growth"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -101,16 +95,17 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Marketing");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Marketing");
+                // setState(() {});
+                context.go('/dashboard-login/marketing');
               },
               leading: const Icon(Icons.photo_album_outlined),
               title: Text(
                 "Marketing",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Marketing"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -119,16 +114,17 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Promotions");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Promotions");
+                // setState(() {});
+                context.go('/dashboard-login/promotions');
               },
               leading: const Icon(Icons.login_outlined),
               title: Text(
                 "Promotions",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Promotions"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -140,16 +136,18 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("Profile");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("Profile");
+                // setState(() {});
+
+                context.go('/dashboard-login/profile');
               },
               leading: const Icon(Icons.settings),
               title: Text(
                 "Profile",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "Profile"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -158,16 +156,17 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
             ),
             ListTile(
               onTap: () {
-                Navigator.pop(context);
-                ref.read(styleProvider).setSelectedPage("More");
-                setState(() {});
+                // Navigator.pop(context);
+                // ref.read(styleProvider).setSelectedPage("More");
+                // setState(() {});
+                context.go('/dashboard-login/more');
               },
               leading: const Icon(Icons.settings),
               title: Text(
                 "More...",
                 style: GoogleFonts.urbanist(
                   color: kBlack,
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: AppConstants.selectedPage == "More"
                       ? FontWeight.w700
                       : FontWeight.w400,
@@ -191,7 +190,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ImageIcon(
-                        const AssetImage("assets/icons/gift.png"),
+                        const AssetImage("assets/icons/gift.webp"),
                         color: kWhite,
                         size: 20.sp,
                       ),
@@ -203,7 +202,7 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
                         style: GoogleFonts.urbanist(
                           color: kWhite,
                           fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ],
@@ -232,21 +231,22 @@ class _DashboardLoginPageState extends ConsumerState<DashboardLoginPage> {
           ],
         ),
       ),
-      body: navbarSection == "Calendar"
-          ? const CalendarPage()
-          : navbarSection == "Clients"
-              ? const ClintsPage()
-              : navbarSection == "Growth"
-                  ? const GrowthPage()
-                  : navbarSection == "Marketing"
-                      ? const MarketingPage()
-                      : navbarSection == "Promotions"
-                          ? const PromotionsPage()
-                          : navbarSection == "Profile"
-                              ? const ProfilePage()
-                              : navbarSection == "More"
-                                  ? const MorePage()
-                                  : const CalendarPage(),
+      // body: navbarSection == "Calendar"
+      //     ? const CalendarPage()
+      //     : navbarSection == "Clients"
+      //         ? const ClintsPage()
+      //         : navbarSection == "Growth"
+      //             ? const GrowthPage()
+      //             : navbarSection == "Marketing"
+      //                 ? const MarketingPage()
+      //                 : navbarSection == "Promotions"
+      //                     ? const PromotionsPage()
+      //                     : navbarSection == "Profile"
+      //                         ? const ProfilePage()
+      //                         : navbarSection == "More"
+      //                             ? const MorePage()
+      //                             : const CalendarPage(),
+      body: widget.child,
     );
   }
 }

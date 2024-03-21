@@ -123,7 +123,7 @@
 //       channelDescription: 'your channel description',
 //       importance: Importance.max,
 //       priority: Priority.high,
-//       icon: "assets/logos/wndo_logo_ios.png",
+//       icon: "assets/logos/wndo_logo_ios.webp",
 //       fullScreenIntent: true,
 //       ticker: 'ticker',
 //     );

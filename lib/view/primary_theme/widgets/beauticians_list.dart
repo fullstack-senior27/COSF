@@ -1,20 +1,35 @@
+import 'dart:developer';
+
 import 'package:better_cupertino_slider/better_cupertino_slider.dart';
-import 'package:cosmetropolis/utils/colors.dart';
-import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/service_details_page.dart';
+import 'package:cosmetropolis/core/constants.dart';
+import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.dart';
+import 'package:cosmetropolis/services/shared_preference_service.dart';
+import 'package:cosmetropolis/utils/utils.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/bottomsheets_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
-class BeauticiansListWebView extends StatelessWidget {
-  const BeauticiansListWebView({super.key});
+class BeauticiansListWebView extends ConsumerStatefulWidget {
+  final Result? salonDetails;
+  const BeauticiansListWebView({super.key, required this.salonDetails});
 
   @override
+  ConsumerState<BeauticiansListWebView> createState() =>
+      _BeauticiansListWebViewState();
+}
+
+class _BeauticiansListWebViewState
+    extends ConsumerState<BeauticiansListWebView> {
+  @override
   Widget build(BuildContext context) {
-    List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: kWhite,
         border: Border.all(
@@ -25,7 +40,11 @@ class BeauticiansListWebView extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.to(() => const ServiceDetailsPage());
+          ref.read(userViewModel).setSelectedSalon(widget.salonDetails);
+          context.go(
+            "/beautician-listing/service-details",
+            extra: widget.salonDetails?.id ?? "",
+          );
         },
         child: Padding(
           padding: EdgeInsets.all(10.h),
@@ -37,12 +56,14 @@ class BeauticiansListWebView extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: Container(
-                      height: 160.h,
+                      // height: 160.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
-                        image: const DecorationImage(
-                          image:
-                              NetworkImage("https://i.imgur.com/i5H53SM.png"),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            widget.salonDetails?.image ??
+                                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -54,7 +75,7 @@ class BeauticiansListWebView extends StatelessWidget {
                   Expanded(
                     flex: 7,
                     child: SizedBox(
-                      height: 160.h,
+                      height: 238.h,
                       child: Column(
                         children: [
                           Expanded(
@@ -65,19 +86,19 @@ class BeauticiansListWebView extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Akeba Thompson",
+                                widget.salonDetails?.name ?? "",
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              // SizedBox(
-                              //   width: 10.w,
-                              // ),
+                              const SizedBox(
+                                width: 5,
+                              ),
                               Image.asset(
-                                "assets/icons/verify.png",
+                                "assets/icons/verify.webp",
                                 height: 18.h,
-                                width: 18.w,
+                                // width: 18.w,
                               ),
                             ],
                           ),
@@ -95,7 +116,7 @@ class BeauticiansListWebView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  "4517 Washington Ave. Manchester, Kentucky 39495",
+                                  widget.salonDetails?.address ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.urbanist(
@@ -104,9 +125,6 @@ class BeauticiansListWebView extends StatelessWidget {
                                     color: kdescription,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20.h,
                               ),
                             ],
                           ),
@@ -118,7 +136,9 @@ class BeauticiansListWebView extends StatelessWidget {
                               RatingBar.builder(
                                 ignoreGestures: true,
                                 itemSize: 20.sp,
-                                initialRating: 4.5,
+                                initialRating: widget.salonDetails?.avgRating
+                                        ?.toDouble() ??
+                                    0,
                                 allowHalfRating: true,
                                 itemBuilder: (context, _) => const Icon(
                                   Icons.star_rounded,
@@ -128,7 +148,7 @@ class BeauticiansListWebView extends StatelessWidget {
                                 unratedColor: kGrey,
                               ),
                               Text(
-                                "4.0 (180 Reviews)",
+                                "${widget.salonDetails?.avgRating} (${widget.salonDetails?.ratingCount} Reviews)",
                                 style: GoogleFonts.urbanist(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
@@ -138,9 +158,8 @@ class BeauticiansListWebView extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 5.h,
+                            height: 10.h,
                           ),
-                          const Spacer(),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -158,48 +177,66 @@ class BeauticiansListWebView extends StatelessWidget {
                               SizedBox(width: 5.w),
                               Expanded(
                                 child: SizedBox(
-                                  height: 30.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 10.h),
-                                    child: ListView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: timings.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 1.w,
+                                  height: 50.h,
+                                  child: widget
+                                              .salonDetails?.morning?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
                                           ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              // setState(() {
-                                              //   selected = index;
-                                              // });
-                                            },
-                                            child: FittedBox(
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.morning?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
                                               child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
+                                                margin: EdgeInsets.only(
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                     5.r,
                                                   ),
-                                                  color:
-                                                      const Color(0xffd1d1d1),
-                                                  // border: Border.all(
-                                                  //   color: selected != index
-                                                  //       ? Colors.grey
-                                                  //       : Colors.transparent,
-                                                  //   width: 1.0,
-                                                  // ),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.morning?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.morning?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                child: Center(
                                                   child: Text(
-                                                    timings[index],
+                                                    "${widget.salonDetails?.morning?[index].time}",
                                                     style: GoogleFonts.urbanist(
-                                                      fontSize: 12.sp,
+                                                      fontSize: 14.sp,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: kBlack,
@@ -207,12 +244,9 @@ class BeauticiansListWebView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                            );
+                                          },
+                                        ),
                                 ),
                               ),
                             ],
@@ -234,41 +268,68 @@ class BeauticiansListWebView extends StatelessWidget {
                               SizedBox(width: 5.w),
                               Expanded(
                                 child: SizedBox(
-                                  height: 30.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 10.h),
-                                    child: ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: timings.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 1.w,
+                                  height: 50.h,
+                                  child: widget.salonDetails?.afternoon
+                                              ?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
                                           ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              // setState(() {
-                                              //   selected = index;
-                                              // });
-                                            },
-                                            child: FittedBox(
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.afternoon?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
                                               child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
+                                                margin: EdgeInsets.only(
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                     5.r,
                                                   ),
-                                                  color: kWhite,
-                                                  border: Border.all(),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.afternoon?[
+                                                                  index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.afternoon?[
+                                                                  index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                child: Center(
                                                   child: Text(
-                                                    timings[index],
+                                                    "${widget.salonDetails?.afternoon?[index].time}",
                                                     style: GoogleFonts.urbanist(
-                                                      fontSize: 12.sp,
+                                                      fontSize: 14.sp,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: kBlack,
@@ -276,12 +337,100 @@ class BeauticiansListWebView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
+                                            );
+                                          },
+                                        ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FittedBox(
+                                child: Text(
+                                  "EVENING    ",
+                                  style: GoogleFonts.urbanist(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: kBlack,
                                   ),
+                                ),
+                              ),
+                              SizedBox(width: 5.w),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 50.h,
+                                  child: widget
+                                              .salonDetails?.evening?.isEmpty ??
+                                          true
+                                      ? Text(
+                                          "No slots found",
+                                          style: GoogleFonts.urbanist(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: kGrey,
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: widget.salonDetails
+                                                  ?.evening?.length ??
+                                              0,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                // setState(() {
+                                                //   selected = index;
+                                                // });
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
+                                                margin: EdgeInsets.only(
+                                                  bottom: 10.h,
+                                                  right: 1.w,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    5.r,
+                                                  ),
+                                                  border: widget
+                                                              .salonDetails
+                                                              ?.evening?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? null
+                                                      : Border.all(),
+                                                  color: widget
+                                                              .salonDetails
+                                                              ?.evening?[index]
+                                                              .isBooked ??
+                                                          false
+                                                      ? const Color(0xffd1d1d1)
+                                                      : kWhite,
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    "${widget.salonDetails?.evening?[index].time}",
+                                                    style: GoogleFonts.urbanist(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: kBlack,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                 ),
                               ),
                             ],
@@ -295,202 +444,117 @@ class BeauticiansListWebView extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              SizedBox(
-                height: 40.h,
-                child: Row(
-                  children: [
-                    Text(
-                      "English ",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      "- Silk Press & amp. Haircut",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "60 Mins - \$145",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: kselected,
-                        // border: Border.all(
-                        //   color: kBlack,
-                        //   width: 1.0,
-                        // ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.r,
-                          horizontal: 7.w,
+              ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: widget.salonDetails?.services?.length ?? 0,
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: kGrey,
+                  );
+                },
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    height: 40.h,
+                    child: Row(
+                      children: [
+                        Text(
+                          widget.salonDetails?.services?[index].name ?? "",
+                          style: GoogleFonts.urbanist(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                        child: Text(
-                          "Choose",
+                        // Text(
+                        //   "- Silk Press & amp. Haircut",
+                        //   style: GoogleFonts.urbanist(
+                        //     fontSize: 12.sp,
+                        //     fontWeight: FontWeight.w400,
+                        //     color: kGrey,
+                        //   ),
+                        // ),
+                        const Spacer(),
+                        Text(
+                          "${widget.salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${widget.salonDetails?.services?[index].price ?? 0}",
                           style: GoogleFonts.urbanist(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
-                            color: kBlack,
+                            color: kGrey,
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(
-                color: kselected,
-              ),
-              SizedBox(
-                height: 40.h,
-                child: Row(
-                  children: [
-                    Text(
-                      "English ",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      "- Silk Press & amp. Haircut",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "60 Mins - \$145",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: kselected,
-                        // border: Border.all(
-                        //   color: kBlack,
-                        //   width: 1.0,
-                        // ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.r,
-                          horizontal: 7.w,
+                        SizedBox(
+                          width: 5.w,
                         ),
-                        child: Text(
-                          "Choose",
-                          style: GoogleFonts.urbanist(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: kBlack,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            color: kselected,
+                            // border: Border.all(
+                            //   color: kBlack,
+                            //   width: 1.0,
+                            // ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 5.r,
+                              horizontal: 7.w,
+                            ),
+                            child: Text(
+                              "Choose",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kBlack,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-              const Divider(
-                color: kselected,
-              ),
-              SizedBox(
-                height: 40.h,
-                child: Row(
-                  children: [
-                    Text(
-                      "English ",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      "- Silk Press & amp. Haircut",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "60 Mins - \$145",
-                      style: GoogleFonts.urbanist(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: kGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: kselected,
-                        // border: Border.all(
-                        //   color: kBlack,
-                        //   width: 1.0,
-                        // ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.r,
-                          horizontal: 7.w,
-                        ),
-                        child: Text(
-                          "Choose",
-                          style: GoogleFonts.urbanist(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: kBlack,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(
-                color: kselected,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
+              gapH16,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref
+                          .read(userViewModel)
+                          .setSelectedSalon(widget.salonDetails);
+                      context.go(
+                        "/beautician-listing/service-details",
+                        extra: widget.salonDetails?.id ?? "",
+                      );
+                    },
                     child: const Text("More Information"),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(MediaQuery.of(context).size.width);
+                      ref
+                          .read(userViewModel)
+                          .setSelectedSalon(widget.salonDetails);
+                      if (SharedPreferenceService.getString(
+                                AppConstants.accessToken,
+                              ) ==
+                              null ||
+                          SharedPreferenceService.getString(
+                                AppConstants.accessToken,
+                              ) ==
+                              "") {
+                        showDialog(
+                          context: context,
+                          builder: (builder) => const AlertDialog(
+                            scrollable: true,
+                            content: LoginDialog(),
+                          ),
+                        );
+                      } else {
+                        //validate
+                        log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
+                        ref.read(userViewModel).validate(context);
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: const MaterialStatePropertyAll(kBlack),
@@ -512,7 +576,7 @@ class BeauticiansListWebView extends StatelessWidget {
                         color: kWhite,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(
@@ -526,17 +590,28 @@ class BeauticiansListWebView extends StatelessWidget {
   }
 }
 
-class BeauticiansListMobView extends StatelessWidget {
-  const BeauticiansListMobView({super.key});
+class BeauticiansListMobView extends ConsumerStatefulWidget {
+  final Result? salonDetails;
+  const BeauticiansListMobView({super.key, required this.salonDetails});
 
   @override
+  ConsumerState<BeauticiansListMobView> createState() =>
+      _BeauticiansListMobViewState();
+}
+
+class _BeauticiansListMobViewState
+    extends ConsumerState<BeauticiansListMobView> {
+  @override
   Widget build(BuildContext context) {
-    List<String> timings = ["Thu 30", "Fri 30", "Sat 30", "Sun 30"];
     return InkWell(
       onTap: () {
-        Get.to(() => const ServiceDetailsPage());
+        ref.read(userViewModel).setSelectedSalon(widget.salonDetails);
+        context.go(
+          "/beautician-listing/service-details",
+          extra: widget.salonDetails?.id ?? "",
+        );
       },
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: kWhite,
           border: Border.all(
@@ -554,8 +629,11 @@ class BeauticiansListMobView extends StatelessWidget {
                 // width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/blog_banner.png"),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      widget.salonDetails?.image ??
+                          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AImage_not_available.png&psig=AOvVaw3bqeEfAB4-3wN6rUYa5hrH&ust=1695207301511000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjBurrBtoEDFQAAAAAdAAAAABAI",
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -566,9 +644,9 @@ class BeauticiansListMobView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Akeba Thompson",
+                    widget.salonDetails?.name ?? "",
                     style: GoogleFonts.urbanist(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -576,7 +654,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   //   width: 10.w,
                   // ),
                   Image.asset(
-                    "assets/icons/verify.png",
+                    "assets/icons/verify.webp",
                     height: 18.h,
                     width: 18.w,
                   ),
@@ -596,7 +674,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      "4517 Washington Ave. Manchester, Kentucky 39495",
+                      widget.salonDetails?.address ?? "",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.urbanist(
@@ -619,7 +697,7 @@ class BeauticiansListMobView extends StatelessWidget {
                   RatingBar.builder(
                     ignoreGestures: true,
                     itemSize: 20.sp,
-                    initialRating: 4.5,
+                    initialRating: widget.salonDetails?.avgRating ?? 0,
                     allowHalfRating: true,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,
@@ -629,7 +707,7 @@ class BeauticiansListMobView extends StatelessWidget {
                     unratedColor: kGrey,
                   ),
                   Text(
-                    "4.0 (180 Reviews)",
+                    "${widget.salonDetails?.avgRating} (${widget.salonDetails?.ratingCount} Reviews)",
                     style: GoogleFonts.urbanist(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -659,52 +737,65 @@ class BeauticiansListMobView extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Expanded(
                     child: SizedBox(
-                      height: 30.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.h),
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: timings.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 1.w),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // setState(() {
-                                  //   selected = index;
-                                  // });
-                                },
-                                child: FittedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.morning?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.morning?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
                                   child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: const Color(0xffd1d1d1),
-                                      // border: Border.all(
-                                      //   color: selected != index
-                                      //       ? Colors.grey
-                                      //       : Colors.transparent,
-                                      //   width: 1.0,
-                                      // ),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    margin: EdgeInsets.only(
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget.salonDetails
+                                                  ?.morning?[index].isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget.salonDetails
+                                                  ?.morning?[index].isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
+                                    ),
+                                    child: Center(
                                       child: Text(
-                                        timings[index],
+                                        "${widget.salonDetails?.morning?[index].time}",
                                         style: GoogleFonts.urbanist(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w400,
                                           color: kBlack,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
@@ -726,47 +817,149 @@ class BeauticiansListMobView extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Expanded(
                     child: SizedBox(
-                      height: 30.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.h),
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: timings.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 1.w),
-                              child: GestureDetector(
-                                onTap: () {
-                                  // setState(() {
-                                  //   selected = index;
-                                  // });
-                                },
-                                child: FittedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.afternoon?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.afternoon?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
                                   child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: kWhite,
-                                      border: Border.all(),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    margin: EdgeInsets.only(
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget
+                                                  .salonDetails
+                                                  ?.afternoon?[index]
+                                                  .isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget
+                                                  .salonDetails
+                                                  ?.afternoon?[index]
+                                                  .isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
+                                    ),
+                                    child: Center(
                                       child: Text(
-                                        timings[index],
+                                        "${widget.salonDetails?.afternoon?[index].time}",
                                         style: GoogleFonts.urbanist(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w400,
                                           color: kBlack,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                                );
+                              },
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FittedBox(
+                    child: Text(
+                      "EVENING    ",
+                      style: GoogleFonts.urbanist(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: kBlack,
                       ),
+                    ),
+                  ),
+                  SizedBox(width: 5.w),
+                  Expanded(
+                    child: SizedBox(
+                      height: 50.h,
+                      child: widget.salonDetails?.evening?.isEmpty ?? true
+                          ? Text(
+                              "No slots found",
+                              style: GoogleFonts.urbanist(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                color: kGrey,
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  widget.salonDetails?.evening?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // setState(() {
+                                    //   selected = index;
+                                    // });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
+                                    margin: EdgeInsets.only(
+                                      bottom: 10.h,
+                                      right: 3.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        5.r,
+                                      ),
+                                      border: widget.salonDetails
+                                                  ?.evening?[index].isBooked ??
+                                              false
+                                          ? null
+                                          : Border.all(),
+                                      color: widget.salonDetails
+                                                  ?.evening?[index].isBooked ??
+                                              false
+                                          ? const Color(0xffd1d1d1)
+                                          : kWhite,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "${widget.salonDetails?.evening?[index].time}",
+                                        style: GoogleFonts.urbanist(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: kBlack,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                     ),
                   ),
                 ],
@@ -775,7 +968,7 @@ class BeauticiansListMobView extends StatelessWidget {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: widget.salonDetails?.services?.length ?? 0,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -786,22 +979,23 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "English ",
+                                  widget.salonDetails?.services?[index].name ??
+                                      "",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                Text(
-                                  "- Silk Press & amp. Haircut",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.urbanist(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: kGrey,
-                                  ),
-                                ),
+                                // Text(
+                                //   "- Silk Press & amp. Haircut",
+                                //   maxLines: 2,
+                                //   overflow: TextOverflow.ellipsis,
+                                //   style: GoogleFonts.urbanist(
+                                //     fontSize: 12.sp,
+                                //     fontWeight: FontWeight.w400,
+                                //     color: kGrey,
+                                //   ),
+                                // ),
                               ],
                             ),
                             SizedBox(
@@ -810,7 +1004,7 @@ class BeauticiansListMobView extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "60 Mins - \$145",
+                                  "${widget.salonDetails?.services?[index].durationInMinutes ?? ""} Mins - \$${widget.salonDetails?.services?[index].price ?? ""}",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
@@ -860,7 +1054,15 @@ class BeauticiansListMobView extends StatelessWidget {
                   border: Border.all(color: kBlue, width: 2),
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref
+                        .read(userViewModel)
+                        .setSelectedSalon(widget.salonDetails);
+                    context.go(
+                      "/beautician-listing/service-details",
+                      extra: widget.salonDetails?.id ?? "",
+                    );
+                  },
                   child: Text(
                     "More Information",
                     style: GoogleFonts.urbanist(
@@ -878,7 +1080,29 @@ class BeauticiansListMobView extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    print(MediaQuery.of(context).size.width);
+                    ref
+                        .read(userViewModel)
+                        .setSelectedSalon(widget.salonDetails);
+                    if (SharedPreferenceService.getString(
+                              AppConstants.accessToken,
+                            ) ==
+                            null ||
+                        SharedPreferenceService.getString(
+                              AppConstants.accessToken,
+                            ) ==
+                            "") {
+                      showDialog(
+                        context: context,
+                        builder: (builder) => const AlertDialog(
+                          scrollable: true,
+                          content: LoginDialog(),
+                        ),
+                      );
+                    } else {
+                      //validate
+                      log("Token ${SharedPreferenceService.getString(AppConstants.accessToken)}");
+                      ref.read(userViewModel).validate(context);
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: const MaterialStatePropertyAll(kBlack),
@@ -906,15 +1130,22 @@ class BeauticiansListMobView extends StatelessWidget {
   }
 }
 
-class BeauticiansSideFilter extends StatefulWidget {
-  const BeauticiansSideFilter({super.key});
+class BeauticiansSideFilter extends ConsumerStatefulWidget {
+  int upperFilterIndex;
+  int selectedService;
+  BeauticiansSideFilter({
+    super.key,
+    required this.upperFilterIndex,
+    required this.selectedService,
+  });
 
   @override
-  State<BeauticiansSideFilter> createState() => _BeauticiansSideFilterState();
+  ConsumerState<BeauticiansSideFilter> createState() =>
+      _BeauticiansSideFilterState();
 }
 
-class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
-  double priceRange = 100;
+class _BeauticiansSideFilterState extends ConsumerState<BeauticiansSideFilter> {
+  // double priceRange = 2000;
   List<String> servicesList = [
     'Medium knotless/Box Braids',
     'Fixing an issue',
@@ -922,16 +1153,95 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
     'Hair Spa',
     'Makeup',
     'Nail Art',
-    'Manicure and Pedicure'
+    'Manicure and Pedicure',
   ];
 
-  int selectedService = 0;
+  // int selectedSortPrice = -1;
+  List<String> sortPriceList = ["asc", "desc"];
+
+  int selectedService = -1;
+  String selectedServiceId = "";
+
+  // int selectedRating = -1;
+  List<int> ratings = [5, 4, 3, 2, 1];
+
+  @override
+  void initState() {
+    selectedService = widget.selectedService;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
+          height: 20.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Filters",
+              style: GoogleFonts.urbanist(
+                fontSize: 20.h,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 45,
+              child: MaterialButton(
+                onPressed: () {
+                  if (ref.read(homePageViewModel).priceRange < 2000 ||
+                      ref.read(homePageViewModel).sortPrice != -1 ||
+                      ref.read(homePageViewModel).avgRating != -1 ||
+                      widget.selectedService != -1) {
+                    setState(() {
+                      ref.read(homePageViewModel).priceRange = 2000;
+                      ref.read(homePageViewModel).avgRating = -1;
+                      widget.upperFilterIndex = 0;
+                      selectedService = -1;
+                      ref.read(homePageViewModel).sortPrice = -1;
+                    });
+
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          const BeauticiansFilterRequest(
+                            filters: Filters(
+                              search: "",
+                            ),
+                          ),
+                        );
+                  }
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                color: (ref.read(homePageViewModel).priceRange < 2000 ||
+                        ref.read(homePageViewModel).sortPrice != -1 ||
+                        ref.read(homePageViewModel).avgRating != -1 ||
+                        selectedService != -1)
+                    ? Colors.redAccent
+                    : kGrey,
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.filter_alt_off_rounded,
+                      color: kWhite,
+                    ),
+                    Text(
+                      "Clear",
+                      style: TextStyle(color: kWhite),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -948,7 +1258,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Price Range",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -966,7 +1276,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "\$50",
+                      "\$1",
                       style: GoogleFonts.urbanist(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -974,7 +1284,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                       ),
                     ),
                     Text(
-                      "\$100",
+                      "\$1000",
                       style: GoogleFonts.urbanist(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -982,7 +1292,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                       ),
                     ),
                     Text(
-                      "\$200",
+                      "\$2000",
                       style: GoogleFonts.urbanist(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -994,9 +1304,86 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 SizedBox(
                   width: double.infinity,
                   child: BetterCupertinoSlider(
-                    min: 50,
-                    max: 100,
-                    value: priceRange,
+                    min: 1,
+                    max: 2000,
+                    value: ref.read(homePageViewModel).priceRange,
+                    onChangeEnd: (value) {
+                      ref.read(homePageViewModel).getBeauticiansByFilter(
+                            BeauticiansFilterRequest(
+                              filters: Filters(
+                                search: ref
+                                            .read(homePageViewModel)
+                                            .locationController
+                                            .text
+                                            .isEmpty &&
+                                        ref
+                                            .read(homePageViewModel)
+                                            .locationController
+                                            .text
+                                            .isEmpty
+                                    ? ""
+                                    : null,
+                                location: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                    ? null
+                                    : ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text,
+                                date: ref
+                                        .read(homePageViewModel)
+                                        .dateController
+                                        .text
+                                        .isEmpty
+                                    ? null
+                                    : ref
+                                        .read(homePageViewModel)
+                                        .dateController
+                                        .text,
+                                sortPrice:
+                                    ref.read(homePageViewModel).sortPrice == -1
+                                        ? null
+                                        : sortPriceList[ref
+                                            .read(homePageViewModel)
+                                            .sortPrice],
+                                priceRange: PriceRange(
+                                  minPrice: 0,
+                                  maxPrice: ref
+                                      .read(homePageViewModel)
+                                      .priceRange
+                                      .round(),
+                                ),
+                                avgRating:
+                                    ref.read(homePageViewModel).avgRating == -1
+                                        ? null
+                                        : ratings[ref
+                                            .read(homePageViewModel)
+                                            .avgRating],
+                              ),
+                            ),
+                          );
+                      // ref.read(homePageViewModel).fetchAllSalons(
+                      //     ref.read(homePageViewModel).searchController.text,
+                      //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                      //         ? "low"
+                      //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                      //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                      //     serviceType: selectedService == -1
+                      //         ? ""
+                      //         : ref
+                      //                 .read(homePageViewModel)
+                      //                 .services
+                      //                 .data?[selectedService]
+                      //                 .serviceType
+                      //                 ?.id ??
+                      //             "",
+                      //     rating: ref.read(homePageViewModel).avgRating == -1
+                      //         ? ""
+                      //         : ratings[ref.read(homePageViewModel).avgRating]);
+                    },
                     configure: BetterCupertinoSliderConfigure(
                       trackHorizontalPadding: 0.0,
                       trackHeight: 8.h,
@@ -1019,8 +1406,9 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                       },
                     ),
                     onChanged: (value) {
+                      // print(value);
                       setState(() {
-                        priceRange = value;
+                        ref.read(homePageViewModel).priceRange = value;
                       });
                     },
                   ),
@@ -1032,7 +1420,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1049,7 +1437,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Sort Price",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1076,11 +1464,93 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                   controlAffinity: ListTileControlAffinity.trailing,
                   contentPadding: EdgeInsets.zero,
                   activeColor: kBlue,
-                  groupValue: selectedService,
+                  groupValue: ref.read(homePageViewModel).sortPrice,
+                  toggleable: true,
                   onChanged: (value) {
                     setState(() {
-                      selectedService = value!;
+                      if (value == null) {
+                        ref.read(homePageViewModel).sortPrice = -1;
+                      } else {
+                        ref.read(homePageViewModel).sortPrice = value;
+                      }
                     });
+
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          BeauticiansFilterRequest(
+                            filters: Filters(
+                              search: ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty &&
+                                      ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty
+                                  ? ""
+                                  : null,
+                              location: ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text,
+                              date: ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text,
+                              sortPrice:
+                                  ref.read(homePageViewModel).sortPrice == -1
+                                      ? null
+                                      : sortPriceList[ref
+                                          .read(homePageViewModel)
+                                          .sortPrice],
+                              priceRange: PriceRange(
+                                minPrice: 0,
+                                maxPrice: ref
+                                    .read(homePageViewModel)
+                                    .priceRange
+                                    .round(),
+                              ),
+                              avgRating:
+                                  ref.read(homePageViewModel).avgRating == -1
+                                      ? null
+                                      : ratings[ref
+                                          .read(homePageViewModel)
+                                          .avgRating],
+                            ),
+                          ),
+                        );
+
+                    // ref.read(homePageViewModel).fetchAllSalons(
+                    //     ref.read(homePageViewModel).searchController.text,
+                    //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                    //         ? "low"
+                    //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                    //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                    //     serviceType: selectedService == -1
+                    //         ? ""
+                    //         : ref
+                    //                 .read(homePageViewModel)
+                    //                 .services
+                    //                 .data?[selectedService]
+                    //                 .serviceType
+                    //                 ?.id ??
+                    //             "",
+                    //     rating: ref.read(homePageViewModel).avgRating == -1
+                    //         ? ""
+                    //         : ratings[ref.read(homePageViewModel).avgRating]);
                   },
                 ),
                 SizedBox(
@@ -1099,11 +1569,93 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                   controlAffinity: ListTileControlAffinity.trailing,
                   contentPadding: EdgeInsets.zero,
                   activeColor: kBlue,
-                  groupValue: selectedService,
+                  groupValue: ref.read(homePageViewModel).sortPrice,
+                  toggleable: true,
                   onChanged: (value) {
                     setState(() {
-                      selectedService = value!;
+                      if (value == null) {
+                        ref.read(homePageViewModel).sortPrice = -1;
+                      } else {
+                        ref.read(homePageViewModel).sortPrice = value;
+                      }
                     });
+
+                    ref.read(homePageViewModel).getBeauticiansByFilter(
+                          BeauticiansFilterRequest(
+                            filters: Filters(
+                              search: ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty &&
+                                      ref
+                                          .read(homePageViewModel)
+                                          .locationController
+                                          .text
+                                          .isEmpty
+                                  ? ""
+                                  : null,
+                              location: ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .locationController
+                                      .text,
+                              date: ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text
+                                      .isEmpty
+                                  ? null
+                                  : ref
+                                      .read(homePageViewModel)
+                                      .dateController
+                                      .text,
+                              sortPrice:
+                                  ref.read(homePageViewModel).sortPrice == -1
+                                      ? null
+                                      : sortPriceList[ref
+                                          .read(homePageViewModel)
+                                          .sortPrice],
+                              priceRange: PriceRange(
+                                minPrice: 0,
+                                maxPrice: ref
+                                    .read(homePageViewModel)
+                                    .priceRange
+                                    .round(),
+                              ),
+                              avgRating:
+                                  ref.read(homePageViewModel).avgRating == -1
+                                      ? null
+                                      : ratings[ref
+                                          .read(homePageViewModel)
+                                          .avgRating],
+                            ),
+                          ),
+                        );
+
+                    // ref.read(homePageViewModel).fetchAllSalons(
+                    //     ref.read(homePageViewModel).searchController.text,
+                    //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                    //         ? "low"
+                    //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                    //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                    //     serviceType: selectedService == -1
+                    //         ? ""
+                    //         : ref
+                    //                 .read(homePageViewModel)
+                    //                 .services
+                    //                 .data?[selectedService]
+                    //                 .serviceType
+                    //                 ?.id ??
+                    //             "",
+                    //     rating: ref.read(homePageViewModel).avgRating == -1
+                    //         ? ""
+                    //         : ratings[ref.read(homePageViewModel).avgRating]);
                   },
                 ),
               ],
@@ -1113,7 +1665,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1130,7 +1682,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Service Type",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1143,12 +1695,22 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 ),
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: servicesList.length,
+                  itemCount: ref
+                          .read(homePageViewModel)
+                          .serviceTypesList
+                          ?.data
+                          ?.length ??
+                      0,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return RadioListTile(
                       title: Text(
-                        servicesList[index],
+                        ref
+                                .read(homePageViewModel)
+                                .serviceTypesList
+                                ?.data?[index]
+                                .name ??
+                            "",
                         style: GoogleFonts.urbanist(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -1160,10 +1722,38 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                       contentPadding: EdgeInsets.zero,
                       activeColor: kBlue,
                       groupValue: selectedService,
+                      toggleable: true,
                       onChanged: (value) {
                         setState(() {
-                          selectedService = value!;
+                          if (value == null) {
+                            widget.selectedService = -1;
+                            selectedService = -1;
+                            widget.upperFilterIndex = 0;
+                          } else {
+                            widget.selectedService = value;
+                            selectedService = value;
+                            widget.upperFilterIndex = value + 1;
+                          }
                         });
+
+                        // ref.read(homePageViewModel).fetchAllSalons(
+                        //     ref.read(homePageViewModel).searchController.text,
+                        //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                        //         ? "low"
+                        //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                        //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                        //     serviceType: selectedService == -1
+                        //         ? ""
+                        //         : ref
+                        //                 .read(homePageViewModel)
+                        //                 .services
+                        //                 .data?[selectedService]
+                        //                 .serviceType
+                        //                 ?.id ??
+                        //             "",
+                        //     rating: ref.read(homePageViewModel).avgRating == -1
+                        //         ? ""
+                        //         : ratings[ref.read(homePageViewModel).avgRating]);
                       },
                     );
                   },
@@ -1178,7 +1768,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
         SizedBox(
           height: 20.h,
         ),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: kWhite,
             border: Border.all(
@@ -1195,7 +1785,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 Text(
                   "Rating",
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: kGrey,
                   ),
@@ -1237,13 +1827,91 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
             SizedBox(
               width: 20.w,
               child: RadioListTile(
-                value: 5 - index,
+                value: index,
                 activeColor: kBlue,
-                groupValue: selectedService,
+                groupValue: ref.read(homePageViewModel).avgRating,
+                toggleable: true,
                 onChanged: (value) {
                   setState(() {
-                    selectedService = value!;
+                    if (value == null) {
+                      ref.read(homePageViewModel).avgRating = -1;
+                    } else {
+                      ref.read(homePageViewModel).avgRating = value;
+                    }
                   });
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
+                          filters: Filters(
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
+                        ),
+                      );
+
+                  // ref.read(homePageViewModel).fetchAllSalons(
+                  //     ref.read(homePageViewModel).searchController.text,
+                  //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                  //         ? "low"
+                  //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                  //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                  //     serviceType: selectedService == -1
+                  //         ? ""
+                  //         : ref
+                  //                 .read(homePageViewModel)
+                  //                 .services
+                  //                 .data?[selectedService]
+                  //                 .serviceType
+                  //                 ?.id ??
+                  //             "",
+                  //     rating:
+                  //         ref.read(homePageViewModel).avgRating == -1 ? "" : ratings[ref.read(homePageViewModel).avgRating]);
                 },
               ),
             ),
@@ -1270,7 +1938,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 child: LinearProgressBar(
                   maxSteps: 100,
                   progressType: LinearProgressBar.progressTypeLinear,
-                  currentStep: 50,
+                  currentStep: 100 - (index * 20),
                   progressColor: kBlue,
                   backgroundColor: Colors.grey,
                   valueColor: const AlwaysStoppedAnimation<Color>(
@@ -1309,13 +1977,91 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
             SizedBox(
               width: 20.w,
               child: RadioListTile(
-                value: 5 - index,
+                value: index,
                 activeColor: kBlue,
-                groupValue: selectedService,
+                groupValue: ref.read(homePageViewModel).avgRating,
+                toggleable: true,
                 onChanged: (value) {
                   setState(() {
-                    selectedService = value!;
+                    if (value == null) {
+                      ref.read(homePageViewModel).avgRating = -1;
+                    } else {
+                      ref.read(homePageViewModel).avgRating = value;
+                    }
                   });
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
+                          filters: Filters(
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
+                        ),
+                      );
+
+                  // ref.read(homePageViewModel).fetchAllSalons(
+                  //     ref.read(homePageViewModel).searchController.text,
+                  //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                  //         ? "low"
+                  //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                  //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                  //     serviceType: selectedService == -1
+                  //         ? ""
+                  //         : ref
+                  //                 .read(homePageViewModel)
+                  //                 .services
+                  //                 .data?[selectedService]
+                  //                 .serviceType
+                  //                 ?.id ??
+                  //             "",
+                  //     rating:
+                  //         ref.read(homePageViewModel).avgRating == -1 ? "" : ratings[ref.read(homePageViewModel).avgRating]);
                 },
               ),
             ),
@@ -1342,7 +2088,7 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 child: LinearProgressBar(
                   maxSteps: 100,
                   progressType: LinearProgressBar.progressTypeLinear,
-                  currentStep: 50,
+                  currentStep: 100 - (index * 20),
                   progressColor: kBlue,
                   backgroundColor: Colors.grey,
                   valueColor: const AlwaysStoppedAnimation<Color>(
@@ -1381,10 +2127,11 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
           children: [
             Expanded(
               child: RadioListTile(
-                value: 5 - index,
+                value: index,
                 // contentPadding: EdgeInsets.only(left: 8.0, right: 0.0),
                 activeColor: kBlue,
-                groupValue: selectedService,
+                groupValue: ref.read(homePageViewModel).avgRating,
+                toggleable: true,
                 title: Row(
                   children: [
                     RatingBar.builder(
@@ -1417,8 +2164,86 @@ class _BeauticiansSideFilterState extends State<BeauticiansSideFilter> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    selectedService = value!;
+                    if (value == null) {
+                      ref.read(homePageViewModel).avgRating = -1;
+                    } else {
+                      ref.read(homePageViewModel).avgRating = value;
+                    }
                   });
+
+                  ref.read(homePageViewModel).getBeauticiansByFilter(
+                        BeauticiansFilterRequest(
+                          filters: Filters(
+                            search: ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty &&
+                                    ref
+                                        .read(homePageViewModel)
+                                        .locationController
+                                        .text
+                                        .isEmpty
+                                ? ""
+                                : null,
+                            location: ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .locationController
+                                    .text,
+                            date: ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text
+                                    .isEmpty
+                                ? null
+                                : ref
+                                    .read(homePageViewModel)
+                                    .dateController
+                                    .text,
+                            sortPrice:
+                                ref.read(homePageViewModel).sortPrice == -1
+                                    ? null
+                                    : sortPriceList[
+                                        ref.read(homePageViewModel).sortPrice],
+                            priceRange: PriceRange(
+                              minPrice: 0,
+                              maxPrice: ref
+                                  .read(homePageViewModel)
+                                  .priceRange
+                                  .round(),
+                            ),
+                            avgRating:
+                                ref.read(homePageViewModel).avgRating == -1
+                                    ? null
+                                    : ratings[
+                                        ref.read(homePageViewModel).avgRating],
+                          ),
+                        ),
+                      );
+
+                  // ref.read(homePageViewModel).fetchAllSalons(
+                  //     ref.read(homePageViewModel).searchController.text,
+                  //     sortPrice: ref.read(homePageViewModel).sortPrice == -1
+                  //         ? "low"
+                  //         : sortPriceList[ref.read(homePageViewModel).sortPrice],
+                  //     price: "${ref.read(homePageViewModel).priceRange.round()}",
+                  //     serviceType: selectedService == -1
+                  //         ? ""
+                  //         : ref
+                  //                 .read(homePageViewModel)
+                  //                 .services
+                  //                 .data?[selectedService]
+                  //                 .serviceType
+                  //                 ?.id ??
+                  //             "",
+                  //     rating:
+                  //         ref.read(homePageViewModel).avgRating == -1 ? "" : ratings[ref.read(homePageViewModel).avgRating]);
                 },
               ),
             ),

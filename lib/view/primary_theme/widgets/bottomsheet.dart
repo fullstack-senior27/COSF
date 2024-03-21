@@ -33,7 +33,7 @@ Future fullBottomSheet(BuildContext context, Widget child) {
     context: context,
     backgroundColor: const Color(0xfff8f8f8),
     isScrollControlled: true,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
         // borderRadius: BorderRadius.only(
         //   topLeft: Radius.circular(15.r),
         //   topRight: Radius.circular(15.r),
@@ -75,7 +75,7 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
               Text(
                 "Filter",
                 style: GoogleFonts.urbanist(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                 ),
               ),
               IconButton(
@@ -83,7 +83,7 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
                   Navigator.pop(context);
                 },
                 icon: Image.asset(
-                  "assets/icons/close.png",
+                  "assets/icons/close.webp",
                   height: 20.h,
                   width: 20.w,
                 ),
@@ -92,7 +92,10 @@ class _BeauticiansFilterBottomState extends State<BeauticiansFilterBottom> {
           ),
           const Divider(color: klines),
           SizedBox(height: 15.h),
-          const BeauticiansSideFilter(),
+          BeauticiansSideFilter(
+            upperFilterIndex: 0,
+            selectedService: 0,
+          ),
           SizedBox(height: 30.h),
         ],
       ),

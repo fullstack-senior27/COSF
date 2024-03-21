@@ -4,8 +4,7 @@ import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/registered_user_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PromotionsPage extends StatefulWidget {
@@ -49,7 +48,7 @@ class _PromotionsPageState extends State<PromotionsPage> {
                             "Promotion Campaigns",
                             style: GoogleFonts.urbanist(
                               color: kBlack,
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -78,7 +77,8 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                         SingleChildScrollView(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 15.h),
+                                              vertical: 15.h,
+                                            ),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -93,20 +93,20 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                                       style:
                                                           GoogleFonts.urbanist(
                                                         color: kBlack,
-                                                        fontSize: 18.sp,
+                                                        fontSize: 16.sp,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
                                                     ),
                                                     InkWell(
                                                       onTap: () {
-                                                        Get.back();
+                                                        context.pop();
                                                       },
                                                       child: const Icon(
                                                         Icons.close,
                                                         color: kGrey,
                                                       ),
-                                                    )
+                                                    ),
                                                   ],
                                                 ),
                                                 SizedBox(height: 10.h),
@@ -137,12 +137,12 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             )
                           else
-                            Container()
+                            Container(),
                         ],
                       ),
                     ),
@@ -165,14 +165,17 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                             "Create Promotion",
                                             style: GoogleFonts.urbanist(
                                               color: kBlack,
-                                              fontSize: 18.sp,
+                                              fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Icon(
-                                            Icons.close,
-                                            color: kGrey,
-                                          )
+                                          IconButton(
+                                            onPressed: () => context.pop(),
+                                            icon: const Icon(
+                                              Icons.close,
+                                              color: kGrey,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       backgroundColor: const Color(0xfff8f8f8),
@@ -214,12 +217,12 @@ class _PromotionsPageState extends State<PromotionsPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )
                     else
-                      Container()
+                      Container(),
                   ],
                 ),
               ),
@@ -272,7 +275,7 @@ class PromotionCard extends StatelessWidget {
           color: const Color(0xffE5E5E5),
         ),
         image: const DecorationImage(
-          image: AssetImage("assets/images/promotion_bg.png"),
+          image: AssetImage("assets/icons/promotion_bg.webp"),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(5.r),
@@ -300,11 +303,11 @@ class PromotionCard extends StatelessWidget {
                 "Edit",
                 style: GoogleFonts.urbanist(
                   color: kBlue,
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                   decoration: TextDecoration.underline,
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -314,7 +317,7 @@ class PromotionCard extends StatelessWidget {
             "Off",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 20.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -325,7 +328,7 @@ class PromotionCard extends StatelessWidget {
             "Promotion Demo",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -349,7 +352,7 @@ class PromotionCard extends StatelessWidget {
             "Services",
             style: GoogleFonts.urbanist(
               color: kBlack,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -416,9 +419,9 @@ class PromotionCard extends StatelessWidget {
                     style: TextStyle(color: kBlack),
                   ),
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

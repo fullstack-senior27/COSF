@@ -1,4 +1,5 @@
 import 'package:circular_chart_flutter/circular_chart_flutter.dart';
+import 'package:cosmetropolis/data/remote/growth/models/beautician_earnings.dart';
 import 'package:cosmetropolis/utils/colors.dart';
 import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/charts.dart';
@@ -18,12 +19,12 @@ class ReportingPage extends StatefulWidget {
 class _ReportingPageState extends State<ReportingPage> {
   int _selectedCategory = 0;
   List<String> categories = ["Gross Sale", "Transactions"];
-  Map<String, double> dataMap = {
-    "Flutter": 5,
-    "React": 3,
-    "Xamarin": 2,
-    "Ionic": 2,
-  };
+  // Map<String, double> dataMap = {
+  //   "Flutter": 5,
+  //   "React": 3,
+  //   "Xamarin": 2,
+  //   "Ionic": 2,
+  // };
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +93,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                                     _selectedCategory == index
                                                         ? kWhite
                                                         : kBlack,
-                                                // fontSize: 16.sp,
+                                                // fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
@@ -104,7 +105,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                 },
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
 
@@ -200,7 +201,7 @@ class _ReportingPageState extends State<ReportingPage> {
                                   Text(
                                     "Appts Booked",
                                     style: urbanist600(kBlack, 14),
-                                  )
+                                  ),
                                 ],
                               ),
                               SizedBox(
@@ -217,9 +218,9 @@ class _ReportingPageState extends State<ReportingPage> {
                                   Text(
                                     "0",
                                     style: urbanist600(kBlack, 18),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -231,7 +232,9 @@ class _ReportingPageState extends State<ReportingPage> {
                             SizedBox(
                               height: 40.h,
                             ),
-                            const EarningsTable(),
+                            const Text(
+                              "Earnings table will be here",
+                            ),
                             SizedBox(
                               height: 40.h,
                             ),
@@ -350,7 +353,7 @@ class _ReportingPageState extends State<ReportingPage> {
                               child: SizedBox(
                                 height: 400.h,
                                 // width: double.infinity,
-                                child: BarChartSample2(),
+                                child: const BarChartSample2(),
                               ),
                             ),
                             SizedBox(
@@ -409,7 +412,7 @@ class _ReportingPageState extends State<ReportingPage> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        const EarningsTable(),
+                        const EarningsTable(data: BeauticianEarnings()),
                         SizedBox(
                           height: 40.h,
                         ),
@@ -417,7 +420,7 @@ class _ReportingPageState extends State<ReportingPage> {
                           child: SizedBox(
                             height: 400.h,
                             // width: double.infinity,
-                            child: BarChartSample2(),
+                            child: const BarChartSample2(),
                           ),
                         ),
                         SizedBox(
@@ -432,7 +435,7 @@ class _ReportingPageState extends State<ReportingPage> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
