@@ -117,25 +117,25 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                   ),
                 ),
               ),
-              ListTile(
-                onTap: () {
-                  ref.read(styleProvider).setSelectedPage("Sign Up");
-                  // navigationService.navigateTo(SignupRoute);
-                  context.go('/signUp');
-                  // _pageController.jumpToPage(2);
-                },
-                leading: const Icon(Icons.account_circle),
-                title: Text(
-                  "Sign Up",
-                  style: GoogleFonts.urbanist(
-                    color: kBlack,
-                    fontSize: 12.sp,
-                    fontWeight: AppConstants.selectedPage == "Sign Up"
-                        ? FontWeight.w700
-                        : FontWeight.w400,
-                  ),
-                ),
-              ),
+              // ListTile(
+              //   onTap: () {
+              //     ref.read(styleProvider).setSelectedPage("Sign Up");
+              //     // navigationService.navigateTo(SignupRoute);
+              //     context.go('/signUp');
+              //     // _pageController.jumpToPage(2);
+              //   },
+              //   leading: const Icon(Icons.account_circle),
+              //   title: Text(
+              //     "Sign Up",
+              //     style: GoogleFonts.urbanist(
+              //       color: kBlack,
+              //       fontSize: 12.sp,
+              //       fontWeight: AppConstants.selectedPage == "Sign Up"
+              //           ? FontWeight.w700
+              //           : FontWeight.w400,
+              //     ),
+              //   ),
+              // ),
               ListTile(
                 onTap: () {
                   ref.read(styleProvider).setSelectedPage("Log In");

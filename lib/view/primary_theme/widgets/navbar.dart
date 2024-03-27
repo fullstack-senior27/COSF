@@ -101,24 +101,24 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               SizedBox(
                 width: 5.w,
               ),
-              TextButton(
-                onPressed: () {
-                  // _navigationService.navigateTo(SignupRoute);
-                  // ref.read(styleProvider).setSelectedPage("Sign Up");
-                  // setState(() {});
-                  context.go('/signUp');
-                },
-                child: Text(
-                  "Sign Up",
-                  style: GoogleFonts.urbanist(
-                    color: kBlack,
-                    fontWeight: AppConstants.selectedPage == "Sign Up"
-                        ? FontWeight.w400
-                        : FontWeight.w400,
-                    fontSize: 12.sp,
-                  ),
-                ),
-              ),
+              // TextButton(
+              //   onPressed: () {
+              //     // _navigationService.navigateTo(SignupRoute);
+              //     // ref.read(styleProvider).setSelectedPage("Sign Up");
+              //     // setState(() {});
+              //     context.go('/signUp');
+              //   },
+              //   child: Text(
+              //     "Sign Up",
+              //     style: GoogleFonts.urbanist(
+              //       color: kBlack,
+              //       fontWeight: AppConstants.selectedPage == "Sign Up"
+              //           ? FontWeight.w400
+              //           : FontWeight.w400,
+              //       fontSize: 12.sp,
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 width: 5.w,
               ),
