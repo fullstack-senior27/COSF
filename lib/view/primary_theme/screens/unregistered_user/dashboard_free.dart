@@ -199,7 +199,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ImageIcon(
-                          const AssetImage("assets/icons/gift.webp"),
+                          const AssetImage("assets/icons/gift.png"),
                           color: kWhite,
                           size: 20.sp,
                         ),
