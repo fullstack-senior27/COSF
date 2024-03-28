@@ -76,8 +76,6 @@ class _HomePageViewState extends ConsumerState<HomePageView>
     });
     carousel = CarouselSlider(
       options: CarouselOptions(
-        // height: 400,
-        // aspectRatio: 16 / 9,
         viewportFraction: 1,
         initialPage: 0,
         enableInfiniteScroll: true,
@@ -133,6 +131,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
             alignment: Alignment.center,
             children: [
               SizedBox(
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: carousel,
               ),
