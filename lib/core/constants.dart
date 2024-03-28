@@ -3,7 +3,8 @@ class AppConstants {
   static bool isStylePrimary = false;
   static String selectedPage = "Home";
 
-  static String baseUrl = 'http://164.92.110.131/v1/';
+  //static String baseUrl = 'http://164.92.110.131/v1/';
+  static String baseUrl = 'http://164.92.110.131:5000/v1/';
   static String accessToken = "access_token";
   static String userId = "user_id";
   static const String privacy =
