@@ -124,7 +124,7 @@ class _EditProfileState extends ConsumerState<EditProfile>
                     icon: const Icon(Icons.arrow_back_ios_new),
                   ),
                   Image.asset(
-                    "assets/icons/logo_big.webp",
+                    "assets/icons/logo_big.png",
                     width: MediaQuery.of(context).size.width >= 700
                         ? MediaQuery.of(context).size.width * 0.2
                         : MediaQuery.of(context).size.width * 0.3,

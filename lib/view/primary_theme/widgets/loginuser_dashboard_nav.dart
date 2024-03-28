@@ -50,7 +50,7 @@ class _NavbarLoginUserDashboardWidgetState
       child: Row(
         children: [
           Image.asset(
-            "assets/icons/logo_big.webp",
+            "assets/icons/logo_big.png",
             width: 60.w,
             height: 50.h,
             fit: BoxFit.contain,

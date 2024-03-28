@@ -37,7 +37,7 @@ class _FooterState extends State<Footer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              "assets/icons/logo_big.webp",
+                              "assets/icons/logo_big.png",
                               width: 90.w,
                             ),
                             SizedBox(height: 20.h),
@@ -360,7 +360,7 @@ class _FooterState extends State<Footer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        "assets/icons/logo_big.webp",
+                        "assets/icons/logo_big.png",
                         fit: BoxFit.contain,
                         height: 60.h,
                       ),
