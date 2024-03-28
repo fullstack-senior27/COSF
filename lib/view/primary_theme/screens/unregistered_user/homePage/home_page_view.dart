@@ -16,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePageView extends ConsumerStatefulWidget {
   const HomePageView({super.key});
@@ -26,7 +27,7 @@ class HomePageView extends ConsumerStatefulWidget {
 
 class _HomePageViewState extends ConsumerState<HomePageView>
     with BaseScreenView, SingleTickerProviderStateMixin {
-  late Image image1;
+  late CarouselSlider carousel;
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   List<String> blogimg = [
@@ -73,11 +74,29 @@ class _HomePageViewState extends ConsumerState<HomePageView>
       getData();
       // _viewModel.fetchAllSalons("");
     });
-    image1 = Image.asset(
-      "assets/icons/banner_p.webp",
-      width: double.infinity,
-      fit: BoxFit.cover,
-      // height: MediaQuery.of(context).size.height,
+    carousel = CarouselSlider(
+      options: CarouselOptions(
+        // height: 400,
+        // aspectRatio: 16 / 9,
+        viewportFraction: 1,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: false,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        // enlargeCenterPage: true,
+        // enlargeFactor: 0.3,
+        scrollDirection: Axis.horizontal,
+      ),
+      items: [
+        Image.asset('assets/images/banner_1.jpg'),
+        Image.asset('assets/images/banner_2.jpg'),
+        Image.asset('assets/images/banner_3.jpg'),
+        Image.asset('assets/images/banner_4.jpg'),
+        Image.asset('assets/images/banner_5.jpg'),
+      ]
     );
   }
 
@@ -100,7 +119,6 @@ class _HomePageViewState extends ConsumerState<HomePageView>
 
   @override
   void didChangeDependencies() {
-    precacheImage(image1.image, context);
     super.didChangeDependencies();
   }
 
@@ -116,7 +134,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: image1,
+                child: carousel,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
