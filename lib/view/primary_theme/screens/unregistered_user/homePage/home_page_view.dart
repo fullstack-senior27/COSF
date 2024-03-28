@@ -140,24 +140,24 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Find Best Services Near you",
-                    style: GoogleFonts.urbanist(
-                      color: kWhite,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Text(
-                    "Discover & book local beauty Beautician",
+                    "Glow. Shine. Inspire.",
                     style: GoogleFonts.urbanist(
                       color: kWhite,
                       fontSize: 30.sp,
                       fontWeight: FontWeight.w600,
                     ),
                     textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    "Book appointments with local beauty and wellness experts",
+                    style: GoogleFonts.urbanist(
+                      color: kWhite,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   SizedBox(
                     height: 25.h,
