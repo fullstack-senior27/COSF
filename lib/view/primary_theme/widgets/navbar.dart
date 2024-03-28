@@ -37,7 +37,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(
-            "assets/icons/logo_big.webp",
+            "assets/icons/logo_big.png",
             width: 60.w,
             height: 50.h,
             fit: BoxFit.contain,
@@ -214,7 +214,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
         Padding(
           padding: EdgeInsets.only(left: 8.w),
           child: Image.asset(
-            "assets/icons/logo_small.webp",
+            "assets/icons/logo_small.png",
             height: 50.h,
             width: 50.h,
           ),
