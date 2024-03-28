@@ -37,6 +37,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
     final NavigationService navigationService = locator<NavigationService>();
     String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
+        extendBodyBehindAppBar: true,
         key: scaffoldKey,
         appBar: navbarSection == "Clients" ||
                 navbarSection == "More" ||
