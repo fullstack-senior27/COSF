@@ -201,11 +201,21 @@ class _EditProfileState extends ConsumerState<EditProfile>
                               }
                             });
                           },
-                          child: CircleAvatar(
-                            radius: 20.r,
-                            backgroundImage: const NetworkImage(
-                              'https://tse4.mm.bing.net/th?id=OIP.Q_vZZcSYOaPMcxnXMQQ99QHaE8&pid=Api&P=0&h=180',
-                            ),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20.r,
+                                backgroundImage: NetworkImage(
+                                  _viewModel.profileDetailsResponse?.data?.image.toString() ??
+                                    "https://cosmetrospace.sfo3.digitaloceanspaces.com/unknown.jpg",
+                                ),
+                              ),
+                              SizedBox(width: 2.w),
+                              Text(
+                                _viewModel.profileDetailsResponse?.data?.name ??
+                                    "",
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
