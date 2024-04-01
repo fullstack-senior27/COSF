@@ -111,6 +111,7 @@ class _LoginPageState extends ConsumerState<LoginPage> with BaseScreenView {
                           height: 20.h,
                         ),
                         TextFormField(
+                          obscureText: true,
                           controller: passwordController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,

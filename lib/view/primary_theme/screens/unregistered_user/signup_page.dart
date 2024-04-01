@@ -237,6 +237,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                         ),
 
                         TextFormField(
+                          obscureText: true,
                           controller: passwordController,
                           style: GoogleFonts.urbanist(
                             color: kBlack,
@@ -425,7 +426,7 @@ class _SignupPageState extends ConsumerState<SignupPage> with BaseScreenView {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () => {
-                              ref.read(styleProvider).setSelectedPage("Log In")
+                              context.go("/login")
                             },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: kBlack,

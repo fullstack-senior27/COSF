@@ -715,6 +715,7 @@ class _LandingPageState extends ConsumerState<LandingPage> with BaseScreenView {
                     height: 20.h,
                   ),
                   TextFormField(
+                    obscureText: true,
                     controller: passwordController,
                     style: GoogleFonts.urbanist(
                       fontSize: 18.sp,

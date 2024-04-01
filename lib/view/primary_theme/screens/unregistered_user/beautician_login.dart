@@ -591,6 +591,7 @@ class _BeauticianLoginState extends ConsumerState<BeauticianLogin>
                     height: 20.h,
                   ),
                   TextFormField(
+                    obscureText: true,
                     controller: passwordController,
                     style: GoogleFonts.urbanist(
                       fontSize: 18.sp,

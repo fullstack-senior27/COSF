@@ -74,6 +74,7 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
               height: 10.h,
             ),
             TextFormField(
+              obscureText: true,
               controller: oldPasswordController,
               decoration: InputDecoration(
                 hintText: "Enter your old password",
@@ -105,6 +106,7 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
               height: 10.h,
             ),
             TextFormField(
+              obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty || value.length < 8) {
                   return "Password must be at least 8 characters";
@@ -138,6 +140,7 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
               height: 10.h,
             ),
             TextFormField(
+              obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty || value.length < 8) {
                   return "Password must be at least 8 characters";
