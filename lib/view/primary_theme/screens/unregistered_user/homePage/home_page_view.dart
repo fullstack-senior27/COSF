@@ -28,7 +28,7 @@ class HomePageView extends ConsumerStatefulWidget {
 class _HomePageViewState extends ConsumerState<HomePageView>
     with BaseScreenView, SingleTickerProviderStateMixin {
   late CarouselSlider carousel;
-  final TextEditingController _dateController = TextEditingController();
+    final TextEditingController _dateController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   List<String> blogimg = [
     "https://i.imgur.com/Yl5A28c.webp",
@@ -96,7 +96,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
         Image.asset('assets/images/banner_5.jpg'),
       ]
     );
-  }
+      }
 
   Future<void> getData() async {
     isLoading = true;
@@ -131,8 +131,6 @@ class _HomePageViewState extends ConsumerState<HomePageView>
             alignment: Alignment.center,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
                 child: carousel,
               ),
               Column(
@@ -938,10 +936,28 @@ class _HomePageViewState extends ConsumerState<HomePageView>
           SizedBox(
             height: 50.h,
           ),
-          Image.asset(
-            "assets/icons/wwo_img.webp",
-            fit: BoxFit.contain,
-            height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
+          // Image.asset(
+          //   "assets/icons/wwo_img.webp",
+          //   fit: BoxFit.contain,
+          //   height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
+          // ),
+          Text(
+            'What We Offer',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 55.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 13.h,
+          ),
+          Text(
+            'Our Services',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 26.sp,
+            ),
           ),
           SizedBox(
             height: 50.h,
