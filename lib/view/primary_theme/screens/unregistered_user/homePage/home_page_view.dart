@@ -63,6 +63,18 @@ class _HomePageViewState extends ConsumerState<HomePageView>
   int serviceIndex = -1;
 
   late HomePageViewModel _viewModel;
+  final serviceTitles = <String>[
+    "Hair",
+    "Spa",
+    "Nail",
+    "Makeup",
+    "Removal",
+    "Lash Bar",
+    "Lips",
+    "Massage",
+    "Skin Care",
+    "Yoga",
+  ];
 
   @override
   void initState() {
@@ -94,9 +106,9 @@ class _HomePageViewState extends ConsumerState<HomePageView>
         Image.asset('assets/images/banner_3.jpg'),
         Image.asset('assets/images/banner_4.jpg'),
         Image.asset('assets/images/banner_5.jpg'),
-      ]
+      ],
     );
-      }
+  }
 
   Future<void> getData() async {
     isLoading = true;
@@ -961,6 +973,34 @@ class _HomePageViewState extends ConsumerState<HomePageView>
           ),
           SizedBox(
             height: 50.h,
+          ),
+          Wrap(
+            spacing: 48,
+              children: serviceTitles
+                  .map<Widget>(
+                    (title) => Container(
+                      width: 129,
+                      height: 206,
+                      margin: const EdgeInsets.only(bottom: 48),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(144,),
+                        border: Border.all(
+                          color: kLightGreyBorder,
+                          width: 1, // Set the border width
+                        ),
+                      ),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/$title.png"),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text(title)
+                          ]),
+                    ),
+                  )
+                  .toList()
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
