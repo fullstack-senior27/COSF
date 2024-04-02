@@ -7,6 +7,12 @@ class ButtonWithIconWidget extends StatelessWidget {
   final Color textColor;
   final Color backgroundColor;
   final VoidCallback? onPressed;
+  final double space;
+  final double iconSize;
+  final double fontSize;
+  final double borderRadius;
+  final double paddingHorizontal;
+  final double paddingVertical;
 
   const ButtonWithIconWidget({
     Key? key,
@@ -15,6 +21,12 @@ class ButtonWithIconWidget extends StatelessWidget {
     required this.textColor,
     required this.backgroundColor,
     required this.onPressed,
+    this.space = 8,
+    this.iconSize = 20,
+    this.fontSize = 12,
+    this.borderRadius = 20,
+    this.paddingHorizontal = 12,
+    this.paddingVertical = 12,
   }) : super(key: key);
 
   @override
@@ -24,28 +36,30 @@ class ButtonWithIconWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (iconUrl != null) ImageIcon(
-            AssetImage(iconUrl ?? ""),
-            color: textColor,
-            size: 20.sp,
+      child: Padding(
+          padding: EdgeInsets.only(left: paddingHorizontal, right: paddingHorizontal, top: paddingVertical, bottom: paddingVertical),
+          child: Wrap(
+            spacing: space,
+            children: [
+              if (iconUrl != null) ImageIcon(
+                AssetImage(iconUrl ?? ""),
+                color: textColor,
+                size: iconSize,
+              ),// Adjust the space between icon and text as needed
+              Text(
+                text,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w400,
+                  color: textColor,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 8), // Adjust the space between icon and text as needed
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: textColor,
-            ),
-          ),
-        ],
-      ),
+        ),      
     );
   }
 }

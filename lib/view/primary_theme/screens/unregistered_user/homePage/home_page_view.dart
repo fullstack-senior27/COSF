@@ -17,6 +17,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/button_with_icon.dart';
 
 class HomePageView extends ConsumerStatefulWidget {
   const HomePageView({super.key});
@@ -1002,191 +1003,51 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                   )
                   .toList()
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: MediaQuery.of(context).size.width > 765
-                    ? 4
-                    : MediaQuery.of(context).size.width > 360
-                        ? 2
-                        : 1,
-                crossAxisSpacing: 15.w,
-                mainAxisSpacing: 15.w,
-                childAspectRatio: MediaQuery.of(context).size.width > 1300
-                    ? 0.68
-                    : MediaQuery.of(context).size.width > 760
-                        ? MediaQuery.of(context).size.width > 700
-                            ? 0.62
-                            : 0.8
-                        : MediaQuery.of(context).size.width > 360
-                            ? 0.7
-                            : 0.75,
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 48,
+            children: [
+              Image.asset("assets/images/Advertise1.png"),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Better.\nWith.\nFriends.",
+                    style: GoogleFonts.urbanist(
+                      fontSize: 55.sp,
+                      fontWeight: FontWeight.bold,
+                      color: kdarkColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Refer a friend and you’ll both get 15%\n(up to 50\$) off when you book with a new pro",
+                    style: GoogleFonts.urbanist(
+                      fontSize: 26.sp,
+                      color: kdarkColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ButtonWithIconWidget(
+                    iconUrl: "assets/icons/gift.png",
+                    text: "Share Now",
+                    textColor: kWhite,
+                    backgroundColor: kGreyPinkColor,
+                    onPressed: () {
+                      context.go("/pricing");
+                    },
+                    space: 20,
+                    iconSize: 26,
+                    fontSize: 21,
+                    borderRadius: 40,
+                    paddingHorizontal: 20,
+                  ),
+                ],
               ),
-              children: [
-                ...List.generate(
-                    _viewModel.serviceCategoriesList?.data?.length ?? 0,
-                    (index) {
-                  if (_viewModel.serviceCategoriesList?.data?[index] == null) {
-                    return Container();
-                  } else {
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: 15.w),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          MouseRegion(
-                            onHover: (event) {
-                              setState(() {
-                                serviceIndex = index;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                serviceIndex = -1;
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3.r),
-                                border: Border.all(
-                                  color: kdisable,
-                                ),
-                              ),
-                              padding: EdgeInsets.all(10.r),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AspectRatio(
-                                    aspectRatio: 0.95,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(0.r),),
-                                        child: CachedNetworkImage(
-                                          imageUrl:
-                                              "https://dummyimage.com/300.png/09f/fff",
-                                          width: double.infinity,
-                                          fit: BoxFit.contain,
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Text(
-                                    _viewModel.serviceCategoriesList
-                                            ?.data?[index].name ??
-                                        "",
-                                    style: GoogleFonts.urbanist(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 40,
-                            right: 24,
-                            child: MouseRegion(
-                              onHover: (event) {
-                                setState(() {
-                                  serviceIndex = index;
-                                });
-                              },
-                              onExit: (event) {
-                                setState(() {
-                                  serviceIndex = -1;
-                                });
-                              },
-                              child: AnimatedOpacity(
-                                duration: const Duration(milliseconds: 150),
-                                curve: Curves.easeIn,
-                                opacity: serviceIndex == index ? 1 : 0,
-                                child: DottedBorder(
-                                  color: kWhite,
-                                  strokeWidth: 5,
-                                  dashPattern: const [6, 5, 6, 5],
-                                  borderType: BorderType.Circle,
-                                  radius: const Radius.circular(100),
-                                  child: Container(
-                                    margin: const EdgeInsets.all(4),
-                                    child: CircleAvatar(
-                                      backgroundColor: kBlue,
-                                      child: Center(
-                                        child: IconButton(
-                                          onPressed: () {
-                                            // print(_viewModel.services.data?[index].salon?.id ?? "");
-                                            // _viewModel.getSalonById(_viewModel
-                                            //         .services
-                                            //         .data?[index]
-                                            //         .salon
-                                            //         ?.id ??
-                                            //     "");
-                                            _viewModel.getBeauticiansByFilter(
-                                                beautician
-                                                    .BeauticiansFilterRequest(
-                                                        filters:
-                                                            beautician.Filters(
-                                              search: "",
-                                              serviceCategory: _viewModel
-                                                      .serviceCategoriesList
-                                                      ?.data?[index]
-                                                      .name ??
-                                                  "",
-                                            ),),);
-                                            _viewModel.category = _viewModel
-                                                    .serviceCategoriesList
-                                                    ?.data?[index]
-                                                    .name ??
-                                                "";
-                                            context.go("/beautician-listing");
-                                            //
-                                          },
-                                          icon: const Icon(
-                                            Icons.arrow_forward,
-                                            color: kWhite,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                })
-              ],
-            ),
+              Image.asset("assets/images/LashBarAdvertise.png"),
+            ],
           ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: GestureDetector(
-              onTap: () => {},
-              child: Image.asset(
-                "assets/icons/home_banner_p.webp",
-                width: double.infinity,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
+          
           SizedBox(
             height: 40.h,
           ),

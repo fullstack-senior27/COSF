@@ -18,3 +18,5 @@ const Color kselected = Color(0xffF1F1F1);
 const Color klines = Color(0xffCCCCCC);
 const Color dialogBg = Color(0xffF8F8F8);
 const Color kLightGreyBorder = Color(0xFFE8E4E4);
+const Color kdarkColor = Color(0xFF2B2B2B);
+const Color kGreyPinkColor = Color(0xFFB2808B);
