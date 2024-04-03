@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //constants color range for theme
 const Color kBlue = Color(0xFF3D48D5);
 const Color kLightBlue = Color(0xFFE0F3FD);
+const Color kLightBlue2 = Color(0xFF0088FD);
 const Color kGrey = Color(0xFF959595);
 const Color kWhite = Color(0xFFFFFFFF);
 const Color kBlack = Color(0xFF000000);
@@ -20,3 +21,4 @@ const Color dialogBg = Color(0xffF8F8F8);
 const Color kLightGreyBorder = Color(0xFFE8E4E4);
 const Color kdarkColor = Color(0xFF2B2B2B);
 const Color kGreyPinkColor = Color(0xFFB2808B);
+const Color kGreyFontColor = Color(0xFF696969);

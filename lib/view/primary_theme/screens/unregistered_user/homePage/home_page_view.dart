@@ -7,6 +7,7 @@ import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
+import 'package:cosmetropolis/view/primary_theme/widgets/carousel_with_conditional_arrow_state.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -94,8 +95,8 @@ class _HomePageViewState extends ConsumerState<HomePageView>
         enableInfiniteScroll: true,
         reverse: false,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayInterval: const Duration(seconds: 3),
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         // enlargeCenterPage: true,
         // enlargeFactor: 0.3,
@@ -1047,86 +1048,41 @@ class _HomePageViewState extends ConsumerState<HomePageView>
               Image.asset("assets/images/LashBarAdvertise.png"),
             ],
           ),
-          
           SizedBox(
-            height: 40.h,
-          ),
-          Image.asset(
-            "assets/icons/mcp_img.webp",
-            fit: BoxFit.contain,
-            height: MediaQuery.of(context).size.width > 700 ? 160.h : 110.h,
-          ),
-          SizedBox(
-            height: 40.h,
+            height: 20.h,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.width > 700 ? 320.h : 250.h,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: blogimg.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    hoverColor: Colors.transparent,
-                    onTap: () => {context.go("/blogs")},
-                    child: Container(
-                      padding: EdgeInsets.only(right: 10.w),
-                      width: MediaQuery.of(context).size.width > 700
-                          ? 100.w
-                          : 170.w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r)),
-                            child: CachedNetworkImage(
-                              imageUrl: blogimg[index],
-                              height: MediaQuery.of(context).size.width > 870
-                                  ? 180.h
-                                  : 100.h,
-                              width: MediaQuery.of(context).size.width > 870
-                                  ? 100.w
-                                  : 170.w,
-                              fit: BoxFit.fill,
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            "Manuel, Makeup Artist erbgiergbieru",
-                            style: GoogleFonts.urbanist(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text(
-                            "Between glam looks and good vibes, it’s no surprise why Manuel’s clients keep coming back.",
-                            style: GoogleFonts.urbanist(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+            padding: const EdgeInsets.only(left: 100, right: 100),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Meet Cosmetropolis Pros',
+                      style: GoogleFonts.urbanist(
+                        fontSize: 38.sp,
+                        fontWeight: FontWeight.bold,
+                        color: kBlack,
                       ),
                     ),
-                  );
-                },
-              ),
+                    const SizedBox(width: 70),
+                    Text(
+                      'See all >',
+                      style: GoogleFonts.urbanist(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.normal,
+                        color: kLightBlue2,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 56),
+                CarouselWithConditionalArrows(),
+              ],
             ),
           ),
-          SizedBox(
-            height: 25.h,
+          const SizedBox(
+            height: 40,
           ),
           const Footer(),
         ],
