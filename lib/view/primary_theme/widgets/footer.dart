@@ -109,7 +109,7 @@ class _FooterState extends State<Footer> {
                           children: [
                             IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.youtube, color: kWhite, size: 30,)),
                             const SizedBox(width: 30),
-                            IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.facebook, color: kWhite, size: 30,)),
+                            IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.twitter, color: kWhite, size: 30,)),
                             const SizedBox(width: 30),
                             IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.facebook, color: kWhite, size: 30,)),
                             const SizedBox(width: 30),
