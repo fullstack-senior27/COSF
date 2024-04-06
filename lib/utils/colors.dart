@@ -21,4 +21,5 @@ const Color dialogBg = Color(0xffF8F8F8);
 const Color kLightGreyBorder = Color(0xFFE8E4E4);
 const Color kdarkColor = Color(0xFF2B2B2B);
 const Color kGreyPinkColor = Color(0xFFB2808B);
+const Color kGreyPink2Color = Color(0xFFFFB6C1);
 const Color kGreyFontColor = Color(0xFF696969);
