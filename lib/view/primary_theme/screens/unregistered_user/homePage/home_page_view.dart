@@ -5,6 +5,7 @@ import 'package:cosmetropolis/data/remote/public/models/beauticians_list_model.d
     as beautician;
 import 'package:cosmetropolis/helpers/base_screen_view.dart';
 import 'package:cosmetropolis/routes/app_routes.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/utils/utils.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/homePage/home_page_view_model.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/carousel_with_conditional_arrow_state.dart';
@@ -12,12 +13,12 @@ import 'package:cosmetropolis/view/primary_theme/widgets/footer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:searchfield/searchfield.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cosmetropolis/view/primary_theme/widgets/button_with_icon.dart';
 
 class HomePageView extends ConsumerStatefulWidget {
@@ -29,7 +30,7 @@ class HomePageView extends ConsumerStatefulWidget {
 
 class _HomePageViewState extends ConsumerState<HomePageView>
     with BaseScreenView, SingleTickerProviderStateMixin {
-  late CarouselSlider carousel;
+  late FlutterCarousel carousel;
     final TextEditingController _dateController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   List<String> blogimg = [
@@ -88,28 +89,6 @@ class _HomePageViewState extends ConsumerState<HomePageView>
       getData();
       // _viewModel.fetchAllSalons("");
     });
-    carousel = CarouselSlider(
-      options: CarouselOptions(
-        viewportFraction: 1,
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: false,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 3),
-        autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        // enlargeCenterPage: true,
-        // enlargeFactor: 0.3,
-        scrollDirection: Axis.horizontal,
-      ),
-      items: [
-        Image.asset('assets/images/banner_1.jpg'),
-        Image.asset('assets/images/banner_2.jpg'),
-        Image.asset('assets/images/banner_3.jpg'),
-        Image.asset('assets/images/banner_4.jpg'),
-        Image.asset('assets/images/banner_5.jpg'),
-      ],
-    );
   }
 
   Future<void> getData() async {
@@ -137,6 +116,54 @@ class _HomePageViewState extends ConsumerState<HomePageView>
   @override
   Widget build(BuildContext context) {
     _viewModel = ref.watch(homePageViewModel);
+
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    carousel = FlutterCarousel(
+      options: CarouselOptions(
+        height: height,
+        aspectRatio: width / height,
+        viewportFraction: 1,
+        enableInfiniteScroll: true,
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 3),
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        slideIndicator: CircularWaveSlideIndicator(),
+      ),
+      items: [
+        CachedNetworkImage(imageUrl: 'assets/images/banner_1.jpg', 
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+          ),
+        CachedNetworkImage(imageUrl: 'assets/images/banner_2.jpg',
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+        ),
+        CachedNetworkImage(imageUrl: 'assets/images/banner_3.jpg',
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+        ),
+        CachedNetworkImage(imageUrl: 'assets/images/banner_4.jpg',
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+        ),
+        CachedNetworkImage(imageUrl: 'assets/images/banner_5.jpg',
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+        ),
+        // Image.asset('assets/images/banner_1.jpg'),
+        // Image.asset('assets/images/banner_2.jpg'),
+        // Image.asset('assets/images/banner_3.jpg'),
+        // Image.asset('assets/images/banner_4.jpg'),
+        // Image.asset('assets/images/banner_5.jpg'),
+      ],
+    );
+
+    final list = [
+                        'Hair Salon',
+                        'Nail Salon',
+                        'Skin Care',
+                        'Hair Removal',
+                        'Brows & Lashes',
+                        'Make Up',
+                        'Self Care',
+                    ];
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -144,9 +171,8 @@ class _HomePageViewState extends ConsumerState<HomePageView>
           Stack(
             alignment: Alignment.center,
             children: [
-              SizedBox(
-                child: carousel,
-              ),
+              // carousel,
+              CachedNetworkImage(imageUrl: "assets/images/banner_1.jpg", ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -943,6 +969,38 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                               ],
                             ),
                           )
+                  ,
+                  const SizedBox(height: 160), 
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 104),
+                    child: Row(
+                      children: list.map<Widget>(
+                      (title) => Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/images/${'icon_' + title}.png"),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                title,
+                                style: urbanist600(kWhite, 18),
+                              ),
+                            ],
+                          ),
+                          if (list.indexOf(title) < list.length - 1)
+                            const SizedBox(
+                              width: 136,
+                            )
+                          else
+                            Container(),
+                        ]
+                      ),
+                      ).toList(),
+                    ),
+                  ),
                 ],
               )
             ],
