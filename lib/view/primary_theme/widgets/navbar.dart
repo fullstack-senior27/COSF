@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmetropolis/core/constants.dart';
 import 'package:cosmetropolis/domain/style_provider.dart';
 import 'package:cosmetropolis/routes/navigator_service.dart';
 import 'package:cosmetropolis/utils/colors.dart';
+import 'package:cosmetropolis/utils/text_styles.dart';
 import 'package:cosmetropolis/view/locator.dart';
 import 'package:cosmetropolis/view/primary_theme/screens/unregistered_user/user_view_model.dart';
 import 'package:flutter/material.dart';
@@ -172,45 +174,63 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
     );
   }
 
-  Widget primaryStyleRes() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 8.w),
-          child: Image.asset(
-            "assets/icons/logo_small.png",
-            height: 50.h,
-            width: 50.h,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+  Widget primaryStyleRes() {    
+    return Container(
+      color: kGreyPinkColor,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
           children: [
-            Switch(
-              inactiveThumbColor: kBlue,
-              inactiveTrackColor: kWhite,
-              activeColor: kWhite,
-              activeTrackColor: kBlue,
-              value: AppConstants.isStylePrimary,
-              onChanged: (value) {
-                ref.read(styleProvider).toggleThemeMode();
-                setState(() {});
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    context.go('/');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min, // Use min to fit content size
+                    children: <Widget>[
+                      Text(
+                        'List Your Business',
+                        style: urbanist600(kWhite, 14),
+                      ),
+                      const SizedBox(width: 10),
+                      Icon(
+                        Icons.arrow_forward, // Choose your icon
+                        color: kWhite, // Icon color
+                        size: 14.sp,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            IconButton(
-              onPressed: () {
-                widget.scaffoldKey.currentState?.openDrawer();
-              },
-              icon: Icon(
-                Icons.menu,
-                color: kBlue,
-                size: 30.sp,
-              ),
-            )
+            const Divider(
+              color: kWhite,
+              thickness: 1,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CachedNetworkImage(
+                  imageUrl: "assets/icons/logo_small.png",
+                ),
+                IconButton(
+                  onPressed: () {
+                    widget.scaffoldKey.currentState?.openDrawer();
+                  },
+                  icon: Icon(
+                    Icons.menu,
+                    color: kWhite,
+                    size: 30.sp,
+                  ),
+                ),
+              ],
+            ),
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }

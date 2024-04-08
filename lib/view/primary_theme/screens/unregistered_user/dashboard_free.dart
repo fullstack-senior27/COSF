@@ -48,7 +48,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 navbarSection == "Calendar"
             ? null
             : PreferredSize(
-                preferredSize: Size.fromHeight(70.h),
+                preferredSize: Size.fromHeight(MediaQuery.of(context).size.width > 980 ? 70 : 114),
                 child: Column(
                   children: [
                     if (TargetPlatform.android == defaultTargetPlatform)
