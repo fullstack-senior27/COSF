@@ -37,7 +37,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
     final NavigationService navigationService = locator<NavigationService>();
     String navbarSection = ref.watch(styleProvider).selectedPage;
     return Scaffold(
-        extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: MediaQuery.of(context).size.width > 700,
         key: scaffoldKey,
         appBar: navbarSection == "Clients" ||
                 navbarSection == "More" ||
@@ -48,7 +48,7 @@ class _DashboardFreePageState extends ConsumerState<DashboardFreePage> {
                 navbarSection == "Calendar"
             ? null
             : PreferredSize(
-                preferredSize: Size.fromHeight(MediaQuery.of(context).size.width > 980 ? 70 : 114),
+                preferredSize: Size.fromHeight(MediaQuery.of(context).size.width > 700 ? 70 : 114),
                 child: Column(
                   children: [
                     if (TargetPlatform.android == defaultTargetPlatform)
