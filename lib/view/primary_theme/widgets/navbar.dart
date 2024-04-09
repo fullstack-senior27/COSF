@@ -217,9 +217,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                   onTap: () {
                     context.go('/');
                   },
-                  child: CachedNetworkImage(
-                    imageUrl: "assets/icons/logo_small.png",
-                  ),
+                  child: Image.asset("assets/icons/logo_small.png",),
                 ),
                 IconButton(
                   onPressed: () {
