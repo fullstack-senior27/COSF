@@ -164,6 +164,7 @@ class _HomePageViewState extends ConsumerState<HomePageView>
                         'Make Up',
                         'Self Care',
                     ];
+    final isDesktop = MediaQuery.of(context).size.width > 700;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -1047,51 +1048,65 @@ class _HomePageViewState extends ConsumerState<HomePageView>
           Text(
             'What We Offer',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 55.sp,
+            style: GoogleFonts.urbanist(
+              color: kdarkColor,
+              fontSize: isDesktop ? 55.sp : 22.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(
-            height: 13.h,
+            height: isDesktop ? 13 : 4,
           ),
           Text(
             'Our Services',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 26.sp,
+            style: GoogleFonts.urbanist(
+              color: kdarkColor,
+              fontSize: isDesktop ? 26.sp : 15.sp,
+              fontWeight: FontWeight.normal,
             ),
           ),
           SizedBox(
-            height: 50.h,
+            height: isDesktop ? 50 : 20,
           ),
-          Wrap(
-            spacing: 48,
-              children: serviceTitles
-                  .map<Widget>(
-                    (title) => Container(
-                      width: 129,
-                      height: 206,
-                      margin: const EdgeInsets.only(bottom: 48),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(144,),
-                        border: Border.all(
-                          color: kLightGreyBorder,
-                          width: 1, // Set the border width
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Wrap(
+              spacing: 48,
+                children: serviceTitles
+                    .map<Widget>(
+                      (title) => Container(
+                        width: isDesktop ? 129 : 82,
+                        height: isDesktop ? 206 : 116,
+                        margin: EdgeInsets.only(bottom: isDesktop ? 48 : 30),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(144,),
+                          border: Border.all(
+                            color: kLightGreyBorder,
+                            width: 1, // Set the border width
+                          ),
                         ),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CachedNetworkImage(imageUrl: "assets/images/$title.png", width: isDesktop ? 83 : 83 * 0.7, height: isDesktop ? 87: 87 * 0.7),
+                              SizedBox(
+                                height: isDesktop ? 30 : 10,
+                              ),
+                              Text(
+                                title,
+                                style: GoogleFonts.urbanist(
+                                  color: kdarkColor,
+                                  fontSize: isDesktop ? 18: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
                       ),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/$title.png"),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Text(title)
-                          ]),
-                    ),
-                  )
-                  .toList()
+                    )
+                    .toList()
+            ),
           ),
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
