@@ -173,8 +173,8 @@ class _HomePageViewState extends ConsumerState<HomePageView>
           Stack(
             alignment: Alignment.center,
             children: [
-              // carousel,
-              CachedNetworkImage(imageUrl: "assets/images/banner_1.jpg", ),
+              carousel,
+              // CachedNetworkImage(imageUrl: "assets/images/banner_1.jpg", ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
