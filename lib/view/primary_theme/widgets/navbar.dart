@@ -77,7 +77,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
                     textColor: kWhite,
                     backgroundColor: kBlack,
                     onPressed: () {
-                      context.go("/help");
+                      context.go("/landing");
                     },
                   ),
                 ]
@@ -186,7 +186,7 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
               children: [
                 InkWell(
                   onTap: () {
-                    context.go('/');
+                    context.go('/landing');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min, // Use min to fit content size
@@ -213,8 +213,13 @@ class _NavbarFreeWidgetState extends ConsumerState<NavbarFreeWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CachedNetworkImage(
-                  imageUrl: "assets/icons/logo_small.png",
+                InkWell(
+                  onTap: () {
+                    context.go('/');
+                  },
+                  child: CachedNetworkImage(
+                    imageUrl: "assets/icons/logo_small.png",
+                  ),
                 ),
                 IconButton(
                   onPressed: () {
